@@ -67,8 +67,9 @@ a:focus-visible {
   border-radius: 2px;
 }
 
-/* offset anchor scrolling so headings clear the sticky topbar */
-html { scroll-padding-top: 80px; }
+/* offset anchor scrolling so headings clear the sticky topbar.
+   --topbar-h is set from JS to match the live topbar height (it can wrap on narrow screens). */
+html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 
 /* ---------- topbar ---------- */
 .topbar {

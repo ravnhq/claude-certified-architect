@@ -1,4 +1,11 @@
 (() => {
+  const topbar = document.querySelector('.topbar');
+  if (topbar && 'ResizeObserver' in window) {
+    const setH = () => document.documentElement.style.setProperty('--topbar-h', `${topbar.offsetHeight}px`);
+    setH();
+    new ResizeObserver(setH).observe(topbar);
+  }
+
   const themeToggle = document.getElementById('theme-toggle');
   const searchToggle = document.getElementById('search-toggle');
   const dialog = document.getElementById('search-dialog');
