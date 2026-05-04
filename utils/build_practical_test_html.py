@@ -2,7 +2,7 @@
 """Build practical_test_<lang>.html for one or all languages.
 Usage: python3 build_practical_test_html.py [lang ...]   (lang: en, es, pt — default: all)
 """
-import json, subprocess, os, sys
+import base64, json, subprocess, os, sys
 
 # utils/ is one level inside the project root
 UTILS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -16,6 +16,15 @@ LANG_TITLES = {
 
 LANG_LABELS = {"en": "English", "es": "Espa\u00f1ol", "pt": "Portugu\u00eas"}
 LANG_ORDER = ["en", "es", "pt"]
+
+_FAVICON_PATH = os.path.join(ROOT_DIR, "docs", "assets", "favicon.png")
+try:
+    _FAVICON_DATA_URI = (
+        "data:image/png;base64,"
+        + base64.b64encode(open(_FAVICON_PATH, "rb").read()).decode()
+    )
+except FileNotFoundError:
+    _FAVICON_DATA_URI = ""
 
 RAVN_LOGO_SVG = (
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 64" '
@@ -74,25 +83,6 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.14em;
 }
-.ravn-actions { display: flex; align-items: center; gap: 12px; }
-.ravn-lang {
-  display: inline-flex;
-  background: #1a1a2e;
-  border: 1px solid #2c2c4a;
-  border-radius: 999px;
-  padding: 3px;
-}
-.ravn-lang a {
-  background: transparent; border: 0; color: #9aa0b3;
-  padding: 5px 12px; border-radius: 999px;
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  transition: color .15s, background .15s;
-}
-.ravn-lang a:hover { color: #f5f5f0; }
-.ravn-lang a.active { background: #f5f5f0; color: #0f1019; }
-
 .shell { display: flex; flex: 1; min-height: 0; overflow: hidden; }
 
 /* Sidebar */
@@ -483,24 +473,17 @@ def build(lang):
     page_title = f"{LANG_LABELS[lang]} — Practical Exam · Ravn"
     js = JS.replace('__DATA__', js_data)
 
-    lang_links = ''.join(
-        '<a href="{href}" class="{cls}">{code}</a>'.format(
-            href=f"{l}.html",
-            cls="active" if l == lang else "",
-            code=l.upper(),
-        )
-        for l in LANG_ORDER
-    )
     ravn_topbar = (
         '<header class="ravn-topbar">'
         '<a class="ravn-brand" href="../index.html" aria-label="Ravn — Claude Certified Architect">'
         f'{RAVN_LOGO_SVG}'
         '<span class="ravn-brand-tagline">Claude Certified Architect</span>'
         '</a>'
-        '<nav class="ravn-actions" aria-label="Language">'
-        f'<div class="ravn-lang" role="group">{lang_links}</div>'
-        '</nav>'
         '</header>'
+    )
+    favicon_tag = (
+        f'<link rel="icon" type="image/png" href="{_FAVICON_DATA_URI}">'
+        if _FAVICON_DATA_URI else ''
     )
 
     HTML = f"""<!DOCTYPE html>
@@ -509,6 +492,7 @@ def build(lang):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{page_title}</title>
+{favicon_tag}
 <style>{CSS}</style>
 </head>
 <body>
