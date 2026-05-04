@@ -103,23 +103,24 @@ a:focus-visible {
 }
 
 .topbar-actions { display: flex; align-items: center; gap: 10px; }
-.lang-switcher {
-  display: inline-flex;
+.search-filter {
+  display: flex;
+  gap: 6px;
+  padding: 12px 16px 0;
+}
+.search-lang {
   background: var(--bg-elev);
   border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 5px 12px;
   border-radius: 999px;
-  padding: 3px;
-}
-.lang-btn {
-  background: transparent; border: 0; color: var(--muted);
-  padding: 5px 12px; border-radius: 999px;
   font-size: 11px; font-weight: 600;
   letter-spacing: 0.08em;
   cursor: pointer;
   transition: color .15s var(--ease), background .15s var(--ease);
 }
-.lang-btn:hover { color: var(--fg); }
-.lang-btn.active { background: var(--fg); color: var(--bg); }
+.search-lang:hover { color: var(--fg); }
+.search-lang.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 
 .icon-btn {
   background: var(--bg-elev);

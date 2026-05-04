@@ -1,32 +1,10 @@
 (() => {
-  const langButtons = document.querySelectorAll('.lang-btn');
   const themeToggle = document.getElementById('theme-toggle');
   const searchToggle = document.getElementById('search-toggle');
   const dialog = document.getElementById('search-dialog');
   const input = document.getElementById('search-input');
   const results = document.getElementById('search-results');
-
-  // Lang switcher
-  const stored = localStorage.getItem('lang');
-  if (!stored) {
-    const guess = (navigator.language || 'en').slice(0, 2);
-    if (['en', 'es', 'pt'].includes(guess)) localStorage.setItem('lang', guess);
-  }
-  const currentLang = document.documentElement.lang || 'en';
-  langButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.lang;
-      localStorage.setItem('lang', target);
-      const here = location.pathname;
-      const map = [
-        [/\/guides\/(en|es|pt)\.html/, `/guides/${target}.html`],
-        [/\/practical\/(en|es|pt)\.html/, `/practical/${target}.html`],
-      ];
-      for (const [re, repl] of map) {
-        if (re.test(here)) { location.href = here.replace(re, repl); return; }
-      }
-    });
-  });
+  const filterButtons = document.querySelectorAll('.search-lang');
 
   // Theme toggle
   themeToggle?.addEventListener('click', () => {
@@ -37,6 +15,8 @@
 
   // Search
   let mini = null;
+  let searchLang = 'all';
+
   async function loadIndex() {
     if (mini) return mini;
     const res = await fetch('search-index.json');
@@ -46,6 +26,18 @@
     return mini;
   }
 
+  function runSearch() {
+    if (!mini || !input) return;
+    const q = input.value.trim();
+    if (!q) { results.innerHTML = ''; return; }
+    let hits = mini.search(q, { prefix: true, fuzzy: 0.2 });
+    if (searchLang !== 'all') hits = hits.filter(h => h.lang === searchLang);
+    hits = hits.slice(0, 20);
+    results.innerHTML = hits.map(h =>
+      `<li><a href="${h.url}"><span class="lang-tag">${h.lang}</span>${h.heading}</a></li>`
+    ).join('') || '<li style="padding:8px 16px;color:var(--muted)">No results</li>';
+  }
+
   searchToggle?.addEventListener('click', async () => {
     dialog.showModal();
     input.focus();
@@ -53,18 +45,18 @@
   });
   dialog?.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
 
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      searchLang = btn.dataset.lang;
+      filterButtons.forEach(b => b.classList.toggle('active', b === btn));
+      runSearch();
+    });
+  });
+
   let timer;
   input?.addEventListener('input', () => {
     clearTimeout(timer);
-    timer = setTimeout(() => {
-      if (!mini) return;
-      const lang = localStorage.getItem('lang') || currentLang;
-      const hits = mini.search(input.value, { prefix: true, fuzzy: 0.2 })
-        .filter(h => h.lang === lang).slice(0, 20);
-      results.innerHTML = hits.map(h =>
-        `<li><a href="${h.url}"><span class="lang-tag">${h.lang}</span>${h.heading}</a></li>`
-      ).join('') || '<li style="padding:8px 16px;color:var(--muted)">No results</li>';
-    }, 80);
+    timer = setTimeout(runSearch, 80);
   });
 
   document.addEventListener('keydown', (e) => {

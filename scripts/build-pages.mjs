@@ -57,22 +57,24 @@ function siteFooter() {
 </footer>`;
 }
 
-function header(currentLang) {
-  const switcher = LANGS.map(l =>
-    `<button class="lang-btn${l.code === currentLang ? ' active' : ''}" data-lang="${l.code}">${l.code.toUpperCase()}</button>`
-  ).join('');
+function header(_currentLang) {
   return `<header class="topbar">
   <a class="brand" href="index.html" aria-label="Ravn — Claude Certified Architect">
     <img src="assets/ravn-logo.svg" alt="Ravn" width="86" height="22">
     <span>Claude Certified Architect</span>
   </a>
   <nav class="topbar-actions">
-    <div class="lang-switcher" role="group" aria-label="Language">${switcher}</div>
     <button id="search-toggle" class="icon-btn" aria-label="Search">⌕</button>
     <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">◐</button>
   </nav>
 </header>
 <dialog id="search-dialog">
+  <div class="search-filter" role="group" aria-label="Filter by language">
+    <button class="search-lang active" data-lang="all">All</button>
+    <button class="search-lang" data-lang="en">EN</button>
+    <button class="search-lang" data-lang="es">ES</button>
+    <button class="search-lang" data-lang="pt">PT</button>
+  </div>
   <input id="search-input" type="search" placeholder="Search the guide…" autocomplete="off">
   <ul id="search-results"></ul>
 </dialog>`;
