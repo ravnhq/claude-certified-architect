@@ -20,9 +20,11 @@ The site has a language switcher (EN / ES / PT), full-text search, and a dark mo
 
 | Language | Markdown | PDF |
 |---|---|---|
-| English | [`guide_en.MD`](./guide_en.MD) | [`pdf/guide_en.pdf`](./pdf/guide_en.pdf) |
-| Spanish | [`guide_es.md`](./guide_es.md) | [`pdf/guide_es.pdf`](./pdf/guide_es.pdf) |
-| Portuguese | [`guide_pt.md`](./guide_pt.md) | [`pdf/guide_pt.pdf`](./pdf/guide_pt.pdf) |
+| English | [`guide_en.MD`](./guide_en.MD) | [Download](https://ravnhq.github.io/claude-certified-architect/pdf/guide_en.pdf) |
+| Spanish | [`guide_es.md`](./guide_es.md) | [Download](https://ravnhq.github.io/claude-certified-architect/pdf/guide_es.pdf) |
+| Portuguese | [`guide_pt.md`](./guide_pt.md) | [Download](https://ravnhq.github.io/claude-certified-architect/pdf/guide_pt.pdf) |
+
+PDFs are generated fresh on every deploy from the current markdown sources.
 
 ## Practical exam
 
@@ -48,21 +50,19 @@ python3 utils/build_practical_test_html.py en es  # specific langs
 ```
 .
 ├── guide_{en,es,pt}.{md,MD}      # source-of-truth study guides
-├── pdf/                          # auto-generated PDFs (do not edit by hand)
 ├── practical_test_*.html         # interactive quizzes built from the guides
 ├── extract_question.py           # parses guide_*.md → questions JSON
 ├── utils/build_practical_test_html.py  # questions JSON → practical_test_*.html
 ├── docs/                         # GitHub Pages site (static parts; CI generates the rest)
 ├── scripts/build-pages.mjs       # md → docs/ build (run by Pages workflow)
 └── .github/workflows/
-    ├── markdown-to-pdf.yml       # builds & commits guide_*.pdf on push to main
-    └── pages.yml                 # builds & deploys docs/ to GitHub Pages
+    └── pages.yml                 # generates PDFs and deploys docs/ to GitHub Pages
 ```
 
 ## Contributing
 
 - Translation fixes and clarifications welcome via PR — please keep the heading structure aligned across `guide_en.MD`, `guide_es.md`, and `guide_pt.md` so question extraction stays consistent.
-- PDFs regenerate automatically on merge to `main`; do not commit PDF edits by hand.
+- PDFs regenerate automatically on merge to `main` as part of the Pages deploy.
 
 ## License
 
