@@ -14,6 +14,18 @@ LANG_TITLES = {
     "pt": "Claude Certified Architect \u2014 Teste Pr\u00e1tico",
 }
 
+LANG_LABELS = {"en": "English", "es": "Espa\u00f1ol", "pt": "Portugu\u00eas"}
+LANG_ORDER = ["en", "es", "pt"]
+
+RAVN_LOGO_SVG = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 64" '
+    'aria-label="Ravn" role="img" width="86" height="22">'
+    '<text x="0" y="48" font-family="Inter, -apple-system, BlinkMacSystemFont, '
+    "'Segoe UI', Roboto, system-ui, sans-serif\" font-size=\"52\" "
+    'font-weight="800" letter-spacing="-2" fill="currentColor">ravn</text>'
+    '</svg>'
+)
+
 def get_questions(lang):
     result = subprocess.run(
         ["python3", "extract_question.py", lang, "all"],
@@ -27,15 +39,61 @@ CSS = """
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   background: #f0f2f5;
   color: #1a1a2e;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.shell { display: flex; height: 100vh; overflow: hidden; }
+/* Ravn brand topbar (mirrors docs/styles.css) */
+.ravn-topbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 32px;
+  background: #0f1019;
+  color: #f5f5f0;
+  border-bottom: 1px solid #2c2c4a;
+  flex-shrink: 0;
+}
+.ravn-brand {
+  display: inline-flex; align-items: baseline; gap: 14px;
+  color: #f5f5f0;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.ravn-brand:hover { color: #f6c87a; }
+.ravn-brand svg { color: currentColor; flex-shrink: 0; }
+.ravn-brand-tagline {
+  font-size: 13px;
+  color: #9aa0b3;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.ravn-actions { display: flex; align-items: center; gap: 12px; }
+.ravn-lang {
+  display: inline-flex;
+  background: #1a1a2e;
+  border: 1px solid #2c2c4a;
+  border-radius: 999px;
+  padding: 3px;
+}
+.ravn-lang a {
+  background: transparent; border: 0; color: #9aa0b3;
+  padding: 5px 12px; border-radius: 999px;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: color .15s, background .15s;
+}
+.ravn-lang a:hover { color: #f5f5f0; }
+.ravn-lang a.active { background: #f5f5f0; color: #0f1019; }
+
+.shell { display: flex; flex: 1; min-height: 0; overflow: hidden; }
 
 /* Sidebar */
 .sidebar {
@@ -422,17 +480,39 @@ def build(lang):
     questions = get_questions(lang)
     js_data = json.dumps(questions, ensure_ascii=False)
     title = LANG_TITLES[lang]
+    page_title = f"{LANG_LABELS[lang]} — Practical Exam · Ravn"
     js = JS.replace('__DATA__', js_data)
+
+    lang_links = ''.join(
+        '<a href="{href}" class="{cls}">{code}</a>'.format(
+            href=f"{l}.html",
+            cls="active" if l == lang else "",
+            code=l.upper(),
+        )
+        for l in LANG_ORDER
+    )
+    ravn_topbar = (
+        '<header class="ravn-topbar">'
+        '<a class="ravn-brand" href="../index.html" aria-label="Ravn — Claude Certified Architect">'
+        f'{RAVN_LOGO_SVG}'
+        '<span class="ravn-brand-tagline">Claude Certified Architect</span>'
+        '</a>'
+        '<nav class="ravn-actions" aria-label="Language">'
+        f'<div class="ravn-lang" role="group">{lang_links}</div>'
+        '</nav>'
+        '</header>'
+    )
 
     HTML = f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title}</title>
+<title>{page_title}</title>
 <style>{CSS}</style>
 </head>
 <body>
+{ravn_topbar}
 <div class="shell">
   <nav class="sidebar">
     <div class="sidebar-header">Questions</div>
