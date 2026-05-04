@@ -1,74 +1,75 @@
-# Claude Certified Architect — Foundations
+# Claude Certified Architect — Foundations · Ravn Edition
 
-This repository contains study materials for the **Claude Certified Architect — Foundations** certification.
+Ravn-curated study materials for the **Claude Certified Architect — Foundations** certification, in the languages our team works in: **English**, **Spanish**, and **Portuguese**.
 
-![alt text](image.png)
+This repository is a fork of [`paullarionov/claude-certified-architect`](https://github.com/paullarionov/claude-certified-architect) — credit and thanks to the original author. Ravn maintains a trimmed, branded edition for internal study and external sharing.
 
-## Certificate Example
+## Read online
 
-![alt text](image-1.png)
+The full guide and the practical exam are hosted on GitHub Pages:
 
-## Course Access
+**https://ravnhq.github.io/claude-certified-architect/**
 
-- Certification is currently restricted to members of the Anthropic Partner Network and requires registration with a verified partner company email. Claude Partner Network: https://claude.com/partners
-- Free for the first 5,000 partner company employees. General availability will be $99.
-- To request access to the official course/exam portal, use this link: https://anthropic.skilljar.com/claude-certified-architect-foundations-access-request
+The site has a language switcher (EN / ES / PT), full-text search, and a dark mode.
 
-## Study Guide
+## Course access
 
-- **English guide**: [`guide_en.md`](./guide_en.MD)
-- **Spanish guide**: [`guide_es.md`](./guide_es.md)
-- **Russian guide**: [`guide_ru.md`](./guide_ru.MD)
-- **Chinese guide**: [`guide_zh.md`](./guide_zh.md)
-- **Japanese guide**: [`guide_ja.md`](./guide_ja.md)
-- **Urdu guide**: [`guide_ur.md`](./guide_ur.md)
-- **Arabic guide**: [`guide_ur.md`](./guide_ar.MD)
+- The certification is currently restricted to members of the Anthropic Partner Network and requires registration with a verified partner-company email — see [Claude Partner Network](https://claude.com/partners).
+- Free for the first 5,000 partner-company employees; general availability priced at $99.
+- To request access to the official course/exam portal: <https://anthropic.skilljar.com/claude-certified-architect-foundations-access-request>.
 
-## PDF Version
+## Study guides
 
-- **English guide**: [`guide_en.pdf`](./pdf/guide_en.pdf)
-- **Spanish guide**: [`guide_es.pdf`](./pdf/guide_es.pdf)
-- **Russian guide**: [`guide_ru.pdf`](./pdf/guide_ru.pdf)
-- **Chinese guide**: [`guide_zh.pdf`](./pdf/guide_zh.pdf)
-- **Japanese guide**: [`guide_ja.pdf`](./pdf/guide_ja.pdf)
-- **Urdu guide**: [`guide_ur.pdf`](./pdf/guide_ur.pdf)
-- **Arabic guide**: [`guide_ar.pdf`](./pdf/guide_ar.pdf)
+| Language | Markdown | PDF |
+|---|---|---|
+| English | [`guide_en.MD`](./guide_en.MD) | [`pdf/guide_en.pdf`](./pdf/guide_en.pdf) |
+| Spanish | [`guide_es.md`](./guide_es.md) | [`pdf/guide_es.pdf`](./pdf/guide_es.pdf) |
+| Portuguese | [`guide_pt.md`](./guide_pt.md) | [`pdf/guide_pt.pdf`](./pdf/guide_pt.pdf) |
 
-## How to Use
+## Practical exam
 
-- Read the guide that matches your preferred language.
-- Work through the scenarios and questions.
-- Use the **Practical Exercises** section to rehearse key patterns (tool design, MCP integration, structured output, context management, and reliability).
+Self-paced HTML quiz, runs entirely in your browser. Generated from each language's guide via:
 
-## Free Anthropic Courses
+```bash
+python3 utils/build_practical_test_html.py        # all langs
+python3 utils/build_practical_test_html.py en es  # specific langs
+```
 
-13 free courses & certificates from Anthropic Academy:
+- English: [`practical_test_en.html`](./practical_test_en.html) — **76 questions** (5 scenarios).
+- Spanish: [`practical_test_es.html`](./practical_test_es.html) — **76 questions** (5 scenarios). Q1–Q60 translated from English in this fork; Q61–Q76 retained from upstream.
+- Portuguese: pending — `guide_pt.md` is currently a translation stub.
 
-1. **[Claude 101](https://anthropic.skilljar.com/claude-101)** — Learn Claude for everyday work. Core features and best practices.
-2. **[AI Fluency: Framework & Foundations](https://anthropic.skilljar.com/ai-fluency-framework-foundations)** — The foundational thinking course.
-3. **[Introduction to Agent Skills](https://anthropic.skilljar.com/introduction-to-agent-skills)** — Build, configure, and share Skills in Claude Code.
-4. **[Building with the Claude API](https://anthropic.skilljar.com/claude-with-the-anthropic-api)** — Function calling, tool use, streaming, SDKs, and production patterns.
-5. **[Claude Code in Action](https://anthropic.skilljar.com/claude-code-in-action)** — Integrate Claude Code into your dev workflow.
-6. **[Intro to Model Context Protocol](https://anthropic.skilljar.com/introduction-to-model-context-protocol)** — Build MCP servers and clients from scratch in Python.
-7. **[MCP: Advanced Topics](https://anthropic.skilljar.com/model-context-protocol-advanced-topics)** — Sampling, notifications, file system access, and transport for production MCP servers.
-8. **[AI Fluency for Students](https://anthropic.skilljar.com/ai-fluency-for-students)** — AI skills for learning, career planning, and academic success.
-9. **[AI Fluency for Educators](https://anthropic.skilljar.com/ai-fluency-for-educators)** — For faculty and instructional designers applying AI Fluency into teaching.
-10. **[Teaching AI Fluency](https://anthropic.skilljar.com/teaching-ai-fluency)** — Teach and assess AI Fluency in instructor-led settings.
-11. **[AI Fluency for Nonprofits](https://anthropic.skilljar.com/ai-fluency-for-nonprofits)** — Increase organizational impact while staying mission-true.
-12. **[Claude with Amazon Bedrock](https://anthropic.skilljar.com/claude-in-amazon-bedrock)** — The full AWS accreditation course, now open to everyone.
-13. **[Claude with Google Cloud's Vertex AI](https://anthropic.skilljar.com/claude-with-google-vertex)** — Work with Claude through Google Cloud's Vertex AI, from setup to production.
+## How to use
 
-## See Also
+1. Pick the guide that matches your preferred language.
+2. Work through the scenarios and questions.
+3. Use the **Practical Exercises** section to rehearse the key patterns: tool design, MCP integration, structured output, context management, and reliability.
 
-- Claude Code: Commands Cheatsheet https://claude-guides.com
-- Top 80 Claude Skills, Agents & GitHub Repos for AI — The Complete Guide https://x.com/paullarionov/status/2038254131849134220
+## Repository layout
 
-## How to Contribute
+```
+.
+├── guide_{en,es,pt}.{md,MD}      # source-of-truth study guides
+├── pdf/                          # auto-generated PDFs (do not edit by hand)
+├── practical_test_*.html         # interactive quizzes built from the guides
+├── extract_question.py           # parses guide_*.md → questions JSON
+├── utils/build_practical_test_html.py  # questions JSON → practical_test_*.html
+├── docs/                         # GitHub Pages site (static parts; CI generates the rest)
+├── scripts/build-pages.mjs       # md → docs/ build (run by Pages workflow)
+└── .github/workflows/
+    ├── markdown-to-pdf.yml       # builds & commits guide_*.pdf on push to main
+    └── pages.yml                 # builds & deploys docs/ to GitHub Pages
+```
 
-- Add new translations to your language in md files, PDF version will be generated automatically after merge of PR.
+## Open work
 
-## Follow
+- **Portuguese translation** — `guide_pt.md` ships as a structured stub. Once translated (with a `# Teste Prático` H1 and the same `## Questão N (Cenário: …)` structure as English/Spanish), running `python3 utils/build_practical_test_html.py pt` will produce `practical_test_pt.html`.
 
-- LinkedIn: https://www.linkedin.com/in/paullarionov
-- X: https://x.com/paullarionov
+## Contributing
 
+- Translation fixes and clarifications welcome via PR — please keep the heading structure aligned across `guide_en.MD`, `guide_es.md`, and `guide_pt.md` so question extraction stays consistent.
+- PDFs regenerate automatically on merge to `main`; do not commit PDF edits by hand.
+
+## License & attribution
+
+Original study materials © Paul Larionov, used per the upstream repository's terms. Ravn-specific edits and the GitHub Pages site are © Ravn.

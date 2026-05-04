@@ -2440,35 +2440,929 @@ Model Context Protocol (MCP) es un protocolo abierto para conectar sistemas exte
 
 ---
 
-# Ejemplos de preguntas de examen
+# Examen Práctico
 
-## Pregunta 1 (Escenario: Agente de soporte al cliente)
+> 76 preguntas en 5 escenarios. El formato y la dificultad coinciden con el examen real.
+>
+> Como alternativa, puedes practicar estas preguntas en un archivo HTML estilo examen: [Examen Práctico (ES)](practical_test_es.html)
 
-**Situación:** Los datos muestran que en 12% de casos el agente omite `get_customer` y solo llama `lookup_order` por nombre, resultando en devoluciones erróneas.
-
-**¿Cuál es el cambio más efectivo?**
-
-- A) Agregar precondición programática que bloquee `lookup_order` hasta obtener ID de `get_customer` **[CORRECTO]**
-- B) Mejorar el prompt del sistema
-- C) Agregar ejemplos few-shot
-- D) Implementar clasificador de enrutamiento
-
-**Por qué A:** Lógica comercial crítica requiere garantías determinísticas, que solo enfoques programáticos pueden dar.
+## Escenario: Sistema de investigación multiagente
 
 ---
 
-## Pregunta 2 (Escenario: Agente de soporte al cliente)
+## Pregunta 1 (Escenario: Sistema de investigación multiagente)
 
-**Situación:** Agente frecuentemente llama `get_customer` en lugar de `lookup_order` para preguntas sobre pedidos. Las descripciones son mínimas y similares.
+**Situación:** Un agente de análisis de documentos descubre que dos fuentes creíbles contienen estadísticas directamente contradictorias para una métrica clave: un informe gubernamental indica un crecimiento del 40%, mientras que un análisis de la industria indica un 12%. Ambas fuentes parecen creíbles, y la discrepancia podría afectar materialmente las conclusiones de la investigación. ¿Cómo debería el agente de análisis de documentos manejar esta situación de la forma más efectiva?
 
-**¿Cuál es el primer paso?**
+**¿Cuál es el enfoque más efectivo?**
 
-- A) Ejemplos few-shot
-- B) Expandir descripciones de cada herramienta con formatos, ejemplos y límites **[CORRECTO]**
-- C) Capa de enrutamiento
-- D) Combinar herramientas
+- A) Aplicar heurísticas de credibilidad para elegir el número más probablemente correcto, terminar el análisis con ese valor y agregar una nota al pie mencionando la discrepancia.
+- B) Incluir ambos números en la salida del análisis sin marcarlos como conflictivos, dejando que el agente de síntesis decida cuál usar según el contexto más amplio.
+- C) Detener el análisis y escalar inmediatamente al coordinador, pidiéndole que decida qué fuente es más autoritativa antes de continuar.
+- D) Completar el análisis con ambos números, anotar explícitamente el conflicto con atribución de fuente y dejar que el coordinador decida cómo reconciliar los datos antes de pasarlos a síntesis. **[CORRECTA]**
 
-**Por qué B:** Descripciones son mecanismo principal de selección. Es solución de menor esfuerzo, más efectiva.
+**Por qué D:** Este enfoque preserva la separación de responsabilidades: el agente de análisis completa su trabajo principal sin bloquearse, conserva ambos valores conflictivos con atribución clara y traslada correctamente la reconciliación al coordinador, que tiene un contexto más amplio.
+
+---
+
+## Pregunta 2 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** Los agentes de búsqueda web y de análisis de documentos completaron sus tareas y devolvieron resultados al coordinador. ¿Cuál es el siguiente paso para crear un informe de investigación integrado?
+
+**¿Cuál es el siguiente paso más apropiado?**
+
+- A) Cada agente envía sus resultados directamente al agente redactor del informe, evitando al coordinador.
+- B) El agente de análisis de documentos solicita los resultados de búsqueda web y los fusiona internamente.
+- C) El coordinador pasa ambos conjuntos de resultados al agente de síntesis para una integración unificada. **[CORRECTA]**
+- D) El coordinador concatena las salidas crudas de ambos agentes y las devuelve como resultado final.
+
+**Por qué C:** En una arquitectura coordinador–subagente, el coordinador reenvía ambos conjuntos de resultados al agente de síntesis para una integración centralizada, preservando el control y asegurando una fusión de alta calidad.
+
+---
+
+## Pregunta 3 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** Un subagente de análisis de documentos falla con frecuencia al procesar archivos PDF: algunos tienen secciones corruptas que disparan excepciones de parseo, otros están protegidos con contraseña, y a veces la biblioteca de parseo se cuelga con archivos grandes. Actualmente, cualquier excepción termina inmediatamente el subagente y devuelve un error al coordinador, que debe decidir si reintentar, omitir o fallar toda la tarea. Esto causa una participación excesiva del coordinador en el manejo rutinario de errores. ¿Qué mejora arquitectónica es más efectiva?
+
+**¿Qué mejora es más efectiva?**
+
+- A) Crear un agente dedicado al manejo de errores que monitoree todos los fallos a través de una cola compartida y decida acciones de recuperación, enviando comandos de reinicio directamente a los subagentes.
+- B) Configurar el subagente para que siempre devuelva resultados parciales con estado de éxito, embebiendo detalles del error en metadatos; el coordinador trata todas las respuestas como exitosas.
+- C) Hacer que el coordinador valide todos los documentos antes de enviarlos al subagente, rechazando documentos que puedan causar fallos.
+- D) Implementar recuperación local en el subagente para fallos transitorios y escalar al coordinador solo los errores que no puede resolver, incluyendo pasos intentados y resultados parciales. **[CORRECTA]**
+
+**Por qué D:** Maneja los errores en el nivel más bajo capaz de resolverlos. La recuperación local reduce la carga del coordinador mientras escala los problemas verdaderamente irrecuperables con contexto completo y progreso parcial.
+
+---
+
+## Pregunta 4 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** Después de ejecutar el sistema sobre "el impacto de la IA en las industrias creativas", observas que cada subagente se completa con éxito: el agente de búsqueda web encuentra artículos relevantes, el agente de análisis de documentos los resume correctamente y el agente de síntesis produce un texto coherente. Sin embargo, los informes finales solo cubren artes visuales y omiten por completo música, literatura y cine. En los registros del coordinador, ves que descompuso el tema en tres subtareas: "IA en arte digital", "IA en diseño gráfico" e "IA en fotografía". ¿Cuál es la causa raíz más probable?
+
+**¿Cuál es la causa raíz más probable?**
+
+- A) Al agente de síntesis le faltan instrucciones para detectar lagunas de cobertura.
+- B) El agente de análisis de documentos filtra fuentes no visuales debido a criterios de relevancia demasiado estrictos.
+- C) La descomposición de tareas del coordinador es demasiado estrecha, asignando a los subagentes trabajo que no cubre todas las áreas relevantes. **[CORRECTA]**
+- D) Las consultas del agente de búsqueda web son insuficientes y deberían ampliarse para cubrir más sectores.
+
+**Por qué C:** El coordinador descompuso un tema amplio solo en subtareas de artes visuales, omitiendo por completo música, literatura y cine. Como los subagentes ejecutaron sus asignaciones correctamente, la descomposición estrecha es la causa raíz evidente.
+
+---
+
+## Pregunta 5 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** El subagente de búsqueda web devuelve resultados solo para 3 de 5 categorías de fuentes solicitadas (sitios de competencia e informes de la industria tienen éxito, pero archivos de noticias y feeds sociales agotan el tiempo). El subagente de análisis de documentos procesa con éxito todos los documentos provistos. El subagente de síntesis debe producir un resumen a partir de entradas previas de calidad mixta. ¿Qué estrategia de propagación de errores es más efectiva?
+
+**¿Qué estrategia de propagación de errores es más efectiva?**
+
+- A) Continuar la síntesis usando solo las fuentes exitosas y producir una salida sin mencionar qué datos no estaban disponibles.
+- B) El subagente de síntesis devuelve un error al coordinador, disparando un reintento completo o el fallo de la tarea por datos incompletos.
+- C) El subagente de síntesis pide al coordinador que reintente las fuentes con tiempo de espera agotado con un timeout más largo antes de iniciar la síntesis.
+- D) Estructurar la salida de síntesis con anotaciones de cobertura que indiquen qué conclusiones están bien respaldadas y dónde hay vacíos por fuentes no disponibles. **[CORRECTA]**
+
+**Por qué D:** Las anotaciones de cobertura implementan una degradación elegante con transparencia, preservando el valor del trabajo completado mientras propagan la incertidumbre para permitir decisiones informadas sobre la confianza.
+
+---
+
+## Pregunta 6 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** El subagente de análisis de documentos encuentra un archivo PDF corrupto que no puede parsear. Al diseñar el manejo de errores del sistema, ¿cuál es la forma más efectiva de manejar este fallo?
+
+**¿Cuál es el enfoque más efectivo?**
+
+- A) Devolver un error con contexto al agente coordinador, permitiéndole decidir cómo proceder. **[CORRECTA]**
+- B) Omitir silenciosamente el documento corrupto y continuar procesando los archivos restantes para no interrumpir el flujo.
+- C) Reintentar automáticamente el parseo del documento tres veces con retroceso exponencial antes de reportar un fallo.
+- D) Lanzar una excepción que termine todo el flujo de investigación.
+
+**Por qué A:** Devolver un error con contexto al coordinador es lo más efectivo porque le permite tomar una decisión informada—omitir el archivo, intentar un método de parseo alternativo o notificar al usuario—mientras se mantiene visibilidad sobre el fallo.
+
+---
+
+## Pregunta 7 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** Los registros de producción muestran un patrón persistente: solicitudes como "analiza el informe trimestral subido" se enrutan al agente de búsqueda web el 45% del tiempo en lugar de al agente de análisis de documentos. Revisando las definiciones de herramientas, encuentras que el agente de búsqueda web tiene una herramienta `analyze_content` descrita como "analiza contenido y extrae información clave", mientras que el agente de análisis de documentos tiene una herramienta `analyze_document` descrita como "analiza documentos y extrae información clave". ¿Cómo deberías corregir el problema de enrutamiento?
+
+**¿Cómo deberías corregir el problema de enrutamiento?**
+
+- A) Agregar un clasificador de pre-enrutamiento que detecte si el usuario se refiere a archivos subidos o contenido web antes de que el coordinador decida la delegación.
+- B) Renombrar la herramienta de búsqueda web a `extract_web_results` y actualizar su descripción a "procesa y devuelve información obtenida de búsqueda web y URLs". **[CORRECTA]**
+- C) Agregar ejemplos few-shot al prompt del coordinador mostrando el enrutamiento correcto: "El usuario sube un informe trimestral → agente de análisis de documentos" y "El usuario pregunta sobre una página web → agente de búsqueda web".
+- D) Expandir la descripción de la herramienta de análisis de documentos con ejemplos de uso como "Usar para PDFs subidos, documentos de Word y hojas de cálculo", dejando la herramienta de búsqueda web sin cambios.
+
+**Por qué B:** Renombrar la herramienta de búsqueda web a `extract_web_results` y actualizar su descripción para referenciar explícitamente la búsqueda web y las URLs elimina directamente la causa raíz al eliminar el solapamiento semántico entre los nombres y descripciones de las dos herramientas. Esto hace inequívoco el propósito de cada herramienta, permitiendo al coordinador distinguir confiablemente análisis de documentos de búsqueda web.
+
+---
+
+## Pregunta 8 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** Un colega propone que el agente de análisis de documentos envíe sus resultados directamente al agente de síntesis, evitando al coordinador. ¿Cuál es la principal ventaja de mantener al coordinador como hub central de toda la comunicación entre subagentes?
+
+**¿Cuál es la principal ventaja de mantener al coordinador como hub central?**
+
+- A) El coordinador puede observar todas las interacciones, manejar errores uniformemente y decidir qué información debe recibir cada subagente. **[CORRECTA]**
+- B) El coordinador agrupa múltiples solicitudes a los subagentes, reduciendo el total de llamadas a la API y la latencia general.
+- C) El enrutamiento a través del coordinador permite lógica de reintento automático que las llamadas directas entre agentes no pueden soportar.
+- D) Los subagentes usan memoria aislada, y la comunicación directa requeriría serialización compleja que solo el coordinador puede realizar.
+
+**Por qué A:** El patrón coordinador proporciona visibilidad centralizada de todas las interacciones, manejo uniforme de errores en todo el sistema y control fino sobre qué información recibe cada subagente—estas son las ventajas principales de una topología de comunicación en estrella.
+
+---
+
+## Pregunta 9 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** El subagente de búsqueda web agota el tiempo de espera mientras investiga un tema complejo. Necesitas diseñar cómo se devuelve la información sobre este fallo al coordinador. ¿Qué enfoque de propagación de errores permite mejor una recuperación inteligente?
+
+**¿Qué enfoque de propagación de errores permite mejor una recuperación inteligente?**
+
+- A) Devolver contexto de error estructurado al coordinador, incluyendo el tipo de fallo, la consulta ejecutada, cualquier resultado parcial y posibles enfoques alternativos. **[CORRECTA]**
+- B) Capturar el timeout dentro del subagente y devolver un conjunto de resultados vacío marcado como exitoso.
+- C) Implementar reintentos automáticos con retroceso exponencial dentro del subagente, devolviendo solo un estado genérico "búsqueda no disponible" después de agotar los reintentos.
+- D) Propagar la excepción de timeout directamente al manejador de nivel superior, terminando todo el flujo de investigación.
+
+**Por qué A:** Devolver contexto de error estructurado—incluyendo tipo de fallo, consulta ejecutada, resultados parciales y enfoques alternativos—da al coordinador todo lo necesario para tomar decisiones inteligentes de recuperación (por ejemplo, reintentar con una consulta modificada o continuar con resultados parciales). Preserva el máximo contexto para una toma de decisiones informada a nivel de coordinación.
+
+---
+
+## Pregunta 10 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** En tu diseño del sistema, le diste al agente de análisis de documentos acceso a una herramienta de propósito general `fetch_url` para que pudiera descargar documentos por URL. Los registros de producción muestran que este agente ahora descarga frecuentemente páginas de resultados de motores de búsqueda para realizar búsquedas web ad hoc—comportamiento que debería enrutarse a través del agente de búsqueda web—causando resultados inconsistentes. ¿Qué corrección es más efectiva?
+
+**¿Qué corrección es más efectiva?**
+
+- A) Reemplazar `fetch_url` con una herramienta `load_document` que valide que las URLs apunten a formatos de documento. **[CORRECTA]**
+- B) Eliminar `fetch_url` del agente de análisis de documentos y enrutar toda obtención de URL a través del coordinador hacia el agente de búsqueda web.
+- C) Implementar un filtro que bloquee llamadas de `fetch_url` a dominios conocidos de motores de búsqueda mientras permite otras URLs.
+- D) Agregar instrucciones al prompt del agente de análisis de documentos indicando que `fetch_url` solo debe usarse para descargar URLs de documentos, no para buscar.
+
+**Por qué A:** Reemplazar una herramienta de propósito general con una herramienta específica para documentos que valida URLs contra formatos de documento corrige la causa raíz limitando la capacidad a nivel de la interfaz. Esto sigue el principio de menor privilegio, haciendo imposible el comportamiento de búsqueda no deseado en lugar de meramente desincentivarlo.
+
+---
+
+## Pregunta 11 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** Mientras investigas un tema amplio, observas que el agente de búsqueda web y el agente de análisis de documentos investigan los mismos subtemas, llevando a una duplicación sustancial en sus salidas. El uso de tokens casi se duplica sin un aumento proporcional en la amplitud o profundidad de la investigación. ¿Cuál es la forma más efectiva de abordar esto?
+
+**¿Cuál es la forma más efectiva de abordar esto?**
+
+- A) Permitir que ambos agentes terminen en paralelo y luego que el coordinador deduplique los resultados solapados antes de pasarlos al agente de síntesis.
+- B) El coordinador particiona explícitamente el espacio de investigación antes de delegar, asignando a cada agente subtemas o tipos de fuente distintos. **[CORRECTA]**
+- C) Implementar un mecanismo de estado compartido donde los agentes registran su área de enfoque actual para que otros agentes puedan evitar dinámicamente la duplicación durante la ejecución.
+- D) Cambiar a ejecución secuencial donde el análisis de documentos se ejecuta solo después de que la búsqueda web termina, usando los resultados de búsqueda como contexto para evitar duplicación.
+
+**Por qué B:** Hacer que el coordinador particione explícitamente el espacio de investigación antes de delegar es lo más efectivo porque aborda la causa raíz—límites de tarea poco claros—antes de que comience cualquier trabajo. Preserva el paralelismo mientras previene esfuerzo duplicado y tokens desperdiciados.
+
+---
+
+## Pregunta 12 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** Durante la investigación, el subagente de búsqueda web consulta tres categorías de fuentes con resultados diferentes: las bases de datos académicas devuelven 15 artículos relevantes, los informes de la industria devuelven "0 resultados" y las bases de datos de patentes devuelven "Tiempo de conexión agotado". Al diseñar la propagación de errores al coordinador, ¿qué enfoque permite las mejores decisiones de recuperación?
+
+**¿Qué enfoque permite las mejores decisiones de recuperación?**
+
+- A) Agregar los resultados en una sola métrica de porcentaje de éxito (por ejemplo, "67% de cobertura de fuentes") con registros detallados disponibles a demanda.
+- B) Reportar tanto "timeout" como "0 resultados" como fallos que requieren intervención del coordinador.
+- C) Reintentar fallos transitorios internamente y reportar solo errores persistentes.
+- D) Distinguir fallos de acceso (timeout) que requieren una decisión de reintento de resultados vacíos válidos ("0 resultados") que representan consultas exitosas. **[CORRECTA]**
+
+**Por qué D:** Un timeout (fallo de acceso) y "0 resultados" (resultado vacío válido) son resultados semánticamente diferentes que requieren respuestas diferentes. Distinguirlos permite al coordinador reintentar la base de datos de patentes mientras acepta los "0 resultados" de informes de la industria como un hallazgo válido e informativo.
+
+---
+
+## Pregunta 13 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** El monitoreo de producción muestra calidad de síntesis inconsistente. Cuando los resultados agregados son ~75K tokens, el agente de síntesis cita confiablemente información de los primeros 15K tokens (titulares/fragmentos de búsqueda web) y los últimos 10K tokens (conclusiones del análisis de documentos), pero a menudo se pierde hallazgos críticos en los 50K tokens del medio—incluso cuando responden directamente a la pregunta de investigación. ¿Cómo deberías reestructurar la entrada agregada?
+
+**¿Cómo deberías reestructurar la entrada agregada?**
+
+- A) Resumir todas las salidas de los subagentes a menos de 20K tokens antes de la agregación para mantener el contenido dentro del rango confiable de procesamiento del modelo.
+- B) Transmitir los resultados de los subagentes al agente de síntesis incrementalmente, procesando primero los resultados de búsqueda web por completo, luego agregando los resultados del análisis de documentos.
+- C) Colocar un resumen de hallazgos clave al inicio de la entrada agregada y organizar los resultados detallados con encabezados de sección explícitos para una navegación más fácil. **[CORRECTA]**
+- D) Implementar rotación que alterne qué resultados de subagente aparecen primero en distintas tareas de investigación para asegurar que ambas fuentes obtengan posicionamiento superior equitativo con el tiempo.
+
+**Por qué C:** Poner un resumen de hallazgos clave al inicio aprovecha los efectos de primacía para que la información crítica esté en la posición procesada más confiablemente. Agregar encabezados de sección explícitos en todo el documento ayuda al modelo a navegar y atender el contenido del medio, mitigando directamente el fenómeno "perdido en el medio".
+
+---
+
+## Pregunta 14 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** En pruebas, la salida combinada del agente de búsqueda web (85K tokens incluyendo contenido de página) y del agente de análisis de documentos (70K tokens incluyendo cadenas de pensamiento) totaliza 155K tokens, pero el agente de síntesis funciona mejor con entradas por debajo de 50K tokens. ¿Qué solución es más efectiva?
+
+**¿Qué solución es más efectiva?**
+
+- A) Modificar los agentes previos para que devuelvan datos estructurados (hechos clave, citas, puntuaciones de relevancia) en lugar de contenido y razonamiento verbosos. **[CORRECTA]**
+- B) Agregar un agente intermedio de resumición que condense los hallazgos antes de pasarlos a la síntesis.
+- C) Hacer que el agente de síntesis procese los hallazgos en lotes secuenciales, manteniendo el estado entre llamadas.
+- D) Almacenar los hallazgos en una base de datos vectorial y dar al agente de síntesis herramientas de búsqueda para consultar durante su trabajo.
+
+**Por qué A:** Modificar los agentes previos para que devuelvan datos estructurados corrige la causa raíz reduciendo el volumen de tokens en la fuente mientras preserva la información esencial. Evita pasar contenido de página voluminoso y trazas de razonamiento que inflan tokens sin mejorar el paso de síntesis.
+
+---
+
+## Pregunta 15 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** En pruebas, observas que el agente de síntesis a menudo necesita verificar afirmaciones específicas mientras fusiona resultados. Actualmente, cuando se necesita verificación, el agente de síntesis devuelve el control al coordinador, que llama al agente de búsqueda web y luego reinvoca la síntesis con los resultados. Esto añade 2–3 bucles extra por tarea y aumenta la latencia un 40%. Tu evaluación muestra que el 85% de estas verificaciones son comprobaciones simples de hechos (fechas, nombres, estadísticas) y el 15% requiere investigación más profunda. ¿Qué enfoque reduce más efectivamente la sobrecarga preservando la confiabilidad del sistema?
+
+**¿Cuál es el enfoque más efectivo?**
+
+- A) Dar al agente de síntesis acceso a todas las herramientas de búsqueda web para que pueda manejar cualquier necesidad de verificación directamente sin bucles del coordinador.
+- B) Hacer que el agente de síntesis acumule todas las necesidades de verificación y las devuelva como un lote al coordinador al final, que las envía todas al agente de búsqueda web a la vez.
+- C) Hacer que el agente de búsqueda web cachee proactivamente contexto extra alrededor de cada fuente durante la investigación inicial en anticipación a que la síntesis necesite verificación.
+- D) Dar al agente de síntesis una herramienta `verify_fact` de alcance limitado para comprobaciones simples, mientras se enrutan las verificaciones complejas a través del coordinador al agente de búsqueda web. **[CORRECTA]**
+
+**Por qué D:** Una herramienta de verificación de hechos de alcance limitado permite al agente de síntesis manejar el 85% de las comprobaciones simples directamente, eliminando la mayoría de los bucles, mientras se preserva la ruta de delegación del coordinador para el 15% de verificaciones complejas. Esto aplica el menor privilegio mientras reduce significativamente la latencia.
+
+---
+
+## Escenario: Claude Code para Integración Continua
+
+---
+
+## Pregunta 16 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tu pipeline de CI ejecuta el CLI de Claude Code (en modo `--print`) usando CLAUDE.md para proporcionar contexto del proyecto a la revisión de código, y los desarrolladores generalmente encuentran las revisiones sustantivas. Sin embargo, reportan que integrar los hallazgos al flujo es difícil—Claude produce párrafos narrativos que deben copiarse manualmente a los comentarios del PR. El equipo quiere publicar automáticamente cada hallazgo como un comentario inline separado del PR en el lugar relevante del código, lo que requiere datos estructurados con ruta de archivo, número de línea, nivel de severidad y corrección sugerida. ¿Qué enfoque es más efectivo?
+
+**¿Cuál es el enfoque más efectivo?**
+
+- A) Agregar una sección "Output Format for Review" a CLAUDE.md con ejemplos de hallazgos estructurados para que Claude aprenda el formato esperado del contexto del proyecto.
+- B) Usar las flags del CLI `--output-format json` y `--json-schema` para imponer hallazgos estructurados, luego parsear la salida para publicar comentarios inline a través de la API de GitHub. **[CORRECTA]**
+- C) Incluir instrucciones de formato explícitas en el prompt de revisión que requieran que cada hallazgo siga una plantilla parseable como `[FILE:ruta] [LINE:n] [SEVERITY:nivel] ...`.
+- D) Mantener el formato de revisión narrativo pero agregar un paso de resumición que use Claude para generar un resumen JSON estructurado de los hallazgos.
+
+**Por qué B:** Usar `--output-format json` con `--json-schema` impone salida estructurada a nivel del CLI, garantizando JSON bien formado con los campos requeridos (ruta de archivo, número de línea, severidad, corrección sugerida) que pueden parsearse y publicarse confiablemente como comentarios inline del PR a través de la API de GitHub. Aprovecha capacidades incorporadas del CLI diseñadas específicamente para salida estructurada.
+
+---
+
+## Pregunta 17 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tu equipo usa Claude Code para generar sugerencias de código, pero notas un patrón: problemas no obvios—optimizaciones de rendimiento que rompen casos límite, limpiezas que cambian inesperadamente el comportamiento—solo se detectan cuando otro miembro del equipo revisa el PR. El razonamiento de Claude durante la generación muestra que consideró estos casos pero concluyó que su enfoque era correcto. ¿Qué enfoque aborda directamente la causa raíz de esta limitación de auto-revisión?
+
+**¿Qué enfoque aborda directamente la causa raíz?**
+
+- A) Ejecutar una segunda instancia independiente de Claude Code para revisar los cambios sin acceso al razonamiento del generador. **[CORRECTA]**
+- B) Habilitar el modo de pensamiento extendido para la etapa de generación para permitir una deliberación más exhaustiva antes de producir sugerencias.
+- C) Agregar instrucciones explícitas de auto-revisión al prompt de generación pidiendo a Claude que critique sus propias sugerencias antes de finalizar la salida.
+- D) Incluir archivos de prueba completos y documentación en el contexto del prompt para que Claude entienda mejor el comportamiento esperado durante la generación.
+
+**Por qué A:** Una segunda instancia independiente de Claude Code sin acceso al razonamiento del generador aborda directamente la causa raíz al evitar el sesgo de confirmación. Esta perspectiva de "ojos frescos" refleja la revisión por pares humana, donde otro revisor detecta problemas que el autor racionalizó.
+
+---
+
+## Pregunta 18 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tu componente de revisión de código es iterativo: Claude analiza el archivo modificado, luego puede solicitar archivos relacionados (imports, clases base, pruebas) mediante llamadas a herramientas para entender el contexto antes de proporcionar la retroalimentación final. Tu aplicación define una herramienta que permite a Claude solicitar contenido de archivos; Claude llama la herramienta, obtiene resultados y continúa el análisis. Estás evaluando procesamiento en lote para reducir el costo de la API. ¿Cuál es la principal limitación técnica al considerar procesamiento en lote para este flujo?
+
+**¿Cuál es la principal limitación técnica?**
+
+- A) El procesamiento en lote no incluye IDs de correlación para mapear las salidas de vuelta a las solicitudes de entrada.
+- B) El modelo asíncrono no puede ejecutar herramientas a mitad de solicitud y devolver resultados para que Claude continúe el análisis. **[CORRECTA]**
+- C) La Batch API no soporta definiciones de herramientas en los parámetros de solicitud.
+- D) La latencia de procesamiento en lote de hasta 24 horas es demasiado lenta para retroalimentación de pull requests, aunque el flujo funcionaría de otro modo.
+
+**Por qué B:** Un modelo asíncrono "fire-and-forget" de Batch API no tiene mecanismo para interceptar una llamada a herramienta durante una solicitud, ejecutar la herramienta y devolver resultados para que Claude continúe el análisis. Esto es fundamentalmente incompatible con flujos iterativos de llamadas a herramientas que requieren múltiples rondas de solicitud/respuesta de herramientas dentro de una sola interacción lógica.
+
+---
+
+## Pregunta 19 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tu sistema CI/CD ejecuta tres análisis basados en Claude: (1) verificaciones rápidas de estilo en cada PR que bloquean el merge hasta completarse, (2) auditorías exhaustivas de seguridad semanales de toda la base de código, y (3) generación nocturna de casos de prueba para módulos cambiados recientemente. La Message Batches API ofrece 50% de ahorro pero el procesamiento puede tardar hasta 24 horas. Quieres optimizar el costo de la API manteniendo una experiencia de desarrollador aceptable. ¿Qué combinación empareja correctamente cada tarea con un enfoque de API?
+
+**¿Qué combinación es correcta?**
+
+- A) Usar la Message Batches API para las tres tareas para maximizar el 50% de ahorro, configurando el pipeline para sondear la finalización del lote.
+- B) Usar llamadas síncronas para verificaciones de estilo del PR; usar la Message Batches API para auditorías de seguridad semanales y generación nocturna de pruebas. **[CORRECTA]**
+- C) Usar llamadas síncronas para las tres tareas para tiempos de respuesta consistentes, confiando en el caching de prompts para reducir costos en todas las cargas de trabajo.
+- D) Usar llamadas síncronas para verificaciones de estilo del PR y generación nocturna de pruebas; usar la Message Batches API solo para auditorías de seguridad semanales.
+
+**Por qué B:** Las verificaciones de estilo del PR bloquean a los desarrolladores y requieren respuestas inmediatas vía llamadas síncronas, mientras que las auditorías de seguridad semanales y la generación nocturna de pruebas son tareas programadas con plazos flexibles que pueden tolerar hasta una ventana de lote de 24 horas—capturando 50% de ahorro para ambas.
+
+---
+
+## Pregunta 20 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tus revisiones automatizadas encuentran problemas reales, pero los desarrolladores reportan que la retroalimentación no es accionable. Los hallazgos incluyen frases como "lógica de enrutamiento de tickets compleja" o "potencial puntero nulo" sin especificar qué cambiar exactamente. Cuando agregas instrucciones detalladas como "siempre incluir sugerencias de corrección concretas", el modelo aún produce salida inconsistente—a veces detallada, a veces vaga. ¿Qué técnica de prompting produce más confiablemente retroalimentación consistentemente accionable?
+
+**¿Qué técnica de prompting es más confiable?**
+
+- A) Refinar más las instrucciones con requisitos más explícitos para cada parte del formato de retroalimentación (ubicación, problema, severidad, corrección propuesta).
+- B) Expandir la ventana de contexto para incluir más código circundante para que el modelo tenga suficiente información para proponer correcciones concretas.
+- C) Implementar un enfoque de dos pasadas donde un prompt identifica problemas y un segundo genera correcciones, permitiendo especialización.
+- D) Agregar 3–4 ejemplos few-shot que muestren el formato exacto requerido: problema identificado, ubicación en el código, sugerencia de corrección concreta. **[CORRECTA]**
+
+**Por qué D:** Los ejemplos few-shot son la técnica más efectiva para lograr formato de salida consistente cuando las instrucciones por sí solas producen resultados variables. Proporcionar 3–4 ejemplos que muestran la estructura exacta deseada (problema, ubicación, corrección concreta) le da al modelo un patrón concreto a seguir, lo cual es más confiable que instrucciones abstractas.
+
+---
+
+## Pregunta 21 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tu pipeline de CI incluye dos modos de revisión de código basados en Claude: un hook de pre-merge-commit que bloquea el merge del PR hasta completarse, y un "análisis profundo" que se ejecuta de noche, sondea la finalización del lote y publica sugerencias detalladas en el PR. Quieres reducir el costo de la API usando la Message Batches API, que ofrece 50% de ahorro pero requiere sondeo y puede tardar hasta 24 horas. ¿Qué modo debería usar procesamiento en lote?
+
+**¿Qué modo debería usar procesamiento en lote?**
+
+- A) Solo el hook de pre-merge-commit.
+- B) Solo el análisis profundo. **[CORRECTA]**
+- C) Ambos modos.
+- D) Ninguno de los modos.
+
+**Por qué B:** El análisis profundo es un candidato ideal para procesamiento en lote porque ya se ejecuta de noche, tolera retraso y usa un modelo de sondeo antes de publicar resultados—coincidiendo con la arquitectura asíncrona basada en sondeo de la Message Batches API mientras captura 50% de ahorro.
+
+---
+
+## Pregunta 22 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tu revisión automatizada analiza comentarios y docstrings. El prompt actual instruye a Claude a "verificar que los comentarios sean precisos y estén actualizados". Los hallazgos a menudo señalan patrones aceptables (marcadores TODO, descripciones simples) mientras se pierden comentarios que describen comportamiento que el código ya no implementa. ¿Qué cambio aborda la causa raíz de este análisis inconsistente?
+
+**¿Qué cambio aborda la causa raíz?**
+
+- A) Incluir datos de `git blame` para que Claude pueda identificar comentarios que preceden cambios de código recientes.
+- B) Agregar ejemplos few-shot de comentarios engañosos para ayudar al modelo a reconocer patrones similares en la base de código.
+- C) Filtrar patrones de comentarios TODO, FIXME y descriptivos antes del análisis para reducir el ruido.
+- D) Especificar criterios explícitos: marcar comentarios solo cuando el comportamiento que afirman contradice el comportamiento real del código. **[CORRECTA]**
+
+**Por qué D:** Los criterios explícitos—marcar comentarios solo cuando el comportamiento afirmado contradice el comportamiento real del código—abordan directamente la causa raíz reemplazando una instrucción vaga con una definición precisa de qué constituye un problema. Esto reduce los falsos positivos sobre patrones aceptables y los descuidos de comentarios verdaderamente engañosos.
+
+---
+
+## Pregunta 23 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tu sistema automatizado de revisión de código muestra calificaciones de severidad inconsistentes—problemas similares como riesgos de puntero nulo se califican como "críticos" en algunos PRs pero solo "medio" en otros. Las encuestas a desarrolladores muestran creciente desconfianza—muchos comienzan a descartar hallazgos sin leer porque "la mitad están mal". Las categorías con altos falsos positivos erosionan la confianza en categorías precisas. ¿Qué enfoque restaura mejor la confianza del desarrollador mientras mejora el sistema?
+
+**¿Qué enfoque restaura mejor la confianza del desarrollador?**
+
+- A) Deshabilitar temporalmente categorías con altos falsos positivos (estilo, nomenclatura, documentación) y mantener solo categorías de alta precisión mientras se mejoran los prompts. **[CORRECTA]**
+- B) Mantener todas las categorías habilitadas pero mostrar puntuaciones de confianza con cada hallazgo para que los desarrolladores decidan qué investigar.
+- C) Mantener todas las categorías habilitadas y agregar ejemplos few-shot para mejorar la precisión de cada categoría durante las próximas semanas.
+- D) Aplicar una reducción uniforme de estrictez a todas las categorías para bajar la tasa general de falsos positivos.
+
+**Por qué A:** Deshabilitar temporalmente las categorías con altos falsos positivos detiene inmediatamente la erosión de confianza al eliminar hallazgos ruidosos que hacen que los desarrolladores descarten todo, mientras se preserva el valor de las categorías de alta precisión como seguridad y corrección. También crea espacio para mejorar los prompts de las categorías problemáticas antes de rehabilitarlas.
+
+---
+
+## Pregunta 24 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tu revisión automatizada genera sugerencias de casos de prueba para cada PR. Revisando un PR que agrega seguimiento de finalización de cursos, Claude sugiere 10 casos de prueba, pero la retroalimentación del desarrollador muestra que 6 duplican escenarios ya cubiertos por la suite de pruebas existente. ¿Qué cambio reduce más efectivamente las sugerencias duplicadas?
+
+**¿Qué cambio es más efectivo?**
+
+- A) Incluir el archivo de pruebas existente en el contexto para que Claude pueda determinar qué escenarios ya están cubiertos. **[CORRECTA]**
+- B) Reducir el número solicitado de sugerencias de 10 a 5, asumiendo que Claude prioriza primero los casos más valiosos.
+- C) Agregar instrucciones dirigiendo a Claude a enfocarse exclusivamente en casos límite y condiciones de error en lugar de rutas de éxito.
+- D) Implementar post-procesamiento que filtre sugerencias cuyas descripciones coincidan con nombres de pruebas existentes mediante solapamiento de palabras clave.
+
+**Por qué A:** Incluir el archivo de pruebas existente corrige la causa raíz de la duplicación: Claude solo puede evitar sugerir escenarios ya cubiertos si sabe qué pruebas ya existen. Esto le da a Claude la información necesaria para proponer pruebas genuinamente nuevas y valiosas.
+
+---
+
+## Pregunta 25 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Después de que una revisión automatizada inicial identifica 12 hallazgos, un desarrollador hace commits nuevos para abordar problemas. Al volver a ejecutar la revisión se producen 8 hallazgos, pero los desarrolladores reportan que 5 duplican comentarios anteriores sobre código que ya fue corregido en los nuevos commits. ¿Cuál es la forma más efectiva de eliminar esta retroalimentación redundante manteniendo la exhaustividad?
+
+**¿Cuál es la forma más efectiva de eliminar la retroalimentación redundante?**
+
+- A) Ejecutar la revisión solo cuando se crea el PR y en el estado final pre-merge, omitiendo commits intermedios.
+- B) Agregar un filtro de post-procesamiento que elimine hallazgos que coincidan con anteriores por rutas de archivo y descripciones de problemas antes de publicar comentarios.
+- C) Restringir el alcance de la revisión a archivos cambiados en el push más reciente, excluyendo archivos de commits anteriores.
+- D) Incluir los hallazgos de revisión anteriores en el contexto e instruir a Claude para reportar solo problemas nuevos o aún sin resolver. **[CORRECTA]**
+
+**Por qué D:** Incluir los hallazgos de revisión previos en el contexto permite a Claude distinguir problemas nuevos de los ya abordados en commits recientes. Esto preserva la exhaustividad de la revisión mientras usa el razonamiento de Claude para evitar retroalimentación redundante sobre código corregido.
+
+---
+
+## Pregunta 26 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tu script de pipeline ejecuta `claude "Analyze this pull request for security issues"`, pero el job se cuelga indefinidamente. Los registros muestran que Claude Code está esperando entrada interactiva. ¿Cuál es el enfoque correcto para ejecutar Claude Code en un pipeline automatizado?
+
+**¿Cuál es el enfoque correcto?**
+
+- A) Agregar una flag `--batch`: `claude --batch "Analyze this pull request for security issues"`.
+- B) Agregar la flag `-p`: `claude -p "Analyze this pull request for security issues"`. **[CORRECTA]**
+- C) Redirigir stdin desde `/dev/null`: `claude "Analyze this pull request for security issues" < /dev/null`.
+- D) Establecer la variable de entorno `CLAUDE_HEADLESS=true` antes de ejecutar el comando.
+
+**Por qué B:** La flag `-p` (o `--print`) es la forma documentada de ejecutar Claude Code de forma no interactiva. Procesa el prompt, imprime el resultado a stdout y sale sin esperar entrada del usuario—ideal para pipelines de CI/CD.
+
+---
+
+## Pregunta 27 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Un pull request cambia 14 archivos en un módulo de seguimiento de inventario. Una revisión de una sola pasada que analiza todos los archivos juntos produce resultados inconsistentes: retroalimentación detallada en algunos archivos pero comentarios superficiales en otros, errores obvios omitidos y retroalimentación contradictoria (un patrón se marca en un archivo pero código idéntico se aprueba en otro archivo del mismo PR). ¿Cómo deberías reestructurar la revisión?
+
+**¿Cómo deberías reestructurar la revisión?**
+
+- A) Ejecutar tres pasadas independientes de revisión completa del PR y marcar solo problemas que aparezcan en al menos dos de las tres ejecuciones.
+- B) Dividir en pasadas enfocadas: revisar cada archivo individualmente para problemas locales, luego ejecutar una pasada separada orientada a la integración para examinar flujos de datos entre archivos. **[CORRECTA]**
+- C) Requerir que los desarrolladores dividan PRs grandes en envíos más pequeños de 3–4 archivos antes de ejecutar la revisión automatizada.
+- D) Cambiar a un modelo más grande con una ventana de contexto mayor para que pueda prestar atención suficiente a los 14 archivos en una sola pasada.
+
+**Por qué B:** Las pasadas enfocadas por archivo abordan la causa raíz—dilución de atención—asegurando profundidad consistente y detección confiable de problemas locales. Una pasada separada orientada a la integración cubre luego preocupaciones entre archivos como dependencias e interacciones de flujo de datos.
+
+---
+
+## Pregunta 28 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tu revisión automatizada de código promedia 15 hallazgos por pull request, y los desarrolladores reportan una tasa de falsos positivos del 40%. El cuello de botella es el tiempo de investigación: los desarrolladores deben hacer clic en cada hallazgo para leer la justificación de Claude antes de decidir si corregir o descartar. Tu CLAUDE.md ya contiene reglas exhaustivas para patrones aceptables, y los stakeholders rechazaron cualquier enfoque que filtre hallazgos antes de que los vean los desarrolladores. ¿Qué cambio aborda mejor el tiempo de investigación?
+
+**¿Qué cambio aborda mejor el tiempo de investigación?**
+
+- A) Requerir que Claude incluya su justificación y estimación de confianza directamente en cada hallazgo. **[CORRECTA]**
+- B) Agregar un post-procesador que analice patrones de hallazgos y suprima automáticamente aquellos que coincidan con firmas históricas de falsos positivos.
+- C) Categorizar los hallazgos como "problemas bloqueantes" vs "sugerencias", con diferentes requisitos de revisión por nivel.
+- D) Configurar Claude para mostrar solo hallazgos de alta confianza, filtrando marcadores inciertos antes de que los vean los desarrolladores.
+
+**Por qué A:** Incluir la justificación y la confianza directamente en cada hallazgo reduce el tiempo de investigación al permitir que los desarrolladores triien rápidamente sin abrir cada hallazgo. Satisface la restricción de "no filtrar" porque todos los hallazgos permanecen visibles mientras se acelera la toma de decisiones del desarrollador.
+
+---
+
+## Pregunta 29 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** El análisis de tu revisión automatizada de código muestra grandes diferencias en las tasas de falsos positivos por categoría de hallazgo: hallazgos de seguridad/corrección tienen 8% de falsos positivos, hallazgos de rendimiento 18%, hallazgos de estilo/nomenclatura 52% y hallazgos de documentación 48%. Las encuestas a desarrolladores muestran creciente desconfianza—muchos comienzan a descartar hallazgos sin leer porque "la mitad están mal". Las categorías con altos falsos positivos erosionan la confianza en categorías precisas. ¿Qué enfoque restaura mejor la confianza del desarrollador mientras mejora el sistema?
+
+**¿Qué enfoque restaura mejor la confianza del desarrollador?**
+
+- A) Deshabilitar temporalmente categorías con altos falsos positivos (estilo, nomenclatura, documentación) y mantener solo categorías de alta precisión mientras se mejoran los prompts. **[CORRECTA]**
+- B) Mantener todas las categorías habilitadas pero mostrar puntuaciones de confianza con cada hallazgo para que los desarrolladores decidan qué investigar.
+- C) Mantener todas las categorías habilitadas y agregar ejemplos few-shot para mejorar la precisión de cada categoría durante las próximas semanas.
+- D) Aplicar una reducción uniforme de estrictez a todas las categorías para bajar la tasa general de falsos positivos.
+
+**Por qué A:** Deshabilitar temporalmente las categorías con altos falsos positivos detiene inmediatamente la erosión de confianza al eliminar hallazgos ruidosos que hacen que los desarrolladores descarten todo, mientras se preserva el valor de las categorías de alta precisión como seguridad y corrección. También crea espacio para mejorar los prompts de las categorías problemáticas antes de rehabilitarlas.
+
+---
+
+## Pregunta 30 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Tu equipo quiere reducir los costos de API para análisis automatizado. Actualmente, las llamadas síncronas a Claude soportan dos flujos: (1) una verificación pre-merge bloqueante que debe completarse antes de que los desarrolladores puedan hacer merge, y (2) un informe de deuda técnica generado durante la noche para revisión a la mañana siguiente. Tu gerente propone mover ambos a la Message Batches API para ahorrar 50%. ¿Cómo deberías evaluar esta propuesta?
+
+**¿Cómo deberías evaluar esta propuesta?**
+
+- A) Mover ambos a procesamiento en lote con respaldo a llamadas síncronas si los lotes tardan demasiado.
+- B) Mover ambos flujos a procesamiento en lote con sondeo de estado para verificar la finalización.
+- C) Usar procesamiento en lote solo para los informes de deuda técnica; mantener las llamadas síncronas para las verificaciones pre-merge. **[CORRECTA]**
+- D) Mantener llamadas síncronas para ambos flujos para evitar problemas con el ordenamiento de resultados de lotes.
+
+**Por qué C:** El procesamiento de la Message Batches API puede tardar hasta 24 horas sin SLA de latencia, lo cual es aceptable para informes nocturnos de deuda técnica pero inaceptable para verificaciones pre-merge bloqueantes donde los desarrolladores esperan. Esto empareja cada flujo con la API correcta según los requisitos de latencia.
+
+---
+
+## Escenario: Generación de código con Claude Code
+
+---
+
+## Pregunta 31 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Le pediste a Claude Code que implementara una función que transforme respuestas de API a un formato interno normalizado. Después de dos iteraciones, la estructura de salida aún no coincide con las expectativas—algunos campos están anidados de forma diferente y las marcas de tiempo están formateadas incorrectamente. Describiste los requisitos en prosa, pero Claude los interpreta de forma diferente cada vez.
+
+**¿Qué enfoque es más efectivo para la siguiente iteración?**
+
+- A) Escribir un esquema JSON que describa la estructura de salida esperada y validar la salida de Claude contra él después de cada iteración.
+- B) Proporcionar 2–3 ejemplos concretos de entrada-salida que muestren la transformación esperada para respuestas de API representativas. **[CORRECTA]**
+- C) Reescribir los requisitos con mayor precisión técnica, especificando mapeos exactos de campos, reglas de anidamiento y cadenas de formato de marca de tiempo.
+- D) Pedir a Claude que explique su comprensión actual de los requisitos para identificar dónde divergen las interpretaciones.
+
+**Por qué B:** Los ejemplos concretos de entrada-salida eliminan la ambigüedad inherente a las descripciones en prosa al mostrar a Claude los resultados exactos de transformación esperados. Esto aborda directamente la causa raíz—mala interpretación de requisitos textuales—proporcionando patrones inequívocos para anidamiento de campos y formato de marcas de tiempo.
+
+---
+
+## Pregunta 32 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Necesitas agregar Slack como un nuevo canal de notificación. La base de código existente tiene patrones claros y establecidos para canales de email, SMS y push. Sin embargo, la API de Slack ofrece enfoques de integración fundamentalmente diferentes—webhooks entrantes (simple, unidireccional), bot tokens (soportan confirmación de entrega y control programático) o Slack Apps (eventos bidireccionales, requiere aprobación del workspace). Tu tarea dice "agregar soporte para Slack" sin especificar el método de integración ni requerir características avanzadas como seguimiento de entrega.
+
+**¿Cómo deberías abordar esta tarea?**
+
+- A) Comenzar en modo de ejecución directa usando webhooks entrantes para coincidir con el patrón existente de notificación unidireccional.
+- B) Cambiar a modo de planificación para explorar opciones de integración e implicaciones arquitectónicas, luego presentar una recomendación antes de implementar. **[CORRECTA]**
+- C) Comenzar en modo de ejecución directa esbozando una clase de canal Slack usando los patrones existentes, posponiendo la decisión del método de integración.
+- D) Comenzar en modo de ejecución directa usando un enfoque de bot token para asegurar que sea posible la confirmación de entrega.
+
+**Por qué B:** La integración con Slack tiene múltiples enfoques válidos con implicaciones arquitectónicas significativamente diferentes, y los requisitos son ambiguos. El modo de planificación te permite evaluar trade-offs entre webhooks, bot tokens y Slack Apps y alinearte sobre un enfoque antes de la implementación.
+
+---
+
+## Pregunta 33 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Tu archivo CLAUDE.md ha crecido a más de 400 líneas conteniendo estándares de codificación, convenciones de pruebas, una checklist detallada de revisión de PRs, instrucciones de despliegue y procedimientos de migración de base de datos. Quieres que Claude siga siempre los estándares de codificación y convenciones de pruebas, pero que aplique la guía de revisión de PR, despliegue y migración solo cuando esté haciendo esas tareas.
+
+**¿Qué enfoque de reestructuración es más efectivo?**
+
+- A) Mover toda la guía a archivos Skills separados organizados por tipo de flujo, dejando solo una breve descripción del proyecto en CLAUDE.md.
+- B) Mantener todo en CLAUDE.md pero usar sintaxis `@import` para organizar en archivos mantenidos por separado por categoría.
+- C) Dividir CLAUDE.md en archivos bajo `.claude/rules/` con patrones glob ligados a rutas para que cada regla cargue solo para los tipos de archivo relevantes.
+- D) Mantener los estándares universales en CLAUDE.md y crear Skills para guía específica de flujo (revisión de PR, despliegue, migraciones) con palabras clave de activación. **[CORRECTA]**
+
+**Por qué D:** El contenido de CLAUDE.md se carga en cada sesión, asegurando que los estándares de codificación y las convenciones de pruebas siempre apliquen, mientras que las Skills se invocan bajo demanda cuando Claude detecta palabras clave de activación—ideal para guía específica de flujo como revisión de PR, despliegue y migraciones.
+
+---
+
+## Pregunta 34 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Estás encargado de reestructurar la aplicación monolítica de tu equipo en microservicios. Esto impacta cambios en docenas de archivos y requiere decisiones sobre límites de servicio y dependencias entre módulos.
+
+**¿Qué enfoque deberías elegir?**
+
+- A) Cambiar a modo de planificación para explorar la base de código, entender dependencias y diseñar el enfoque de implementación antes de hacer cambios. **[CORRECTA]**
+- B) Comenzar en modo de ejecución directa y cambiar a planificación solo después de encontrar complejidad inesperada durante la implementación.
+- C) Comenzar en modo de ejecución directa y hacer cambios incrementales, dejando que la implementación revele los límites naturales de servicio.
+- D) Usar ejecución directa con instrucciones detalladas previas que especifiquen la estructura de cada servicio.
+
+**Por qué A:** El modo de planificación es la estrategia correcta para reestructuración arquitectónica compleja como dividir un monolito: permite exploración segura y decisiones informadas sobre límites antes de comprometerse a cambios potencialmente costosos en muchos archivos.
+
+---
+
+## Pregunta 35 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Tu equipo creó un skill `/analyze-codebase` que realiza análisis profundo de código—escaneo de dependencias, conteos de cobertura de pruebas y métricas de calidad de código. Después de ejecutar el comando, los miembros del equipo reportan que Claude se vuelve menos receptivo en la sesión y pierde el contexto de la tarea original.
+
+**¿Cómo lo corriges más efectivamente manteniendo capacidades completas de análisis?**
+
+- A) Agregar `context: fork` en el frontmatter del skill para ejecutar el análisis en un contexto de subagente aislado. **[CORRECTA]**
+- B) Agregar `model: haiku` en el frontmatter para usar un modelo más rápido y económico para el análisis.
+- C) Dividir el skill en tres skills más pequeños, cada uno produciendo menos salida.
+- D) Agregar instrucciones al skill para comprimir todos los resultados en un resumen corto antes de mostrarlos.
+
+**Por qué A:** `context: fork` ejecuta el análisis en un contexto de subagente aislado para que la salida grande no contamine la ventana de contexto de la sesión principal y Claude no pierda el rastro de la tarea original. Preserva la capacidad completa de análisis manteniendo la sesión principal receptiva.
+
+---
+
+## Pregunta 36 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Tu equipo usa un skill `/commit` en `.claude/skills/commit/SKILL.md`. Un desarrollador quiere personalizarlo para su flujo personal (formato de mensaje de commit diferente, verificaciones extra) sin afectar a sus compañeros.
+
+**¿Qué recomiendas?**
+
+- A) Crear una versión personal bajo `~/.claude/skills/` con un nombre diferente, por ejemplo `/my-commit`.
+- B) Agregar lógica condicional basada en nombre de usuario en el frontmatter del skill del proyecto.
+- C) Crear una versión personal en `~/.claude/skills/commit/SKILL.md` con el mismo nombre. **[CORRECTA]**
+- D) Establecer `override: true` en el frontmatter del skill personal para priorizarlo sobre la versión del proyecto.
+
+**Por qué C:** Los skills personales tienen precedencia sobre los skills del proyecto con el mismo nombre. Un skill personal en `~/.claude/skills/commit/SKILL.md` sobreescribirá el skill del proyecto, permitiendo al desarrollador personalizar su flujo mientras mantiene el nombre familiar `/commit` para uso personal. Este enfoque es mejor que la opción A porque preserva el nombre del comando original, mejorando el flujo del desarrollador sin afectar a los compañeros.
+
+---
+
+## Pregunta 37 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Tu equipo ha usado Claude Code durante meses. Recientemente, tres desarrolladores reportan que Claude sigue la guía "siempre incluir manejo de errores exhaustivo", pero un cuarto desarrollador que acaba de unirse dice que Claude no la sigue. Los cuatro trabajan en el mismo repo y tienen código actualizado.
+
+**¿Cuál es la causa más probable y la corrección?**
+
+- A) La guía vive en los archivos `~/.claude/CLAUDE.md` a nivel de usuario de los desarrolladores originales, no en el `.claude/CLAUDE.md` del proyecto. Mover la instrucción al archivo a nivel de proyecto para que todos los miembros del equipo la reciban. **[CORRECTA]**
+- B) El `~/.claude/CLAUDE.md` del nuevo desarrollador contiene instrucciones conflictivas que sobrescriben la configuración del proyecto; debería eliminar la sección conflictiva.
+- C) Claude Code aprende preferencias por usuario con el tiempo; el nuevo desarrollador debe repetir el requisito hasta que Claude lo "recuerde".
+- D) Claude Code cachea CLAUDE.md después de la primera lectura; los desarrolladores originales usan versiones cacheadas. Todos deberían limpiar el caché de Claude Code.
+
+**Por qué A:** Si la guía se agregó solo a las configuraciones a nivel de usuario de los desarrolladores originales y no al `.claude/CLAUDE.md` a nivel de proyecto, los nuevos miembros del equipo no la recibirán. Moverla a la configuración a nivel de proyecto asegura que todos los miembros del equipo actuales y futuros reciban automáticamente la guía.
+
+---
+
+## Pregunta 38 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Encuentras que incluir 2–3 ejemplos completos de implementación de endpoints como contexto mejora significativamente la consistencia al generar nuevos endpoints de API. Sin embargo, este contexto solo es útil al crear nuevos endpoints—no al depurar, revisar código u otros trabajos en el directorio API.
+
+**¿Qué enfoque de configuración es más efectivo?**
+
+- A) Agregar ejemplos de endpoints y documentación de patrones al CLAUDE.md del proyecto para que estén siempre disponibles.
+- B) Referenciar manualmente los ejemplos de endpoints en cada solicitud de generación copiando el código al prompt.
+- C) Configurar reglas específicas por ruta en `.claude/rules/api/` que incluyan ejemplos de endpoints y se activen al trabajar en el directorio API.
+- D) Crear un skill que referencie los ejemplos de endpoints y contenga instrucciones de seguimiento de patrones, invocado bajo demanda mediante un comando slash. **[CORRECTA]**
+
+**Por qué D:** Un skill invocado bajo demanda carga el contexto de ejemplos solo al generar nuevos endpoints, no durante tareas no relacionadas como depuración o revisión. Esto mantiene el contexto principal limpio mientras preserva la generación de alta calidad cuando se necesita.
+
+---
+
+## Pregunta 39 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Tu equipo creó un skill `/migration` que genera archivos de migración de base de datos. Toma el nombre de la migración vía `$ARGUMENTS`. En producción observas tres problemas: (1) los desarrolladores a menudo ejecutan el skill sin argumentos, causando archivos mal nombrados, (2) el skill a veces usa detalles de esquema de base de datos de conversaciones previas no relacionadas, y (3) un desarrollador ejecutó accidentalmente limpieza de pruebas destructiva cuando el skill tenía amplio acceso a herramientas.
+
+**¿Qué enfoque de configuración corrige los tres problemas?**
+
+- A) Usar parámetros posicionales `$1` y `$2` en lugar de `$ARGUMENTS` para imponer entradas específicas, incluir referencias explícitas al archivo de esquema vía sintaxis `@` para control de contexto, y agregar una descripción en frontmatter advirtiendo sobre operaciones destructivas.
+- B) Agregar `argument-hint` en el frontmatter para solicitar parámetros requeridos, usar `context: fork` para aislar la ejecución y restringir `allowed-tools` a operaciones de escritura de archivos. **[CORRECTA]**
+- C) Dividir en skills `/migration-create` y `/migration-apply`, agregar instrucciones de validación para solicitar el nombre de migración si falta, y usar diferentes alcances de `allowed-tools` para cada uno.
+- D) Agregar instrucciones de validación en el SKILL.md del skill para asegurar que `$ARGUMENTS` sea un nombre válido, agregar prompts para ignorar el contexto de conversación previa, y listar operaciones prohibidas a evitar.
+
+**Por qué B:** Esto usa tres características de configuración separadas para abordar cada problema: `argument-hint` mejora la entrada de argumentos y reduce los argumentos faltantes, `context: fork` previene fugas de contexto de conversaciones previas, y `allowed-tools` limita el skill a operaciones seguras de escritura de archivos, previniendo acciones destructivas.
+
+---
+
+## Pregunta 40 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Tu base de código contiene áreas con diferentes convenciones de codificación: los componentes React usan estilo funcional con hooks, los manejadores de API usan async/await con manejo específico de errores, y los modelos de base de datos siguen el patrón repository. Los archivos de prueba están distribuidos por la base de código junto al código bajo prueba (por ejemplo, `Button.test.tsx` junto a `Button.tsx`), y quieres que todas las pruebas sigan las mismas convenciones independientemente de la ubicación.
+
+**¿Cuál es la forma más soportada de asegurar que Claude aplique automáticamente las convenciones correctas al generar código?**
+
+- A) Poner todas las convenciones en el CLAUDE.md raíz bajo encabezados para cada área y confiar en que Claude infiera qué sección aplica.
+- B) Crear skills en `.claude/skills/` para cada tipo de código, incrustando convenciones en cada SKILL.md.
+- C) Colocar un archivo CLAUDE.md separado en cada subdirectorio que contenga las convenciones para esa área.
+- D) Crear archivos de regla bajo `.claude/rules/` con frontmatter YAML especificando patrones glob para aplicar convenciones condicionalmente según rutas de archivo. **[CORRECTA]**
+
+**Por qué D:** Los archivos `.claude/rules/` con frontmatter YAML y patrones glob (por ejemplo, `**/*.test.tsx`, `src/api/**/*.ts`) habilitan aplicación de convenciones determinista basada en rutas independiente de la estructura de directorios. Este es el enfoque más soportado para patrones transversales como archivos de prueba distribuidos.
+
+---
+
+## Pregunta 41 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Quieres crear un comando slash personalizado `/review` que ejecute la checklist estándar de revisión de código de tu equipo. Debe estar disponible para cada desarrollador cuando clone o actualice el repositorio.
+
+**¿Dónde deberías crear el archivo del comando?**
+
+- A) En `~/.claude/commands/` en el directorio home de cada desarrollador.
+- B) En el repositorio del proyecto bajo `.claude/commands/`. **[CORRECTA]**
+- C) En `.claude/config.json` como un array de comandos.
+- D) En el CLAUDE.md raíz del proyecto.
+
+**Por qué B:** Poner los comandos slash personalizados bajo `.claude/commands/` dentro del repositorio del proyecto asegura que estén versionados y automáticamente disponibles para cada desarrollador que clone o actualice el repo. Esta es la ubicación prevista para comandos personalizados a nivel de proyecto en Claude Code.
+
+---
+
+## Pregunta 42 (Escenario: Generación de código con Claude Code)
+
+**Situación:** El CLAUDE.md de tu equipo creció más allá de 500 líneas mezclando convenciones de TypeScript, guía de pruebas, patrones de API y procedimientos de despliegue. Los desarrolladores encuentran difícil ubicar y actualizar las secciones correctas.
+
+**¿Qué enfoque soporta Claude Code para organizar las instrucciones a nivel de proyecto en módulos temáticos enfocados?**
+
+- A) Definir un archivo `.claude/config.yaml` mapeando patrones de archivo a secciones específicas dentro de CLAUDE.md.
+- B) Crear archivos Markdown separados en `.claude/rules/`, cada uno cubriendo un tema (por ejemplo, `testing.md`, `api-conventions.md`). **[CORRECTA]**
+- C) Dividir las instrucciones en archivos README.md en subdirectorios relevantes que Claude carga automáticamente como instrucciones.
+- D) Crear múltiples archivos llamados CLAUDE.md en diferentes niveles del árbol de directorios, cada uno sobrescribiendo las instrucciones del padre.
+
+**Por qué B:** Claude Code soporta un directorio `.claude/rules/` donde puedes crear archivos Markdown separados para guía temática (por ejemplo, `testing.md`, `api-conventions.md`), permitiendo a los equipos organizar grandes conjuntos de instrucciones en módulos enfocados y mantenibles.
+
+---
+
+## Pregunta 43 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Creas un skill personalizado `/explore-alternatives` que tu equipo usa para hacer brainstorming y evaluar enfoques de implementación antes de elegir uno. Los desarrolladores reportan que después de ejecutar el skill, las respuestas posteriores de Claude son influenciadas por la discusión de alternativas—a veces referenciando enfoques rechazados o reteniendo contexto de exploración que interfiere con la implementación real.
+
+**¿Cómo deberías configurar este skill más efectivamente?**
+
+- A) Usar el prefijo `!` en el skill para ejecutar la lógica de exploración como un subproceso bash.
+- B) Agregar `context: fork` en el frontmatter del skill. **[CORRECTA]**
+- C) Dividir en dos skills—`/explore-start` y `/explore-end`—para marcar límites cuando el contexto de exploración debe ser descartado.
+- D) Crear el skill en `~/.claude/skills/` en lugar de `.claude/skills/`.
+
+**Por qué B:** `context: fork` ejecuta el skill en un contexto de subagente aislado para que las discusiones de exploración no contaminen el historial de conversación principal. Esto previene que enfoques rechazados y el contexto de brainstorming influyan en el trabajo de implementación posterior.
+
+---
+
+## Pregunta 44 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Tu equipo quiere agregar un servidor MCP de GitHub para buscar PRs y verificar el estado de CI vía Claude Code. Cada uno de los seis desarrolladores tiene su propio token de acceso personal de GitHub. Quieres herramientas consistentes en el equipo sin commitear credenciales al control de versiones.
+
+**¿Qué enfoque de configuración es más efectivo?**
+
+- A) Hacer que cada desarrollador agregue el servidor en alcance de usuario vía `claude mcp add --scope user`.
+- B) Crear un wrapper de servidor MCP que lea tokens de un archivo `.env` y haga proxy de las llamadas a la API de GitHub, luego agregar el wrapper al `.mcp.json` del proyecto.
+- C) Agregar el servidor al `.mcp.json` del proyecto usando sustitución de variables de entorno (`${GITHUB_TOKEN}`) para autenticación y documentar la variable de entorno requerida en el README del proyecto. **[CORRECTA]**
+- D) Configurar el servidor en alcance de proyecto con un token marcador de posición, luego decir a los desarrolladores que lo sobrescriban en su configuración local.
+
+**Por qué C:** Un `.mcp.json` de proyecto con sustitución de variables de entorno es idiomático: proporciona una única fuente de verdad versionada para la configuración MCP mientras permite a cada desarrollador suministrar credenciales vía variables de entorno. Documentar la variable hace fácil el onboarding sin commitear secretos.
+
+---
+
+## Pregunta 45 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Estás agregando wrappers de manejo de errores alrededor de llamadas a APIs externas en una base de código de 120 archivos. El trabajo tiene tres fases: (1) descubrir todos los sitios de llamada y patrones, (2) diseñar colaborativamente el enfoque de manejo de errores, y (3) implementar wrappers de forma consistente. En la Fase 1, Claude genera salida grande listando cientos de sitios de llamada con contexto, llenando rápidamente la ventana de contexto antes de que termine el descubrimiento.
+
+**¿Qué enfoque es más efectivo para completar la tarea manteniendo la consistencia de implementación?**
+
+- A) Usar un subagente Explore para la Fase 1 para aislar la salida verbosa de descubrimiento y devolver un resumen, luego continuar las Fases 2–3 en la conversación principal. **[CORRECTA]**
+- B) Hacer todas las fases en la conversación principal, usando periódicamente `/compact` para reducir el uso de contexto mientras se avanza por los archivos.
+- C) Cambiar a modo headless con `--continue`, pasando resúmenes de contexto explícitos entre llamadas en lote para mantener la continuidad.
+- D) Definir el patrón de manejo de errores en CLAUDE.md, luego procesar archivos en lotes a través de múltiples sesiones confiando en el archivo de memoria compartida para la consistencia.
+
+**Por qué A:** Un subagente Explore aísla la salida verbosa de descubrimiento en un contexto separado y devuelve solo un resumen conciso a la conversación principal. Esto preserva la ventana de contexto principal para las fases de diseño colaborativo e implementación consistente donde el contexto retenido es más valioso.
+
+---
+
+## Escenario: Agente de soporte al cliente
+
+---
+
+## Pregunta 46 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Mientras pruebas, notas que el agente a menudo llama a `get_customer` cuando los usuarios preguntan sobre el estado del pedido, aunque `lookup_order` sería más apropiado. ¿Qué deberías verificar primero para abordar este problema?
+
+**¿Qué deberías verificar primero?**
+
+- A) Implementar un clasificador de preprocesamiento para detectar solicitudes relacionadas con pedidos y enrutarlas directamente a `lookup_order`.
+- B) Reducir el número de herramientas disponibles para el agente para simplificar la elección.
+- C) Agregar ejemplos few-shot al prompt del sistema cubriendo todos los patrones posibles de solicitud de pedido para mejorar la selección de herramientas.
+- D) Verificar las descripciones de las herramientas para asegurar que diferencien claramente el propósito de cada una. **[CORRECTA]**
+
+**Por qué D:** Las descripciones de herramientas son la entrada principal que el modelo usa para decidir qué herramienta llamar. Cuando un agente elige consistentemente la herramienta equivocada, el primer paso de diagnóstico es verificar que las descripciones de herramientas separen claramente el propósito y los límites de uso de cada una.
+
+---
+
+## Pregunta 47 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Tu agente maneja solicitudes de un solo problema con 94% de precisión (por ejemplo, "Necesito un reembolso para el pedido #1234"). Pero cuando los clientes incluyen múltiples problemas en un solo mensaje (por ejemplo, "Necesito un reembolso para el pedido #1234 y también quiero actualizar la dirección de envío del pedido #5678"), la precisión de selección de herramientas baja al 58%. El agente generalmente resuelve solo un problema o mezcla parámetros entre solicitudes. ¿Qué enfoque mejora más efectivamente la confiabilidad para solicitudes de múltiples problemas?
+
+**¿Qué enfoque es más efectivo?**
+
+- A) Implementar una capa de preprocesamiento que use una llamada de modelo separada para descomponer mensajes de múltiples problemas en solicitudes separadas, manejar cada una independientemente y fusionar resultados.
+- B) Combinar herramientas relacionadas en menos herramientas universales.
+- C) Agregar ejemplos few-shot al prompt demostrando razonamiento correcto y secuenciación de herramientas para solicitudes de múltiples problemas. **[CORRECTA]**
+- D) Implementar validación de respuesta que detecte respuestas incompletas y reprompte automáticamente al agente para resolver problemas omitidos.
+
+**Por qué C:** Los ejemplos few-shot que demuestran razonamiento correcto y secuenciación de herramientas para solicitudes de múltiples problemas son los más efectivos porque el agente ya funciona bien en problemas únicos—lo que necesita es guía sobre el patrón para descomponer y enrutar múltiples problemas y mantener los parámetros separados.
+
+---
+
+## Pregunta 48 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Los registros de producción muestran que para solicitudes simples como "reembolso para el pedido #1234", tu agente resuelve el problema en 3–4 llamadas a herramientas con 91% de éxito. Pero para solicitudes complejas como "Me cobraron dos veces, mi descuento no se aplicó y quiero cancelar", el agente promedia 12+ llamadas a herramientas con solo 54% de éxito—a menudo investigando problemas secuencialmente y obteniendo datos de cliente redundantes para cada uno. ¿Qué cambio mejora más efectivamente el manejo de solicitudes complejas?
+
+**¿Qué cambio es más efectivo?**
+
+- A) Agregar puntos de control explícitos de verificación entre etapas, requiriendo que el agente registre el progreso después de resolver cada problema antes de pasar al siguiente.
+- B) Reducir el número de herramientas combinando `get_customer`, `lookup_order` y herramientas relacionadas con facturación en una sola herramienta `investigate_issue`.
+- C) Descomponer la solicitud en problemas separados, luego investigar cada uno en paralelo usando contexto de cliente compartido antes de sintetizar una resolución final. **[CORRECTA]**
+- D) Agregar ejemplos few-shot al prompt del sistema demostrando secuencias ideales de llamadas a herramientas para varios escenarios de facturación multifacéticos.
+
+**Por qué C:** Descomponer en problemas separados e investigar en paralelo con contexto de cliente compartido corrige ambos problemas clave: elimina la recuperación de datos redundante reutilizando el contexto compartido entre problemas y reduce los bucles totales de llamadas a herramientas paralelizando la investigación antes de sintetizar una sola resolución.
+
+---
+
+## Pregunta 49 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Tu agente logra 55% de resolución en primer contacto, muy por debajo del objetivo del 80%. Los registros muestran que escala casos simples (reemplazos estándar para mercancía dañada con prueba fotográfica) mientras intenta manejar autónomamente situaciones complejas que requieren excepciones de política. ¿Cuál es la forma más efectiva de mejorar la calibración de escalación?
+
+**¿Cuál es la forma más efectiva de mejorar la calibración de escalación?**
+
+- A) Requerir que el agente se autocalifique en confianza en una escala de 1–10 antes de cada respuesta y enrute automáticamente a humanos cuando la confianza caiga por debajo de un umbral.
+- B) Desplegar un modelo clasificador separado entrenado en tickets históricos para predecir qué solicitudes necesitan escalación antes de que el agente principal comience a procesarlas.
+- C) Agregar criterios de escalación explícitos al prompt del sistema con ejemplos few-shot que muestren cuándo escalar versus resolver autónomamente. **[CORRECTA]**
+- D) Implementar análisis de sentimiento para determinar el nivel de frustración del cliente y escalar automáticamente más allá de un umbral de sentimiento negativo.
+
+**Por qué C:** Los criterios de escalación explícitos con ejemplos few-shot abordan directamente la causa raíz—límites de decisión poco claros entre casos simples y complejos. Es la primera intervención más proporcional y efectiva que enseña al agente cuándo escalar y cuándo resolver autónomamente sin infraestructura adicional.
+
+---
+
+## Pregunta 50 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Después de llamar a `get_customer` y `lookup_order`, el agente tiene todos los datos disponibles del sistema pero aún enfrenta incertidumbre. ¿Qué situación es el disparador más justificado para llamar a `escalate_to_human`?
+
+**¿Qué situación es la más justificada para escalación?**
+
+- A) Un cliente quiere cancelar un pedido enviado ayer y que llega mañana. El agente debería escalar porque el cliente podría cambiar de opinión después de recibir el paquete.
+- B) Un cliente afirma que no recibió un pedido, pero el seguimiento muestra que fue entregado y firmado en su dirección hace tres días. El agente debería escalar porque presentar evidencia contradictoria podría dañar la relación con el cliente.
+- C) Un cliente solicita igualar el precio de un competidor. Tus políticas permiten ajustes de precio para bajadas de precio en tu propio sitio dentro de 14 días, pero no dicen nada sobre precios de competidores. El agente debería escalar para interpretación de política. **[CORRECTA]**
+- D) Un mensaje de cliente contiene tanto una pregunta de facturación como una devolución de producto. El agente debería escalar para que un humano coordine ambos problemas en una sola interacción.
+
+**Por qué C:** Esta es una verdadera laguna de política: las reglas de la empresa cubren bajadas de precio en tu propio sitio pero no abordan la igualación de precios de competidores. El agente no debe inventar política y debería escalar para juicio humano sobre cómo interpretar o extender las reglas existentes.
+
+---
+
+## Pregunta 51 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Los registros de producción muestran que en el 12% de los casos tu agente omite `get_customer` y llama a `lookup_order` directamente usando solo el nombre proporcionado por el cliente, a veces llevando a cuentas mal identificadas y reembolsos incorrectos. ¿Qué cambio corrige más efectivamente este problema de confiabilidad?
+
+**¿Qué cambio es más efectivo?**
+
+- A) Agregar ejemplos few-shot que muestren que el agente siempre llama primero a `get_customer`, incluso cuando los clientes proporcionan voluntariamente detalles del pedido.
+- B) Implementar un clasificador de enrutamiento que analice cada solicitud y habilite solo un subconjunto de herramientas apropiadas para ese tipo de solicitud.
+- C) Agregar una precondición programática que bloquee `lookup_order` y `process_refund` hasta que `get_customer` devuelva un identificador de cliente verificado. **[CORRECTA]**
+- D) Fortalecer el prompt del sistema indicando que la verificación del cliente vía `get_customer` es obligatoria antes de cualquier operación de pedido.
+
+**Por qué C:** Una precondición programática proporciona una garantía determinista de que se sigue la secuenciación requerida. Es el enfoque más efectivo porque elimina la posibilidad de saltarse la verificación, independientemente del comportamiento del LLM.
+
+---
+
+## Pregunta 52 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Las métricas de producción muestran que al resolver disputas complejas de facturación o devoluciones de múltiples pedidos, los puntajes de satisfacción del cliente son 15% más bajos que para casos simples—incluso cuando la resolución es técnicamente correcta. El análisis de causa raíz muestra que el agente proporciona soluciones precisas pero explica la justificación de forma inconsistente: a veces omitiendo detalles de política relevantes, a veces perdiendo información de cronograma o próximos pasos. Las brechas de contexto específicas varían caso por caso. Quieres mejorar la calidad de las soluciones sin agregar supervisión humana. ¿Qué enfoque es más efectivo?
+
+**¿Qué enfoque es más efectivo?**
+
+- A) Agregar una etapa de autocrítica donde el agente evalúe un borrador de respuesta para completitud—asegurando que resuelva el problema del cliente, incluya contexto relevante y anticipe preguntas de seguimiento. **[CORRECTA]**
+- B) Agregar una etapa de confirmación donde el agente pregunte "¿Esto resuelve completamente tu problema?" antes de cerrar, permitiendo a los clientes solicitar información adicional si la necesitan.
+- C) Actualizar el modelo de Haiku a Sonnet para casos complejos, enrutando según una métrica de complejidad definida.
+- D) Implementar ejemplos few-shot en el prompt del sistema que muestren explicaciones completas para cinco tipos comunes de casos complejos, demostrando cómo incluir contexto de política, cronogramas y próximos pasos.
+
+**Por qué A:** Una etapa de autocrítica (el patrón evaluador-optimizador) aborda directamente la inconsistencia en completitud de explicación al forzar al agente a evaluar su propio borrador contra criterios concretos—como contexto de política, cronogramas y próximos pasos—antes de presentarlo. Esto detecta brechas específicas de caso sin supervisión humana.
+
+---
+
+## Pregunta 53 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Las métricas de producción muestran que tu agente promedia 4+ bucles de API por resolución. El análisis revela que Claude a menudo solicita `get_customer` y `lookup_order` en turnos secuenciales separados incluso cuando ambos se necesitan inicialmente. ¿Cuál es la forma más efectiva de reducir el número de bucles?
+
+**¿Cuál es la forma más efectiva de reducir bucles?**
+
+- A) Implementar ejecución especulativa que llame automáticamente a herramientas probablemente necesarias en paralelo con cualquier herramienta solicitada y devuelva todos los resultados independientemente de lo que se solicitó.
+- B) Aumentar `max_tokens` para dar a Claude más espacio para planificar y combinar naturalmente solicitudes de herramientas.
+- C) Crear herramientas compuestas como `get_customer_with_orders` que agrupen combinaciones comunes de búsqueda en llamadas únicas.
+- D) Instruir a Claude en el prompt para agrupar solicitudes de herramientas en un turno y devolver todos los resultados juntos antes de la siguiente llamada a la API. **[CORRECTA]**
+
+**Por qué D:** Promptear a Claude para agrupar solicitudes de herramientas relacionadas en un solo turno aprovecha su capacidad nativa de solicitar múltiples herramientas a la vez. Corrige directamente el patrón de llamada secuencial con cambio arquitectónico mínimo.
+
+---
+
+## Pregunta 54 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Los registros de producción muestran un patrón: los clientes referencian montos específicos (por ejemplo, "el descuento del 15% que mencioné"), pero el agente responde con valores incorrectos. La investigación muestra que estos detalles fueron mencionados 20+ turnos atrás y condensados en resúmenes vagos como "se discutieron precios promocionales". ¿Qué corrección es más efectiva?
+
+**¿Qué corrección es más efectiva?**
+
+- A) Aumentar el umbral de resumición del 70% al 85% para que las conversaciones tengan más espacio antes de que se dispare la resumición.
+- B) Almacenar el historial completo de conversación en almacenamiento externo e implementar recuperación cuando el agente detecta referencias como "como mencioné".
+- C) Extraer hechos transaccionales (montos, fechas, números de pedido) en un bloque persistente de "hechos del caso" incluido en cada prompt fuera del historial resumido. **[CORRECTA]**
+- D) Revisar el prompt de resumición para preservar explícitamente todos los números, porcentajes, fechas y expectativas declaradas por el cliente literalmente.
+
+**Por qué C:** La resumición pierde inherentemente detalles precisos. Extraer hechos transaccionales en un bloque estructurado de "hechos del caso" fuera del historial resumido preserva información crítica para que esté disponible confiablemente en cada prompt independientemente de cuántos turnos hayan sido resumidos.
+
+---
+
+## Pregunta 55 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Tu herramienta `get_customer` devuelve todas las coincidencias al buscar por nombre. Actualmente, cuando hay múltiples resultados, Claude elige al cliente con el pedido más reciente, pero los datos de producción muestran que esto selecciona la cuenta equivocada el 15% del tiempo para coincidencias ambiguas. ¿Cómo deberías abordar esto?
+
+**¿Cómo deberías abordar esto?**
+
+- A) Implementar un sistema de puntuación de confianza que actúe autónomamente por encima del 85% de confianza y solicite aclaración por debajo del umbral.
+- B) Instruir a Claude para solicitar un identificador adicional (email, teléfono o número de pedido) cuando `get_customer` devuelva múltiples coincidencias antes de tomar cualquier acción específica del cliente. **[CORRECTA]**
+- C) Modificar `get_customer` para devolver solo una sola coincidencia más probable basada en un algoritmo de ranking, eliminando la ambigüedad.
+- D) Agregar ejemplos few-shot al prompt demostrando razonamiento correcto y secuenciación de herramientas para coincidencias ambiguas.
+
+**Por qué B:** Pedir al usuario un identificador adicional es la forma más confiable de resolver ambigüedad porque el usuario tiene conocimiento definitivo de su identidad. Un turno conversacional extra es un precio pequeño a pagar para eliminar una tasa de error del 15% causada por elegir la cuenta equivocada.
+
+---
+
+## Pregunta 56 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Los registros de producción muestran un patrón consistente: cuando los clientes incluyen la palabra "cuenta" en su mensaje (por ejemplo, "Quiero verificar mi cuenta por un pedido que hice ayer"), el agente llama a `get_customer` primero el 78% del tiempo. Cuando los clientes formulan solicitudes similares sin "cuenta" (por ejemplo, "Quiero verificar un pedido que hice ayer"), llama a `lookup_order` primero el 93% del tiempo. Las descripciones de herramientas son claras e inequívocas. ¿Cuál es la causa raíz más probable de esta discrepancia?
+
+**¿Cuál es la causa raíz más probable?**
+
+- A) El prompt del sistema contiene instrucciones sensibles a palabras clave que dirigen el comportamiento basadas en términos como "cuenta", creando patrones no intencionados de selección de herramientas. **[CORRECTA]**
+- B) El entrenamiento base del modelo crea asociaciones entre la terminología "cuenta" y operaciones relacionadas con clientes que sobrescriben las descripciones de herramientas.
+- C) El modelo necesita más datos de entrenamiento sobre mensajes multi-concepto y debería ser ajustado en ejemplos que contengan terminología de cuenta y pedido.
+- D) Las descripciones de herramientas necesitan ejemplos negativos adicionales que especifiquen cuándo NO usar cada herramienta para prevenir esta confusión inducida por palabras clave.
+
+**Por qué A:** El patrón sistemático impulsado por palabras clave (78% vs 93%) indica fuertemente lógica de enrutamiento explícita en el prompt del sistema reaccionando a la palabra "cuenta" y dirigiendo al agente hacia herramientas relacionadas con clientes. Como las descripciones de herramientas ya son claras, la discrepancia apunta a instrucciones a nivel de prompt creando dirección de comportamiento no intencionada.
+
+---
+
+## Pregunta 57 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Los registros de producción muestran que el agente a menudo llama a `get_customer` cuando los usuarios preguntan sobre pedidos (por ejemplo, "verifica mi pedido #12345") en lugar de llamar a `lookup_order`. Ambas herramientas tienen descripciones mínimas ("Obtiene información del cliente" / "Obtiene detalles del pedido") y aceptan formatos de identificadores de aspecto similar. ¿Cuál es el primer paso más efectivo para mejorar la confiabilidad de selección de herramientas?
+
+**¿Cuál es el primer paso más efectivo?**
+
+- A) Implementar una capa de enrutamiento que analice la entrada del usuario antes de cada turno y preseleccione la herramienta correcta basada en palabras clave detectadas y patrones de ID.
+- B) Combinar ambas herramientas en una sola `lookup_entity` que acepte cualquier identificador y decida internamente qué backend consultar.
+- C) Agregar ejemplos few-shot al prompt del sistema demostrando patrones correctos de selección de herramientas, con 5–8 ejemplos enrutando consultas relacionadas con pedidos a `lookup_order`.
+- D) Expandir la descripción de cada herramienta para incluir formatos de entrada, consultas de ejemplo, casos límite y límites explicando cuándo usarla versus herramientas similares. **[CORRECTA]**
+
+**Por qué D:** Expandir las descripciones de herramientas con formatos de entrada, consultas de ejemplo, casos límite y límites claros corrige directamente la causa raíz—descripciones mínimas que no dan al LLM suficiente información para distinguir herramientas similares. Es un primer paso de bajo esfuerzo y alto impacto que mejora el mecanismo principal que el LLM usa para selección de herramientas.
+
+---
+
+## Pregunta 58 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Estás implementando el bucle del agente para tu agente de soporte. Después de cada llamada a la API de Claude, debes decidir si continuar el bucle (ejecutar las herramientas solicitadas y llamar a Claude de nuevo) o detenerte (presentar la respuesta final al cliente). ¿Qué determina esta decisión?
+
+**¿Qué determina esta decisión?**
+
+- A) Verificar el campo `stop_reason` en la respuesta de Claude—continuar si es `tool_use` y detenerse si es `end_turn`. **[CORRECTA]**
+- B) Parsear el texto de Claude para frases como "He terminado" o "¿Puedo ayudarte con algo más?"—las señales de lenguaje natural indican finalización de tarea.
+- C) Establecer un conteo máximo de iteraciones (por ejemplo, 10 llamadas) y detenerse cuando se alcance, independientemente de si Claude indica que se necesita más trabajo.
+- D) Verificar si la respuesta contiene contenido de texto del asistente—si Claude generó texto explicativo, el bucle debería terminar.
+
+**Por qué A:** `stop_reason` es la señal estructurada explícita de Claude para el control del bucle: `tool_use` indica que Claude quiere ejecutar una herramienta y recibir resultados de vuelta, mientras que `end_turn` indica que Claude ha completado su respuesta y el bucle debería terminar.
+
+---
+
+## Pregunta 59 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Los registros de producción muestran que el agente malinterpreta salidas de tus herramientas MCP: marcas de tiempo Unix de `get_customer`, fechas ISO 8601 de `lookup_order` y códigos de estado numéricos (1=pendiente, 2=enviado). Algunas herramientas son servidores MCP de terceros que no puedes modificar. ¿Qué enfoque para normalización de formato de datos es más mantenible?
+
+**¿Qué enfoque es más mantenible?**
+
+- A) Usar un hook PostToolUse para interceptar las salidas de herramientas y aplicar transformaciones de formato antes de que el agente las procese. **[CORRECTA]**
+- B) Modificar las herramientas que controlas para que devuelvan formatos legibles por humanos y crear wrappers para las herramientas de terceros.
+- C) Crear una herramienta `normalize_data` que el agente llame después de cada recuperación de datos para transformar valores.
+- D) Agregar documentación detallada de formato al prompt del sistema explicando las convenciones de datos de cada herramienta.
+
+**Por qué A:** Un hook PostToolUse proporciona un punto centralizado y determinista para interceptar y normalizar todas las salidas de herramientas—incluyendo datos de servidores MCP de terceros—antes de que el agente las procese. Es más mantenible porque las transformaciones viven en el código y aplican uniformemente, en lugar de depender de la interpretación del LLM.
+
+---
+
+## Pregunta 60 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Los registros de producción muestran que el agente a veces elige `get_customer` cuando `lookup_order` sería más apropiado, especialmente para consultas ambiguas como "Necesito ayuda con mi compra reciente". Decides agregar ejemplos few-shot al prompt del sistema para mejorar la selección de herramientas. ¿Qué enfoque aborda más efectivamente el problema?
+
+**¿Qué enfoque es más efectivo?**
+
+- A) Agregar guía explícita de "usar cuando" y "no usar cuando" en cada descripción de herramienta cubriendo casos ambiguos.
+- B) Agregar ejemplos agrupados por herramienta—todos los escenarios de `get_customer` juntos, luego todos los escenarios de `lookup_order`.
+- C) Agregar 4–6 ejemplos dirigidos a escenarios ambiguos, cada uno con justificación de por qué se eligió una herramienta sobre alternativas plausibles. **[CORRECTA]**
+- D) Agregar 10–15 ejemplos de solicitudes claras e inequívocas demostrando la elección correcta de herramienta para escenarios típicos para cada herramienta.
+
+**Por qué C:** Dirigir los ejemplos few-shot a los escenarios ambiguos específicos donde ocurren los errores, con justificación explícita de por qué una herramienta es preferible a las alternativas, enseña al modelo el proceso comparativo de decisión necesario para casos límite. Esto es más efectivo que ejemplos genéricos o reglas declarativas.
+
+---
+
+## Escenario: Patrones de arquitectura de IA conversacional
 
 ---
 

@@ -1,0 +1,198 @@
+#!/usr/bin/env node
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { marked } from 'marked';
+import MiniSearch from 'minisearch';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const DOCS = path.join(ROOT, 'docs');
+
+const LANGS = [
+  { code: 'en', label: 'English',    guide: 'guide_en.MD',  test: 'practical_test_en.html' },
+  { code: 'es', label: 'Español',    guide: 'guide_es.md',  test: 'practical_test_es.html' },
+  { code: 'pt', label: 'Português',  guide: 'guide_pt.md',  test: 'practical_test_pt.html' },
+];
+
+const RAVN_BASE_HREF = process.env.RAVN_BASE_HREF || '/claude-certified-architect/';
+
+async function exists(p) {
+  try { await fs.access(p); return true; } catch { return false; }
+}
+
+async function ensureDir(p) { await fs.mkdir(p, { recursive: true }); }
+
+function pageShell({ title, lang, body, baseHref }) {
+  return `<!doctype html>
+<html lang="${lang}" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${title}</title>
+<base href="${baseHref}">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script>
+  // theme bootstrap (no FOUC)
+  (() => {
+    const t = localStorage.getItem('theme');
+    const d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.dataset.theme = t || (d ? 'dark' : 'light');
+  })();
+</script>
+</head>
+<body>
+${body}
+<script src="app.js" defer></script>
+</body>
+</html>`;
+}
+
+function header(currentLang) {
+  const switcher = LANGS.map(l =>
+    `<button class="lang-btn${l.code === currentLang ? ' active' : ''}" data-lang="${l.code}">${l.code.toUpperCase()}</button>`
+  ).join('');
+  return `<header class="topbar">
+  <a class="brand" href="index.html">
+    <img src="assets/ravn-logo.svg" alt="Ravn" width="28" height="28">
+    <span>Claude Certified Architect <em>· Ravn Edition</em></span>
+  </a>
+  <nav class="topbar-actions">
+    <div class="lang-switcher" role="group" aria-label="Language">${switcher}</div>
+    <button id="search-toggle" class="icon-btn" aria-label="Search">⌕</button>
+    <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">◐</button>
+  </nav>
+</header>
+<dialog id="search-dialog">
+  <input id="search-input" type="search" placeholder="Search the guide…" autocomplete="off">
+  <ul id="search-results"></ul>
+</dialog>`;
+}
+
+function landing() {
+  const cards = LANGS.map(l => `
+    <article class="card" data-lang="${l.code}">
+      <h2>${l.label}</h2>
+      <ul>
+        <li><a href="guides/${l.code}.html">📖 Read the guide</a></li>
+        <li><a href="practical/${l.code}.html">📝 Practical exam</a></li>
+        <li><a href="pdf/guide_${l.code}.pdf">📄 PDF download</a></li>
+      </ul>
+    </article>`).join('');
+  return `<main class="landing">
+  <section class="hero">
+    <h1>Claude Certified Architect — Foundations</h1>
+    <p class="lede">Ravn-curated study materials for the Anthropic certification exam, in the languages our team works in.</p>
+  </section>
+  <section class="cards">${cards}</section>
+  <footer class="site-footer">
+    <p>Fork of <a href="https://github.com/paullarionov/claude-certified-architect">paullarionov/claude-certified-architect</a> · maintained by <a href="https://ravn.co">Ravn</a></p>
+  </footer>
+</main>`;
+}
+
+async function buildGuides() {
+  const searchDocs = [];
+  for (const l of LANGS) {
+    const src = path.join(ROOT, l.guide);
+    if (!(await exists(src))) {
+      console.warn(`skip ${l.code}: ${l.guide} not found`);
+      continue;
+    }
+    const md = await fs.readFile(src, 'utf8');
+    const html = marked.parse(md);
+    const out = path.join(DOCS, 'guides', `${l.code}.html`);
+    await ensureDir(path.dirname(out));
+    await fs.writeFile(out, pageShell({
+      title: `${l.label} — Claude Certified Architect`,
+      lang: l.code,
+      baseHref: RAVN_BASE_HREF,
+      body: `${header(l.code)}<main class="guide">${html}</main>`,
+    }));
+
+    // index headings + lead paragraph for search
+    const tokens = marked.lexer(md);
+    let currentHeading = null;
+    let buffer = '';
+    let id = 0;
+    const flush = () => {
+      if (currentHeading) {
+        searchDocs.push({
+          id: `${l.code}#${++id}`,
+          lang: l.code,
+          heading: currentHeading,
+          body: buffer.slice(0, 400),
+          url: `guides/${l.code}.html#${slug(currentHeading)}`,
+        });
+      }
+      buffer = '';
+    };
+    for (const t of tokens) {
+      if (t.type === 'heading') { flush(); currentHeading = t.text; }
+      else if (t.type === 'paragraph' || t.type === 'code') { buffer += ' ' + (t.text || t.raw || ''); }
+    }
+    flush();
+  }
+
+  const mini = new MiniSearch({ fields: ['heading', 'body'], storeFields: ['heading', 'lang', 'url'] });
+  mini.addAll(searchDocs);
+  await fs.writeFile(path.join(DOCS, 'search-index.json'), JSON.stringify(mini.toJSON()));
+}
+
+function slug(s) {
+  return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+async function copyPracticalTests() {
+  const out = path.join(DOCS, 'practical');
+  await ensureDir(out);
+  for (const l of LANGS) {
+    const src = path.join(ROOT, l.test);
+    const dest = path.join(out, `${l.code}.html`);
+    if (await exists(src)) {
+      await fs.copyFile(src, dest);
+    } else {
+      const body = `${header(l.code)}<main class="placeholder">
+        <h1>Practical exam — ${l.label}</h1>
+        <p>This practical test has not been generated yet. See the README's <em>Open work</em> section.</p>
+        <p><a href="index.html">← back to home</a></p>
+      </main>`;
+      await fs.writeFile(dest, pageShell({
+        title: `${l.label} — Practical exam (pending)`,
+        lang: l.code,
+        baseHref: RAVN_BASE_HREF,
+        body,
+      }));
+    }
+  }
+}
+
+async function copyPdfs() {
+  const src = path.join(ROOT, 'pdf');
+  const dest = path.join(DOCS, 'pdf');
+  if (!(await exists(src))) return;
+  await ensureDir(dest);
+  for (const f of await fs.readdir(src)) {
+    if (f.endsWith('.pdf')) await fs.copyFile(path.join(src, f), path.join(dest, f));
+  }
+}
+
+async function writeIndex() {
+  await fs.writeFile(path.join(DOCS, 'index.html'), pageShell({
+    title: 'Claude Certified Architect — Ravn Edition',
+    lang: 'en',
+    baseHref: RAVN_BASE_HREF,
+    body: `${header('en')}${landing()}`,
+  }));
+  await fs.writeFile(path.join(DOCS, '.nojekyll'), '');
+}
+
+async function main() {
+  await ensureDir(DOCS);
+  await writeIndex();
+  await buildGuides();
+  await copyPracticalTests();
+  await copyPdfs();
+  console.log('docs/ built');
+}
+
+main().catch(e => { console.error(e); process.exit(1); });
