@@ -15,6 +15,18 @@ const LANGS = [
 
 const RAVN_BASE_HREF = process.env.RAVN_BASE_HREF || '/claude-certified-architect/';
 
+marked.use({
+  useNewRenderer: true,
+  renderer: {
+    heading({ tokens, depth }) {
+      const raw = tokens.map(t => t.raw ?? t.text ?? '').join('');
+      const id = slug(raw);
+      const inner = this.parser.parseInline(tokens);
+      return `<h${depth} id="${id}">${inner}</h${depth}>\n`;
+    },
+  },
+});
+
 async function exists(p) {
   try { await fs.access(p); return true; } catch { return false; }
 }
