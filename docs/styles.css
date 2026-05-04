@@ -67,6 +67,9 @@ a:focus-visible {
   border-radius: 2px;
 }
 
+/* offset anchor scrolling so headings clear the sticky topbar */
+html { scroll-padding-top: 80px; }
+
 /* ---------- topbar ---------- */
 .topbar {
   position: sticky; top: 0; z-index: 10;
