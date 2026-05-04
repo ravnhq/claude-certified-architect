@@ -44,9 +44,17 @@ function pageShell({ title, lang, body, baseHref }) {
 </head>
 <body>
 ${body}
+${siteFooter()}
 <script src="app.js" defer></script>
 </body>
 </html>`;
+}
+
+function siteFooter() {
+  return `<footer class="site-footer">
+  <p>© Ravn</p>
+  <p><a href="https://www.ravn.co/">ravn.co</a></p>
+</footer>`;
 }
 
 function header(currentLang) {
@@ -88,10 +96,6 @@ function landing() {
     <p class="lede">Curated study materials for the Anthropic certification, in the languages our teams ship in. Read online, take the practical exam, or grab the PDF.</p>
   </section>
   <section class="cards">${cards}</section>
-  <footer class="site-footer">
-    <p>© Ravn</p>
-    <p><a href="https://www.ravn.co/">ravn.co</a></p>
-  </footer>
 </main>`;
 }
 

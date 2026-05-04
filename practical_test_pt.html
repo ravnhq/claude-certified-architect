@@ -44,6 +44,29 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.14em;
 }
+.ravn-topbar-actions { display: inline-flex; align-items: center; gap: 14px; }
+.ravn-co {
+  color: #9aa0b3;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid #2c2c4a;
+  padding-bottom: 1px;
+  transition: color .15s ease, border-color .15s ease;
+}
+.ravn-co:hover { color: #f6c87a; border-bottom-color: #f6c87a; }
+.ravn-footer {
+  background: #0f1019;
+  color: #6b7080;
+  font-size: 13px;
+  padding: 18px 32px;
+  border-top: 1px solid #2c2c4a;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  flex-shrink: 0;
+}
+.ravn-footer p { margin: 0; }
+.ravn-footer a { color: #9aa0b3; text-decoration: none; border-bottom: 1px solid #2c2c4a; transition: color .15s ease, border-color .15s ease; }
+.ravn-footer a:hover { color: #f6c87a; border-bottom-color: #f6c87a; }
 .shell { display: flex; flex: 1; min-height: 0; overflow: hidden; }
 
 /* Sidebar */
@@ -240,7 +263,15 @@ body {
 </style>
 </head>
 <body>
-<header class="ravn-topbar"><a class="ravn-brand" href="../index.html" aria-label="Ravn — Claude Certified Architect"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 64" aria-label="Ravn" role="img" width="86" height="22"><text x="0" y="48" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif" font-size="52" font-weight="800" letter-spacing="-2" fill="currentColor">ravn</text></svg><span class="ravn-brand-tagline">Claude Certified Architect</span></a></header>
+<header class="ravn-topbar">
+  <a class="ravn-brand" href="../index.html" aria-label="Ravn — Claude Certified Architect">
+    <img src="../assets/ravn-logo.svg" alt="Ravn" width="86" height="22">
+    <span class="ravn-brand-tagline">Claude Certified Architect</span>
+  </a>
+  <div class="ravn-topbar-actions">
+    <a class="ravn-co" href="https://www.ravn.co/">ravn.co</a>
+  </div>
+</header>
 <div class="shell">
   <nav class="sidebar">
     <div class="sidebar-header">Questions</div>
@@ -454,5 +485,9 @@ buildSidebar();
 renderQuestion(0);
 updateSidebar();
 </script>
+<footer class="ravn-footer">
+  <p>© Ravn</p>
+  <p><a href="https://www.ravn.co/">ravn.co</a></p>
+</footer>
 </body>
 </html>
