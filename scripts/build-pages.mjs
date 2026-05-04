@@ -23,7 +23,7 @@ async function ensureDir(p) { await fs.mkdir(p, { recursive: true }); }
 
 function pageShell({ title, lang, body, baseHref }) {
   return `<!doctype html>
-<html lang="${lang}" data-theme="auto">
+<html lang="${lang}" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -31,12 +31,14 @@ function pageShell({ title, lang, body, baseHref }) {
 <base href="${baseHref}">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <script>
-  // theme bootstrap (no FOUC)
+  // theme bootstrap (no FOUC) — defaults to dark, matches Ravn's identity
   (() => {
     const t = localStorage.getItem('theme');
-    const d = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.dataset.theme = t || (d ? 'dark' : 'light');
+    document.documentElement.dataset.theme = t || 'dark';
   })();
 </script>
 </head>
@@ -52,9 +54,9 @@ function header(currentLang) {
     `<button class="lang-btn${l.code === currentLang ? ' active' : ''}" data-lang="${l.code}">${l.code.toUpperCase()}</button>`
   ).join('');
   return `<header class="topbar">
-  <a class="brand" href="index.html">
-    <img src="assets/ravn-logo.svg" alt="Ravn" width="28" height="28">
-    <span>Claude Certified Architect <em>· Ravn Edition</em></span>
+  <a class="brand" href="index.html" aria-label="Ravn — Claude Certified Architect">
+    <img src="assets/ravn-logo.svg" alt="Ravn" width="86" height="22">
+    <span>Claude Certified Architect</span>
   </a>
   <nav class="topbar-actions">
     <div class="lang-switcher" role="group" aria-label="Language">${switcher}</div>
@@ -71,21 +73,24 @@ function header(currentLang) {
 function landing() {
   const cards = LANGS.map(l => `
     <article class="card" data-lang="${l.code}">
-      <h2>${l.label}</h2>
+      <h2>${l.code.toUpperCase()}</h2>
+      <div class="lang-name">${l.label}</div>
       <ul>
-        <li><a href="guides/${l.code}.html">📖 Read the guide</a></li>
-        <li><a href="practical/${l.code}.html">📝 Practical exam</a></li>
-        <li><a href="pdf/guide_${l.code}.pdf">📄 PDF download</a></li>
+        <li><a href="guides/${l.code}.html">Read the guide</a></li>
+        <li><a href="practical/${l.code}.html">Practical exam</a></li>
+        <li><a href="pdf/guide_${l.code}.pdf">PDF download</a></li>
       </ul>
     </article>`).join('');
   return `<main class="landing">
   <section class="hero">
-    <h1>Claude Certified Architect — Foundations</h1>
-    <p class="lede">Ravn-curated study materials for the Anthropic certification exam, in the languages our team works in.</p>
+    <p class="eyebrow">Ravn study materials</p>
+    <h1>Claude Certified Architect <span class="accent">— Foundations.</span></h1>
+    <p class="lede">Curated study materials for the Anthropic certification, in the languages our teams ship in. Read online, take the practical exam, or grab the PDF.</p>
   </section>
   <section class="cards">${cards}</section>
   <footer class="site-footer">
-    <p>Fork of <a href="https://github.com/paullarionov/claude-certified-architect">paullarionov/claude-certified-architect</a> · maintained by <a href="https://ravn.co">Ravn</a></p>
+    <p>© Ravn</p>
+    <p><a href="https://www.ravn.co/">ravn.co</a></p>
   </footer>
 </main>`;
 }
@@ -103,7 +108,7 @@ async function buildGuides() {
     const out = path.join(DOCS, 'guides', `${l.code}.html`);
     await ensureDir(path.dirname(out));
     await fs.writeFile(out, pageShell({
-      title: `${l.label} — Claude Certified Architect`,
+      title: `${l.label} — Claude Certified Architect · Ravn`,
       lang: l.code,
       baseHref: RAVN_BASE_HREF,
       body: `${header(l.code)}<main class="guide">${html}</main>`,
@@ -153,11 +158,11 @@ async function copyPracticalTests() {
     } else {
       const body = `${header(l.code)}<main class="placeholder">
         <h1>Practical exam — ${l.label}</h1>
-        <p>This practical test has not been generated yet. See the README's <em>Open work</em> section.</p>
+        <p>This practical test has not been generated yet.</p>
         <p><a href="index.html">← back to home</a></p>
       </main>`;
       await fs.writeFile(dest, pageShell({
-        title: `${l.label} — Practical exam (pending)`,
+        title: `${l.label} — Practical exam (pending) · Ravn`,
         lang: l.code,
         baseHref: RAVN_BASE_HREF,
         body,
@@ -178,7 +183,7 @@ async function copyPdfs() {
 
 async function writeIndex() {
   await fs.writeFile(path.join(DOCS, 'index.html'), pageShell({
-    title: 'Claude Certified Architect — Ravn Edition',
+    title: 'Claude Certified Architect · Ravn',
     lang: 'en',
     baseHref: RAVN_BASE_HREF,
     body: `${header('en')}${landing()}`,

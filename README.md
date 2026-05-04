@@ -2,8 +2,6 @@
 
 Ravn-curated study materials for the **Claude Certified Architect — Foundations** certification, in the languages our team works in: **English**, **Spanish**, and **Portuguese**.
 
-This repository is a fork of [`paullarionov/claude-certified-architect`](https://github.com/paullarionov/claude-certified-architect) — credit and thanks to the original author. Ravn maintains a trimmed, branded edition for internal study and external sharing.
-
 ## Read online
 
 The full guide and the practical exam are hosted on GitHub Pages:
@@ -36,7 +34,7 @@ python3 utils/build_practical_test_html.py en es  # specific langs
 ```
 
 - English: [`practical_test_en.html`](./practical_test_en.html) — **76 questions** (5 scenarios).
-- Spanish: [`practical_test_es.html`](./practical_test_es.html) — **76 questions** (5 scenarios). Q1–Q60 translated from English in this fork; Q61–Q76 retained from upstream.
+- Spanish: [`practical_test_es.html`](./practical_test_es.html) — **76 questions** (5 scenarios).
 - Portuguese: pending — `guide_pt.md` is currently a translation stub.
 
 ## How to use
@@ -70,6 +68,6 @@ python3 utils/build_practical_test_html.py en es  # specific langs
 - Translation fixes and clarifications welcome via PR — please keep the heading structure aligned across `guide_en.MD`, `guide_es.md`, and `guide_pt.md` so question extraction stays consistent.
 - PDFs regenerate automatically on merge to `main`; do not commit PDF edits by hand.
 
-## License & attribution
+## License
 
-Original study materials © Paul Larionov, used per the upstream repository's terms. Ravn-specific edits and the GitHub Pages site are © Ravn.
+© Ravn. Originating study materials by Paul Larionov, used and adapted under the terms of the upstream license.
