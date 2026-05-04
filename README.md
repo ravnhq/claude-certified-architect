@@ -35,7 +35,7 @@ python3 utils/build_practical_test_html.py en es  # specific langs
 
 - English: [`practical_test_en.html`](./practical_test_en.html) — **76 questions** (5 scenarios).
 - Spanish: [`practical_test_es.html`](./practical_test_es.html) — **76 questions** (5 scenarios).
-- Portuguese: pending — `guide_pt.md` is currently a translation stub.
+- Portuguese: [`practical_test_pt.html`](./practical_test_pt.html) — **76 questions** (5 scenarios).
 
 ## How to use
 
@@ -58,10 +58,6 @@ python3 utils/build_practical_test_html.py en es  # specific langs
     ├── markdown-to-pdf.yml       # builds & commits guide_*.pdf on push to main
     └── pages.yml                 # builds & deploys docs/ to GitHub Pages
 ```
-
-## Open work
-
-- **Portuguese translation** — `guide_pt.md` ships as a structured stub. Once translated (with a `# Teste Prático` H1 and the same `## Questão N (Cenário: …)` structure as English/Spanish), running `python3 utils/build_practical_test_html.py pt` will produce `practical_test_pt.html`.
 
 ## Contributing
 
