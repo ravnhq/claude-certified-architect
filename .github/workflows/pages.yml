@@ -45,6 +45,9 @@ jobs:
             mv "${file%.*}.pdf" pdf/
           done
 
+      - name: Regenerate practice exam HTML from guides + mock bank
+        run: python3 utils/build_exam_html.py
+
       - name: Build static site
         run: node scripts/build-pages.mjs
 

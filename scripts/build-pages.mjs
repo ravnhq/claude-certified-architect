@@ -8,9 +8,9 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const DOCS = path.join(ROOT, 'docs');
 
 const LANGS = [
-  { code: 'en', label: 'English',    guide: 'guide_en.MD',  test: 'practical_test_en.html' },
-  { code: 'es', label: 'Español',    guide: 'guide_es.md',  test: 'practical_test_es.html' },
-  { code: 'pt', label: 'Português',  guide: 'guide_pt.md',  test: 'practical_test_pt.html' },
+  { code: 'en', label: 'English',    guide: 'guide_en.MD',  test: 'exam_en.html' },
+  { code: 'es', label: 'Español',    guide: 'guide_es.md',  test: 'exam_es.html' },
+  { code: 'pt', label: 'Português',  guide: 'guide_pt.md',  test: 'exam_pt.html' },
 ];
 
 const RAVN_BASE_HREF = process.env.RAVN_BASE_HREF || '/claude-certified-architect/';
@@ -99,7 +99,7 @@ function landing() {
       <div class="lang-name">${l.label}</div>
       <ul>
         <li><a href="guides/${l.code}.html">Read the guide</a></li>
-        <li><a href="practical/${l.code}.html">Practical exam</a></li>
+        <li><a href="practical/${l.code}.html">Practice exam</a></li>
         <li><a href="pdf/guide_${l.code}.pdf">PDF download</a></li>
       </ul>
     </article>`).join('');

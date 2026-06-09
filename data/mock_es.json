@@ -1,0 +1,2102 @@
+[
+  {
+    "id": "m1",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu pipeline de investigación multiagente se cayó después de procesar 12 de 28 documentos. El agente de búsqueda web había identificado fuentes relevantes, el agente de análisis de documentos había completado parcialmente la extracción, y el sintetizador había comenzado a identificar patrones. Necesitas reanudar el procesamiento sin repetir trabajo ni perder la fidelidad de los hallazgos previos.",
+    "question": "¿Qué enfoque de gestión de estado equilibra mejor la fidelidad de la información con la eficiencia de contexto al restaurar el estado de los agentes?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Que cada agente mantenga su propio archivo de estado persistente y lo recargue de forma independiente al inicio de cada sesión.",
+        "correct": false,
+        "explanation": "Un estado fragmentado por agente rompe la visibilidad del coordinador y hace que el razonamiento entre agentes sea frágil. Además, que cada agente recargue estado interno no relacionado satura su contexto con ruido que no necesita."
+      },
+      {
+        "letter": "B",
+        "text": "Persistir el registro de conversación del coordinador con todas las delegaciones de tareas y respuestas, y entregarlo a los agentes al reanudar.",
+        "correct": false,
+        "explanation": "Un registro completo de conversación es la opción de mayor fidelidad pero menor eficiencia de contexto. Reproducirías todo en cada subagente y superarías los presupuestos de contexto."
+      },
+      {
+        "letter": "C",
+        "text": "Que cada agente persista un reporte estructurado en una ubicación conocida. Al reanudar, el coordinador carga los reportes e inyecta el estado relevante en los prompts de los agentes.",
+        "correct": true,
+        "explanation": "Correcto. Los reportes estructurados por agente conservan la fidelidad (los hallazgos, con esquema), permiten que el coordinador mantenga el control de la orquestación y mantienen enfocado el contexto de cada subagente. Es el patrón de coordinador + artefacto compacto."
+      },
+      {
+        "letter": "D",
+        "text": "Indexar todas las salidas de los agentes en un almacén vectorial compartido. Al reanudar, cada agente consulta el almacén mediante búsqueda semántica para recuperar los hallazgos previos relevantes.",
+        "correct": false,
+        "explanation": "La recuperación semántica sobre las salidas de los agentes es excesiva para reanudar un pipeline caído: añade un modo de fallo de recuperación y puede pasar por alto el estado preciso que un reporte estructurado preserva exactamente. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m2",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Después de que el agente de búsqueda web encuentra 25 fuentes (120K tokens de contenido sin procesar), el agente de análisis de documentos extrae ideas clave (15K tokens) y el agente de síntesis produce un borrador de narrativa coherente (3K tokens), el coordinador debe pasar el contexto al agente de generación de reportes para la salida final con las citas de fuentes adecuadas.",
+    "question": "¿Qué estrategia para pasar el contexto ofrece el mejor equilibrio entre completitud y eficiencia?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Pasar solo el borrador de síntesis y usar un pipeline de posprocesamiento aparte que vincule las afirmaciones con las fuentes e inserte las citas después de generar el reporte.",
+        "correct": false,
+        "explanation": "La vinculación posterior es frágil: sin el mapeo que usó el modelo, no puedes ligar de forma confiable las afirmaciones con la fuente correcta. El modo de fallo habitual son citas alucinadas o mal atribuidas."
+      },
+      {
+        "letter": "B",
+        "text": "Pasar el borrador de síntesis junto con un índice de fuentes estructurado que mapee las afirmaciones clave con las URLs de sus fuentes y los extractos relevantes.",
+        "correct": true,
+        "explanation": "Correcto. La síntesis aporta la narrativa; el índice de fuentes le da al generador de reportes exactamente la vinculación que necesita para citar sin volver a leer 120K tokens de contenido sin procesar."
+      },
+      {
+        "letter": "C",
+        "text": "Pasar un resumen condensado de todas las etapas previas que preserve los hallazgos principales y los atribuya a las fuentes solo por nombre.",
+        "correct": false,
+        "explanation": "La atribución solo por nombre pierde las URLs y los extractos, así que el generador de reportes no puede citar ni verificar; además, el 'solo por nombre' tiende a derivar en citas vagas."
+      },
+      {
+        "letter": "D",
+        "text": "Pasar el contexto completo acumulado de todos los agentes previos.",
+        "correct": false,
+        "explanation": "Máxima completitud pero derrochadora: más de 120K tokens de contenido de búsqueda sin procesar son, en su mayoría, ruido irrelevante en la etapa de generación de reportes. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m3",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "El agente de análisis de documentos tiene una única herramienta `analyze_document` que recibe un documento y un parámetro de instrucción en texto libre. Durante la evaluación, solicitudes como \"extrae las métricas financieras clave\" suelen devolver resúmenes narrativos, mientras que \"resume la metodología\" a veces devuelve tablas de datos en bruto. El agente de síntesis reporta que el 35% de los resultados de análisis requieren nuevas solicitudes con instrucciones aclaradas.",
+    "question": "¿Cuál es la forma más eficaz de mejorar la fiabilidad?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Dividir la herramienta genérica en herramientas con propósito específico —`extract_data_points`, `summarize_content`, `verify_claim_against_source`— cada una con contratos de entrada/salida definidos.",
+        "correct": true,
+        "explanation": "Correcto. Las instrucciones en texto libre dejan la semántica en la prosa, que el modelo interpreta de forma inconsistente. Las herramientas con propósito específico le dan al modelo un contrato explícito y bien tipado entre el cual elegir."
+      },
+      {
+        "letter": "B",
+        "text": "Mantener la herramienta única pero añadir un parámetro de enumeración `analysis_type` que exija elegir explícitamente entre los modos de extracción, resumen y verificación.",
+        "correct": false,
+        "explanation": "Mejor que el texto libre, pero sigue siendo una única herramienta con una única forma de salida. La salida aún tiene que ser una cadena genérica, y el modelo puede equivocarse de modo. Las herramientas separadas imponen contratos de entrada/salida distintos."
+      },
+      {
+        "letter": "C",
+        "text": "Que el coordinador preclasifique cada solicitud de análisis antes de pasar las instrucciones al agente de análisis de documentos.",
+        "correct": false,
+        "explanation": "Traslada la ambigüedad aguas arriba sin resolverla. El contrato de la herramienta sigue siendo difuso; la clasificación del coordinador es una superficie de error más."
+      },
+      {
+        "letter": "D",
+        "text": "Mejorar la descripción de la herramienta con ejemplos detallados que muestren cómo distintas formulaciones de las instrucciones deberían mapearse a distintos formatos de salida.",
+        "correct": false,
+        "explanation": "Los ejemplos ayudan, pero la fiabilidad en el uso de herramientas viene primero de límites claros y esquemas de salida, no de una ingeniería de prompts heroica sobre una herramienta genérica. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m4",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "El agente de búsqueda web ha reunido varias fuentes relevantes para un tema de investigación. El agente de análisis de documentos ahora necesita examinar esas fuentes.",
+    "question": "¿Cómo fluye normalmente la información entre estos dos subagentes especializados?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Los agentes se comunican a través de una cola de mensajes basada en eventos, y el agente de análisis de documentos se suscribe a los eventos de finalización de la búsqueda web.",
+        "correct": false,
+        "explanation": "Los buses de eventos no forman parte del modelo de subagentes de Claude. Los subagentes no se publican/suscriben entre sí directamente."
+      },
+      {
+        "letter": "B",
+        "text": "El agente de búsqueda web invoca directamente al agente de análisis de documentos, pasándole las fuentes descubiertas como parámetros.",
+        "correct": false,
+        "explanation": "Los subagentes están aislados: no pueden llamar directamente a subagentes hermanos. Eso también los acoplaría fuertemente y anularía el patrón de coordinador."
+      },
+      {
+        "letter": "C",
+        "text": "El coordinador recibe la salida del agente de búsqueda web e incluye los hallazgos relevantes en el prompt al invocar al agente de análisis de documentos.",
+        "correct": true,
+        "explanation": "Correcto. En un patrón coordinador-trabajador, el coordinador es el eje. Recoge la salida de cada subagente y reenvía explícitamente las partes relevantes al prompt del siguiente subagente."
+      },
+      {
+        "letter": "D",
+        "text": "Ambos agentes acceden a un almacén de memoria compartido donde el agente de búsqueda web escribe los hallazgos y el agente de análisis de documentos los lee.",
+        "correct": false,
+        "explanation": "Un almacén compartido puede añadirse como optimización, pero no es la forma habitual en que se comunican los subagentes, y además introduce problemas de lecturas obsoletas y consistencia. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m5",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "En producción observas que consultas simples de verificación de hechos (p. ej., \"¿En qué año se firmó el Acuerdo de París sobre el Clima?\") recorren los cuatro subagentes de forma secuencial, consumiendo más de 40 segundos y bastantes tokens por consulta. La investigación comparativa compleja sí se beneficia del pipeline completo. Tu distribución de consultas es diversa y evoluciona a medida que los usuarios descubren nuevas aplicaciones.",
+    "question": "¿Cuál es el enfoque más eficaz para optimizar ante una complejidad de consulta variable?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Implementar enrutamiento basado en patrones que categorice las consultas por su estructura (hecho único vs. comparativa vs. analítica) y mapee cada categoría a una combinación predefinida de subagentes.",
+        "correct": false,
+        "explanation": "El enrutamiento por patrones se cristaliza a medida que la distribución de consultas evoluciona: las nuevas intenciones rompen los patrones y caen silenciosamente en el pipeline equivocado."
+      },
+      {
+        "letter": "B",
+        "text": "Crear una vía rápida para las preguntas factuales que omita por completo a los subagentes, y enrutar todas las demás consultas por el pipeline completo para asegurar la exhaustividad de la investigación.",
+        "correct": false,
+        "explanation": "Una vía rápida binaria corrige el peor caso pero desperdicia el pipeline completo en cada consulta moderadamente compleja que podría haber usado un subconjunto."
+      },
+      {
+        "letter": "C",
+        "text": "Que el coordinador analice cada consulta y decida dinámicamente qué subagentes invocar según su evaluación de los requisitos de la consulta.",
+        "correct": true,
+        "explanation": "Correcto. Dejar que el LLM coordinador razone sobre cada consulta y elija solo los subagentes que necesita se adapta de forma natural a una distribución de consultas diversa y en evolución: esa es la fortaleza del patrón de coordinador."
+      },
+      {
+        "letter": "D",
+        "text": "Entrenar un clasificador de complejidad de consultas con datos históricos etiquetados para predecir las combinaciones óptimas de subagentes, reentrenándolo periódicamente a medida que evolucionan los patrones de consulta.",
+        "correct": false,
+        "explanation": "Un clasificador entrenado necesita etiquetas, reentrenamiento y monitoreo de deriva. Es sobreingeniería cuando el coordinador puede tomar la misma decisión en tiempo de ejecución a partir de la propia consulta. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m6",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Al investigar \"adopción de energías renovables\", el agente de búsqueda web devuelve estadísticas recientes (2024: 35% de adopción), mientras que el agente de análisis de documentos extrae datos de reportes internos (2022: 18% de adopción). El agente de síntesis marca incorrectamente estas fuentes como contradictorias en lugar de reconocer que los datos muestran crecimiento a lo largo del tiempo.",
+    "question": "¿Qué cambio permitiría mejor que el agente de síntesis interprete correctamente esas diferencias temporales?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Exigir que los subagentes incluyan las fechas de publicación o de recolección de datos en sus salidas estructuradas.",
+        "correct": true,
+        "explanation": "Correcto. El agente de síntesis malinterpreta los datos porque nunca ve las fechas. Hacer que cada dato lleve su propia marca de tiempo en la salida estructurada le permite a la síntesis razonar sobre tendencias en lugar de contradicciones."
+      },
+      {
+        "letter": "B",
+        "text": "Añadir un agente de resolución de conflictos que descarte automáticamente los datos más antiguos cuando existan datos más recientes para la misma métrica.",
+        "correct": false,
+        "explanation": "Descartar silenciosamente los datos más antiguos destruye la información de tendencia, que es justamente lo que pregunta el enunciado."
+      },
+      {
+        "letter": "C",
+        "text": "Configurar el agente de búsqueda web para que solo devuelva resultados de los últimos 6 meses.",
+        "correct": false,
+        "explanation": "Reducir la ventana descarta el contexto histórico y no corrige la brecha arquitectónica de que los metadatos no se están pasando a la síntesis."
+      },
+      {
+        "letter": "D",
+        "text": "Instruir al agente de síntesis para que siempre trate los datos más recientes como autoritativos y coloque los hallazgos más antiguos en un apéndice histórico separado.",
+        "correct": false,
+        "explanation": "Las instrucciones de prompt por sí solas no son confiables y, además, esconden el razonamiento temporal detrás de una regla. Estructurar los datos con fechas es la solución sistemática. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m7",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "El agente de síntesis recibe hallazgos resumidos de los agentes de búsqueda web y de análisis de documentos, y luego pasa un resumen consolidado al generador de reportes. Durante las pruebas, descubres que los reportes generados hacen afirmaciones factuales sin las citas adecuadas: el generador de reportes no puede atribuir las afirmaciones a sus fuentes originales porque esos metadatos se perdieron durante los pasos de resumen.",
+    "question": "¿Cuál es el enfoque más eficaz para asegurar una atribución de fuentes adecuada en los reportes finales?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Que cada agente emita datos estructurados que separen los resúmenes de contenido de los metadatos de fuente (URLs, nombres de documentos, números de página).",
+        "correct": true,
+        "explanation": "Correcto. El contenido estructurado + los metadatos de fuente separados preservan el mapeo de extremo a extremo, de modo que el generador de reportes recibe tanto lo que se dijo como de dónde provino."
+      },
+      {
+        "letter": "B",
+        "text": "Que el generador de reportes consulte al agente de búsqueda web para relocalizar las fuentes de las afirmaciones del reporte final.",
+        "correct": false,
+        "explanation": "Volver a consultar es lento, con pérdidas, e invita a la atribución errónea: el agente de búsqueda web no sabe qué afirmación provino de qué fuente."
+      },
+      {
+        "letter": "C",
+        "text": "Instruir al agente de síntesis para que incruste las referencias de fuente en línea dentro de su texto de resumen usando un formato de cita consistente.",
+        "correct": false,
+        "explanation": "Las citas en línea dentro de texto libre se desvían y se pierden durante resúmenes posteriores. Los metadatos estructurados sobreviven mejor a las transformaciones."
+      },
+      {
+        "letter": "D",
+        "text": "Omitir el resumen y pasar las salidas completas sin procesar de la búsqueda web y del análisis de documentos directamente al generador de reportes.",
+        "correct": false,
+        "explanation": "Reventarías el presupuesto de contexto y le complicarías la tarea al generador de reportes. El resumen es útil; el verdadero bug es perder los metadatos durante el resumen. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m8",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Las revisiones en producción revelan un manejo inconsistente de la incertidumbre en los reportes finales. A veces los hallazgos contradictorios de los subagentes se sintetizan en una única afirmación contundente (perdiendo matices), mientras que otras veces los reportes se exceden en salvedades con calificativos excesivos (volviéndose poco útiles). Cuando el agente de búsqueda web devuelve \"los analistas de la industria estiman un tamaño de mercado de $50B (la metodología varía)\" y el agente de análisis de documentos devuelve \"un estudio revisado por pares estima 35B (±7B, IC del 95%)\", el coordinador o elige uno arbitrariamente o produce afirmaciones vagas como \"el mercado podría ser de 35B−50B según diversos factores\".",
+    "question": "¿Qué enfoque sistemático aborda mejor esto?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Configurar los subagentes para que solo reporten hallazgos que superen un umbral de alta confianza, filtrando la información incierta antes de que llegue al coordinador.",
+        "correct": false,
+        "explanation": "Filtrar descarta evidencia útil pero incierta. No ayuda al agente de síntesis a razonar sobre los conflictos: simplemente los esconde."
+      },
+      {
+        "letter": "B",
+        "text": "Implementar una capa de calibración de confianza que normalice las expresiones de incertidumbre de los subagentes a puntajes de probabilidad estandarizados (0.0-1.0), y luego promediar los hallazgos ponderados por su confianza calibrada.",
+        "correct": false,
+        "explanation": "Colapsar los IC revisados por pares y las estimaciones de analistas en un único número promediado destruye la diferencia metodológica, que es justamente el punto clave."
+      },
+      {
+        "letter": "C",
+        "text": "Instruir al agente de síntesis para que estructure los reportes con secciones explícitas que distingan los hallazgos bien establecidos de los controvertidos, preservando las caracterizaciones originales de las fuentes y el contexto metodológico.",
+        "correct": true,
+        "explanation": "Correcto. Una estructura de reporte que conserva el contexto metodológico y separa las afirmaciones consolidadas de las controvertidas es la forma de lograr matices sin excederse en salvedades."
+      },
+      {
+        "letter": "D",
+        "text": "Añadir un subagente de verificación que cruce los hallazgos entre fuentes, pasando a la síntesis solo las afirmaciones corroboradas por al menos dos fuentes independientes.",
+        "correct": false,
+        "explanation": "El mínimo de dos fuentes descarta hallazgos legítimos de una sola fuente y no resuelve estimaciones genuinamente conflictivas con metodologías distintas. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m9",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "En producción, los reportes finales suelen contener afirmaciones sin la atribución de fuentes adecuada. La investigación muestra que, si bien los agentes de búsqueda web y de análisis de documentos adjuntan correctamente las citas a sus salidas, el agente de síntesis pierde el rastro de qué fuentes respaldan qué conclusiones al combinar los hallazgos.",
+    "question": "¿Cuál es el cambio arquitectónico más eficaz?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Mantener transcripciones completas de todas las interacciones de los subagentes y añadir un agente de resolución de citas que analice los registros y determine las atribuciones antes de generar el reporte.",
+        "correct": false,
+        "explanation": "El análisis posterior de registros es frágil y costoso, y aun así pierde las vinculaciones cuando la síntesis fusiona puntos de múltiples fuentes."
+      },
+      {
+        "letter": "B",
+        "text": "Exigir que todos los subagentes emitan mapeos estructurados de afirmación-fuente que el agente de síntesis deba preservar y fusionar al combinar hallazgos de múltiples fuentes.",
+        "correct": true,
+        "explanation": "Correcto. Los mapeos explícitos de afirmación-fuente son una salida de primera clase que el agente de síntesis puede fusionar de forma determinista: no se pierde ninguna atribución durante el resumen."
+      },
+      {
+        "letter": "C",
+        "text": "Añadir un paso de verificación en el que el generador de reportes use coincidencia por similitud semántica contra las fuentes originales para reconstruir qué afirmaciones provinieron de qué documentos.",
+        "correct": false,
+        "explanation": "La búsqueda por similitud puede atribuir la fuente equivocada cuando dos fuentes dicen cosas similares. Quieres el mapeo original del modelo, no una reconstrucción."
+      },
+      {
+        "letter": "D",
+        "text": "Que el coordinador inyecte prefijos identificadores de fuente en el texto antes de cada traspaso, y luego analice esos prefijos en la generación del reporte para reconstruir las citas.",
+        "correct": false,
+        "explanation": "Los tokens de prefijo dentro de la prosa se pierden, se parafrasean o se alucinan. Los mapeos estructurados fuera de la prosa son más robustos. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m10",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Después de que el agente de búsqueda web y el agente de análisis de documentos completan sus tareas, el coordinador invoca al agente de síntesis. Sin embargo, el agente de síntesis responde que no puede completar la tarea porque no se le proporcionaron hallazgos de investigación.",
+    "question": "¿Cuál es la causa más probable de este problema?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "La ventana de contexto del agente de síntesis no es lo suficientemente grande para contener las salidas combinadas de ambos agentes previos.",
+        "correct": false,
+        "explanation": "Un desbordamiento de la ventana de contexto suele manifestarse como un truncamiento o un error de la API, no como que el agente diga 'no se proporcionaron hallazgos'."
+      },
+      {
+        "letter": "B",
+        "text": "El coordinador no incluyó las salidas de los agentes previos en el prompt del agente de síntesis.",
+        "correct": true,
+        "explanation": "Correcto. Las invocaciones de subagentes están aisladas: nada fluye entre ellas a menos que el coordinador lo coloque explícitamente en el prompt. El mensaje 'no se proporcionaron hallazgos' es exactamente lo que verías."
+      },
+      {
+        "letter": "C",
+        "text": "Los subagentes necesitan compartir una única conexión a la API para habilitar el intercambio automático de contexto entre invocaciones.",
+        "correct": false,
+        "explanation": "No existe ningún 'intercambio automático de contexto' a través de una conexión compartida. El aislamiento de contexto es por diseño."
+      },
+      {
+        "letter": "D",
+        "text": "El agente de síntesis necesita herramientas que puedan obtener resultados directamente de los historiales de conversación de los otros agentes.",
+        "correct": false,
+        "explanation": "Obtener el historial entre agentes no es una capacidad estándar ni la solución correcta: el coordinador debería reenviar los hallazgos explícitamente. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m11",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Un usuario está ampliando el sistema de investigación más allá de su único agente de búsqueda web añadiendo fuentes de datos especializadas. Agrega un agente de API financiera que devuelve JSON estructurado con ingresos, márgenes y tasas de crecimiento; un agente de monitoreo de noticias que devuelve resúmenes en prosa de desarrollos recientes; y un agente de análisis de patentes que devuelve listas estructuradas de áreas tecnológicas. El agente de síntesis combina todo esto en informes ejecutivos. Actualmente, convierte todo en viñetas, lo que hace que las comparaciones financieras pierdan claridad tabular y que los resúmenes de noticias pierdan su fluidez narrativa.",
+    "question": "¿Qué cambio mejoraría más la calidad de los informes?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Estandarizar todas las salidas de los subagentes a resúmenes en prosa con citas en línea.",
+        "correct": false,
+        "explanation": "Aplanar los datos financieros estructurados a prosa pierde la comparabilidad que quieres en un informe ejecutivo."
+      },
+      {
+        "letter": "B",
+        "text": "Añadir una capa de conversión de formato entre los subagentes y la síntesis que transforme todas las salidas a una representación intermedia común.",
+        "correct": false,
+        "explanation": "Una única representación intermedia suele resultar demasiado con pérdidas: o conserva la estructura (las noticias sufren) o conserva la prosa (las tablas sufren). La solución es un renderizado según el tipo, no la uniformidad."
+      },
+      {
+        "letter": "C",
+        "text": "Actualizar el agente de síntesis para que renderice cada tipo de contenido de forma apropiada: los datos financieros como tablas, las noticias como prosa.",
+        "correct": true,
+        "explanation": "Correcto. Los informes ejecutivos necesitan un renderizado mixto: tablas para los números, prosa para la narrativa. Pedirle a la síntesis que preserve el formato nativo de cada entrada es la abstracción correcta."
+      },
+      {
+        "letter": "D",
+        "text": "Estandarizar todas las salidas de los subagentes a JSON con campos para afirmación, evidencia, fuente y confianza.",
+        "correct": false,
+        "explanation": "Forzar las noticias, cargadas de prosa, a un esquema de afirmación/evidencia despoja la fluidez narrativa que los ejecutivos realmente leen. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m12",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "El coordinador entrega instrucciones detalladas paso a paso al subagente de búsqueda web, especificando consultas de búsqueda exactas, prioridades de fuentes y filtros de fecha. El monitoreo en producción revela tres problemas: (1) el subagente reporta \"resultados insuficientes\" en lugar de intentar enfoques alternativos cuando las búsquedas preespecificadas fallan, (2) la calidad de la investigación cae para temas emergentes que no coinciden con los patrones esperados, y (3) el subagente rara vez saca a la luz fuentes tangenciales valiosas.",
+    "question": "¿Cuál es la forma más eficaz de mejorar la adaptabilidad del subagente?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Eliminar por completo los detalles procedimentales, delegando con objetivos simples como \"investiga X a fondo\" y confiando en las capacidades generales del subagente.",
+        "correct": false,
+        "explanation": "Demasiado hacia el otro extremo: 'investiga X a fondo' pierde las salvaguardas (calidad de fuentes, actualidad) que hacen confiable la delegación."
+      },
+      {
+        "letter": "B",
+        "text": "Añadir directivas de respaldo explícitas a las instrucciones detalladas: \"Si las búsquedas especificadas arrojan menos de N resultados, intenta formulaciones alternativas de la consulta antes de reportar un fallo\".",
+        "correct": false,
+        "explanation": "Parcha un modo de fallo pero mantiene al agente atrapado en un pensamiento procedimental: sigue siendo frágil para los temas emergentes y las fuentes tangenciales."
+      },
+      {
+        "letter": "C",
+        "text": "Implementar un paso de clasificación de temas en el que el coordinador categorice las solicitudes como \"bien definidas\" o \"exploratorias\" y use estilos de instrucción distintos para cada categoría.",
+        "correct": false,
+        "explanation": "Un clasificador con dos categorías es frágil, y de todos modos seguirías enviando instrucciones rígidas en la rama bien definida."
+      },
+      {
+        "letter": "D",
+        "text": "Especificar los objetivos de investigación y los criterios de calidad (amplitud de cobertura, diversidad de fuentes, actualidad) en lugar de pasos procedimentales, dejando que el subagente determine su estrategia de búsqueda.",
+        "correct": true,
+        "explanation": "Correcto. Delega la intención y los estándares de calidad, no los procedimientos. Así el subagente puede elegir consultas, seguir tangentes prometedoras y recuperarse de callejones sin salida por su cuenta. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m13",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "El monitoreo en producción muestra que las consultas de seguimiento como \"resume lo que aprendimos sobre las tendencias del mercado\" tardan sistemáticamente más de 40 segundos. La investigación revela que el coordinador genera el subagente de síntesis para cada solicitud de resumen, pasándole más de 80K tokens de hallazgos acumulados. El coordinador ya tiene esos hallazgos en su contexto por haber orquestado la investigación.",
+    "question": "¿Cuál es la forma más eficaz de mejorar el tiempo de respuesta para estos resúmenes de seguimiento?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Pregenerar y cachear resúmenes en múltiples granularidades cada vez que se acumulan nuevos hallazgos.",
+        "correct": false,
+        "explanation": "La generación especulativa desperdicia tokens en resúmenes que el usuario quizá nunca pida, y las granularidades del caché nunca coinciden del todo con lo que se solicita."
+      },
+      {
+        "letter": "B",
+        "text": "Que el coordinador maneje las solicitudes de resumen sencillas directamente usando su contexto existente, reservando la generación de subagentes para los análisis complejos.",
+        "correct": true,
+        "explanation": "Correcto. Si el coordinador ya tiene los hallazgos, generar un subagente para reingerir 80K tokens es puro sobrecosto. Deja que el coordinador responda él mismo los seguimientos simples."
+      },
+      {
+        "letter": "C",
+        "text": "Habilitar el cacheo de prompts en el subagente de síntesis para reducir el sobrecosto de transferir repetidamente los mismos hallazgos de investigación.",
+        "correct": false,
+        "explanation": "El cacheo de prompts recorta el costo del prefijo repetido, pero el desperdicio arquitectónico —generar un subagente entero para un resumen— sigue ahí."
+      },
+      {
+        "letter": "D",
+        "text": "Generar el subagente de síntesis con contexto reducido y hacer que solicite hallazgos específicos al coordinador bajo demanda.",
+        "correct": false,
+        "explanation": "Añade idas y vueltas y complejidad para el mismo resultado que el coordinador podría producir directamente. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m14",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Al analizar casos legales complejos que citan múltiples precedentes, el subagente de análisis de documentos procesa cada uno de forma secuencial. Un caso emblemático que cita 12 precedentes tarda más de 3 minutos en analizarse por completo.",
+    "question": "¿Cuál es la forma más eficaz de reducir esta latencia preservando la capacidad del coordinador para monitorear y depurar el sistema?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Implementar una cola de mensajes donde las tareas de análisis de precedentes se procesen de forma asíncrona mediante un grupo de agentes trabajadores.",
+        "correct": false,
+        "explanation": "Las colas externas complican la observabilidad: el coordinador pierde la visibilidad directa de qué tareas tuvieron éxito y qué produjeron."
+      },
+      {
+        "letter": "B",
+        "text": "Crear una jerarquía recursiva de agentes donde los agentes de análisis subdividan el trabajo entre agentes hijos hasta llegar a la granularidad de un solo precedente.",
+        "correct": false,
+        "explanation": "La recursión añade niveles de indirección que dificultan la depuración y el monitoreo, sin una aceleración real más allá del primer reparto."
+      },
+      {
+        "letter": "C",
+        "text": "Que el coordinador genere subagentes de análisis de documentos en paralelo, cada uno encargándose de un subconjunto de precedentes, y luego agregue los resultados antes de la síntesis.",
+        "correct": true,
+        "explanation": "Correcto. El paralelismo gestionado por el coordinador reparte el trabajo, mantiene acotado el alcance de cada subagente y preserva un único eje para el monitoreo y la agregación."
+      },
+      {
+        "letter": "D",
+        "text": "Permitir que el subagente de análisis de documentos genere dinámicamente sus propios subagentes especializados cuando se encuentre con casos que tengan muchas citas.",
+        "correct": false,
+        "explanation": "La generación anidada esconde la ejecución dentro de los subagentes y deja incompleta la vista de depuración del coordinador. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m15",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "El coordinador tiene `AgentDefinitions` configuradas para los cuatro subagentes especializados, cada una con descripciones, prompts y restricciones de herramientas adecuadas. Durante las pruebas, notas que el coordinador razona correctamente sobre cuándo delegar —genera mensajes como \"le pediré al agente de búsqueda web que encuentre fuentes sobre este tema\"— pero nunca ocurre ninguna ejecución de subagente. El coordinador luego continúa como si la delegación hubiera ocurrido y prosigue con información incompleta. Los registros no muestran errores.",
+    "question": "¿Cuál es la causa más probable?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "El valor de `max_tokens` del coordinador es demasiado bajo, lo que provoca que la invocación de la herramienta Task se trunque antes de poder especificar el parámetro de tipo de subagente.",
+        "correct": false,
+        "explanation": "Un truncamiento aparecería en los registros y normalmente dejaría bloques `tool_use` parciales, no operaciones silenciosas sin efecto."
+      },
+      {
+        "letter": "B",
+        "text": "Las `AgentDefinitions` están configuradas correctamente, pero el prompt de sistema del coordinador no lista explícitamente los tipos de subagente disponibles, lo que impide que el modelo sepa que pueden invocarse.",
+        "correct": false,
+        "explanation": "Los esquemas de herramientas/agentes se exponen al modelo automáticamente: no necesitas volver a listarlos en el prompt de sistema para que el modelo los vea."
+      },
+      {
+        "letter": "C",
+        "text": "La configuración de allowedTools del coordinador no incluye \"Task\", así que, aunque puede razonar sobre la delegación, no puede invocar la herramienta necesaria para generar subagentes.",
+        "correct": true,
+        "explanation": "Correcto. Sin la herramienta Task en allowedTools, el coordinador puede hablar de delegar pero no tiene forma de llamar realmente a un subagente, lo que coincide con el síntoma de 'razona sobre ello, sin ejecución, sin errores'."
+      },
+      {
+        "letter": "D",
+        "text": "El aislamiento de contexto de los subagentes implica que las descripciones de tareas del coordinador no llegan automáticamente a los subagentes; necesitas configurar el reenvío explícito de contexto en ClaudeAgentOptions.",
+        "correct": false,
+        "explanation": "El aislamiento de contexto es real, pero afecta lo que ve el subagente una vez generado, no si el coordinador puede generarlo siquiera. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m16",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Después de integrar un servidor MCP local que provee herramientas de análisis de código (`analyze_dependencies`, `find_dead_code`, `calculate_complexity`), verificas que el servidor está saludable y que las herramientas aparecen en la respuesta de tools/list. Sin embargo, observas que el agente usa consistentemente Grep para buscar sentencias de importación en lugar de llamar a `analyze_dependencies`, incluso cuando los usuarios preguntan explícitamente por \"dependencias de código\". Al examinar las definiciones de las herramientas se observa: MCP: `analyze_dependencies` - \"Analiza el grafo de dependencias\" Integrada: Grep - \"Busca contenido de archivos según un patrón usando expresiones regulares. Devuelve las líneas coincidentes con números de línea y contexto circundante.\"",
+    "question": "¿Cuál es el enfoque más efectivo para mejorar la selección de herramientas MCP por parte del agente?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Eliminar Grep de las herramientas disponibles cuando el servidor MCP está conectado, para eliminar el solapamiento funcional.",
+        "correct": false,
+        "explanation": "Mutilar una herramienta general para forzar la adopción de una especializada perjudica otros casos de uso legítimos de Grep."
+      },
+      {
+        "letter": "B",
+        "text": "Agregar instrucciones de enrutamiento al prompt del sistema que indiquen que las preguntas relacionadas con dependencias deben usar herramientas MCP en lugar de Grep.",
+        "correct": false,
+        "explanation": "El enrutamiento a nivel de prompt puede ayudar, pero la causa raíz es que la descripción de la herramienta MCP es más pobre que la de Grep. Corrige primero las descripciones de las herramientas."
+      },
+      {
+        "letter": "C",
+        "text": "Dividir `analyze_dependencies` en herramientas granulares (`list_imports`, `resolve_transitive_deps`, `detect_circular_deps`) para que cada una tenga un propósito enfocado y menos propenso a solaparse con Grep.",
+        "correct": false,
+        "explanation": "Dividir a veces es lo correcto, pero aquí las herramientas hermanas seguirían teniendo descripciones débiles. El mismo error de selección reaparecería."
+      },
+      {
+        "letter": "D",
+        "text": "Ampliar las descripciones de las herramientas MCP para detallar sus capacidades y resultados; por ejemplo, \"Construye un grafo de dependencias que muestra importaciones directas, dependencias transitivas y ciclos.\"",
+        "correct": true,
+        "explanation": "Correcto. La selección de herramientas se guía por las descripciones que ve el modelo. Una descripción de una línea como 'Analiza el grafo de dependencias' pierde frente a la descripción rica de Grep. Refuerza la descripción de la herramienta MCP. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m17",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Un ingeniero le pide al agente que encuentre a todos los llamadores de una función antes de eliminarla. La función está definida en una biblioteca central, pero también se expone a través de módulos envoltorio que la renombran para usos específicos del dominio (por ejemplo, calculateTax en la biblioteca se convierte en computeOrderTax en el módulo de pedidos).",
+    "question": "¿Qué estrategia de exploración identificará de forma más confiable a todos los llamadores?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Leer la biblioteca y los módulos envoltorio para identificar todos los nombres expuestos de la función, y luego hacer Grep de cada nombre en todo el código base.",
+        "correct": true,
+        "explanation": "Correcto. Hay que enumerar todos los nombres bajo los que se expone la función; de lo contrario, los envoltorios renombrados ocultan llamadores. Lee los módulos relevantes, reúne todos los alias y luego haz grep de cada uno."
+      },
+      {
+        "letter": "B",
+        "text": "Usar Grep para encontrar todos los archivos que importan de la biblioteca o de los módulos envoltorio, y luego leer cada archivo para comprobar si usa la función.",
+        "correct": false,
+        "explanation": "Omite importaciones dinámicas, reexportaciones y cadenas de llamadas indirectas. Además, escala mal."
+      },
+      {
+        "letter": "C",
+        "text": "Usar Grep para buscar el nombre original de la función en todo el código base.",
+        "correct": false,
+        "explanation": "El nombre original no aparecerá en ningún lugar donde un envoltorio lo haya renombrado; te perderías una clase importante de llamadores."
+      },
+      {
+        "letter": "D",
+        "text": "Buscar el nombre de la función en la documentación del proyecto para entender los patrones de uso previstos y navegar a los puntos de integración documentados.",
+        "correct": false,
+        "explanation": "La documentación es incompleta y a menudo está desactualizada. No puedes eliminar una función de forma segura basándote en evidencia a nivel de documentación. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m18",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Durante las pruebas, observas que en sesiones de exploración prolongadas (más de 30 minutos), el agente comienza a dar respuestas inconsistentes sobre la estructura de código que discutió antes. Los ingenieros reportan tener que repetir contexto sobre módulos que ya habían explorado.",
+    "question": "¿Cuál es el enfoque más efectivo para abordar esto?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Hacer que el agente mantenga un archivo de notas (scratchpad) que registre los hallazgos clave, y consultarlo para las preguntas posteriores.",
+        "correct": true,
+        "explanation": "Correcto. Un scratchpad traslada los hallazgos a un almacenamiento duradero que el agente puede releer cuando lo necesite, dándole una 'memoria' estable independiente de qué tan saturada esté la ventana de contexto."
+      },
+      {
+        "letter": "B",
+        "text": "Cambiar a un nivel de modelo de mayor capacidad para brindar más espacio de ventana de contexto para los datos de exploración acumulados.",
+        "correct": false,
+        "explanation": "Una ventana más grande retrasa el problema, pero no resuelve la degradación de la atención sobre contextos largos y ruidosos."
+      },
+      {
+        "letter": "C",
+        "text": "Implementar un borrado automático del contexto cada 15 minutos para garantizar que el agente comience con un contexto fresco y no contaminado.",
+        "correct": false,
+        "explanation": "El borrado total descarta hallazgos válidos: exactamente el estado que los ingenieros se quejan de tener que reconstruir."
+      },
+      {
+        "letter": "D",
+        "text": "Crear resúmenes de todos los archivos fuente antes de comenzar la exploración, cargando en el contexto solo estas representaciones comprimidas.",
+        "correct": false,
+        "explanation": "Los resúmenes previos pierden el detalle que hace útil la exploración de código y a menudo tergiversan los archivos que más le importan al ingeniero. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m19",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Una ingeniera usó `Claude Code` ayer para investigar los flujos de autenticación en un monolito heredado, acumulando un contexto considerable a lo largo de una sesión de 2 horas. Hoy quiere continuar esa investigación específica. Desde entonces ha trabajado en otros tres códigos base y sabe que la sesión se llamaba \"auth-deep-dive\".",
+    "question": "¿Cómo debería retomarla?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Empezar de cero y releer los mismos archivos",
+        "correct": false,
+        "explanation": "Desperdicia las dos horas de contexto acumulado de ayer."
+      },
+      {
+        "letter": "B",
+        "text": "Usar `--session-id` con el UUID del archivo de transcripción de la sesión de ayer",
+        "correct": false,
+        "explanation": "Es posible pero engorroso: tendría que buscar el UUID cuando ya tiene el nombre de la sesión."
+      },
+      {
+        "letter": "C",
+        "text": "Usar `--continue` para retomar donde quedó la conversación más reciente",
+        "correct": false,
+        "explanation": "`--continue` reanuda la sesión más reciente en este repositorio. Desde entonces ha trabajado en otros tres códigos base, así que la más reciente no es auth-deep-dive."
+      },
+      {
+        "letter": "D",
+        "text": "Usar `--resume` auth-deep-dive para cargar esa sesión específica por nombre",
+        "correct": true,
+        "explanation": "Correcto. `--resume` con el nombre de la sesión está diseñado exactamente para esto: elegir una sesión previa específica entre muchas, por el nombre que le diste. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m20",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu agente ha dedicado 25 minutos a explorar el subsistema de renderizado de un motor de juego: leyendo código de shaders, gestión de búferes y lógica de sincronización de fotogramas. Un ingeniero ahora le pide que entienda cómo se integra el motor de física con el renderizado para las superposiciones de depuración de colisiones. Notas que las respuestas recientes hacen referencia a \"patrones de renderizado típicos\" en lugar de las clases específicas VulkanPipeline y FrameGraph que descubrió antes.",
+    "question": "¿Cuál es el enfoque más efectivo?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Generar un subagente que explore la física de forma independiente y luego sintetizar manualmente sus hallazgos con el conocimiento de renderizado acumulado en la conversación principal.",
+        "correct": false,
+        "explanation": "La síntesis manual en la conversación principal mete aún más cosas en un contexto que ya se está degradando."
+      },
+      {
+        "letter": "B",
+        "text": "Continuar en el contexto actual con prompts más dirigidos que hagan referencia a las clases específicas por su nombre.",
+        "correct": false,
+        "explanation": "El agente ya está perdiendo especificidad ('patrones típicos' en lugar de VulkanPipeline). Insistir más sobre el mismo contexto degradado no lo restaura."
+      },
+      {
+        "letter": "C",
+        "text": "Resumir los hallazgos clave del renderizado y luego generar un subagente para la exploración de la física con ese resumen en su contexto inicial.",
+        "correct": true,
+        "explanation": "Correcto. Condensa lo que has aprendido sobre el renderizado en un resumen compacto, y luego dale a un subagente nuevo ese resumen más la tarea de física: preservas la señal importante y escapas del contexto degradado."
+      },
+      {
+        "letter": "D",
+        "text": "Usar /clear para reiniciar por completo el contexto y luego empezar de cero la exploración de la física usando las rutas de archivo del CLAUDE.md del proyecto.",
+        "correct": false,
+        "explanation": "/clear borra los hallazgos de renderizado que en realidad necesitas para la pregunta transversal sobre las superposiciones de depuración de colisiones. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m21",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu herramienta de exploración de código base almacena IDs de sesión para permitir que los ingenieros continúen sus investigaciones entre sesiones de trabajo. Un ingeniero dedicó una hora ayer a analizar un módulo de autenticación heredado, acumulando contexto sobre su arquitectura y dependencias. Quiere continuar hoy. El ID de sesión es válido, pero el control de versiones muestra que 3 de los 12 archivos que el agente había leído fueron modificados durante la noche por el merge de un compañero.",
+    "question": "¿Qué enfoque equilibra mejor la eficiencia y la precisión?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Reanudar la sesión sin informar al agente sobre los archivos modificados",
+        "correct": false,
+        "explanation": "Reanudar en silencio deja al agente razonando sobre contenido desactualizado en 3 de 12 archivos: justo la fuente de malas recomendaciones."
+      },
+      {
+        "letter": "B",
+        "text": "Iniciar una sesión nueva para garantizar que el agente trabaje con el estado actual del código base, sin suposiciones desactualizadas",
+        "correct": false,
+        "explanation": "Desecha una hora de contexto válido sobre los 9 archivos que no cambiaron."
+      },
+      {
+        "letter": "C",
+        "text": "Reanudar la sesión e informar al agente qué archivos específicos cambiaron, para un reanálisis dirigido",
+        "correct": true,
+        "explanation": "Correcto. Conserva el costoso contexto que ya construiste, a la vez que le dices al agente exactamente cuáles 3 archivos releer: mínimo desperdicio, máxima precisión."
+      },
+      {
+        "letter": "D",
+        "text": "Reanudar la sesión y hacer que el agente relea de inmediato los 12 archivos analizados previamente",
+        "correct": false,
+        "explanation": "Innecesario para los 9 archivos sin cambios. Solo agrega tokens sin mejorar la precisión. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m22",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Un ingeniero usó el agente ayer para analizar un módulo de autenticación heredado e identificó dos enfoques de refactorización distintos: extraer un microservicio frente a refactorizar en el sitio. Hoy quiere explorar ambos enfoques en profundidad —haciendo que el agente proponga cambios de código específicos para cada uno— antes de decidir cuál implementar.",
+    "question": "¿Cuál es la forma más efectiva de estructurar esta exploración?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Reanudar la sesión de ayer para explorar el primer enfoque y luego iniciar una sesión nueva para el segundo, recreando manualmente el contexto original.",
+        "correct": false,
+        "explanation": "La recreación manual es propensa a errores y pierde el estado de trabajo exacto del análisis de ayer."
+      },
+      {
+        "letter": "B",
+        "text": "Iniciar dos sesiones nuevas, proporcionando manualmente un resumen de los hallazgos del análisis de ayer para establecer el contexto.",
+        "correct": false,
+        "explanation": "Rehace el trabajo y arriesga que las dos sesiones diverjan de la misma base que estableciste ayer."
+      },
+      {
+        "letter": "C",
+        "text": "Reanudar la sesión de ayer y explorar ambos enfoques de forma secuencial dentro del mismo hilo de conversación.",
+        "correct": false,
+        "explanation": "La exploración secuencial en un solo hilo permite que cada enfoque contamine el contexto del otro."
+      },
+      {
+        "letter": "D",
+        "text": "Usar `fork_session` para crear dos ramas a partir del análisis de ayer, explorando un enfoque en cada bifurcación.",
+        "correct": true,
+        "explanation": "Correcto. Bifurcar desde la sesión de ayer le da a cada enfoque su propio contexto independiente a partir de la misma base de análisis: limpio, paralelo y sin contaminación. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m23",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Un ingeniero le pide al agente que entienda cómo funciona la capa de caché antes de agregar un nuevo disparador de invalidación de caché. Tras las búsquedas iniciales con Grep, el agente ha identificado que la lógica de caché abarca 15 archivos, incluyendo decoradores, middleware y clases de servicio (~8000 líneas en total).",
+    "question": "¿Cuál es el siguiente paso más efectivo para construir comprensión a la vez que se gestionan las restricciones de contexto?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Usar la herramienta Read para cargar secuencialmente los 15 archivos, construyendo una comprensión completa de toda la implementación de caché.",
+        "correct": false,
+        "explanation": "Cargar 8000 líneas sin estructura inunda el contexto y entierra la lógica de invalidación en código no relacionado."
+      },
+      {
+        "letter": "B",
+        "text": "Analizar las importaciones y jerarquías de clases para identificar la clase base de caché, leer ese archivo para entender la interfaz y luego rastrear las implementaciones específicas de invalidación.",
+        "correct": true,
+        "explanation": "Correcto. Empieza desde la raíz arquitectónica (la interfaz) y luego navega solo las implementaciones específicas que importan para la invalidación: lectura enfocada, bajo costo de contexto."
+      },
+      {
+        "letter": "C",
+        "text": "Usar Grep para buscar los patrones \"invalidate\" y \"expire\" en todos los archivos y luego leer únicamente esos rangos de líneas específicos con un contexto circundante mínimo.",
+        "correct": false,
+        "explanation": "La lectura basada solo en palabras clave despoja el contexto de clase/método que te dice qué protege realmente la invalidación."
+      },
+      {
+        "letter": "D",
+        "text": "Usar Glob para encontrar archivos que coincidan con patrones comunes de caché (cache.py, caching/), priorizar los archivos más grandes leyéndolos primero y luego revisar los archivos más pequeños en busca de vacíos.",
+        "correct": false,
+        "explanation": "El tamaño es un mal indicador de importancia. Desperdiciarías contexto en grandes archivos de utilidades y te perderías los pequeños archivos estratégicos. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m24",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Un ingeniero le pide a tu agente que identifique las rutas de código sin pruebas en un módulo heredado de procesamiento de pagos que abarca 45 archivos. Tras leer los primeros 8 archivos fuente, las respuestas del agente se vuelven notablemente menos precisas: olvida patrones de código discutidos previamente y aún no ha localizado todos los archivos de prueba ni rastreado los flujos críticos de pago.",
+    "question": "¿Cuál es el enfoque más efectivo para completar esta investigación?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Documentar todos los hallazgos actuales en un informe de resumen, borrar el contexto por completo y luego usar ese informe como única referencia para continuar la investigación.",
+        "correct": false,
+        "explanation": "Un único informe se convierte en la única fuente de verdad y tiende a comprimir y eliminar los patrones de código específicos que necesitarías después."
+      },
+      {
+        "letter": "B",
+        "text": "Generar subagentes para investigar preguntas específicas (por ejemplo, \"encuentra todos los archivos de prueba para el procesamiento de pagos\", \"rastrea las dependencias del flujo de reembolso\") mientras el agente principal coordina los hallazgos y preserva la comprensión de alto nivel.",
+        "correct": true,
+        "explanation": "Correcto. Delega investigaciones bien acotadas a subagentes con contexto fresco, mientras el agente principal conserva la visión arquitectónica general. Este es el patrón para escalar la exploración más allá de una sola ventana de contexto."
+      },
+      {
+        "letter": "C",
+        "text": "Borrar el contexto con /clear y luego releer selectivamente solo los archivos más críticos descubiertos hasta ahora, escribiendo los hallazgos clave en un archivo de notas (scratchpad) que persiste entre reinicios de contexto.",
+        "correct": false,
+        "explanation": "Los scratchpads ayudan, pero borrar y releer descarta la comprensión que ya construiste a lo largo de 8 archivos."
+      },
+      {
+        "letter": "D",
+        "text": "Cambiar a usar Grep para buscar nombres de funciones específicos en lugar de leer archivos completos, reduciendo el contenido cargado en el contexto para la exploración restante.",
+        "correct": false,
+        "explanation": "No puedes identificar rutas sin pruebas con solo hacer grep de nombres: necesitas leer lo suficiente de cada ruta para saber qué ramas no cubren las pruebas. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m25",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Un desarrollador le pide al agente que investigue por qué un endpoint de API específico devuelve errores 500 de forma intermitente. El código base tiene más de 200 archivos y el desarrollador no sabe qué componentes están involucrados. El agente debe rastrear el error a través de las capas de enrutamiento, middleware, lógica de negocio y base de datos.",
+    "question": "¿Qué enfoque de descomposición de tareas sería más efectivo?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Hacer que el agente primero cree un plan integral que mapee todas las rutas de código a través del endpoint, antes de comenzar cualquier exploración de archivos o lectura de código.",
+        "correct": false,
+        "explanation": "No puedes construir un plan correcto para un error desconocido sin ninguna exploración. Planificar a ciegas desperdicia tiempo y pasa por alto la ruta de fallo real."
+      },
+      {
+        "letter": "B",
+        "text": "Hacer que el agente genere dinámicamente subtareas de investigación según lo que descubre en cada paso, adaptando su plan de exploración a medida que emerge nueva información sobre la ruta del error.",
+        "correct": true,
+        "explanation": "Correcto. La depuración es adaptativa por naturaleza: cada archivo que lees cambia cuál es el siguiente paso más útil. Deja que el agente siga la evidencia."
+      },
+      {
+        "letter": "C",
+        "text": "Definir de antemano una secuencia fija de pasos de investigación —hacer grep de patrones de error, luego leer los manejadores de errores, luego revisar las consultas a la base de datos, luego examinar el middleware—, ejecutando cada paso sin importar los hallazgos intermedios.",
+        "correct": false,
+        "explanation": "Una tubería fija desperdicia trabajo en capas que no están involucradas y puede bloquear al agente de la ruta real de la causa raíz."
+      },
+      {
+        "letter": "D",
+        "text": "Ejecutar agentes trabajadores en paralelo que investiguen simultáneamente las cuatro capas, y luego sintetizar sus hallazgos para identificar dónde se origina el error.",
+        "correct": false,
+        "explanation": "El despliegue en paralelo es útil una vez que tienes subtareas bien acotadas. Aquí no las tienes: pagarías 4 veces el costo para buscar en tres capas que no son el problema. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m26",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "El subagente de exploración de un ingeniero dedicó 30 minutos a analizar un sistema de pagos heredado, leyendo 47 archivos y documentando flujos de datos. La sesión se interrumpió cuando se cayó la conexión del ingeniero. Mientras tanto, un compañero hizo merge de un PR que renombró dos funciones de utilidad. El ingeniero quiere continuar la misma exploración.",
+    "question": "¿Cuál es el enfoque más efectivo?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Reanudar el subagente desde su transcripción anterior sin mencionar los cambios: la comprensión de la arquitectura sigue siendo válida.",
+        "correct": false,
+        "explanation": "Reanudar en silencio permite que el agente siga referenciando los nombres de función antiguos en sus recomendaciones."
+      },
+      {
+        "letter": "B",
+        "text": "Lanzar un subagente nuevo e incluir la transcripción previa en el prompt inicial como contexto.",
+        "correct": false,
+        "explanation": "Cargar 30 minutos de transcripción en el prompt de un subagente nuevo es un desperdicio y contamina su contexto inicial."
+      },
+      {
+        "letter": "C",
+        "text": "Lanzar un subagente nuevo con un resumen de los hallazgos previos.",
+        "correct": false,
+        "explanation": "Volver a resumir descarta los flujos de datos detallados que el agente ya estaba rastreando a lo largo de 47 archivos."
+      },
+      {
+        "letter": "D",
+        "text": "Reanudar el subagente desde su transcripción anterior e informarle sobre las funciones renombradas.",
+        "correct": true,
+        "explanation": "Correcto. Conserva la comprensión acumulada y dale un delta dirigido sobre los renombramientos para que pueda actualizar su modelo mental: mínimo desperdicio, máxima precisión. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m27",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Después de agregar un servidor MCP con herramientas especializadas de refactorización de código (`extract_function`, `rename_variable`, `inline_function`), notas que el agente sigue usando manipulación básica de texto mediante comandos Write y sed de Bash para las tareas de refactorización. El servidor MCP está conectado y saludable. Al examinar la configuración, encuentras que cada herramienta MCP tiene una descripción mínima como \"`extract_function`: extrae una función del código.\"",
+    "question": "¿Cuál es la forma más efectiva de mejorar la adopción de las herramientas de refactorización MCP?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Implementar un clasificador de solicitudes que detecte la intención de refactorizar y enrute automáticamente esas solicitudes al servidor MCP antes de que el agente las procese.",
+        "correct": false,
+        "explanation": "Un preclasificador es un sistema aparte que mantener y puede enrutar mal. El arreglo más barato es hacer que las descripciones de las herramientas sean lo bastante sólidas para que el agente las elija por su cuenta."
+      },
+      {
+        "letter": "B",
+        "text": "Eliminar la herramienta Write de la configuración del agente durante las sesiones de refactorización para que deba usar las herramientas MCP para las modificaciones de código.",
+        "correct": false,
+        "explanation": "Despojar herramientas generales fuerza la adopción por sustracción y rompe casos de uso legítimos de Write."
+      },
+      {
+        "letter": "C",
+        "text": "Aceptar esto como comportamiento esperado, dado que herramientas más simples como sed son más predecibles que las herramientas de refactorización especializadas.",
+        "correct": false,
+        "explanation": "Capitular anula el propósito de integrar las herramientas de refactorización. La integración está bien; el problema son las descripciones."
+      },
+      {
+        "letter": "D",
+        "text": "Mejorar las descripciones de las herramientas MCP para explicar cuándo es preferible cada herramienta frente a la manipulación de texto y aclarar las entradas y salidas esperadas.",
+        "correct": true,
+        "explanation": "Correcto. La selección de herramientas se guía por las descripciones que ve Claude. Cuando las herramientas MCP dicen 'extrae una función del código' y Write/sed vienen con documentación rica, Claude elige Write/sed. Refuerza las descripciones. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m28",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu agente ha analizado un módulo de servicio complejo: leyó 23 archivos fuente, rastreó flujos de solicitudes e identificó patrones de manejo de errores. Un desarrollador quiere comparar dos estrategias de pruebas antes de comprometerse con una: pruebas de extremo a extremo con servicios externos simulados frente a pruebas de snapshot que capturan las salidas esperadas. Necesita desarrollar ambos enfoques de forma independiente para evaluar las compensaciones.",
+    "question": "¿Cómo deberías gestionar las sesiones?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Exportar los hallazgos clave de la sesión de análisis a un archivo y luego crear dos sesiones nuevas que hagan referencia a ese archivo.",
+        "correct": false,
+        "explanation": "Un resumen exportado pierde más información que el estado vivo de la sesión que el agente construyó mientras leía 23 archivos."
+      },
+      {
+        "letter": "B",
+        "text": "Reanudar la sesión de análisis con `fork_session` habilitado, creando una rama separada para cada estrategia de pruebas.",
+        "correct": true,
+        "explanation": "Correcto. Bifurcar le da a cada estrategia su propio contexto independiente a partir de la base de análisis exacta: sin contaminación cruzada, sin reanálisis."
+      },
+      {
+        "letter": "C",
+        "text": "Iniciar dos sesiones nuevas, haciendo que cada una relea los archivos fuente relevantes antes de comenzar.",
+        "correct": false,
+        "explanation": "Quema tokens rehaciendo trabajo que la sesión original ya hizo, y arriesga que cada sesión nueva llegue a conclusiones distintas a partir del mismo código."
+      },
+      {
+        "letter": "D",
+        "text": "Continuar en la sesión original, desarrollando primero las pruebas de extremo a extremo y luego las pruebas de snapshot de forma secuencial.",
+        "correct": false,
+        "explanation": "El desarrollo secuencial en un solo hilo permite que la implementación de la primera estrategia sesgue el razonamiento sobre la segunda. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m29",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu agente necesita insertar una nueva función auxiliar en medio de un módulo de utilidades de 150 líneas, entre dos funciones existentes. La herramienta Edit falla porque su parámetro `old_string` no puede encontrar texto único con el cual coincidir: el archivo tiene docstrings, nombres de variables y patrones estructurales repetitivos.",
+    "question": "¿Cuál es la forma más confiable de completar esta inserción?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Usar Edit con un `old_string` extremadamente largo que capture más de 30 líneas de contexto para garantizar la unicidad",
+        "correct": false,
+        "explanation": "Las cadenas de coincidencia largas y frágiles fallan con frecuencia debido a espacios en blanco o ediciones menores y producen errores confusos."
+      },
+      {
+        "letter": "B",
+        "text": "Usar el parámetro `replace_all` de Edit para apuntar a un patrón común e incrustar la nueva función en el texto de reemplazo",
+        "correct": false,
+        "explanation": "`replace_all` mutaría todas las ocurrencias del patrón, corrompiendo todo el archivo."
+      },
+      {
+        "letter": "C",
+        "text": "Usar Bash para agregar la definición de la función al final del archivo usando sintaxis heredoc",
+        "correct": false,
+        "explanation": "Agregar al final coloca la función en el lugar equivocado. El requisito es insertarla entre dos funciones existentes."
+      },
+      {
+        "letter": "D",
+        "text": "Usar Read para cargar el archivo, agregar la función en la ubicación apropiada y luego usar Write para escribir el archivo actualizado",
+        "correct": true,
+        "explanation": "Correcto. Cuando el contrato de coincidencia única de Edit no puede satisfacerse en un archivo repetitivo, recurre a Read → modificar en memoria en la línea prevista → escribir el archivo completo de vuelta con Write. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m30",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Un ingeniero que acaba de unirse al equipo le pide al agente que lo ayude a entender la arquitectura de autenticación y autorización antes de realizar mejoras de seguridad. El código base tiene más de 800 archivos repartidos en múltiples servicios.",
+    "question": "¿Qué estrategia de exploración construirá la comprensión de forma más efectiva, dadas las herramientas integradas de Claude y los límites de contexto?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Leer primero cualquier archivo CLAUDE.md y README, y luego pedirle al ingeniero que especifique cuáles 10-15 archivos son los más importantes para entender el sistema de autenticación.",
+        "correct": false,
+        "explanation": "El ingeniero acaba de unirse: probablemente no sepa qué archivos importan. Eso es exactamente con lo que se supone que el agente debe ayudar."
+      },
+      {
+        "letter": "B",
+        "text": "Lanzar subagentes en paralelo para explorar distintos servicios simultáneamente y luego sintetizar sus hallazgos en una visión arquitectónica general.",
+        "correct": false,
+        "explanation": "Sin saber dónde reside la autenticación, el despliegue en paralelo explora demasiado ampliamente y los subagentes se duplican y pasan por alto los flujos entre servicios."
+      },
+      {
+        "letter": "C",
+        "text": "Usar Grep para encontrar los puntos de entrada de autenticación, leer esos archivos y luego seguir las importaciones y llamadas a funciones para mapear el flujo de autenticación de forma incremental.",
+        "correct": true,
+        "explanation": "Correcto. Empieza en los puntos de entrada (login, verificación de token, middleware) y luego rastrea hacia afuera siguiendo las aristas reales del código. Incremental, fundamentado y se ajusta a los límites de contexto."
+      },
+      {
+        "letter": "D",
+        "text": "Leer todos los archivos que contengan \"auth\", \"login\", \"permission\" o \"token\" en su contenido o nombre de archivo.",
+        "correct": false,
+        "explanation": "Esas palabras clave coinciden con una enorme cantidad de código no relacionado a lo largo de más de 800 archivos y ahogan el contexto en ruido. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m31",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Un cliente regresa 4 horas después de su sesión inicial sobre la misma disputa de facturación. La sesión anterior de 32 turnos contiene resultados de `lookup_order` que muestran \"Status: PENDING, Expected resolution: 24-48 hours.\" En las pruebas, observas que al reanudar sesiones con resultados de herramienta obsoletos, el agente a menudo hace referencia a los datos desactualizados en sus respuestas (por ejemplo, \"Veo que tu reembolso aún se está procesando\") incluso después de que llamadas frescas a la herramienta devuelven información distinta.",
+    "question": "¿Qué enfoque maneja de forma más confiable a los clientes que regresan?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Reanudar con el historial completo, pero filtrar los mensajes previos de `tool_result` antes de reanudar, conservando solo los turnos de humano/asistente para que el agente deba volver a obtener los datos necesarios.",
+        "correct": false,
+        "explanation": "Eliminar los `tool_results` de en medio de una conversación puede dejar mensajes del asistente que hacen referencia a resultados inexistentes; la transcripción queda internamente inconsistente."
+      },
+      {
+        "letter": "B",
+        "text": "Iniciar una nueva sesión, inyectar un resumen estructurado de la interacción previa (tipo de problema, acciones tomadas, estado de resolución) y luego hacer llamadas frescas a las herramientas antes de interactuar.",
+        "correct": true,
+        "explanation": "Correcto. Una sesión limpia con un resumen mantiene la continuidad narrativa y a la vez garantiza que el agente no razone sobre resultados de herramienta obsoletos."
+      },
+      {
+        "letter": "C",
+        "text": "Reanudar con el historial completo y agregar una instrucción al prompt del sistema indicándole al agente que siempre prefiera los resultados de herramienta más recientes cuando existan varias llamadas a la misma herramienta en el contexto.",
+        "correct": false,
+        "explanation": "Las instrucciones del prompt son sugerencias. Observaste exactamente ese modo de falla en las pruebas: el modelo aún hace referencia a resultados antiguos."
+      },
+      {
+        "letter": "D",
+        "text": "Reanudar con el historial completo y configurar el agente para que vuelva a llamar automáticamente a todas las herramientas usadas previamente al inicio de la sesión para asegurar la frescura de los datos.",
+        "correct": false,
+        "explanation": "Volver a llamar todo de forma indiscriminada es un desperdicio, es lento y aun así deja los resultados antiguos en el contexto, confundiendo al modelo. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m32",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Estás implementando la lógica de escalamiento para cuando el agente deba llamar a `escalate_to_human`. Tu equipo propone cuatro enfoques distintos para disparar el escalamiento.",
+    "question": "¿Qué enfoque identificará de forma más confiable los casos que realmente requieren intervención humana?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Indicarle al agente que escale cuando el cliente solicite un humano, cuando el problema requiera excepciones de política o cuando el agente no pueda avanzar de forma significativa.",
+        "correct": true,
+        "explanation": "Correcto. Las decisiones de escalamiento son juicios sobre la intención y el progreso, exactamente en lo que los LLM son buenos. Criterios claros en lenguaje natural superan a las reglas rígidas para la cola larga de casos."
+      },
+      {
+        "letter": "B",
+        "text": "Configurar el agente para que escale tras tres llamadas consecutivas a herramientas que no logren resolver el problema declarado por el cliente, asegurando un intento razonable antes de involucrar a un humano.",
+        "correct": false,
+        "explanation": "Un conteo fijo de reintentos se dispara tanto demasiado pronto (reintentos legítimos) como demasiado tarde (problemas evidentes de política en la primera llamada)."
+      },
+      {
+        "letter": "C",
+        "text": "Implementar un análisis de sentimiento que monitoree indicadores de frustración (lenguaje negativo, preguntas repetidas, signos de exclamación) y disparar el escalamiento cuando la puntuación de frustración supere un umbral configurado.",
+        "correct": false,
+        "explanation": "El sentimiento puede captar la frustración, pero pasa por alto a clientes tranquilos que simplemente necesitan un humano para una excepción de política, y sobre-escala ante lenguaje estilístico."
+      },
+      {
+        "letter": "D",
+        "text": "Construir un motor de reglas que mapee tipos específicos de problemas, segmentos de clientes y categorías de productos a decisiones de escalamiento, eliminando la necesidad de juicios del modelo.",
+        "correct": false,
+        "explanation": "Los motores de reglas se rompen ante los casos para los que no fueron diseñados, y el soporte al cliente está lleno de esos. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m33",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tras investigar una disputa de facturación durante más de 25 turnos, identificaste que los cargos duplicados ocurrieron porque un timeout de la pasarela de pago disparó la lógica de reintento. El reembolso requerido ($847) excede tu límite de autorización de $500. Necesitas llamar a `escalate_to_human`, y el agente humano no tendrá acceso a la transcripción de tu conversación.",
+    "question": "¿Qué contexto deberías pasar para permitir una resolución efectiva?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "La queja original del cliente textualmente, más los fragmentos del resultado de la herramienta que muestran las transacciones duplicadas.",
+        "correct": false,
+        "explanation": "Artefactos en bruto sin síntesis obligan al humano a rehacer los 25 turnos de investigación que acabas de terminar."
+      },
+      {
+        "letter": "B",
+        "text": "Un resumen estructurado: ID del cliente, causa raíz, monto del reembolso y acción recomendada.",
+        "correct": true,
+        "explanation": "Correcto. Un traspaso estructurado con identificadores, causa, monto y acción recomendada es lo que un agente humano necesita para retomar el caso al instante sin volver a investigar."
+      },
+      {
+        "letter": "C",
+        "text": "La transcripción completa de la conversación con todos los resultados de las herramientas.",
+        "correct": false,
+        "explanation": "Volcar toda la transcripción obliga al humano a vadear 25 turnos en lugar de leer un resumen de una pantalla."
+      },
+      {
+        "letter": "D",
+        "text": "Solo tu diagnóstico y el monto del reembolso.",
+        "correct": false,
+        "explanation": "Faltan los identificadores del cliente y la acción recomendada: el humano no puede actuar sin ellos. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m34",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "El cumplimiento normativo exige que los reembolsos que superen los $500 deben escalar automáticamente a un agente humano; esta regla no puede dejarse a discreción del modelo. A pesar de instrucciones claras en el prompt del sistema, los registros de producción muestran que el agente ocasionalmente procesa reembolsos de alto valor directamente (tasa de falla del 3%).",
+    "question": "¿Cómo deberías lograr un cumplimiento garantizado?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Modificar la herramienta de reembolso para que devuelva un error con el mensaje \"Amount exceeds policy limit—please escalate\" cuando se supere el umbral.",
+        "correct": false,
+        "explanation": "Esto ayuda, pero depende de que el agente interprete correctamente el error y escale; sigue siendo discreción del modelo en el punto de decisión."
+      },
+      {
+        "letter": "B",
+        "text": "Agregar ejemplos few-shot al prompt que muestren el comportamiento de escalamiento correcto en varios montos de reembolso ($400, $500, $600).",
+        "correct": false,
+        "explanation": "Los few-shots desplazan la distribución, pero no eliminan la falla del 3%. El cumplimiento dice que la regla no puede dejarse a discreción del modelo."
+      },
+      {
+        "letter": "C",
+        "text": "Implementar un hook para interceptar las llamadas a herramientas; cuando el monto a procesar por reembolso supere los $500, bloquearla e invocar el escalamiento humano.",
+        "correct": true,
+        "explanation": "Correcto. Las reglas de grado de cumplimiento pertenecen fuera del modelo: un hook determinista sobre la llamada a la herramienta se dispara de forma garantizada cada vez, independientemente del comportamiento del modelo."
+      },
+      {
+        "letter": "D",
+        "text": "Reforzar el prompt del sistema con lenguaje enfático: \"CRITICAL POLICY: Refunds over $500 MUST trigger human escalation. NEVER process these directly.\"",
+        "correct": false,
+        "explanation": "Los prompts enfáticos reducen pero no eliminan el mal uso. La frase \"no puede dejarse a discreción del modelo\" descarta cualquier solución basada solo en el prompt. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m35",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Durante la resolución de una disputa de facturación, tu agente obtiene con éxito la información del cliente vía `get_customer` y los detalles del pedido vía `lookup_order`, pero al intentar llamar a `process_refund`, la herramienta devuelve un error de timeout. El agente tiene suficiente información para explicar los cargos y verificar la elegibilidad del reembolso, pero no puede procesar realmente el reembolso debido a la falla del backend.",
+    "question": "¿Qué enfoque equilibra mejor la resolución en el primer contacto con un manejo de errores adecuado?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Escalar de inmediato a un agente humano, ya que la acción de reembolso no puede completarse.",
+        "correct": false,
+        "explanation": "Traslada un problema transitorio del backend a un humano cuando el agente aún podría explicar la situación y ofrecer opciones."
+      },
+      {
+        "letter": "B",
+        "text": "Implementar reintentos automáticos con retroceso exponencial para `process_refund`, manteniendo la conversación abierta hasta que el reembolso se procese con éxito.",
+        "correct": false,
+        "explanation": "Obligar al cliente a esperar reintentos indefinidos es una mala experiencia y puede que nunca tenga éxito si la interrupción es prolongada."
+      },
+      {
+        "letter": "C",
+        "text": "Explicar la facturación, confirmar la elegibilidad del reembolso, reconocer el problema del sistema que impide el procesamiento inmediato y ofrecer escalamiento o reintentar más tarde.",
+        "correct": true,
+        "explanation": "Correcto. Entrega el valor parcial que puedas (explicación + elegibilidad), sé honesto sobre la falla y deja que el cliente elija entre el escalamiento humano o un reintento. Degradación elegante clásica."
+      },
+      {
+        "letter": "D",
+        "text": "Confirmar que el reembolso se procesará y cerrar la conversación, ya que el sistema tiene toda la información necesaria para completarlo automáticamente.",
+        "correct": false,
+        "explanation": "Comprometerse con un resultado que no ocurrió es engañar al cliente, una falla mayor que el timeout. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m36",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Un cliente escribe: \"Llevo días yendo y viniendo con esta devolución. Solo quiero hablar con alguien que realmente pueda ayudarme.\" El agente ha confirmado vía `lookup_order` que la devolución es sencilla: dentro de la política y elegible para procesamiento inmediato.",
+    "question": "¿Qué debería hacer el agente?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Reconocer la frustración, informarle que esto se puede resolver ahora y ofrecer completarlo o escalar.",
+        "correct": true,
+        "explanation": "Correcto. Honra el sentimiento, dale la vía de resolución rápida por escrito y preserva su elección. Esa es la jugada de respeto al cliente que a la vez aprovecha la capacidad del agente."
+      },
+      {
+        "letter": "B",
+        "text": "Llamar a `escalate_to_human` de inmediato para honrar la solicitud del cliente.",
+        "correct": false,
+        "explanation": "Encolamiento innecesario cuando el problema está a una llamada de herramienta de distancia. Frustra aún más al cliente al añadir espera a un caso ya simple."
+      },
+      {
+        "letter": "C",
+        "text": "Procesar el reembolso vía `process_refund` para resolver el problema de fondo y luego informarle que está completo.",
+        "correct": false,
+        "explanation": "Toma una acción unilateral después de que el cliente pidió explícitamente hablar con alguien; ignora su preferencia declarada."
+      },
+      {
+        "letter": "D",
+        "text": "Preguntar qué específicamente no ha funcionado en los intentos anteriores antes de decidir si escalar o resolver automáticamente.",
+        "correct": false,
+        "explanation": "Interrogar a un cliente frustrado sobre fallas pasadas es lo opuesto a lo que pidió. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m37",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "El agente verifica la identidad del cliente mediante un proceso de varios pasos antes de restablecer contraseñas. Durante las pruebas, notas que después de que el cliente responde la tercera pregunta de verificación, el agente le vuelve a pedir su nombre, como si el intercambio anterior nunca hubiera ocurrido.",
+    "question": "¿Cuál es la causa más probable de este comportamiento?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "La herramienta de verificación está borrando el estado interno del agente después de cada paso de validación exitoso.",
+        "correct": false,
+        "explanation": "Las herramientas no borran el estado del agente; el estado de la conversación vive en el arreglo de mensajes que envías."
+      },
+      {
+        "letter": "B",
+        "text": "Al prompt le faltan instrucciones que le digan a Claude que recuerde la información a lo largo de múltiples intercambios.",
+        "correct": false,
+        "explanation": "La memoria entre turnos no se logra con una instrucción; proviene de pasar los turnos anteriores en la siguiente solicitud."
+      },
+      {
+        "letter": "C",
+        "text": "El historial de la conversación no se está pasando en las solicitudes subsecuentes a la API.",
+        "correct": true,
+        "explanation": "Correcto. La API es sin estado. Cada solicitud debe incluir el arreglo completo de mensajes. Si solo envías el último turno, el modelo no tiene memoria de los anteriores: exactamente el síntoma de \"volver a pedir el nombre\"."
+      },
+      {
+        "letter": "D",
+        "text": "La retención de memoria de Claude está limitada por defecto a dos turnos de conversación, y se requiere configuración explícita para extenderla.",
+        "correct": false,
+        "explanation": "No existe tal límite por defecto. El contexto está acotado por la ventana, y la longitud del historial está bajo tu control. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m38",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Los registros de producción revelan un manejo de errores inconsistente: cuando `lookup_order` falla, el agente a veces reintenta más de 5 veces (un desperdicio cuando el ID del pedido no existe), a veces escala de inmediato (prematuro ante problemas temporales de red) y a veces pide aclaraciones a los usuarios (inapropiado cuando el problema es un error de permisos del backend). La investigación muestra que tu herramienta MCP devuelve respuestas de error uniformes: {\"isError\": true, \"content\": [{\"type\": \"text\", \"text\": \"Operation failed\"}]}. El agente no puede distinguir entre los tipos de error.",
+    "question": "¿Cuál es la mejora más efectiva?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Enriquecer las respuestas de error con metadatos estructurados: incluir errorCategory (transient/validation/permission), un booleano isRetryable y una descripción de qué causó la falla.",
+        "correct": true,
+        "explanation": "Correcto. Dale al agente la información que necesita para tomar la decisión correcta: categoría, capacidad de reintento y una causa legible. Eso reemplaza la adivinanza por una política determinista."
+      },
+      {
+        "letter": "B",
+        "text": "Crear una herramienta MCP `analyze_error` que el agente llame tras cualquier falla para determinar la categoría del error y la acción recomendada.",
+        "correct": false,
+        "explanation": "Añade un viaje de ida y vuelta adicional para algo que la herramienta original ya sabe. Pon los metadatos en la respuesta original."
+      },
+      {
+        "letter": "C",
+        "text": "Implementar lógica de reintento con retroceso exponencial en tu servidor MCP para todos los errores, devolviendo al agente solo después de agotar los reintentos.",
+        "correct": false,
+        "explanation": "Los reintentos indiscriminados perjudican ante errores permanentes (pedido no encontrado) y ocultan distinciones útiles al agente."
+      },
+      {
+        "letter": "D",
+        "text": "Agregar ejemplos few-shot al prompt del sistema que demuestren cómo interpretar los patrones de los mensajes de error y seleccionar respuestas apropiadas para cada uno.",
+        "correct": false,
+        "explanation": "Si la herramienta devuelve \"Operation failed\" ante cada falla, ningún número de few-shots puede extraer información de categoría que no está ahí. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m39",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": null,
+    "question": "Cuando el agente llama a `lookup_order` y recibe detalles del pedido que muestran que el artículo se compró hace 45 días, ¿cómo determina el bucle agéntico si debe llamar a `process_refund` o a `escalate_to_human` a continuación?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "La capa de orquestación enruta automáticamente a la siguiente herramienta según el campo de estado del pedido.",
+        "correct": false,
+        "explanation": "No hay una capa de orquestación implícita que elija herramientas a partir de un campo. El modelo conduce la selección de herramientas."
+      },
+      {
+        "letter": "B",
+        "text": "El agente sigue un árbol de decisión preconfigurado que mapea atributos del pedido a llamadas de herramienta específicas.",
+        "correct": false,
+        "explanation": "Los bucles agénticos son impulsados por el modelo, no por árboles de decisión. Los árboles codificados son lo opuesto a aquello para lo que sirve el patrón de agente."
+      },
+      {
+        "letter": "C",
+        "text": "Los detalles del pedido se agregan a la conversación y el modelo razona sobre qué acción tomar.",
+        "correct": true,
+        "explanation": "Correcto. El bucle agéntico funciona agregando mensajes de `tool_result` a la conversación y dejando que el modelo decida el siguiente paso en cada turno. Así es como se resuelve 45 días → reembolso vs. escalar."
+      },
+      {
+        "letter": "D",
+        "text": "El agente ejecuta los pasos restantes en una secuencia de herramientas planificada al inicio de la solicitud.",
+        "correct": false,
+        "explanation": "No hay un plan comprometido por adelantado; el agente elige cada siguiente paso según el contexto más reciente. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m40",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Un cliente envía: \"Esto es frustrante. Ya expliqué mi problema dos veces y no se está resolviendo nada. Quiero hablar con una persona real AHORA.\" El agente aún no ha llamado a ninguna herramienta para investigar su cuenta.",
+    "question": "¿Qué debería hacer el agente?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Reconocer la frustración y hacer una pregunta dirigida para entender el problema específico antes de escalar.",
+        "correct": true,
+        "explanation": "Correcto. El cliente dijo \"dos veces\", pero aún no tienes contexto. Una pregunta enfocada que reconozca la situación te da una oportunidad de resolución en el primer contacto sin desestimar la frustración ni retrasar un posible traspaso."
+      },
+      {
+        "letter": "B",
+        "text": "Explicar brevemente con qué puede ayudar el agente y ofrecer resolver el problema rápidamente, escalando solo si el cliente repite su solicitud.",
+        "correct": false,
+        "explanation": "Lanzarse a enumerar capacidades ante un cliente frustrado que pidió un humano se percibe como desdeñoso."
+      },
+      {
+        "letter": "C",
+        "text": "Llamar de inmediato a `escalate_to_human` con el historial de la conversación.",
+        "correct": false,
+        "explanation": "Escalar sin contexto de herramientas crea un traspaso en frío donde el humano también empieza desde cero."
+      },
+      {
+        "letter": "D",
+        "text": "Primero llamar a `get_customer` y `lookup_order` para reunir contexto de la cuenta y luego escalar a un agente humano.",
+        "correct": false,
+        "explanation": "Investigar sin preguntar añade latencia y no respeta la solicitud del cliente. Una sola pregunta que reconozca la situación es más rápida y respetuosa. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m41",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu agente está manejando una disputa de facturación. Tras llamar a `get_customer` y `lookup_order`, identifica que la disputa involucra un error de precios promocionales que requiere aprobación de un gerente, más allá del nivel de autorización del agente.",
+    "question": "¿Cómo debería el flujo de trabajo manejar este escalamiento a mitad del proceso?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Llamar a `escalate_to_human` pasando solo el mensaje original del cliente.",
+        "correct": false,
+        "explanation": "Descarta el contexto derivado de las herramientas que el agente acaba de reunir, forzando al humano a rehacer la investigación."
+      },
+      {
+        "letter": "B",
+        "text": "Compilar un traspaso estructurado con los detalles del cliente, la información del pedido y el problema identificado antes de llamar a `escalate_to_human`.",
+        "correct": true,
+        "explanation": "Correcto. Un resumen estructurado (quién, qué pedido, qué problema, por qué excede la autorización) le permite al agente humano retomar al instante. Ese es el patrón de escalamiento a mitad del proceso."
+      },
+      {
+        "letter": "C",
+        "text": "Intentar el reembolso con `process_refund` de todos modos, escalando solo si el sistema rechaza la transacción.",
+        "correct": false,
+        "explanation": "Exceder la autorización a sabiendas es una violación de política, no algo que se deba intentar con la esperanza de que el sistema lo detecte."
+      },
+      {
+        "letter": "D",
+        "text": "Persistir la conversación completa y el historial de respuestas de las herramientas en una base de datos, y luego llamar a `escalate_to_human` con un ID de referencia.",
+        "correct": false,
+        "explanation": "Añade infraestructura y un paso de búsqueda adicional cuando un resumen estructurado en línea es más simple y rápido. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m42",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Un cliente plantea tres problemas separados durante una sesión: una consulta de reembolso (turnos 1-15), una pregunta sobre suscripción (turnos 16-30) y una actualización del método de pago (turnos 31-45). En el turno 48, el cliente pregunta \"¿Qué pasó con mi reembolso?\" La conversación se está acercando a los límites de contexto.",
+    "question": "¿Qué estrategia mantiene mejor la capacidad del agente para atender todos los problemas a lo largo de la sesión?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Extraer y persistir datos estructurados de los problemas (IDs de pedido, montos, estados) en una capa de contexto separada.",
+        "correct": false,
+        "explanation": "Una capa de contexto paralela añade ingeniería y no preserva de forma natural la narrativa conversacional que el cliente espera."
+      },
+      {
+        "letter": "B",
+        "text": "Confiar en las herramientas MCP para volver a obtener la información relevante bajo demanda cuando el cliente haga referencia a problemas anteriores.",
+        "correct": false,
+        "explanation": "Volver a obtener datos está bien para la frescura, pero no resuelve el problema de la longitud del contexto, y pierdes lo que se dijo entre el cliente y el agente."
+      },
+      {
+        "letter": "C",
+        "text": "Resumir los turnos anteriores en una descripción narrativa, preservando el historial completo de mensajes solo para el problema activo.",
+        "correct": true,
+        "explanation": "Correcto. El resumen progresivo comprime los temas resueltos y estables mientras mantiene el hilo activo textualmente: el patrón clásico para conversaciones largas con múltiples problemas cerca del límite de contexto."
+      },
+      {
+        "letter": "D",
+        "text": "Implementar un contexto de ventana deslizante que retenga los 30 turnos más recientes.",
+        "correct": false,
+        "explanation": "Una ventana deslizante pura descarta silenciosamente el problema del reembolso (turnos 1-15) del contexto, que es exactamente lo que el cliente está preguntando. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m43",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Al implementar tu herramienta MCP `lookup_order`, el backend a veces devuelve errores (por ejemplo, \"Order not found\" o fallas temporales de la base de datos).",
+    "question": "¿Cuál es el patrón correcto para comunicar estos errores de vuelta al agente?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Registrar el error del lado del servidor y devolver un resultado vacío para evitar confundir al modelo.",
+        "correct": false,
+        "explanation": "Devolver éxitos vacíos hace que el agente piense que no existen datos, en lugar de que algo salió mal: una confusión distinta y peor."
+      },
+      {
+        "letter": "B",
+        "text": "Devolver el mensaje de error en el contenido del resultado de la herramienta con la bandera isError establecida en true.",
+        "correct": true,
+        "explanation": "Correcto. El patrón diseñado de MCP: pon el texto del error en el campo de contenido y marca isError=true. Claude ve tanto la bandera de falla como un mensaje legible sobre el cual razonar."
+      },
+      {
+        "letter": "C",
+        "text": "Lanzar una excepción desde el manejador de la herramienta para que el framework del agente pueda capturarla y registrarla.",
+        "correct": false,
+        "explanation": "Las excepciones no capturadas rompen el protocolo de la herramienta y no le dan al modelo nada con qué razonar."
+      },
+      {
+        "letter": "D",
+        "text": "Devolver una respuesta exitosa con un campo \"status\" que indique el tipo de error.",
+        "correct": false,
+        "explanation": "Los campos \"status\" ad hoc varían entre herramientas y el modelo no tiene una forma estándar de interpretarlos. isError es el estándar. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m44",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu herramienta `process_refund` devuelve dos tipos de errores: errores técnicos (\"503 Service Unavailable\", \"Connection timeout\") que son transitorios (5% de las llamadas), y errores de negocio (\"Order exceeds 30-day return window\", \"Item already refunded\") que son permanentes (12% de las llamadas). El monitoreo muestra que el agente desperdicia entre 3 y 4 turnos reintentando errores de negocio que nunca pueden tener éxito. Actualmente, ambos tipos de error solo devuelven un mensaje de texto plano a Claude.",
+    "question": "¿Cuál es la forma más efectiva de reducir los reintentos desperdiciados y a la vez mejorar la calidad de la respuesta hacia el cliente?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Devolver respuestas de error estructuradas con retryable: false para los errores de negocio y una explicación amigable para el cliente que Claude pueda usar.",
+        "correct": true,
+        "explanation": "Correcto. Una bandera retryable le dice a Claude de forma determinista \"no reintentar\", y un mensaje listo y amigable para el cliente mejora la respuesta saliente. Resuelve ambos problemas a la vez."
+      },
+      {
+        "letter": "B",
+        "text": "Agregar ejemplos few-shot que muestren cómo distinguir errores reintentables de no reintentables analizando el texto del mensaje de error.",
+        "correct": false,
+        "explanation": "Depender de que el modelo analice cadenas de error como texto es frágil, y es exactamente la inestabilidad que ves hoy."
+      },
+      {
+        "letter": "C",
+        "text": "Agregar una herramienta `check_refund_eligibility` que deba llamarse antes de `process_refund` para prevenir violaciones de reglas de negocio.",
+        "correct": false,
+        "explanation": "Útil en principio, pero añade un viaje de ida y vuelta a cada reembolso para protegerse del 12% de los casos, y no ayuda cuando `process_refund` aún falla por otras razones de negocio."
+      },
+      {
+        "letter": "D",
+        "text": "Implementar lógica de reintento automático a nivel de la herramienta solo para los errores técnicos, pasando los errores de negocio a Claude sin reintentos.",
+        "correct": false,
+        "explanation": "Ocultar los reintentos transitorios dentro de la herramienta puede enmascarar la latencia y saca al modelo del circuito en las decisiones de recuperación. Los errores de negocio también siguen llegando como una cadena plana, por lo que la respuesta hacia el cliente no mejora. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m45",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu agente ha llamado a `lookup_order` varias veces mientras investiga las solicitudes de devolución de un cliente. Cada respuesta incluye más de 40 campos (artículos, detalles de envío, información de pago, historial de estado). Las salidas de las herramientas ahora representan la mayor parte del contexto de la conversación. El cliente menciona dos pedidos más que quiere discutir.",
+    "question": "¿Cuál es el enfoque más efectivo antes de hacer búsquedas adicionales?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Extraer solo los campos relevantes para la devolución (artículos, fecha de compra, ventana de devolución, estado) de cada respuesta de pedido existente, eliminando los detalles verbosos.",
+        "correct": true,
+        "explanation": "Correcto. Conserva los campos que importan para la tarea y descarta el resto. Esto aborda directamente el problema de saturación del contexto antes de agregar dos búsquedas más."
+      },
+      {
+        "letter": "B",
+        "text": "Hacer que el modelo genere un resumen en lenguaje natural de los detalles clave de cada pedido, reemplazando las respuestas estructuradas con descripciones en prosa.",
+        "correct": false,
+        "explanation": "Los resúmenes en prosa pierden precisión para campos que el modelo puede necesitar después (fechas exactas, montos). El recorte estructurado es mejor que la paráfrasis."
+      },
+      {
+        "letter": "C",
+        "text": "Mover todas las respuestas de las herramientas a una base de datos vectorial con indexación semántica, recuperando las porciones relevantes a medida que la conversación continúa.",
+        "correct": false,
+        "explanation": "Una base de datos vectorial es infraestructura pesada para lo que es en esencia un problema de recorte."
+      },
+      {
+        "letter": "D",
+        "text": "Proceder con búsquedas adicionales sin modificar el contexto existente de salidas de las herramientas.",
+        "correct": false,
+        "explanation": "No hace nada respecto a la saturación: te diriges al agotamiento del contexto. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m46",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu sistema de extracción procesa dos tipos de documentos: reportes mensuales estándar (que se archivan tras procesarse) y reportes de excepciones urgentes (que deben disparar alertas de negocio dentro de los 30 minutos de su recepción). Ambos usan el mismo esquema JSON. Quieres minimizar los costos de API cumpliendo a la vez los requisitos de latencia.",
+    "question": "¿Cómo deberías diseñar la arquitectura del pipeline de procesamiento?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Enviar todos los documentos a la Messages API en tiempo real para garantizar una latencia de procesamiento consistente entre los tipos de documentos.",
+        "correct": false,
+        "explanation": "Consistente pero costoso. Los reportes mensuales estándar no necesitan latencia en tiempo real y no deberían pagar por ella."
+      },
+      {
+        "letter": "B",
+        "text": "Enviar todos los documentos a la `Batch API` con `custom_ids` para su seguimiento. Cuando lleguen los resultados, procesar de inmediato los documentos urgentes y disparar alertas con retraso para las excepciones.",
+        "correct": false,
+        "explanation": "El batch tiene una ventana de hasta 24 horas: los SLA de alerta de 30 minutos sobre los reportes de excepciones no pueden cumplirse enrutándolos por batch."
+      },
+      {
+        "letter": "C",
+        "text": "Encolar todos los documentos y enviar lotes cada hora, marcando los documentos urgentes para un manejo acelerado cuando regresen los resultados del lote.",
+        "correct": false,
+        "explanation": "Los lotes por hora siguen sujetos al SLO del batch y no garantizan la ventana de alerta de 30 minutos para las excepciones."
+      },
+      {
+        "letter": "D",
+        "text": "Enrutar los reportes estándar a la `Batch API` para ahorrar 50% en costos, y enrutar los reportes de excepciones urgentes a la Messages API en tiempo real.",
+        "correct": true,
+        "explanation": "Correcto. Ajusta el perfil de latencia a la urgencia del documento: batch para el grueso (barato), tiempo real para las excepciones sensibles a la latencia (rápido). Minimiza el costo cumpliendo el SLA. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m47",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu esquema incluye un campo skills: string[]. El monitoreo en producción revela tres problemas de consistencia: (1) frases compuestas como \"Python and SQL\" a veces se mantienen como una sola entrada y a veces se dividen; (2) ocasionalmente aparecen en las extracciones habilidades implícitas pero no declaradas; (3) documentos similares producen longitudes de array muy dispares (5-10 vs 40+ entradas). Tu prompt actualmente dice \"Extract all skills mentioned.\"",
+    "question": "¿Cuál es la mejora más efectiva?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Agregar ejemplos few-shot que demuestren el manejo de frases compuestas, criterios explícitos de mención y la granularidad apropiada de las entradas.",
+        "correct": true,
+        "explanation": "Correcto. Los tres problemas tienen que ver con cómo interpreta el modelo qué cuenta como 'una habilidad'. Los ejemplos few-shot enseñan el patrón de forma concreta: dividir o no, mencionado o inferido, granularidad apropiada."
+      },
+      {
+        "letter": "B",
+        "text": "Agregar restricciones: \"Extract 10-20 skills maximum, one skill per entry, only explicitly named skills.\"",
+        "correct": false,
+        "explanation": "Los topes de conteo rígidos son arbitrarios y pueden forzar al modelo a descartar habilidades reales o inventar relleno para alcanzar el rango."
+      },
+      {
+        "letter": "C",
+        "text": "Agregar una normalización posterior a la extracción que mapee las habilidades a una taxonomía canónica y deduplique entradas similares.",
+        "correct": false,
+        "explanation": "El postprocesamiento no puede arreglar las habilidades inferidas-pero-no-mencionadas ni elegir la división correcta para 'Python and SQL': esa decisión debe tomarse en el momento de la extracción."
+      },
+      {
+        "letter": "D",
+        "text": "Enriquecer el esquema a {skill: string, confidence: float, `source_quote`: string}[] para capturar metadatos de la extracción.",
+        "correct": false,
+        "explanation": "Es una señal útil, pero no aborda la inconsistencia subyacente en cómo se interpretan las habilidades en primer lugar. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m48",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": null,
+    "question": "Tu sistema ha operado con revisión humana del 100% durante 3 meses. El análisis muestra que las extracciones con confianza del modelo >90% tienen un 97% de precisión en general. Para reducir la carga de trabajo de los revisores, planeas automatizar las extracciones de alta confianza. Antes de desplegar, ¿qué paso de validación es el más crítico?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Analizar la precisión por tipo de documento y por campo para verificar que las extracciones de alta confianza se desempeñan de forma consistente en todos los segmentos, no solo en el agregado.",
+        "correct": true,
+        "explanation": "Correcto. La precisión agregada oculta fallos por segmento: un tipo de documento podría estar en 70% mientras otros están en 99%. Enrutar automáticamente solo por el número global arriesga errores sistémicos en los segmentos débiles."
+      },
+      {
+        "letter": "B",
+        "text": "Comparar la precisión en distintos umbrales de confianza (85%, 90%, 95%) para encontrar el corte óptimo que maximice la automatización minimizando los errores.",
+        "correct": false,
+        "explanation": "Ajustar el umbral vale la pena, pero solo después de saber que la precisión se mantiene de manera uniforme entre los segmentos; de lo contrario estás optimizando un número que miente."
+      },
+      {
+        "letter": "C",
+        "text": "Ejecutar un piloto de dos semanas enrutando el 25% de las extracciones de alta confianza directamente a los sistemas posteriores y monitorear los reportes de errores.",
+        "correct": false,
+        "explanation": "Un piloto es buena práctica, pero va después del análisis por segmento: si un segmento está sistemáticamente equivocado, lo descubrirás perjudicando a los usuarios."
+      },
+      {
+        "letter": "D",
+        "text": "Verificar que el 97% de precisión cumple los requisitos de todos los sistemas posteriores que consumen los datos extraídos.",
+        "correct": false,
+        "explanation": "Es una pregunta importante de producto, pero asume que el 97% se mantiene en todas partes; de nuevo, eso es lo que verifica primero el análisis por segmento. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m49",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu pipeline de extracción procesa contratos que con frecuencia incluyen enmiendas. Cuando un contrato contiene tanto los términos originales como enmiendas posteriores (por ejemplo, la cláusula original especifica \"30-day payment terms\" mientras que la Enmienda 1 lo cambia a \"45 days\"), el modelo extrae de forma inconsistente uno u otro valor sin indicar cuál aplica.",
+    "question": "¿Cuál es el enfoque más efectivo para mejorar la precisión de extracción en documentos con enmiendas?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Rediseñar el esquema para que los campos enmendados capturen múltiples valores, cada uno con su ubicación de origen y fecha de entrada en vigor.",
+        "correct": true,
+        "explanation": "Correcto. Las enmiendas son estructuralmente valores versionados. Un esquema con valor + ubicación de origen + fecha de entrada en vigor modela el dominio correctamente y deja de forzar al modelo a elegir uno."
+      },
+      {
+        "letter": "B",
+        "text": "Agregar instrucciones al prompt para que siempre extraiga el valor de la enmienda más reciente e ignore los términos originales que fueron reemplazados.",
+        "correct": false,
+        "explanation": "Los consumidores posteriores a veces también necesitan el original (por ejemplo, para resolución de disputas). Codificar 'gana el más reciente' descarta eso."
+      },
+      {
+        "letter": "C",
+        "text": "Preprocesar los documentos con un clasificador que identifique y elimine las secciones reemplazadas antes del paso principal de extracción.",
+        "correct": false,
+        "explanation": "Borrar secciones con un clasificador puede eliminar accidentalmente contenido que sigue teniendo vigencia legal: las enmiendas a menudo modifican subconjuntos de cláusulas."
+      },
+      {
+        "letter": "D",
+        "text": "Implementar una validación posterior a la extracción que use coincidencia de patrones para detectar enmiendas y marcar esas extracciones para revisión manual.",
+        "correct": false,
+        "explanation": "Enruta cada contrato enmendado a un humano: es costoso, y aun así no le da a los sistemas posteriores una respuesta estructurada. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m50",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu sistema de extracción implementa reintentos automáticos cuando falla la validación. En cada reintento, el error de validación específico se anexa al prompt. Este enfoque de reintento con retroalimentación de error resuelve la mayoría de los fallos en 2-3 intentos.",
+    "question": "¿Para qué patrón de fallo serían MENOS efectivos los reintentos adicionales?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "El modelo extrae las palabras clave como un objeto anidado organizado por categoría cuando el esquema requiere un array plano de strings",
+        "correct": false,
+        "explanation": "Un desajuste estructural que el modelo definitivamente puede corregir dada la retroalimentación sobre la forma esperada."
+      },
+      {
+        "letter": "B",
+        "text": "El modelo extrae los conteos de citas como strings con formato de localización (\"1,234\") cuando el esquema requiere enteros",
+        "correct": false,
+        "explanation": "El número requerido está presente en el documento: el modelo solo necesita dejar de formatearlo. Fácil de arreglar con reintento por retroalimentación."
+      },
+      {
+        "letter": "C",
+        "text": "El modelo extrae las fechas como strings de fecha y hora ISO 8601 (\"2023-03-15T00:00:00Z\") cuando el esquema requiere solo la porción de fecha (YYYY-MM-DD)",
+        "correct": false,
+        "explanation": "Un arreglo puramente de formato: el valor subyacente es correcto y el modelo puede recortar la porción de hora en el reintento."
+      },
+      {
+        "letter": "D",
+        "text": "El modelo extrae \"et al.\" para los coautores cuando la lista completa solo existe en un documento externo que no está en la entrada",
+        "correct": true,
+        "explanation": "Correcto. Ninguna cantidad de reintentos le enseña al modelo información que no está en la entrada. El reintento con retroalimentación de error solo corrige errores que el modelo podría haber resuelto a partir de la fuente. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m51",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu pipeline de extracción procesa menús de restaurantes y debe producir un JSON estructurado con campos para nombres de platos, descripciones, precios y etiquetas dietéticas. Algunos menús usan formatos inconsistentes: precios como \"$12\" vs \"12.00\", información dietética como íconos vs texto.",
+    "question": "¿Cuál es el enfoque más confiable?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Usar llamadas de extracción separadas para cada campo para garantizar un manejo consistente de cada tipo.",
+        "correct": false,
+        "explanation": "Múltiples llamadas por menú multiplican el costo y la latencia, y pierden el contexto entre campos (por ejemplo, qué íconos dietéticos están junto a qué plato)."
+      },
+      {
+        "letter": "B",
+        "text": "Extraer los datos tal cual y normalizar los formatos en código de postprocesamiento después de que Claude responda.",
+        "correct": false,
+        "explanation": "Postprocesar un blob crudo es frágil: el código determinista tiene que manejar cada permutación de formato. Es mejor dejar que el modelo normalice en el momento de la extracción."
+      },
+      {
+        "letter": "C",
+        "text": "Solicitar múltiples intentos de extracción por documento y seleccionar el formato más común.",
+        "correct": false,
+        "explanation": "La votación por ensamblado es costosa y aun así puede elegir una mayoría con formato incorrecto."
+      },
+      {
+        "letter": "D",
+        "text": "Definir un esquema de salida estricto e incluir reglas de normalización de formato en tu prompt.",
+        "correct": true,
+        "explanation": "Correcto. Un esquema estricto + reglas de normalización explícitas ('precios como decimal con dos posiciones', 'dietético como etiquetas enumeradas') permite al modelo extraer y normalizar en una sola pasada. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m52",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu sistema extrae metadatos de eventos (fecha, ubicación, organizador, `attendee_count`) de artículos de noticias usando un esquema JSON con todos los campos anulables. Durante la evaluación, observas que el modelo genera con frecuencia valores plausibles pero incorrectos para campos no mencionados en el artículo; por ejemplo, produciendo \"500\" para `attendee_count` cuando la fuente no contiene información de asistencia.",
+    "question": "¿Cuál es la forma más efectiva de reducir estas extracciones falsas?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Agregar un paso de postprocesamiento que use una segunda llamada al LLM para verificar que cada valor extraído existe en el documento fuente.",
+        "correct": false,
+        "explanation": "Una segunda pasada costosa para un comportamiento que puedes corregir en el origen: indícale al modelo que devuelva null cuando el campo no esté declarado."
+      },
+      {
+        "letter": "B",
+        "text": "Agregar instrucciones al prompt para devolver null en cualquier campo cuya información no esté directamente declarada en la fuente.",
+        "correct": true,
+        "explanation": "Correcto. Los campos ya son anulables; el modelo solo necesita una instrucción explícita de preferir null sobre una conjetura plausible. Este es el arreglo estándar para la alucinación consciente del esquema."
+      },
+      {
+        "letter": "C",
+        "text": "Hacer que todos los campos del esquema sean obligatorios (no anulables) con reglas de validación estrictas para asegurar que el modelo solo produzca datos verificables.",
+        "correct": false,
+        "explanation": "Los campos obligatorios fuerzan al modelo a inventar valores cuando falta información: lo opuesto a lo que quieres."
+      },
+      {
+        "letter": "D",
+        "text": "Actualizar a un nivel de modelo más capaz con mejor seguimiento de instrucciones para reducir las tendencias de alucinación.",
+        "correct": false,
+        "explanation": "Agrega costo y aun así no le comunica al modelo tu política: devolver null en lugar de inventar. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m53",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tras implementar el uso de herramientas con definiciones de esquema estrictas, se eliminan los errores de sintaxis JSON, pero el 5% de las extracciones aún tienen JSON válido con arrays vacíos o valores null en campos obligatorios como citations y methodology. Una revisión puntual revela que los documentos fuente contienen esta información, pero en formatos variados: citas en línea vs. bibliografías, secciones de metodología vs. detalles incrustados en las introducciones.",
+    "question": "¿Cuál es la forma más efectiva de abordar estos fallos?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Implementar lógica de reintento que reenvíe las solicitudes cuando la validación detecte campos obligatorios vacíos.",
+        "correct": false,
+        "explanation": "Reintentar con el mismo prompt no le enseñará de repente al modelo a reconocer una metodología incrustada en una introducción. La capacidad de extracción es la brecha."
+      },
+      {
+        "letter": "B",
+        "text": "Construir una capa de postprocesamiento basada en regex que escanee los documentos fuente buscando patrones de citas y palabras clave de metodología, poblando los campos vacíos cuando el modelo falle en extraer.",
+        "correct": false,
+        "explanation": "Regex sobre prosa es frágil, omite los casos sutiles (metodología incrustada en la introducción) y entrega datos silenciosamente erróneos."
+      },
+      {
+        "letter": "C",
+        "text": "Modificar tu esquema para hacer citations y methodology opcionales, y marcar los registros incompletos para revisión manual en lugar de fallar la validación.",
+        "correct": false,
+        "explanation": "Tapa el síntoma. Los campos realmente son obligatorios más adelante: enrutarlos a humanos cambia un problema por carga de trabajo de los revisores."
+      },
+      {
+        "letter": "D",
+        "text": "Agregar ejemplos few-shot que demuestren extracciones de documentos con estructuras variadas, mostrando cómo identificar citas en distintos formatos y localizar detalles de metodología a través de distintos tipos de secciones.",
+        "correct": true,
+        "explanation": "Correcto. El modo de fallo es que el modelo no reconoce los formatos variados. Ejemplos concretos a lo largo de la distribución de formatos elevan directamente el recall sobre ese 5%. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m54",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu pipeline de extracción procesa facturas y extrae líneas de detalle, subtotales, montos de impuestos y totales generales. Durante la evaluación, descubres que en el 18% de las extracciones la suma de los montos de las líneas extraídas no coincide con el total general extraído, a veces por errores de OCR en el documento fuente, a veces por errores de extracción del modelo. Los sistemas contables posteriores rechazan los registros con totales no coincidentes.",
+    "question": "¿Cuál es el enfoque más efectivo para mejorar la confiabilidad de la extracción?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Agregar un campo \"`calculated_total`\" donde el modelo sume las líneas extraídas, junto con un campo \"`stated_total`\". Marcar los registros para revisión humana cuando los valores difieran.",
+        "correct": true,
+        "explanation": "Correcto. Capturar ambos valores convierte la discrepancia en una señal de primera clase: detectas los errores de OCR y los de extracción de manera uniforme, y puedes enrutar solo el 18% no coincidente a humanos."
+      },
+      {
+        "letter": "B",
+        "text": "Extraer las líneas de detalle y los totales de forma independiente, y luego usar un modelo de validación separado para reconciliar las discrepancias determinando qué valores extraídos son más probablemente correctos.",
+        "correct": false,
+        "explanation": "Un modelo de reconciliación puede enmascarar los errores de OCR al elegir silenciosamente un número sobre otro: el sistema contable sigue recibiendo datos erróneos sin marcar."
+      },
+      {
+        "letter": "C",
+        "text": "Agregar ejemplos few-shot que demuestren facturas donde las líneas extraídas suman correctamente al total declarado, animando al modelo a producir extracciones matemáticamente consistentes.",
+        "correct": false,
+        "explanation": "Puede empujar al modelo hacia la consistencia, pero cuando la fuente en sí es internamente inconsistente (errores de OCR), el modelo tiene que elegir un valor 'erróneo'."
+      },
+      {
+        "letter": "D",
+        "text": "Implementar un postprocesamiento que ajuste automáticamente los montos de las líneas de detalle de forma proporcional cuando su suma no coincida con el total declarado.",
+        "correct": false,
+        "explanation": "Las reescrituras silenciosas de datos financieros son peligrosas: estarías fabricando líneas de detalle para un sistema contable posterior. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m55",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu pipeline usa una herramienta llamada `extract_metadata` con un esquema JSON para los detalles de los artículos. También has definido herramientas `lookup_citations` y `verify_doi` para enriquecimiento. Durante las pruebas, notas que cuando los usuarios incluyen solicitudes como \"extract the metadata and tell me how cited it is\", Claude a veces llama primero a `lookup_citations`, que falla porque necesita el DOI que `extract_metadata` proporcionaría.",
+    "question": "¿Cuál es la forma más efectiva de asegurar que la extracción de metadatos estructurados ocurra primero?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Configurar `tool_choice` en \"any\" para que Claude deba usar una herramienta, combinado con instrucciones en el prompt del sistema que prioricen `extract_metadata`.",
+        "correct": false,
+        "explanation": "'any' fuerza una llamada a herramienta pero no fuerza la correcta. Aun verías a `lookup_citations` elegida primero."
+      },
+      {
+        "letter": "B",
+        "text": "Configurar `tool_choice` en \"auto\" y reordenar las definiciones de herramientas para que `extract_metadata` aparezca primera en el array de herramientas, ya que Claude prioriza las herramientas listadas antes.",
+        "correct": false,
+        "explanation": "No hay una preferencia de orden documentada en la que confiar; esto asume un comportamiento que no es contractual."
+      },
+      {
+        "letter": "C",
+        "text": "Configurar `tool_choice` en {\"type\": \"tool\", \"name\": \"`extract_metadata`\"} y procesar las solicitudes de enriquecimiento en turnos posteriores tras recibir los metadatos extraídos.",
+        "correct": true,
+        "explanation": "Correcto. `tool_choice`=herramienta-específica fuerza de forma determinista a `extract_metadata` en el primer turno. Luego devuelves el control a 'auto' para que el modelo use el enriquecimiento de citas/DOI con los metadatos en contexto."
+      },
+      {
+        "letter": "D",
+        "text": "Configurar `tool_choice` en {\"type\": \"tool\", \"name\": \"`extract_metadata`\"} para cada llamada a la API en el pipeline, asegurando que Claude siempre extraiga metadatos antes de que pueda ocurrir cualquier enriquecimiento.",
+        "correct": false,
+        "explanation": "Fijar `extract_metadata` en cada llamada impide que las herramientas de enriquecimiento se usen alguna vez. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m56",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu extracción usa el uso de herramientas con un esquema JSON donde `property_type` se define como un enum: ['house', 'apartment', 'condo', 'townhouse']. Tras el despliegue, el 8% de las extracciones falla la validación del esquema. La investigación revela que los listados mencionan muchos tipos de propiedad poco comunes —\"studio\", \"loft\", \"duplex\", \"mobile home\", \"tiny house\", \"converted warehouse\"— y siguen apareciendo nuevos tipos con regularidad.",
+    "question": "¿Cuál es la solución más efectiva a largo plazo?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Expandir continuamente el enum para incluir los tipos de propiedad recién observados y agregar monitoreo para casos límite adicionales.",
+        "correct": false,
+        "explanation": "Mantenimiento del enum a lo 'topo': cada nuevo estilo de listado arriesga otro fallo de validación."
+      },
+      {
+        "letter": "B",
+        "text": "Agregar un valor \"other\" a tu enum con un campo string `property_type_detail` separado para las especificaciones cuando se selecciona \"other\".",
+        "correct": true,
+        "explanation": "Correcto. Mantiene el enum sólido para los casos comunes (joins posteriores limpios) a la vez que ofrece una válvula de escape bien tipada que preserva el detalle. Estable a largo plazo."
+      },
+      {
+        "letter": "C",
+        "text": "Cambiar `property_type` de un enum a un string de forma libre e implementar un paso de normalización en el postprocesamiento.",
+        "correct": false,
+        "explanation": "Pierde por completo la garantía de validación y empuja el problema de normalización hacia adelante sin un vocabulario canónico."
+      },
+      {
+        "letter": "D",
+        "text": "Agregar ejemplos few-shot a tu prompt que demuestren cómo mapear los tipos de propiedad inesperados al valor de enum existente más cercano.",
+        "correct": false,
+        "explanation": "Forzar 'tiny house' a 'house' descarta distinciones reales más adelante: estás perdiendo información de forma silenciosa. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "B"
+  },
+  {
+    "id": "m57",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tu sistema de extracción analiza descripciones de productos de e-commerce para extraer especificaciones como dimensiones, peso y materiales en JSON. A pesar de tener un esquema bien definido, el modelo extrae de forma inconsistente el campo \"materials\": a veces devuelve \"cotton blend\", otras veces \"Cotton/Polyester mix\", y ocasionalmente omite el campo cuando la información del material está claramente presente en la fuente.",
+    "question": "¿Cuál es la forma más efectiva de mejorar la consistencia de la extracción?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Hacer que el campo \"materials\" sea obligatorio en lugar de opcional en el esquema para forzar al modelo a extraer siempre un valor",
+        "correct": false,
+        "explanation": "La obligatoriedad no resuelve la inconsistencia de formato, y puede forzar valores inventados cuando la información del material falta genuinamente."
+      },
+      {
+        "letter": "B",
+        "text": "Cambiar a un nivel de modelo más capaz, ya que la extracción inconsistente indica una capacidad insuficiente del modelo",
+        "correct": false,
+        "explanation": "Costoso, y no aborda la causa real: el modelo no conoce el formato de salida canónico que quieres."
+      },
+      {
+        "letter": "C",
+        "text": "Establecer la temperatura en 0 para eliminar la aleatoriedad y garantizar salidas deterministas",
+        "correct": false,
+        "explanation": "El determinismo no define el formato correcto; solo hace que las respuestas con formato incorrecto sean consistentes."
+      },
+      {
+        "letter": "D",
+        "text": "Agregar ejemplos few-shot que muestren 2-3 pares completos de entrada-salida con formatos estandarizados de descripción de materiales",
+        "correct": true,
+        "explanation": "Correcto. Los ejemplos few-shot demuestran el formato canónico exacto que quieres ('cotton/polyester' como lista normalizada), y también elevan el recall sobre la información de material que se estaba omitiendo. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "D"
+  },
+  {
+    "id": "m58",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Los documentos llegan de forma continua a lo largo del horario laboral y requieren que se extraigan datos estructurados. Para reducir costos, quieres usar la `Message Batches API` (50% de descuento, ventana de procesamiento de hasta 24 horas). Tu SLA especifica que los resultados de extracción deben estar disponibles dentro de las 30 horas de la llegada del documento con una confiabilidad del 99.9%.",
+    "question": "¿Qué estrategia de lotes es la más apropiada?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Enviar lotes cada 6 horas que contengan los documentos de esa ventana",
+        "correct": false,
+        "explanation": "En el peor caso un documento espera 6 horas para ser agrupado y luego hasta 24 horas para procesarse = 30 horas exactas. Sin margen de seguridad para un objetivo de confiabilidad del 99.9%."
+      },
+      {
+        "letter": "B",
+        "text": "Enviar un único lote al final del día que contenga todos los documentos de ese día",
+        "correct": false,
+        "explanation": "Un documento que llega justo después del inicio de la mañana espera todo el día para ser agrupado más hasta 24 horas para procesarse: muy por encima de 30 horas."
+      },
+      {
+        "letter": "C",
+        "text": "Enviar lotes cada 4 horas que contengan los documentos de esa ventana",
+        "correct": true,
+        "explanation": "Correcto. Espera máxima de 4 horas + SLO de batch de hasta 24 horas = 28 horas en el peor caso, dejando un colchón de 2 horas bajo el SLA de 30 horas para absorber la variabilidad del batch y alcanzar el 99.9%."
+      },
+      {
+        "letter": "D",
+        "text": "Usar la API en tiempo real para todos los documentos en lugar del procesamiento por lotes",
+        "correct": false,
+        "explanation": "Cumple el SLA trivialmente pero descarta el ahorro de costos del 50% que la pregunta te pide capturar. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "C"
+  },
+  {
+    "id": "m59",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tras el despliegue, descubres que el 12% de las extracciones contiene errores semánticos que pasan la validación del esquema JSON (por ejemplo, una duración como \"30 minutes\" colocada incorrectamente en un campo de cantidad de ingrediente). Los revisores humanos tienen capacidad para revisar solo el 20% de las extracciones.",
+    "question": "¿Qué enfoque asigna de forma más efectiva la atención de los revisores?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Hacer que el modelo produzca puntajes de confianza a nivel de campo, y luego calibrar los umbrales de revisión usando un conjunto de validación etiquetado.",
+        "correct": true,
+        "explanation": "Correcto. La confianza a nivel de campo te permite enrutar a humanos el 20% de baja confianza, que es donde se concentra el 12% de errores semánticos. La calibración hace que la elección del umbral se base en datos."
+      },
+      {
+        "letter": "B",
+        "text": "Muestrear aleatoriamente el 20% de las extracciones para revisión, usando las correcciones para rastrear la precisión e identificar patrones de error.",
+        "correct": false,
+        "explanation": "Excelente para medición, pobre para cobertura: el muestreo aleatorio solo atrapa el 20% del 12% de errores (~2.4% del total). El enrutamiento basado en confianza encuentra muchos más."
+      },
+      {
+        "letter": "C",
+        "text": "Priorizar la revisión de todas las extracciones donde los campos obligatorios estén vacíos o explícitamente marcados como no encontrados.",
+        "correct": false,
+        "explanation": "Los campos vacíos son un modo de error estrecho. El problema del 12% son valores erróneos en campos poblados, que este filtro pasa por alto."
+      },
+      {
+        "letter": "D",
+        "text": "Revisar todas las extracciones de documentos con anomalías de formato, como diseños inusuales o tipos de contenido mixtos.",
+        "correct": false,
+        "explanation": "Una heurística útil, pero la anomalía de formato no predice de forma confiable dónde se confundieron los campos entre sí. ════════════════════════════════════════════════════════════"
+      }
+    ],
+    "correct": "A"
+  },
+  {
+    "id": "m60",
+    "source": "mock",
+    "domain": null,
+    "scenario": null,
+    "situation": "Tras completarse tu lote diario de 10,000 documentos, 300 documentos (3%) fallaron con errores \"`context_length_exceeded`\". El archivo de resultados identifica cada fallo por `custom_id`.",
+    "question": "¿Cuál es el enfoque más rentable para procesar estos fallos?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Reprocesar el lote completo con prompt caching habilitado para reducir el costo de reintentar las solicitudes con prompts de sistema idénticos",
+        "correct": false,
+        "explanation": "Volver a ejecutar 10,000 documentos exitosos para resolver 300 fallos es un derroche sin importar el ahorro del caching. Y el caching no arregla el error de longitud excedida."
+      },
+      {
+        "letter": "B",
+        "text": "Reenviar solo los 300 documentos fallidos tras dividirlos en piezas más pequeñas, y luego combinar las extracciones parciales",
+        "correct": true,
+        "explanation": "Correcto. Es focalizado, y aborda la causa real (entrada demasiado larga). Divide los documentos sobredimensionados, extrae por fragmento y luego fusiona: mínimo de tokens, arregla el modo de fallo específico."
+      },
+      {
+        "letter": "C",
+        "text": "Reenviar el lote completo de 10,000 documentos usando un nivel de modelo con una ventana de contexto más grande",
+        "correct": false,
+        "explanation": "Costoso (reprocesar 9,700 éxitos) y aun así puede fallar con documentos verdaderamente sobredimensionados."
+      },
+      {
+        "letter": "D",
+        "text": "Aumentar el parámetro `max_tokens` para los 300 documentos fallidos y reenviarlos en un nuevo lote",
+        "correct": false,
+        "explanation": "`max_tokens` controla la longitud de salida, no la de entrada. No resuelve `context_length_exceeded`, que tiene que ver con el presupuesto combinado de entrada más salida. ════════════════════════════════════════════════════════════ Total de preguntas: 60 Generado: 8 de junio de 2026"
+      }
+    ],
+    "correct": "B"
+  }
+]
