@@ -26,18 +26,36 @@ The site has a language switcher (EN / ES / PT), full-text search, and a dark mo
 
 PDFs are generated fresh on every deploy from the current markdown sources.
 
-## Practical exam
+## Practice exam
 
-Self-paced HTML quiz, runs entirely in your browser. Generated from each language's guide via:
+Self-paced HTML quiz, runs entirely in your browser. It works as a **question bank**: each
+attempt draws **12 random questions per domain — 60 in total** — from a pool of 136 (the 76
+scenario questions from the guide plus 60 domain-style questions from the mock bank), organized
+by the five CCAF exam domains. The overall score is **scaled to 1000** with a passing cut of
+**720**, mirroring the real exam's 100–1000 scale.
+
+Features: a fresh 60-question draw each attempt, questions randomized **within each domain**, a
+**study** mode (answers reveal as you go, with a rationale for every option) vs an **exam** mode
+(answers reveal at the end), per-domain score breakdown with a pass threshold, and progress saved
+in the browser (`localStorage`) so a refresh keeps your place and draw. **Restart** draws a new
+set of 60.
+
+Built from the guides + the mock bank via:
 
 ```bash
-python3 utils/build_practical_test_html.py        # all langs
-python3 utils/build_practical_test_html.py en es  # specific langs
+python3 utils/build_exam_html.py            # all langs → exam_{en,es,pt}.html
+python3 utils/build_exam_html.py en es      # specific langs
 ```
 
-- English: [`practical_test_en.html`](./practical_test_en.html) — **76 questions** (5 scenarios).
-- Spanish: [`practical_test_es.html`](./practical_test_es.html) — **76 questions** (5 scenarios).
-- Portuguese: [`practical_test_pt.html`](./practical_test_pt.html) — **76 questions** (5 scenarios).
+- English: [`exam_en.html`](./exam_en.html)
+- Spanish: [`exam_es.html`](./exam_es.html)
+- Portuguese: [`exam_pt.html`](./exam_pt.html)
+
+> The exam regenerates fresh on every deploy. Domain classification lives in
+> [`data/domains.json`](./data/domains.json) (review notes in `data/domains_review.md`);
+> the mock questions and their ES/PT translations live in `data/mock_{en,es,pt}.json`.
+> The older `practical_test_*.html` / `build_practical_test_html.py` are superseded by this
+> unified exam.
 
 ## How to use
 
@@ -49,14 +67,22 @@ python3 utils/build_practical_test_html.py en es  # specific langs
 
 ```
 .
-├── guide_{en,es,pt}.{md,MD}      # source-of-truth study guides
-├── practical_test_*.html         # interactive quizzes built from the guides
-├── extract_question.py           # parses guide_*.md → questions JSON
-├── utils/build_practical_test_html.py  # questions JSON → practical_test_*.html
+├── guide_{en,es,pt}.{md,MD}      # source-of-truth study guides (76 scenario questions)
+├── CCAF_Mock_Exam_*.txt          # source for the 60-question mock bank
+├── exam_{en,es,pt}.html          # the unified 136-question practice exam (built)
+├── extract_question.py           # parses guide_*.md → scenario questions JSON
+├── parse_mock_exam.py            # parses the mock .txt → mock questions JSON
+├── data/
+│   ├── domains.json              # question id → CCAF domain (1–5) — reviewable
+│   ├── duplicates.json           # mock ids dropped as dupes of guide qs (empty)
+│   └── mock_{en,es,pt}.json      # mock bank + ES/PT translations
+├── utils/
+│   ├── exam_data.py              # merges guide + mock into the unified schema
+│   └── build_exam_html.py        # unified schema → exam_*.html
 ├── docs/                         # GitHub Pages site (static parts; CI generates the rest)
 ├── scripts/build-pages.mjs       # md → docs/ build (run by Pages workflow)
 └── .github/workflows/
-    └── pages.yml                 # generates PDFs and deploys docs/ to GitHub Pages
+    └── pages.yml                 # generates PDFs + exam HTML, deploys docs/ to Pages
 ```
 
 ## Contributing
