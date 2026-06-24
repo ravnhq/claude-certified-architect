@@ -9,7 +9,7 @@ Stats are kept in sync with the 136-question, 5-domain exam; domain names match
 utils/exam_data.py (DOMAIN_NAMES). The deploy workflow does not run this script —
 it copies the committed cheatsheet_*.html via scripts/build-pages.mjs — so re-run
 this only when editing the cheatsheet content, then commit the regenerated files."""
-import re, os
+import re, os, json, html
 
 UTILS_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(UTILS_DIR)
@@ -17,6 +17,30 @@ REPO = os.path.dirname(UTILS_DIR)
 # --- reuse the favicon data-URI from exam_en.html ---
 exam = open(os.path.join(REPO, "exam_en.html"), encoding="utf-8").read()
 favicon = re.search(r'href="(data:image/png;base64,[A-Za-z0-9+/=]+)"', exam).group(1)
+
+# --- exam questions per language (for the per-principle dropdowns) ---
+def _load_exam(lang):
+    s = open(os.path.join(REPO, f"exam_{lang}.html"), encoding="utf-8").read()
+    i = s.find("const QUESTIONS = ")
+    arr = json.JSONDecoder().raw_decode(s[s.find("[", i):])[0]
+    d = {}
+    for x in arr:
+        corr = next((o for o in x["options"] if o.get("correct")), None)
+        d[x["id"]] = {
+            "prompt": x.get("question") or "",
+            "letter": corr["letter"] if corr else "",
+            "text": corr["text"] if corr else "",
+            "exp": (corr.get("explanation") or "") if corr else "",
+        }
+    return d
+
+QDATA = {l: _load_exam(l) for l in ("en", "es", "pt")}
+
+# id -> principle (1-12), and principle -> [ids] preserving exam order
+PRINCIPLE_MAP = json.load(open(os.path.join(REPO, "data", "principle_map.json")))
+PMAP_IDS = {}
+for _qid, _p in PRINCIPLE_MAP.items():
+    PMAP_IDS.setdefault(int(_p), []).append(_qid)
 
 # domain weight (official blueprint) and count (items in this bank)
 WEIGHT = {1: 27, 2: 18, 3: 20, 4: 20, 5: 15}
@@ -73,6 +97,7 @@ UI = {
   "footer": "Based on the 136-question exam (<span class=\"mono\">exam_en.html</span>) and the official 5-domain blueprint.",
   "badgeDo": "Correct", "badgeNo": "Trap",
   "scn": {"research": "Multi-agent", "ci": "CI/CD", "codegen": "Claude Code", "support": "Support"},
+  "q_label": "exam questions that test this", "q_correct": "Correct",
 },
 "es": {
   "title": "Español — Hoja de Referencia · Ravn",
@@ -94,6 +119,7 @@ UI = {
   "footer": "Basado en el examen de 136 preguntas (<span class=\"mono\">exam_es.html</span>) y el temario oficial de 5 dominios.",
   "badgeDo": "Correcta", "badgeNo": "Trampa",
   "scn": {"research": "Multiagente", "ci": "CI/CD", "codegen": "Claude Code", "support": "Soporte"},
+  "q_label": "preguntas del examen que lo evalúan", "q_correct": "Correcta",
 },
 "pt": {
   "title": "Português — Folha de Referência · Ravn",
@@ -115,6 +141,7 @@ UI = {
   "footer": "Baseado no exame de 136 questões (<span class=\"mono\">exam_pt.html</span>) e no conteúdo oficial de 5 domínios.",
   "badgeDo": "Correta", "badgeNo": "Armadilha",
   "scn": {"research": "Multiagente", "ci": "CI/CD", "codegen": "Claude Code", "support": "Suporte"},
+  "q_label": "questões do exame que o avaliam", "q_correct": "Correta",
 },
 }
 
@@ -327,6 +354,25 @@ h1 .key { color: #2b6cb0; }
 code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; background: #edf2f7;
   color: #2b6cb0; padding: 1px 6px; border-radius: 5px; }
 
+.qdrop { grid-column: 1 / -1; margin-top: 12px; border-top: 1px solid #edf2f7; }
+.qdrop > summary { cursor: pointer; list-style: none; font-family: ui-monospace, Menlo, monospace;
+  font-size: 11.5px; letter-spacing: .04em; text-transform: uppercase; color: #2b6cb0;
+  padding: 11px 0 3px; display: flex; align-items: center; gap: 9px; }
+.qdrop > summary::-webkit-details-marker { display: none; }
+.qdrop > summary::after { content: "▸"; color: #a0aec0; transition: transform .15s; margin-left: auto; }
+.qdrop[open] > summary::after { transform: rotate(90deg); }
+.qdrop > summary:hover { color: #2c5282; }
+.qdrop .qn { background: #ebf8ff; color: #2b6cb0; border: 1px solid #bee3f8; border-radius: 999px;
+  padding: 1px 9px; font-size: 11px; font-weight: 700; }
+.qlist { list-style: none; margin: 8px 0 4px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.qlist > li { border-left: 2px solid #e2e8f0; padding: 2px 0 2px 14px; }
+.qq { margin: 0 0 6px; font-size: 14px; font-weight: 600; color: #2d3748; }
+.qa { margin: 0; font-size: 13.5px; color: #2d3748; }
+.qa .qa-tag { font-family: ui-monospace, Menlo, monospace; font-size: 9.5px; text-transform: uppercase;
+  letter-spacing: .07em; color: #2f855a; margin-right: 7px; }
+.qa .qa-l { font-weight: 700; color: #2f855a; }
+.qexp { margin: 6px 0 0; font-size: 13px; color: #718096; line-height: 1.55; }
+
 .key-block { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #2b6cb0; border-radius: 14px;
   padding: 26px 30px; margin-top: 26px; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
 .key-block ol { margin: 0; padding-left: 0; list-style: none; counter-reset: k; }
@@ -377,6 +423,24 @@ TOPBAR = ('<header class="ravn-topbar"><a class="ravn-brand" href="../index.html
   '<span class="topbar-kicker">{kicker}</span></header>')
 
 
+def qdrop_html(lang, principle):
+    u = UI[lang]
+    qd = QDATA[lang]
+    items = []
+    for qid in PMAP_IDS.get(principle, []):
+        q = qd.get(qid)
+        if not q:
+            continue
+        items.append(
+            '<li><p class="qq">%s</p>'
+            '<p class="qa"><span class="qa-tag">%s</span><span class="qa-l">%s)</span> %s</p>'
+            '<p class="qexp">%s</p></li>' % (
+                html.escape(q["prompt"]), u["q_correct"], html.escape(q["letter"]),
+                html.escape(q["text"]), html.escape(q["exp"])))
+    return ('<details class="qdrop"><summary><span class="qn">%d</span> %s</summary>'
+            '<ol class="qlist">%s</ol></details>' % (len(items), u["q_label"], "".join(items)))
+
+
 def cards_html(lang):
     u = UI[lang]
     out = []
@@ -389,7 +453,8 @@ def cards_html(lang):
             '<div><h3>%s</h3><div class="tags">%s</div></div>'
             '<div class="line-row do"><span class="badge do">%s</span><p>%s</p></div>'
             '<div class="line-row no"><span class="badge no">%s</span><p>%s</p></div>'
-            '</article>' % (n, title, tags, u["badgeDo"], do, u["badgeNo"], no))
+            '%s'
+            '</article>' % (n, title, tags, u["badgeDo"], do, u["badgeNo"], no, qdrop_html(lang, n)))
     return "\n".join(out)
 
 
