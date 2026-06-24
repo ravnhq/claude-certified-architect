@@ -23,18 +23,28 @@ def _load_exam(lang):
     s = open(os.path.join(REPO, f"exam_{lang}.html"), encoding="utf-8").read()
     i = s.find("const QUESTIONS = ")
     arr = json.JSONDecoder().raw_decode(s[s.find("[", i):])[0]
-    d = {}
+    d, order = {}, []
     for x in arr:
         corr = next((o for o in x["options"] if o.get("correct")), None)
         d[x["id"]] = {
+            "scenario": x.get("scenario") or "",
+            "situation": x.get("situation") or "",
             "prompt": x.get("question") or "",
             "letter": corr["letter"] if corr else "",
             "text": corr["text"] if corr else "",
             "exp": (corr.get("explanation") or "") if corr else "",
         }
-    return d
+        order.append(x["id"])
+    return d, order
 
-QDATA = {l: _load_exam(l) for l in ("en", "es", "pt")}
+QDATA = {}
+_order = None
+for _l in ("en", "es", "pt"):
+    QDATA[_l], _o = _load_exam(_l)
+    if _order is None:
+        _order = _o
+# global 1-based question number by bank order (identical across languages)
+QNUM = {qid: i + 1 for i, qid in enumerate(_order)}
 
 # id -> principle (1-12), and principle -> [ids] preserving exam order
 PRINCIPLE_MAP = json.load(open(os.path.join(REPO, "data", "principle_map.json")))
@@ -364,8 +374,14 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; 
 .qdrop > summary:hover { color: #2c5282; }
 .qdrop .qn { background: #ebf8ff; color: #2b6cb0; border: 1px solid #bee3f8; border-radius: 999px;
   padding: 1px 9px; font-size: 11px; font-weight: 700; }
-.qlist { list-style: none; margin: 8px 0 4px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.qlist { list-style: none; margin: 8px 0 4px; padding: 0; display: flex; flex-direction: column; gap: 18px; }
 .qlist > li { border-left: 2px solid #e2e8f0; padding: 2px 0 2px 14px; }
+.qhead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 6px; }
+.qnum { font-family: ui-monospace, Menlo, monospace; font-size: 11px; font-weight: 700; color: #2b6cb0;
+  background: #ebf8ff; border: 1px solid #bee3f8; border-radius: 6px; padding: 1px 7px; }
+.qscenario { font-size: 11.5px; font-weight: 600; letter-spacing: .02em; text-transform: uppercase;
+  color: #6b46c1; }
+.qsituation { margin: 0 0 7px; font-size: 13.5px; color: #4a5568; line-height: 1.6; }
 .qq { margin: 0 0 6px; font-size: 14px; font-weight: 600; color: #2d3748; }
 .qa { margin: 0; font-size: 13.5px; color: #2d3748; }
 .qa .qa-tag { font-family: ui-monospace, Menlo, monospace; font-size: 9.5px; text-transform: uppercase;
@@ -431,12 +447,18 @@ def qdrop_html(lang, principle):
         q = qd.get(qid)
         if not q:
             continue
+        head = '<span class="qnum">#%d</span>' % QNUM.get(qid, 0)
+        if q["scenario"].strip():
+            head += '<span class="qscenario">%s</span>' % html.escape(q["scenario"])
+        situation = ('<p class="qsituation">%s</p>' % html.escape(q["situation"])
+                     if q["situation"].strip() else "")
         items.append(
-            '<li><p class="qq">%s</p>'
+            '<li><div class="qhead">%s</div>%s'
+            '<p class="qq">%s</p>'
             '<p class="qa"><span class="qa-tag">%s</span><span class="qa-l">%s)</span> %s</p>'
             '<p class="qexp">%s</p></li>' % (
-                html.escape(q["prompt"]), u["q_correct"], html.escape(q["letter"]),
-                html.escape(q["text"]), html.escape(q["exp"])))
+                head, situation, html.escape(q["prompt"]), u["q_correct"],
+                html.escape(q["letter"]), html.escape(q["text"]), html.escape(q["exp"])))
     return ('<details class="qdrop"><summary><span class="qn">%d</span> %s</summary>'
             '<ol class="qlist">%s</ol></details>' % (len(items), u["q_label"], "".join(items)))
 
