@@ -100,6 +100,7 @@ function landing() {
       <ul>
         <li><a href="guides/${l.code}.html">Read the guide</a></li>
         <li><a href="practical/${l.code}.html">Practice exam</a></li>
+        <li><a href="cheatsheet/${l.code}.html">Cheatsheet</a></li>
         <li><a href="pdf/guide_${l.code}.pdf">PDF download</a></li>
       </ul>
     </article>`).join('');
@@ -189,6 +190,30 @@ async function copyPracticalTests() {
   }
 }
 
+async function copyCheatsheets() {
+  const out = path.join(DOCS, 'cheatsheet');
+  await ensureDir(out);
+  for (const l of LANGS) {
+    const src = path.join(ROOT, `cheatsheet_${l.code}.html`);
+    const dest = path.join(out, `${l.code}.html`);
+    if (await exists(src)) {
+      await fs.copyFile(src, dest);
+    } else {
+      const body = `${header(l.code)}<main class="placeholder">
+        <h1>Cheatsheet — ${l.label}</h1>
+        <p>This cheatsheet has not been generated yet.</p>
+        <p><a href="index.html">← back to home</a></p>
+      </main>`;
+      await fs.writeFile(dest, pageShell({
+        title: `${l.label} — Cheatsheet (pending) · Ravn`,
+        lang: l.code,
+        baseHref: RAVN_BASE_HREF,
+        body,
+      }));
+    }
+  }
+}
+
 async function copyPdfs() {
   const src = path.join(ROOT, 'pdf');
   const dest = path.join(DOCS, 'pdf');
@@ -214,6 +239,7 @@ async function main() {
   await writeIndex();
   await buildGuides();
   await copyPracticalTests();
+  await copyCheatsheets();
   await copyPdfs();
   console.log('docs/ built');
 }

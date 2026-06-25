@@ -57,6 +57,25 @@ python3 utils/build_exam_html.py en es      # specific langs
 > The older `practical_test_*.html` / `build_practical_test_html.py` are superseded by this
 > unified exam.
 
+## Cheatsheet
+
+A one-page study reference that distills the exam into **12 recurring principles** (each with the
+correct approach and the trap to avoid), **5 questions to ask when two answers look equally good**,
+and a breakdown of the **136-question, 5-domain** exam (domain weights + answer-letter
+distribution). Self-contained static pages in the same Ravn styling as the rest of the site.
+
+- English: [`cheatsheet_en.html`](./cheatsheet_en.html)
+- Spanish: [`cheatsheet_es.html`](./cheatsheet_es.html)
+- Portuguese: [`cheatsheet_pt.html`](./cheatsheet_pt.html)
+
+```bash
+python3 utils/build_cheatsheet.py           # regenerate all langs → cheatsheet_{en,es,pt}.html
+```
+
+> Unlike the exam, the cheatsheet is hand-authored content, so the committed HTML is what
+> deploys; re-run the generator only when editing the content. Keep its stats in sync with
+> `data/domains.json` and `utils/exam_data.py` (`DOMAIN_NAMES`).
+
 ## How to use
 
 1. Pick the guide that matches your preferred language.
@@ -70,6 +89,7 @@ python3 utils/build_exam_html.py en es      # specific langs
 ├── guide_{en,es,pt}.{md,MD}      # source-of-truth study guides (76 scenario questions)
 ├── CCAF_Mock_Exam_*.txt          # source for the 60-question mock bank
 ├── exam_{en,es,pt}.html          # the unified 136-question practice exam (built)
+├── cheatsheet_{en,es,pt}.html    # 12-principle exam cheatsheet (static, hand-authored)
 ├── extract_question.py           # parses guide_*.md → scenario questions JSON
 ├── parse_mock_exam.py            # parses the mock .txt → mock questions JSON
 ├── data/
@@ -78,7 +98,8 @@ python3 utils/build_exam_html.py en es      # specific langs
 │   └── mock_{en,es,pt}.json      # mock bank + ES/PT translations
 ├── utils/
 │   ├── exam_data.py              # merges guide + mock into the unified schema
-│   └── build_exam_html.py        # unified schema → exam_*.html
+│   ├── build_exam_html.py        # unified schema → exam_*.html
+│   └── build_cheatsheet.py       # → cheatsheet_*.html
 ├── docs/                         # GitHub Pages site (static parts; CI generates the rest)
 ├── scripts/build-pages.mjs       # md → docs/ build (run by Pages workflow)
 └── .github/workflows/
