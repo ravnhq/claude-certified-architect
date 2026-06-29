@@ -2122,7 +2122,7 @@ Quando Edit falha por correspondência de texto não única:
 
 > 76 questões em 5 cenários. O formato e a dificuldade equiparam-se ao exame real.
 >
-> Como alternativa, você pode praticar essas questões em um arquivo HTML estilo exame: [Teste Prático (PT)](practical_test_pt.html)
+> Como alternativa, você pode praticar essas questões em um arquivo HTML estilo exame: [Teste Prático (PT)](https://ravnhq.github.io/claude-certified-architect/practical/pt.html)
 
 ## Cenário: Sistema de Pesquisa Multiagente
 

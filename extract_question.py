@@ -4,7 +4,7 @@
 Usage:  python3 extract_question.py <lang> [all]
 
 Reads ./guide_<lang>.md (case-insensitive extension) and emits a JSON
-array on stdout with the schema consumed by utils/build_practical_test_html.py:
+array on stdout with the schema consumed by utils/exam_data.py:
 
     [
       {
@@ -188,8 +188,8 @@ def main() -> int:
         print(__doc__, file=sys.stderr)
         return 2
     lang = sys.argv[1]
-    # The "all" positional is accepted for compatibility with the upstream
-    # build_practical_test_html.py call signature; it is currently a no-op.
+    # The "all" positional is accepted for compatibility with the
+    # utils/exam_data.py call signature; it is currently a no-op.
     questions = extract(lang)
     json.dump(questions, sys.stdout, ensure_ascii=False)
     sys.stdout.write("\n")

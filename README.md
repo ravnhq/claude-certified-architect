@@ -54,8 +54,6 @@ python3 utils/build_exam_html.py en es      # specific langs
 > The exam regenerates fresh on every deploy. Domain classification lives in
 > [`data/domains.json`](./data/domains.json) (review notes in `data/domains_review.md`);
 > the mock questions and their ES/PT translations live in `data/mock_{en,es,pt}.json`.
-> The older `practical_test_*.html` / `build_practical_test_html.py` are superseded by this
-> unified exam.
 
 ## Cheatsheet
 

@@ -2444,7 +2444,7 @@ Model Context Protocol (MCP) es un protocolo abierto para conectar sistemas exte
 
 > 76 preguntas en 5 escenarios. El formato y la dificultad coinciden con el examen real.
 >
-> Como alternativa, puedes practicar estas preguntas en un archivo HTML estilo examen: [Examen Práctico (ES)](practical_test_es.html)
+> Como alternativa, puedes practicar estas preguntas en un archivo HTML estilo examen: [Examen Práctico (ES)](https://ravnhq.github.io/claude-certified-architect/practical/es.html)
 
 ## Escenario: Sistema de investigación multiagente
 

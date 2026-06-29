@@ -2121,7 +2121,7 @@ When Edit fails due to a non-unique text match:
 
 > 60 questions across 4 scenarios. Format and difficulty match the real exam.
 > 
-> Alternatively, you can practice these questions in an exam-like HTML file: [Practical Test (EN)](practical_test_en.html)
+> Alternatively, you can practice these questions in an exam-like HTML file: [Practice Exam (EN)](https://ravnhq.github.io/claude-certified-architect/practical/en.html)
 
 ## Scenario: Multi-agent Research System
 
