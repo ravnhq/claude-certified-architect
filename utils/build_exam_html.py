@@ -115,7 +115,7 @@ CSS = """
    kept only for wrong-answer / fail feedback; gold carries correct / emphasis. */
 :root {
   --bg: #161616; --surface: #1d1d1d; --surface-2: #222222;
-  --fg: #FFFFFF; --fg-soft: #D4D4D4; --muted: #ADB5BD; --subtle: #6C757D;
+  --fg: #FFFFFF; --fg-soft: #D4D4D4; --muted: #ADB5BD; --subtle: #8B949E;
   --border: #2A2A2A; --border-strong: #3A3A3A;
   --gold: #B7986A; --gold-soft: rgba(183,152,106,0.12); --gold-fg: #161616;
   --bad: #C16B57; --bad-soft: rgba(193,107,87,0.14);
@@ -146,6 +146,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   letter-spacing: 0.1em; padding: 6px 14px; transition: background .15s, color .15s; }
 .mode-toggle button.active { background: var(--gold); color: var(--gold-fg); }
 .mode-hint { font-size: 11.5px; color: var(--subtle); margin-left: 12px; }
+.mode-controls { display: flex; align-items: center; }
 
 .shell { display: flex; flex: 1; min-height: 0; overflow: hidden; }
 
@@ -219,10 +220,13 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
 .option { border: 1px solid var(--border-strong); border-radius: var(--r-md); background: var(--surface);
   transition: border-color .15s, background .15s; overflow: hidden; }
-.option-head { display: flex; align-items: flex-start; gap: 14px; padding: 14px 18px; cursor: pointer; }
+.option-head { display: flex; align-items: flex-start; gap: 14px; width: 100%; padding: 14px 18px;
+  border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.option-head:focus-visible { outline: 2px solid var(--gold); outline-offset: -3px; }
 .option:hover:not(.locked) .option-head { background: var(--surface-2); }
 .option:hover:not(.locked) { border-color: var(--gold); }
 .option.locked .option-head { cursor: default; }
+.option.locked .option-head:disabled { opacity: 1; }
 .option.selected { border-color: var(--gold); }
 .opt-letter { width: 30px; height: 30px; min-width: 30px; border-radius: 50%; background: var(--surface-2);
   display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;
@@ -304,6 +308,40 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .restart-btn:hover { background: var(--gold); color: var(--gold-fg); }
 .screen { display: none; }
 .screen.active { display: block; }
+
+@media (max-width: 760px) {
+  html, body { height: auto; }
+  body { min-height: 100vh; height: auto; overflow: auto; display: block; }
+  .ravn-topbar { position: static; padding: 10px 16px; gap: 10px; flex-wrap: wrap; }
+  .ravn-brand-tagline { display: none; }
+  .mode-controls { max-width: 100%; flex-wrap: wrap; gap: 6px 0; }
+  .mode-hint { margin-left: 8px; }
+  .shell { display: block; overflow: visible; }
+  .sidebar { width: 100%; min-width: 0; height: 220px; min-height: 0;
+    border-right: 0; border-bottom: 1px solid var(--border); }
+  .main { overflow: visible; }
+  .topbar { padding: 12px 16px; gap: 10px; flex-wrap: wrap; }
+  .topbar-title { width: 100%; }
+  .topbar-nav { width: 100%; flex-wrap: wrap; gap: 8px; }
+  .content { overflow: visible; padding: 24px 16px 48px; }
+  .q-scenario { display: block; width: fit-content; margin-left: 0; }
+  .score-grid { grid-template-columns: 1fr; }
+  .ds-row { flex-wrap: wrap; }
+  .ds-name { flex-basis: 100%; }
+  .ds-bar { flex: 1; min-width: 140px; }
+}
+
+@media (max-width: 420px) {
+  .mode-hint { width: 100%; margin-left: 0; }
+  .nav-btn { padding: 7px 11px; }
+  .q-counter { width: 100%; }
+  .wrong-item { display: block; }
+  .wrong-item .wi-n { margin-bottom: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
 """
 
 JS = r"""
@@ -394,6 +432,7 @@ function buildSidebar() {
       list.appendChild(sg);
     }
     const btn = document.createElement("button");
+    btn.type = "button";
     btn.className = "q-btn";
     btn.id = "sb-" + idx;
     btn.onclick = () => goto(idx);
@@ -447,14 +486,16 @@ function renderQuestion(idx) {
     // In study mode after answering, show explanation for the correct option
     // and for the (wrong) one the user picked.
     const showExpl = reveal && opt.explanation && (opt.correct || isChosen);
+    const disabled = reveal ? " disabled" : "";
     const expl = opt.explanation
       ? "<div class='opt-expl" + (showExpl ? " show" : "") + "'>" + md(opt.explanation) + "</div>"
       : "";
     return "<div class='" + cls + "' data-letter='" + opt.letter + "'>" +
-      "<div class='option-head' onclick=\"answer('" + q.id + "','" + opt.letter + "')\">" +
-        "<div class='opt-letter'>" + opt.letter + "</div>" +
-        "<div class='opt-text'>" + md(opt.text) + "</div>" +
-      "</div>" + expl + "</div>";
+      "<button type='button' class='option-head' aria-pressed='" + String(isChosen) + "'" + disabled +
+        " onclick=\"answer('" + q.id + "','" + opt.letter + "')\">" +
+        "<span class='opt-letter'>" + opt.letter + "</span>" +
+        "<span class='opt-text'>" + md(opt.text) + "</span>" +
+      "</button>" + expl + "</div>";
   }).join("");
 
   document.getElementById("qCard").innerHTML =
@@ -490,6 +531,8 @@ function setMode(mode) {
   state.mode = mode;
   document.getElementById("modeStudy").classList.toggle("active", mode === "study");
   document.getElementById("modeExam").classList.toggle("active", mode === "exam");
+  document.getElementById("modeStudy").setAttribute("aria-pressed", String(mode === "study"));
+  document.getElementById("modeExam").setAttribute("aria-pressed", String(mode === "exam"));
   document.getElementById("modeHint").textContent =
     mode === "study" ? T.mode_hint_study : T.mode_hint_exam;
   save();
@@ -586,7 +629,7 @@ function showSummary() {
     ((wrong + unanswered) > 0
       ? "<div class='section-title'>" + T.review_wrong + "</div>" + wrongGroupsHtml
       : "<p style='color:#38a169;font-weight:700;font-size:17px;'>" + T.all_correct + "</p>") +
-    "<button class='restart-btn' onclick='restart()'>" + T.restart + "</button>";
+    "<button type='button' class='restart-btn' onclick='restart()'>" + T.restart + "</button>";
 }
 
 function restart() {
@@ -645,10 +688,10 @@ def build(lang):
         '<header class="ravn-topbar">'
         '<a class="ravn-brand" href="../index.html" aria-label="Ravn — Claude Certified Architect">'
         f'{RAVN_LOGO_SVG}<span class="ravn-brand-tagline">Claude Certified Architect</span></a>'
-        '<div style="display:flex;align-items:center;">'
+        '<div class="mode-controls">'
         '<div class="mode-toggle">'
-        f'<button id="modeStudy" onclick="setMode(\'study\')">{ui["mode_study"]}</button>'
-        f'<button id="modeExam" onclick="setMode(\'exam\')">{ui["mode_exam"]}</button>'
+        f'<button type="button" id="modeStudy" aria-pressed="false" onclick="setMode(\'study\')">{ui["mode_study"]}</button>'
+        f'<button type="button" id="modeExam" aria-pressed="false" onclick="setMode(\'exam\')">{ui["mode_exam"]}</button>'
         '</div><span class="mode-hint" id="modeHint"></span>'
         '</div></header>'
     )
@@ -668,26 +711,26 @@ def build(lang):
 <body>
 {ravn_topbar}
 <div class="shell">
-  <nav class="sidebar">
+  <nav class="sidebar" aria-label="{ui['questions']}">
     <div class="sidebar-header">{ui['questions']}</div>
     <div class="sidebar-progress">{ui['answered']}: <span id="answeredCount">0</span> / <span id="totalCount">0</span></div>
     <div class="sidebar-scroll" id="sidebarList"></div>
   </nav>
-  <div class="main">
+  <main class="main">
     <div class="topbar">
       <div class="topbar-title">{title}</div>
       <div class="topbar-nav">
         <span class="q-counter" id="qCounter"></span>
-        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>{ui['prev']}</button>
-        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">{ui['next']}</button>
-        <button class="nav-btn finish" id="finishBtn" onclick="showSummary()">{ui['finish']}</button>
+        <button type="button" class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>{ui['prev']}</button>
+        <button type="button" class="nav-btn" id="nextBtn" onclick="navigate(1)">{ui['next']}</button>
+        <button type="button" class="nav-btn finish" id="finishBtn" onclick="showSummary()">{ui['finish']}</button>
       </div>
     </div>
     <div class="content">
       <div class="screen active" id="questionScreen"><div class="q-card" id="qCard"></div></div>
       <div class="screen" id="summaryScreen"><div class="summary show" id="summaryContent"></div></div>
     </div>
-  </div>
+  </main>
 </div>
 <script>{js}</script>
 </body>

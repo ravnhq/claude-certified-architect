@@ -1,0 +1,22 @@
+## 2026-07-13 — Added Professional certification guidance
+- Did: added an English CCAR-P study guide from the official July 2026 blueprint.
+- Did: separated Foundations and Professional paths in README and Pages navigation.
+- Did: indexed the Professional guide in the existing full-text search.
+- Verified: Pages build, syntax checks, Python compile checks, search resolution, and route HTTP 200s passed.
+- Verified: official resource links returned HTTP 200; desktop landing and guide renders were inspected.
+- Learned: local npm's shared cache has root-owned files; use a clean `/tmp` cache for temporary deps.
+- Left: changes uncommitted for user review; production Pages deployment not run.
+
+## 2026-07-13 — Closed the HTML, CSS, and JavaScript review
+- Did: made guide slugs collision-safe and search self-hosted, labeled, stateful, and failure-aware.
+- Did: made all practice answers native buttons and added landmarks, pressed state, focus styling, and mobile layouts.
+- Did: raised subtle-text contrast and regenerated all three practice exams.
+- Verified: build, syntax, Python compile, diff check, duplicate-ID, and search-anchor checks passed.
+- Verified: keyboard answer and 390px runtime checks passed; search emitted no console errors.
+- Verified: mobile Lighthouse scored accessibility 100 and best practices 100 on all representative pages.
+- Left: full change set is uncommitted; production Pages deployment remains unverified.
+
+## 2026-07-13 — Published Professional guidance and UI fixes
+- Did: committed the complete Professional-track, accessibility, responsive, and search change set to `main`.
+- Verified: staged scope excluded generated caches and retained all previously validated source and exam output.
+- Left: production Pages workflow and published routes require post-push verification.

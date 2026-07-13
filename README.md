@@ -1,6 +1,6 @@
-# Claude Certified Architect — Foundations · Ravn Edition
+# Claude Certified Architect · Ravn Edition
 
-Ravn-curated study materials for the **Claude Certified Architect — Foundations** certification, in the languages our team works in: **English**, **Spanish**, and **Portuguese**.
+Ravn-curated study materials for the **Foundations** and **Professional** Claude Certified Architect tracks.
 
 ## Read online
 
@@ -10,13 +10,30 @@ The full guide and the practical exam are hosted on GitHub Pages:
 
 The site has a language switcher (EN / ES / PT), full-text search, and a dark mode.
 
-## Course access
+## Choose your track
+
+| Track | Best fit | Ravn guidance |
+|---|---|---|
+| **Foundations** | Practitioners building with Claude Code, the Claude Agent SDK, the Claude API, and MCP | Full guides in English, Spanish, and Portuguese; practice exam and cheatsheet |
+| **Professional** | Mid- to senior-level architects and engineers responsible for production AI architecture, evaluation, governance, and lifecycle decisions | [English Professional study guide](./professional_en.md), based on the official July 2026 blueprint |
+
+The Professional exam has a separate seven-domain blueprint. The Foundations practice exam and cheatsheet do not represent Professional exam coverage.
+
+## Official access
+
+### Foundations
 
 - The certification is currently restricted to members of the Anthropic Partner Network and requires registration with a verified partner-company email — see [Claude Partner Network](https://claude.com/partners).
 - Free for the first 5,000 partner-company employees; general availability priced at $99.
 - To request access to the official course/exam portal: <https://anthropic.skilljar.com/claude-certified-architect-foundations-access-request>.
 
-## Study guides
+### Professional
+
+- Exam code **CCAR-P**: 63 items, 120 minutes, scaled passing score of 720, and a $175 USD fee.
+- Review the [official Professional Exam Guide](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf).
+- Register through the [Anthropic Partner Academy Professional certification page](https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification).
+
+## Foundations study guides
 
 | Language | Markdown | PDF |
 |---|---|---|
@@ -26,7 +43,13 @@ The site has a language switcher (EN / ES / PT), full-text search, and a dark mo
 
 PDFs are generated fresh on every deploy from the current markdown sources.
 
-## Practice exam
+## Professional study guide
+
+| Language | Markdown | Read online |
+|---|---|---|
+| English | [`professional_en.md`](./professional_en.md) | [Open](https://ravnhq.github.io/claude-certified-architect/guides/professional-en.html) |
+
+## Foundations practice exam
 
 Self-paced HTML quiz, runs entirely in your browser. It works as a **question bank**: each
 attempt draws **12 random questions per domain — 60 in total** — from a pool of 136 (the 76
@@ -55,7 +78,7 @@ python3 utils/build_exam_html.py en es      # specific langs
 > [`data/domains.json`](./data/domains.json) (review notes in `data/domains_review.md`);
 > the mock questions and their ES/PT translations live in `data/mock_{en,es,pt}.json`.
 
-## Cheatsheet
+## Foundations cheatsheet
 
 A one-page study reference that distills the exam into **12 recurring principles** (each with the
 correct approach and the trap to avoid), **5 questions to ask when two answers look equally good**,
@@ -76,15 +99,16 @@ python3 utils/build_cheatsheet.py           # regenerate all langs → cheatshee
 
 ## How to use
 
-1. Pick the guide that matches your preferred language.
-2. Work through the scenarios and questions.
-3. Use the **Practical Exercises** section to rehearse the key patterns: tool design, MCP integration, structured output, context management, and reliability.
+1. Choose the certification track you plan to take.
+2. For Foundations, pick a language, work through the scenarios, and use the practice exam and cheatsheet.
+3. For Professional, map your experience against the seven weighted domains, build one end-to-end reference system, and rehearse architectural trade-offs under time pressure.
 
 ## Repository layout
 
 ```
 .
 ├── guide_{en,es,pt}.{md,MD}      # source-of-truth study guides (76 scenario questions)
+├── professional_en.md             # Professional-track guide (7-domain July 2026 blueprint)
 ├── CCAF_Mock_Exam_*.txt          # source for the 60-question mock bank
 ├── exam_{en,es,pt}.html          # the unified 136-question practice exam (built)
 ├── cheatsheet_{en,es,pt}.html    # 12-principle exam cheatsheet (static, hand-authored)
