@@ -1,5 +1,5 @@
 # Project State
-updated: 2026-07-13
+updated: 2026-07-17
 
 ## Goal
 Publish Ravn-curated preparation materials for Claude Certified Architect tracks.
@@ -11,8 +11,14 @@ Professional-track guidance and all HTML/CSS/JS review fixes are implemented and
 locally validated. Guide anchors are unique; search is self-hosted, resilient, and
 accessible; practice exams are keyboard-operable, responsive, semantic, and AA-safe.
 The complete change set is published on `main`; production Pages remains to be checked.
+Practice-exam correct-answer feedback now uses a green accent (`--good: #6FA97C`)
+instead of gold; gold still carries selection/emphasis, red still marks wrong/fail.
+The exam CSS lives in `utils/build_exam_html.py` — edit there and regenerate, never
+hand-edit `exam_<lang>.html`.
 
 ## Verification path
+- `uv run python utils/build_exam_html.py` -- PASS 2026-07-17 (136 questions × 3 langs);
+  Chrome study-mode check: correct option renders green, wrong stays red.
 - `python3 -m py_compile extract_question.py parse_mock_exam.py utils/*.py` -- PASS 2026-07-13.
 - `node --check scripts/build-pages.mjs` -- PASS 2026-07-13.
 - `python3 utils/build_exam_html.py && node scripts/build-pages.mjs` -- PASS 2026-07-13.

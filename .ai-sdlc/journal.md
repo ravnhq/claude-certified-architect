@@ -20,3 +20,8 @@
 - Did: committed the complete Professional-track, accessibility, responsive, and search change set to `main`.
 - Verified: staged scope excluded generated caches and retained all previously validated source and exam output.
 - Left: production Pages workflow and published routes require post-push verification.
+
+## 2026-07-17 — Green correct-answer feedback in practice exams
+- Did: added `--good` green vars to the exam CSS template (`utils/build_exam_html.py`), switched all correct-answer states (option card, letter, explanation, sidebar dot, score card, review tag) from gold to green; regenerated exam_{en,es,pt}.html; ignored `__pycache__/`.
+- Verified: rebuild PASS (136 questions × 3 langs); Chrome study-mode check shows correct option green, wrong selection red; diff limited to the 8 intended selectors per file.
+- Left: production Pages verification for `main` still pending from 2026-07-13; distrust nothing new — exam files remain generated, edit the template only.
