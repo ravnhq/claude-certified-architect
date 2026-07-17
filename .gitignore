@@ -13,3 +13,4 @@ docs/practical/
 docs/cheatsheet/
 docs/pdf/
 docs/vendor/
+__pycache__/
