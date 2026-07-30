@@ -182,6 +182,7 @@ python3 utils/build_cheatsheet.py           # regenerate all langs → cheatshee
 │   ├── exam_data.py              # merges guide + mock into the unified schema
 │   ├── build_exam_html.py        # shared quiz engine + Foundations build → exam_*.html
 │   ├── build_professional_exam.py    # → professional_exam_en.html
+│   ├── professional_blueprint.py     # shared CCAR-P domains + per-attempt draw
 │   ├── validate_professional_bank.py # bank vs. official blueprint
 │   ├── test_exam_engine.mjs          # engine regression checks (both tracks)
 │   └── build_cheatsheet.py       # → cheatsheet_*.html

@@ -11,6 +11,10 @@ into one quiz per language with:
   * randomized question order within each domain (persisted, so a refresh keeps
     the same order and answers)
   * scoring over the full total with a pass threshold and a per-domain breakdown
+
+This module also hosts the quiz engine itself: render_page() below is shared with
+build_professional_exam.py, so a change here affects both tracks. Check both with
+`node utils/test_exam_engine.mjs`.
 """
 import base64, json, os, sys
 
