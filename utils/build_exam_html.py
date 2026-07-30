@@ -231,9 +231,9 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .option-head { display: flex; align-items: flex-start; gap: 14px; width: 100%; padding: 14px 18px;
   border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .option-head:focus-visible { outline: 2px solid var(--gold); outline-offset: -3px; }
-.option:hover:not(.locked) .option-head { background: var(--surface-2); }
-.option:hover:not(.locked) { border-color: var(--gold); }
-.option.locked .option-head { cursor: default; }
+.option:hover:not(.locked):not(.dimmed) .option-head { background: var(--surface-2); }
+.option:hover:not(.locked):not(.dimmed) { border-color: var(--gold); }
+.option.locked .option-head, .option.dimmed .option-head:disabled { cursor: default; }
 .option.locked .option-head:disabled { opacity: 1; }
 .option.selected { border-color: var(--gold); }
 .opt-letter { width: 30px; height: 30px; min-width: 30px; border-radius: 50%; background: var(--surface-2);
@@ -389,10 +389,13 @@ function asLetters(v) {
   return (Array.isArray(v) ? v.slice() : [v]).sort();
 }
 
-// "Answered" means a *complete* answer: one letter, or exactly the required
-// number of letters. A partly-filled multi item does not count as answered.
+// "Answered" means a *complete* answer of the shape this item expects: one
+// letter, or exactly the required number of letters. A partly-filled multi item
+// does not count as answered, and neither does a stored value of the wrong
+// shape — that is stale state from an item that changed response type.
 function hasAnswer(q, ans) {
   if (ans === undefined || ans === null) return false;
+  if (Array.isArray(ans) !== isMulti(q)) return false;
   return Array.isArray(ans) ? ans.length === selectCount(q) : true;
 }
 
@@ -525,6 +528,10 @@ function renderQuestion(idx) {
   const scenarioTag = q.scenario ? "<span class='q-scenario'>" + q.scenario + "</span>" : "";
   const situation = q.situation ? "<div class='q-situation'>" + md(q.situation) + "</div>" : "";
 
+  // A multi item with all N picks in place: the remaining options are dimmed
+  // and inert, so it reads as "deselect one first" instead of a dead click.
+  const atCapacity = !reveal && isMulti(q) && hasAnswer(q, chosen);
+
   const optionsHtml = q.options.map(opt => {
     let cls = "option";
     const isChosen = isChosenLetter(chosen, opt.letter);
@@ -535,11 +542,13 @@ function renderQuestion(idx) {
       else cls += " dimmed";
     } else if (isChosen) {
       cls += " selected";
+    } else if (atCapacity) {
+      cls += " dimmed";
     }
     // In study mode after answering, show explanation for the correct option
     // and for the (wrong) one the user picked.
     const showExpl = reveal && opt.explanation && (opt.correct || isChosen);
-    const disabled = reveal ? " disabled" : "";
+    const disabled = (reveal || (atCapacity && !isChosen)) ? " disabled" : "";
     const expl = opt.explanation
       ? "<div class='opt-expl" + (showExpl ? " show" : "") + "'>" + md(opt.explanation) + "</div>"
       : "";
@@ -750,15 +759,17 @@ def render_page(*, questions, domains_js, ui, per_domain, store_key, lang_attr,
     so both tracks stay on one engine. `per_domain` is either an int (same draw
     for every domain) or a {domain: count} map for a weighted draw.
     """
-    # Substitutions run longest-token-first so no placeholder can eat a prefix
-    # of another (e.g. __PASS__ vs __PASS_SCORE__, __LANG__ vs __LANGATTR__).
+    # The data-driven payloads go in last: question and objective text can hold
+    # anything, and an earlier injection would let it be rewritten by a later
+    # replace. Among the fixed tokens the only ordering rule is that
+    # __PASS_SCORE__ must precede __PASS__, which is a prefix of it.
     js = (JS.replace("__PER_DOMAIN__", json.dumps(per_domain))
             .replace("__PASS_SCORE__", str(PASS_SCORE))
             .replace("__STOREKEY__", store_key)
-            .replace("__DOMAINS__", json.dumps(domains_js, ensure_ascii=False))
-            .replace("__DATA__", json.dumps(questions, ensure_ascii=False))
             .replace("__PASS__", str(PASS_PCT))
-            .replace("__UI__", json.dumps(ui, ensure_ascii=False)))
+            .replace("__UI__", json.dumps(ui, ensure_ascii=False))
+            .replace("__DOMAINS__", json.dumps(domains_js, ensure_ascii=False))
+            .replace("__DATA__", json.dumps(questions, ensure_ascii=False)))
 
     favicon_tag = (f'<link rel="icon" type="image/png" href="{_FAVICON_DATA_URI}">'
                    if _FAVICON_DATA_URI else "")

@@ -67,6 +67,7 @@ console.log('Foundations engine (exam_en.html)');
   check('unanswered is not correct', !e.isCorrect(q, undefined));
   check('a letter counts as answered', e.hasAnswer(q, q.correct));
   check('undefined is not answered', !e.hasAnswer(q, undefined));
+  check('an array is not answered on a single-response item', !e.hasAnswer(q, [q.correct]));
   check('no multi items leaked into Foundations',
     e.QUESTIONS.every(x => !Array.isArray(x.correct)));
 }
@@ -112,6 +113,12 @@ console.log('Professional engine (professional_exam_en.html)');
   check('multi: partial answer is not "answered"', !e.hasAnswer(multi, key.slice(0, key.length - 1)));
   check('multi: complete answer is "answered"', e.hasAnswer(multi, key.slice()));
   check('multi: empty selection is not answered', !e.hasAnswer(multi, []));
+  // Stale state from an item that flipped response shape must not read as a
+  // complete answer, or it locks study mode on a permanently wrong answer.
+  check('multi: a bare letter is not answered', !e.hasAnswer(multi, key[0]));
+  check('multi: a bare letter does not score', !e.isCorrect(multi, key[0]));
+  check('single: an array is not answered', !e.hasAnswer(single, [single.correct]));
+  check('single: an array does not score', !e.isCorrect(single, [single.correct]));
   check('multi: superset scores incorrect', (() => {
     const extra = multi.options.find(o => !key.includes(o.letter));
     return !e.isCorrect(multi, key.concat(extra.letter));

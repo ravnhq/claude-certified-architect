@@ -19,11 +19,14 @@ CROSS_REF = re.compile(r'\b(?:option|options|see)\s+[A-E]\b|\b[A-E]\s+(?:below|a
 UTILS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(UTILS_DIR)
 DATA_DIR = os.path.join(ROOT_DIR, "data")
+sys.path.insert(0, UTILS_DIR)
+
+from professional_blueprint import check_draw, draw_by_int_domain  # noqa: E402
 
 # Bank size per domain, ~2x the per-attempt draw so repeat attempts vary.
 BANK_TARGET = {1: 22, 2: 16, 3: 24, 4: 20, 5: 18, 6: 18, 7: 8}
-# Per-attempt draw, matching the official weights: 63 items total.
-DRAW = {1: 11, 2: 8, 3: 12, 4: 10, 5: 9, 6: 9, 7: 4}
+# Per-attempt draw, shared with the builder so the two cannot disagree.
+DRAW = draw_by_int_domain()
 
 LETTERS = "ABCDE"
 
@@ -31,6 +34,7 @@ LETTERS = "ABCDE"
 def main():
     path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(DATA_DIR, "professional_questions.json")
     blueprint = json.load(open(os.path.join(DATA_DIR, "professional_objectives.json"), encoding="utf-8"))
+    check_draw(blueprint)
     official = {int(d): set(v["objectives"]) for d, v in blueprint["domains"].items()}
 
     items = json.load(open(path, encoding="utf-8"))

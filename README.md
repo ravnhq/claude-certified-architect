@@ -60,7 +60,7 @@ PDFs are generated fresh on every deploy from the current markdown sources.
 
 The guide reproduces all **38 official objectives** across the seven domains, the exam and
 policy details, the official prep-course path, a breakdown of the three official sample
-questions, and a resource list that separates official sources from unvetted third-party ones.
+questions, and a list of the official certification and product-documentation sources.
 
 > **Professional material is English only.** Anthropic delivers the exam and its prep content in
 > English, and prohibits browser translation during proctored testing, so an ES/PT Professional

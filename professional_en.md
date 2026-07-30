@@ -73,6 +73,8 @@ These are recommendations, not prerequisites. Exam performance alone determines 
 | 6. Stakeholder Communication & Lifecycle Management | **14%** | Lead discovery, explain trade-offs, document decisions, align SLAs, and manage feedback throughout the lifecycle. |
 | 7. Developer Productivity & Operational Enablement | **7%** | Configure Claude tooling for teams and improve development, debugging, and operational workflows. |
 
+Take these seven domains from the official exam guide only. Published prep pages describe the Architect exam as five domains and 60 questions, which is the Foundations shape, not the seven-domain 63-item Professional blueprint — never let an outside blueprint replace this one.
+
 Integration carries the largest individual weight, but the exam is deliberately broad. Domains 1, 3, and 4 account for 52% together; Domains 5 and 6 add the governance and organizational judgment that separates this track from a purely technical implementation exam.
 
 ## Domain Guidance
@@ -377,16 +379,5 @@ The exam guide directs candidates to the Claude API, models, prompt engineering,
 - [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
 - [Model Context Protocol](https://modelcontextprotocol.io/)
 - [Claude Code documentation](https://code.claude.com/docs/en/overview)
-
-### Third-party — unvetted
-
-Commercial and community prep material exists. **Ravn has not verified any of it**, and some of it is measurably wrong: published third-party pages describe the Architect exam as five domains and 60 questions, which is the Foundations shape, not the seven-domain 63-item Professional blueprint. Cross-check every number against the official exam guide before you trust it, and do not let a third-party blueprint replace Section 6.
-
-- Tutorials Dojo — CCAR-P study guide, eBook, and practice exams
-- FlashGenius — interactive CCAR-P guide and readiness quiz
-- `sarveshtalele/claude-architect-exam-guide` on GitHub — community prep repo covering CCAR-F and CCAR-P
-- Udemy and various blog write-ups — mostly Foundations-track experience reports; check which exam an author actually sat before generalizing
-
-A note on exam dumps: reproducing live items violates the certification terms you agree to at check-in, and the confidentiality clause is enforced. Purchased "real questions" are also the material most likely to be stale or fabricated.
 
 Review the official exam guide again before registration. It contains the current policies for identification, accommodations, retakes, rescheduling, exam conduct, confidentiality, renewal, support, and appeals — and Anthropic marks it subject to change without notice.
