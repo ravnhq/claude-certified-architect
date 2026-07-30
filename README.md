@@ -20,7 +20,7 @@ the browser.
 | Track | Best fit | Ravn guidance |
 |---|---|---|
 | **Foundations** | Practitioners building with Claude Code, the Claude Agent SDK, the Claude API, and MCP | Full guides in English, Spanish, and Portuguese; practice exam and cheatsheet |
-| **Professional** | Mid- to senior-level architects and engineers responsible for production AI architecture, evaluation, governance, and lifecycle decisions | [English Professional study guide](./professional_en.md), based on the official July 2026 blueprint |
+| **Professional** | Mid- to senior-level architects and engineers responsible for production AI architecture, evaluation, governance, and lifecycle decisions | [English Professional study guide](./professional_en.md) and a [126-question practice exam](./professional_exam_en.html), based on the official July 2026 blueprint |
 
 The Professional exam has a separate seven-domain blueprint. The Foundations practice exam and cheatsheet do not represent Professional exam coverage.
 
@@ -34,9 +34,13 @@ The Professional exam has a separate seven-domain blueprint. The Foundations pra
 
 ### Professional
 
-- Exam code **CCAR-P**: 63 items, 120 minutes, scaled passing score of 720, and a $175 USD fee.
-- Review the [official Professional Exam Guide](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf).
+- Exam code **CCAR-P**: 63 items, 120 minutes, scaled passing score of 720, a $175 USD fee, and 12-month validity. No prerequisites.
+- Multiple-choice **and multiple-response** items; each item states how many responses to select.
+- Up to 4 attempts per rolling 12 months, with 14/30/90-day waits after successive failures. Delivered closed-book by Pearson VUE, **in English only**.
+- Review the [official Professional Exam Guide](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf) (v1.0, effective July 2026) — it is the authoritative blueprint and Anthropic marks it subject to change.
+- Optional [prep course path](https://anthropic-partners.skilljar.com/path/claude-certified-architect-professional): 5 courses, about 12 hours. No course is required.
 - Register through the [Anthropic Partner Academy Professional certification page](https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification).
+- See also the [certification FAQ](https://anthropic-partners.skilljar.com/page/faq-certifications) and [all exam guides](https://anthropic-partners.skilljar.com/page/partner-certifications).
 
 ## Foundations study guides
 
@@ -53,6 +57,54 @@ PDFs are generated fresh on every deploy from the current markdown sources.
 | Language | Markdown | Read online |
 |---|---|---|
 | English | [`professional_en.md`](./professional_en.md) | [Open](https://ravnhq.github.io/claude-certified-architect/guides/professional-en.html) |
+
+The guide reproduces all **38 official objectives** across the seven domains, the exam and
+policy details, the official prep-course path, a breakdown of the three official sample
+questions, and a resource list that separates official sources from unvetted third-party ones.
+
+> **Professional material is English only.** Anthropic delivers the exam and its prep content in
+> English, and prohibits browser translation during proctored testing, so an ES/PT Professional
+> track would train against wording the exam never uses. The Foundations material stays
+> tri-language.
+
+## Professional practice exam
+
+Self-paced HTML quiz for the **CCAR-P** blueprint, running entirely in your browser. It draws
+**63 questions per attempt from a 126-question bank**, weighted to the official domain
+percentages:
+
+| Domain | Weight | Drawn | Bank |
+|---|---:|---:|---:|
+| 1. Solution Design & Architecture | 17% | 11 | 22 |
+| 2. Claude Models, Prompting & Context Engineering | 13% | 8 | 16 |
+| 3. Integration | 19% | 12 | 24 |
+| 4. Evaluation, Testing & Optimization | 16% | 10 | 20 |
+| 5. Governance, Safety & Risk Management | 14% | 9 | 18 |
+| 6. Stakeholder Communication & Lifecycle Management | 14% | 9 | 18 |
+| 7. Developer Productivity & Operational Enablement | 7% | 4 | 8 |
+| **Total** | **100%** | **63** | **126** |
+
+Every item is written against one of the 38 official objectives and records which one. About 21%
+are **multiple-response** items, scored all-or-nothing and stating how many responses to select,
+matching the real item formats. Scoring uses the real **720** cut on the 100–1,000 scale, with a
+per-domain breakdown.
+
+> **These are Ravn-authored practice items, not real exam content.** They rehearse the reasoning
+> the blueprint rewards; they do not predict or reproduce the live item bank.
+
+```bash
+python3 utils/validate_professional_bank.py   # check the bank against the blueprint
+python3 utils/build_professional_exam.py      # → professional_exam_en.html
+node utils/test_exam_engine.mjs               # engine regression checks (both tracks)
+```
+
+- English: [`professional_exam_en.html`](./professional_exam_en.html)
+
+> The bank lives in [`data/professional_questions.json`](./data/professional_questions.json); the
+> official blueprint it is validated against lives in
+> [`data/professional_objectives.json`](./data/professional_objectives.json). The validator fails
+> on a bad answer key, an objective that is not in the official guide, an uncovered objective, or
+> a domain whose bank is smaller than its draw.
 
 ## Foundations practice exam
 
@@ -106,7 +158,7 @@ python3 utils/build_cheatsheet.py           # regenerate all langs → cheatshee
 
 1. Choose the certification track you plan to take.
 2. For Foundations, pick a language, work through the scenarios, and use the practice exam and cheatsheet.
-3. For Professional, map your experience against the seven weighted domains, build one end-to-end reference system, and rehearse architectural trade-offs under time pressure.
+3. For Professional, read the official exam guide first, then map your experience against the 38 objectives, build one end-to-end reference system, and rehearse architectural trade-offs under time pressure with the practice exam — exam mode for the timed run, study mode to read the rationale on every miss.
 
 ## Repository layout
 
@@ -116,16 +168,22 @@ python3 utils/build_cheatsheet.py           # regenerate all langs → cheatshee
 ├── professional_en.md             # Professional-track guide (7-domain July 2026 blueprint)
 ├── CCAF_Mock_Exam_*.txt          # source for the 60-question mock bank
 ├── exam_{en,es,pt}.html          # the unified 136-question practice exam (built)
+├── professional_exam_en.html     # CCAR-P practice exam, 63 drawn from 126 (built)
 ├── cheatsheet_{en,es,pt}.html    # 12-principle exam cheatsheet (static, hand-authored)
 ├── extract_question.py           # parses guide_*.md → scenario questions JSON
 ├── parse_mock_exam.py            # parses the mock .txt → mock questions JSON
 ├── data/
 │   ├── domains.json              # question id → CCAF domain (1–5) — reviewable
 │   ├── duplicates.json           # mock ids dropped as dupes of guide qs (empty)
-│   └── mock_{en,es,pt}.json      # mock bank + ES/PT translations
+│   ├── mock_{en,es,pt}.json      # mock bank + ES/PT translations
+│   ├── professional_objectives.json  # official CCAR-P blueprint: 7 domains, 38 objectives
+│   └── professional_questions.json   # Ravn-authored CCAR-P practice bank (126 items)
 ├── utils/
 │   ├── exam_data.py              # merges guide + mock into the unified schema
-│   ├── build_exam_html.py        # unified schema → exam_*.html
+│   ├── build_exam_html.py        # shared quiz engine + Foundations build → exam_*.html
+│   ├── build_professional_exam.py    # → professional_exam_en.html
+│   ├── validate_professional_bank.py # bank vs. official blueprint
+│   ├── test_exam_engine.mjs          # engine regression checks (both tracks)
 │   └── build_cheatsheet.py       # → cheatsheet_*.html
 ├── docs/                         # GitHub Pages site (static parts; CI generates the rest)
 ├── scripts/build-pages.mjs       # md → docs/ build (run by Pages workflow)

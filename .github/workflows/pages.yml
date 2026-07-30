@@ -48,6 +48,17 @@ jobs:
       - name: Regenerate practice exam HTML from guides + mock bank
         run: python3 utils/build_exam_html.py
 
+      - name: Validate the Professional question bank against the blueprint
+        run: python3 utils/validate_professional_bank.py
+
+      - name: Regenerate the Professional practice exam
+        run: python3 utils/build_professional_exam.py
+
+      - name: Check the quiz engine
+        run: node utils/test_exam_engine.mjs
+
+      # Must stay before build-pages.mjs: the site build copies the exam HTML,
+      # and falls back to a "not generated yet" placeholder if it is missing.
       - name: Build static site
         run: node scripts/build-pages.mjs
 

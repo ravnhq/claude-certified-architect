@@ -21,6 +21,7 @@ const PROFESSIONAL_GUIDES = [
     title: 'Professional - English',
     guide: 'professional_en.md',
     output: 'professional-en',
+    test: 'professional_exam_en.html',
   },
 ];
 
@@ -136,6 +137,7 @@ function landing() {
       <p class="card-summary">Seven-domain guidance for production architecture, integration, evaluation, governance, and lifecycle leadership.</p>
       <ul>
         <li><a href="guides/${l.output}.html">Read the study guide</a></li>
+        <li><a href="practical/${l.output}.html">Practice exam (63 questions)</a></li>
         <li><a href="https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification">Official registration</a></li>
       </ul>
     </article>`).join('');
@@ -635,6 +637,34 @@ async function copyPracticalTests() {
   }
 }
 
+// Professional exams are keyed on `output` (professional-en.html), never on
+// `code` — the professional entry's code is 'en', which would overwrite the
+// Foundations English exam that copyPracticalTests() just wrote.
+async function copyProfessionalExams() {
+  const out = path.join(DOCS, 'practical');
+  await ensureDir(out);
+  for (const l of PROFESSIONAL_GUIDES) {
+    if (!l.test) continue;
+    const src = path.join(ROOT, l.test);
+    const dest = path.join(out, `${l.output}.html`);
+    if (await exists(src)) {
+      await fs.copyFile(src, dest);
+    } else {
+      const body = `${header(l.code)}<main class="placeholder">
+        <h1>Professional practice exam — ${l.label}</h1>
+        <p>This practice exam has not been generated yet.</p>
+        <p><a href="index.html">← back to home</a></p>
+      </main>`;
+      await fs.writeFile(dest, pageShell({
+        title: `${l.label} — Professional practice exam (pending) · Ravn`,
+        lang: l.code,
+        baseHref: RAVN_BASE_HREF,
+        body,
+      }));
+    }
+  }
+}
+
 async function copyCheatsheets() {
   const out = path.join(DOCS, 'cheatsheet');
   await ensureDir(out);
@@ -685,6 +715,7 @@ async function main() {
   await writeIndex();
   await buildGuides();
   await copyPracticalTests();
+  await copyProfessionalExams();
   await copyCheatsheets();
   await buildPreflight();
   await copyPdfs();
