@@ -24,10 +24,8 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install CJK fonts for Japanese/Chinese/Korean support
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y fonts-noto-cjk
+      # The guides are EN/ES/PT only, so the runner's default Latin fonts are
+      # enough for the PDFs. Add `fonts-noto-cjk` back if a JA/ZH/KO guide lands.
 
       - name: Install build deps
         run: npm install --no-save marked@13 minisearch@7 md-to-pdf
