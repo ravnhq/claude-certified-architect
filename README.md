@@ -10,6 +10,11 @@ The full guide and the practical exam are hosted on GitHub Pages:
 
 The site has a language switcher (EN / ES / PT), full-text search, and a dark mode.
 
+Before you book a Foundations slot, work through the
+[preflight checklist](https://ravnhq.github.io/claude-certified-architect/preflight/en.html):
+ten readiness checks, the exam blueprint, and a list of practice material. Your ticks stay in
+the browser.
+
 ## Choose your track
 
 | Track | Best fit | Ravn guidance |

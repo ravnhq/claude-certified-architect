@@ -147,6 +147,23 @@ function landing() {
   </section>
   <section class="track">
     <div class="track-heading">
+      <p class="track-label">Before you book</p>
+      <h2>Check that you are ready</h2>
+      <p>Ten checks, the exam blueprint, and a list of practice material — a retake costs $125 and a 14-day wait.</p>
+    </div>
+    <div class="cards cards-single">
+      <article class="card">
+        <h2>EN</h2>
+        <div class="lang-name">Preflight</div>
+        <p class="card-summary">A saved checklist you work through before you book a Foundations slot.</p>
+        <ul>
+          <li><a href="preflight/en.html">Open the checklist</a></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+  <section class="track">
+    <div class="track-heading">
       <p class="track-label">Foundations</p>
       <h2>Build the core skills</h2>
       <p>Guides, practice exams, and cheatsheets for the five-domain Foundations certification.</p>
@@ -162,6 +179,355 @@ function landing() {
     <div class="cards cards-single">${professionalCards}</div>
   </section>
 </main>`;
+}
+
+// ---------- preflight checklist ----------
+
+const PREFLIGHT_ITEMS = [
+  {
+    n: '01',
+    label: 'Completed the 4 required courses',
+    detail: 'Claude API · Agent Skills · MCP · Claude Code in Action',
+  },
+  {
+    n: '02',
+    label: 'Bonus courses done',
+    detail: 'MCP: Advanced Topics, Introduction to Subagents. Optional, but exam-relevant.',
+  },
+  {
+    n: '03',
+    label: 'Read the official exam guide end-to-end',
+    detail: `v1.0, July 2026. Source of truth. Not skimmed. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Official guide')} · <a href="guides/en.html">Ravn study guide</a>`,
+  },
+  {
+    n: '04',
+    label: 'Can name and explain all 5 domains',
+    detail: 'Without notes. Use the blueprint above to self-check.',
+  },
+  {
+    n: '05',
+    label: 'Worked the official sample questions',
+    detail: `Anthropic retired the self-service practice exam. The guide&rsquo;s sample questions with explanations are what remains. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Get the guide')}`,
+  },
+  {
+    n: '06',
+    label: 'Worked through community mocks',
+    detail: 'Now that the official mock is gone, these carry more weight. Full list in Resources below.',
+  },
+  {
+    n: '07',
+    label: 'Registered and slot booked',
+    detail: `Two steps: pay in Partner Academy, then schedule in Pearson VUE with the credentials they email you. $125 per attempt. Reschedule 24h+ ahead or forfeit the fee. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Register')}`,
+  },
+  {
+    n: '08',
+    label: 'OnVUE system test passed',
+    detail: `Run Pearson&rsquo;s system test on the actual machine and network you will use. Webcam, mic, and OnVUE domains reachable. ${extLink('https://www.pearsonvue.com/us/en/anthropic.html', 'Pearson VUE')}`,
+  },
+  {
+    n: '09',
+    label: 'Workspace ready',
+    detail: 'Government photo ID matching your registration name. Quiet room, no second monitor, phone away.',
+  },
+  {
+    n: '10',
+    label: 'You would expect to pass right now',
+    detail: 'Not hope. Expect.',
+  },
+];
+
+const PREFLIGHT_FACTS = [
+  { k: 'Code', v: 'CCAR-F' },
+  { k: 'Questions', v: '60' },
+  { k: 'Time', v: '120 min' },
+  { k: 'Pass', v: '720 / 1000' },
+  { k: 'Fee', v: '$125' },
+  { k: 'Valid', v: '12 months' },
+];
+
+const PREFLIGHT_DOMAINS = [
+  { n: '01', name: 'Agentic Architecture &amp; Orchestration', weight: 27 },
+  { n: '02', name: 'Tool Design &amp; MCP Integration', weight: 18 },
+  { n: '03', name: 'Claude Code Configuration &amp; Workflows', weight: 20 },
+  { n: '04', name: 'Prompt Engineering &amp; Structured Output', weight: 20 },
+  { n: '05', name: 'Context Management &amp; Reliability', weight: 15 },
+];
+
+const PREFLIGHT_RESOURCES = [
+  {
+    group: 'Ravn materials',
+    items: [
+      { name: 'Study guide', href: 'guides/en.html', note: 'The full Foundations guide.', internal: true },
+      { name: 'Practice exam', href: 'practical/en.html', note: '60 questions drawn from a bank of 136, scored to 1000.', internal: true },
+      { name: 'Cheatsheet', href: 'cheatsheet/en.html', note: 'One-page recap of the five domains.', internal: true },
+    ],
+  },
+  {
+    group: 'External practice',
+    items: [
+      {
+        name: 'claudecertificationguide.com — diagnostic',
+        href: 'https://claudecertificationguide.com/learn/diagnostic',
+        note: 'Short. Use this to gauge readiness before the full mocks.',
+      },
+      {
+        name: 'claudecertificationguide.com — full mock',
+        href: 'https://claudecertificationguide.com/mock-exam',
+        note: 'Full-length community mock.',
+      },
+      {
+        name: 'certsafari.com',
+        href: 'https://www.certsafari.com/anthropic/claude-certified-architect',
+        note: '614 questions, aligned to guide v1.0. Configurable.',
+      },
+      {
+        name: 'claudecertifiedarchitects.com',
+        href: 'https://www.claudecertifiedarchitects.com/',
+        note: 'Free readiness diagnostic plus 400 scenario questions.',
+      },
+      {
+        name: 'open-exam-prep.com',
+        href: 'https://open-exam-prep.com/',
+        note: 'Free CCAR-F questions aligned to v1.0.',
+      },
+      {
+        name: 'daronyondem/claude-architect-exam-guide',
+        href: 'https://github.com/daronyondem/claude-architect-exam-guide',
+        note: 'Community study guide. PDF and EPUB builds.',
+      },
+      {
+        name: 'OlivierAlter — practice exam + skill',
+        href: 'https://github.com/OlivierAlter/Claude-Certified-Architect-Foundations-Certification-Exam',
+        note: '77 scenario questions plus an interactive Claude Code skill.',
+      },
+      {
+        name: 'krog.app',
+        href: 'https://krog.app/exam/6a1a0c49ca96069990f7e8bc',
+        note: '113 questions by domain.',
+      },
+    ],
+  },
+  {
+    group: 'Video',
+    items: [
+      {
+        name: 'CCAF study playlist',
+        href: 'https://www.youtube.com/playlist?list=PLmiDJB5zE0KGwFtDCSqHfQG7SV6VeQ_31',
+        note: 'Community-curated audiovisual material.',
+      },
+    ],
+  },
+];
+
+function extLink(href, text) {
+  return `<a href="${href}" target="_blank" rel="noopener noreferrer">${text} →</a>`;
+}
+
+const CHECK_SVG = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+
+function preflightStyles() {
+  return `<style>
+.preflight { max-width: var(--max); margin: 0 auto; padding: 56px 32px 24px; }
+.preflight .hero { margin-bottom: 0; }
+.pf-headline { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; }
+.pf-count { text-align: right; line-height: 1; }
+.pf-count .pf-count-n { font-size: clamp(3.4rem, 9vw, 5.6rem); font-weight: 800; color: var(--fg); font-variant-numeric: tabular-nums; }
+.pf-count .pf-count-n.done { color: var(--accent); }
+.pf-count .pf-count-label { display: block; margin-top: 6px; font-family: 'Source Code Pro', monospace; font-size: 0.66rem; letter-spacing: 0.167em; text-transform: uppercase; color: var(--subtle); }
+.pf-dots { display: flex; gap: 8px; margin: 28px 0 36px; }
+.pf-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); transition: background .25s var(--ease); }
+.pf-dot.on { background: var(--accent); }
+
+.pf-panel { border: 1px solid var(--border); padding: 22px 24px; margin-bottom: 36px; }
+.pf-eyebrow { font-family: 'Source Code Pro', monospace; font-size: 0.68rem; letter-spacing: 0.167em; text-transform: uppercase; color: var(--subtle); margin: 0 0 16px; }
+.pf-facts { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.pf-fact { display: flex; align-items: baseline; gap: 7px; padding: 6px 11px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: 'Source Code Pro', monospace; }
+.pf-fact-k { font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--subtle); }
+.pf-fact-v { font-size: 0.78rem; color: var(--fg); font-weight: 600; }
+.pf-note { font-size: 0.82rem; color: var(--muted); line-height: 1.55; margin: 0 0 18px; }
+.pf-domains { display: grid; gap: 14px; }
+.pf-domain-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 6px; }
+.pf-domain-name { display: flex; gap: 14px; align-items: baseline; min-width: 0; }
+.pf-domain-n { font-family: 'Source Code Pro', monospace; font-size: 0.72rem; color: var(--subtle); flex-shrink: 0; }
+.pf-domain-w { font-family: 'Source Code Pro', monospace; font-size: 0.88rem; color: var(--accent); font-weight: 600; flex-shrink: 0; }
+.pf-bar { height: 3px; background: var(--border); overflow: hidden; }
+.pf-bar span { display: block; height: 100%; background: var(--accent); }
+
+.pf-list { border-top: 1px solid var(--border); }
+.pf-row { display: grid; grid-template-columns: 48px 22px 1fr; gap: 20px; align-items: center; padding: 16px 12px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background .2s var(--ease); position: relative; }
+.pf-row:hover { background: var(--bg-elev); }
+.pf-row:has(.pf-check:checked) { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+.pf-check { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.pf-n { font-family: 'Source Code Pro', monospace; font-size: 0.85rem; letter-spacing: 0.05em; color: var(--subtle); transition: color .25s var(--ease); }
+.pf-row:has(.pf-check:checked) .pf-n { color: var(--accent); }
+.pf-box { width: 22px; height: 22px; border: 1.5px solid var(--subtle); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: transparent; transition: background .18s var(--ease), border-color .18s var(--ease); }
+.pf-row:hover .pf-box { border-color: var(--fg); }
+.pf-row:has(.pf-check:checked) .pf-box { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.pf-row:has(.pf-check:focus-visible) .pf-box { outline: 2px solid var(--accent); outline-offset: 3px; }
+.pf-item-label { display: block; font-size: 0.98rem; font-weight: 600; color: var(--fg); margin-bottom: 3px; }
+.pf-item-detail { display: block; font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+.pf-item-detail a { color: var(--accent); }
+
+.pf-actions { margin-top: 24px; }
+.pf-reset { background: transparent; color: var(--muted); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 11px 18px; font: inherit; font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: color .15s var(--ease), border-color .15s var(--ease); }
+.pf-reset:hover { color: var(--fg); border-color: var(--border-strong); }
+
+.pf-resources { margin-top: 40px; border: 1px solid var(--border); }
+.pf-resources > summary { padding: 14px 18px; cursor: pointer; display: flex; align-items: center; gap: 14px; color: var(--muted); font-size: 0.88rem; list-style: none; }
+.pf-resources > summary::-webkit-details-marker { display: none; }
+.pf-resources > summary::after { content: "▾"; margin-left: auto; color: var(--subtle); transition: transform .2s var(--ease); }
+.pf-resources[open] > summary::after { transform: rotate(180deg); }
+.pf-resources > summary:hover { background: var(--bg-elev); color: var(--fg); }
+.pf-resources > summary .pf-eyebrow { margin: 0; }
+.pf-resource-body { padding: 4px 24px 24px; display: grid; gap: 24px; }
+.pf-resource-group > .pf-eyebrow { color: var(--accent); margin-bottom: 14px; }
+.pf-resource-items { display: grid; gap: 14px; }
+.pf-resource-items a { color: var(--accent); }
+.pf-resource-note { font-size: 0.85rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+@media (max-width: 640px) {
+  .preflight { padding: 40px 20px 16px; }
+  .pf-headline { grid-template-columns: 1fr; align-items: start; }
+  .pf-count { text-align: left; }
+  .pf-row { grid-template-columns: 34px 22px 1fr; gap: 14px; }
+}
+</style>`;
+}
+
+function preflightScript() {
+  return `<script>
+(() => {
+  const KEY = 'ccaf-preflight:state';
+  const boxes = [...document.querySelectorAll('.pf-check')];
+  const dotFor = n => document.querySelector('.pf-dot[data-n="' + n + '"]');
+  const counter = document.getElementById('pf-remaining');
+  const total = boxes.length;
+
+  const read = () => {
+    try {
+      const raw = localStorage.getItem(KEY);
+      const data = raw ? JSON.parse(raw) : null;
+      return new Set(Array.isArray(data && data.checked) ? data.checked : []);
+    } catch (err) {
+      return new Set();
+    }
+  };
+  const write = () => {
+    try {
+      const checked = boxes.filter(b => b.checked).map(b => b.dataset.n);
+      localStorage.setItem(KEY, JSON.stringify({ checked }));
+    } catch (err) { /* private mode — in-session state still works */ }
+  };
+  const render = () => {
+    const done = boxes.filter(b => b.checked).length;
+    counter.textContent = String(total - done).padStart(2, '0');
+    counter.classList.toggle('done', done === total);
+    boxes.forEach(b => {
+      const dot = dotFor(b.dataset.n);
+      if (dot) dot.classList.toggle('on', b.checked);
+    });
+  };
+
+  const saved = read();
+  boxes.forEach(b => { b.checked = saved.has(b.dataset.n); });
+  render();
+
+  boxes.forEach(b => b.addEventListener('change', () => { write(); render(); }));
+
+  const reset = document.getElementById('pf-reset');
+  if (reset) reset.addEventListener('click', () => {
+    boxes.forEach(b => { b.checked = false; });
+    try { localStorage.removeItem(KEY); } catch (err) {}
+    render();
+  });
+})();
+<\/script>`;
+}
+
+function preflight() {
+  const facts = PREFLIGHT_FACTS.map(f => `
+        <div class="pf-fact"><span class="pf-fact-k">${f.k}</span><span class="pf-fact-v">${f.v}</span></div>`).join('');
+  const domains = PREFLIGHT_DOMAINS.map(d => `
+        <div>
+          <div class="pf-domain-head">
+            <span class="pf-domain-name"><span class="pf-domain-n">${d.n}</span><span>${d.name}</span></span>
+            <span class="pf-domain-w">${d.weight}%</span>
+          </div>
+          <div class="pf-bar"><span style="width:${d.weight}%"></span></div>
+        </div>`).join('');
+  const dots = PREFLIGHT_ITEMS.map(i => `<span class="pf-dot" data-n="${i.n}"></span>`).join('');
+  const rows = PREFLIGHT_ITEMS.map(i => `
+      <label class="pf-row">
+        <input type="checkbox" class="pf-check" data-n="${i.n}" autocomplete="off">
+        <span class="pf-n">${i.n}</span>
+        <span class="pf-box">${CHECK_SVG}</span>
+        <span>
+          <span class="pf-item-label">${i.label}</span>
+          <span class="pf-item-detail">${i.detail}</span>
+        </span>
+      </label>`).join('');
+  const resources = PREFLIGHT_RESOURCES.map(g => `
+        <div class="pf-resource-group">
+          <p class="pf-eyebrow">${g.group}</p>
+          <div class="pf-resource-items">${g.items.map(item => `
+            <div>
+              ${item.internal ? `<a href="${item.href}">${item.name}</a>` : extLink(item.href, item.name)}
+              <div class="pf-resource-note">${item.note}</div>
+            </div>`).join('')}
+          </div>
+        </div>`).join('');
+
+  return `${preflightStyles()}
+<main class="preflight">
+  <section class="hero">
+    <div class="pf-headline">
+      <div style="display:grid;gap:16px">
+        <p class="eyebrow">Before you book</p>
+        <h1>Ten checks before <span class="accent">you book the slot.</span></h1>
+        <p class="lede">Retakes wait 14, then 30, then 90 days — four attempts maximum per year, $125 each. Tick what is true and see what is left.</p>
+      </div>
+      <div class="pf-count">
+        <div class="pf-count-n" id="pf-remaining">${String(PREFLIGHT_ITEMS.length).padStart(2, '0')}</div>
+        <span class="pf-count-label">Left</span>
+      </div>
+    </div>
+    <div class="pf-dots">${dots}</div>
+  </section>
+
+  <section class="pf-panel" aria-labelledby="pf-blueprint">
+    <p class="pf-eyebrow" id="pf-blueprint">Exam blueprint</p>
+    <div class="pf-facts">${facts}
+    </div>
+    <p class="pf-note">Multiple-choice <em>and</em> multiple-response. 4 scenarios drawn from a bank of 6. Delivered by Pearson VUE — OnVUE at home or a test centre.</p>
+    <div class="pf-domains">${domains}
+    </div>
+  </section>
+
+  <section class="pf-list" aria-label="Readiness checklist">${rows}
+  </section>
+
+  <div class="pf-actions">
+    <button type="button" id="pf-reset" class="pf-reset">Reset checklist</button>
+  </div>
+
+  <details class="pf-resources">
+    <summary><span class="pf-eyebrow">Resources</span><span>Practice mocks and study materials</span></summary>
+    <div class="pf-resource-body">${resources}
+    </div>
+  </details>
+</main>
+${preflightScript()}`;
+}
+
+async function buildPreflight() {
+  const out = path.join(DOCS, 'preflight');
+  await ensureDir(out);
+  await fs.writeFile(path.join(out, 'en.html'), pageShell({
+    title: 'Preflight checklist — Claude Certified Architect · Ravn',
+    lang: 'en',
+    baseHref: RAVN_BASE_HREF,
+    body: `${header('en')}${preflight()}`,
+  }));
 }
 
 async function buildGuides() {
@@ -320,6 +686,7 @@ async function main() {
   await buildGuides();
   await copyPracticalTests();
   await copyCheatsheets();
+  await buildPreflight();
   await copyPdfs();
   console.log('docs/ built');
 }
