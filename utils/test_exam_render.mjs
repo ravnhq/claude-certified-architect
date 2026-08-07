@@ -1,0 +1,138 @@
+#!/usr/bin/env node
+// Regression harness for the parts of the engine that write the DOM.
+//
+// test_exam_engine.mjs stops at the sidebar boundary, so it covers the pure
+// logic only. The summary screen is where a scoring rule turns into something
+// the candidate can read, and a defect there is silent: an item can be counted
+// as incorrect and still never appear in the review pane. This file runs the
+// whole engine against a stub DOM, drives it, and reads the HTML it produced.
+//
+// Usage: node utils/test_exam_render.mjs
+
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+let failures = 0;
+function check(name, cond, detail = '') {
+  if (cond) { console.log(`  ok   ${name}`); }
+  else { console.log(`  FAIL ${name}${detail ? ' — ' + detail : ''}`); failures++; }
+}
+
+// Stub DOM: only what init(), renderQuestion() and showSummary() touch.
+function makeEl(id) {
+  const el = {
+    id, textContent: '', innerHTML: '', children: [], disabled: false,
+    classList: {
+      _s: new Set(),
+      add(...c) { c.forEach(x => this._s.add(x)); },
+      remove(...c) { c.forEach(x => this._s.delete(x)); },
+      toggle(c, on) { on ? this._s.add(c) : this._s.delete(c); },
+      contains(c) { return this._s.has(c); },
+    },
+    setAttribute() {},
+    appendChild(c) { this.children.push(c); },
+  };
+  Object.defineProperty(el, 'className', {
+    get() { return [...el.classList._s].join(' '); },
+    set(v) { el.classList._s = new Set(String(v).split(/\s+/).filter(Boolean)); },
+  });
+  return el;
+}
+
+function loadPage(file) {
+  const html = fs.readFileSync(path.join(ROOT, file), 'utf8');
+  const script = html.slice(html.lastIndexOf('<script>') + 8, html.lastIndexOf('</script>'));
+  const els = new Map();
+  const store = new Map();
+  const ctx = {
+    console,
+    document: {
+      getElementById(id) { if (!els.has(id)) els.set(id, makeEl(id)); return els.get(id); },
+      createElement() { return makeEl(''); },
+    },
+    localStorage: {
+      getItem: k => (store.has(k) ? store.get(k) : null),
+      setItem: (k, v) => store.set(k, String(v)),
+    },
+  };
+  vm.createContext(ctx);
+  vm.runInContext(script +
+    '\nthis.__api = { state, showSummary, renderQuestion, answer, orderedQuestions,' +
+    ' selectCount, isMulti, T };', ctx);
+  return { api: ctx.__api, el: id => ctx.document.getElementById(id) };
+}
+
+function checkPage(file) {
+  console.log(`\nSummary screen (${file})`);
+  const { api, el } = loadPage(file);
+  const drawn = api.orderedQuestions();
+  const multi = drawn.find(q => api.isMulti(q));
+
+  // Leave everything blank except one half-picked multiple-response item.
+  api.state.mode = 'exam';
+  api.state.answers = {};
+  if (multi) {
+    api.state.answers[multi.id] = multi.correct.slice(0, multi.correct.length - 1);
+  }
+  api.showSummary();
+  const out = el('summaryContent').innerHTML;
+
+  check('the review section renders', out.includes(api.T.review_wrong));
+  check('an unanswered item is listed in the review pane',
+    out.includes(drawn.find(q => !multi || q.id !== multi.id).id.toUpperCase()));
+  check('an unanswered row says so instead of showing an empty dash',
+    out.includes(api.T.not_answered));
+  // Compare against the page's own string, so es and pt are checked too.
+  check('the unanswered warning still renders',
+    out.includes(api.T.unanswered.split('{n}').pop().trim()));
+
+  if (multi) {
+    const need = api.selectCount(multi);
+    const picked = api.state.answers[multi.id].slice().sort().join(', ');
+    // The defect this file exists for: a half-picked item was counted as
+    // incorrect and dropped from the review pane, so no rationale was shown.
+    check(`a half-picked item (${multi.id}, ${need} needed) is listed in the review pane`,
+      out.includes(multi.id.toUpperCase()));
+    check('a half-picked row is tagged as incomplete',
+      out.includes(api.T.incomplete_answer));
+    check('a half-picked row shows the letters it did pick', out.includes(picked));
+
+    // Each correct letter gets its own rationale, not one merged paragraph.
+    const perLetter = (out.match(/<strong>Why [A-E]:<\/strong>/g) || []).length;
+    check(`each correct letter gets its own rationale (${perLetter} found, ${need} needed)`,
+      perLetter >= need);
+    check('no merged multi-letter rationale heading remains',
+      !/<strong>Why [A-E], /.test(out));
+  }
+
+  // Nothing may escape as markup. Look for a tag no template writes.
+  check('no unescaped item text reached the page', !/<img|<iframe|onerror=/i.test(out));
+
+  // At-capacity options stay reachable: aria-disabled, not disabled.
+  if (multi) {
+    console.log(`Question screen (${file})`);
+    api.state.answers[multi.id] = multi.correct.slice();   // complete: at capacity
+    const idx = drawn.findIndex(q => q.id === multi.id);
+    api.renderQuestion(idx);
+    const card = el('qCard').innerHTML;
+    check('an at-capacity option reports itself unavailable',
+      card.includes("aria-disabled='true'"));
+    check('an at-capacity option keeps its place in the tab order',
+      !card.includes(' disabled'));
+    check('the page explains why the other options are unavailable',
+      card.includes(api.T.select_full.replace('{n}', api.selectCount(multi))));
+  }
+}
+
+// Every shipped page, so a UI string missing from one language cannot pass.
+checkPage('exam_en.html');
+checkPage('exam_es.html');
+checkPage('exam_pt.html');
+checkPage('professional_exam_en.html');
+
+console.log(failures === 0 ? '\nAll render checks passed.' : `\n${failures} check(s) FAILED.`);
+process.exit(failures === 0 ? 0 : 1);

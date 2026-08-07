@@ -11,6 +11,10 @@ into one quiz per language with:
   * randomized question order within each domain (persisted, so a refresh keeps
     the same order and answers)
   * scoring over the full total with a pass threshold and a per-domain breakdown
+
+This module also hosts the quiz engine itself: render_page() below is shared with
+build_professional_exam.py, so a change here affects both tracks. Check both with
+`node utils/test_exam_engine.mjs`.
 """
 import base64, json, os, sys
 
@@ -50,6 +54,9 @@ UI = {
                            "is scaled to 1000 as a study approximation of the "
                            "real 100–1000 scaled score."),
         "incorrect": "incorrect", "domain": "Domain",
+        "select_n": "Select {n} responses.",
+        "select_full": "All {n} responses chosen. Deselect one to change your answer.",
+        "not_answered": "Not answered", "incomplete_answer": "incomplete answer",
     },
     "es": {
         "questions": "Preguntas", "answered": "Respondidas", "mode_study": "Estudio",
@@ -69,6 +76,9 @@ UI = {
                            "el puntaje se escala sobre 1000 como aproximación "
                            "de estudio de la escala real de 100–1000."),
         "incorrect": "incorrectas", "domain": "Dominio",
+        "select_n": "Selecciona {n} respuestas.",
+        "select_full": "Ya elegiste las {n} respuestas. Deselecciona una para cambiar tu respuesta.",
+        "not_answered": "Sin responder", "incomplete_answer": "respuesta incompleta",
     },
     "pt": {
         "questions": "Perguntas", "answered": "Respondidas", "mode_study": "Estudo",
@@ -88,6 +98,9 @@ UI = {
                            "total); a pontuação é escalada para 1000 como "
                            "aproximação de estudo da escala real de 100–1000."),
         "incorrect": "incorretas", "domain": "Domínio",
+        "select_n": "Selecione {n} respostas.",
+        "select_full": "As {n} respostas já foram escolhidas. Desmarque uma para alterar sua resposta.",
+        "not_answered": "Sem resposta", "incomplete_answer": "resposta incompleta",
     },
 }
 
@@ -219,15 +232,19 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   font-family: "Source Code Pro", ui-monospace, Menlo, Monaco, monospace; font-size: 13.5px; color: var(--gold); }
 .q-prompt { font-size: 17px; font-weight: 700; color: var(--fg); margin-bottom: 20px; }
 
+.q-select { display: inline-block; background: var(--gold-soft); color: var(--gold); font-size: 11.5px;
+  font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px;
+  border-radius: var(--r-sm); margin-bottom: 16px; }
+.q-select-hint { font-size: 12.5px; color: var(--subtle); margin: -8px 0 16px; }
 .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
 .option { border: 1px solid var(--border-strong); border-radius: var(--r-md); background: var(--surface);
   transition: border-color .15s, background .15s; overflow: hidden; }
 .option-head { display: flex; align-items: flex-start; gap: 14px; width: 100%; padding: 14px 18px;
   border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .option-head:focus-visible { outline: 2px solid var(--gold); outline-offset: -3px; }
-.option:hover:not(.locked) .option-head { background: var(--surface-2); }
-.option:hover:not(.locked) { border-color: var(--gold); }
-.option.locked .option-head { cursor: default; }
+.option:hover:not(.locked):not(.dimmed) .option-head { background: var(--surface-2); }
+.option:hover:not(.locked):not(.dimmed) { border-color: var(--gold); }
+.option.locked .option-head, .option-head[aria-disabled="true"] { cursor: default; }
 .option.locked .option-head:disabled { opacity: 1; }
 .option.selected { border-color: var(--gold); }
 .opt-letter { width: 30px; height: 30px; min-width: 30px; border-radius: 50%; background: var(--surface-2);
@@ -352,15 +369,99 @@ const DOMAINS = __DOMAINS__;
 const T = __UI__;
 const PASS_PCT = __PASS__;          // per-domain bar coloring threshold (%)
 const PASS_SCORE = __PASS_SCORE__;  // overall cut score on the 100–1000 scale
-const PER_DOMAIN = __PER_DOMAIN__;  // questions drawn per domain each attempt
-const STORE_KEY = "ccaf-exam-__LANG__";
+// Questions drawn per domain each attempt. Either a single number applied to
+// every domain (Foundations: 12 across 5 domains) or a { domain: count } map
+// when the draw is weighted (Professional: 11/8/12/10/9/9/4 across 7 domains).
+const PER_DOMAIN = __PER_DOMAIN__;
+const STORE_KEY = "__STOREKEY__";
+// Bumped when a saved attempt stops being valid — a blueprint revision that
+// changes the per-domain draw, or a change to the shape of a stored answer.
+// An older payload is dropped, which resets an attempt in progress once.
+const STORE_VERSION = 2;
 
-// Number of questions in one attempt: PER_DOMAIN per domain, capped by how many
-// that domain actually has (so it never over-draws a small domain).
-function examSize() {
+function drawCount(domain) {
+  return (typeof PER_DOMAIN === "number") ? PER_DOMAIN : (PER_DOMAIN[domain] ?? 0);
+}
+
+// The draw actually achievable per domain: the requested count, capped by how
+// many questions that domain holds (so it never over-draws a small domain).
+function drawPerDomain() {
   const byDomain = {};
   QUESTIONS.forEach(q => { byDomain[q.domain] = (byDomain[q.domain] || 0) + 1; });
-  return Object.values(byDomain).reduce((s, c) => s + Math.min(c, PER_DOMAIN), 0);
+  const out = {};
+  Object.keys(byDomain).forEach(d => { out[d] = Math.min(byDomain[d], drawCount(d)); });
+  return out;
+}
+
+// Number of questions in one attempt.
+function examSize() {
+  return Object.values(drawPerDomain()).reduce((s, c) => s + c, 0);
+}
+
+// ---- answer shape --------------------------------------------------------
+// Single-response items store a letter ("B"); multiple-response items store an
+// array of letters (["A","C"]) and carry an array `correct`. Everything below
+// branches on that so both shapes share one engine.
+function isMulti(q) { return Array.isArray(q.correct); }
+function selectCount(q) { return isMulti(q) ? q.correct.length : 1; }
+
+function asLetters(v) {
+  if (v === undefined || v === null) return [];
+  return (Array.isArray(v) ? v.slice() : [v]).sort();
+}
+
+// "Answered" means a *complete* answer of the shape this item expects: one
+// letter, or exactly the required number of letters. A partly-filled multi item
+// does not count as answered, and neither does a stored value of the wrong
+// shape — that is stale state from an item that changed response type.
+function hasAnswer(q, ans) {
+  if (ans === undefined || ans === null) return false;
+  if (Array.isArray(ans) !== isMulti(q)) return false;
+  return Array.isArray(ans) ? ans.length === selectCount(q) : true;
+}
+
+// Multiple-response items are scored all-or-nothing, like the real exam.
+function isCorrect(q, ans) {
+  if (!hasAnswer(q, ans)) return false;
+  const a = asLetters(ans), c = asLetters(q.correct);
+  return a.length === c.length && a.every((v, i) => v === c[i]);
+}
+
+function isChosenLetter(ans, letter) {
+  if (ans === undefined || ans === null) return false;
+  return Array.isArray(ans) ? ans.indexOf(letter) >= 0 : ans === letter;
+}
+
+function letterLabel(v) { return asLetters(v).join(", "); }
+
+// ---- grading -------------------------------------------------------------
+// "incomplete" is a multiple-response item with some but not all of its letters
+// picked. It is not an answer, so it scores as incorrect — and it must still
+// reach the review pane, or the candidate never sees the rationale.
+function classify(q, ans) {
+  if (!hasAnswer(q, ans)) return "incomplete";
+  return isCorrect(q, ans) ? "correct" : "incorrect";
+}
+
+// Tally one attempt. Pure on purpose: the summary screen below only renders
+// what this returns, so the regression harness can check the bucketing.
+function tallyAttempt(active, answers) {
+  const domStat = {}, wrongByDomain = {};
+  let answered = 0, correct = 0;
+  active.forEach(q => {
+    domStat[q.domain] = domStat[q.domain] || { correct: 0, total: 0 };
+    domStat[q.domain].total++;
+    const ans = answers[q.id];
+    const verdict = classify(q, ans);
+    if (verdict !== "incomplete") answered++;
+    if (verdict === "correct") { correct++; domStat[q.domain].correct++; return; }
+    (wrongByDomain[q.domain] = wrongByDomain[q.domain] || [])
+      .push({ q: q, chosen: ans, verdict: verdict });
+  });
+  const total = active.length;
+  return { total: total, answered: answered, correct: correct,
+           wrong: answered - correct, unanswered: total - answered,
+           domStat: domStat, wrongByDomain: wrongByDomain };
 }
 
 const state = { current: 0, answers: {}, order: [], mode: "study" };
@@ -368,17 +469,29 @@ const state = { current: 0, answers: {}, order: [], mode: "study" };
 // ---- persistence ---------------------------------------------------------
 function save() {
   try { localStorage.setItem(STORE_KEY, JSON.stringify(
-    { answers: state.answers, order: state.order, mode: state.mode, current: state.current })); } catch (e) {}
+    { v: STORE_VERSION, answers: state.answers, order: state.order,
+      mode: state.mode, current: state.current })); } catch (e) {}
 }
 function load() {
   try {
     const raw = localStorage.getItem(STORE_KEY);
     if (!raw) return null;
     const d = JSON.parse(raw);
+    // A payload from a different version is discarded, not migrated. A payload
+    // written before versioning existed carries no stamp: it is still accepted,
+    // because nothing about it is known to be stale and the checks below
+    // validate it on its own terms. That keeps attempts in progress alive.
+    if (d.v !== undefined && d.v !== STORE_VERSION) return null;
     // Order is valid only if it still matches the current attempt size.
     if (!Array.isArray(d.order) || d.order.length !== examSize()) return null;
     const ids = new Set(QUESTIONS.map(q => q.id));
     if (!d.order.every(id => ids.has(id))) return null;
+    // The total survives a blueprint revision that only moves items between
+    // domains, so check the per-domain mix too. Without this a returning
+    // candidate keeps the old weighting under a note that claims the new one.
+    const want = drawPerDomain(), got = {};
+    d.order.forEach(id => { const q = qById(id); if (q) got[q.domain] = (got[q.domain] || 0) + 1; });
+    if (Object.keys(want).some(d2 => (got[d2] || 0) !== want[d2])) return null;
     return d;
   } catch (e) { return null; }
 }
@@ -398,18 +511,26 @@ function shuffleOrder() {
       const j = Math.floor(Math.random() * (i + 1));
       [ids[i], ids[j]] = [ids[j], ids[i]];
     }
-    order.push(...ids.slice(0, PER_DOMAIN));
+    order.push(...ids.slice(0, drawCount(d)));
   });
   return order;
 }
 function qById(id) { return QUESTIONS.find(q => q.id === id); }
 function orderedQuestions() { return state.order.map(qById); }
 
+// Everything below writes into innerHTML, and every string it writes is
+// authored data. esc() runs first so a raw "<" in an item ("latency < 500 ms")
+// stays text instead of becoming markup.
+function esc(text) {
+  if (text === undefined || text === null) return "";
+  return String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
 function md(text) {
   if (!text) return "";
-  return text.replace(/`([^`]+)`/g, "<code>$1</code>")
-             .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-             .replace(/\n/g, " ");
+  return esc(text).replace(/`([^`]+)`/g, "<code>$1</code>")
+                  .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+                  .replace(/\n/g, " ");
 }
 
 // ---- sidebar -------------------------------------------------------------
@@ -427,7 +548,7 @@ function buildSidebar() {
       const lbl = document.createElement("div");
       lbl.className = "domain-label";
       const dm = DOMAINS[q.domain];
-      lbl.innerHTML = "<span>" + T.domain + " " + q.domain + " · " + dm.name +
+      lbl.innerHTML = "<span>" + T.domain + " " + q.domain + " · " + esc(dm.name) +
         "</span><span class='dl-weight'>" + dm.weight + "%</span>";
       sg.appendChild(lbl);
       groupEl = sg;
@@ -445,18 +566,20 @@ function buildSidebar() {
 
 function updateSidebar() {
   const qs = orderedQuestions();
+  let answeredCount = 0;
   qs.forEach((q, idx) => {
     const btn = document.getElementById("sb-" + idx);
     if (!btn) return;
     btn.className = "q-btn";
     if (idx === state.current) btn.classList.add("active");
     const ans = state.answers[q.id];
-    if (ans !== undefined) {
+    if (hasAnswer(q, ans)) {
+      answeredCount++;
       if (state.mode === "exam") btn.classList.add("answered");
-      else btn.classList.add(ans === q.correct ? "answered-correct" : "answered-wrong");
+      else btn.classList.add(isCorrect(q, ans) ? "answered-correct" : "answered-wrong");
     }
   });
-  document.getElementById("answeredCount").textContent = Object.keys(state.answers).length;
+  document.getElementById("answeredCount").textContent = answeredCount;
 }
 
 // ---- question render -----------------------------------------------------
@@ -464,19 +587,25 @@ function renderQuestion(idx) {
   const qs = orderedQuestions();
   const q = qs[idx];
   const chosen = state.answers[q.id];
-  const reveal = chosen !== undefined && state.mode === "study";
+  // Study mode reveals only once the answer is complete — for a multi item that
+  // means all N letters are selected, so partial picks stay editable.
+  const reveal = hasAnswer(q, chosen) && state.mode === "study";
 
   document.getElementById("qCounter").textContent = (idx + 1) + " / " + qs.length;
   document.getElementById("prevBtn").disabled = idx === 0;
   document.getElementById("nextBtn").disabled = idx === qs.length - 1;
 
   const dm = DOMAINS[q.domain];
-  const scenarioTag = q.scenario ? "<span class='q-scenario'>" + q.scenario + "</span>" : "";
+  const scenarioTag = q.scenario ? "<span class='q-scenario'>" + esc(q.scenario) + "</span>" : "";
   const situation = q.situation ? "<div class='q-situation'>" + md(q.situation) + "</div>" : "";
+
+  // A multi item with all N picks in place: the remaining options are dimmed
+  // and inert, so it reads as "deselect one first" instead of a dead click.
+  const atCapacity = !reveal && isMulti(q) && hasAnswer(q, chosen);
 
   const optionsHtml = q.options.map(opt => {
     let cls = "option";
-    const isChosen = opt.letter === chosen;
+    const isChosen = isChosenLetter(chosen, opt.letter);
     if (reveal) {
       cls += " locked";
       if (opt.correct) cls += " correct";
@@ -484,11 +613,19 @@ function renderQuestion(idx) {
       else cls += " dimmed";
     } else if (isChosen) {
       cls += " selected";
+    } else if (atCapacity) {
+      cls += " dimmed";
     }
     // In study mode after answering, show explanation for the correct option
     // and for the (wrong) one the user picked.
     const showExpl = reveal && opt.explanation && (opt.correct || isChosen);
-    const disabled = reveal ? " disabled" : "";
+    // A revealed option is inert for good, so `disabled` fits. An at-capacity
+    // option is not: it becomes selectable again as soon as the candidate
+    // deselects a letter, so it stays in the tab order and only reports itself
+    // as unavailable. `disabled` here would hide it from keyboard and screen
+    // reader users, and the visible hint below explains the state.
+    const disabled = reveal ? " disabled"
+                   : ((atCapacity && !isChosen) ? " aria-disabled='true'" : "");
     const expl = opt.explanation
       ? "<div class='opt-expl" + (showExpl ? " show" : "") + "'>" + md(opt.explanation) + "</div>"
       : "";
@@ -502,16 +639,39 @@ function renderQuestion(idx) {
 
   document.getElementById("qCard").innerHTML =
     "<div class='q-number'>" + T.question + " " + (idx + 1) + "</div>" +
-    "<div><span class='q-domain'>" + T.domain + " " + q.domain + " · " + dm.name + "</span>" +
+    "<div><span class='q-domain'>" + T.domain + " " + q.domain + " · " + esc(dm.name) + "</span>" +
     scenarioTag + "</div>" +
     situation +
     "<div class='q-prompt'>" + md(q.question) + "</div>" +
+    (isMulti(q)
+      ? "<div class='q-select'>" + T.select_n.replace("{n}", selectCount(q)) + "</div>" +
+        (atCapacity
+          ? "<div class='q-select-hint'>" + T.select_full.replace("{n}", selectCount(q)) + "</div>"
+          : "")
+      : "") +
     "<div class='options'>" + optionsHtml + "</div>";
 }
 
 function answer(id, letter) {
-  if (state.mode === "study" && state.answers[id] !== undefined) return; // locked
-  state.answers[id] = letter;
+  const q = qById(id);
+  const n = selectCount(q);
+  const locked = state.mode === "study" && hasAnswer(q, state.answers[id]);
+  if (locked) return;
+
+  if (n === 1) {
+    state.answers[id] = letter;
+  } else {
+    // Toggle within the allowed number of selections. Re-clicking a chosen
+    // letter removes it, so a candidate can correct a pick before completing.
+    const cur = Array.isArray(state.answers[id]) ? state.answers[id].slice() : [];
+    const at = cur.indexOf(letter);
+    if (at >= 0) cur.splice(at, 1);
+    else if (cur.length < n) cur.push(letter);
+    // At capacity on an unpicked letter: nothing changes, so return before the
+    // re-render. Repainting the card would throw away the keyboard focus.
+    else return;
+    state.answers[id] = cur;
+  }
   save();
   renderQuestion(state.current);
   updateSidebar();
@@ -547,25 +707,15 @@ function showSummary() {
   document.getElementById("questionScreen").classList.remove("active");
   document.getElementById("summaryScreen").classList.add("active");
 
-  // Only the questions in this attempt (PER_DOMAIN per domain) count.
+  // Only the questions in this attempt (PER_DOMAIN per domain) count. The
+  // review pane lists every item that did not score, including the ones left
+  // blank or half-picked: those count as incorrect, so they need a rationale.
   const active = orderedQuestions();
-  const total = active.length;
-  const answered = Object.keys(state.answers).length;
-  let correct = 0;
-  const wrongByDomain = {};
-  const domStat = {};
+  const tally = tallyAttempt(active, state.answers);
+  const total = tally.total, answered = tally.answered, correct = tally.correct;
+  const wrong = tally.wrong, unanswered = tally.unanswered;
+  const domStat = tally.domStat, wrongByDomain = tally.wrongByDomain;
 
-  active.forEach(q => {
-    domStat[q.domain] = domStat[q.domain] || { correct: 0, total: 0 };
-    domStat[q.domain].total++;
-    const ans = state.answers[q.id];
-    if (ans === undefined) return;
-    if (ans === q.correct) { correct++; domStat[q.domain].correct++; }
-    else { (wrongByDomain[q.domain] = wrongByDomain[q.domain] || []).push({ q, chosen: ans }); }
-  });
-
-  const wrong = answered - correct;
-  const unanswered = total - answered;
   const pct = total ? Math.round(correct / total * 100) : 0;
   const score = total ? Math.round(correct / total * 1000) : 0; // scaled to 1000
   const passed = score >= PASS_SCORE;
@@ -577,7 +727,7 @@ function showSummary() {
     const barCls = dpct >= PASS_PCT ? "" : (dpct >= 50 ? "low" : "bad");
     domainScoresHtml +=
       "<div class='ds-row'>" +
-        "<div class='ds-name'>" + T.domain + " " + d + " · " + dm.name +
+        "<div class='ds-name'>" + T.domain + " " + d + " · " + esc(dm.name) +
           " <small>(" + dm.weight + "% " + T.weight + ")</small></div>" +
         "<div class='ds-bar'><div class='" + barCls + "' style='width:" + dpct + "%'></div></div>" +
         "<div class='ds-pct'>" + s.correct + "/" + s.total + " · " + dpct + "%</div>" +
@@ -588,24 +738,41 @@ function showSummary() {
   Object.keys(wrongByDomain).sort((a, b) => a - b).forEach(d => {
     const items = wrongByDomain[d], dm = DOMAINS[d];
     const rows = items.map(item => {
-      const chosenOpt = item.q.options.find(o => o.letter === item.chosen);
-      const correctOpt = item.q.options.find(o => o.letter === item.q.correct);
-      const expl = correctOpt && correctOpt.explanation
-        ? "<div class='wi-expl'><strong>" + T.why + " " + item.q.correct + ":</strong> " +
-          md(correctOpt.explanation) + "</div>" : "";
+      // Both shapes resolve to a list of letters, so a multi item shows every
+      // letter it needed and every letter the candidate actually picked.
+      const optText = letters => letters
+        .map(L => { const o = item.q.options.find(x => x.letter === L); return o ? md(o.text) : ""; })
+        .filter(Boolean).join("<br>");
+      const chosenLetters = asLetters(item.chosen);
+      const correctLetters = asLetters(item.q.correct);
+      // One block per correct letter. Joining them into a single paragraph left
+      // the reader unable to tell which rationale explained which letter.
+      const expl = correctLetters.map(L => {
+        const o = item.q.options.find(x => x.letter === L);
+        return (o && o.explanation)
+          ? "<div class='wi-expl'><strong>" + T.why + " " + L + ":</strong> " + md(o.explanation) + "</div>"
+          : "";
+      }).join("");
+      // Nothing picked reads as "Not answered" rather than an empty dash; a
+      // half-picked multi item shows its letters and says it is incomplete.
+      const yours = chosenLetters.length
+        ? "<span class='wi-wrong-tag'>" + letterLabel(chosenLetters) + "</span>" +
+          (item.verdict === "incomplete"
+            ? " <span class='wi-wrong-tag'>(" + T.incomplete_answer + ")</span>" : "") +
+          " — " + optText(chosenLetters)
+        : "<span class='wi-wrong-tag'>" + T.not_answered + "</span>";
       return "<div class='wrong-item'>" +
-        "<div class='wi-n'>" + item.q.id.toUpperCase() + "</div>" +
+        "<div class='wi-n'>" + esc(item.q.id).toUpperCase() + "</div>" +
         "<div class='wi-q'>" +
           (item.q.situation ? "<div class='wi-situation'>" + md(item.q.situation) + "</div>" : "") +
           "<div class='wi-prompt'>" + md(item.q.question) + "</div>" +
-          "<div class='wi-ans'>" + T.your_answer + ": <span class='wi-wrong-tag'>" + item.chosen +
-            "</span> — " + md(chosenOpt ? chosenOpt.text : "") + "<br>" +
-            T.correct + ": <span class='wi-correct-tag'>" + item.q.correct + "</span> — " +
-            md(correctOpt ? correctOpt.text : "") + "</div>" + expl +
+          "<div class='wi-ans'>" + T.your_answer + ": " + yours + "<br>" +
+            T.correct + ": <span class='wi-correct-tag'>" + letterLabel(correctLetters) + "</span> — " +
+            optText(correctLetters) + "</div>" + expl +
         "</div></div>";
     }).join("");
     wrongGroupsHtml += "<div class='group-block'><div class='group-title'>" +
-      T.domain + " " + d + " · " + dm.name +
+      T.domain + " " + d + " · " + esc(dm.name) +
       "<span class='group-badge'>" + items.length + " " + T.incorrect + "</span></div>" + rows + "</div>";
   });
 
@@ -665,26 +832,44 @@ function restart() {
 """
 
 
-def build(lang):
-    questions = exam_data.load(lang)
-    ui = UI[lang]
-    domains_js = {
-        str(d): {"name": exam_data.DOMAIN_NAMES[lang][d], "weight": w}
-        for d, (_, w) in exam_data.DOMAINS.items()
-    }
+def _payload(obj):
+    """JSON for embedding in an inline <script> block.
 
-    js = (JS.replace("__DATA__", json.dumps(questions, ensure_ascii=False))
-            .replace("__DOMAINS__", json.dumps(domains_js, ensure_ascii=False))
-            .replace("__UI__", json.dumps(ui, ensure_ascii=False))
-            .replace("__PASS__", str(PASS_PCT))
-            .replace("__PASS_SCORE__", str(PASS_SCORE))
-            .replace("__PER_DOMAIN__", str(PER_DOMAIN))
-            .replace("__LANG__", lang))
+    "<" becomes an escape so authored text holding "</script>" cannot close the
+    block early, and U+2028 / U+2029 are escaped because ensure_ascii=False
+    emits them raw while JS reads them as line terminators. All three only ever
+    occur inside JSON string values, so no replacement can break the structure.
+    """
+    return (json.dumps(obj, ensure_ascii=False)
+            .replace("<", "\\u003c")
+            .replace("\u2028", "\\u2028")
+            .replace("\u2029", "\\u2029"))
 
-    title = LANG_TITLES[lang]
-    page_title = f"{LANG_LABELS[lang]} — Practice Exam · Ravn"
+
+def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
+                store_key, lang_attr, title, page_title, out_path):
+    """Render one self-contained quiz page.
+
+    Shared by the Foundations builder below and by build_professional_exam.py,
+    so both tracks stay on one engine. `per_domain` is either an int (same draw
+    for every domain) or a {domain: count} map for a weighted draw. Each track
+    supplies its own `pass_score` / `pass_pct`: the two cut scores are equal
+    today, but Professional's authority is its own blueprint, not this module.
+    """
+    # The data-driven payloads go in last: question and objective text can hold
+    # anything, and an earlier injection would let it be rewritten by a later
+    # replace.
+    js = (JS.replace("__PER_DOMAIN__", _payload(per_domain))
+            .replace("__PASS_SCORE__", str(pass_score))
+            .replace("__STOREKEY__", store_key)
+            .replace("__PASS__", str(pass_pct))
+            .replace("__UI__", _payload(ui))
+            .replace("__DOMAINS__", _payload(domains_js))
+            .replace("__DATA__", _payload(questions)))
+
     favicon_tag = (f'<link rel="icon" type="image/png" href="{_FAVICON_DATA_URI}">'
                    if _FAVICON_DATA_URI else "")
+    lang = lang_attr
 
     ravn_topbar = (
         '<header class="ravn-topbar">'
@@ -738,10 +923,32 @@ def build(lang):
 </body>
 </html>"""
 
-    out = os.path.join(ROOT_DIR, f"exam_{lang}.html")
-    with open(out, "w", encoding="utf-8") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         f.write(HTML)
-    print(f"Written: exam_{lang}.html  ({len(HTML):,} bytes, {len(questions)} questions)")
+    name = os.path.basename(out_path)
+    print(f"Written: {name}  ({len(HTML):,} bytes, {len(questions)} questions)")
+
+
+def build(lang):
+    """Foundations track: 5 domains, 12 questions drawn per domain (60 total)."""
+    questions = exam_data.load(lang)
+    domains_js = {
+        str(d): {"name": exam_data.DOMAIN_NAMES[lang][d], "weight": w}
+        for d, (_, w) in exam_data.DOMAINS.items()
+    }
+    render_page(
+        questions=questions,
+        domains_js=domains_js,
+        ui=UI[lang],
+        per_domain=PER_DOMAIN,
+        pass_score=PASS_SCORE,
+        pass_pct=PASS_PCT,
+        store_key=f"ccaf-exam-{lang}",
+        lang_attr=lang,
+        title=LANG_TITLES[lang],
+        page_title=f"{LANG_LABELS[lang]} — Practice Exam · Ravn",
+        out_path=os.path.join(ROOT_DIR, f"exam_{lang}.html"),
+    )
 
 
 def main():
