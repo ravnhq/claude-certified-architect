@@ -1,5 +1,5 @@
 # Project State
-updated: 2026-07-30
+updated: 2026-08-03
 
 ## Goal
 Publish Ravn-curated preparation materials for Claude Certified Architect tracks.
@@ -16,6 +16,10 @@ parameterized `render_page()`, so Foundations and Professional run one engine. T
 now scores multiple-response items all-or-nothing, and the per-domain draw accepts either
 a scalar (Foundations: flat 12) or a map (Professional: weighted 11/8/12/10/9/9/4 = 63).
 Foundations behavior is unchanged.
+Ten code-review findings are repaired (2026-08-03): the review pane now lists every item
+that did not score, each track owns its cut score, authored text is escaped on both the
+innerHTML and script-payload paths, a saved attempt is versioned and mix-checked, and the
+three validator gates that had always reported green now catch the defects they exist for.
 Earlier work still holds: guide anchors are unique; search is self-hosted, resilient, and
 accessible; practice exams are keyboard-operable, responsive, semantic, and AA-safe.
 Correct-answer feedback uses a green accent (`--good: #6FA97C`); gold carries
@@ -27,6 +31,16 @@ This change set sits on `feature/ccarp-professional-study-materials`; production
 remains to be checked.
 
 ## Verification path
+- `python3 utils/validate_professional_bank.py` -- PASS 2026-08-03: the stem/key select-count
+  check and the case-insensitive cross-reference guard were each proved against an injected
+  defect, not only against the clean bank.
+- `node utils/test_exam_render.mjs` -- PASS 2026-08-03 (28 checks). Runs the engine against a
+  stub DOM and reads the HTML back, so the summary and question screens are covered. It fails
+  6 of 10 checks against the pre-fix page, which is what makes it a real gate.
+- `node utils/test_exam_engine.mjs` -- PASS 2026-08-03 (90 checks), now covering grading
+  buckets, escaping, and saved-attempt rejection.
+- Rebuilding all four pages after the `render_page()` cut-score refactor produced a zero
+  diff, which isolated that change from every behavior fix that followed.
 - `python3 utils/validate_professional_bank.py` -- PASS 2026-07-30 (126 items; per domain
   22/16/24/20/18/18/8; all 38 official objectives covered; multiple-response share 20.6%).
 - `python3 utils/build_professional_exam.py` -- PASS 2026-07-30 (126-item bank, 63 drawn
@@ -72,6 +86,25 @@ remains to be checked.
   instead of linked.
 - Cite and date official track facts because Anthropic marks the exam guide subject to change.
 - Self-host the MiniSearch browser bundle generated from the pinned build dependency.
+- Grade in pure functions above the harness boundary in `utils/build_exam_html.py`. The
+  summary screen renders only what `tallyAttempt()` returns. A half-picked multiple-response
+  answer scores as incorrect and must still reach the review pane.
+- Every item that does not score is reviewable. Blank and half-picked rows say so rather
+  than rendering an empty dash.
+- All authored text reaching innerHTML goes through `esc()` or `md()`, and the inline script
+  payloads escape `<` and U+2028/U+2029. Item text must never be able to close the script.
+- Bump `STORE_VERSION` when a saved attempt stops being valid, for example when the
+  per-domain draw changes. `load()` also checks the per-domain mix, not only the total. A payload with no stamp
+  predates versioning and is accepted when it passes those checks; never discard a valid
+  attempt in progress just because it is unstamped.
+- Derive the per-domain draw with largest-remainder apportionment, never per-domain
+  `round()`: rounded shares need not total the exam size, and the gate would then reject
+  every possible draw.
+- An option that is only temporarily unavailable gets `aria-disabled`, never `disabled`, so
+  it stays reachable by keyboard and screen reader, and the page states why on screen.
+  `disabled` is reserved for a revealed option, which is inert for good.
+- Each track owns its own cut score. `render_page()` takes `pass_score` and `pass_pct`;
+  Professional reads `_exam.pass_score` from its blueprint.
 - Use native answer buttons for every answer option. An item is single-response or
   multiple-response scored all-or-nothing; Foundations items stay single-response.
 

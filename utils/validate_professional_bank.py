@@ -13,8 +13,37 @@ from collections import Counter
 
 # Option letters are reassigned when the bank is rebalanced, so an explanation
 # that points at "option D" or "C below" silently becomes wrong. Explanations
-# must stand on their own.
-CROSS_REF = re.compile(r'\b(?:option|options|see)\s+[A-E]\b|\b[A-E]\s+(?:below|above)\b')
+# must stand on their own. The keyword is matched in both cases, because
+# "Option D fails because..." at the start of a sentence is the usual way to
+# write it; the letter stays uppercase on purpose. re.IGNORECASE over the whole
+# pattern would flag the ordinary phrase "see a cost spike".
+CROSS_REF = re.compile(r'\b(?:[Oo]ptions?|[Ss]ee)\s+[A-E]\b|\b[A-E]\s+(?:below|above)\b')
+
+# The stem of a multiple-response item must state the same count the item is
+# keyed to. A stem that says "(Select TWO.)" on an item keyed to three answers
+# renders under a "Select 3 responses." badge, and all-or-nothing scoring then
+# marks a candidate who obeys the stem wrong.
+SELECT_WORD = re.compile(r'\bselect\b', re.IGNORECASE)
+NUMBER_RE = re.compile(r'\b(one|two|three|four|five|[1-5])\b', re.IGNORECASE)
+NUMBER_WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
+
+
+def stated_select_counts(question: str) -> list[int]:
+    """Every count the stem states after the word "select".
+
+    The number is not always the token right after "select" — five stems in the
+    bank write "Select the TWO design choices" — so read the rest of that
+    sentence and take its first number. Prose elsewhere in the stem is ignored:
+    p3-19 says "these two needs" while asking for a different count.
+    """
+    counts = []
+    for m in SELECT_WORD.finditer(question):
+        sentence = re.split(r'[.?!)]', question[m.end():m.end() + 60], maxsplit=1)[0]
+        found = NUMBER_RE.search(sentence)
+        if found:
+            word = found.group(1).lower()
+            counts.append(NUMBER_WORDS.get(word) or int(word))
+    return counts
 
 UTILS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(UTILS_DIR)
@@ -79,16 +108,23 @@ def main():
         flagged = sorted(o["letter"] for o in opts if o.get("correct"))
         is_multi = isinstance(correct, list)
 
+        stem = q.get("question") or ""
+        stated = stated_select_counts(stem)
         if is_multi:
             if len(opts) != 5:
                 err(qid, f"multiple-response items need 5 options, got {len(opts)}")
             if not 2 <= len(correct) <= 3:
                 err(qid, f"multiple-response items select 2 or 3, got {len(correct)}")
-            if "select" not in (q.get("question") or "").lower():
+            if not stated:
                 err(qid, "multiple-response question does not state how many to select")
+            elif any(n != len(correct) for n in stated):
+                err(qid, f"stem asks the candidate to select {sorted(set(stated))}, "
+                         f"but the item is keyed to {len(correct)} answer(s)")
         else:
             if len(opts) != 4:
                 err(qid, f"single-response items need 4 options, got {len(opts)}")
+            if any(n != 1 for n in stated):
+                err(qid, f"single-response stem asks the candidate to select {sorted(set(stated))}")
 
         key = sorted(correct) if is_multi else [correct]
         if key != flagged:

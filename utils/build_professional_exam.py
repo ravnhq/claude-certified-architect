@@ -56,11 +56,18 @@ def main():
             raise SystemExit(f"domain {d}: bank holds {have} items, the draw needs {want}")
     drawn = sum(DRAW.values())
 
+    # The cut score comes from the CCAR-P blueprint, not from the Foundations
+    # constant in the engine: the two agree today and must stay independent.
+    pass_score = blueprint["_exam"]["pass_score"]
+    scale_top = blueprint["_exam"]["scale"][1]
+
     engine.render_page(
         questions=questions,
         domains_js=domains_js,
         ui=UI,
         per_domain=DRAW,
+        pass_score=pass_score,
+        pass_pct=round(pass_score / scale_top * 100),
         store_key="ccarp-exam-en",
         lang_attr="en",
         title="Claude Certified Architect — Professional Practice Exam",

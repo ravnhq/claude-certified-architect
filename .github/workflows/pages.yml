@@ -57,6 +57,12 @@ jobs:
       - name: Check the quiz engine
         run: node utils/test_exam_engine.mjs
 
+      # Covers what the engine harness cannot: the summary and question screens
+      # only exist once the engine writes them, and a review pane that silently
+      # drops an item still scores it as incorrect.
+      - name: Check the rendered exam screens
+        run: node utils/test_exam_render.mjs
+
       # Must stay before build-pages.mjs: the site build copies the exam HTML,
       # and falls back to a "not generated yet" placeholder if it is missing.
       - name: Build static site

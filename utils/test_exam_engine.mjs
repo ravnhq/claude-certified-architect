@@ -12,8 +12,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+// fileURLToPath, not URL.pathname: pathname keeps percent-encoding, so a repo
+// cloned into a path with a space would resolve to ".../My%20Repos/..." and
+// every read would fail with ENOENT. It also drops the leading slash Windows
+// would otherwise carry.
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 let failures = 0;
 function check(name, cond, detail = '') {
@@ -46,8 +51,89 @@ function loadEngine(file) {
   };
   vm.createContext(ctx);
   vm.runInContext(src + '\n' + answerFn +
-    '\nthis.__api = { QUESTIONS, PER_DOMAIN, DOMAINS, STORE_KEY, state, answer, drawCount, examSize, isMulti, selectCount, hasAnswer, isCorrect, isChosenLetter, letterLabel, shuffleOrder, qById };', ctx);
+    '\nthis.__api = { QUESTIONS, PER_DOMAIN, DOMAINS, STORE_KEY, STORE_VERSION, state, answer, drawCount, drawPerDomain, examSize, isMulti, selectCount, hasAnswer, isCorrect, isChosenLetter, letterLabel, shuffleOrder, qById, classify, tallyAttempt, esc, md, save, load, localStorage };', ctx);
   return ctx.__api;
+}
+
+// The engine lives in the page's only inline <script>. The data payloads must
+// not be able to open a second one — an item holding "</script>" would both
+// break the page and make loadEngine() slice from inside the data.
+function scriptTags(file) {
+  const html = fs.readFileSync(path.join(ROOT, file), 'utf8');
+  return { open: (html.match(/<script>/g) || []).length,
+           close: (html.match(/<\/script>/g) || []).length };
+}
+
+// Escaping and grading are shared by both tracks, so check them once per page.
+function checkSharedEngine(e, file) {
+  const st = scriptTags(file);
+  check('page holds exactly one inline script', st.open === 1 && st.close === 1, JSON.stringify(st));
+
+  check('esc neutralizes markup', e.esc('<img src=x onerror=1>') === '&lt;img src=x onerror=1&gt;');
+  check('esc escapes the ampersand first', e.esc('Q&A') === 'Q&amp;A');
+  check('md keeps a raw "<" as text', e.md('latency < 500 ms') === 'latency &lt; 500 ms',
+    e.md('latency < 500 ms'));
+  check('md still renders code and bold',
+    e.md('use `--tool` and **stop**') === 'use <code>--tool</code> and <strong>stop</strong>',
+    e.md('use `--tool` and **stop**'));
+  check('md cannot inject a script tag', e.md('</script><script>x()</script>').indexOf('<script>') < 0);
+
+  // A question that scores must never be listed as reviewable, and every
+  // question that does not score must be — blank and half-picked included.
+  const all = e.tallyAttempt(e.QUESTIONS, {});
+  const reviewable = Object.values(all.wrongByDomain).reduce((s, a) => s + a.length, 0);
+  check('tally: nothing answered means nothing counted as answered', all.answered === 0);
+  check('tally: the review pane covers every item that did not score',
+    reviewable === all.wrong + all.unanswered, `${reviewable} vs ${all.wrong + all.unanswered}`);
+  const allRight = {};
+  e.QUESTIONS.forEach(q => { allRight[q.id] = Array.isArray(q.correct) ? q.correct.slice() : q.correct; });
+  const perfect = e.tallyAttempt(e.QUESTIONS, allRight);
+  check('tally: a perfect attempt leaves the review pane empty',
+    Object.keys(perfect.wrongByDomain).length === 0 && perfect.correct === e.QUESTIONS.length);
+
+  // Persistence: a payload this engine did not write must be discarded, or a
+  // returning candidate keeps an order the current blueprint no longer draws.
+  e.state.order = e.shuffleOrder();
+  e.state.answers = {};
+  e.state.mode = 'exam';
+  e.state.current = 0;
+  e.save();
+  const raw = e.localStorage.getItem(e.STORE_KEY);
+  check('load accepts a payload this engine wrote', !!e.load());
+
+  const bumped = JSON.parse(raw); bumped.v = e.STORE_VERSION + 1;
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(bumped));
+  check('load rejects a payload from another store version', e.load() === null);
+
+  // A pre-versioning payload is kept if it is otherwise valid, so upgrading the
+  // engine does not throw away an attempt a candidate has in progress.
+  const unversioned = JSON.parse(raw); delete unversioned.v;
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(unversioned));
+  check('load keeps a valid unversioned pre-upgrade payload', !!e.load());
+
+  // It must still face every other check.
+  const unversionedShort = JSON.parse(raw);
+  delete unversionedShort.v;
+  unversionedShort.order = unversionedShort.order.slice(1);
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(unversionedShort));
+  check('an unversioned payload still has to pass the size check', e.load() === null);
+
+  // Same total, drifted mix: swap one drawn id for a spare from another domain.
+  const mixed = JSON.parse(raw);
+  const drawn = new Set(mixed.order);
+  const spare = e.QUESTIONS.find(q => !drawn.has(q.id));
+  if (spare) {
+    const dropAt = mixed.order.findIndex(id => e.qById(id).domain !== spare.domain);
+    mixed.order[dropAt] = spare.id;
+    e.localStorage.setItem(e.STORE_KEY, JSON.stringify(mixed));
+    check('load rejects a saved order whose per-domain mix drifted',
+      e.load() === null, `length is still ${mixed.order.length}`);
+  }
+  e.localStorage.setItem(e.STORE_KEY, raw);
+
+  const want = e.drawPerDomain();
+  check('drawPerDomain totals the attempt size',
+    Object.values(want).reduce((s, c) => s + c, 0) === e.examSize());
 }
 
 console.log('Foundations engine (exam_en.html)');
@@ -70,6 +156,7 @@ console.log('Foundations engine (exam_en.html)');
   check('an array is not answered on a single-response item', !e.hasAnswer(q, [q.correct]));
   check('no multi items leaked into Foundations',
     e.QUESTIONS.every(x => !Array.isArray(x.correct)));
+  checkSharedEngine(e, 'exam_en.html');
 }
 
 console.log('Professional engine (professional_exam_en.html)');
@@ -186,6 +273,37 @@ console.log('Professional engine (professional_exam_en.html)');
   e.state.mode = 'exam';
   e.answer(single.id, other);
   check('exam: a single answer can be changed', e.state.answers[single.id] === other);
+
+  // ---- grading buckets -------------------------------------------------
+  // A half-picked multi item scores as incorrect but used to be dropped from
+  // the review pane, so the candidate never saw the rationale.
+  const partial = key.slice(0, key.length - 1);
+  const wrongLetter = single.options.find(o => o.letter !== single.correct).letter;
+  check('classify: a complete correct multi answer is correct',
+    e.classify(multi, key.slice()) === 'correct');
+  check('classify: a half-picked multi answer is incomplete',
+    e.classify(multi, partial) === 'incomplete');
+  check('classify: a blank item is incomplete', e.classify(multi, undefined) === 'incomplete');
+  check('classify: a wrong single answer is incorrect',
+    e.classify(single, wrongLetter) === 'incorrect');
+
+  const t = e.tallyAttempt([multi, single],
+    { [multi.id]: partial, [single.id]: single.correct });
+  check('tally: a half-picked multi item is not counted as answered', t.answered === 1);
+  check('tally: a half-picked multi item counts as unanswered', t.unanswered === 1);
+  check('tally: a half-picked multi item reaches the review pane',
+    (t.wrongByDomain[multi.domain] || []).some(x => x.q.id === multi.id && x.verdict === 'incomplete'));
+  check('tally: a half-picked multi item keeps the letters it did pick',
+    ((t.wrongByDomain[multi.domain] || [])[0] || {}).chosen === partial);
+  check('tally: the correct single answer stays out of the review pane',
+    !Object.values(t.wrongByDomain).some(a => a.some(x => x.q.id === single.id)));
+  // Both items sampled above can share a domain, so count across domains: the
+  // single answer scores and the half-picked multi item must not.
+  check('tally: a half-picked multi item scores nothing',
+    t.correct === 1 && Object.values(t.domStat).reduce((s, x) => s + x.correct, 0) === 1 &&
+    Object.values(t.domStat).reduce((s, x) => s + x.total, 0) === 2);
+
+  checkSharedEngine(e, 'professional_exam_en.html');
 }
 
 console.log(failures === 0 ? '\nAll engine checks passed.' : `\n${failures} check(s) FAILED.`);

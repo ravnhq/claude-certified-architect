@@ -33,16 +33,39 @@ def draw_by_int_domain() -> dict:
     return {int(d): n for d, n in DRAW.items()}
 
 
+def expected_draw(domains: dict, size: int = EXAM_SIZE) -> dict:
+    """Apportion `size` items over the official domain weights.
+
+    Largest remainder (Hare-Niemeyer): give every domain its whole part, then
+    hand the leftover seats to the largest fractions. Per-domain round() cannot
+    be used here — rounded shares need not add up to `size`, so a later weight
+    revision would leave no draw able to satisfy both the per-domain check and
+    the total, and the gate would reject every possible fix.
+    """
+    keys = sorted(domains, key=int)
+    exact = {d: domains[d]["weight"] / 100 * size for d in keys}
+    seats = {d: int(exact[d]) for d in keys}
+    leftover = size - sum(seats.values())
+    # Ties break on domain order, so the result is stable run to run.
+    ranked = sorted(keys, key=lambda d: (-(exact[d] - seats[d]), int(d)))
+    for d in ranked[:leftover]:
+        seats[d] += 1
+    return seats
+
+
 def check_draw(blueprint: dict) -> None:
     """Fail loudly if DRAW stops describing the official blueprint."""
     domains = blueprint["domains"]
     if set(DRAW) != set(domains):
         raise SystemExit(f"draw covers {sorted(DRAW)}, blueprint has {sorted(domains)}")
+    total_weight = sum(v["weight"] for v in domains.values())
+    if total_weight != 100:
+        raise SystemExit(f"blueprint weights total {total_weight}%, expected 100%")
     if sum(DRAW.values()) != EXAM_SIZE:
         raise SystemExit(f"draw totals {sum(DRAW.values())}, expected {EXAM_SIZE}")
-    for d, n in DRAW.items():
-        expected = round(domains[d]["weight"] / 100 * EXAM_SIZE)
-        if n != expected:
+    expected = expected_draw(domains)
+    for d, n in sorted(DRAW.items(), key=lambda kv: int(kv[0])):
+        if n != expected[d]:
             raise SystemExit(
                 f"domain {d}: draw {n} does not match its {domains[d]['weight']}% "
-                f"weight over {EXAM_SIZE} items (expected {expected})")
+                f"weight over {EXAM_SIZE} items (expected {expected[d]})")
