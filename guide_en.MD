@@ -1526,6 +1526,8 @@ When Edit fails due to a non-unique text match:
 - Appending tool results to context between iterations
 - Anti-patterns to avoid: parsing assistant text for completion, using arbitrary iteration limits as the primary stopping mechanism
 
+**Mechanics of the loop.** A tool turn produces an assistant message whose `content` is a list of blocks — typically a `text` block (the model narrating intent) plus one or more `tool_use` blocks. You execute each requested tool and reply with a *user* message containing `tool_result` blocks; each carries a `tool_use_id` that must match the `tool_use` it answers, so when Claude requests several tools in one turn the ids — not the ordering — pair results to requests. The follow-up request must resend the full history (user → assistant `tool_use` → user `tool_result`) *and* the original tool schemas, even on a turn where no further call is expected, because the prior blocks reference them. The loop ends only when `stop_reason` is no longer `"tool_use"`; never terminate by checking whether the assistant said it is done.
+
 ## 1.2 Orchestrating Multi-agent Systems (Coordinator–Subagent)
 
 ### Key knowledge:
@@ -1538,6 +1540,21 @@ When Edit fails due to a non-unique text match:
 - Split research coverage among subagents to minimize duplication
 - Implement iterative refinement loops (coordinator evaluates synthesis and re-routes tasks)
 - Route all communication through the coordinator for observability
+
+**Workflow vs. agent — the governing decision.** Use a **workflow** when you can write the exact sequence of steps ahead of time; use an **agent** when the steps are unknown and Claude must plan from a toolset. Workflows are more reliable and far easier to test and evaluate because the path is fixed; agents trade reliability and testability for flexibility (a lower successful-completion rate, harder to reproduce). Default to workflows and reach for an agent only when the task genuinely cannot be scripted.
+
+**Named workflow patterns** (all fixed, code-orchestrated calls to Claude):
+
+| Pattern | When it fits |
+|---|---|
+| Chaining | A long prompt with many constraints that Claude keeps violating; split into focused sequential steps so each call attends to one concern |
+| Routing | Input must be handled by a specialized pipeline — first call categorizes, then dispatch to the matching prompt/tools |
+| Parallelization | One task split into independent sub-asks (evaluate each material separately); run concurrently, then aggregate |
+| Evaluator-optimizer | Produce → grade → feed back → repeat until the grader accepts |
+
+**Tool abstraction for agents.** Give an agent a small set of abstract tools (`read_file`, `write_file`, `run_command`) and let Claude compose them — the way Claude Code uses `Bash`/`Read`/`Write`. Hyper-specialized tools (`refactor_file`, `install_dependencies`) remove the planning that makes an agent flexible and only cover pre-planned scenarios.
+
+**Environment inspection.** After (and often before) an action, the agent needs a way to observe its result beyond the tool's return value — a screenshot after a click, a file read before a write. Without inspection the agent cannot gauge progress or recover from surprises; build it into the system prompt (for example, run a caption extractor on the generated video, then inspect the frames).
 
 ## 1.3 Configuring Subagent Calls, Context Passing, and Spawning
 
@@ -1553,6 +1570,8 @@ When Edit fails due to a non-unique text match:
 - Spawn parallel subagents via multiple `Task` calls in a single coordinator turn
 - Write coordinator prompts in terms of goals and quality criteria rather than step-by-step instructions
 
+**Passing context to subagents.** Because subagent context is isolated, the prompt must be self-contained: the full prior outputs, the document text, and the output schema. Separate data from metadata with explicit structure so the subagent cannot confuse a finding with its source. Spawn parallel work by emitting several `Task` calls in a single coordinator turn. Describe the work in terms of goals and quality criteria (“produce a coverage-annotated synthesis with a citation for every claim”) rather than a rigid step list — a rigid list defeats the flexibility of delegation and tends to reproduce the coordinator’s own bias.
+
 ## 1.4 Implementing Multi-step Workflows with Enforcement and Handoff Patterns
 
 ### Key knowledge:
@@ -1564,6 +1583,8 @@ When Edit fails due to a non-unique text match:
 - Programmatic preconditions that block downstream calls until prior steps are complete (e.g., block `process_refund` until `get_customer` returns a verified ID)
 - Decompose multi-aspect customer requests into separate items
 - Produce structured summaries when escalating to a human
+
+**Enforcement vs. guidance.** Ordering a workflow by prompt (“always verify identity first”) is *probabilistic* — Claude usually complies but can skip it. A programmatic precondition (a hook or a guard that refuses `process_refund` until `get_customer` has returned a verified id) is *deterministic*. Use guidance for preference and flow; use preconditions for anything with financial, legal, or safety weight. For multi-aspect requests (“my order is broken and I want a manager”), decompose into separate items and handle each on its own merits rather than collapsing them into one action.
 
 ## 1.5 Agent SDK Hooks for Intercepting Tool Calls and Normalizing Data
 
@@ -1577,6 +1598,8 @@ When Edit fails due to a non-unique text match:
 - Interception hooks to block policy-violating actions with redirection to escalation
 - Choose hooks over prompts when business rules require guaranteed compliance
 
+**Why hooks, not prompts, for hard rules.** A prompt instruction is a request Claude can decline; a hook is code at a fixed point in the loop that cannot be skipped. `PostToolUse` is ideal for normalization (Unix epoch → ISO 8601, status codes → labels) because it transforms a result before the model sees it. `PreToolUse` is the enforcement primitive — it can `deny`, `ask`, or silently `update` the input (for example, redact a secret from a Bash command and still let it run). Reserve hooks for rules where failure has consequences; over-hooking routine formatting only adds latency.
+
 ## 1.6 Task Decomposition Strategies for Complex Workflows
 
 ### Key knowledge:
@@ -1588,6 +1611,8 @@ When Edit fails due to a non-unique text match:
 - Use prompt chaining for predictable multi-aspect reviews; use dynamic decomposition for open-ended investigations
 - Split large code reviews into per-file analysis plus a separate cross-file integration pass
 - Decompose open-ended tasks: map structure first, then build a prioritized plan
+
+**Fixed vs. dynamic decomposition.** Choose a fixed pipeline (prompt chaining) when the structure is known up front and reproducibility matters — per-file review then an integration pass, or extraction → validation → enrichment. Choose dynamic adaptive decomposition when the scope only becomes clear as you work: map structure first, let the findings set the next task, and re-plan when a dependency surfaces. For large reviews, the per-file-then-integration split is what prevents attention dilution — a single pass over many files produces deep analysis for some files and shallow for others, and flags a pattern in one file that it ignores in another.
 
 ## 1.7 Session State, Resuming, and Forking
 
@@ -1601,6 +1626,8 @@ When Edit fails due to a non-unique text match:
 - Use `--resume` to continue named investigation sessions
 - Use `fork_session` to compare approaches in parallel
 - Choose between resuming (context still current) vs starting a new session (results stale)
+
+**Resume vs. fork vs. fresh.** `--resume <session>` continues a named session with its saved context — good for a long investigation you walked away from, but risky if files changed, because cached tool results may now be stale. `fork_session` branches from shared context so two approaches (Redux vs. Context API) can diverge independently without polluting each other. When results have aged or the context has degraded, a fresh session opened with a short written summary is more reliable than resuming stale tool data — and tell the agent what changed since the prior session.
 
 ---
 
@@ -1619,6 +1646,8 @@ When Edit fails due to a non-unique text match:
 - Rename tools to eliminate functional overlap (e.g., `analyze_content` -> `extract_web_results`)
 - Split general-purpose tools into specialized ones with clear input/output contracts
 
+**Writing the description.** The description is the selection mechanism, so make it discriminate: state what the tool does, what it returns, the input format with an example value, edge cases, and — critically — *when to use this tool versus a near-twin*. If `analyze_content` and `analyze_document` read alike, the model will misroute; either rename to eliminate the overlap (`analyze_content` → `extract_web_results`) or split a general tool into specialized ones with distinct contracts. Watch the system prompt too: a line like “always verify the customer” can bias the model toward `get_customer` even when it is unnecessary. When an MCP tool overlaps a built-in (your `search_code` vs `Grep`), spell out the concrete advantage only your tool provides, or the model defaults to the built-in.
+
 ## 2.2 Implementing Structured Error Responses for MCP Tools
 
 ### Key knowledge:
@@ -1632,6 +1661,8 @@ When Edit fails due to a non-unique text match:
 - Use `retryable: false` for business-rule violations with clear user-facing explanations
 - Do local recovery inside subagents for transient failures; propagate only errors they cannot resolve
 - Distinguish access failures (retry decision) from valid empty results (no matches)
+
+**`isError` and what to put in it.** Set `isError: true` and return a **structured** payload — `errorCategory` (transient / validation / business / permission), `isRetryable`, a human-readable message, what was attempted, and any partial results. A bare `"Operation failed"` gives the agent nothing to decide on. The categories drive the action: transient (timeout, 503) → retry with backoff; validation (bad input) → fix the request and retry; business (policy/threshold) → explain to the user, not retryable; permission (access denied) → escalate. Two anti-patterns to avoid: **silent suppression** (returning an empty result on failure so the coordinator mistakes “search broke” for “no matches”) and **aborting the whole workflow** on one failure (you lose all partial results) — instead annotate the gap and continue.
 
 ## 2.3 Allocating Tools Across Agents and Configuring `tool_choice`
 
@@ -1647,6 +1678,8 @@ When Edit fails due to a non-unique text match:
 - Use `tool_choice: "any"` to guarantee a tool call instead of a text answer
 - Force a specific tool to ensure execution order
 
+**Right-size the toolset.** Reliability falls as tools multiply — about 4–5 well-chosen tools per agent beats 18. Scope each subagent to its role plus only a few cross-role utilities; an agent with tools outside its specialization tends to misuse them. Replace a general tool with a constrained one when the constraint is the point (`fetch_url` → `load_document` that rejects non-doc URLs). `tool_choice` then governs selection: `"auto"` lets the model answer in text or call a tool (default), `"any"` forces *some* tool call (guaranteed structured output when several schemas exist), and `{"type":"tool","name":"extract_metadata"}` forces a specific tool to lock an execution order (metadata before enrichment).
+
 ## 2.4 Integrating MCP Servers into Claude Code and Agent Workflows
 
 ### Key knowledge:
@@ -1660,6 +1693,10 @@ When Edit fails due to a non-unique text match:
 - Keep personal/experimental servers in `~/.claude.json`
 - Prefer community MCP servers over custom servers for standard integrations
 
+**MCP topology and config.** An MCP deployment is **Host → Client → Server**: the server owns tools, resources, and prompts; the client is the bridge that lists and calls them (a `ListToolsRequest` discovers tools, a `CallToolRequest` runs one). The connection is **transport-agnostic** — stdio on the same machine is the common dev transport; HTTP and WebSocket are alternatives. For config the guide tests **two scopes**: project `.mcp.json` (version-controlled, shared, tokens via `${ENV_VAR}` substitution so secrets are not committed) and user `~/.claude.json` (personal, experimental). On connection, tools from *all* servers are discovered and available at once. (Note: the prep course describes additional MCP scopes; the exam guide tests two — keep the two-scope model.)
+
+**The three primitives and when each fits.** **Tools** are functions the model calls to act; **Resources** are data the client reads for context without a tool round-trip (an `@document` mention can be expanded via a *templated* resource like `docs://documents/{doc_id}`, vs. a *direct* resource with a static URI); **Prompts** are server-authored, pre-tested message templates for a workflow the *user* triggers (a `/format` slash command) — use a Prompt, not a Tool, when the user controls when the workflow starts. Test all three in the **MCP Inspector** (`mcp dev mcp_server.py`) before wiring to Claude. In the Python SDK, define a tool with the `@mcp.tool()` decorator and let the SDK generate the JSON schema rather than hand-writing it.
+
 ## 2.5 Selecting and Applying Built-in Tools (Read, Write, Edit, Bash, Grep, Glob)
 
 ### Key knowledge:
@@ -1672,6 +1709,10 @@ When Edit fails due to a non-unique text match:
 - Use Grep for content search and Glob for file discovery by patterns
 - Build understanding incrementally: Grep entry points, then Read to trace flows
 - Trace function usage through wrapper modules
+
+**Choosing among Read/Write/Edit/Bash/Grep/Glob.** `Glob` finds files by name or pattern (`**/*.test.tsx`); `Grep` searches *inside* files (a function name, an error string, an import). Investigate incrementally — `Grep` an entry point, `Read` the hits, `Grep` the usages, `Read` the callers — rather than reading everything at once. `Edit` makes a precise replacement via a unique text match; when the match is not unique, fall back to `Read` the whole file, modify it, and `Write` it back. `Bash` runs shell (git, tests, build) and is the escape hatch when no file tool fits.
+
+**Two senses of “built-in tool.”** Do not conflate Claude Code’s local file/shell tools with the API’s server-side built-in tools — they share the word “built-in” but split the work differently. The Claude Code tools above run on *your* machine; Claude Code itself supplies both schema and execution. At the API level, “built-in” means Claude supplies the *schema* (a small dated stub the model expands into a full spec), and who supplies *execution* depends on the tool: the **text editor** tool gives Claude file-creation and string-replace abilities, but **you** must implement the functions that actually touch the file system — the schema is free, the execution is not. The **web search** and **code execution** tools are *server-side*: you add only the predefined schema and Claude runs them — web search returns result blocks plus citation blocks you can render, and code execution runs Python in an **isolated Docker container with no network access** (move data in and out with the Files API’s `container_upload` block and downloaded output file IDs). The design lesson: a server-side built-in gives you capability with no code to maintain but no control over how it runs; the text editor leaves execution in your hands, so you keep control but own the glue code. When a custom tool overlaps a server-side built-in (your own `search` vs the web search tool), prefer the built-in unless you need data or behavior it cannot reach.
 
 ---
 
@@ -1690,6 +1731,8 @@ When Edit fails due to a non-unique text match:
 - Use `@path` (e.g., `@./standards/testing.md`) to selectively include standards in each package’s CLAUDE.md
 - Split large CLAUDE.md into multiple `.claude/rules/` files (testing.md, api-conventions.md, deployment.md)
 
+**CLAUDE.md is instruction, not configuration.** It is guidance Claude *tries* to follow, not a rule it *must* follow — so a hard rule (“never push to main”) belongs in a `PreToolUse` hook, which stops the action even when Claude attempts it. The file also competes with itself: the longer it grows, the less of it Claude reliably honors. Keep it lean by (a) making rules **specific and checkable** (“put new API routes in `src/api/handlers/`, one per file”, not “follow best practices”), (b) **naming the replacement** (“use named exports, not default exports” closes the loophole that “don’t use default exports” leaves open), and (c) treating **emphasis as a budget** — reserve “IMPORTANT”/“you must” for the two or three rules that hurt when broken. When Claude does the wrong thing, treat it as a bug report against the file and ask it to add the rule. Note that `@path` imports organize a large file but **do not reduce context** — imported files are expanded inline at launch, so everything still loads up front.
+
 ## 3.2 Creating and Configuring Custom Slash Commands and Skills
 
 ### Key knowledge:
@@ -1704,6 +1747,10 @@ When Edit fails due to a non-unique text match:
 - Use `allowed-tools` to restrict what tools a skill can use
 - Use `argument-hint` to prompt developers for required parameters
 
+**Skill packaging.** A skill is a folder: a `SKILL.md` with a name, a `description` that triggers it, and the procedure, plus optional `reference.md` for deep material and scripts Claude *executes* rather than loads. Keep `SKILL.md` lean and push depth into the side files — only descriptions load until a skill is invoked, so a fat skill wastes no context at rest. `context: fork` runs the skill in an isolated subagent so verbose output never reaches the main session; `allowed-tools` is the security boundary (a skill that should never delete files must not list `Write`/`Bash`). If you have typed the same multi-step procedure twice, it is a skill.
+
+**Plugins — read before you install.** Installing a plugin grants it your own privileges, and any hook it carries joins your existing ones rather than superseding them — matching tool calls fire both. That is the whole risk: a plugin can register a `Stop` hook that reaches the network, and your configuration gives no signal that it happened. Popularity is not review. Enumerate the hooks, agents, and MCP servers a plugin contributes before you enable it. Skills, agents, and commands are namespaced under the plugin name so they cannot clash with yours, but behavior-changing `settings.json` keys (for example, promoting a plugin subagent to the main thread) do change how Claude Code behaves by default.
+
 ## 3.3 Using Path-specific Rules for Conditional Convention Loading
 
 ### Key knowledge:
@@ -1715,6 +1762,8 @@ When Edit fails due to a non-unique text match:
 - Create `.claude/rules/` files with `paths: ["terraform/**/*"]` to load only when working on matching files
 - Use glob patterns (`**/*.test.tsx`) to apply conventions by file type regardless of location
 - Prefer path-specific rules over directory-level CLAUDE.md when conventions span the codebase
+
+**Why path-scoped rules save context.** A `.claude/rules/` file with `paths: ["terraform/**/*"]` is loaded only when Claude edits a matching file; everything else stays out of context. This is the right tool when a convention applies to a *kind* of file scattered across the tree (tests, migrations) — a directory-level `CLAUDE.md` would force you to repeat the same rule in every directory. For conventions tied to one place, a directory-level `CLAUDE.md` is still simpler.
 
 ## 3.4 Deciding When to Use Planning Mode vs Direct Execution
 
@@ -1730,6 +1779,8 @@ When Edit fails due to a non-unique text match:
 - Use Explore subagent to prevent context-window exhaustion in multi-phase tasks
 - Combine approaches: plan for discovery, then execute for implementation
 
+**Planning mode and steering a long run.** Plan mode researches read-only and hands you a plan; the more thoroughly you read and revise that plan before approving, the fewer hiccups during execution. For autonomy, `/goal` sets a **checkable completion condition** (“all tests in `src/billing` pass and the type checker reports zero errors”) and keeps Claude working across turns until a fast evaluator confirms it — the condition must be checkable from output Claude produces (test results), not from private state; `/goal clear` cancels it. `/loop` re-runs a prompt on an interval to watch an external state (a CI run, a deploy) and act on change. When the session drifts, `/compact` with an instruction directs *what* the summary keeps (“keep only the API changes, drop the debugging”); `Rewind` (double-tap Escape on an empty prompt) restores a prior checkpoint so you do not prompt your way out of a wrong path. For two sessions on one repo, use **worktrees** so they cannot fight over the same files.
+
 ## 3.5 Iterative Refinement for Progressive Improvement
 
 ### Key knowledge:
@@ -1743,6 +1794,18 @@ When Edit fails due to a non-unique text match:
 - Build test sets with expected behavior, edge cases, and performance requirements before implementation
 - Use the interview pattern to surface design aspects (cache invalidation, failure modes)
 - Provide concrete test cases with sample inputs and expected outputs for edge cases
+
+**Iterate against an eval, not by eye.** A typical prompt-eval workflow: (1) write a draft prompt; (2) assemble a dataset of inputs — by hand, or generated by Claude (use a fast model like Haiku for generation, never the model under test); (3) run the prompt against every case; (4) **grade** each output; (5) average the scores for an objective baseline; (6) change the prompt and re-run to compare. Test on more than one or two of your own inputs before shipping — real users supply the inputs that break a prompt.
+
+**Grader types.**
+
+| Grader | What it checks | Notes |
+|---|---|---|
+| Code | Programmatic: length, substring presence, JSON/Python/regex syntax (parse the AST or regex) | Fast, deterministic; returns a score |
+| Model | Another Claude call judges quality, instruction-following, completeness | Most flexible; ask for **strengths, weaknesses, and reasoning** alongside the score, not just a number — a bare 1–10 collapses to safe middle values |
+| Human | A person rates the outputs | Most flexible, slowest and most tedious |
+
+Feed the grader the task, the generated output, and explicit **solution criteria** (“a good solution includes…”) so it judges against a standard. After applying any prompt-engineering technique, re-run the eval to confirm it actually improved — never assume.
 
 ## 3.6 Integrating Claude Code into CI/CD Pipelines
 
@@ -1758,6 +1821,16 @@ When Edit fails due to a non-unique text match:
 - Include prior review results when re-running after new commits (report only new/unfixed issues)
 - Document testing standards and available fixtures in CLAUDE.md to improve test generation quality
 - Include existing test files in context when generating new tests to avoid duplication and keep style consistent
+
+**Non-interactive execution.** `-p`/`--print` runs Claude Code one-shot (stdin in, stdout out) and is the only correct way to run it in a pipeline — it never waits for interactive input. Pair `--output-format json` with `--json-schema` so the structured result lands in a known field you can `jq` and pipe onward; for multi-step jobs, capture the session id from the JSON output and `--resume` it later. `--bare` skips auto-discovery of hooks, skills, plugins, MCP servers, and CLAUDE.md — you get Claude plus only the tools you explicitly allow, which makes CI runs reproducible.
+
+**Permission modes for unattended runs.** `auto` lets Claude run without prompts while a separate classifier reviews each action for *danger* (deploys, force-pushes, piping downloads to a shell, sending data to external endpoints) — but it does **not** judge correctness, so broken-but-safe code passes. Pair `auto` with a `Stop` hook that runs your tests so correctness is gated too. `don’t ask` auto-denies anything not pre-approved and is right for CI; `bypass permissions` skips all checks and belongs only inside an isolated container or VM.
+
+**Review options.** **Managed code review** (the Claude GitHub app) is Anthropic-hosted: review agents analyze the diff against the full codebase, post findings as inline comments tagged by severity, deduplicate and rank them, and **never approve or block** the PR — the judgment stays with a human; apply fixes locally with `/code-review --fix`. Reach for the **Claude Code GitHub Action** when the job is more than review (implement from a comment, scheduled reports, any GitHub event); it runs the agent on PR comments, cron, or manual dispatch, with `claude_args` tuning (`max_turns`, `permission_mode: don’t ask`, `allow_tools`).
+
+**Routines** run a saved prompt plus repo and connectors on Anthropic infrastructure on a cron or webhook trigger — no machine of yours stays on and no workflow file to maintain; each run starts from a fresh clone of the default branch and can push only to `claude/`-prefix branches, which keeps an autonomous run off `main`.
+
+**Verifying a run you did not watch.** Scale the checking to how little supervision the run had. Read the change, not the account of it: `git diff` is the evidence, and a confident summary can coexist with an edit to a file that was never in scope. Treat "tests pass" as a claim until something independent confirms it — a `Stop` hook that gates completion on the real result makes it unskippable, and returning exit code 2 hands the failure back for repair without your involvement. When the stakes justify it, add a **cold second opinion**: hand the diff to a reviewer that never saw the build — a separate session or subagent, carrying none of the original context. Independence is the mechanism, because a reviewer holding the reasoning that produced the code inherits its blind spots.
 
 ---
 
@@ -1775,6 +1848,12 @@ When Edit fails due to a non-unique text match:
 - Temporarily disable categories with high false-positive rates
 - Define explicit severity criteria with code examples for each level
 
+**First line, specificity, structure.** The first line carries the most weight: lead with an action verb and the task (“write three paragraphs explaining how solar panels work”), not a hedge (“can you help me with something about solar panels?”). Then be specific in one of two ways — list **attributes** the output should have (length, structure, required elements) for almost any prompt, or list **steps** for a complex problem where you want to force Claude to consider viewpoints it otherwise would not. Wrap large or interpolated content in **XML tags** (`<sales_records>…</sales_records>`, `<doc>…</doc> <instructions>…</instructions>`) so Claude can tell where one block ends and another begins — this matters most when you paste in many pages.
+
+**Temperature.** Temperature (0–1) shapes the sampling distribution: low (≈0.0–0.3) makes output deterministic and is right for **factual Q&A, coding, and data extraction**; high (≈0.8–1.0) widens the token distribution and is right for **brainstorming, creative writing, and marketing**. Raising temperature only *raises the chance* of variety — it does not guarantee it.
+
+**Role via system prompt.** A system prompt sets role and tone (“you are a patient math tutor; give hints, not the answer”) and applies to every turn; without it, Claude defaults to a helpful-but-generic style.
+
 ## 4.2 Using Few-shot Prompting to Improve Output Consistency
 
 ### Key knowledge:
@@ -1788,6 +1867,8 @@ When Edit fails due to a non-unique text match:
 - Include few-shot examples that demonstrate the output format (location, issue, severity, suggested fix)
 - Provide examples that distinguish acceptable code patterns from real issues
 - Provide examples of correct extraction from documents with different structures
+
+**How to write a few-shot example.** State explicitly “here is an example with a sample input and an ideal output,” then wrap the input and output in XML tags. Use multi-shot for **corner cases** (sarcasm, ambiguous intents) and add a line of context (“be especially careful with tweets that contain sarcasm”) right before the example that demonstrates it. For complex output formats, one fully-worked example teaches the structure faster than describing it. A high-value source of examples is your own eval: copy a test case the grader scored highly, and include a sentence on *why* it is ideal — the reasoning reinforces the target, not just the shape.
 
 ## 4.3 Enforcing Structured Output with `tool_use` and JSON Schemas
 
@@ -1804,6 +1885,14 @@ When Edit fails due to a non-unique text match:
 - Make fields optional/nullable when the source may not contain information to avoid fabricating values
 - Use enum values like `"unclear"` and `"other"` plus detail fields for extensible categorization
 
+**`tool_use` + schema is the guide’s recommended path** for structured output: it guarantees syntactically valid JSON and the required shape, and a forced `tool_choice` can guarantee a specific extraction tool runs first. Remember the mechanics: a tool turn returns **multi-block** content (text + `tool_use`), you reply with `tool_result` blocks in a *user* message keyed by `tool_use_id`, and you resend the schemas on the follow-up. Mark fields nullable (`"type": ["string","null"]`) and add `"other"`/`"unclear"` enums so the model returns `null` or “unclear” instead of fabricating — required fields with missing data are what drive hallucination.
+
+**The course’s API-level alternative (note the conflict).** The prep course also teaches getting raw structured data without a tool: **prefill** an assistant message with the opening delimiter (`` ```json ``) and set the matching closing fence as a **stop sequence**, so Claude emits only the JSON between them. This is the same idea behind “prefill + stop sequences for clean JSON.” The exam guide treats `tool_use` + schema as the *most reliable* method; treat prefill + stop as a lighter alternative for raw-content extraction, not a replacement.
+
+**Assistant prefill to steer, not just to format.** Prefilling `"Coffee is better because"` makes Claude *continue from the end of that string* (you must stitch the prefill and the response together) — useful to force a stance or a format, never to give a complete first sentence.
+
+**“Batch tool” ≠ Message Batches API.** A **batch tool** is a meta-tool you implement so Claude calls several sub-tools in one `tool_use` (parallel execution in a single turn) — handy when Claude will not parallelize on its own. It is unrelated to the **Message Batches API** (asynchronous batch of independent requests, up to 24 h, 50% savings). Do not confuse the two on the exam.
+
 ## 4.4 Implementing Validation, Retries, and Feedback Loops for Extraction Quality
 
 ### Key knowledge:
@@ -1817,6 +1906,10 @@ When Edit fails due to a non-unique text match:
 - Identify when retry will be ineffective (the required info is only in an external document)
 - Include `detected_pattern` fields in findings to analyze false positives
 - Design self-correction by extracting both `calculated_total` and `stated_total` to detect discrepancies
+
+**Retry with the error in the prompt.** On a failed validation, resend the original document, the incorrect extraction, and the *specific* error (“`total`=150 but `sum(line_items)`=145; re-check”) — the model can re-check arithmetic and fix placement, but it cannot conjure information that is absent from the source, so do not retry forever. Self-correction is the same idea turned inward: extract both a `stated_total` and a `calculated_total` and flag the conflict for downstream handling.
+
+**Extended thinking as a last-resort accuracy lever.** When you have exhausted prompt improvements and the eval still plateaus, enable extended thinking: Claude reasons in a `thinking` block before the final answer, at the cost of latency and the tokens it spends thinking. The `thinking` block carries a **signature** you must return unmodified in later turns (tampering is rejected); `budget_tokens` has a 1024 minimum and `max_tokens` must exceed it. Treat it as an eval-driven decision, not a default.
 
 ## 4.5 Designing Efficient Batch Processing Strategies
 
@@ -1832,6 +1925,8 @@ When Edit fails due to a non-unique text match:
 - Handle failures by re-submitting only failed documents (identified by `custom_id`)
 - Iterate on prompts using a sample before running large-scale processing
 
+**Batch API mechanics.** The Message Batches API takes a list of independent requests, processes asynchronously (up to 24 h, no latency SLA), charges ~50% less, and **does not support multi-turn tool calling** — each request is one shot. Tag every request with `custom_id` so you can correlate results and, on partial failure, re-submit only the failed documents (split the long ones that hit the context limit) without re-running the successes. Size your submission cadence to the deadline: a 30-hour need minus the 24-hour window leaves a 6-hour submission budget. Iterate the prompt on a small sample before launching a large batch.
+
 ## 4.6 Designing Multi-instance and Multi-pass Review Architectures
 
 ### Key knowledge:
@@ -1843,6 +1938,8 @@ When Edit fails due to a non-unique text match:
 - Use a second independent Claude instance to review changes without generation context
 - Split multi-file reviews into per-file passes plus integration passes for cross-file dataflow analysis
 - Use verification passes with self-rated confidence to route reviews in a calibrated way
+
+**Why a second instance beats self-review.** The session that generated code carries its own reasoning context and is therefore reluctant to challenge its decisions; an independent instance, given only the diff and the criteria, has no stake in the approach and finds what the author talked itself past. For many files, run a **per-file pass** for local issues and a separate **integration pass** for cross-file dataflow — a single pass over many files dilutes attention and inconsistently flags the same pattern. Route by self-rated confidence *only after* calibrating those scores on labeled data; uncalibrated confidence is the unreliable trigger this domain warns against.
 
 ---
 
@@ -1862,6 +1959,12 @@ When Edit fails due to a non-unique text match:
 - Place key findings at the beginning of aggregated data with explicit section headings
 - Require subagents to include metadata (dates, sources) in structured outputs
 
+**Where context actually leaks.** Three failure modes: progressive summarization drops numbers, percentages, and dates into vague prose (“about”, “roughly”); the **lost-in-the-middle** effect means findings buried in the middle of a long input get missed; and tool results accumulate (40 fields returned when 5 matter). Counter with a persistent **case-facts block** re-injected every turn, `PostToolUse` trimming of verbose results to the fields you need, and key findings placed at the *top* of any aggregated block.
+
+**Prompt caching for repeated context.** When the same large content recurs across requests (a system prompt, a tool list, a long document), **prompt caching** reuses the work of processing it: add a `cache_control` breakpoint to a block and the content *up to and including* that breakpoint is cached for about an hour. The follow-up request must be **identical** up to the breakpoint or the cache misses. Cache where content is stable — tool schemas and the system prompt are the usual choices — and note the rules: a **minimum of 1024 tokens** to cache, breakpoints can span tools → system → messages in that join order, and up to **four** breakpoints total. Caching cuts latency and cost on repeated context; it is not a reliability tool.
+
+**Files API and PDF/document content — move bulk out of the request.** Two API features keep large or repeated content from bloating every request. The **Files API** lets you upload a file (PDF, image, text, CSV) once and receive a **file ID** in a file-metadata object; later requests reference the file by ID inside the content block instead of re-encoding raw base64 each turn — the same file, referenced across many turns, is the context-efficiency counterpart to caching stable text. **PDF support** is a content-block matter: send a `document` block with `media_type: "application/pdf"` (and the file bytes or the file ID) rather than an `image` block; Claude reads the PDF’s text directly, which is what makes **Citations** (see 5.6) able to point at specific pages. The Files API also feeds the **code execution** tool: a `container_upload` block injects an uploaded file into the isolated container, and any plot or output Claude generates comes back as a file ID you download — bulk goes in by ID, results come out by ID, and nothing large is ever inlined twice.
+
 ## 5.2 Designing Effective Escalation Patterns and Resolving Ambiguity
 
 ### Key knowledge:
@@ -1875,6 +1978,8 @@ When Edit fails due to a non-unique text match:
 - Execute explicit requests for a human immediately without additional investigation
 - Escalate when policy is ambiguous or silent for a specific request
 - Ask for additional identifiers when tool results contain multiple matches
+
+**Triggers that hold up.** Escalate on explicit requests for a human (immediately, no investigation), policy gaps (the request is silent or ambiguous), and inability to make progress after a reasonable attempt. The unreliable triggers — sentiment and the model’s self-rated confidence — fail because mood and self-confidence do not track case complexity. For ambiguity in *data* (a search returns several customers), do not guess: ask for another identifier. For a multi-faceted complaint, acknowledge the emotion first, offer a concrete resolution, and escalate only if the customer reiterates the request for a human — a first expression of dissatisfaction is not the same as asking for a manager.
 
 ## 5.3 Implementing Error Propagation Strategies in Multi-agent Systems
 
@@ -1890,6 +1995,8 @@ When Edit fails due to a non-unique text match:
 - Perform local recovery in subagents for transient failures; propagate only non-recoverable errors with partial results
 - Annotate coverage in synthesis: what is well-supported vs where gaps remain
 
+**Propagate enough to recover.** A subagent error should hand the coordinator a decision: the failure type, the query that was attempted, any partial results, and alternative approaches. That lets the coordinator choose — retry with a narrower query, use the partial results, delegate elsewhere, or continue and annotate the gap. Distinguish an **access failure** (timeout → retry decision) from a **valid empty result** (no matches → nothing to retry); conflating them is the silent-suppression anti-pattern. Do local recovery (1–2 retries) inside the subagent for transient failures and propagate only what it cannot fix, always with partial results attached.
+
 ## 5.4 Managing Context Efficiently When Investigating Large Codebases
 
 ### Key knowledge:
@@ -1903,6 +2010,8 @@ When Edit fails due to a non-unique text match:
 - Use scratchpad files to store key findings and reference them later
 - Summarize key findings before spawning next-phase subagents
 - Use `/compact` to reduce context usage during long investigations
+
+**Spotting context degradation.** A long session is degrading when the model starts referring to “typical patterns” and generic class names instead of the specific code it was reading. At that point, stop re-deriving: write key findings to a **scratchpad file** and consult it instead of re-running discovery; delegate the verbose reading to a subagent and keep only its one-line summary in the main context; and use `/compact` to reclaim the window. For crash recovery, have each agent export its state to a known location and have the coordinator read a manifest on resume so it knows what is done, in progress, and not started.
 
 ## 5.5 Designing Workflows with Human Oversight and Confidence Calibration
 
@@ -1918,6 +2027,8 @@ When Edit fails due to a non-unique text match:
 - Output field-level confidence scores and calibrate review thresholds using labeled data
 - Route low-confidence or ambiguous-source extractions to human review
 
+**Calibrate, then automate.** An aggregate 97% accuracy can hide 40% errors on one document type, so validate **by segment** — by document type and by field — not just overall. Output **field-level** confidence and tune the human-review threshold on labeled validation data; high confidence plus stable per-segment accuracy automates, low confidence or ambiguous sources route to a human. Keep auditing: stratified random sampling of even the high-confidence outputs catches new error patterns before they accumulate.
+
 ## 5.6 Preserving Provenance and Handling Uncertainty in Multi-source Synthesis
 
 ### Key knowledge:
@@ -1932,6 +2043,10 @@ When Edit fails due to a non-unique text match:
 - Preserve conflicting values with annotations and pass them to the coordinator for reconciliation
 - Include publication dates for correct temporal interpretation
 - Render content by type: financial data as tables, news as prose, technical findings as structured lists
+
+**Keep the claim→source link, and cite.** Summarization severs attribution; require every claim to carry its source (URL, document name, quote). Claude’s **Citations** feature formalizes this for grounded answers: enabled on a document block, the response’s text blocks carry `citation_page_location` (or `citation_char_location` for plain text) with the cited text, document title, and start/end page — use it whenever a user must be able to verify where a fact came from.
+
+**Conflicts and time.** When two sources disagree, preserve **both** values with their attribution and a `conflict_detected` flag rather than picking one — the difference may be methodology, not error. Always carry the publication/collection date: “10% (2023) vs 15% (2024)” is growth, not a contradiction. Render by content type — tables for financials, prose for news, structured lists for technical findings — so each kind stays auditable.
 
 ---
 
