@@ -1,0 +1,200 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    # `edited` so the PR-description gate re-runs when a contributor fixes the
+    # template in the GitHub UI (a body edit does not fire opened/synchronize).
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install pytest
+        run: pip install pytest
+      - name: Run test suite
+        run: pytest tests/ -q
+
+  lint:
+    name: lint (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+      - name: Install ruff
+        run: pip install ruff
+      - name: Ruff check
+        # High-value gate: syntax errors (E9, e.g. IndentationError) + pyflakes
+        # (F: undefined names, unused imports). Style rules are intentionally
+        # not gated yet to avoid blocking on cosmetic churn.
+        run: ruff check --select E9,F --target-version py310 book_to_skill/ scripts/ tests/ tools/
+
+  smoke:
+    name: smoke (dependency-free extraction)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+      - name: Extract a sample with no optional deps installed
+        run: |
+          set -euo pipefail
+          mkdir -p sample
+          printf '# Backpressure\n\nChapter 1\nBounded queues prevent overload.\n' > sample/note.md
+          export BOOK_SKILL_WORKDIR="$RUNNER_TEMP/work"
+          python3 scripts/extract.py sample/note.md --mode text --install-missing no
+          test -f "$BOOK_SKILL_WORKDIR/full_text.txt"
+          test -f "$BOOK_SKILL_WORKDIR/metadata.json"
+          grep -q "Backpressure" "$BOOK_SKILL_WORKDIR/full_text.txt"
+
+  security:
+    name: security (bandit + zizmor)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+      - name: Install scanners
+        run: pip install bandit zizmor
+      - name: Bandit — gate on HIGH severity
+        # Hard gate: only HIGH-severity / MEDIUM-confidence findings fail CI, to
+        # avoid blocking on the known-acceptable subprocess (pip install) calls.
+        # Ratchet down to medium once the open B314 docx-XML finding is hardened.
+        run: bandit -q -r book_to_skill scripts tools --severity-level high --confidence-level medium
+      - name: Bandit — report MEDIUM+ (informational)
+        run: bandit -q -r book_to_skill scripts tools -ll || true
+      - name: Zizmor — workflow audit (informational)
+        # Surfaces GitHub Actions risks (injection, pull_request_target misuse).
+        # Currently only flags unpinned-uses (tags vs SHA) — non-blocking until
+        # the actions are pinned to SHAs (Dependabot follow-up).
+        run: zizmor .github/workflows/ || true
+
+  validate-skill:
+    name: validate SKILL.md (Claude Code rules)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+      - name: Audit SKILL.md against Claude Code skill rules
+        # Fails on Claude-breaking issues (missing name/description, oversized
+        # description, a tool restriction that omits Bash while the skill shells
+        # out). Cross-agent metadata Claude ignores is reported as WARN only.
+        run: python3 tools/validate_skill.py SKILL.md
+
+  dependency-review:
+    name: dependency review (PR)
+    # Only runs on PRs: it diffs the base vs head dependency graph and flags any
+    # newly introduced dependency with a known CVE (or a denied license), so a
+    # contributor cannot slip a vulnerable/malicious package past review. The
+    # result is posted as a summary comment on the PR itself.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write # post the vulnerability summary comment on the PR
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Dependency review
+        uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          # Block the merge when an introduced dependency has a moderate+ CVE.
+          fail-on-severity: moderate
+          # Always leave the findings as a comment on the PR, even when clean.
+          comment-summary-in-pr: always
+
+  pr-template:
+    name: PR description check (PR)
+    # Enforces the PR template: required sections present, a type-of-change
+    # selected, and every Required-checklist item ticked. Skips Dependabot.
+    if: github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR description
+        # The body is passed via env (never interpolated into the shell) so a
+        # crafted PR description cannot inject commands.
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          python3 - <<'PY'
+          import os, sys
+          body = os.environ.get("PR_BODY") or ""
+
+          def section(header):
+              i = body.find(header)
+              if i < 0:
+                  return ""
+              rest = body[i + len(header):]
+              j = rest.find("\n## ")
+              return rest if j < 0 else rest[:j]
+
+          required = [
+              "## Summary", "## Type of change", "## What it does",
+              "## Motivation & context", "## Evidence", "## Checklist",
+          ]
+          errs = [f"missing required section: {h}" for h in required if h not in body]
+          if "- [x]" not in section("## Type of change").lower():
+              errs.append("Type of change: tick at least one box with [x]")
+          if "- [ ]" in section("## Checklist"):
+              errs.append("Checklist: every Required item must be ticked [x]")
+          if len(body.strip()) < 200:
+              errs.append("description too short, please fill the template")
+
+          if errs:
+              print("PR description is incomplete:\n")
+              for e in errs:
+                  print("  - " + e)
+              print("\nFill the PR template (all (Required) sections) and push again.")
+              sys.exit(1)
+          print("PR description looks complete.")
+          PY
+
+  pr-title:
+    name: PR title (Conventional Commits)
+    # The changelog is generated from commit messages by git-cliff, and squash
+    # merges use the PR title as the commit — so the title must be a valid
+    # Conventional Commit or it won't show up (or shows up wrong) in the release
+    # changelog. Skips Dependabot (its titles are already conventional).
+    if: github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR title
+        # Title passed via env (never interpolated into the shell).
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          python3 - <<'PY'
+          import os, re, sys
+          title = (os.environ.get("PR_TITLE") or "").strip()
+          # type(scope)!: subject  — types per cliff.toml commit_parsers.
+          pattern = r"^(feat|fix|perf|refactor|docs|sec|chore|ci|test|build|style|revert)(\([\w.\-/ ]+\))?!?: .+"
+          if not re.match(pattern, title):
+              print(f"PR title is not a Conventional Commit:\n  {title!r}\n")
+              print("Expected: <type>(<optional scope>): <subject>")
+              print("Types: feat, fix, perf, refactor, docs, sec, chore, ci, test, build, style, revert")
+              print("e.g. 'fix(extractor): detect Korean chapter headings'")
+              print("\nThe title becomes the changelog entry (generated by git-cliff), so it must be conventional.")
+              sys.exit(1)
+          print("PR title looks good.")
+          PY
