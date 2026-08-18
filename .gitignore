@@ -22,3 +22,6 @@ __pycache__/
 
 # local Skilljar course corpus — partner-gated source, never published
 .corpus/
+
+# vendored agent tooling — reinstall from skills-lock.json, do not commit
+.agents/
