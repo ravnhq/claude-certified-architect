@@ -188,13 +188,13 @@ function landing() {
 const PREFLIGHT_ITEMS = [
   {
     n: '01',
-    label: 'Completed the 4 required courses',
-    detail: 'Claude API · Agent Skills · MCP · Claude Code in Action',
+    label: 'Worked the prep courses that carry exam weight',
+    detail: `Anthropic lists seven free prep courses and requires none of them. Ranked by how much of the blueprint they cover: <strong>Claude Code in Action</strong> (10 lessons, Domain 3 at 20%), <strong>Introduction to Model Context Protocol</strong> (14 lessons, Domain 2 at 18%), <strong>Building with the Claude API</strong> (85 lessons, Domains 2 and 4). Bedrock (83 lessons) and Google Cloud (93 lessons) are long and only partly on-blueprint; Claude 101 and AI Fluency are orientation. Skim those four. ${extLink('https://anthropic-partners.skilljar.com/page/claude-certified-architect-foundations-prep-courses', 'Prep courses')}`,
   },
   {
     n: '02',
     label: 'Bonus courses done',
-    detail: 'MCP: Advanced Topics, Introduction to Subagents. Optional, but exam-relevant.',
+    detail: `Two catalog courses sit outside the prep page but land squarely on the blueprint: <strong>Introduction to subagents</strong> (Domain 1 coordinator-subagent orchestration, 27%) and <strong>Model Context Protocol: Advanced Topics</strong> — sampling, notifications, transports (Domain 2, 18%). Optional, and worth the time. ${extLink('https://anthropic-partners.skilljar.com/introduction-to-subagents', 'Subagents')} · ${extLink('https://anthropic-partners.skilljar.com/model-context-protocol-advanced-topics', 'MCP advanced')}`,
   },
   {
     n: '03',
@@ -209,7 +209,7 @@ const PREFLIGHT_ITEMS = [
   {
     n: '05',
     label: 'Worked the official sample questions',
-    detail: `Anthropic retired the self-service practice exam. The guide&rsquo;s sample questions with explanations are what remains. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Get the guide')}`,
+    detail: `Anthropic retired the self-service practice exam, but the guide&rsquo;s sample questions with explanations remain, and every prep course ends in a graded quiz. Those quizzes reveal a full answer key once you pass, which makes them the closest thing left to official practice items. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Get the guide')}`,
   },
   {
     n: '06',

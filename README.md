@@ -1,12 +1,9 @@
 # Claude Certified Architect · Ravn Edition
 
-Ravn-curated study materials for the **Foundations** and **Professional** Claude Certified Architect tracks.
+Ravn-curated study materials for the Claude Certified Architect certifications, in English,
+Spanish, and Portuguese.
 
-## Read online
-
-The full guide and the practical exam are hosted on GitHub Pages:
-
-**https://ravnhq.github.io/claude-certified-architect/**
+**Read online: <https://ravnhq.github.io/claude-certified-architect/>**
 
 The site has a language switcher (EN / ES / PT), full-text search, and a dark mode.
 
@@ -17,30 +14,73 @@ the browser.
 
 ## Choose your track
 
-| Track | Best fit | Ravn guidance |
-|---|---|---|
-| **Foundations** | Practitioners building with Claude Code, the Claude Agent SDK, the Claude API, and MCP | Full guides in English, Spanish, and Portuguese; practice exam and cheatsheet |
-| **Professional** | Mid- to senior-level architects and engineers responsible for production AI architecture, evaluation, governance, and lifecycle decisions | [English Professional study guide](./professional_en.md) and a [126-question practice exam](./professional_exam_en.html), based on the official July 2026 blueprint |
+| Track | Exam code | Best fit | What this repo gives you |
+|---|---|---|---|
+| **Architect – Foundations** | CCAR-F | Practitioners building with Claude Code, the Claude Agent SDK, the Claude API, and MCP | Study guide, practice exam, and cheatsheet in EN / ES / PT, plus the preflight checklist |
+| **Architect – Professional** | CCAR-P | Architects responsible for production AI architecture, evaluation, governance, and lifecycle decisions | English study guide and a 126-question practice exam |
 
-The Professional exam has a separate seven-domain blueprint. The Foundations practice exam and cheatsheet do not represent Professional exam coverage.
+The two exams use different blueprints. Foundations has five domains; Professional has seven.
+Foundations material does not represent Professional coverage, and the reverse is equally true.
+
+> **Professional material is English only.** Anthropic delivers the exam and its prep content in
+> English and prohibits browser translation during proctored testing, so an ES/PT Professional
+> track would train against wording the exam never uses. The Foundations material stays
+> tri-language.
+
+## Exam facts
+
+Both figures below come from the official exam guides, which are the authoritative source and
+which Anthropic marks subject to change.
+
+| | Architect – Foundations | Architect – Professional |
+|---|---|---|
+| Exam code | CCAR-F | CCAR-P |
+| Items | 60 | 63 |
+| Time | 120 minutes | 120 minutes |
+| Passing score | 720 on a 100–1,000 scale | 720 on a 100–1,000 scale |
+| List fee | $125 USD | $175 USD |
+| Validity | 12 months | 12 months |
+| Prerequisites | None | None |
+| Delivery | Proctored by Pearson VUE, English only | Proctored by Pearson VUE, English only |
+
+**No course is required to sit either exam.** The credential is awarded on exam performance alone.
+Anthropic publishes free prep courses, and they help, but they are not a gate.
+
+**On the fee.** $125 and $175 are the list prices in the exam guides. The amount at checkout
+reflects any discount for your partner tier, so what you pay may be lower. Earlier promotional
+pricing for the first wave of partner-company employees no longer describes the general case.
+
+### Policies worth knowing before you register
+
+- Up to **4 attempts** per exam in a rolling 12-month period. The fee applies to each attempt.
+- Retake waits after a failure: **14 days**, then **30**, then **90**.
+- Reschedule or cancel **more than 24 hours ahead**. Inside 24 hours, or a no-show, forfeits the fee.
+- Bring a valid, unexpired **government photo ID** whose name matches your registration exactly.
+- Renewal is **free and non-proctored** if you renew on time. Let the credential lapse and you
+  retake the full exam at full fee.
 
 ## Official access
 
-### Foundations
+- Certification is restricted to members of the Anthropic Partner Network and requires
+  registration with a verified partner-company email. See [Claude Partner Network](https://claude.com/partners).
+- Register through the [Anthropic Partner Academy](https://anthropic-partners.skilljar.com/page/partner-certifications),
+  then schedule with Pearson VUE using the credentials they email you.
+- Official guides, both marked subject to change:
+  [Foundations](https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification) ·
+  [Professional](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf)
+- See also the [certification FAQ](https://anthropic-partners.skilljar.com/page/faq-certifications).
 
-- The certification is currently restricted to members of the Anthropic Partner Network and requires registration with a verified partner-company email — see [Claude Partner Network](https://claude.com/partners).
-- Free for the first 5,000 partner-company employees; general availability priced at $99.
-- To request access to the official course/exam portal: <https://anthropic.skilljar.com/claude-certified-architect-foundations-access-request>.
+### Prep courses
 
-### Professional
+Anthropic publishes **seven free prep courses** for Foundations and a **five-course path** for
+Professional. None are required. Ranked by how much of the Foundations blueprint they actually
+cover: **Claude Code in Action** (Domain 3, 20%), **Introduction to Model Context Protocol**
+(Domain 2, 18%), and **Building with the Claude API** (Domains 2 and 4). Claude with Amazon
+Bedrock and Claude on Google Cloud are long and only partly on-blueprint; Claude 101 and AI
+Fluency are orientation rather than exam preparation.
 
-- Exam code **CCAR-P**: 63 items, 120 minutes, scaled passing score of 720, a $175 USD fee, and 12-month validity. No prerequisites.
-- Multiple-choice **and multiple-response** items; each item states how many responses to select.
-- Up to 4 attempts per rolling 12 months, with 14/30/90-day waits after successive failures. Delivered closed-book by Pearson VUE, **in English only**.
-- Review the [official Professional Exam Guide](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf) (v1.0, effective July 2026) — it is the authoritative blueprint and Anthropic marks it subject to change.
-- Optional [prep course path](https://anthropic-partners.skilljar.com/path/claude-certified-architect-professional): 5 courses, about 12 hours. No course is required.
-- Register through the [Anthropic Partner Academy Professional certification page](https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification).
-- See also the [certification FAQ](https://anthropic-partners.skilljar.com/page/faq-certifications) and [all exam guides](https://anthropic-partners.skilljar.com/page/partner-certifications).
+- [Foundations prep courses](https://anthropic-partners.skilljar.com/page/claude-certified-architect-foundations-prep-courses)
+- [Professional prep path](https://anthropic-partners.skilljar.com/path/claude-certified-architect-professional) — 5 courses, about 12 hours
 
 ## Foundations study guides
 
@@ -52,25 +92,40 @@ The Professional exam has a separate seven-domain blueprint. The Foundations pra
 
 PDFs are generated fresh on every deploy from the current markdown sources.
 
+## Foundations practice exam
+
+A self-paced HTML quiz that runs entirely in your browser. Each attempt draws **12 random
+questions per domain — 60 in total** — from a pool of 136: the 76 scenario questions from the
+guide plus 60 domain-style questions from the mock bank. The score is scaled to 1,000 with a
+passing cut of **720**, mirroring the real scale.
+
+Features: a fresh 60-question draw each attempt, questions randomized within each domain, a
+**study** mode that reveals answers as you go with a rationale for every option, an **exam** mode
+that reveals at the end, per-domain breakdown against the pass threshold, and progress saved in
+`localStorage` so a refresh keeps your place. **Restart** draws a new set.
+
+- [`exam_en.html`](./exam_en.html) · [`exam_es.html`](./exam_es.html) · [`exam_pt.html`](./exam_pt.html)
+
+## Foundations cheatsheet
+
+A one-page reference distilling the exam into **12 recurring principles** — each with the correct
+approach and the trap to avoid — **5 questions to ask when two answers look equally good**, and a
+breakdown of the 136-question, 5-domain pool with domain weights and answer-letter distribution.
+
+- [`cheatsheet_en.html`](./cheatsheet_en.html) · [`cheatsheet_es.html`](./cheatsheet_es.html) · [`cheatsheet_pt.html`](./cheatsheet_pt.html)
+
 ## Professional study guide
 
-| Language | Markdown | Read online |
-|---|---|---|
-| English | [`professional_en.md`](./professional_en.md) | [Open](https://ravnhq.github.io/claude-certified-architect/guides/professional-en.html) |
+[`professional_en.md`](./professional_en.md) · [read online](https://ravnhq.github.io/claude-certified-architect/guides/professional-en.html)
 
-The guide reproduces all **38 official objectives** across the seven domains, the exam and
-policy details, the official prep-course path, a breakdown of the three official sample
-questions, and a list of the official certification and product-documentation sources.
-
-> **Professional material is English only.** Anthropic delivers the exam and its prep content in
-> English, and prohibits browser translation during proctored testing, so an ES/PT Professional
-> track would train against wording the exam never uses. The Foundations material stays
-> tri-language.
+Reproduces all **38 official objectives** across the seven domains, with the exam and policy
+details, the official prep path, a breakdown of the three official sample questions, and the
+official source list. Each domain section covers the decision rules and failure modes the
+blueprint rewards, not just the objective titles.
 
 ## Professional practice exam
 
-Self-paced HTML quiz for the **CCAR-P** blueprint, running entirely in your browser. It draws
-**63 questions per attempt from a 126-question bank**, weighted to the official domain
+Draws **63 questions per attempt from a 126-question bank**, weighted to the official domain
 percentages:
 
 | Domain | Weight | Drawn | Bank |
@@ -85,118 +140,92 @@ percentages:
 | **Total** | **100%** | **63** | **126** |
 
 Every item is written against one of the 38 official objectives and records which one. About 21%
-are **multiple-response** items, scored all-or-nothing and stating how many responses to select,
-matching the real item formats. Scoring uses the real **720** cut on the 100–1,000 scale, with a
-per-domain breakdown.
+are **multiple-response** items, scored all-or-nothing and stating how many responses to select.
+Scoring uses the real **720** cut with a per-domain breakdown.
+
+- [`professional_exam_en.html`](./professional_exam_en.html)
 
 > **These are Ravn-authored practice items, not real exam content.** They rehearse the reasoning
 > the blueprint rewards; they do not predict or reproduce the live item bank.
 
-```bash
-python3 utils/validate_professional_bank.py   # check the bank against the blueprint
-python3 utils/build_professional_exam.py      # → professional_exam_en.html
-node utils/test_exam_engine.mjs               # engine regression checks (both tracks)
-```
-
-- English: [`professional_exam_en.html`](./professional_exam_en.html)
-
-> The bank lives in [`data/professional_questions.json`](./data/professional_questions.json); the
-> official blueprint it is validated against lives in
-> [`data/professional_objectives.json`](./data/professional_objectives.json). The validator fails
-> on a bad answer key, an objective that is not in the official guide, an uncovered objective, or
-> a domain whose bank is smaller than its draw.
-
-## Foundations practice exam
-
-Self-paced HTML quiz, runs entirely in your browser. It works as a **question bank**: each
-attempt draws **12 random questions per domain — 60 in total** — from a pool of 136 (the 76
-scenario questions from the guide plus 60 domain-style questions from the mock bank), organized
-by the five CCAF exam domains. The overall score is **scaled to 1000** with a passing cut of
-**720**, mirroring the real exam's 100–1000 scale.
-
-Features: a fresh 60-question draw each attempt, questions randomized **within each domain**, a
-**study** mode (answers reveal as you go, with a rationale for every option) vs an **exam** mode
-(answers reveal at the end), per-domain score breakdown with a pass threshold, and progress saved
-in the browser (`localStorage`) so a refresh keeps your place and draw. **Restart** draws a new
-set of 60.
-
-Built from the guides + the mock bank via:
-
-```bash
-python3 utils/build_exam_html.py            # all langs → exam_{en,es,pt}.html
-python3 utils/build_exam_html.py en es      # specific langs
-```
-
-- English: [`exam_en.html`](./exam_en.html)
-- Spanish: [`exam_es.html`](./exam_es.html)
-- Portuguese: [`exam_pt.html`](./exam_pt.html)
-
-> The exam regenerates fresh on every deploy. Domain classification lives in
-> [`data/domains.json`](./data/domains.json) (review notes in `data/domains_review.md`);
-> the mock questions and their ES/PT translations live in `data/mock_{en,es,pt}.json`.
-
-## Foundations cheatsheet
-
-A one-page study reference that distills the exam into **12 recurring principles** (each with the
-correct approach and the trap to avoid), **5 questions to ask when two answers look equally good**,
-and a breakdown of the **136-question, 5-domain** exam (domain weights + answer-letter
-distribution). Self-contained static pages in the same Ravn styling as the rest of the site.
-
-- English: [`cheatsheet_en.html`](./cheatsheet_en.html)
-- Spanish: [`cheatsheet_es.html`](./cheatsheet_es.html)
-- Portuguese: [`cheatsheet_pt.html`](./cheatsheet_pt.html)
-
-```bash
-python3 utils/build_cheatsheet.py           # regenerate all langs → cheatsheet_{en,es,pt}.html
-```
-
-> Unlike the exam, the cheatsheet is hand-authored content, so the committed HTML is what
-> deploys; re-run the generator only when editing the content. Keep its stats in sync with
-> `data/domains.json` and `utils/exam_data.py` (`DOMAIN_NAMES`).
-
 ## How to use
 
-1. Choose the certification track you plan to take.
-2. For Foundations, pick a language, work through the scenarios, and use the practice exam and cheatsheet.
-3. For Professional, read the official exam guide first, then map your experience against the 38 objectives, build one end-to-end reference system, and rehearse architectural trade-offs under time pressure with the practice exam — exam mode for the timed run, study mode to read the rationale on every miss.
+1. Choose your track.
+2. **Foundations** — pick a language, work the scenarios, then alternate practice exam and
+   cheatsheet. Run the preflight checklist before you book.
+3. **Professional** — read the official guide first, map your experience against the 38
+   objectives, build one end-to-end reference system, then rehearse trade-offs under time
+   pressure. Use exam mode for the timed run and study mode to read the rationale on every miss.
+
+## Build and test
+
+```bash
+npm install --no-save marked@13 minisearch@7   # build dependencies
+
+python3 utils/build_exam_html.py               # → exam_{en,es,pt}.html
+python3 utils/build_exam_html.py en es         # specific languages
+python3 utils/build_professional_exam.py       # → professional_exam_en.html
+python3 utils/build_cheatsheet.py              # → cheatsheet_{en,es,pt}.html
+node scripts/build-pages.mjs                   # → docs/ site
+
+python3 utils/validate_professional_bank.py    # bank vs. official blueprint
+node utils/test_exam_engine.mjs                # engine checks, both tracks
+node utils/test_exam_render.mjs                # render checks
+```
+
+The validator fails on a bad answer key, an objective absent from the official guide, an
+uncovered objective, or a domain whose bank is smaller than its draw.
+
+The Foundations exam and the site regenerate on every deploy. The cheatsheet is hand-authored,
+so its committed HTML is what ships — re-run its generator only when editing the content, and
+keep its stats in sync with `data/domains.json` and `utils/exam_data.py` (`DOMAIN_NAMES`).
 
 ## Repository layout
 
 ```
 .
-├── guide_{en,es,pt}.{md,MD}      # source-of-truth study guides (76 scenario questions)
-├── professional_en.md             # Professional-track guide (7-domain July 2026 blueprint)
-├── CCAF_Mock_Exam_*.txt          # source for the 60-question mock bank
-├── exam_{en,es,pt}.html          # the unified 136-question practice exam (built)
-├── professional_exam_en.html     # CCAR-P practice exam, 63 drawn from 126 (built)
-├── cheatsheet_{en,es,pt}.html    # 12-principle exam cheatsheet (static, hand-authored)
-├── extract_question.py           # parses guide_*.md → scenario questions JSON
-├── parse_mock_exam.py            # parses the mock .txt → mock questions JSON
+├── guide_{en,es,pt}.{md,MD}          # source-of-truth Foundations guides (76 scenarios)
+├── professional_en.md                 # Professional guide (7-domain blueprint)
+├── CCAF_Mock_Exam_*.txt              # source for the 60-question mock bank
+├── exam_{en,es,pt}.html              # Foundations practice exam, 60 of 136 (built)
+├── professional_exam_en.html         # Professional practice exam, 63 of 126 (built)
+├── cheatsheet_{en,es,pt}.html        # 12-principle cheatsheet (static, hand-authored)
+├── extract_question.py               # guide_*.md → scenario questions JSON
+├── parse_mock_exam.py                # mock .txt → mock questions JSON
 ├── data/
-│   ├── domains.json              # question id → CCAF domain (1–5) — reviewable
-│   ├── duplicates.json           # mock ids dropped as dupes of guide qs (empty)
-│   ├── mock_{en,es,pt}.json      # mock bank + ES/PT translations
+│   ├── domains.json                  # question id → CCAF domain (1–5)
+│   ├── duplicates.json               # mock ids dropped as dupes of guide questions
+│   ├── mock_{en,es,pt}.json          # mock bank + ES/PT translations
 │   ├── professional_objectives.json  # official CCAR-P blueprint: 7 domains, 38 objectives
-│   └── professional_questions.json   # Ravn-authored CCAR-P practice bank (126 items)
+│   └── professional_questions.json   # Ravn-authored CCAR-P bank (126 items)
 ├── utils/
-│   ├── exam_data.py              # merges guide + mock into the unified schema
-│   ├── build_exam_html.py        # shared quiz engine + Foundations build → exam_*.html
+│   ├── exam_data.py                  # merges guide + mock into the unified schema
+│   ├── build_exam_html.py            # shared quiz engine + Foundations build
 │   ├── build_professional_exam.py    # → professional_exam_en.html
 │   ├── professional_blueprint.py     # shared CCAR-P domains + per-attempt draw
 │   ├── validate_professional_bank.py # bank vs. official blueprint
+│   ├── build_cheatsheet.py           # → cheatsheet_*.html
 │   ├── test_exam_engine.mjs          # engine regression checks (both tracks)
-│   └── build_cheatsheet.py       # → cheatsheet_*.html
-├── docs/                         # GitHub Pages site (static parts; CI generates the rest)
-├── scripts/build-pages.mjs       # md → docs/ build (run by Pages workflow)
-└── .github/workflows/
-    └── pages.yml                 # generates PDFs + exam HTML, deploys docs/ to Pages
+│   └── test_exam_render.mjs          # render regression checks
+├── docs/                             # GitHub Pages site (static parts; CI generates the rest)
+├── scripts/build-pages.mjs           # md → docs/ build, incl. the preflight checklist
+└── .github/workflows/pages.yml       # builds PDFs + exams, deploys docs/ to Pages
 ```
+
+The preflight checklist has no markdown source. Its content lives in `scripts/build-pages.mjs`
+as `PREFLIGHT_ITEMS`, `PREFLIGHT_FACTS`, `PREFLIGHT_DOMAINS`, and `PREFLIGHT_RESOURCES`. Edit it
+there; `docs/preflight/` is a generated artifact and is overwritten on every build.
 
 ## Contributing
 
-- Translation fixes and clarifications welcome via PR — please keep the heading structure aligned across `guide_en.MD`, `guide_es.md`, and `guide_pt.md` so question extraction stays consistent.
+- Translation fixes and clarifications are welcome. Keep the heading structure aligned across
+  `guide_en.MD`, `guide_es.md`, and `guide_pt.md` so question extraction stays consistent.
+- Run the validator and both test scripts before opening a PR.
+- **Do not commit material from the Partner Academy courses.** That content is partner-gated.
+  Practice items and guide prose here are Ravn-authored; keep it that way.
 - PDFs regenerate automatically on merge to `main` as part of the Pages deploy.
 
 ## License
 
-© Ravn. Originating study materials by Paul Larionov, used and adapted under the terms of the upstream license.
+© Ravn. Originating study materials by Paul Larionov, used and adapted under the terms of the
+upstream license.

@@ -15,3 +15,6 @@ docs/preflight/
 docs/pdf/
 docs/vendor/
 __pycache__/
+
+# local Skilljar course corpus — partner-gated source, never published
+.corpus/
