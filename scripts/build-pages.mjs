@@ -188,17 +188,17 @@ function landing() {
 const PREFLIGHT_ITEMS = [
   {
     n: '01',
-    label: 'Worked the prep courses that carry exam weight',
-    detail: `Anthropic lists seven free prep courses and requires none of them. Ranked by how much of the blueprint they cover: <strong>Claude Code in Action</strong> (10 lessons, Domain 3 at 20%), <strong>Introduction to Model Context Protocol</strong> (14 lessons, Domain 2 at 18%), <strong>Building with the Claude API</strong> (85 lessons, Domains 2 and 4). Bedrock (83 lessons) and Google Cloud (93 lessons) are long and only partly on-blueprint; Claude 101 and AI Fluency are orientation. Skim those four. ${extLink('https://anthropic-partners.skilljar.com/page/claude-certified-architect-foundations-prep-courses', 'Prep courses')}`,
+    label: 'Prep courses that carry weight',
+    detail: `Seven exist, none required. Highest yield: <strong>Claude Code in Action</strong> (Domain 3), <strong>Intro to MCP</strong> (Domain 2), <strong>Building with the Claude API</strong> (Domains 2 and 4). Skim the rest. ${extLink('https://anthropic-partners.skilljar.com/page/claude-certified-architect-foundations-prep-courses', 'Courses')}`,
   },
   {
     n: '02',
     label: 'Bonus courses done',
-    detail: `Two catalog courses sit outside the prep page but land squarely on the blueprint: <strong>Introduction to subagents</strong> (Domain 1 coordinator-subagent orchestration, 27%) and <strong>Model Context Protocol: Advanced Topics</strong> — sampling, notifications, transports (Domain 2, 18%). Optional, and worth the time. ${extLink('https://anthropic-partners.skilljar.com/introduction-to-subagents', 'Subagents')} · ${extLink('https://anthropic-partners.skilljar.com/model-context-protocol-advanced-topics', 'MCP advanced')}`,
+    detail: `Off the prep page, on the blueprint: ${extLink('https://anthropic-partners.skilljar.com/introduction-to-subagents', 'Introduction to subagents')} (Domain 1) and ${extLink('https://anthropic-partners.skilljar.com/model-context-protocol-advanced-topics', 'MCP: Advanced Topics')} (Domain 2).`,
   },
   {
     n: '03',
-    label: 'Read the official exam guide end-to-end',
+    label: 'Read the exam guide end-to-end',
     detail: `v1.0, July 2026. Source of truth. Not skimmed. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Official guide')} · <a href="guides/en.html">Ravn study guide</a>`,
   },
   {
@@ -209,22 +209,22 @@ const PREFLIGHT_ITEMS = [
   {
     n: '05',
     label: 'Worked the official sample questions',
-    detail: `Anthropic retired the self-service practice exam, but the guide&rsquo;s sample questions with explanations remain, and every prep course ends in a graded quiz. Those quizzes reveal a full answer key once you pass, which makes them the closest thing left to official practice items. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Get the guide')}`,
+    detail: `The self-service practice exam is retired. What remains: the guide&rsquo;s samples, plus a graded quiz ending every prep course that reveals its answer key once you pass. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Get the guide')}`,
   },
   {
     n: '06',
     label: 'Worked through community mocks',
-    detail: 'Now that the official mock is gone, these carry more weight. Full list in Resources below.',
+    detail: 'With the official mock gone, these carry more weight. Full list in Resources below.',
   },
   {
     n: '07',
     label: 'Registered and slot booked',
-    detail: `Two steps: pay in Partner Academy, then schedule in Pearson VUE with the credentials they email you. $125 per attempt. Reschedule 24h+ ahead or forfeit the fee. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Register')}`,
+    detail: `Pay in Partner Academy, then schedule in Pearson VUE with the emailed credentials. Reschedule 24h+ ahead or forfeit the fee. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Register')}`,
   },
   {
     n: '08',
     label: 'OnVUE system test passed',
-    detail: `Run Pearson&rsquo;s system test on the actual machine and network you will use. Webcam, mic, and OnVUE domains reachable. ${extLink('https://www.pearsonvue.com/us/en/anthropic.html', 'Pearson VUE')}`,
+    detail: `On the actual machine and network you will use. Webcam, mic, and OnVUE domains reachable. ${extLink('https://www.pearsonvue.com/us/en/anthropic.html', 'Pearson VUE')}`,
   },
   {
     n: '09',
@@ -342,32 +342,33 @@ function preflightStyles() {
 
 .pf-panel { border: 1px solid var(--border); padding: 22px 24px; margin-bottom: 36px; }
 .pf-eyebrow { font-family: 'Source Code Pro', monospace; font-size: 0.68rem; letter-spacing: 0.167em; text-transform: uppercase; color: var(--subtle); margin: 0 0 16px; }
-.pf-facts { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
-.pf-fact { display: flex; align-items: baseline; gap: 7px; padding: 6px 11px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: 'Source Code Pro', monospace; }
-.pf-fact-k { font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--subtle); }
-.pf-fact-v { font-size: 0.78rem; color: var(--fg); font-weight: 600; }
+.pf-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 22px; }
+.pf-fact { display: grid; gap: 7px; padding: 14px 16px; border-right: 1px solid var(--border); }
+.pf-fact:last-child { border-right: 0; }
+.pf-fact-k { font-family: 'Source Code Pro', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--subtle); }
+.pf-fact-v { font-family: 'Source Code Pro', monospace; font-size: 0.95rem; color: var(--fg); font-weight: 600; }
 .pf-note { font-size: 0.82rem; color: var(--muted); line-height: 1.55; margin: 0 0 18px; }
-.pf-domains { display: grid; gap: 14px; }
+.pf-domains { display: grid; gap: 18px; }
 .pf-domain-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 6px; }
 .pf-domain-name { display: flex; gap: 14px; align-items: baseline; min-width: 0; }
 .pf-domain-n { font-family: 'Source Code Pro', monospace; font-size: 0.72rem; color: var(--subtle); flex-shrink: 0; }
 .pf-domain-w { font-family: 'Source Code Pro', monospace; font-size: 0.88rem; color: var(--accent); font-weight: 600; flex-shrink: 0; }
-.pf-bar { height: 3px; background: var(--border); overflow: hidden; }
-.pf-bar span { display: block; height: 100%; background: var(--accent); }
+.pf-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.pf-bar span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
 
 .pf-list { border-top: 1px solid var(--border); }
-.pf-row { display: grid; grid-template-columns: 48px 22px 1fr; gap: 20px; align-items: center; padding: 16px 12px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background .2s var(--ease); position: relative; }
+.pf-row { display: grid; grid-template-columns: 34px 22px 1fr; gap: 18px; align-items: start; padding: 20px 14px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background .2s var(--ease); position: relative; }
 .pf-row:hover { background: var(--bg-elev); }
 .pf-row:has(.pf-check:checked) { background: color-mix(in srgb, var(--accent) 7%, transparent); }
 .pf-check { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
-.pf-n { font-family: 'Source Code Pro', monospace; font-size: 0.85rem; letter-spacing: 0.05em; color: var(--subtle); transition: color .25s var(--ease); }
+.pf-n { font-family: 'Source Code Pro', monospace; font-size: 0.85rem; padding-top: 2px; letter-spacing: 0.05em; color: var(--subtle); transition: color .25s var(--ease); }
 .pf-row:has(.pf-check:checked) .pf-n { color: var(--accent); }
-.pf-box { width: 22px; height: 22px; border: 1.5px solid var(--subtle); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: transparent; transition: background .18s var(--ease), border-color .18s var(--ease); }
+.pf-box { width: 22px; height: 22px; margin-top: 1px; border: 1.5px solid var(--border-strong); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: transparent; transition: background .18s var(--ease), border-color .18s var(--ease); }
 .pf-row:hover .pf-box { border-color: var(--fg); }
 .pf-row:has(.pf-check:checked) .pf-box { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
 .pf-row:has(.pf-check:focus-visible) .pf-box { outline: 2px solid var(--accent); outline-offset: 3px; }
-.pf-item-label { display: block; font-size: 0.98rem; font-weight: 600; color: var(--fg); margin-bottom: 3px; }
-.pf-item-detail { display: block; font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+.pf-item-label { display: block; font-size: 0.98rem; font-weight: 600; color: var(--fg); margin-bottom: 5px; }
+.pf-item-detail { display: block; max-width: 72ch; font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
 .pf-item-detail a { color: var(--accent); }
 
 .pf-actions { margin-top: 24px; }
@@ -391,7 +392,11 @@ function preflightStyles() {
   .preflight { padding: 40px 20px 16px; }
   .pf-headline { grid-template-columns: 1fr; align-items: start; }
   .pf-count { text-align: left; }
-  .pf-row { grid-template-columns: 34px 22px 1fr; gap: 14px; }
+  .pf-row { grid-template-columns: 28px 22px 1fr; gap: 12px; padding: 16px 4px; }
+  .pf-facts { grid-template-columns: repeat(2, 1fr); }
+  .pf-fact { border-bottom: 1px solid var(--border); }
+  .pf-fact:nth-child(odd) { border-right: 1px solid var(--border); }
+  .pf-fact:nth-last-child(-n+2) { border-bottom: 0; }
 }
 </style>`;
 }
