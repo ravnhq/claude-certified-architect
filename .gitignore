@@ -1,5 +1,9 @@
 .DS_Store
 .claude/*
+!.claude/skills/
+.claude/skills/*.zip
+.claude/skills/book-to-skill
+
 node_modules/
 package-lock.json
 package.json
