@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Extract practice-test questions from guide_<lang>.md as JSON.
 
-Usage:  python3 extract_question.py <lang> [all]
+Usage:  python3 utils/extract_question.py <lang> [all]
 
 Reads ./guide_<lang>.md (case-insensitive extension) and emits a JSON
 array on stdout with the schema consumed by utils/exam_data.py:
@@ -45,7 +45,8 @@ Markdown shape (recovered from guide_en.MD):
 from __future__ import annotations
 import json, os, re, sys
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+# Repo root: this script lives in utils/, the guides and mock bank sit one level up.
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def find_guide(lang: str) -> str:

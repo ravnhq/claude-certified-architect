@@ -18,6 +18,7 @@ the browser.
 |---|---|---|---|
 | **Architect – Foundations** | CCAR-F | Practitioners building with Claude Code, the Claude Agent SDK, the Claude API, and MCP | Study guide, practice exam, and cheatsheet in EN / ES / PT, plus the preflight checklist |
 | **Architect – Professional** | CCAR-P | Architects responsible for production AI architecture, evaluation, governance, and lifecycle decisions | English study guide and a 126-question practice exam |
+| **Developer – Foundations** | CCDV-F | Engineers building and shipping production applications, agents, and workflows on the Claude platform | English study guide |
 
 The two exams use different blueprints. Foundations has five domains; Professional has seven.
 Foundations material does not represent Professional coverage, and the reverse is equally true.
@@ -32,16 +33,16 @@ Foundations material does not represent Professional coverage, and the reverse i
 Both figures below come from the official exam guides, which are the authoritative source and
 which Anthropic marks subject to change.
 
-| | Architect – Foundations | Architect – Professional |
-|---|---|---|
-| Exam code | CCAR-F | CCAR-P |
-| Items | 60 | 63 |
-| Time | 120 minutes | 120 minutes |
-| Passing score | 720 on a 100–1,000 scale | 720 on a 100–1,000 scale |
-| List fee | $125 USD | $175 USD |
-| Validity | 12 months | 12 months |
-| Prerequisites | None | None |
-| Delivery | Proctored by Pearson VUE, English only | Proctored by Pearson VUE, English only |
+| | Architect – Foundations | Architect – Professional | Developer – Foundations |
+|---|---|---|---|
+| Exam code | CCAR-F | CCAR-P | CCDV-F |
+| Items | 60 | 63 | 53 |
+| Time | 120 minutes | 120 minutes | 120 minutes |
+| Passing score | 720 on a 100–1,000 scale | 720 on a 100–1,000 scale | 720 on a 100–1,000 scale |
+| List fee | $125 USD | $175 USD | $125 USD |
+| Validity | 12 months | 12 months | 12 months |
+| Prerequisites | None | None | None |
+| Delivery | Proctored by Pearson VUE, English only | Proctored by Pearson VUE, English only | Proctored by Pearson VUE, English only |
 
 **No course is required to sit either exam.** The credential is awarded on exam performance alone.
 Anthropic publishes free prep courses, and they help, but they are not a gate.
@@ -113,6 +114,12 @@ approach and the trap to avoid — **5 questions to ask when two answers look eq
 breakdown of the 136-question, 5-domain pool with domain weights and answer-letter distribution.
 
 - [`cheatsheet_en.html`](./cheatsheet_en.html) · [`cheatsheet_es.html`](./cheatsheet_es.html) · [`cheatsheet_pt.html`](./cheatsheet_pt.html)
+
+## Developer study guide
+
+[`developer_en.md`](./developer_en.md) · [read online](https://ravnhq.github.io/claude-certified-architect/guides/developer-en.html)
+
+Covers the **eight-domain Developer – Foundations blueprint (CCDV-F)**: agents and workflows, applications and integration, Claude Code, eval and debugging, model selection and optimization, prompt and context engineering, security and safety, and tools and MCPs. It turns the official objectives into a practical preparation plan with the exam and policy details and the decision rules the blueprint rewards — without reproducing or predicting live exam content.
 
 ## Professional study guide
 
@@ -187,11 +194,10 @@ keep its stats in sync with `data/domains.json` and `utils/exam_data.py` (`DOMAI
 ├── guide_{en,es,pt}.{md,MD}          # source-of-truth Foundations guides (76 scenarios)
 ├── professional_en.md                 # Professional guide (7-domain blueprint)
 ├── CCAF_Mock_Exam_*.txt              # source for the 60-question mock bank
+├── reference/                        # official exam guide PDFs, version-pinned
 ├── exam_{en,es,pt}.html              # Foundations practice exam, 60 of 136 (built)
 ├── professional_exam_en.html         # Professional practice exam, 63 of 126 (built)
 ├── cheatsheet_{en,es,pt}.html        # 12-principle cheatsheet (static, hand-authored)
-├── extract_question.py               # guide_*.md → scenario questions JSON
-├── parse_mock_exam.py                # mock .txt → mock questions JSON
 ├── data/
 │   ├── domains.json                  # question id → CCAF domain (1–5)
 │   ├── duplicates.json               # mock ids dropped as dupes of guide questions
@@ -199,6 +205,8 @@ keep its stats in sync with `data/domains.json` and `utils/exam_data.py` (`DOMAI
 │   ├── professional_objectives.json  # official CCAR-P blueprint: 7 domains, 38 objectives
 │   └── professional_questions.json   # Ravn-authored CCAR-P bank (126 items)
 ├── utils/
+│   ├── extract_question.py           # guide_*.md → scenario questions JSON
+│   ├── parse_mock_exam.py            # mock .txt → mock questions JSON
 │   ├── exam_data.py                  # merges guide + mock into the unified schema
 │   ├── build_exam_html.py            # shared quiz engine + Foundations build
 │   ├── build_professional_exam.py    # → professional_exam_en.html

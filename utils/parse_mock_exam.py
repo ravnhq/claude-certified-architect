@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Parse CCAF_Mock_Exam_Preguntas_y_Respuestas.txt into the unified question JSON.
 
-Usage:  python3 parse_mock_exam.py [path/to/mock.txt]   (default: ./CCAF_Mock_Exam_Preguntas_y_Respuestas.txt)
+Usage:  python3 utils/parse_mock_exam.py [path/to/mock.txt]   (default: ./CCAF_Mock_Exam_Preguntas_y_Respuestas.txt)
 
 Emits a JSON array on stdout matching the unified schema consumed by
 utils/build_exam_html.py:
@@ -38,7 +38,8 @@ Source .txt shape (one block per question, separated by a line of `═`):
 from __future__ import annotations
 import json, os, re, sys
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+# Repo root: this script lives in utils/, the guides and mock bank sit one level up.
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_TXT = os.path.join(ROOT, "CCAF_Mock_Exam_Preguntas_y_Respuestas.txt")
 
 # Split the file into per-question blocks on the `PREGUNTA N (QN)` header.

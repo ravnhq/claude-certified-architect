@@ -2,8 +2,8 @@
 """Build the unified, merged question set for one language.
 
 Merges two sources into a single schema:
-  * the 76 scenario questions extracted from guide_<lang>.md (extract_question.py)
-  * the 60 domain questions parsed from the mock-exam .txt (parse_mock_exam.py)
+  * the 76 scenario questions extracted from guide_<lang>.md (utils/extract_question.py)
+  * the 60 domain questions parsed from the mock-exam .txt (utils/parse_mock_exam.py)
 
 Unified question schema:
   {
@@ -78,7 +78,7 @@ def _read_json(path, default):
 
 def _guide_questions(lang):
     out = subprocess.run(
-        ["python3", "extract_question.py", lang, "all"],
+        ["python3", "utils/extract_question.py", lang, "all"],
         capture_output=True, text=True, cwd=ROOT_DIR,
     ).stdout
     raw = json.loads(out)
@@ -109,7 +109,7 @@ def _mock_questions(lang):
     if translated is not None:
         return translated
     out = subprocess.run(
-        ["python3", "parse_mock_exam.py"],
+        ["python3", "utils/parse_mock_exam.py"],
         capture_output=True, text=True, cwd=ROOT_DIR,
     ).stdout
     return json.loads(out)
