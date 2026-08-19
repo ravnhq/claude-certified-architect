@@ -235,14 +235,20 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   .ravn-brand-tagline { display: none; }
   .mode-controls { max-width: 100%; flex-wrap: wrap; gap: 6px 0; }
   .mode-hint { margin-left: 8px; }
-  .shell { display: block; overflow: visible; }
-  .sidebar { width: 100%; min-width: 0; height: 220px; min-height: 0;
-    border-right: 0; border-bottom: 1px solid var(--border); }
-  .main { overflow: visible; }
-  .topbar { padding: 12px 16px; gap: 10px; flex-wrap: wrap; }
-  .topbar-title { width: 100%; }
-  .topbar-nav { width: 100%; flex-wrap: wrap; gap: 8px; }
-  .content { overflow: visible; padding: 24px 16px 48px; }
+  /* Phone order: question first. The navigator and the page title used to
+     push the question ~590px down an 844px screen. */
+  .shell { display: flex; flex-direction: column; overflow: visible; }
+  .main { order: 1; display: flex; flex-direction: column; overflow: visible; }
+  .sidebar { order: 2; width: 100%; min-width: 0; height: auto; max-height: 260px;
+    min-height: 0; border-right: 0; border-top: 1px solid var(--border);
+    border-bottom: 0; }
+  .content { order: 1; overflow: visible; padding: 20px 16px 16px; }
+  .topbar { order: 2; padding: 12px 16px; gap: 10px; flex-wrap: wrap;
+    border-top: 1px solid var(--border); border-bottom: 0;
+    position: sticky; bottom: 0; background: var(--surface); z-index: 5; }
+  .topbar-title { display: none; }
+  .topbar-nav { width: 100%; flex-wrap: nowrap; gap: 8px; }
+  .topbar-nav .nav-btn { flex: 1; text-align: center; }
   .q-scenario { display: block; width: fit-content; margin-left: 0; }
   .score-grid { grid-template-columns: 1fr; }
   .ds-row { flex-wrap: wrap; }
@@ -251,9 +257,12 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 }
 
 @media (max-width: 420px) {
-  .mode-hint { width: 100%; margin-left: 0; }
-  .mode-toggle button { padding: 6px 10px; }
-  .nav-btn { padding: 7px 11px; }
+  .mode-hint { width: 100%; margin-left: 0; order: 99; }
+  .mode-toggle button { padding: 6px 9px; font-size: 0.72rem; }
+  .nav-btn { padding: 8px 10px; }
+  /* Keep the control strip on two tidy rows instead of orphaning New set. */
+  .mode-controls { gap: 6px; justify-content: flex-start; }
+  .draw-note { font-size: 0.78rem; line-height: 1.45; padding: 8px 16px; }
   .q-counter { width: 100%; }
   .wrong-item { display: block; }
   .wrong-item .wi-n { margin-bottom: 4px; }
