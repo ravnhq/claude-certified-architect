@@ -212,7 +212,7 @@ function landing() {
   <section class="hero">
     <p class="eyebrow">Ravn study materials</p>
     <h1>Claude Certified Architect <span class="accent">— choose your track.</span></h1>
-    <p class="lede">Study guides, practice exams, and cheatsheets for the Claude certification exams — free, open, and in three languages wherever the exam is offered in three languages.</p>
+    <p class="lede">Free, open study material for the Anthropic Partner Network certifications — guides, practice exams, and cheatsheets, in English, Spanish, and Portuguese for the Foundations track.</p>
   </section>
   <section class="track-chooser" aria-labelledby="chooser-title">
     <div class="track-heading">
@@ -227,39 +227,6 @@ function landing() {
     <div class="chooser-group">
       <p class="chooser-role">Developer</p>
       <div class="cards chooser-cards">${chooserDeveloperCard}</div>
-    </div>
-  </section>
-  <section class="track">
-    <div class="track-heading">
-      <p class="track-label">Before you book</p>
-      <h2>Check that you are ready</h2>
-      <p>One checklist per exam: ten checks, that exam's blueprint, and the practice material that exists for it — a retake costs the full fee and a 14-day wait.</p>
-    </div>
-    <div class="cards">
-      <article class="card">
-        <h2>CCAR-F</h2>
-        <div class="lang-name">Preflight</div>
-        <p class="card-summary">A saved checklist you work through before you book an Architect &mdash; Foundations slot.</p>
-        <ul>
-          <li><a href="preflight/architect-foundations.html">Open the checklist</a></li>
-        </ul>
-      </article>
-      <article class="card">
-        <h2>CCAR-P</h2>
-        <div class="lang-name">Preflight</div>
-        <p class="card-summary">A saved checklist you work through before you book an Architect &mdash; Professional slot.</p>
-        <ul>
-          <li><a href="preflight/architect-professional.html">Open the checklist</a></li>
-        </ul>
-      </article>
-      <article class="card">
-        <h2>CCDV-F</h2>
-        <div class="lang-name">Preflight</div>
-        <p class="card-summary">A saved checklist you work through before you book a Developer &mdash; Foundations slot.</p>
-        <ul>
-          <li><a href="preflight/developer-foundations.html">Open the checklist</a></li>
-        </ul>
-      </article>
     </div>
   </section>
   <section class="track" id="track-foundations">
@@ -304,7 +271,7 @@ const PREFLIGHT_TRACKS = [
     title: 'Preflight checklist — Claude Certified Architect – Foundations · Ravn',
     eyebrow: 'Architect &mdash; Foundations &middot; CCAR-F',
     heading: 'Ten checks before <span class="accent">you book the slot.</span>',
-    lede: 'Retakes wait 14, then 30, then 90 days &mdash; four attempts maximum per year, $125 each. Tick what is true and see what is left.',
+    lede: 'You sit this as an Anthropic partner: register through Partner Academy, and your tier&rsquo;s discount comes off at checkout. Retakes wait 14, then 30, then 90 days &mdash; four attempts a year, $125 list each. Tick what is true and see what is left.',
     scope: 'This checklist is for <strong>Architect &mdash; Foundations</strong> only. <a href="preflight/architect-professional.html">Architect &mdash; Professional</a> and <a href="preflight/developer-foundations.html">Developer &mdash; Foundations</a> are separate exams with their own blueprints, so the domains and prep courses below do not carry over.',
     note: 'Multiple-choice <em>and</em> multiple-response. 4 scenarios drawn from a bank of 6. Delivered by Pearson VUE — OnVUE at home or a test centre.',
     facts: [
@@ -356,7 +323,7 @@ const PREFLIGHT_TRACKS = [
       {
         n: '07',
         label: 'Registered and slot booked',
-        detail: `Pay in Partner Academy, then schedule in Pearson VUE with the emailed credentials. Reschedule 24h+ ahead or forfeit the fee. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Register')}`,
+        detail: `Check out in Partner Academy with your partner-company email so the tier discount applies, then schedule in Pearson VUE using the credentials it emails you. Reschedule 24h+ ahead or forfeit the fee. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Register')}`,
       },
       {
         n: '08',
@@ -426,6 +393,31 @@ const PREFLIGHT_TRACKS = [
             href: 'https://krog.app/exam/6a1a0c49ca96069990f7e8bc',
             note: '113 questions by domain.',
           },
+          {
+            name: 'cyberskill mock exam',
+            href: 'https://claude-certified-architect-mock-exam-cyberskill.vercel.app/',
+            note: 'Reported as the hardest of the free mocks, and the most useful for it.',
+          },
+          {
+            name: 'hong-chu — CCA-F study wiki',
+            href: 'https://github.com/hong-chu/claude-certified-architect-foundations-llm-wiki',
+            note: 'Linked notes built by a candidate who passed. Point an agent at the repo and have it quiz you.',
+          },
+          {
+            name: 'skillcertpro — CCA-F set',
+            href: 'https://skillcertpro.com/',
+            note: 'Paid, about $20, and reported easier than the free banks. Skip it if the others already land.',
+          },
+        ],
+      },
+      {
+        group: 'Before you trust a question bank',
+        items: [
+          {
+            name: 'Use third-party banks for recall, not for principles',
+            href: 'https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification',
+            note: 'Candidates who passed report that some community banks encode reasoning which contradicts Anthropic\'s own guidance. Drill them for coverage, then settle every disagreement against the official exam guide.',
+          },
         ],
       },
       {
@@ -447,7 +439,7 @@ const PREFLIGHT_TRACKS = [
     title: 'Preflight checklist — Claude Certified Architect – Professional · Ravn',
     eyebrow: 'Architect &mdash; Professional &middot; CCAR-P',
     heading: 'Ten checks before <span class="accent">you book the slot.</span>',
-    lede: 'Retakes wait 14, then 30, then 90 days &mdash; four attempts maximum per year, $175 each. Tick what is true and see what is left.',
+    lede: 'You sit this as an Anthropic partner: register through Partner Academy, and your tier&rsquo;s discount comes off at checkout. Retakes wait 14, then 30, then 90 days &mdash; four attempts a year, $175 list each. Tick what is true and see what is left.',
     scope: 'This checklist is for <strong>Architect &mdash; Professional</strong> only. <a href="preflight/architect-foundations.html">Architect &mdash; Foundations</a> and <a href="preflight/developer-foundations.html">Developer &mdash; Foundations</a> are separate exams with their own blueprints, so the domains and prep courses below do not carry over.',
     note: 'Multiple-choice <em>and</em> multiple-response; every item states how many responses to select. Closed book, English only. Delivered by Pearson VUE — online proctored or at a test centre.',
     facts: [
@@ -501,7 +493,7 @@ const PREFLIGHT_TRACKS = [
       {
         n: '07',
         label: 'Registered and slot booked',
-        detail: `Pay in Partner Academy, then schedule in Pearson VUE with the emailed credentials. Reschedule 24h+ ahead or forfeit the fee. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification', 'Register')}`,
+        detail: `Check out in Partner Academy with your partner-company email so the tier discount applies, then schedule in Pearson VUE using the credentials it emails you. Reschedule 24h+ ahead or forfeit the fee. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification', 'Register')}`,
       },
       {
         n: '08',
@@ -561,7 +553,7 @@ const PREFLIGHT_TRACKS = [
     title: 'Preflight checklist — Claude Certified Developer – Foundations · Ravn',
     eyebrow: 'Developer &mdash; Foundations &middot; CCDV-F',
     heading: 'Ten checks before <span class="accent">you book the slot.</span>',
-    lede: 'Retakes wait 14, then 30, then 90 days &mdash; four attempts maximum per year, $125 each. Tick what is true and see what is left.',
+    lede: 'You sit this as an Anthropic partner: register through Partner Academy, and your tier&rsquo;s discount comes off at checkout. Retakes wait 14, then 30, then 90 days &mdash; four attempts a year, $125 list each. Tick what is true and see what is left.',
     scope: 'This checklist is for <strong>Developer &mdash; Foundations</strong> only. <a href="preflight/architect-foundations.html">Architect &mdash; Foundations</a> and <a href="preflight/architect-professional.html">Architect &mdash; Professional</a> are separate exams with their own blueprints, so the domains and prep courses below do not carry over.',
     note: 'Multiple-choice <em>and</em> multiple-response; every item states how many responses to select. Closed book, English only. Delivered by Pearson VUE — online proctored or at a test centre.',
     facts: [
@@ -618,7 +610,7 @@ const PREFLIGHT_TRACKS = [
       {
         n: '07',
         label: 'Registered and slot booked',
-        detail: `Pay in Partner Academy, then schedule in Pearson VUE with the emailed credentials. Reschedule 24h+ ahead or forfeit the fee — a no-show forfeits it too. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification', 'Register')}`,
+        detail: `Check out in Partner Academy with your partner-company email so the tier discount applies, then schedule in Pearson VUE using the credentials it emails you. Reschedule 24h+ ahead or forfeit the fee — a no-show forfeits it too. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification', 'Register')}`,
       },
       {
         n: '08',
