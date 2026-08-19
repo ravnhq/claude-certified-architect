@@ -25,6 +25,16 @@ const PROFESSIONAL_GUIDES = [
   },
 ];
 
+const DEVELOPER_GUIDES = [
+  {
+    code: 'en',
+    label: 'English',
+    title: 'Developer - English',
+    guide: 'developer_en.md',
+    output: 'developer-en',
+  },
+];
+
 const RAVN_BASE_HREF = process.env.RAVN_BASE_HREF || '/claude-certified-architect/';
 const MINISEARCH_BROWSER = path.resolve(
   path.dirname(fileURLToPath(import.meta.resolve('minisearch'))),
@@ -141,11 +151,79 @@ function landing() {
         <li><a href="https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification">Official registration</a></li>
       </ul>
     </article>`).join('');
+  const developerCards = DEVELOPER_GUIDES.map(l => `
+    <article class="card" data-lang="${l.code}">
+      <h2>${l.code.toUpperCase()}</h2>
+      <div class="lang-name">${l.label}</div>
+      <p class="card-summary">Build, integrate, and ship production applications, agents, and workflows on Claude at a foundational level.</p>
+      <ul>
+        <li><a href="guides/${l.output}.html">Read the study guide</a></li>
+        <li><a href="https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification">Official registration</a></li>
+      </ul>
+    </article>`).join('');
+
+  // Track chooser — a one-glance self-selection grid placed above the
+  // per-track sections. The two Architect exams are grouped as a progression
+  // (Foundations then Professional); Developer is set apart as a separate
+  // role. Each card carries the credential, exam code, audience, the hard
+  // facts that differentiate the tracks (item count + available languages),
+  // what Ravn ships for it, and a single link into that track's section.
+  const chooserArchitectCards = `
+    <article class="card chooser-card">
+      <p class="chooser-code">CCAR-F</p>
+      <h2 class="chooser-name">Architect — Foundations</h2>
+      <p class="card-summary">For practitioners building with Claude Code, the Agent SDK, the Claude API, and MCP.</p>
+      <dl class="chooser-facts">
+        <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">60</dd></div>
+        <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN · ES · PT</dd></div>
+      </dl>
+      <p class="chooser-includes">Ravn ships a study guide, a practice exam, and a cheatsheet — in each language.</p>
+      <a class="chooser-link" href="#track-foundations">Enter the Foundations track</a>
+    </article>
+    <article class="card chooser-card">
+      <p class="chooser-code">CCAR-P</p>
+      <h2 class="chooser-name">Architect — Professional</h2>
+      <p class="card-summary">For architects owning production architecture, evaluation, governance, and lifecycle.</p>
+      <dl class="chooser-facts">
+        <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">63</dd></div>
+        <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN</dd></div>
+      </dl>
+      <p class="chooser-includes">Ravn ships a study guide and a 126-question practice exam.</p>
+      <a class="chooser-link" href="#track-professional">Enter the Professional track</a>
+    </article>`;
+  const chooserDeveloperCard = `
+    <article class="card chooser-card">
+      <p class="chooser-code">CCDV-F</p>
+      <h2 class="chooser-name">Developer — Foundations</h2>
+      <p class="card-summary">For engineers building and shipping production applications, agents, and workflows.</p>
+      <dl class="chooser-facts">
+        <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">53</dd></div>
+        <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN</dd></div>
+      </dl>
+      <p class="chooser-includes">Ravn ships a study guide.</p>
+      <a class="chooser-link" href="#track-developer">Enter the Developer track</a>
+    </article>`;
+
   return `<main class="landing">
   <section class="hero">
     <p class="eyebrow">Ravn study materials</p>
     <h1>Claude Certified Architect <span class="accent">— choose your track.</span></h1>
-    <p class="lede">Prepare for Foundations in English, Spanish, or Portuguese, or use the Professional blueprint to practice production architecture and lifecycle decisions.</p>
+    <p class="lede">Three certifications across two roles: Architect Foundations and Professional, plus Developer Foundations. Pick your track below, then choose your materials.</p>
+  </section>
+  <section class="track-chooser" aria-labelledby="chooser-title">
+    <div class="track-heading">
+      <p class="track-label">Choose your track</p>
+      <h2 id="chooser-title">Which certification is yours?</h2>
+      <p>The two Architect exams form a progression — Foundations first, then Professional. Developer Foundations is a separate role, not a level.</p>
+    </div>
+    <div class="chooser-group">
+      <p class="chooser-role">Architect</p>
+      <div class="cards chooser-cards">${chooserArchitectCards}</div>
+    </div>
+    <div class="chooser-group">
+      <p class="chooser-role">Developer</p>
+      <div class="cards chooser-cards">${chooserDeveloperCard}</div>
+    </div>
   </section>
   <section class="track">
     <div class="track-heading">
@@ -164,21 +242,29 @@ function landing() {
       </article>
     </div>
   </section>
-  <section class="track">
+  <section class="track" id="track-foundations">
     <div class="track-heading">
-      <p class="track-label">Foundations</p>
-      <h2>Build the core skills</h2>
-      <p>Guides, practice exams, and cheatsheets for the five-domain Foundations certification.</p>
+      <p class="track-label">Architect — Foundations · CCAR-F</p>
+      <h2>Pick your language</h2>
+      <p>The five-domain Foundations certification in English, Spanish, or Portuguese — guide, practice exam, and cheatsheet for each.</p>
     </div>
     <div class="cards">${foundationCards}</div>
   </section>
-  <section class="track">
+  <section class="track" id="track-professional">
     <div class="track-heading">
-      <p class="track-label">Professional</p>
+      <p class="track-label">Architect — Professional · CCAR-P</p>
       <h2>Own the production architecture</h2>
       <p>Guidance for the seven-domain CCAR-P blueprint, effective July 2026.</p>
     </div>
     <div class="cards cards-single">${professionalCards}</div>
+  </section>
+  <section class="track" id="track-developer">
+    <div class="track-heading">
+      <p class="track-label">Developer — Foundations · CCDV-F</p>
+      <h2>Build and ship on Claude</h2>
+      <p>Guidance for the eight-domain Developer – Foundations blueprint (CCDV-F).</p>
+    </div>
+    <div class="cards cards-single">${developerCards}</div>
   </section>
 </main>`;
 }
@@ -336,6 +422,8 @@ function preflightStyles() {
 .pf-count .pf-count-n { font-size: clamp(3.4rem, 9vw, 5.6rem); font-weight: 800; color: var(--fg); font-variant-numeric: tabular-nums; }
 .pf-count .pf-count-n.done { color: var(--accent); }
 .pf-count .pf-count-label { display: block; margin-top: 6px; font-family: 'Source Code Pro', monospace; font-size: 0.66rem; letter-spacing: 0.167em; text-transform: uppercase; color: var(--subtle); }
+.pf-scope { max-width: 68ch; margin: 0; padding: 12px 14px; border-left: 2px solid var(--accent); background: var(--bg-elev); font-size: 0.84rem; line-height: 1.6; color: var(--muted); }
+.pf-scope a { color: var(--accent); }
 .pf-dots { display: flex; gap: 8px; margin: 28px 0 36px; }
 .pf-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); transition: background .25s var(--ease); }
 .pf-dot.on { background: var(--accent); }
@@ -489,9 +577,10 @@ function preflight() {
   <section class="hero">
     <div class="pf-headline">
       <div style="display:grid;gap:16px">
-        <p class="eyebrow">Before you book</p>
+        <p class="eyebrow">Architect &mdash; Foundations &middot; CCAR-F</p>
         <h1>Ten checks before <span class="accent">you book the slot.</span></h1>
-        <p class="lede">Retakes wait 14, then 30, then 90 days — four attempts maximum per year, $125 each. Tick what is true and see what is left.</p>
+        <p class="lede">Retakes wait 14, then 30, then 90 days &mdash; four attempts maximum per year, $125 each. Tick what is true and see what is left.</p>
+        <p class="pf-scope">This checklist is for <strong>Architect &mdash; Foundations</strong> only. <a href="index.html">Architect &mdash; Professional</a> and <a href="index.html">Developer &mdash; Foundations</a> are separate exams with their own blueprints, so the domains and prep courses below do not carry over.</p>
       </div>
       <div class="pf-count">
         <div class="pf-count-n" id="pf-remaining">${String(PREFLIGHT_ITEMS.length).padStart(2, '0')}</div>
@@ -542,6 +631,7 @@ async function buildGuides() {
   const guides = [
     ...LANGS.map(l => ({ ...l, output: l.code })),
     ...PROFESSIONAL_GUIDES,
+    ...DEVELOPER_GUIDES,
   ];
   for (const l of guides) {
     const src = path.join(ROOT, l.guide);
