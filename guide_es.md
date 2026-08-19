@@ -2021,6 +2021,188 @@ Alimenta al calificador con la tarea, la salida generada y **criterios de soluci
 
 ---
 
+# Ejemplos de preguntas del examen con explicaciones
+
+## Ejemplo 1 (Escenario: Agente de soporte al cliente)
+
+**Situación:** Los datos muestran que en el 12% de los casos el agente omite `get_customer` y llama a `lookup_order` usando solo el nombre del cliente, lo que lleva a reembolsos incorrectos.
+
+**¿Qué cambio es más efectivo?**
+
+- A) Agregar una precondición programática que bloquee `lookup_order` y `process_refund` hasta obtener un identificador desde `get_customer` **[CORRECTA]**
+- B) Mejorar el prompt del sistema
+- C) Agregar ejemplos few-shot
+- D) Implementar un clasificador de enrutamiento
+
+**Por qué A:** Cuando la lógica de negocio crítica exige una secuencia específica de herramientas, el software ofrece **garantías deterministas** que los enfoques basados en prompt (B, C) no pueden dar. D atiende la disponibilidad de herramientas, no su ordenamiento.
+
+---
+
+## Ejemplo 2 (Escenario: Agente de soporte al cliente)
+
+**Situación:** El agente llama con frecuencia a `get_customer` en lugar de `lookup_order` para preguntas sobre pedidos. Las descripciones de las herramientas son mínimas y parecidas entre sí.
+
+**¿Cuál es el primer paso?**
+
+- A) Ejemplos few-shot
+- B) Expandir la descripción de cada herramienta con formatos de entrada, ejemplos y límites **[CORRECTA]**
+- C) Agregar una capa de enrutamiento
+- D) Fusionar las herramientas
+
+**Por qué B:** Las descripciones de herramientas son el mecanismo principal de selección del modelo. Es la corrección de menor esfuerzo y mayor impacto. A agrega tokens sin atacar la causa raíz. C es complejidad innecesaria. D exige más trabajo del que se justifica.
+
+---
+
+## Ejemplo 3 (Escenario: Agente de soporte al cliente)
+
+**Situación:** El agente resuelve solo el 55% de los casos frente a una meta del 80%. Escala casos simples e intenta resolver por su cuenta excepciones complejas de política.
+
+**¿Cómo mejorar la calibración?**
+
+- A) Agregar criterios de escalada explícitos con ejemplos few-shot **[CORRECTA]**
+- B) Confianza autoevaluada (1–10) con escalada automática
+- C) Un clasificador separado entrenado con datos históricos
+- D) Análisis de sentimiento
+
+**Por qué A:** Ataca directamente la causa raíz: límites de decisión poco claros. B no es confiable (el modelo puede equivocarse con total confianza). C es complejidad innecesaria. D resuelve otro problema (el estado de ánimo no equivale a la complejidad).
+
+---
+
+## Ejemplo 4 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Necesitas un comando `/review` personalizado para la revisión de código estándar, disponible para todo el equipo al clonar el repositorio.
+
+**¿Dónde debes crear el archivo del comando?**
+
+- A) `.claude/commands/` en el repositorio del proyecto **[CORRECTA]**
+- B) `~/.claude/commands/`
+- C) El `CLAUDE.md` de la raíz
+- D) `.claude/config.json`
+
+**Por qué A:** Los comandos de proyecto guardados en `.claude/commands/` quedan bajo control de versiones y disponibles automáticamente para todo el equipo. B es para comandos personales. C es para instrucciones, no para definiciones de comandos. D no existe.
+
+---
+
+## Ejemplo 5 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Debes reestructurar un monolito en microservicios (decenas de archivos, decisiones sobre fronteras de servicio).
+
+**¿Qué enfoque debes usar?**
+
+- A) Modo de planificación: explorar la base de código, entender las dependencias y diseñar el enfoque **[CORRECTA]**
+- B) Ejecución directa de forma incremental
+- C) Ejecución directa con instrucciones detalladas por adelantado
+- D) Ejecución directa y cambiar al modo de planificación cuando se complique
+
+**Por qué A:** El modo de planificación está pensado para cambios grandes, con varios enfoques posibles y decisiones arquitectónicas. B arriesga retrabajo costoso. C supone que ya conoces la estructura. D es reactivo.
+
+---
+
+## Ejemplo 6 (Escenario: Generación de código con Claude Code)
+
+**Situación:** Una base de código tiene convenciones distintas por área (React, API, base de datos). Las pruebas viven junto al código que ejercitan. Quieres que las convenciones se apliquen automáticamente.
+
+**¿Qué enfoque debes usar?**
+
+- A) Archivos en `.claude/rules/` con frontmatter YAML y patrones glob **[CORRECTA]**
+- B) Poner todo en el `CLAUDE.md` de la raíz
+- C) Skills en `.claude/skills/`
+- D) Un `CLAUDE.md` en cada directorio
+
+**Por qué A:** `.claude/rules/` con patrones glob (por ejemplo, `**/*.test.tsx`) permite aplicar convenciones automáticamente según la ruta del archivo — ideal para pruebas repartidas por toda la base de código. B depende de la inferencia del modelo. C es manual y bajo demanda. D no funciona bien cuando los archivos relevantes están en muchos directorios.
+
+---
+
+## Ejemplo 7 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** El sistema investiga “el impacto de la IA en las industrias creativas”, pero los informes cubren solo artes visuales. El coordinador descompuso el tema en: “IA en arte digital”, “IA en diseño gráfico” e “IA en fotografía”.
+
+**¿Cuál es la causa?**
+
+- A) El agente de síntesis no detecta lagunas de cobertura
+- B) El coordinador descompuso la tarea de forma demasiado estrecha **[CORRECTA]**
+- C) El agente de búsqueda web no busca de forma exhaustiva
+- D) El agente de análisis de documentos filtra las fuentes no visuales
+
+**Por qué B:** Los registros muestran que el coordinador descompuso “industrias creativas” solo en subtemas visuales, omitiendo por completo música, literatura y cine. Los subagentes ejecutaron correctamente: el problema es lo que se les asignó.
+
+---
+
+## Ejemplo 8 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** Un subagente de búsqueda web agota el tiempo de espera mientras investiga un tema complejo. Debes diseñar cómo se devuelve al coordinador la información del error.
+
+**¿Qué enfoque de propagación de errores habilita mejor una recuperación inteligente?**
+
+- A) Devolver contexto de error estructurado al coordinador: tipo de fallo, consulta, resultados parciales y alternativas **[CORRECTA]**
+- B) Implementar reintentos automáticos con retroceso exponencial dentro del subagente y luego devolver un estado genérico de “búsqueda no disponible”
+- C) Capturar el tiempo de espera agotado dentro del subagente y devolver un conjunto de resultados vacío marcado como éxito
+- D) Propagar la excepción de tiempo de espera a un manejador de nivel superior que termine todo el flujo
+
+**Por qué A:** El contexto de error estructurado da al coordinador lo necesario para decidir si reintenta con una consulta modificada, prueba un enfoque alternativo o continúa con resultados parciales. B esconde el contexto tras un estado genérico. C enmascara el fallo como éxito. D aborta todo el flujo innecesariamente.
+
+---
+
+## Ejemplo 9 (Escenario: Sistema de investigación multiagente)
+
+**Situación:** El agente de síntesis a menudo necesita verificar afirmaciones específicas mientras fusiona resultados. Hoy, cuando hace falta verificar, devuelve el control al coordinador, que llama al agente de búsqueda web y vuelve a ejecutar la síntesis con los nuevos resultados. Esto agrega 2–3 idas y vueltas adicionales por tarea y aumenta la latencia un 40%. Tu evaluación muestra que el 85% de esas verificaciones son comprobaciones simples de datos (fechas, nombres, estadísticas), mientras que el 15% exige una investigación más profunda.
+
+**¿Cómo reducir la sobrecarga manteniendo la confiabilidad?**
+
+- A) Dar al agente de síntesis una herramienta acotada `verify_fact` para las comprobaciones simples y seguir enrutando la verificación compleja por el coordinador **[CORRECTA]**
+- B) Acumular todas las necesidades de verificación en un lote y devolverlas al coordinador al final
+- C) Dar al agente de síntesis acceso completo a todas las herramientas de búsqueda web
+- D) Cachear proactivamente contexto adicional alrededor de cada fuente
+
+**Por qué A:** Aplica el principio de menor privilegio: el agente de síntesis recibe exactamente lo que necesita para el caso común del 85% (comprobaciones simples) y conserva la ruta mediada por el coordinador para las investigaciones complejas. B introduce dependencias bloqueantes: pasos posteriores de la síntesis pueden depender de datos verificados antes. C rompe la separación de responsabilidades. D depende de un caché especulativo que no puede predecir las necesidades de forma confiable.
+
+---
+
+## Ejemplo 10 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** Un pipeline ejecuta `claude "Analyze this pull request for security issues"`, pero se queda colgado esperando entrada interactiva.
+
+**¿Cuál es el enfoque correcto?**
+
+- A) Usar la bandera `-p`: `claude -p "Analyze this pull request for security issues"` **[CORRECTA]**
+- B) Definir `CLAUDE_HEADLESS=true`
+- C) Redirigir stdin desde `/dev/null`
+- D) Usar `--batch`
+
+**Por qué A:** `-p` (o `--print`) es la forma documentada de ejecutar Claude Code en modo no interactivo: procesa el prompt, imprime en stdout y termina. Las demás opciones son funciones inexistentes o parches de Unix.
+
+---
+
+## Ejemplo 11 (Escenario: Claude Code para Integración Continua)
+
+**Situación:** El equipo quiere reducir el costo de API del análisis automatizado. Hoy Claude atiende dos flujos en tiempo real: (1) una verificación bloqueante previa al merge que debe terminar antes de que los desarrolladores puedan integrar un PR, y (2) un informe de deuda técnica generado de noche para revisarlo por la mañana. Un gerente propone mover ambos a la Message Batches API para ahorrar un 50%.
+
+**¿Cómo debes evaluar esta propuesta?**
+
+- A) Usar procesamiento por lotes solo para los informes de deuda técnica y mantener las llamadas en tiempo real para las verificaciones previas al merge **[CORRECTA]**
+- B) Mover ambos flujos a procesamiento por lotes y hacer polling hasta que terminen
+- C) Mantener ambos en tiempo real para evitar problemas de orden en los resultados por lotes
+- D) Mover ambos a procesamiento por lotes con respaldo a tiempo real si un lote tarda demasiado
+
+**Por qué A:** La Message Batches API ahorra un 50%, pero el procesamiento puede tardar hasta 24 horas y no garantiza un SLA de latencia. Eso la vuelve inadecuada para verificaciones bloqueantes previas al merge, donde los desarrolladores esperan, e ideal para cargas nocturnas por lotes como los informes de deuda técnica.
+
+---
+
+## Ejemplo 12 (Escenario: Revisión de código multiarchivo)
+
+**Situación:** Un pull request modifica 14 archivos de un módulo de control de inventario. Una revisión de una sola pasada sobre todos los archivos produce resultados inconsistentes: comentarios detallados para algunos archivos y superficiales para otros, errores obvios que pasan desapercibidos y retroalimentación contradictoria (un patrón se marca como problemático en un archivo y se aprueba en código idéntico en otro).
+
+**¿Cómo debes reestructurar la revisión?**
+
+- A) Dividirla en pasadas enfocadas: analizar cada archivo por separado para los problemas locales y luego ejecutar una pasada de integración aparte para los flujos de datos entre archivos **[CORRECTA]**
+- B) Exigir a los desarrolladores que dividan los PR grandes en entregas de 3–4 archivos
+- C) Cambiar a un modelo de nivel superior con una ventana de contexto más grande para revisar los 14 archivos en una sola pasada
+- D) Ejecutar tres pasadas independientes sobre el PR completo y reportar solo los problemas encontrados en al menos dos ejecuciones
+
+**Por qué A:** Las pasadas enfocadas atacan directamente la causa raíz: la dilución de la atención al procesar muchos archivos a la vez. El análisis por archivo garantiza una profundidad consistente, y una pasada de integración aparte detecta los problemas entre archivos. B traslada la carga a los desarrolladores sin mejorar el sistema. C es un malentendido: más contexto no corrige la calidad de la atención. D suprime errores reales al exigir consenso entre detecciones inconsistentes.
+
+---
+
 # Examen Práctico
 
 > 76 preguntas en 5 escenarios. El formato y la dificultad coinciden con el examen real.
