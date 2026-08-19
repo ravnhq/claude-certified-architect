@@ -179,6 +179,7 @@ function landing() {
       </dl>
       <p class="chooser-includes">Study guide, practice exam, and cheatsheet, each in English, Spanish, and Portuguese.</p>
       <a class="chooser-link" href="#track-foundations">Start with Foundations</a>
+      <a class="chooser-link" href="preflight/architect-foundations.html">Preflight checklist</a>
     </article>
     <article class="card chooser-card">
       <p class="chooser-code">CCAR-P</p>
@@ -190,6 +191,7 @@ function landing() {
       </dl>
       <p class="chooser-includes">Study guide, plus a practice exam drawing 63 questions from a bank of 126.</p>
       <a class="chooser-link" href="#track-professional">Go to Professional</a>
+      <a class="chooser-link" href="preflight/architect-professional.html">Preflight checklist</a>
     </article>`;
   const chooserDeveloperCard = `
     <article class="card chooser-card">
@@ -202,6 +204,7 @@ function landing() {
       </dl>
       <p class="chooser-includes">Study guide covering all eight domains.</p>
       <a class="chooser-link" href="#track-developer">Go to Developer</a>
+      <a class="chooser-link" href="preflight/developer-foundations.html">Preflight checklist</a>
     </article>`;
 
   return `<main class="landing">
@@ -229,15 +232,31 @@ function landing() {
     <div class="track-heading">
       <p class="track-label">Before you book</p>
       <h2>Check that you are ready</h2>
-      <p>Ten checks, the exam blueprint, and a list of practice material — a retake costs $125 and a 14-day wait.</p>
+      <p>One checklist per exam: ten checks, that exam's blueprint, and the practice material that exists for it — a retake costs the full fee and a 14-day wait.</p>
     </div>
-    <div class="cards cards-single">
+    <div class="cards">
       <article class="card">
-        <h2>EN</h2>
+        <h2>CCAR-F</h2>
         <div class="lang-name">Preflight</div>
-        <p class="card-summary">A saved checklist you work through before you book a Foundations slot.</p>
+        <p class="card-summary">A saved checklist you work through before you book an Architect &mdash; Foundations slot.</p>
         <ul>
-          <li><a href="preflight/en.html">Open the checklist</a></li>
+          <li><a href="preflight/architect-foundations.html">Open the checklist</a></li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>CCAR-P</h2>
+        <div class="lang-name">Preflight</div>
+        <p class="card-summary">A saved checklist you work through before you book an Architect &mdash; Professional slot.</p>
+        <ul>
+          <li><a href="preflight/architect-professional.html">Open the checklist</a></li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>CCDV-F</h2>
+        <div class="lang-name">Preflight</div>
+        <p class="card-summary">A saved checklist you work through before you book a Developer &mdash; Foundations slot.</p>
+        <ul>
+          <li><a href="preflight/developer-foundations.html">Open the checklist</a></li>
         </ul>
       </article>
     </div>
@@ -271,137 +290,382 @@ function landing() {
 
 // ---------- preflight checklist ----------
 
-const PREFLIGHT_ITEMS = [
+// One entry per certification track. Each drives a standalone checklist page:
+// its own facts, blueprint, items, resources, and localStorage key, rendered
+// through the shared preflight() below. `files` lists every filename the page
+// is written to — Foundations also answers to the original `en.html`, which
+// the README and the landing page have always linked.
+const PREFLIGHT_TRACKS = [
   {
-    n: '01',
-    label: 'Prep courses that carry weight',
-    detail: `Seven exist, none required. Highest yield: <strong>Claude Code in Action</strong> (Domain 3), <strong>Intro to MCP</strong> (Domain 2), <strong>Building with the Claude API</strong> (Domains 2 and 4). Skim the rest. ${extLink('https://anthropic-partners.skilljar.com/page/claude-certified-architect-foundations-prep-courses', 'Courses')}`,
-  },
-  {
-    n: '02',
-    label: 'Bonus courses done',
-    detail: `Off the prep page, on the blueprint: ${extLink('https://anthropic-partners.skilljar.com/introduction-to-subagents', 'Introduction to subagents')} (Domain 1) and ${extLink('https://anthropic-partners.skilljar.com/model-context-protocol-advanced-topics', 'MCP: Advanced Topics')} (Domain 2).`,
-  },
-  {
-    n: '03',
-    label: 'Read the exam guide end-to-end',
-    detail: `v1.0, July 2026. Source of truth. Not skimmed. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Official guide')} · <a href="guides/en.html">Ravn study guide</a>`,
-  },
-  {
-    n: '04',
-    label: 'Can name and explain all 5 domains',
-    detail: 'Without notes. Use the blueprint above to self-check.',
-  },
-  {
-    n: '05',
-    label: 'Worked the official sample questions',
-    detail: `The self-service practice exam is retired. What remains: the guide&rsquo;s samples, plus a graded quiz ending every prep course that reveals its answer key once you pass. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Get the guide')}`,
-  },
-  {
-    n: '06',
-    label: 'Worked through community mocks',
-    detail: 'With the official mock gone, these carry more weight. Full list in Resources below.',
-  },
-  {
-    n: '07',
-    label: 'Registered and slot booked',
-    detail: `Pay in Partner Academy, then schedule in Pearson VUE with the emailed credentials. Reschedule 24h+ ahead or forfeit the fee. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Register')}`,
-  },
-  {
-    n: '08',
-    label: 'OnVUE system test passed',
-    detail: `On the actual machine and network you will use. Webcam, mic, and OnVUE domains reachable. ${extLink('https://www.pearsonvue.com/us/en/anthropic.html', 'Pearson VUE')}`,
-  },
-  {
-    n: '09',
-    label: 'Workspace ready',
-    detail: 'Government photo ID matching your registration name. Quiet room, no second monitor, phone away.',
-  },
-  {
-    n: '10',
-    label: 'You would expect to pass right now',
-    detail: 'Not hope. Expect.',
-  },
-];
-
-const PREFLIGHT_FACTS = [
-  { k: 'Code', v: 'CCAR-F' },
-  { k: 'Questions', v: '60' },
-  { k: 'Time', v: '120 min' },
-  { k: 'Pass', v: '720 / 1000' },
-  { k: 'Fee', v: '$125' },
-  { k: 'Valid', v: '12 months' },
-];
-
-const PREFLIGHT_DOMAINS = [
-  { n: '01', name: 'Agentic Architecture &amp; Orchestration', weight: 27 },
-  { n: '02', name: 'Tool Design &amp; MCP Integration', weight: 18 },
-  { n: '03', name: 'Claude Code Configuration &amp; Workflows', weight: 20 },
-  { n: '04', name: 'Prompt Engineering &amp; Structured Output', weight: 20 },
-  { n: '05', name: 'Context Management &amp; Reliability', weight: 15 },
-];
-
-const PREFLIGHT_RESOURCES = [
-  {
-    group: 'Ravn materials',
+    slug: 'architect-foundations',
+    files: ['architect-foundations.html', 'en.html'],
+    storageKey: 'ccaf-preflight:state',
+    title: 'Preflight checklist — Claude Certified Architect – Foundations · Ravn',
+    eyebrow: 'Architect &mdash; Foundations &middot; CCAR-F',
+    heading: 'Ten checks before <span class="accent">you book the slot.</span>',
+    lede: 'Retakes wait 14, then 30, then 90 days &mdash; four attempts maximum per year, $125 each. Tick what is true and see what is left.',
+    scope: 'This checklist is for <strong>Architect &mdash; Foundations</strong> only. <a href="preflight/architect-professional.html">Architect &mdash; Professional</a> and <a href="preflight/developer-foundations.html">Developer &mdash; Foundations</a> are separate exams with their own blueprints, so the domains and prep courses below do not carry over.',
+    note: 'Multiple-choice <em>and</em> multiple-response. 4 scenarios drawn from a bank of 6. Delivered by Pearson VUE — OnVUE at home or a test centre.',
+    facts: [
+      { k: 'Code', v: 'CCAR-F' },
+      { k: 'Questions', v: '60' },
+      { k: 'Time', v: '120 min' },
+      { k: 'Pass', v: '720 / 1000' },
+      { k: 'Fee', v: '$125' },
+      { k: 'Valid', v: '12 months' },
+    ],
+    domains: [
+      { n: '01', name: 'Agentic Architecture &amp; Orchestration', weight: 27 },
+      { n: '02', name: 'Tool Design &amp; MCP Integration', weight: 18 },
+      { n: '03', name: 'Claude Code Configuration &amp; Workflows', weight: 20 },
+      { n: '04', name: 'Prompt Engineering &amp; Structured Output', weight: 20 },
+      { n: '05', name: 'Context Management &amp; Reliability', weight: 15 },
+    ],
     items: [
-      { name: 'Study guide', href: 'guides/en.html', note: 'The full Foundations guide.', internal: true },
-      { name: 'Practice exam', href: 'practical/en.html', note: '60 questions drawn from a bank of 136, scored to 1000.', internal: true },
-      { name: 'Cheatsheet', href: 'cheatsheet/en.html', note: 'One-page recap of the five domains.', internal: true },
+      {
+        n: '01',
+        label: 'Prep courses that carry weight',
+        detail: `Seven exist, none required. Highest yield: <strong>Claude Code in Action</strong> (Domain 3), <strong>Intro to MCP</strong> (Domain 2), <strong>Building with the Claude API</strong> (Domains 2 and 4). Skim the rest. ${extLink('https://anthropic-partners.skilljar.com/page/claude-certified-architect-foundations-prep-courses', 'Courses')}`,
+      },
+      {
+        n: '02',
+        label: 'Bonus courses done',
+        detail: `Off the prep page, on the blueprint: ${extLink('https://anthropic-partners.skilljar.com/introduction-to-subagents', 'Introduction to subagents')} (Domain 1) and ${extLink('https://anthropic-partners.skilljar.com/model-context-protocol-advanced-topics', 'MCP: Advanced Topics')} (Domain 2).`,
+      },
+      {
+        n: '03',
+        label: 'Read the exam guide end-to-end',
+        detail: `v1.0, July 2026. Source of truth. Not skimmed. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Official guide')} · <a href="guides/en.html">Ravn study guide</a>`,
+      },
+      {
+        n: '04',
+        label: 'Can name and explain all 5 domains',
+        detail: 'Without notes. Use the blueprint above to self-check.',
+      },
+      {
+        n: '05',
+        label: 'Worked the official sample questions',
+        detail: `The self-service practice exam is retired. What remains: the guide&rsquo;s samples, plus a graded quiz ending every prep course that reveals its answer key once you pass. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Get the guide')}`,
+      },
+      {
+        n: '06',
+        label: 'Worked through community mocks',
+        detail: 'With the official mock gone, these carry more weight. Full list in Resources below.',
+      },
+      {
+        n: '07',
+        label: 'Registered and slot booked',
+        detail: `Pay in Partner Academy, then schedule in Pearson VUE with the emailed credentials. Reschedule 24h+ ahead or forfeit the fee. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Register')}`,
+      },
+      {
+        n: '08',
+        label: 'OnVUE system test passed',
+        detail: `On the actual machine and network you will use. Webcam, mic, and OnVUE domains reachable. ${extLink('https://www.pearsonvue.com/us/en/anthropic.html', 'Pearson VUE')}`,
+      },
+      {
+        n: '09',
+        label: 'Workspace ready',
+        detail: 'Government photo ID matching your registration name. Quiet room, no second monitor, phone away.',
+      },
+      {
+        n: '10',
+        label: 'You would expect to pass right now',
+        detail: 'Not hope. Expect.',
+      },
+    ],
+    resources: [
+      {
+        group: 'Ravn materials',
+        items: [
+          { name: 'Study guide', href: 'guides/en.html', note: 'The full Foundations guide.', internal: true },
+          { name: 'Practice exam', href: 'practical/en.html', note: '60 questions drawn from a bank of 136, scored to 1000.', internal: true },
+          { name: 'Cheatsheet', href: 'cheatsheet/en.html', note: 'One-page recap of the five domains.', internal: true },
+        ],
+      },
+      {
+        group: 'External practice',
+        items: [
+          {
+            name: 'claudecertificationguide.com — diagnostic',
+            href: 'https://claudecertificationguide.com/learn/diagnostic',
+            note: 'Short. Use this to gauge readiness before the full mocks.',
+          },
+          {
+            name: 'claudecertificationguide.com — full mock',
+            href: 'https://claudecertificationguide.com/mock-exam',
+            note: 'Full-length community mock.',
+          },
+          {
+            name: 'certsafari.com',
+            href: 'https://www.certsafari.com/anthropic/claude-certified-architect',
+            note: '614 questions, aligned to guide v1.0. Configurable.',
+          },
+          {
+            name: 'claudecertifiedarchitects.com',
+            href: 'https://www.claudecertifiedarchitects.com/',
+            note: 'Free readiness diagnostic plus 400 scenario questions.',
+          },
+          {
+            name: 'open-exam-prep.com',
+            href: 'https://open-exam-prep.com/',
+            note: 'Free CCAR-F questions aligned to v1.0.',
+          },
+          {
+            name: 'daronyondem/claude-architect-exam-guide',
+            href: 'https://github.com/daronyondem/claude-architect-exam-guide',
+            note: 'Community study guide. PDF and EPUB builds.',
+          },
+          {
+            name: 'OlivierAlter — practice exam + skill',
+            href: 'https://github.com/OlivierAlter/Claude-Certified-Architect-Foundations-Certification-Exam',
+            note: '77 scenario questions plus an interactive Claude Code skill.',
+          },
+          {
+            name: 'krog.app',
+            href: 'https://krog.app/exam/6a1a0c49ca96069990f7e8bc',
+            note: '113 questions by domain.',
+          },
+        ],
+      },
+      {
+        group: 'Video',
+        items: [
+          {
+            name: 'CCAF study playlist',
+            href: 'https://www.youtube.com/playlist?list=PLmiDJB5zE0KGwFtDCSqHfQG7SV6VeQ_31',
+            note: 'Community-curated audiovisual material.',
+          },
+        ],
+      },
     ],
   },
   {
-    group: 'External practice',
+    slug: 'architect-professional',
+    files: ['architect-professional.html'],
+    storageKey: 'ccarp-preflight:state',
+    title: 'Preflight checklist — Claude Certified Architect – Professional · Ravn',
+    eyebrow: 'Architect &mdash; Professional &middot; CCAR-P',
+    heading: 'Ten checks before <span class="accent">you book the slot.</span>',
+    lede: 'Retakes wait 14, then 30, then 90 days &mdash; four attempts maximum per year, $175 each. Tick what is true and see what is left.',
+    scope: 'This checklist is for <strong>Architect &mdash; Professional</strong> only. <a href="preflight/architect-foundations.html">Architect &mdash; Foundations</a> and <a href="preflight/developer-foundations.html">Developer &mdash; Foundations</a> are separate exams with their own blueprints, so the domains and prep courses below do not carry over.',
+    note: 'Multiple-choice <em>and</em> multiple-response; every item states how many responses to select. Closed book, English only. Delivered by Pearson VUE — online proctored or at a test centre.',
+    facts: [
+      { k: 'Code', v: 'CCAR-P' },
+      { k: 'Questions', v: '63' },
+      { k: 'Time', v: '120 min' },
+      { k: 'Pass', v: '720 / 1000' },
+      { k: 'Fee', v: '$175' },
+      { k: 'Valid', v: '12 months' },
+    ],
+    domains: [
+      { n: '01', name: 'Solution Design &amp; Architecture', weight: 17 },
+      { n: '02', name: 'Claude Models, Prompting &amp; Context Engineering', weight: 13 },
+      { n: '03', name: 'Integration', weight: 19 },
+      { n: '04', name: 'Evaluation, Testing &amp; Optimization', weight: 16 },
+      { n: '05', name: 'Governance, Safety &amp; Risk Management', weight: 14 },
+      { n: '06', name: 'Stakeholder Communication &amp; Lifecycle Management', weight: 14 },
+      { n: '07', name: 'Developer Productivity &amp; Operational Enablement', weight: 7 },
+    ],
     items: [
       {
-        name: 'claudecertificationguide.com — diagnostic',
-        href: 'https://claudecertificationguide.com/learn/diagnostic',
-        note: 'Short. Use this to gauge readiness before the full mocks.',
+        n: '01',
+        label: 'Official prep path finished',
+        detail: `Five courses, about 12 hours. Not required, and the only material written against the Professional blueprint. ${extLink('https://anthropic-partners.skilljar.com/path/claude-certified-architect-professional', 'Prep path')}`,
       },
       {
-        name: 'claudecertificationguide.com — full mock',
-        href: 'https://claudecertificationguide.com/mock-exam',
-        note: 'Full-length community mock.',
+        n: '02',
+        label: 'Read the exam guide end-to-end',
+        detail: `Effective July 2026. Source of truth. Not skimmed. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification', 'Official guide')} · <a href="guides/professional-en.html">Ravn study guide</a>`,
       },
       {
-        name: 'certsafari.com',
-        href: 'https://www.certsafari.com/anthropic/claude-certified-architect',
-        note: '614 questions, aligned to guide v1.0. Configurable.',
+        n: '03',
+        label: 'Can name and explain all 7 domains',
+        detail: 'Without notes. Integration and Solution Design carry 36% between them — budget your study by the weights above, not by what you enjoy.',
       },
       {
-        name: 'claudecertifiedarchitects.com',
-        href: 'https://www.claudecertifiedarchitects.com/',
-        note: 'Free readiness diagnostic plus 400 scenario questions.',
+        n: '04',
+        label: 'Worked the Ravn practice exam',
+        detail: 'Under the 120-minute limit, then reviewed by failure type rather than topic. The community mocks listed for Foundations target CCAR-F, so they do not calibrate this exam. <a href="practical/professional-en.html">Practice exam</a>',
       },
       {
-        name: 'open-exam-prep.com',
-        href: 'https://open-exam-prep.com/',
-        note: 'Free CCAR-F questions aligned to v1.0.',
+        n: '05',
+        label: 'Eligibility confirmed',
+        detail: 'Registration requires a recognised Claude Partner Network company email. Personal addresses are rejected, and adding a domain takes 7&ndash;10 days — start this before you plan a date.',
       },
       {
-        name: 'daronyondem/claude-architect-exam-guide',
-        href: 'https://github.com/daronyondem/claude-architect-exam-guide',
-        note: 'Community study guide. PDF and EPUB builds.',
+        n: '06',
+        label: 'Can defend an end-to-end design out loud',
+        detail: 'From a short business brief: the pattern you chose, the integration surface, how you would evaluate it, the controls, and the rollout — plus the trade-off each decision cost you.',
       },
       {
-        name: 'OlivierAlter — practice exam + skill',
-        href: 'https://github.com/OlivierAlter/Claude-Certified-Architect-Foundations-Certification-Exam',
-        note: '77 scenario questions plus an interactive Claude Code skill.',
+        n: '07',
+        label: 'Registered and slot booked',
+        detail: `Pay in Partner Academy, then schedule in Pearson VUE with the emailed credentials. Reschedule 24h+ ahead or forfeit the fee. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification', 'Register')}`,
       },
       {
-        name: 'krog.app',
-        href: 'https://krog.app/exam/6a1a0c49ca96069990f7e8bc',
-        note: '113 questions by domain.',
+        n: '08',
+        label: 'OnVUE system test passed',
+        detail: `On the actual machine and network you will use. Webcam, mic, and OnVUE domains reachable. Corporate networks often block them — a test centre is the safer fallback. ${extLink('https://www.pearsonvue.com/us/en/anthropic.html', 'Pearson VUE')}`,
+      },
+      {
+        n: '09',
+        label: 'Workspace ready',
+        detail: 'Government photo ID matching your registration name. Quiet room, no second monitor, phone away. Allow about 135 minutes on site for a 120-minute exam.',
+      },
+      {
+        n: '10',
+        label: 'You would expect to pass right now',
+        detail: 'Not hope. Expect.',
+      },
+    ],
+    resources: [
+      {
+        group: 'Ravn materials',
+        items: [
+          { name: 'Study guide', href: 'guides/professional-en.html', note: 'The full Professional guide, English only.', internal: true },
+          { name: 'Practice exam', href: 'practical/professional-en.html', note: '63 questions drawn from a bank of 126, scored to 1000.', internal: true },
+        ],
+      },
+      {
+        group: 'Official preparation',
+        items: [
+          {
+            name: 'Professional prep path',
+            href: 'https://anthropic-partners.skilljar.com/path/claude-certified-architect-professional',
+            note: 'Five courses, about 12 hours. Optional, and the only Professional-specific course material.',
+          },
+          {
+            name: 'Certification and registration page',
+            href: 'https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification',
+            note: 'The exam guide and the checkout that unlocks Pearson VUE scheduling.',
+          },
+          {
+            name: 'Certification FAQ',
+            href: 'https://anthropic-partners.skilljar.com/page/faq-certifications',
+            note: 'Eligibility, retakes, validity, proctoring, and badging.',
+          },
+          {
+            name: 'Computer and network setup',
+            href: 'https://anthropic-partners.skilljar.com/page/computer-and-network-setup',
+            note: 'Read this before you book online proctoring.',
+          },
+        ],
       },
     ],
   },
   {
-    group: 'Video',
+    slug: 'developer-foundations',
+    files: ['developer-foundations.html'],
+    storageKey: 'ccdvf-preflight:state',
+    title: 'Preflight checklist — Claude Certified Developer – Foundations · Ravn',
+    eyebrow: 'Developer &mdash; Foundations &middot; CCDV-F',
+    heading: 'Ten checks before <span class="accent">you book the slot.</span>',
+    lede: 'Retakes wait 14, then 30, then 90 days &mdash; four attempts maximum per year, $125 each. Tick what is true and see what is left.',
+    scope: 'This checklist is for <strong>Developer &mdash; Foundations</strong> only. <a href="preflight/architect-foundations.html">Architect &mdash; Foundations</a> and <a href="preflight/architect-professional.html">Architect &mdash; Professional</a> are separate exams with their own blueprints, so the domains and prep courses below do not carry over.',
+    note: 'Multiple-choice <em>and</em> multiple-response; every item states how many responses to select. Closed book, English only. Delivered by Pearson VUE — online proctored or at a test centre.',
+    facts: [
+      { k: 'Code', v: 'CCDV-F' },
+      { k: 'Questions', v: '53' },
+      { k: 'Time', v: '120 min' },
+      { k: 'Pass', v: '720 / 1000' },
+      { k: 'Fee', v: '$125' },
+      { k: 'Valid', v: '12 months' },
+    ],
+    domains: [
+      // Quoted so a whole-number weight keeps the blueprint's decimal — 11.0,
+      // not 11 — next to the seven fractional rows.
+      { n: '01', name: 'Agents and Workflows', weight: '14.7' },
+      { n: '02', name: 'Applications and Integration', weight: '33.1' },
+      { n: '03', name: 'Claude Code', weight: '3.1' },
+      { n: '04', name: 'Eval, Testing and Debugging', weight: '2.6' },
+      { n: '05', name: 'Model Selection and Optimization', weight: '16.8' },
+      { n: '06', name: 'Prompt and Context Engineering', weight: '11.0' },
+      { n: '07', name: 'Security and Safety', weight: '8.1' },
+      { n: '08', name: 'Tools and MCPs', weight: '10.6' },
+    ],
     items: [
       {
-        name: 'CCAF study playlist',
-        href: 'https://www.youtube.com/playlist?list=PLmiDJB5zE0KGwFtDCSqHfQG7SV6VeQ_31',
-        note: 'Community-curated audiovisual material.',
+        n: '01',
+        label: 'Official prep path finished',
+        detail: `Five modules, about 12 hours 40 minutes. Not required, and the only material written against the Developer blueprint. ${extLink('https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations', 'Prep path')}`,
+      },
+      {
+        n: '02',
+        label: 'Read the exam guide end-to-end',
+        detail: `v1.0, effective July 2026. Source of truth. Not skimmed. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification', 'Official guide')} · <a href="guides/developer-en.html">Ravn study guide</a>`,
+      },
+      {
+        n: '03',
+        label: 'Can name and explain all 8 domains',
+        detail: 'Without notes. Applications and Integration alone is a third of the exam, while Claude Code and Eval together are under 6% — study to the weights above, not to the course hours.',
+      },
+      {
+        n: '04',
+        label: 'Worked the official sample questions',
+        detail: 'Three items with full rationale in Section 8 of the exam guide. Read them in the source: the answer key is the clearest signal available about how items are built.',
+      },
+      {
+        n: '05',
+        label: 'Practice material worked through',
+        detail: 'Ravn ships a study guide for this track — no practice exam and no cheatsheet yet, and the CCAR-F practice exam is a different blueprint. Work the guide&rsquo;s practice artifacts and its readiness checklist instead. <a href="guides/developer-en.html">Ravn study guide</a>',
+      },
+      {
+        n: '06',
+        label: 'Built it, not just read it',
+        detail: 'One reference application you wrote yourself: the agent loop, a tool schema, a consumed stream, batch and caching, and a trace you read to find a failing step.',
+      },
+      {
+        n: '07',
+        label: 'Registered and slot booked',
+        detail: `Pay in Partner Academy, then schedule in Pearson VUE with the emailed credentials. Reschedule 24h+ ahead or forfeit the fee — a no-show forfeits it too. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification', 'Register')}`,
+      },
+      {
+        n: '08',
+        label: 'OnVUE system test passed',
+        detail: `On the actual machine and network you will use. Webcam, mic, and OnVUE domains reachable. Corporate networks often block them — a test centre is the safer fallback. ${extLink('https://www.pearsonvue.com/us/en/anthropic.html', 'Pearson VUE')}`,
+      },
+      {
+        n: '09',
+        label: 'Workspace ready',
+        detail: 'Government photo ID matching your registration name, exactly. Quiet room, no second monitor, phone away. You must accept the non-disclosure agreement before the exam starts; declining ends the session with no refund.',
+      },
+      {
+        n: '10',
+        label: 'You would expect to pass right now',
+        detail: 'Not hope. Expect.',
+      },
+    ],
+    resources: [
+      {
+        group: 'Ravn materials',
+        items: [
+          { name: 'Study guide', href: 'guides/developer-en.html', note: 'The full Developer guide, English only. No practice exam or cheatsheet ships for this track yet.', internal: true },
+        ],
+      },
+      {
+        group: 'Official preparation',
+        items: [
+          {
+            name: 'Developer prep path',
+            href: 'https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations',
+            note: 'Five modules, about 12 hours 40 minutes. Organised by topic, not by domain.',
+          },
+          {
+            name: 'Certification and registration page',
+            href: 'https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification',
+            note: 'The exam guide and the checkout that unlocks Pearson VUE scheduling.',
+          },
+          {
+            name: 'Certification FAQ',
+            href: 'https://anthropic-partners.skilljar.com/page/faq-certifications',
+            note: 'Eligibility, retakes, validity, proctoring, and badging.',
+          },
+          {
+            name: 'Computer and network setup',
+            href: 'https://anthropic-partners.skilljar.com/page/computer-and-network-setup',
+            note: 'Read this before you book online proctoring.',
+          },
+        ],
       },
     ],
   },
@@ -489,10 +753,11 @@ function preflightStyles() {
 </style>`;
 }
 
-function preflightScript() {
+
+function preflightScript(track) {
   return `<script>
 (() => {
-  const KEY = 'ccaf-preflight:state';
+  const KEY = '${track.storageKey}';
   const boxes = [...document.querySelectorAll('.pf-check')];
   const dotFor = n => document.querySelector('.pf-dot[data-n="' + n + '"]');
   const counter = document.getElementById('pf-remaining');
@@ -539,10 +804,10 @@ function preflightScript() {
 <\/script>`;
 }
 
-function preflight() {
-  const facts = PREFLIGHT_FACTS.map(f => `
+function preflight(track) {
+  const facts = track.facts.map(f => `
         <div class="pf-fact"><span class="pf-fact-k">${f.k}</span><span class="pf-fact-v">${f.v}</span></div>`).join('');
-  const domains = PREFLIGHT_DOMAINS.map(d => `
+  const domains = track.domains.map(d => `
         <div>
           <div class="pf-domain-head">
             <span class="pf-domain-name"><span class="pf-domain-n">${d.n}</span><span>${d.name}</span></span>
@@ -550,8 +815,8 @@ function preflight() {
           </div>
           <div class="pf-bar"><span style="width:${d.weight}%"></span></div>
         </div>`).join('');
-  const dots = PREFLIGHT_ITEMS.map(i => `<span class="pf-dot" data-n="${i.n}"></span>`).join('');
-  const rows = PREFLIGHT_ITEMS.map(i => `
+  const dots = track.items.map(i => `<span class="pf-dot" data-n="${i.n}"></span>`).join('');
+  const rows = track.items.map(i => `
       <label class="pf-row">
         <input type="checkbox" class="pf-check" data-n="${i.n}" autocomplete="off">
         <span class="pf-n">${i.n}</span>
@@ -561,7 +826,7 @@ function preflight() {
           <span class="pf-item-detail">${i.detail}</span>
         </span>
       </label>`).join('');
-  const resources = PREFLIGHT_RESOURCES.map(g => `
+  const resources = track.resources.map(g => `
         <div class="pf-resource-group">
           <p class="pf-eyebrow">${g.group}</p>
           <div class="pf-resource-items">${g.items.map(item => `
@@ -577,13 +842,13 @@ function preflight() {
   <section class="hero">
     <div class="pf-headline">
       <div style="display:grid;gap:16px">
-        <p class="eyebrow">Architect &mdash; Foundations &middot; CCAR-F</p>
-        <h1>Ten checks before <span class="accent">you book the slot.</span></h1>
-        <p class="lede">Retakes wait 14, then 30, then 90 days &mdash; four attempts maximum per year, $125 each. Tick what is true and see what is left.</p>
-        <p class="pf-scope">This checklist is for <strong>Architect &mdash; Foundations</strong> only. <a href="index.html">Architect &mdash; Professional</a> and <a href="index.html">Developer &mdash; Foundations</a> are separate exams with their own blueprints, so the domains and prep courses below do not carry over.</p>
+        <p class="eyebrow">${track.eyebrow}</p>
+        <h1>${track.heading}</h1>
+        <p class="lede">${track.lede}</p>
+        <p class="pf-scope">${track.scope}</p>
       </div>
       <div class="pf-count">
-        <div class="pf-count-n" id="pf-remaining">${String(PREFLIGHT_ITEMS.length).padStart(2, '0')}</div>
+        <div class="pf-count-n" id="pf-remaining">${String(track.items.length).padStart(2, '0')}</div>
         <span class="pf-count-label">Left</span>
       </div>
     </div>
@@ -594,7 +859,7 @@ function preflight() {
     <p class="pf-eyebrow" id="pf-blueprint">Exam blueprint</p>
     <div class="pf-facts">${facts}
     </div>
-    <p class="pf-note">Multiple-choice <em>and</em> multiple-response. 4 scenarios drawn from a bank of 6. Delivered by Pearson VUE — OnVUE at home or a test centre.</p>
+    <p class="pf-note">${track.note}</p>
     <div class="pf-domains">${domains}
     </div>
   </section>
@@ -612,18 +877,23 @@ function preflight() {
     </div>
   </details>
 </main>
-${preflightScript()}`;
+${preflightScript(track)}`;
 }
 
 async function buildPreflight() {
   const out = path.join(DOCS, 'preflight');
   await ensureDir(out);
-  await fs.writeFile(path.join(out, 'en.html'), pageShell({
-    title: 'Preflight checklist — Claude Certified Architect · Ravn',
-    lang: 'en',
-    baseHref: RAVN_BASE_HREF,
-    body: `${header('en')}${preflight()}`,
-  }));
+  for (const track of PREFLIGHT_TRACKS) {
+    const html = pageShell({
+      title: track.title,
+      lang: 'en',
+      baseHref: RAVN_BASE_HREF,
+      body: `${header('en')}${preflight(track)}`,
+    });
+    for (const file of track.files) {
+      await fs.writeFile(path.join(out, file), html);
+    }
+  }
 }
 
 async function buildGuides() {
