@@ -27,6 +27,15 @@ The schedule allows about 1 minute 54 seconds per item. Treat that as a pacing s
 
 Registration starts on the [Anthropic Partner Academy certification page](https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification). Scheduling and delivery then move to Pearson VUE.
 
+### Item formats
+
+The exam guide names multiple choice and multiple response, and each item tells you how many responses to select. Candidates also report two further formats appearing on the live exam. They are not documented in the official blueprint, so read what follows as what to expect, not as blueprint text.
+
+- **Yes/no matrix.** One scenario, five statements, each judged independently as yes or no. There is no fixed count of "yes" answers, and the statements do not trade off against each other. Evaluate each on its own merits instead of balancing the set.
+- **Drop-down matching.** Several scenarios share one option set, and you classify each. **Options can be reused.** Assuming a one-to-one mapping between scenarios and options is the trap; an option is not exhausted the first time you assign it.
+
+Practise both before exam day. The yes/no matrix rewards a steady per-statement read, because a single scenario that "feels mostly right" still hides statements that fail on their own. The drop-down rewards checking each classification against the option set fresh, never crossing an option off because you already used it.
+
 ### Scoring
 
 The exam is **criterion-referenced**: you are measured against a fixed performance standard, not against other candidates. The 720 cut score came from a formal standard-setting study in which subject-matter experts judged the performance expected of a minimally qualified candidate.
@@ -455,6 +464,8 @@ The completeness test is practical: could an equally capable architect who misse
 
 **Manage the lifecycle as named phases** — discovery, design, handoff, monitoring, iteration — and know which phase a decision belongs to, because that is what tells you when one phase is ready to close. When a deployment spans more than one route or entry point, write down which one owns which task before integration begins; otherwise routing drifts and a surface chosen for one job quietly acquires another.
 
+**Expect phase-gate items.** A recurring shape asks, in effect: you are at this stage of the lifecycle — which two things belong here, before the next stage begins? The distractors are usually activities that genuinely belong, just later in the sequence. Knowing *when* an activity happens discriminates more than knowing whether it is good practice, so learn the five phases as an ordering, not only as a list. Read the stem for the phase marker, then reject any option that belongs to a later phase no matter how sound it would be there.
+
 **Close with an outcome document, not a dashboard export.** Volume, latency, and error rate say the system runs. A sponsor justifying expansion needs the use case with its scope boundary, the business metric before, the same metric measured the same way after, the control that makes that comparison checkable rather than merely asserted, the owner of ongoing measurement, and a note on where the pattern transfers. Capture the "before" number at the start; there is no way to reconstruct it at the end.
 
 Be able to:
@@ -535,6 +546,23 @@ The shared pattern: **the stem contains a discriminator** (only support staff ne
 
 Two habits follow from this. Read the stem for the variable that changed and the constraint that is binding before reading any option. Then check each attractive distractor against the discriminator: if it would be equally reasonable advice with the discriminator removed, it is almost certainly not the credited answer.
 
+## The Highest-Value Failure Mode: Mitigation Over Structural Fix
+
+The most common way a strong candidate loses points is choosing the pragmatic mitigation over the structural fix. Retries instead of a durable queue. A summarizer instead of not feeding the coordinator raw data. A reconciliation pass instead of collapsing the work into a single call. Every one of those is something a competent engineer would genuinely ship, and every one reduces *how often* the failure occurs without stopping it from being generated. The exam consistently credits the option that removes the cause.
+
+Apply this test to any option that reads as a reasonable engineering improvement:
+
+> **Does my answer still let the failure keep being generated?**
+> If yes, look for the option that removes the cause rather than absorbing it.
+
+A mitigation absorbs the failure after it appears. A structural fix changes the design so it cannot appear. Both are legitimate engineering, and that is exactly why the mitigation is the attractive distractor: it feels responsible, it would genuinely help in production, and it leaves the cause intact. Worked contrasts, in this guide's own terms:
+
+- **A worker intermittently returns nothing, and the coordinator summarizes whatever came back.** Mitigation a candidate reaches for: a reconciliation pass that flags missing units after the summary. Structural fix the exam credits: check every worker result at the boundary before synthesis, so a missing unit is caught and retried before it can be hidden inside a fluent summary. The summary no longer gets the chance to conceal the gap.
+- **Retrieved answers contradict the live database.** Mitigation: a scheduled job that re-checks retrieved facts against the system of record. Structural fix: stop retrieving a value another system owns and fetch it with a tool call, so the stale contradiction cannot be generated in the first place. The reconciliation job would still catch a failure the design keeps producing.
+- **A state-changing tool fires repeatedly inside an open-ended agent loop.** Mitigation: a tracker that counts tool calls and warns when a budget is exceeded. Structural fix: a turn limit plus a human review gate on state-changing tools, so the loop cannot run the tool unchecked at all. The warning arrives after the calls; the gate prevents them.
+
+The rule is general. When two options both look like improvements, ask which one merely lowers the frequency of a failure the design still permits, and which one removes the condition that produces it. Prefer the second.
+
 ## Ravn Practice Exam
 
 This repository ships a **Professional practice exam** you can run in the browser:
@@ -611,6 +639,7 @@ Several tie-breakers recur often enough to be worth memorizing:
 - **Place the control where the harm occurs.** A check after an irreversible action does not protect against it, and a control that passes traffic when it errors protects nothing.
 - **Prefer the change that produces evidence.** Set the acceptance threshold before the measurement, and diagnose the failure class before proposing the fix.
 - **Name the reversal cost.** Between two workable designs, the defensible answer is the one whose consequences you can state if it turns out to be wrong.
+- **Prefer the structural fix over the pragmatic mitigation.** If an option still lets the failure keep being generated, it absorbs the failure rather than removing its cause. See [The highest-value failure mode](#the-highest-value-failure-mode-mitigation-over-structural-fix).
 
 Avoid answers that rely on a larger model to solve an authorization or architecture problem, add monitoring without reducing avoidable risk, optimize one metric while ignoring the stated service level, or introduce agentic complexity without a clear benefit. Be equally wary of answers that add a plausible control at the wrong point in the path, treat a policy statement as an enforced rule, or route every decision to human review — the last one looks conservative and reliably degrades the review it claims to add.
 
