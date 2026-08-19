@@ -177,8 +177,8 @@ function landing() {
         <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">60</dd></div>
         <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN · ES · PT</dd></div>
       </dl>
-      <p class="chooser-includes">Ravn ships a study guide, a practice exam, and a cheatsheet — in each language.</p>
-      <a class="chooser-link" href="#track-foundations">Enter the Foundations track</a>
+      <p class="chooser-includes">Study guide, practice exam, and cheatsheet, each in English, Spanish, and Portuguese.</p>
+      <a class="chooser-link" href="#track-foundations">Start with Foundations</a>
     </article>
     <article class="card chooser-card">
       <p class="chooser-code">CCAR-P</p>
@@ -188,8 +188,8 @@ function landing() {
         <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">63</dd></div>
         <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN</dd></div>
       </dl>
-      <p class="chooser-includes">Ravn ships a study guide and a 126-question practice exam.</p>
-      <a class="chooser-link" href="#track-professional">Enter the Professional track</a>
+      <p class="chooser-includes">Study guide, plus a practice exam drawing 63 questions from a bank of 126.</p>
+      <a class="chooser-link" href="#track-professional">Go to Professional</a>
     </article>`;
   const chooserDeveloperCard = `
     <article class="card chooser-card">
@@ -200,21 +200,21 @@ function landing() {
         <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">53</dd></div>
         <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN</dd></div>
       </dl>
-      <p class="chooser-includes">Ravn ships a study guide.</p>
-      <a class="chooser-link" href="#track-developer">Enter the Developer track</a>
+      <p class="chooser-includes">Study guide covering all eight domains.</p>
+      <a class="chooser-link" href="#track-developer">Go to Developer</a>
     </article>`;
 
   return `<main class="landing">
   <section class="hero">
     <p class="eyebrow">Ravn study materials</p>
     <h1>Claude Certified Architect <span class="accent">— choose your track.</span></h1>
-    <p class="lede">Three certifications across two roles: Architect Foundations and Professional, plus Developer Foundations. Pick your track below, then choose your materials.</p>
+    <p class="lede">Study guides, practice exams, and cheatsheets for the Claude certification exams — free, open, and in three languages wherever the exam is offered in three languages.</p>
   </section>
   <section class="track-chooser" aria-labelledby="chooser-title">
     <div class="track-heading">
       <p class="track-label">Choose your track</p>
-      <h2 id="chooser-title">Which certification is yours?</h2>
-      <p>The two Architect exams form a progression — Foundations first, then Professional. Developer Foundations is a separate role, not a level.</p>
+      <h2 id="chooser-title">Three exams, two roles</h2>
+      <p>Architect runs Foundations then Professional, so the second builds on the first. Developer Foundations sits alongside them — a different job, not a further level.</p>
     </div>
     <div class="chooser-group">
       <p class="chooser-role">Architect</p>
