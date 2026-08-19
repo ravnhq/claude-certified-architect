@@ -471,6 +471,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .guide th { font-weight: 600; color: var(--accent); font-size: 0.78em; letter-spacing: 0.12em; text-transform: uppercase; }
 .guide hr { border: 0; border-top: 1px solid var(--border); margin: 3rem 0; }
 .guide img { max-width: 100%; }
+.guide { overflow-wrap: break-word; }
 
 /* ---------- placeholder pages ---------- */
 .placeholder {
@@ -547,6 +548,8 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   .landing { padding: 48px 20px 64px; }
   .hero { padding-bottom: 48px; margin-bottom: 40px; }
   .guide { padding: 40px 20px 80px; }
+  /* A wide table used to widen main/body/html; let it scroll on its own. */
+  .guide table { display: block; width: 100%; max-width: 100%; overflow-x: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
