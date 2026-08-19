@@ -317,8 +317,8 @@ const PREFLIGHT_TRACKS = [
       },
       {
         n: '06',
-        label: 'Worked through community mocks',
-        detail: 'With the official mock gone, these carry more weight. Full list in Resources below.',
+        label: 'Sat a full-length attempt under time',
+        detail: 'Sixty questions in 120 minutes on the <a href="practical/en.html">Ravn practice exam</a>, drawn fresh each attempt so repeats stay useful — then review by failure type rather than by topic. Community banks drill recall; only a full-length run calibrates your pacing.',
       },
       {
         n: '07',
@@ -345,78 +345,43 @@ const PREFLIGHT_TRACKS = [
       {
         group: 'Ravn materials',
         items: [
-          { name: 'Study guide', href: 'guides/en.html', note: 'The full Foundations guide.', internal: true },
-          { name: 'Practice exam', href: 'practical/en.html', note: '60 questions drawn from a bank of 136, scored to 1000.', internal: true },
-          { name: 'Cheatsheet', href: 'cheatsheet/en.html', note: 'One-page recap of the five domains.', internal: true },
-        ],
-      },
-      {
-        group: 'External practice',
-        items: [
-          {
-            name: 'claudecertificationguide.com — diagnostic',
-            href: 'https://claudecertificationguide.com/learn/diagnostic',
-            note: 'Short. Use this to gauge readiness before the full mocks.',
-          },
-          {
-            name: 'claudecertificationguide.com — full mock',
-            href: 'https://claudecertificationguide.com/mock-exam',
-            note: 'Full-length community mock.',
-          },
-          {
-            name: 'certsafari.com',
-            href: 'https://www.certsafari.com/anthropic/claude-certified-architect',
-            note: '614 questions, aligned to guide v1.0. Configurable.',
-          },
-          {
-            name: 'claudecertifiedarchitects.com',
-            href: 'https://www.claudecertifiedarchitects.com/',
-            note: 'Free readiness diagnostic plus 400 scenario questions.',
-          },
-          {
-            name: 'open-exam-prep.com',
-            href: 'https://open-exam-prep.com/',
-            note: 'Free CCAR-F questions aligned to v1.0.',
-          },
-          {
-            name: 'daronyondem/claude-architect-exam-guide',
-            href: 'https://github.com/daronyondem/claude-architect-exam-guide',
-            note: 'Community study guide. PDF and EPUB builds.',
-          },
-          {
-            name: 'OlivierAlter — practice exam + skill',
-            href: 'https://github.com/OlivierAlter/Claude-Certified-Architect-Foundations-Certification-Exam',
-            note: '77 scenario questions plus an interactive Claude Code skill.',
-          },
-          {
-            name: 'krog.app',
-            href: 'https://krog.app/exam/6a1a0c49ca96069990f7e8bc',
-            note: '113 questions by domain.',
-          },
-          {
-            name: 'cyberskill mock exam',
-            href: 'https://claude-certified-architect-mock-exam-cyberskill.vercel.app/',
-            note: 'Reported as the hardest of the free mocks, and the most useful for it.',
-          },
-          {
-            name: 'hong-chu — CCA-F study wiki',
-            href: 'https://github.com/hong-chu/claude-certified-architect-foundations-llm-wiki',
-            note: 'Linked notes built by a candidate who passed. Point an agent at the repo and have it quiz you.',
-          },
-          {
-            name: 'skillcertpro — CCA-F set',
-            href: 'https://skillcertpro.com/',
-            note: 'Paid, about $20, and reported easier than the free banks. Skip it if the others already land.',
-          },
+          { name: 'Study guide', href: 'guides/en.html', note: 'The full Foundations guide, about a 2-hour read. Also in <a href="guides/es.html">Spanish</a> and <a href="guides/pt.html">Portuguese</a>.', internal: true },
+          { name: 'Practice exam', href: 'practical/en.html', note: '60 questions drawn <strong>fresh from a bank of 136 on every attempt</strong>, scored per domain to 1000 — full length on purpose, because the real exam is 60 questions in 120 minutes. Also in <a href="practical/es.html">Spanish</a> and <a href="practical/pt.html">Portuguese</a>.', internal: true },
+          { name: 'Cheatsheet', href: 'cheatsheet/en.html', note: 'One-page recap of the five domains. Also in <a href="cheatsheet/es.html">Spanish</a> and <a href="cheatsheet/pt.html">Portuguese</a>.', internal: true },
         ],
       },
       {
         group: 'Before you trust a question bank',
         items: [
           {
-            name: 'Use third-party banks for recall, not for principles',
+            name: 'Drill them for recall; settle arguments against the official guide',
             href: 'https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification',
-            note: 'Candidates who passed report that some community banks encode reasoning which contradicts Anthropic\'s own guidance. Drill them for coverage, then settle every disagreement against the official exam guide.',
+            note: 'Some community banks encode reasoning that contradicts Anthropic&rsquo;s own guidance. Where a bank and the official guide disagree, the guide wins — it is what the exam is written against.',
+          },
+        ],
+      },
+      {
+        group: 'Drill after you have read the guide',
+        items: [
+          {
+            name: 'certsafari.com — start here',
+            href: 'https://www.certsafari.com/anthropic/claude-certified-architect-foundations',
+            note: 'Aligned to guide v1.0, configurable by domain and subdomain, and harder than the guide&rsquo;s own samples. The sharpest drilling tool of the free banks.',
+          },
+          {
+            name: 'claudecertificationguide.com — diagnostic',
+            href: 'https://claudecertificationguide.com/learn/diagnostic',
+            note: 'Short. Use it to gauge where you stand before spending time on full-length mocks.',
+          },
+          {
+            name: 'claudecertificationguide.com — mock exam',
+            href: 'https://claudecertificationguide.com/mock-exam',
+            note: 'Full-length, and its questions rotate between attempts, so it stays useful after the first run.',
+          },
+          {
+            name: 'krog.app',
+            href: 'https://krog.app/exam/6a1a0c49ca96069990f7e8bc',
+            note: '113 questions organised by the five domains, built by a Ravn engineer.',
           },
         ],
       },
