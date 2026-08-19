@@ -32,6 +32,7 @@ const DEVELOPER_GUIDES = [
     title: 'Developer - English',
     guide: 'developer_en.md',
     output: 'developer-en',
+    test: 'developer_exam_en.html',
   },
 ];
 
@@ -202,7 +203,7 @@ function landing() {
         <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">53</dd></div>
         <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN</dd></div>
       </dl>
-      <p class="chooser-includes">Study guide covering all eight domains.</p>
+      <p class="chooser-includes">Study guide and a practice exam drawing 53 questions from a bank of 106.</p>
       <a class="chooser-link" href="#track-developer">Go to Developer</a>
       <a class="chooser-link" href="preflight/developer-foundations.html">Preflight checklist</a>
     </article>`;
@@ -607,7 +608,7 @@ const PREFLIGHT_TRACKS = [
       {
         n: '05',
         label: 'Practice material worked through',
-        detail: 'Ravn ships a study guide for this track — no practice exam and no cheatsheet yet, and the CCAR-F practice exam is a different blueprint. Work the guide&rsquo;s practice artifacts and its readiness checklist instead. <a href="guides/developer-en.html">Ravn study guide</a>',
+        detail: 'Draw a full 53-question set from the <a href="practical/developer-en.html">Developer practice exam</a> under time. The CCAR-F exam is a different blueprint — do not substitute it. No cheatsheet ships for this track yet.',
       },
       {
         n: '06',
@@ -639,7 +640,8 @@ const PREFLIGHT_TRACKS = [
       {
         group: 'Ravn materials',
         items: [
-          { name: 'Study guide', href: 'guides/developer-en.html', note: 'The full Developer guide, English only. No practice exam or cheatsheet ships for this track yet.', internal: true },
+          { name: 'Study guide', href: 'guides/developer-en.html', note: 'The full Developer guide, English only.', internal: true },
+        { name: 'Practice exam', href: 'practical/developer-en.html', note: '53 questions drawn from a bank of 106, weighted to the eight domains and scored to 1000.', internal: true },
         ],
       },
       {
@@ -1002,13 +1004,14 @@ async function copyPracticalTests() {
   }
 }
 
-// Professional exams are keyed on `output` (professional-en.html), never on
-// `code` — the professional entry's code is 'en', which would overwrite the
-// Foundations English exam that copyPracticalTests() just wrote.
+// Professional and Developer exams are keyed on `output`
+// (professional-en.html, developer-en.html), never on `code` — both entries
+// use code 'en', which would overwrite the Foundations English exam that
+// copyPracticalTests() just wrote.
 async function copyProfessionalExams() {
   const out = path.join(DOCS, 'practical');
   await ensureDir(out);
-  for (const l of PROFESSIONAL_GUIDES) {
+  for (const l of [...PROFESSIONAL_GUIDES, ...DEVELOPER_GUIDES]) {
     if (!l.test) continue;
     const src = path.join(ROOT, l.test);
     const dest = path.join(out, `${l.output}.html`);
@@ -1016,7 +1019,7 @@ async function copyProfessionalExams() {
       await fs.copyFile(src, dest);
     } else {
       const body = `${header(l.code)}<main class="placeholder">
-        <h1>Professional practice exam — ${l.label}</h1>
+        <h1>${l.title || l.label} practice exam</h1>
         <p>This practice exam has not been generated yet.</p>
         <p><a href="index.html">← back to home</a></p>
       </main>`;

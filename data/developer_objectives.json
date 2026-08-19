@@ -1,0 +1,91 @@
+{
+  "_source": "Claude Certified Developer – Foundations Exam Guide, Version 1.0, effective July 2026, exam code CCDV-F, Section 6 'Exam Content Outline (Blueprint)'. Objective text is the verbatim skill name the guide lists under 'Detailed objectives by domain'; the guide's per-skill percentages are not carried here, because only the domain weights drive the draw. Anthropic marks the guide as subject to change without notice.",
+  "_source_file": "reference/developer-foundations-exam-guide.pdf",
+  "_exam": {
+    "code": "CCDV-F",
+    "items": 53,
+    "minutes": 120,
+    "pass_score": 720,
+    "scale": [
+      100,
+      1000
+    ],
+    "fee_usd": 125,
+    "validity_months": 12
+  },
+  "domains": {
+    "1": {
+      "name": "Agents and Workflows",
+      "weight": 14.7,
+      "objectives": [
+        "Agent Architecture",
+        "Agent Construction with Claude",
+        "Agent Patterns and Frameworks"
+      ]
+    },
+    "2": {
+      "name": "Applications and Integration",
+      "weight": 33.1,
+      "objectives": [
+        "Understanding Requirements",
+        "Systems Life Cycle",
+        "Claude API Mechanics",
+        "Software Engineering Foundations",
+        "Claude Application Design",
+        "Configuration Management"
+      ]
+    },
+    "3": {
+      "name": "Claude Code",
+      "weight": 3.1,
+      "objectives": [
+        "Claude Code Operation"
+      ]
+    },
+    "4": {
+      "name": "Eval, Testing, and Debugging",
+      "weight": 2.6,
+      "objectives": [
+        "Debugging and Error Handling"
+      ]
+    },
+    "5": {
+      "name": "Model Selection and Optimization",
+      "weight": 16.8,
+      "objectives": [
+        "LLM Fundamentals",
+        "Technical Fundamentals",
+        "Model Selection and Tradeoffs",
+        "Cost and Token Management"
+      ]
+    },
+    "6": {
+      "name": "Prompt and Context Engineering",
+      "weight": 11.0,
+      "objectives": [
+        "Context Engineering",
+        "Prompt Engineering",
+        "Output Handling"
+      ]
+    },
+    "7": {
+      "name": "Security and Safety",
+      "weight": 8.1,
+      "objectives": [
+        "AI Application Security",
+        "Guardrails and Safe Deployment",
+        "Claude Hooks",
+        "Identity, Secrets, and Key Management"
+      ]
+    },
+    "8": {
+      "name": "Tools and MCPs",
+      "weight": 10.6,
+      "objectives": [
+        "Tool Implementation",
+        "MCP Server Development",
+        "Agentic Customization"
+      ]
+    }
+  }
+}
