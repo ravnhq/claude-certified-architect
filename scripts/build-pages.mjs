@@ -191,8 +191,10 @@ function landing() {
         <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN</dd></div>
       </dl>
       <p class="chooser-includes">Study guide, plus a practice exam drawing 63 questions from a bank of 126.</p>
-      <a class="chooser-link" href="#track-professional">Go to Professional</a>
+      <a class="chooser-link" href="guides/professional-en.html">Study guide</a>
+      <a class="chooser-link" href="practical/professional-en.html">Practice exam</a>
       <a class="chooser-link" href="preflight/architect-professional.html">Preflight checklist</a>
+      <a class="chooser-link" href="https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification">Register</a>
     </article>`;
   const chooserDeveloperCard = `
     <article class="card chooser-card">
@@ -204,8 +206,10 @@ function landing() {
         <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN</dd></div>
       </dl>
       <p class="chooser-includes">Study guide and a practice exam drawing 53 questions from a bank of 106.</p>
-      <a class="chooser-link" href="#track-developer">Go to Developer</a>
+      <a class="chooser-link" href="guides/developer-en.html">Study guide</a>
+      <a class="chooser-link" href="practical/developer-en.html">Practice exam</a>
       <a class="chooser-link" href="preflight/developer-foundations.html">Preflight checklist</a>
+      <a class="chooser-link" href="https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification">Register</a>
     </article>`;
 
   return `<main class="landing">
@@ -236,22 +240,6 @@ function landing() {
       <p>The five-domain Foundations certification in English, Spanish, or Portuguese — guide, practice exam, and cheatsheet for each.</p>
     </div>
     <div class="cards">${foundationCards}</div>
-  </section>
-  <section class="track" id="track-professional">
-    <div class="track-heading">
-      <p class="track-label">Architect — Professional · CCAR-P</p>
-      <h2>Own the production architecture</h2>
-      <p>Guidance for the seven-domain CCAR-P blueprint, effective July 2026.</p>
-    </div>
-    <div class="cards cards-single">${professionalCards}</div>
-  </section>
-  <section class="track" id="track-developer">
-    <div class="track-heading">
-      <p class="track-label">Developer — Foundations · CCDV-F</p>
-      <h2>Build and ship on Claude</h2>
-      <p>Guidance for the eight-domain Developer – Foundations blueprint (CCDV-F).</p>
-    </div>
-    <div class="cards cards-single">${developerCards}</div>
   </section>
 </main>`;
 }
