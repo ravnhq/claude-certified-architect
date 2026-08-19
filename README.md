@@ -18,20 +18,23 @@ the browser.
 |---|---|---|---|
 | **Architect – Foundations** | CCAR-F | Practitioners building with Claude Code, the Claude Agent SDK, the Claude API, and MCP | Study guide, practice exam, and cheatsheet in EN / ES / PT, plus the preflight checklist |
 | **Architect – Professional** | CCAR-P | Architects responsible for production AI architecture, evaluation, governance, and lifecycle decisions | English study guide and a 126-question practice exam |
-| **Developer – Foundations** | CCDV-F | Engineers building and shipping production applications, agents, and workflows on the Claude platform | English study guide |
+| **Developer – Foundations** | CCDV-F | Engineers building and shipping production applications, agents, and workflows on the Claude platform | English study guide and a 53-question practice exam |
 
-The two exams use different blueprints. Foundations has five domains; Professional has seven.
-Foundations material does not represent Professional coverage, and the reverse is equally true.
+The three exams use different blueprints. Foundations has five domains, Developer eight,
+Professional seven. Foundations material does not represent Professional coverage, and the
+reverse is equally true; the same holds between every pair of tracks.
 
-> **Professional material is English only.** Anthropic delivers the exam and its prep content in
-> English and prohibits browser translation during proctored testing, so an ES/PT Professional
-> track would train against wording the exam never uses. The Foundations material stays
+> **Professional and Developer material is English only.** Anthropic delivers those exams and
+> their prep content in English and prohibits browser translation during proctored testing, so
+> ES/PT tracks would train against wording the exams never use. The Foundations material stays
 > tri-language.
 
 ## Exam facts
 
-Both figures below come from the official exam guides, which are the authoritative source and
-which Anthropic marks subject to change.
+Exam-structure figures below come from the official exam guides, which are the authoritative
+source and which Anthropic marks subject to change. Delivery and language rules (Pearson VUE,
+English only) come from the official [certification FAQ](https://anthropic-partners.skilljar.com/page/faq-certifications),
+not the guides.
 
 | | Architect – Foundations | Architect – Professional | Developer – Foundations |
 |---|---|---|---|
@@ -44,12 +47,14 @@ which Anthropic marks subject to change.
 | Prerequisites | None | None | None |
 | Delivery | Proctored by Pearson VUE, English only | Proctored by Pearson VUE, English only | Proctored by Pearson VUE, English only |
 
-**No course is required to sit either exam.** The credential is awarded on exam performance alone.
-Anthropic publishes free prep courses, and they help, but they are not a gate.
+**No course is required to sit any of the exams.** The credential is awarded on exam performance
+alone. Anthropic publishes free prep courses, and they help, but they are not a gate.
 
 **On the fee.** $125 and $175 are the list prices in the exam guides. The amount at checkout
-reflects any discount for your partner tier, so what you pay may be lower. Earlier promotional
-pricing for the first wave of partner-company employees no longer describes the general case.
+reflects any discount for your partner tier, so what you pay may be lower — per the FAQ,
+Registered-tier partners pay full price, Select/Preferred/Global Premier partners get 50% off,
+and through August 31, 2026 Global Premier partners pay nothing. Foundations cost $99 until the
+price rose to $125 on June 30, 2026; registrations before that date paid the lower price.
 
 ### Policies worth knowing before you register
 
@@ -64,11 +69,14 @@ pricing for the first wave of partner-company employees no longer describes the 
 
 - Certification is restricted to members of the Anthropic Partner Network and requires
   registration with a verified partner-company email. See [Claude Partner Network](https://claude.com/partners).
+- The FAQ also lists a fourth certification, **Claude Certified Associate – Foundations** ($99).
+  This repo does not cover it; it does not count toward Partner Network eligibility.
 - Register through the [Anthropic Partner Academy](https://anthropic-partners.skilljar.com/page/partner-certifications),
   then schedule with Pearson VUE using the credentials they email you.
-- Official guides, both marked subject to change:
+- Official guides, all marked subject to change:
   [Foundations](https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification) ·
-  [Professional](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf)
+  [Professional](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf) ·
+  [Developer](https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification)
 - See also the [certification FAQ](https://anthropic-partners.skilljar.com/page/faq-certifications).
 
 ### Prep courses
@@ -121,6 +129,33 @@ breakdown of the 136-question, 5-domain pool with domain weights and answer-lett
 
 Covers the **eight-domain Developer – Foundations blueprint (CCDV-F)**: agents and workflows, applications and integration, Claude Code, eval and debugging, model selection and optimization, prompt and context engineering, security and safety, and tools and MCPs. It turns the official objectives into a practical preparation plan with the exam and policy details and the decision rules the blueprint rewards — without reproducing or predicting live exam content.
 
+## Developer practice exam
+
+Draws **53 questions per attempt from a 106-question bank**, weighted to the official domain
+percentages:
+
+| Domain | Weight | Drawn | Bank |
+|---|---:|---:|---:|
+| 1. Agents and Workflows | 14.7% | 8 | 16 |
+| 2. Applications and Integration | 33.1% | 17 | 34 |
+| 3. Claude Code | 3.1% | 2 | 4 |
+| 4. Eval, Testing, and Debugging | 2.6% | 1 | 2 |
+| 5. Model Selection and Optimization | 16.8% | 9 | 18 |
+| 6. Prompt and Context Engineering | 11.0% | 6 | 12 |
+| 7. Security and Safety | 8.1% | 4 | 8 |
+| 8. Tools and MCPs | 10.6% | 6 | 12 |
+| **Total** | **100%** | **53** | **106** |
+
+Every item is written against one of the 25 official objectives and records which one. About 20%
+are **multiple-response** items, scored all-or-nothing and stating how many responses to select.
+Scoring uses the real **720** cut with a per-domain breakdown, on the same engine as the other
+two tracks.
+
+- [`developer_exam_en.html`](./developer_exam_en.html)
+
+> **These are Ravn-authored practice items, not real exam content.** They rehearse the reasoning
+> the blueprint rewards; they do not predict or reproduce the live item bank.
+
 ## Professional study guide
 
 [`professional_en.md`](./professional_en.md) · [read online](https://ravnhq.github.io/claude-certified-architect/guides/professional-en.html)
@@ -160,7 +195,10 @@ Scoring uses the real **720** cut with a per-domain breakdown.
 1. Choose your track.
 2. **Foundations** — pick a language, work the scenarios, then alternate practice exam and
    cheatsheet. Run the preflight checklist before you book.
-3. **Professional** — read the official guide first, map your experience against the 38
+3. **Developer** — read the guide, map your experience against the 25 objectives, then drill the
+   practice exam. The domain weighting is deliberately uneven (Applications and Integration is a
+   third of the exam), so check the per-domain breakdown before booking.
+4. **Professional** — read the official guide first, map your experience against the 38
    objectives, build one end-to-end reference system, then rehearse trade-offs under time
    pressure. Use exam mode for the timed run and study mode to read the rationale on every miss.
 
@@ -172,63 +210,37 @@ npm install --no-save marked@13 minisearch@7   # build dependencies
 python3 utils/build_exam_html.py               # → exam_{en,es,pt}.html
 python3 utils/build_exam_html.py en es         # specific languages
 python3 utils/build_professional_exam.py       # → professional_exam_en.html
+python3 utils/build_developer_exam.py          # → developer_exam_en.html
 python3 utils/build_cheatsheet.py              # → cheatsheet_{en,es,pt}.html
 node scripts/build-pages.mjs                   # → docs/ site
 
-python3 utils/validate_professional_bank.py    # bank vs. official blueprint
-node utils/test_exam_engine.mjs                # engine checks, both tracks
+python3 utils/validate_professional_bank.py    # CCAR-P bank vs. official blueprint
+python3 utils/validate_developer_bank.py       # CCDV-F bank vs. official blueprint
+node utils/test_exam_engine.mjs                # engine checks (Foundations + Professional pages)
 node utils/test_exam_render.mjs                # render checks
 ```
 
-The validator fails on a bad answer key, an objective absent from the official guide, an
+Each validator fails on a bad answer key, an objective absent from the official guide, an
 uncovered objective, or a domain whose bank is smaller than its draw.
 
-The Foundations exam and the site regenerate on every deploy. The cheatsheet is hand-authored,
-so its committed HTML is what ships — re-run its generator only when editing the content, and
-keep its stats in sync with `data/domains.json` and `utils/exam_data.py` (`DOMAIN_NAMES`).
+The Foundations and Professional exams and the site regenerate on every deploy. The Developer
+exam and the cheatsheet ship their committed HTML — re-run their generators only when editing
+their content, and keep the cheatsheet stats in sync with `data/domains.json` and
+`utils/exam_data.py` (`DOMAIN_NAMES`).
 
-## Repository layout
-
-```
-.
-├── guide_{en,es,pt}.{md,MD}          # source-of-truth Foundations guides (76 scenarios)
-├── professional_en.md                 # Professional guide (7-domain blueprint)
-├── CCAF_Mock_Exam_*.txt              # source for the 60-question mock bank
-├── reference/                        # official exam guide PDFs, version-pinned
-├── exam_{en,es,pt}.html              # Foundations practice exam, 60 of 136 (built)
-├── professional_exam_en.html         # Professional practice exam, 63 of 126 (built)
-├── cheatsheet_{en,es,pt}.html        # 12-principle cheatsheet (static, hand-authored)
-├── data/
-│   ├── domains.json                  # question id → CCAF domain (1–5)
-│   ├── duplicates.json               # mock ids dropped as dupes of guide questions
-│   ├── mock_{en,es,pt}.json          # mock bank + ES/PT translations
-│   ├── professional_objectives.json  # official CCAR-P blueprint: 7 domains, 38 objectives
-│   └── professional_questions.json   # Ravn-authored CCAR-P bank (126 items)
-├── utils/
-│   ├── extract_question.py           # guide_*.md → scenario questions JSON
-│   ├── parse_mock_exam.py            # mock .txt → mock questions JSON
-│   ├── exam_data.py                  # merges guide + mock into the unified schema
-│   ├── build_exam_html.py            # shared quiz engine + Foundations build
-│   ├── build_professional_exam.py    # → professional_exam_en.html
-│   ├── professional_blueprint.py     # shared CCAR-P domains + per-attempt draw
-│   ├── validate_professional_bank.py # bank vs. official blueprint
-│   ├── build_cheatsheet.py           # → cheatsheet_*.html
-│   ├── test_exam_engine.mjs          # engine regression checks (both tracks)
-│   └── test_exam_render.mjs          # render regression checks
-├── docs/                             # GitHub Pages site (static parts; CI generates the rest)
-├── scripts/build-pages.mjs           # md → docs/ build, incl. the preflight checklist
-└── .github/workflows/pages.yml       # builds PDFs + exams, deploys docs/ to Pages
-```
-
-The preflight checklist has no markdown source. Its content lives in `scripts/build-pages.mjs`
-as `PREFLIGHT_ITEMS`, `PREFLIGHT_FACTS`, `PREFLIGHT_DOMAINS`, and `PREFLIGHT_RESOURCES`. Edit it
-there; `docs/preflight/` is a generated artifact and is overwritten on every build.
+Question banks live in `data/*.json`, and the validators check them against the official
+blueprints in `data/professional_objectives.json` and `data/developer_objectives.json`. A few
+files are not what they look like: `reference/` holds the official exam-guide PDFs,
+version-pinned; `CCAF_Mock_Exam_Preguntas_y_Respuestas.txt` is the source for the 60-question
+mock bank; and the preflight checklist has no markdown source — its content lives in
+`scripts/build-pages.mjs` (`PREFLIGHT_ITEMS`, `PREFLIGHT_FACTS`, `PREFLIGHT_DOMAINS`,
+`PREFLIGHT_RESOURCES`) and `docs/preflight/` is overwritten on every build.
 
 ## Contributing
 
 - Translation fixes and clarifications are welcome. Keep the heading structure aligned across
   `guide_en.MD`, `guide_es.md`, and `guide_pt.md` so question extraction stays consistent.
-- Run the validator and both test scripts before opening a PR.
+- Run the validators and both test scripts before opening a PR.
 - **Do not commit material from the Partner Academy courses.** That content is partner-gated.
   Practice items and guide prose here are Ravn-authored; keep it that way.
 - PDFs regenerate automatically on merge to `main` as part of the Pages deploy.
