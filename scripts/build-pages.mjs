@@ -169,48 +169,75 @@ function landing() {
   // role. Each card carries the credential, exam code, audience, the hard
   // facts that differentiate the tracks (item count + available languages),
   // what Ravn ships for it, and a single link into that track's section.
-  const chooserArchitectCards = `
+  // One card shape for all three tracks. Each resource row names the resource
+  // once and lists the languages it exists in, so a tri-language track and a
+  // single-language track render from the same template without a separate
+  // "pick your language" section repeating the same links.
+  const TRACKS = [
+    {
+      role: 'Architect',
+      code: 'CCAR-F',
+      name: 'Architect — Foundations',
+      summary: 'For practitioners building with Claude Code, the Agent SDK, the Claude API, and MCP.',
+      items: '60',
+      langs: 'EN · ES · PT',
+      resources: [
+        { label: 'Study guide', langs: [['EN', 'guides/en.html'], ['ES', 'guides/es.html'], ['PT', 'guides/pt.html']] },
+        { label: 'Practice exam', langs: [['EN', 'practical/en.html'], ['ES', 'practical/es.html'], ['PT', 'practical/pt.html']] },
+        { label: 'Cheatsheet', langs: [['EN', 'cheatsheet/en.html'], ['ES', 'cheatsheet/es.html'], ['PT', 'cheatsheet/pt.html']] },
+        { label: 'PDF', langs: [['EN', 'pdf/guide_en.pdf'], ['ES', 'pdf/guide_es.pdf'], ['PT', 'pdf/guide_pt.pdf']] },
+        { label: 'Preflight checklist', langs: [['EN', 'preflight/architect-foundations.html']] },
+      ],
+      register: 'https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification',
+    },
+    {
+      role: 'Architect',
+      code: 'CCAR-P',
+      name: 'Architect — Professional',
+      summary: 'For architects owning production architecture, evaluation, governance, and lifecycle.',
+      items: '63',
+      langs: 'EN',
+      resources: [
+        { label: 'Study guide', langs: [['EN', 'guides/professional-en.html']] },
+        { label: 'Practice exam', langs: [['EN', 'practical/professional-en.html']] },
+        { label: 'Preflight checklist', langs: [['EN', 'preflight/architect-professional.html']] },
+      ],
+      register: 'https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification',
+    },
+    {
+      role: 'Developer',
+      code: 'CCDV-F',
+      name: 'Developer — Foundations',
+      summary: 'For engineers building and shipping production applications, agents, and workflows.',
+      items: '53',
+      langs: 'EN',
+      resources: [
+        { label: 'Study guide', langs: [['EN', 'guides/developer-en.html']] },
+        { label: 'Practice exam', langs: [['EN', 'practical/developer-en.html']] },
+        { label: 'Preflight checklist', langs: [['EN', 'preflight/developer-foundations.html']] },
+      ],
+      register: 'https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification',
+    },
+  ];
+
+  const trackCard = tr => `
     <article class="card chooser-card">
-      <p class="chooser-code">CCAR-F</p>
-      <h2 class="chooser-name">Architect — Foundations</h2>
-      <p class="card-summary">For practitioners building with Claude Code, the Agent SDK, the Claude API, and MCP.</p>
+      <p class="chooser-code">${tr.code}</p>
+      <h2 class="chooser-name">${tr.name}</h2>
+      <p class="card-summary">${tr.summary}</p>
       <dl class="chooser-facts">
-        <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">60</dd></div>
-        <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN · ES · PT</dd></div>
+        <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">${tr.items}</dd></div>
+        <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">${tr.langs}</dd></div>
       </dl>
-      <p class="chooser-includes">Study guide, practice exam, and cheatsheet, each in English, Spanish, and Portuguese.</p>
-      <a class="chooser-link" href="#track-foundations">Start with Foundations</a>
-      <a class="chooser-link" href="preflight/architect-foundations.html">Preflight checklist</a>
-    </article>
-    <article class="card chooser-card">
-      <p class="chooser-code">CCAR-P</p>
-      <h2 class="chooser-name">Architect — Professional</h2>
-      <p class="card-summary">For architects owning production architecture, evaluation, governance, and lifecycle.</p>
-      <dl class="chooser-facts">
-        <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">63</dd></div>
-        <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN</dd></div>
-      </dl>
-      <p class="chooser-includes">Study guide, plus a practice exam drawing 63 questions from a bank of 126.</p>
-      <a class="chooser-link" href="guides/professional-en.html">Study guide</a>
-      <a class="chooser-link" href="practical/professional-en.html">Practice exam</a>
-      <a class="chooser-link" href="preflight/architect-professional.html">Preflight checklist</a>
-      <a class="chooser-link" href="https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification">Register</a>
+      <ul class="chooser-res">${tr.resources.map(r => `
+        <li><span class="cr-label">${r.label}</span><span class="cr-langs">${
+          r.langs.map(([code, href]) => `<a href="${href}">${code}</a>`).join('')
+        }</span></li>`).join('')}
+      </ul>
+      <a class="chooser-link" href="${tr.register}">Register with Anthropic</a>
     </article>`;
-  const chooserDeveloperCard = `
-    <article class="card chooser-card">
-      <p class="chooser-code">CCDV-F</p>
-      <h2 class="chooser-name">Developer — Foundations</h2>
-      <p class="card-summary">For engineers building and shipping production applications, agents, and workflows.</p>
-      <dl class="chooser-facts">
-        <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">53</dd></div>
-        <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">EN</dd></div>
-      </dl>
-      <p class="chooser-includes">Study guide and a practice exam drawing 53 questions from a bank of 106.</p>
-      <a class="chooser-link" href="guides/developer-en.html">Study guide</a>
-      <a class="chooser-link" href="practical/developer-en.html">Practice exam</a>
-      <a class="chooser-link" href="preflight/developer-foundations.html">Preflight checklist</a>
-      <a class="chooser-link" href="https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification">Register</a>
-    </article>`;
+
+  const cardsFor = role => TRACKS.filter(x => x.role === role).map(trackCard).join('');
 
   return `<main class="landing">
   <section class="hero">
@@ -226,20 +253,12 @@ function landing() {
     </div>
     <div class="chooser-group">
       <p class="chooser-role">Architect</p>
-      <div class="cards chooser-cards">${chooserArchitectCards}</div>
+      <div class="cards chooser-cards">${cardsFor('Architect')}</div>
     </div>
     <div class="chooser-group">
       <p class="chooser-role">Developer</p>
-      <div class="cards chooser-cards">${chooserDeveloperCard}</div>
+      <div class="cards chooser-cards">${cardsFor('Developer')}</div>
     </div>
-  </section>
-  <section class="track" id="track-foundations">
-    <div class="track-heading">
-      <p class="track-label">Architect — Foundations · CCAR-F</p>
-      <h2>Pick your language</h2>
-      <p>The five-domain Foundations certification in English, Spanish, or Portuguese — guide, practice exam, and cheatsheet for each.</p>
-    </div>
-    <div class="cards">${foundationCards}</div>
   </section>
 </main>`;
 }

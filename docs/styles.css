@@ -558,3 +558,20 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Track cards: one resource per row, with the languages it exists in. Keeps a
+   tri-language track and a single-language track on the same card template.
+   These override .card li a, which lays links out as full-width rows. */
+.chooser-res { list-style: none; margin: 18px 0 20px; padding: 0; display: block; }
+.chooser-card .chooser-res li { display: flex; align-items: center;
+  justify-content: space-between; gap: 12px; margin: 0; padding: 9px 0;
+  border-bottom: 1px solid var(--border); }
+.chooser-card .chooser-res li:first-child { border-top: 1px solid var(--border); }
+.chooser-card .cr-label { font-size: 0.88rem; color: var(--fg); }
+.chooser-card .cr-langs { display: inline-flex; gap: 6px; flex-shrink: 0; }
+.chooser-card .chooser-res li a { display: inline-block; width: auto; padding: 3px 9px;
+  border: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-sm); font-family: 'Source Code Pro', monospace;
+  font-size: 0.72rem; letter-spacing: 0.06em; color: var(--accent); }
+.chooser-card .chooser-res li a::after { content: none; }
+.chooser-card .chooser-res li a:hover { border-color: var(--accent); background: var(--bg-elev); }
