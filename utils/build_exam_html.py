@@ -10,6 +10,8 @@ into one quiz per language with:
   * per-option explanations
   * randomized question order within each domain (persisted, so a refresh keeps
     the same order and answers)
+  * two attempt lengths: full (default, mirrors the real exam's size) and a
+    quick drill of about a third of the draw, still weighted per domain
   * scoring over the full total with a pass threshold and a per-domain breakdown
 
 This module also hosts the quiz engine itself: render_page() below is shared with
@@ -48,7 +50,7 @@ UI = {
         "score": "Score", "pass": "PASS", "fail": "FAIL", "by_domain":
         "Score by domain", "review_wrong": "Review incorrect answers",
         "all_correct": "Every question correct — outstanding!",
-        "restart": "Restart (new draw)", "weight": "weight",
+        "restart": "New attempt — new random draw", "weight": "weight",
         "threshold_note": ("Pass mark set at {p}/1000. Each attempt draws 12 "
                            "random questions per domain (60 total); the score "
                            "is scaled to 1000 as a study approximation of the "
@@ -57,6 +59,27 @@ UI = {
         "select_n": "Select {n} responses.",
         "select_full": "All {n} responses chosen. Deselect one to change your answer.",
         "not_answered": "Not answered", "incomplete_answer": "incomplete answer",
+        "length_full": "Full · {n}", "length_quick": "Quick · {n}",
+        "length_aria": "Attempt length",
+        "new_set": "New set",
+        "new_draw_confirm": ("Start a new attempt with a fresh random draw? "
+                             "Your current answers will be cleared."),
+        "draw_note_full": ("Every attempt draws a fresh random set: {n} of the "
+                           "{bank} bank questions this time. Full length "
+                           "mirrors the real exam — 60 questions in 120 "
+                           "minutes."),
+        "draw_note_quick": ("Quick drill: {n} questions drawn at random, "
+                            "weighted across domains — a fresh set every "
+                            "attempt."),
+        "summary_rotate": ("This attempt was one random draw of {n} questions "
+                           "from the {bank}-question bank. Start a new attempt "
+                           "for a different set — the questions rotate every "
+                           "time."),
+        "threshold_note_quick": ("Pass mark set at {p}/1000. A quick drill "
+                                 "draws a shorter random set weighted across "
+                                 "domains and scales the score to 1000 the "
+                                 "same way; use the full length for a "
+                                 "realistic rehearsal."),
     },
     "es": {
         "questions": "Preguntas", "answered": "Respondidas", "mode_study": "Estudio",
@@ -70,7 +93,7 @@ UI = {
         "score": "Puntaje", "pass": "APROBADO", "fail": "REPROBADO", "by_domain":
         "Puntaje por dominio", "review_wrong": "Revisar respuestas incorrectas",
         "all_correct": "¡Todas correctas — excelente!",
-        "restart": "Reiniciar (nuevo sorteo)", "weight": "peso",
+        "restart": "Nuevo intento — nuevo sorteo aleatorio", "weight": "peso",
         "threshold_note": ("Aprobación fijada en {p}/1000. Cada intento sortea "
                            "12 preguntas aleatorias por dominio (60 en total); "
                            "el puntaje se escala sobre 1000 como aproximación "
@@ -79,6 +102,27 @@ UI = {
         "select_n": "Selecciona {n} respuestas.",
         "select_full": "Ya elegiste las {n} respuestas. Deselecciona una para cambiar tu respuesta.",
         "not_answered": "Sin responder", "incomplete_answer": "respuesta incompleta",
+        "length_full": "Completo · {n}", "length_quick": "Rápido · {n}",
+        "length_aria": "Duración del intento",
+        "new_set": "Nuevo sorteo",
+        "new_draw_confirm": ("¿Iniciar un nuevo intento con un nuevo sorteo "
+                             "aleatorio? Tus respuestas actuales se borrarán."),
+        "draw_note_full": ("Cada intento sortea un conjunto aleatorio nuevo: "
+                           "esta vez, {n} de las {bank} preguntas del banco. "
+                           "La duración completa refleja el examen real: 60 "
+                           "preguntas en 120 minutos."),
+        "draw_note_quick": ("Práctica rápida: {n} preguntas sorteadas al azar, "
+                            "ponderadas entre dominios — un conjunto nuevo en "
+                            "cada intento."),
+        "summary_rotate": ("Este intento fue un sorteo aleatorio de {n} "
+                           "preguntas de un banco de {bank}. Inicia un nuevo "
+                           "intento para recibir un conjunto distinto: las "
+                           "preguntas rotan cada vez."),
+        "threshold_note_quick": ("Aprobación fijada en {p}/1000. La práctica "
+                                 "rápida sortea un conjunto aleatorio más "
+                                 "corto ponderado entre dominios y escala el "
+                                 "puntaje a 1000 de la misma forma; usa la "
+                                 "duración completa para un ensayo realista."),
     },
     "pt": {
         "questions": "Perguntas", "answered": "Respondidas", "mode_study": "Estudo",
@@ -92,7 +136,7 @@ UI = {
         "score": "Pontuação", "pass": "APROVADO", "fail": "REPROVADO", "by_domain":
         "Pontuação por domínio", "review_wrong": "Revisar respostas incorretas",
         "all_correct": "Todas corretas — excelente!",
-        "restart": "Reiniciar (novo sorteio)", "weight": "peso",
+        "restart": "Nova tentativa — novo sorteio aleatório", "weight": "peso",
         "threshold_note": ("Aprovação definida em {p}/1000. Cada tentativa "
                            "sorteia 12 perguntas aleatórias por domínio (60 no "
                            "total); a pontuação é escalada para 1000 como "
@@ -101,6 +145,28 @@ UI = {
         "select_n": "Selecione {n} respostas.",
         "select_full": "As {n} respostas já foram escolhidas. Desmarque uma para alterar sua resposta.",
         "not_answered": "Sem resposta", "incomplete_answer": "resposta incompleta",
+        "length_full": "Completo · {n}", "length_quick": "Rápido · {n}",
+        "length_aria": "Duração da tentativa",
+        "new_set": "Novo sorteio",
+        "new_draw_confirm": ("Iniciar uma nova tentativa com um novo sorteio "
+                             "aleatório? Suas respostas atuais serão "
+                             "apagadas."),
+        "draw_note_full": ("Cada tentativa sorteia um conjunto aleatório novo: "
+                           "desta vez, {n} das {bank} perguntas do banco. A "
+                           "duração completa espelha o exame real: 60 "
+                           "perguntas em 120 minutos."),
+        "draw_note_quick": ("Treino rápido: {n} perguntas sorteadas ao acaso, "
+                            "ponderadas entre os domínios — um conjunto novo "
+                            "a cada tentativa."),
+        "summary_rotate": ("Esta tentativa foi um sorteio aleatório de {n} "
+                           "perguntas de um banco de {bank}. Inicie uma nova "
+                           "tentativa para receber um conjunto diferente: as "
+                           "perguntas mudam a cada vez."),
+        "threshold_note_quick": ("Aprovação definida em {p}/1000. O treino "
+                                 "rápido sorteia um conjunto aleatório mais "
+                                 "curto ponderado entre os domínios e escala "
+                                 "a pontuação para 1000 da mesma forma; use a "
+                                 "duração completa para um ensaio realista."),
     },
 }
 
@@ -162,6 +228,19 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .mode-toggle button.active { background: var(--gold); color: var(--gold-fg); }
 .mode-hint { font-size: 11.5px; color: var(--subtle); margin-left: 12px; }
 .mode-controls { display: flex; align-items: center; }
+.length-toggle { margin-left: 10px; }
+.new-draw-btn { margin-left: 10px; }
+.new-draw-btn .dn-icon { margin-right: 5px; }
+
+/* Rotation notice — the strip under the brand bar and the summary callout both
+   say the same thing: every attempt is a fresh random draw from the bank. */
+.draw-note { padding: 8px 32px; background: var(--surface); color: var(--muted);
+  font-size: 12.5px; line-height: 1.5; border-bottom: 1px solid var(--border);
+  flex-shrink: 0; }
+.dn-icon { color: var(--gold); font-weight: 700; margin-right: 7px; }
+.rotate-note { margin-top: 26px; padding: 14px 18px; background: var(--gold-soft);
+  border: 1px solid var(--gold); border-radius: var(--r-md); font-size: 13.5px;
+  color: var(--fg-soft); line-height: 1.6; }
 
 .shell { display: flex; flex: 1; min-height: 0; overflow: hidden; }
 
@@ -332,6 +411,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   html, body { height: auto; }
   body { min-height: 100vh; height: auto; overflow: auto; display: block; }
   .ravn-topbar { position: static; padding: 10px 16px; gap: 10px; flex-wrap: wrap; }
+  .draw-note { padding: 8px 16px; }
   .ravn-brand-tagline { display: none; }
   .mode-controls { max-width: 100%; flex-wrap: wrap; gap: 6px 0; }
   .mode-hint { margin-left: 8px; }
@@ -352,6 +432,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 
 @media (max-width: 420px) {
   .mode-hint { width: 100%; margin-left: 0; }
+  .mode-toggle button { padding: 6px 10px; }
   .nav-btn { padding: 7px 11px; }
   .q-counter { width: 100%; }
   .wrong-item { display: block; }
@@ -373,29 +454,39 @@ const PASS_SCORE = __PASS_SCORE__;  // overall cut score on the 100–1000 scale
 // every domain (Foundations: 12 across 5 domains) or a { domain: count } map
 // when the draw is weighted (Professional: 11/8/12/10/9/9/4 across 7 domains).
 const PER_DOMAIN = __PER_DOMAIN__;
+// A quick drill draws about a third of the full attempt: per domain, the full
+// count over QUICK_DIVISOR, rounded, floored at one item so every domain the
+// full draw covers stays present. Deriving it from PER_DOMAIN keeps the full
+// draw the single source of the weighting.
+const QUICK_DIVISOR = 3;
 const STORE_KEY = "__STOREKEY__";
 // Bumped when a saved attempt stops being valid — a blueprint revision that
 // changes the per-domain draw, or a change to the shape of a stored answer.
 // An older payload is dropped, which resets an attempt in progress once.
 const STORE_VERSION = 2;
 
-function drawCount(domain) {
-  return (typeof PER_DOMAIN === "number") ? PER_DOMAIN : (PER_DOMAIN[domain] ?? 0);
+// `length` ("full" | "quick") defaults to the attempt in progress. load()
+// passes it explicitly: a saved payload must be checked against its own
+// length, never against whatever the live state happens to be.
+function drawCount(domain, length) {
+  const full = (typeof PER_DOMAIN === "number") ? PER_DOMAIN : (PER_DOMAIN[domain] ?? 0);
+  if ((length || state.length) !== "quick") return full;
+  return full > 0 ? Math.max(1, Math.round(full / QUICK_DIVISOR)) : 0;
 }
 
 // The draw actually achievable per domain: the requested count, capped by how
 // many questions that domain holds (so it never over-draws a small domain).
-function drawPerDomain() {
+function drawPerDomain(length) {
   const byDomain = {};
   QUESTIONS.forEach(q => { byDomain[q.domain] = (byDomain[q.domain] || 0) + 1; });
   const out = {};
-  Object.keys(byDomain).forEach(d => { out[d] = Math.min(byDomain[d], drawCount(d)); });
+  Object.keys(byDomain).forEach(d => { out[d] = Math.min(byDomain[d], drawCount(d, length)); });
   return out;
 }
 
 // Number of questions in one attempt.
-function examSize() {
-  return Object.values(drawPerDomain()).reduce((s, c) => s + c, 0);
+function examSize(length) {
+  return Object.values(drawPerDomain(length)).reduce((s, c) => s + c, 0);
 }
 
 // ---- answer shape --------------------------------------------------------
@@ -464,13 +555,13 @@ function tallyAttempt(active, answers) {
            domStat: domStat, wrongByDomain: wrongByDomain };
 }
 
-const state = { current: 0, answers: {}, order: [], mode: "study" };
+const state = { current: 0, answers: {}, order: [], mode: "study", length: "full" };
 
 // ---- persistence ---------------------------------------------------------
 function save() {
   try { localStorage.setItem(STORE_KEY, JSON.stringify(
     { v: STORE_VERSION, answers: state.answers, order: state.order,
-      mode: state.mode, current: state.current })); } catch (e) {}
+      mode: state.mode, length: state.length, current: state.current })); } catch (e) {}
 }
 function load() {
   try {
@@ -482,16 +573,22 @@ function load() {
     // because nothing about it is known to be stale and the checks below
     // validate it on its own terms. That keeps attempts in progress alive.
     if (d.v !== undefined && d.v !== STORE_VERSION) return null;
-    // Order is valid only if it still matches the current attempt size.
-    if (!Array.isArray(d.order) || d.order.length !== examSize()) return null;
+    // The payload's own length decides which draw the order must match, so a
+    // saved attempt of one length can never be misread as the other. A payload
+    // from before the quick drill existed carries no length: it is a full
+    // attempt, the only length that engine could draw.
+    const length = d.length === "quick" ? "quick" : "full";
+    // Order is valid only if it still matches that length's attempt size.
+    if (!Array.isArray(d.order) || d.order.length !== examSize(length)) return null;
     const ids = new Set(QUESTIONS.map(q => q.id));
     if (!d.order.every(id => ids.has(id))) return null;
     // The total survives a blueprint revision that only moves items between
     // domains, so check the per-domain mix too. Without this a returning
     // candidate keeps the old weighting under a note that claims the new one.
-    const want = drawPerDomain(), got = {};
+    const want = drawPerDomain(length), got = {};
     d.order.forEach(id => { const q = qById(id); if (q) got[q.domain] = (got[q.domain] || 0) + 1; });
     if (Object.keys(want).some(d2 => (got[d2] || 0) !== want[d2])) return null;
+    d.length = length;
     return d;
   } catch (e) { return null; }
 }
@@ -702,6 +799,46 @@ function setMode(mode) {
   updateSidebar();
 }
 
+// ---- new draw ------------------------------------------------------------
+// Drawing a different set is available at all times: the header button, the
+// length toggle, and the summary's restart all end in restart(). The first
+// two run while an attempt may be in progress, so they share one guard that
+// asks before discarding it. The summary's button stays unguarded, as it
+// always was: that attempt is already finished and scored.
+function confirmDiscard() {
+  return Object.keys(state.answers).length === 0 ||
+    typeof confirm !== "function" || confirm(T.new_draw_confirm);
+}
+
+function newDraw() {
+  if (confirmDiscard()) restart();
+}
+
+// ---- attempt length ------------------------------------------------------
+// "full" mirrors the real exam's draw; "quick" is a short drill for a spare
+// twenty minutes. Switching lengths redraws, so a started attempt asks first.
+function setLength(length) {
+  if (length === state.length) return;
+  if (!confirmDiscard()) return;
+  state.length = length;
+  restart();
+}
+
+function updateLengthUI() {
+  [["lengthFull", "full", T.length_full], ["lengthQuick", "quick", T.length_quick]]
+    .forEach(([id, len, label]) => {
+      const btn = document.getElementById(id);
+      btn.textContent = label.replace("{n}", examSize(len));
+      btn.classList.toggle("active", state.length === len);
+      btn.setAttribute("aria-pressed", String(state.length === len));
+    });
+  document.getElementById("drawNote").innerHTML =
+    "<span class='dn-icon'>&#10227;</span>" +
+    (state.length === "quick" ? T.draw_note_quick : T.draw_note_full)
+      .replace("{n}", examSize())
+      .replace("{bank}", QUESTIONS.length);
+}
+
 // ---- summary -------------------------------------------------------------
 function showSummary() {
   document.getElementById("questionScreen").classList.remove("active");
@@ -792,12 +929,16 @@ function showSummary() {
       "<div class='score-card correct-c'><div class='big'>" + correct + "</div><div class='label'>" + T.correct + "</div></div>" +
       "<div class='score-card wrong-c'><div class='big'>" + (wrong + unanswered) + "</div><div class='label'>" + T.incorrect + "</div></div>" +
     "</div>" +
-    "<p class='threshold-note'>" + T.threshold_note.replace("{p}", PASS_SCORE) + "</p>" +
+    "<p class='threshold-note'>" +
+      (state.length === "quick" ? T.threshold_note_quick : T.threshold_note)
+        .replace("{p}", PASS_SCORE) + "</p>" +
     "<div class='section-title'>" + T.by_domain + "</div>" +
     "<div class='domain-scores'>" + domainScoresHtml + "</div>" +
     ((wrong + unanswered) > 0
       ? "<div class='section-title'>" + T.review_wrong + "</div>" + wrongGroupsHtml
       : "<p style='color:#38a169;font-weight:700;font-size:17px;'>" + T.all_correct + "</p>") +
+    "<div class='rotate-note'><span class='dn-icon'>&#10227;</span>" +
+      T.summary_rotate.replace("{n}", total).replace("{bank}", QUESTIONS.length) + "</div>" +
     "<button type='button' class='restart-btn' onclick='restart()'>" + T.restart + "</button>";
 }
 
@@ -806,6 +947,7 @@ function restart() {
   state.current = 0;
   state.order = shuffleOrder();
   save();
+  updateLengthUI();
   buildSidebar();
   document.getElementById("questionScreen").classList.add("active");
   document.getElementById("summaryScreen").classList.remove("active");
@@ -820,11 +962,14 @@ function restart() {
     state.answers = saved.answers || {};
     state.order = saved.order;
     state.mode = saved.mode || "study";
+    // load() normalized the length, so a pre-quick payload restores as "full".
+    state.length = saved.length;
     state.current = Math.min(saved.current || 0, state.order.length - 1);
   } else {
     state.order = shuffleOrder();
   }
   setMode(state.mode);
+  updateLengthUI();
   buildSidebar();
   renderQuestion(state.current);
   updateSidebar();
@@ -879,7 +1024,14 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
         '<div class="mode-toggle">'
         f'<button type="button" id="modeStudy" aria-pressed="false" onclick="setMode(\'study\')">{ui["mode_study"]}</button>'
         f'<button type="button" id="modeExam" aria-pressed="false" onclick="setMode(\'exam\')">{ui["mode_exam"]}</button>'
-        '</div><span class="mode-hint" id="modeHint"></span>'
+        '</div>'
+        f'<div class="mode-toggle length-toggle" role="group" aria-label="{ui["length_aria"]}">'
+        '<button type="button" id="lengthFull" aria-pressed="false" onclick="setLength(\'full\')"></button>'
+        '<button type="button" id="lengthQuick" aria-pressed="false" onclick="setLength(\'quick\')"></button>'
+        '</div>'
+        '<button type="button" class="nav-btn new-draw-btn" id="newDrawBtn" onclick="newDraw()">'
+        f'<span class="dn-icon">&#10227;</span>{ui["new_set"]}</button>'
+        '<span class="mode-hint" id="modeHint"></span>'
         '</div></header>'
     )
 
@@ -897,6 +1049,7 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
 </head>
 <body>
 {ravn_topbar}
+<div class="draw-note" id="drawNote"></div>
 <div class="shell">
   <nav class="sidebar" aria-label="{ui['questions']}">
     <div class="sidebar-header">{ui['questions']}</div>

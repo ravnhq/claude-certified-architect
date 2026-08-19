@@ -46,6 +46,14 @@ def main():
     questions = json.load(open(os.path.join(DATA_DIR, "developer_questions.json"), encoding="utf-8"))
     check_draw(blueprint)
 
+    # Real-exam facts for the rotation strip come from the blueprint, so the
+    # full-length rationale cannot drift from the transcription.
+    exam = blueprint["_exam"]
+    UI["draw_note_full"] = (
+        "Every attempt draws a fresh random set: {n} of the {bank} bank "
+        f"questions this time. Full length mirrors the real {exam['code']} "
+        f"exam — {exam['items']} questions in {exam['minutes']} minutes.")
+
     domains_js = {d: {"name": v["name"], "weight": v["weight"]}
                   for d, v in blueprint["domains"].items()}
 

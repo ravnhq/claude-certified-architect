@@ -134,6 +134,44 @@ function checkSharedEngine(e, file) {
   const want = e.drawPerDomain();
   check('drawPerDomain totals the attempt size',
     Object.values(want).reduce((s, c) => s + c, 0) === e.examSize());
+
+  // Attempt length. A saved payload is checked against its *own* length, so a
+  // full attempt can never be misread as a quick one (or the reverse), and a
+  // pre-quick payload without a length restores as the full attempt it was.
+  const fullRaw = e.localStorage.getItem(e.STORE_KEY);
+  const asQuick = JSON.parse(fullRaw); asQuick.length = 'quick';
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(asQuick));
+  check('load rejects a full-size order labelled quick', e.load() === null);
+  const legacy = JSON.parse(fullRaw); delete legacy.length;
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(legacy));
+  const legacyLoaded = e.load();
+  check('a payload without a length loads as a full attempt',
+    !!legacyLoaded && legacyLoaded.length === 'full');
+  e.localStorage.setItem(e.STORE_KEY, fullRaw);
+
+  // The quick drill: about a third of the full draw, floored at one item, so
+  // every domain the full draw covers stays present in the short set.
+  const fullWant = e.drawPerDomain('full'), quickWant = e.drawPerDomain('quick');
+  check('quick draw is a third of full, floored at one per domain',
+    Object.keys(fullWant).every(d =>
+      quickWant[d] === Math.max(1, Math.round(fullWant[d] / 3))));
+  e.state.length = 'quick';
+  const qOrder = e.shuffleOrder();
+  const qSize = Object.values(quickWant).reduce((s, c) => s + c, 0);
+  check('a quick shuffle draws the quick size', qOrder.length === qSize,
+    `${qOrder.length} vs ${qSize}`);
+  const qPer = {};
+  qOrder.forEach(id => { const d = e.qById(id).domain; qPer[d] = (qPer[d] || 0) + 1; });
+  check('a quick shuffle matches the quick per-domain draw',
+    Object.keys(quickWant).every(d => (qPer[d] || 0) === quickWant[d]));
+  e.state.order = qOrder;
+  e.state.answers = {};
+  e.save();
+  const qLoaded = e.load();
+  check('a quick attempt round-trips through storage',
+    !!qLoaded && qLoaded.length === 'quick' && qLoaded.order.length === qSize);
+  e.state.length = 'full';
+  e.localStorage.setItem(e.STORE_KEY, fullRaw);
 }
 
 console.log('Foundations engine (exam_en.html)');
@@ -143,6 +181,11 @@ console.log('Foundations engine (exam_en.html)');
   check('flat draw of 12 per domain', e.PER_DOMAIN === 12, `got ${JSON.stringify(e.PER_DOMAIN)}`);
   check('attempt size is 60', e.examSize() === 60, `got ${e.examSize()}`);
   check('shuffleOrder draws 60', e.shuffleOrder().length === 60);
+  check('quick drill draws 20 (4 per domain)', (() => {
+    const q = e.drawPerDomain('quick');
+    return Object.values(q).reduce((s, c) => s + c, 0) === 20 &&
+      Object.values(q).every(c => c === 4);
+  })());
   check('store key is Foundations-scoped', e.STORE_KEY === 'ccaf-exam-en', e.STORE_KEY);
 
   const q = e.QUESTIONS[0];
@@ -166,6 +209,12 @@ console.log('Professional engine (professional_exam_en.html)');
   check('bank holds 126 items', e.QUESTIONS.length === 126, `got ${e.QUESTIONS.length}`);
   check('weighted draw map', typeof e.PER_DOMAIN === 'object' && e.PER_DOMAIN['3'] === 12);
   check('attempt size is 63', e.examSize() === 63, `got ${e.examSize()}`);
+  check('quick drill draws 21 weighted (4/3/4/3/3/3/1)', (() => {
+    const q = e.drawPerDomain('quick');
+    const want = { 1: 4, 2: 3, 3: 4, 4: 3, 5: 3, 6: 3, 7: 1 };
+    return Object.keys(want).every(d => q[d] === want[d]) &&
+      e.examSize('quick') === 21;
+  })());
   check('store key does not collide with Foundations', e.STORE_KEY === 'ccarp-exam-en', e.STORE_KEY);
 
   // The draw must match the official domain weights on every attempt.

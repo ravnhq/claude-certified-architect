@@ -112,6 +112,20 @@ function checkPage(file) {
   // Nothing may escape as markup. Look for a tag no template writes.
   check('no unescaped item text reached the page', !/<img|<iframe|onerror=/i.test(out));
 
+  // Rotation must be stated where it matters: on the question screen (the
+  // strip under the brand bar) and again at the end of an attempt.
+  check('the summary says the questions rotate',
+    out.includes(api.T.summary_rotate.split('{n}')[0]));
+  check('the question screen carries the fresh-draw note',
+    el('drawNote').innerHTML.includes(api.T.draw_note_full.split('{n}')[0]));
+  check('the length toggle shows both draw sizes',
+    el('lengthFull').textContent.length > 0 && el('lengthQuick').textContent.length > 0);
+  // The new-set control is server-rendered into the always-on header, so it is
+  // visible from the first question on — check the shipped markup itself.
+  const rawHtml = fs.readFileSync(path.join(ROOT, file), 'utf8');
+  check('a new-set control sits in the always-on header',
+    rawHtml.includes('id="newDrawBtn"') && rawHtml.includes(api.T.new_set));
+
   // At-capacity options stay reachable: aria-disabled, not disabled.
   if (multi) {
     console.log(`Question screen (${file})`);
