@@ -438,10 +438,14 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 
 @media (max-width: 420px) {
   .mode-hint { width: 100%; margin-left: 0; order: 99; }
-  .mode-toggle button { padding: 6px 9px; font-size: 0.72rem; }
   .nav-btn { padding: 8px 10px; }
-  /* Keep the control strip on two tidy rows instead of orphaning New set. */
+  /* Fit all three controls on one row at 390px instead of orphaning New set
+     onto its own line: trim padding, tracking and the gaps between groups. */
   .mode-controls { gap: 6px; justify-content: flex-start; }
+  .mode-toggle button { padding: 5px 7px; font-size: 0.66rem; letter-spacing: 0.04em; }
+  .length-toggle, .new-draw-btn { margin-left: 4px; }
+  .new-draw-btn { padding: 5px 8px; font-size: 0.66rem; }
+  .new-draw-btn .dn-icon { margin-right: 3px; }
   .draw-note { font-size: 0.78rem; line-height: 1.45; padding: 8px 16px; }
   .q-counter { width: 100%; }
   .wrong-item { display: block; }
