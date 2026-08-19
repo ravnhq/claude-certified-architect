@@ -2056,7 +2056,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 # Examples of Exam Questions with Explanations
 
-## Question 1 (Scenario: Customer Support Agent)
+## Example 1 (Scenario: Customer Support Agent)
 
 **Situation:** Data shows that in 12% of cases the agent skips `get_customer` and calls `lookup_order` using only the customer’s name, which leads to incorrect refunds.
 
@@ -2071,7 +2071,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 ---
 
-## Question 2 (Scenario: Customer Support Agent)
+## Example 2 (Scenario: Customer Support Agent)
 
 **Situation:** The agent often calls `get_customer` instead of `lookup_order` for order-related questions. Tool descriptions are minimal and similar.
 
@@ -2086,7 +2086,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 ---
 
-## Question 3 (Scenario: Customer Support Agent)
+## Example 3 (Scenario: Customer Support Agent)
 
 **Situation:** The agent resolves only 55% of issues with a target of 80%. It escalates simple cases and tries to handle complex policy exceptions autonomously.
 
@@ -2101,7 +2101,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 ---
 
-## Question 4 (Scenario: Code Generation with Claude Code)
+## Example 4 (Scenario: Code Generation with Claude Code)
 
 **Situation:** You need a custom `/review` command for standard code review that is available to the whole team when they clone the repository.
 
@@ -2116,7 +2116,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 ---
 
-## Question 5 (Scenario: Code Generation with Claude Code)
+## Example 5 (Scenario: Code Generation with Claude Code)
 
 **Situation:** You need to restructure a monolith into microservices (dozens of files, service-boundary decisions).
 
@@ -2131,7 +2131,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 ---
 
-## Question 6 (Scenario: Code Generation with Claude Code)
+## Example 6 (Scenario: Code Generation with Claude Code)
 
 **Situation:** A codebase has different conventions across areas (React, API, database). Tests are co-located with code. You want conventions to be applied automatically.
 
@@ -2146,7 +2146,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 ---
 
-## Question 7 (Scenario: Multi-agent Research System)
+## Example 7 (Scenario: Multi-agent Research System)
 
 **Situation:** The system researches “AI impact on creative industries,” but reports cover only visual art. The coordinator decomposed the topic into: “AI in digital art,” “AI in graphic design,” “AI in photography.”
 
@@ -2161,7 +2161,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 ---
 
-## Question 8 (Scenario: Multi-agent Research System)
+## Example 8 (Scenario: Multi-agent Research System)
 
 **Situation:** A web-search subagent times out while researching a complex topic. You need to design how error information is passed back to the coordinator.
 
@@ -2176,7 +2176,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 ---
 
-## Question 9 (Scenario: Multi-agent Research System)
+## Example 9 (Scenario: Multi-agent Research System)
 
 **Situation:** The synthesis agent often needs to verify specific claims while merging results. Currently, when verification is needed, the synthesis agent hands control back to the coordinator, which calls the web-search agent and then re-runs synthesis with the new results. This adds 2–3 extra round trips per task and increases latency by 40%. Your assessment shows that 85% of these checks are simple fact checks (dates, names, statistics), while 15% require deeper investigation.
 
@@ -2191,7 +2191,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 ---
 
-## Question 10 (Scenario: Claude Code for CI)
+## Example 10 (Scenario: Claude Code for Continuous Integration)
 
 **Situation:** A pipeline runs `claude "Analyze this pull request for security issues"`, but hangs waiting for interactive input.
 
@@ -2206,7 +2206,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 ---
 
-## Question 11 (Scenario: Claude Code for CI)
+## Example 11 (Scenario: Claude Code for Continuous Integration)
 
 **Situation:** The team wants to reduce API cost for automated analysis. Claude currently serves two workflows in real time: (1) a blocking pre-merge check that must complete before developers can merge a PR, and (2) a tech-debt report generated overnight for morning review. A manager proposes moving both to the Message Batches API to save 50%.
 
@@ -2221,7 +2221,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 ---
 
-## Question 12 (Scenario: Multi-file Code Review)
+## Example 12 (Scenario: Multi-file Code Review)
 
 **Situation:** A pull request changes 14 files in an inventory tracking module. A single-pass review of all files produces inconsistent results: detailed comments for some files but superficial ones for others, missed obvious bugs, and contradictory feedback (a pattern is flagged as problematic in one file but approved in identical code in another file).
 
@@ -2238,7 +2238,7 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 
 # Practice Test
 
-> 60 questions across 4 scenarios. Format and difficulty match the real exam.
+> 76 questions across 5 scenarios. Format and difficulty match the real exam.
 > 
 > Alternatively, you can practice these questions in an exam-like HTML file: [Practice Exam (EN)](https://ravnhq.github.io/claude-certified-architect/practical/en.html)
 
@@ -3156,6 +3156,10 @@ Feed the grader the task, the generated output, and explicit **solution criteria
 - D) Add 10–15 examples of clear, unambiguous requests demonstrating correct tool choice for typical scenarios for each tool.
 
 **Why C:** Targeting few-shot examples at the specific ambiguous scenarios where errors occur, with explicit rationale for why one tool is preferable to alternatives, teaches the model the comparative decision process needed for edge cases. This is more effective than generic examples or declarative rules.
+
+---
+
+## Scenario: Conversational AI Architecture Patterns
 
 ---
 

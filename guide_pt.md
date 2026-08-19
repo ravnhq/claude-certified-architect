@@ -2058,7 +2058,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 # Exemplos de Questões do Exame com Explicações
 
-## Questão 1 (Cenário: Agente de Suporte ao Cliente)
+## Exemplo 1 (Cenário: Agente de Suporte ao Cliente)
 
 **Situação:** Os dados mostram que em 12% dos casos o agente pula `get_customer` e chama `lookup_order` usando apenas o nome do cliente, o que leva a reembolsos incorretos.
 
@@ -2073,7 +2073,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 ---
 
-## Questão 2 (Cenário: Agente de Suporte ao Cliente)
+## Exemplo 2 (Cenário: Agente de Suporte ao Cliente)
 
 **Situação:** O agente frequentemente chama `get_customer` em vez de `lookup_order` para perguntas relacionadas a pedidos. As descrições das ferramentas são mínimas e parecidas.
 
@@ -2088,7 +2088,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 ---
 
-## Questão 3 (Cenário: Agente de Suporte ao Cliente)
+## Exemplo 3 (Cenário: Agente de Suporte ao Cliente)
 
 **Situação:** O agente resolve apenas 55% dos problemas com meta de 80%. Ele escala casos simples e tenta lidar com exceções complexas de política autonomamente.
 
@@ -2103,7 +2103,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 ---
 
-## Questão 4 (Cenário: Geração de Código com Claude Code)
+## Exemplo 4 (Cenário: Geração de Código com Claude Code)
 
 **Situação:** Você precisa de um comando customizado `/review` para code review padrão que esteja disponível para todo o time quando clonarem o repositório.
 
@@ -2118,7 +2118,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 ---
 
-## Questão 5 (Cenário: Geração de Código com Claude Code)
+## Exemplo 5 (Cenário: Geração de Código com Claude Code)
 
 **Situação:** Você precisa reestruturar um monolito em microsserviços (dezenas de arquivos, decisões sobre fronteiras de serviço).
 
@@ -2133,7 +2133,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 ---
 
-## Questão 6 (Cenário: Geração de Código com Claude Code)
+## Exemplo 6 (Cenário: Geração de Código com Claude Code)
 
 **Situação:** Uma base de código tem convenções diferentes em áreas distintas (React, API, banco de dados). Testes ficam co-localizados com o código. Você quer que as convenções sejam aplicadas automaticamente.
 
@@ -2148,7 +2148,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 ---
 
-## Questão 7 (Cenário: Sistema de Pesquisa Multiagente)
+## Exemplo 7 (Cenário: Sistema de Pesquisa Multiagente)
 
 **Situação:** O sistema pesquisa "impacto da IA nas indústrias criativas", mas os relatórios cobrem apenas artes visuais. O coordenador decompôs o tema em: "IA em arte digital", "IA em design gráfico", "IA em fotografia".
 
@@ -2163,7 +2163,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 ---
 
-## Questão 8 (Cenário: Sistema de Pesquisa Multiagente)
+## Exemplo 8 (Cenário: Sistema de Pesquisa Multiagente)
 
 **Situação:** Um subagente de busca web sofre timeout ao pesquisar um tema complexo. Você precisa desenhar como a informação de erro é passada de volta ao coordenador.
 
@@ -2178,7 +2178,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 ---
 
-## Questão 9 (Cenário: Sistema de Pesquisa Multiagente)
+## Exemplo 9 (Cenário: Sistema de Pesquisa Multiagente)
 
 **Situação:** O agente de síntese frequentemente precisa verificar afirmações específicas ao mesclar resultados. Atualmente, quando verificação é necessária, o agente de síntese devolve o controle ao coordenador, que chama o agente de busca web e então re-executa a síntese com os novos resultados. Isso adiciona 2–3 round trips extras por tarefa e aumenta a latência em 40%. Sua avaliação mostra que 85% dessas verificações são checagens simples (datas, nomes, estatísticas), enquanto 15% exigem investigação mais profunda.
 
@@ -2193,7 +2193,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 ---
 
-## Questão 10 (Cenário: Claude Code para CI)
+## Exemplo 10 (Cenário: Claude Code para Integração Contínua)
 
 **Situação:** Um pipeline executa `claude "Analyze this pull request for security issues"`, mas trava esperando entrada interativa.
 
@@ -2208,7 +2208,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 ---
 
-## Questão 11 (Cenário: Claude Code para CI)
+## Exemplo 11 (Cenário: Claude Code para Integração Contínua)
 
 **Situação:** O time quer reduzir o custo de API para análise automatizada. O Claude atende dois fluxos em tempo real: (1) checagem bloqueante pré-merge que precisa terminar antes de o dev poder mergear o PR, e (2) relatório de tech-debt gerado de noite para revisão pela manhã. Um gerente propõe mover ambos para a Message Batches API para economizar 50%.
 
@@ -2223,7 +2223,7 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 
 ---
 
-## Questão 12 (Cenário: Code Review Multi-arquivo)
+## Exemplo 12 (Cenário: Code Review Multi-arquivo)
 
 **Situação:** Um pull request altera 14 arquivos em um módulo de tracking de inventário. Uma review de uma única passagem produz resultados inconsistentes: comentários detalhados em alguns arquivos e superficiais em outros, bugs óbvios não detectados e feedback contraditório (um padrão é marcado como problemático em um arquivo mas aprovado em código idêntico em outro).
 
@@ -3158,6 +3158,10 @@ Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução**
 - D) Adicionar 10–15 exemplos de pedidos claros e inequívocos demonstrando escolha correta para cenários típicos de cada ferramenta.
 
 **Por que C:** Direcionar exemplos few-shot aos cenários ambíguos específicos onde os erros ocorrem, com justificativa explícita de por que uma ferramenta é preferível, ensina ao modelo o processo de decisão comparativo necessário para casos de borda. Mais efetivo que exemplos genéricos ou regras declarativas.
+
+---
+
+## Cenário: Padrões de Arquitetura de IA Conversacional
 
 ---
 
