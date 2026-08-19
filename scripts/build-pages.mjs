@@ -223,7 +223,7 @@ function landing() {
   const trackCard = tr => `
     <article class="card chooser-card">
       <p class="chooser-code">${tr.code}</p>
-      <h2 class="chooser-name">${tr.name}</h2>
+      <h2 class="chooser-name"><a class="chooser-primary" href="${tr.resources[0].langs[0][1]}">${tr.name}</a></h2>
       <p class="card-summary">${tr.summary}</p>
       <dl class="chooser-facts">
         <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">${tr.items}</dd></div>
