@@ -1493,6 +1493,8 @@ Cuando Edit falla por texto no único:
 - Agregar resultados de herramientas al contexto entre iteraciones
 - **Antipatrones a evitar**: analizar texto del asistente para determinar finalización, establecer límites arbitrarios de iteraciones como mecanismo de parada principal
 
+**Mecánica del ciclo.** Un turno de herramienta produce un mensaje del asistente cuyo `content` es una lista de bloques — típicamente un bloque `text` (el modelo narrando la intención) más uno o más bloques `tool_use`. Ejecutas cada herramienta solicitada y respondes con un mensaje de *usuario* que contiene bloques `tool_result`; cada uno lleva un `tool_use_id` que debe coincidir con el `tool_use` al que responde, de modo que cuando Claude pide varias herramientas en un turno son los ids — y no el orden — los que emparejan resultados con solicitudes. La solicitud de seguimiento debe reenviar el historial completo (usuario → `tool_use` del asistente → `tool_result` del usuario) *y* los esquemas de herramienta originales, incluso en un turno donde no se espera una nueva llamada, porque los bloques anteriores los referencian. El ciclo termina solo cuando `stop_reason` ya no es `"tool_use"`; nunca termines comprobando si el asistente dijo que acabó.
+
 ## 1.2 Orquestación de sistemas multiagente (coordinador-subagente)
 
 ### Conocimientos clave:
@@ -1505,6 +1507,21 @@ Cuando Edit falla por texto no único:
 - Dividir cobertura de investigación entre subagentes para minimizar duplicación
 - Implementar ciclos iterativos de refinamiento (coordinador evalúa síntesis, redirige tareas)
 - Enrutar toda comunicación a través del coordinador para observabilidad
+
+**Workflow vs. agente — la decisión rectora.** Usa un **workflow** cuando puedes escribir de antemano la secuencia exacta de pasos; usa un **agente** cuando los pasos son desconocidos y Claude debe planear a partir de un conjunto de herramientas. Los workflows son más fiables y mucho más fáciles de probar y evaluar porque el camino es fijo; los agentes cambian fiabilidad y testeabilidad por flexibilidad (una tasa de completitud exitosa menor, más difícil de reproducir). Por defecto usa workflows y recurre a un agente solo cuando la tarea genuinamente no se pueda scriptear.
+
+**Patrones de workflow con nombre** (todos fijos, llamadas a Claude orquestadas en código):
+
+| Patrón | Cuándo encaja |
+|---|---|
+| Encadenamiento | Un prompt largo con muchas restricciones que Claude sigue incumpliendo; divídelo en pasos secuenciales enfocados para que cada llamada atienda a una sola preocupación |
+| Enrutamiento | La entrada debe ser manejada por un pipeline especializado — la primera llamada categoriza y luego despacha al prompt/herramientas correspondientes |
+| Paralelización | Una tarea dividida en subtareas independientes (evaluar cada material por separado); se ejecutan a la vez, luego se agregan |
+| Evaluador-optimizador | Producir → evaluar → dar feedback → repetir hasta que el evaluador acepte |
+
+**Abstracción de herramientas para agentes.** Dale a un agente un conjunto pequeño de herramientas abstractas (`read_file`, `write_file`, `run_command`) y deja que Claude las componga — como hace Claude Code con `Bash`/`Read`/`Write`. Las herramientas hiperespecializadas (`refactor_file`, `install_dependencies`) eliminan la planificación que hace flexible a un agente y solo cubren escenarios pre-planeados.
+
+**Inspección del entorno.** Después (y a menudo antes) de una acción, el agente necesita una forma de observar su resultado más allá del valor de retorno de la herramienta — una captura de pantalla tras un clic, una lectura de archivo antes de una escritura. Sin inspección el agente no puede medir su progreso ni recuperarse de sorpresas; intégralo en el prompt del sistema (por ejemplo, ejecuta un extractor de subtítulos sobre el video generado y luego inspecciona los fotogramas).
 
 ## 1.3 Configuración de invocación de subagentes, transferencia de contexto y generación
 
@@ -1520,6 +1537,8 @@ Cuando Edit falla por texto no único:
 - Generar subagentes paralelos mediante múltiples llamadas `Task` en una respuesta del coordinador
 - Diseñar prompts del coordinador con objetivos y criterios de calidad, no instrucciones paso a paso
 
+**Pasando contexto a los subagentes.** Como el contexto del subagente está aislado, el prompt debe ser autónomo: las salidas previas completas, el texto del documento y el esquema de salida. Separa los datos de los metadatos con estructura explícita para que el subagente no pueda confundir un hallazgo con su fuente. Genera trabajo en paralelo emitiendo varias llamadas `Task` en un solo turno del coordinador. Describe el trabajo en términos de objetivos y criterios de calidad (“produce una síntesis anotada por cobertura con una cita por cada afirmación”) en vez de una lista rígida de pasos — una lista rígida derrota la flexibilidad de la delegación y tiende a reproducir el sesgo del propio coordinador.
+
 ## 1.4 Implementación de flujos de trabajo multisaltos con patrones de aplicación y transferencia
 
 ### Conocimientos clave:
@@ -1531,6 +1550,8 @@ Cuando Edit falla por texto no único:
 - Precondiciones programáticas que bloquean llamadas descendentes hasta finalizar pasos anteriores (bloquear `process_refund` hasta que `get_customer` devuelva ID)
 - Descomponer solicitudes multiaspecto de clientes en elementos separados
 - Formar resúmenes estructurados al escalar a humano
+
+**Aplicación vs. orientación.** Ordenar un workflow por prompt (“siempre verifica la identidad primero”) es *probabilístico* — Claude suele cumplir, pero puede saltárselo. Una precondición programática (un hook o una guarda que rechaza `process_refund` hasta que `get_customer` haya devuelto un id verificado) es *determinista*. Usa orientación para preferencia y flujo; usa precondiciones para cualquier cosa con peso financiero, legal o de seguridad. Para solicitudes multiaspecto (“mi pedido está roto y quiero un gerente”), descomponlas en elementos separados y maneja cada uno por sus propios méritos en vez de colapsarlos en una sola acción.
 
 ## 1.5 Hooks de Agent SDK para interceptar llamadas de herramientas y normalizar datos
 
@@ -1544,6 +1565,8 @@ Cuando Edit falla por texto no único:
 - Hooks de intercepción para bloquear acciones que violen política con redirección a escalada
 - Elegir hooks sobre prompts cuando reglas de negocio requieren conformidad garantizada
 
+**Por qué hooks, no prompts, para reglas duras.** Una instrucción de prompt es una petición que Claude puede rechazar; un hook es código en un punto fijo del ciclo que no se puede saltar. `PostToolUse` es ideal para normalización (epoch Unix → ISO 8601, códigos de estado → etiquetas) porque transforma un resultado antes de que el modelo lo vea. `PreToolUse` es la primitiva de aplicación — puede `deny`, `ask` o `update` silenciosamente la entrada (por ejemplo, redactar un secreto de un comando Bash y aun así dejarlo ejecutarse). Reserva hooks para reglas donde el fallo tiene consecuencias; pasarse de hooks en formateo rutinario solo añade latencia.
+
 ## 1.6 Estrategias de descomposición de tareas para flujos de trabajo complejos
 
 ### Conocimientos clave:
@@ -1555,6 +1578,8 @@ Cuando Edit falla por texto no único:
 - Prompt chaining para revisiones multisalto predecibles, descomposición dinámica para investigaciones abiertas
 - Dividir revisiones grandes de código en análisis por-archivo + pase de integración entre archivos separado
 - Descomponer tareas abiertas: primero mapeo de estructura, luego plan priorizado
+
+**Descomposición fija vs. dinámica.** Elige un pipeline fijo (encadenamiento de prompts) cuando la estructura se conoce de antemano y la reproducibilidad importa — revisión por archivo y luego un pase de integración, o extracción → validación → enriquecimiento. Elige descomposición adaptativa dinámica cuando el alcance solo se aclara a medida que trabajas: mapea la estructura primero, deja que los hallazgos fijen la próxima tarea y replanea cuando aflote una dependencia. Para revisiones grandes, la división por-archivo-luego-integración es lo que evita la dilución de atención — un solo pase sobre muchos archivos produce análisis profundo para algunos y superficial para otros, y señala un patrón en un archivo que ignora en otro.
 
 ## 1.7 Gestión de estado de sesión, reanudación y forking
 
@@ -1568,6 +1593,8 @@ Cuando Edit falla por texto no único:
 - Usar `--resume` para continuar sesiones de investigación nombradas
 - `fork_session` para comparar enfoques en paralelo
 - Elegir entre reanudar (contexto aún actual) y nueva sesión (resultados desactualizados)
+
+**Reanudar vs. forkear vs. empezar de nuevo.** `--resume <session>` continúa una sesión nombrada con su contexto guardado — bueno para una investigación larga de la que te alejaste, pero arriesgado si los archivos cambiaron, porque los resultados de herramienta en cache pueden haber quedado obsoletos. `fork_session` se ramifica desde un contexto compartido para que dos enfoques (Redux vs. Context API) diverjan independientemente sin contaminarse. Cuando los resultados han envejecido o el contexto se ha degradado, una sesión nueva abierta con un breve resumen escrito es más fiable que reanudar datos de herramienta obsoletos — y dile al agente qué cambió desde la sesión anterior.
 
 ---
 
@@ -1586,6 +1613,8 @@ Cuando Edit falla por texto no único:
 - Renombrar herramientas para eliminar superposición funcional (p.ej., `analyze_content` -> `extract_web_results`)
 - Dividir herramientas generales en especializadas con contratos específicos de entrada/salida
 
+**Escribir la descripción.** La descripción es el mecanismo de selección, así que hazla discriminante: di qué hace la herramienta, qué devuelve, el formato de entrada con un valor de ejemplo, los casos límite y — críticamente — *cuándo usar esta herramienta frente a una casi gemela*. Si `analyze_content` y `analyze_document` se leen igual, el modelo enrutará mal; o renombra para eliminar la superposición (`analyze_content` → `extract_web_results`) o divide una herramienta general en especializadas con contratos distintos. Vigila también el prompt del sistema: una línea como “siempre verifica al cliente” puede sesgar al modelo hacia `get_customer` aunque sea innecesario. Cuando una herramienta MCP se solapa con una integrada (tu `search_code` vs `Grep`), detalla la ventaja concreta que solo tu herramienta aporta, o el modelo usa la integrada por defecto.
+
 ## 2.2 Implementación de respuestas de error estructuradas para herramientas MCP
 
 ### Conocimientos clave:
@@ -1599,6 +1628,8 @@ Cuando Edit falla por texto no único:
 - `retriable: false` para violaciones de reglas de negocio con explicaciones comprensibles para usuario
 - Recuperación local en subagentes para fallos transitorios, propagación solo de errores no resolubles
 - Distinguir fallos de acceso (necesita reintento) de resultados válidos vacíos (sin coincidencias)
+
+**`isError` y qué poner en él.** Pon `isError: true` y devuelve un payload **estructurado** — `errorCategory` (transitorio / validación / negocio / permiso), `isRetryable`, un mensaje legible para humanos, qué se intentó y cualquier resultado parcial. Un simple “Operation failed” no le da al agente nada con qué decidir. Las categorías guían la acción: transitorio (timeout, 503) → reintentar con backoff; validación (entrada mala) → corregir la solicitud y reintentar; negocio (política/umbral) → explicarle al usuario, no reintentable; permiso (acceso denegado) → escalar. Dos antipatrones a evitar: **supresión silenciosa** (devolver un resultado vacío en el fallo, de modo que el coordinador confunda “la búsqueda falló” con “sin coincidencias”) y **abortar todo el workflow** por un solo fallo (pierdes todos los resultados parciales) — en su lugar, anota el hueco y continúa.
 
 ## 2.3 Distribución de herramientas entre agentes y configuración de tool_choice
 
@@ -1614,6 +1645,8 @@ Cuando Edit falla por texto no único:
 - `tool_choice: "any"` para garantizar invocación de herramienta en lugar de respuesta de texto
 - Selección forzada de herramienta específica para asegurar orden de ejecución
 
+**Dimensiona bien el conjunto de herramientas.** La fiabilidad cae a medida que las herramientas se multiplican — unas 4–5 herramientas bien elegidas por agente le ganan a 18. Limita cada subagente a su rol más solo unas pocas utilidades transversales; un agente con herramientas fuera de su especialización tiende a usarlas mal. Sustituye una herramienta general por una restringida cuando la restricción es el punto (`fetch_url` → `load_document` que rechaza URLs que no sean de documentos). `tool_choice` entonces gobierna la selección: `"auto"` deja al modelo responder en texto o llamar a una herramienta (por defecto), `"any"` fuerza *alguna* llamada de herramienta (salida estructurada garantizada cuando existen varios esquemas) y `{"type":"tool","name":"extract_metadata"}` fuerza una herramienta específica para fijar un orden de ejecución (metadatos antes del enriquecimiento).
+
 ## 2.4 Integración de servidores MCP en Claude Code y flujos de trabajo de agentes
 
 ### Conocimientos clave:
@@ -1627,6 +1660,10 @@ Cuando Edit falla por texto no único:
 - Servidores personales/experimentales en `~/.claude.json`
 - Preferir servidores MCP comunitarios existentes sobre propios para integraciones estándar
 
+**Topología y configuración de MCP.** Un despliegue de MCP es **Host → Client → Server**: el servidor es dueño de las herramientas, recursos y prompts; el cliente es el puente que los lista y los llama (un `ListToolsRequest` descubre herramientas, un `CallToolRequest` ejecuta una). La conexión es **agnóstica al transporte** — stdio en la misma máquina es el transporte de desarrollo común; HTTP y WebSocket son alternativas. Para la configuración, la guía examina **dos ámbitos**: el `.mcp.json` del proyecto (versionado, compartido, tokens mediante sustitución de `${ENV_VAR}` para que no se commiten secretos) y el `~/.claude.json` del usuario (personal, experimental). Al conectar, las herramientas de *todos* los servidores se descubren y quedan disponibles a la vez. (Nota: el curso preparatorio describe ámbitos adicionales de MCP; la guía del examen examina dos — mantén el modelo de dos ámbitos.)
+
+**Las tres primitivas y cuándo encaja cada una.** **Tools** son funciones que el modelo llama para actuar; **Resources** son datos que el cliente lee para contexto sin un round-trip de herramienta (una mención `@document` se puede expandir vía un recurso *con plantilla* como `docs://documents/{doc_id}`, vs. un recurso *directo* con un URI estático); **Prompts** son plantillas de mensaje escritas por el servidor y pre-probadas para un flujo que el *usuario* dispara (un comando slash `/format`) — usa un Prompt, no una Tool, cuando el usuario controla cuándo empieza el flujo. Prueba los tres en el **MCP Inspector** (`mcp dev mcp_server.py`) antes de cablearlo a Claude. En el SDK de Python, define una herramienta con el decorador `@mcp.tool()` y deja que el SDK genere el esquema JSON en vez de escribirlo a mano.
+
 ## 2.5 Selección y aplicación de herramientas integradas (Read, Write, Edit, Bash, Grep, Glob)
 
 ### Conocimientos clave:
@@ -1639,6 +1676,10 @@ Cuando Edit falla por texto no único:
 - Grep para búsqueda por contenido en base de código, Glob para encontrar archivos por patrones
 - Construir comprensión incrementalmente: Grep para buscar puntos de entrada, luego Read para rastrear flujos
 - Rastrear uso de funciones a través de módulos envolventes
+
+**Elegir entre Read/Write/Edit/Bash/Grep/Glob.** `Glob` encuentra archivos por nombre o patrón (`**/*.test.tsx`); `Grep` busca *dentro* de los archivos (un nombre de función, una cadena de error, un import). Investiga de forma incremental — `Grep` un punto de entrada, `Read` los aciertos, `Grep` los usos, `Read` los llamadores — en vez de leer todo de golpe. `Edit` hace un reemplazo preciso mediante una coincidencia única de texto; cuando la coincidencia no es única, recurre a `Read` el archivo entero, modificarlo y `Write` de vuelta. `Bash` ejecuta shell (git, tests, build) y es la salida de emergencia cuando ninguna herramienta de archivo encaja.
+
+**Dos sentidos de “herramienta integrada”.** No confundas las herramientas locales de archivo/shell de Claude Code con las herramientas integradas del lado del servidor de la API — comparten la palabra “integrada” pero reparten el trabajo de forma distinta. Las herramientas de Claude Code de arriba se ejecutan en *tu* máquina; el propio Claude Code provee esquema y ejecución. A nivel de API, “integrada” significa que Claude provee el *esquema* (un pequeño stub anticuado que el modelo expande a una especificación completa), y quién provee la *ejecución* depende de la herramienta: la herramienta **text editor** le da a Claude capacidades de creación de archivo y string-replace, pero **tú** debes implementar las funciones que de hecho tocan el sistema de archivos — el esquema es gratis, la ejecución no. Las herramientas **web search** y **code execution** son *del lado del servidor*: tú solo añades el esquema predefinido y Claude las ejecuta — web search devuelve bloques de resultado más bloques de citación que puedes renderizar, y code execution ejecuta Python en un **contenedor Docker aislado sin acceso a la red** (mueve datos hacia dentro y hacia fuera con el bloque `container_upload` de la Files API y los IDs de archivo de salida descargados). La lección de diseño: una integrada del lado del servidor te da capacidad sin código que mantener pero sin control sobre cómo se ejecuta; el text editor deja la ejecución en tus manos, así que conservas el control pero eres dueño del código de pegamento. Cuando una herramienta custom se solapa con una integrada del lado del servidor (tu propio `search` vs la herramienta web search), prefiere la integrada a menos que necesites datos o un comportamiento que ella no alcance.
 
 ---
 
@@ -1657,6 +1698,8 @@ Cuando Edit falla por texto no único:
 - `@path` (p.ej., `@./standards/testing.md`) para inclusión selectiva de estándares en CLAUDE.md de cada paquete
 - Dividir CLAUDE.md grandes en archivos en `.claude/rules/` (testing.md, api-conventions.md, deployment.md)
 
+**CLAUDE.md es instrucción, no configuración.** Es una orientación que Claude *intenta* seguir, no una regla que *debe* seguir — así que una regla dura (“nunca hagas push a main”) pertenece a un hook `PreToolUse`, que detiene la acción incluso cuando Claude la intenta. El archivo también compite consigo mismo: cuanto más crece, menos de él sigue Claude de forma fiable. Mantenlo ágil (a) haciendo las reglas **específicas y verificables** (“pon las nuevas rutas de API en `src/api/handlers/`, una por archivo”, no “sigue las mejores prácticas”), (b) **nombrando el sustituto** (“usa exportaciones con nombre, no exportaciones por defecto” cierra el resquicio que “no uses exportaciones por defecto” deja abierto) y (c) tratando el **énfasis como un presupuesto** — reserva “IMPORTANT”/“you must” para las dos o tres reglas que duelen al romperse. Cuando Claude haga algo mal, trátalo como un reporte de bug contra el archivo y pídele que añada la regla. Ojo: los imports `@path` organizan un archivo grande pero **no reducen el contexto** — los archivos importados se expanden inline al arrancar, así que todo se carga por adelantado.
+
 ## 3.2 Creación y configuración de comandos slash personalizados y habilidades
 
 ### Conocimientos clave:
@@ -1671,6 +1714,10 @@ Cuando Edit falla por texto no único:
 - `allowed-tools` para restringir acceso a herramientas al ejecutar habilidad
 - `argument-hint` para solicitar parámetros al desarrollador
 
+**Empaquetado de skills.** Una skill es una carpeta: un `SKILL.md` con un nombre, una `description` que la dispara y el procedimiento, más un `reference.md` opcional para material profundo y scripts que Claude *ejecuta* en vez de cargar. Mantén el `SKILL.md` ágil y empuja la profundidad a los archivos laterales — solo las descripciones se cargan hasta que se invoca una skill, así que una skill gorda no desperdicia contexto en reposo. `context: fork` ejecuta la skill en un subagente aislado para que la salida verbosa nunca llegue a la sesión principal; `allowed-tools` es la frontera de seguridad (una skill que nunca debería borrar archivos no debe listar `Write`/`Bash`). Si has tecleado el mismo procedimiento multi-paso dos veces, es una skill.
+
+**Plugins — lee antes de instalar.** Instalar un plugin le otorga tus propios privilegios, y cualquier hook que traiga se suma a los tuyos en vez de sustituirlos — las llamadas a herramienta que coinciden disparan ambos. Ese es todo el riesgo: un plugin puede registrar un hook `Stop` que alcance la red, y tu configuración no da señal de que ocurrió. La popularidad no es revisión. Enumera los hooks, agentes y servidores MCP que un plugin aporta antes de habilitarlo. Las skills, los agentes y los comandos quedan bajo el namespace del nombre del plugin, así que no pueden chocar con los tuyos, pero claves de `settings.json` que cambian comportamiento (por ejemplo, promover un subagente del plugin al hilo principal) sí cambian cómo se comporta Claude Code por defecto.
+
 ## 3.3 Aplicación de reglas específicas de ruta para carga condicional de convenciones
 
 ### Conocimientos clave:
@@ -1682,6 +1729,75 @@ Cuando Edit falla por texto no único:
 - Crear archivos `.claude/rules/` con `paths: ["terraform/**/*"]` para carga solo al trabajar con archivos coincidentes
 - Patrones glob (`**/*.test.tsx`) para aplicar convenciones por tipo de archivo independientemente de ubicación
 - Elegir reglas específicas de ruta sobre CLAUDE.md de directorio cuando convenciones abarcan archivos en toda la base de código
+
+**Por qué las reglas con alcance de path ahorran contexto.** Un archivo `.claude/rules/` con `paths: ["terraform/**/*"]` se carga solo cuando Claude edita un archivo que coincide; todo lo demás queda fuera del contexto. Es la herramienta adecuada cuando una convención se aplica a una *clase* de archivo dispersa por el árbol (tests, migraciones) — un `CLAUDE.md` a nivel de directorio te obligaría a repetir la misma regla en cada directorio. Para convenciones atadas a un solo sitio, un `CLAUDE.md` a nivel de directorio sigue siendo más simple.
+
+## 3.4 Decisión entre modo de planificación y ejecución directa
+
+### Conocimientos clave:
+- **Modo de planificación**: para tareas complejas con cambios grandes, múltiples enfoques viables y decisiones arquitectónicas
+- **Ejecución directa**: para cambios simples y bien entendidos (p.ej., agregar una sola validación)
+- El modo de planificación permite explorar la base de código de forma segura antes de hacer cambios
+- El subagente Explore aísla la salida verbosa del descubrimiento
+
+### Habilidades clave:
+- Usar modo de planificación para tareas con consecuencias arquitectónicas (microservicios, migraciones que tocan más de 45 archivos)
+- Usar ejecución directa para correcciones con un stack trace claro y un solo archivo
+- Usar el subagente Explore para evitar agotar la ventana de contexto en tareas multifase
+- Combinar enfoques: planificar para el descubrimiento, luego ejecutar para la implementación
+
+**Modo de planificación y conducción de una ejecución larga.** El plan mode investiga en modo de solo lectura y te entrega un plan; cuanto más a fondo leas y revises ese plan antes de aprobarlo, menos tropiezos habrá durante la ejecución. Para autonomía, `/goal` fija una **condición de finalización verificable** (“todas las pruebas en `src/billing` pasan y el verificador de tipos reporta cero errores”) y mantiene a Claude trabajando a lo largo de los turnos hasta que un evaluador rápido la confirme — la condición debe ser verificable a partir de la salida que Claude produce (resultados de pruebas), no de estado privado; `/goal clear` la cancela. `/loop` vuelve a ejecutar un prompt en un intervalo para observar un estado externo (una ejecución de CI, un deploy) y actuar ante el cambio. Cuando la sesión se desvía, `/compact` con una instrucción dirige *qué* conserva el resumen (“conserva solo los cambios de API, descarta el debugging”); `Rewind` (doble toque en Escape con el prompt vacío) restaura un checkpoint anterior para que no tengas que salir de un camino equivocado a base de prompts. Para dos sesiones sobre un mismo repo, usa **worktrees** para que no peleen por los mismos archivos.
+
+## 3.5 Refinamiento iterativo para mejora progresiva
+
+### Conocimientos clave:
+- Los ejemplos concretos de entrada/salida son la forma más efectiva de comunicar expectativas
+- **Iteración guiada por pruebas**: escribir pruebas primero, luego iterar en función de los fallos
+- El patrón “entrevista”: Claude hace preguntas para sacar a la luz consideraciones de diseño no obvias
+- Cuándo entregar todos los problemas en un solo mensaje (interdependientes) vs secuencialmente (independientes)
+
+### Habilidades clave:
+- Proporcionar 2–3 ejemplos concretos de entrada/salida para aclarar requisitos de transformación
+- Construir conjuntos de pruebas con comportamiento esperado, casos límite y requisitos de rendimiento antes de implementar
+- Usar el patrón entrevista para sacar a la luz aspectos de diseño (invalidación de caché, modos de fallo)
+- Proporcionar casos de prueba concretos con entradas de ejemplo y salidas esperadas para casos límite
+
+**Itera contra una evaluación, no a ojo.** Un flujo típico de prompt-eval: (1) escribe un prompt borrador; (2) arma un dataset de entradas — a mano, o generado por Claude (usa un modelo rápido como Haiku para la generación, nunca el modelo bajo prueba); (3) ejecuta el prompt sobre cada caso; (4) **califica** cada salida; (5) promedia las puntuaciones para obtener una línea base objetiva; (6) cambia el prompt y vuelve a ejecutar para comparar. Prueba con más de una o dos entradas propias antes de publicar — los usuarios reales aportan las entradas que rompen un prompt.
+
+**Tipos de calificador.**
+
+| Calificador | Qué comprueba | Notas |
+|---|---|---|
+| Código | Programático: longitud, presencia de subcadenas, sintaxis JSON/Python/regex (parsear el AST o la regex) | Rápido, determinista; devuelve una puntuación |
+| Modelo | Otra llamada a Claude juzga calidad, seguimiento de instrucciones, completitud | El más flexible; pide **fortalezas, debilidades y el razonamiento** junto con la puntuación, no solo un número — un mero 1–10 colapsa hacia valores medios seguros |
+| Humano | Una persona valora las salidas | El más flexible, el más lento y el más tedioso |
+
+Alimenta al calificador con la tarea, la salida generada y **criterios de solución** explícitos (“una buena solución incluye…”) para que juzgue contra un estándar. Después de aplicar cualquier técnica de ingeniería de prompts, vuelve a ejecutar la evaluación para confirmar que de verdad mejoró — nunca lo asumas.
+
+## 3.6 Integración de Claude Code en pipelines CI/CD
+
+### Conocimientos clave:
+- La bandera `-p` (o `--print`) para modo no interactivo en pipelines automatizados
+- `--output-format json` y `--json-schema` para salida estructurada en CI
+- CLAUDE.md aporta contexto del proyecto (estándares de pruebas, criterios de revisión) para Claude Code disparado desde CI
+- **Aislamiento de contexto de sesión**: la misma sesión que generó el código es menos efectiva revisándolo que una instancia independiente
+
+### Habilidades clave:
+- Ejecutar Claude Code en CI con `-p` para evitar que se quede colgado esperando entrada interactiva
+- Usar `--output-format json` + `--json-schema` para resultados estructurados (p.ej., comentarios inline en PR)
+- Incluir resultados de revisiones previas al reejecutar tras nuevos commits (reportar solo problemas nuevos o no corregidos)
+- Documentar estándares de pruebas y fixtures disponibles en CLAUDE.md para mejorar la calidad de generación de pruebas
+- Incluir archivos de prueba existentes en el contexto al generar nuevas pruebas para evitar duplicación y mantener el estilo consistente
+
+**Ejecución no interactiva.** `-p`/`--print` ejecuta Claude Code de una sola vez (entra por stdin, sale por stdout) y es la única forma correcta de ejecutarlo en un pipeline — nunca espera entrada interactiva. Combina `--output-format json` con `--json-schema` para que el resultado estructurado caiga en un campo conocido que puedes extraer con `jq` y canalizar hacia adelante; para trabajos multipaso, captura el id de sesión de la salida JSON y haz `--resume` después. `--bare` omite el autodescubrimiento de hooks, skills, plugins, servidores MCP y CLAUDE.md — te quedas con Claude más solo las herramientas que permites explícitamente, lo que hace reproducibles las ejecuciones de CI.
+
+**Modos de permiso para ejecuciones sin supervisión.** `auto` deja a Claude ejecutarse sin preguntar mientras un clasificador aparte revisa cada acción en busca de *peligro* (deploys, force-pushes, canalizar descargas hacia un shell, enviar datos a endpoints externos) — pero **no** juzga la corrección, así que el código roto-pero-seguro pasa. Combina `auto` con un hook `Stop` que ejecute tus pruebas para que la corrección también quede controlada. `don’t ask` deniega automáticamente cualquier cosa no preaprobada y es lo correcto para CI; `bypass permissions` omite todas las comprobaciones y solo tiene lugar dentro de un contenedor aislado o una VM.
+
+**Opciones de revisión.** **Managed code review** (la GitHub app de Claude) está alojada por Anthropic: agentes de revisión analizan el diff contra la base de código completa, publican los hallazgos como comentarios inline etiquetados por severidad, los deduplican y los ordenan, y **nunca aprueban ni bloquean** el PR — el juicio se queda con un humano; aplica las correcciones localmente con `/code-review --fix`. Recurre a la **GitHub Action de Claude Code** cuando el trabajo es más que una revisión (implementar a partir de un comentario, reportes programados, cualquier evento de GitHub); ejecuta el agente sobre comentarios de PR, cron o disparo manual, con `claude_args` para ajustar (`max_turns`, `permission_mode: don’t ask`, `allow_tools`).
+
+**Las routines** ejecutan un prompt guardado más el repo y los conectores en la infraestructura de Anthropic con un disparador cron o webhook — ninguna máquina tuya queda encendida y no hay archivo de workflow que mantener; cada ejecución parte de un clon nuevo de la rama por defecto y solo puede hacer push a ramas con el prefijo `claude/`, lo que mantiene una ejecución autónoma fuera de `main`.
+
+**Verificar una ejecución que no presenciaste.** Escala la comprobación en proporción a lo poca supervisión que tuvo la ejecución. Lee el cambio, no el relato del cambio: `git diff` es la evidencia, y un resumen seguro de sí mismo puede convivir con una edición en un archivo que nunca estuvo en el alcance. Trata “las pruebas pasan” como una afirmación hasta que algo independiente la confirme — un hook `Stop` que condicione la finalización al resultado real la vuelve ineludible, y devolver el código de salida 2 entrega el fallo de vuelta para que se repare sin tu intervención. Cuando lo que está en juego lo justifique, añade una **segunda opinión en frío**: entrega el diff a un revisor que nunca vio la construcción — una sesión o subagente aparte, sin cargar nada del contexto original. La independencia es el mecanismo, porque un revisor que sostiene el razonamiento que produjo el código hereda sus puntos ciegos.
 
 ---
 
@@ -1698,6 +1814,99 @@ Cuando Edit falla por texto no único:
 - Criterios específicos de revisión: qué problemas reportar (bugs, seguridad) vs saltar (estilo menor)
 - Deshabilitar temporalmente categorías con alta tasa de falsos positivos
 - Definir criterios explícitos de severidad con ejemplos de código para cada nivel
+
+**Primera línea, especificidad, estructura.** La primera línea es la que más pesa: empieza con un verbo de acción y la tarea (“escribe tres párrafos explicando cómo funcionan los paneles solares”), no con un rodeo (“¿puedes ayudarme con algo sobre paneles solares?”). Después sé específico de una de dos formas — enumera los **atributos** que la salida debe tener (longitud, estructura, elementos obligatorios) para casi cualquier prompt, o enumera **pasos** para un problema complejo en el que quieres forzar a Claude a considerar puntos de vista que de otro modo no consideraría. Envuelve el contenido grande o interpolado en **etiquetas XML** (`<sales_records>…</sales_records>`, `<doc>…</doc> <instructions>…</instructions>`) para que Claude pueda distinguir dónde termina un bloque y empieza otro — esto importa más cuando pegas muchas páginas.
+
+**Temperatura.** La temperatura (0–1) moldea la distribución de muestreo: baja (≈0.0–0.3) hace la salida determinista y es lo adecuado para **preguntas y respuestas factuales, código y extracción de datos**; alta (≈0.8–1.0) ensancha la distribución de tokens y es lo adecuado para **lluvia de ideas, escritura creativa y marketing**. Subir la temperatura solo *aumenta la probabilidad* de variedad — no la garantiza.
+
+**Rol vía prompt del sistema.** Un prompt del sistema fija rol y tono (“eres un tutor de matemáticas paciente; da pistas, no la respuesta”) y se aplica a cada turno; sin él, Claude usa por defecto un estilo útil pero genérico.
+
+## 4.2 Uso de few-shot prompting para mejorar la consistencia de la salida
+
+### Conocimientos clave:
+- Los ejemplos few-shot son el método más efectivo para producir salida consistentemente formateada y accionable
+- Few-shot puede demostrar el manejo de casos ambiguos (selección de herramientas, huecos en la cobertura de pruebas)
+- Few-shot ayuda al modelo a generalizar a patrones nuevos en vez de solo repetir valores por defecto
+- Few-shot puede reducir alucinaciones en tareas de extracción
+
+### Habilidades clave:
+- Proporcionar 2–4 ejemplos dirigidos para escenarios ambiguos con su justificación
+- Incluir ejemplos few-shot que demuestren el formato de salida (ubicación, problema, severidad, corrección sugerida)
+- Proporcionar ejemplos que distingan patrones de código aceptables de problemas reales
+- Proporcionar ejemplos de extracción correcta a partir de documentos con estructuras distintas
+
+**Cómo escribir un ejemplo few-shot.** Di explícitamente “aquí hay un ejemplo con una entrada de muestra y una salida ideal”, y luego envuelve la entrada y la salida en etiquetas XML. Usa multi-shot para **casos límite** (sarcasmo, intenciones ambiguas) y añade una línea de contexto (“ten especial cuidado con los tweets que contengan sarcasmo”) justo antes del ejemplo que lo demuestra. Para formatos de salida complejos, un ejemplo completamente desarrollado enseña la estructura más rápido que describirla. Una fuente valiosa de ejemplos es tu propia evaluación: copia un caso de prueba que el calificador puntuó alto e incluye una frase sobre *por qué* es ideal — el razonamiento refuerza el objetivo, no solo la forma.
+
+## 4.3 Aplicación de salida estructurada con `tool_use` y JSON Schemas
+
+### Conocimientos clave:
+- `tool_use` con JSON Schemas es la forma más confiable de garantizar salida conforme al esquema y eliminar errores de sintaxis JSON
+- Con `tool_choice: "auto"` el modelo puede devolver texto; con `"any"` debe llamar a una herramienta; la selección forzada elige una herramienta específica
+- Los JSON Schemas estrictos eliminan errores de sintaxis pero no evitan errores semánticos (totales que no cuadran; valores en campos equivocados)
+- Diseño de esquemas: campos obligatorios vs opcionales; enums con “other” más una cadena de detalle para extensibilidad
+
+### Habilidades clave:
+- Definir herramientas de extracción con JSON Schemas y parsear los datos de los resultados `tool_use`
+- Usar `tool_choice: "any"` para garantizar salida estructurada cuando existen varios esquemas
+- Forzar la llamada a una herramienta específica: `tool_choice: {"type": "tool", "name": "extract_metadata"}`
+- Hacer campos opcionales/nulables cuando la fuente puede no contener la información, para evitar fabricar valores
+- Usar valores enum como `"unclear"` y `"other"` más campos de detalle para categorización extensible
+
+**`tool_use` + esquema es el camino recomendado por la guía** para salida estructurada: garantiza JSON sintácticamente válido y la forma exigida, y un `tool_choice` forzado puede garantizar que una herramienta de extracción específica se ejecute primero. Recuerda la mecánica: un turno de herramienta devuelve contenido **multibloque** (texto + `tool_use`), respondes con bloques `tool_result` en un mensaje de *usuario* identificados por `tool_use_id`, y reenvías los esquemas en el seguimiento. Marca los campos como nulables (`"type": ["string","null"]`) y añade enums `"other"`/`"unclear"` para que el modelo devuelva `null` o “unclear” en vez de fabricar — los campos obligatorios con datos faltantes son lo que impulsa la alucinación.
+
+**La alternativa a nivel de API del curso (nota el conflicto).** El curso preparatorio también enseña a obtener datos estructurados en bruto sin una herramienta: **prellena** un mensaje del asistente con el delimitador de apertura (`` ```json ``) y define la valla de cierre correspondiente como una **secuencia de parada**, de modo que Claude emita solo el JSON entre ambas. Es la misma idea detrás de “prellenado + secuencias de parada para JSON limpio”. La guía del examen trata `tool_use` + esquema como el método *más confiable*; trata prellenado + parada como una alternativa más ligera para extracción de contenido en bruto, no como un reemplazo.
+
+**Prellenado del asistente para guiar, no solo para formatear.** Prellenar `"Coffee is better because"` hace que Claude *continúe desde el final de esa cadena* (debes unir el prellenado y la respuesta) — útil para forzar una postura o un formato, nunca para dar una primera frase completa.
+
+**“Batch tool” ≠ Message Batches API.** Una **herramienta por lotes** (batch tool) es una metaherramienta que implementas para que Claude llame a varias subherramientas en un solo `tool_use` (ejecución paralela en un único turno) — útil cuando Claude no paraleliza por su cuenta. No tiene relación con la **Message Batches API** (lote asíncrono de solicitudes independientes, hasta 24 h, 50% de ahorro). No confundas ambas en el examen.
+
+## 4.4 Implementación de validación, reintentos y ciclos de feedback para calidad de extracción
+
+### Conocimientos clave:
+- Retry-with-error-feedback: incluir errores de validación concretos en el prompt de reintento para guiar las correcciones
+- Los reintentos son inútiles cuando la información simplemente no está en la fuente
+- Diseño del ciclo de feedback: registrar el patrón que disparó un hallazgo (`detected_pattern`)
+- Errores semánticos (totales que no cuadran) vs errores de sintaxis (que `tool_use` resuelve)
+
+### Habilidades clave:
+- Prompts de seguimiento con el documento original, una extracción incorrecta y los errores de validación específicos
+- Identificar cuándo un reintento será inútil (la información requerida está solo en un documento externo)
+- Incluir campos `detected_pattern` en los hallazgos para analizar falsos positivos
+- Diseñar autocorrección extrayendo `calculated_total` y `stated_total` para detectar discrepancias
+
+**Reintentar con el error en el prompt.** Ante una validación fallida, reenvía el documento original, la extracción incorrecta y el error *específico* (“`total`=150 pero `sum(line_items)`=145; vuelve a comprobarlo”) — el modelo puede rehacer la aritmética y corregir la ubicación, pero no puede conjurar información que no está en la fuente, así que no reintentes indefinidamente. La autocorrección es la misma idea vuelta hacia adentro: extrae tanto un `stated_total` como un `calculated_total` y señala el conflicto para su tratamiento aguas abajo.
+
+**Pensamiento extendido como palanca de precisión de último recurso.** Cuando has agotado las mejoras de prompt y la evaluación sigue estancada, habilita el pensamiento extendido (extended thinking): Claude razona en un bloque `thinking` antes de la respuesta final, a costa de latencia y de los tokens que gasta pensando. El bloque `thinking` lleva una **signature** que debes devolver sin modificar en turnos posteriores (la manipulación se rechaza); `budget_tokens` tiene un mínimo de 1024 y `max_tokens` debe superarlo. Trátalo como una decisión guiada por la evaluación, no como un valor por defecto.
+
+## 4.5 Diseño de estrategias eficientes de procesamiento por lotes
+
+### Conocimientos clave:
+- Message Batches API: 50% de ahorro, ventana de procesamiento de hasta 24 horas, sin garantías de SLA de latencia
+- El procesamiento por lotes es adecuado para tareas no bloqueantes (reportes nocturnos, auditorías) y no para tareas bloqueantes (verificaciones previas al merge)
+- La Batch API no admite llamadas de herramienta multiturno dentro de una misma solicitud
+- Los campos `custom_id` correlacionan solicitud/respuesta dentro de los lotes
+
+### Habilidades clave:
+- Usar la API sincrónica para verificaciones bloqueantes; usar la Batch API para cargas nocturnas o semanales
+- Planificar la cadencia de envío de lotes según las necesidades de SLA (p.ej., ventanas de 4 horas para una garantía de 30 horas con procesamiento de 24 horas)
+- Manejar fallos reenviando solo los documentos que fallaron (identificados por `custom_id`)
+- Iterar los prompts con una muestra antes de ejecutar procesamiento a gran escala
+
+**Mecánica de la Batch API.** La Message Batches API recibe una lista de solicitudes independientes, procesa de forma asíncrona (hasta 24 h, sin SLA de latencia), cobra ~50% menos y **no admite llamadas de herramienta multiturno** — cada solicitud es de un solo disparo. Etiqueta cada solicitud con `custom_id` para poder correlacionar resultados y, ante un fallo parcial, reenviar solo los documentos que fallaron (dividiendo los largos que chocaron con el límite de contexto) sin volver a ejecutar los que salieron bien. Dimensiona la cadencia de envío según el plazo: una necesidad de 30 horas menos la ventana de 24 horas deja un presupuesto de envío de 6 horas. Itera el prompt con una muestra pequeña antes de lanzar un lote grande.
+
+## 4.6 Diseño de arquitecturas de revisión multiinstancia y multipasada
+
+### Conocimientos clave:
+- Limitaciones de la autorrevisión: el modelo conserva su contexto de razonamiento y es menos propenso a cuestionar sus propias decisiones
+- Las instancias de revisión independientes (sin el contexto de generación) son mejores encontrando problemas sutiles
+- Revisión multipasada: análisis local por archivo más una pasada de integración entre archivos para evitar la dilución de atención
+
+### Habilidades clave:
+- Usar una segunda instancia independiente de Claude para revisar cambios sin el contexto de generación
+- Dividir revisiones de múltiples archivos en pasadas por archivo más pasadas de integración para análisis de flujo de datos entre archivos
+- Usar pasadas de verificación con confianza autoevaluada para enrutar revisiones de forma calibrada
+
+**Por qué una segunda instancia supera a la autorrevisión.** La sesión que generó el código carga su propio contexto de razonamiento y por eso es reacia a cuestionar sus decisiones; una instancia independiente, a la que solo le das el diff y los criterios, no tiene interés en el enfoque y encuentra aquello sobre lo que el autor se convenció a sí mismo de pasar. Para muchos archivos, ejecuta una **pasada por archivo** para problemas locales y una **pasada de integración** aparte para el flujo de datos entre archivos — una sola pasada sobre muchos archivos diluye la atención y señala el mismo patrón de forma inconsistente. Enruta por confianza autoevaluada *solo después* de calibrar esas puntuaciones con datos etiquetados; la confianza no calibrada es el disparador poco confiable contra el que advierte este dominio.
 
 Este es un resumen completo de la guía de certificación Claude Certified Architect, traducida del ruso al español.
 
@@ -2437,6 +2646,95 @@ Model Context Protocol (MCP) es un protocolo abierto para conectar sistemas exte
 - Recortar salida verbosa de herramientas a campos relevantes
 - Colocar hallazgos clave al inicio de datos agregados
 - Requerir a subagentes incluir metadatos (fechas, fuentes)
+
+**Dónde se fuga realmente el contexto.** Tres modos de fallo: la sumarización progresiva convierte números, porcentajes y fechas en prosa vaga (“alrededor de”, “más o menos”); el efecto **lost-in-the-middle** hace que los hallazgos enterrados en el medio de una entrada larga se pierdan; y los resultados de herramientas se acumulan (40 campos devueltos cuando importan 5). Contrarresta con un **bloque case-facts** persistente reinyectado en cada turno, recorte vía `PostToolUse` de los resultados verbosos a los campos que necesitas, y los hallazgos clave colocados al *inicio* de cualquier bloque agregado.
+
+**Caché de prompts para contexto repetido.** Cuando el mismo contenido grande se repite entre solicitudes (un prompt del sistema, una lista de herramientas, un documento largo), el **caché de prompts** reutiliza el trabajo de procesarlo: añade un breakpoint `cache_control` a un bloque y el contenido *hasta ese breakpoint inclusive* queda en caché durante alrededor de una hora. La solicitud de seguimiento debe ser **idéntica** hasta el breakpoint o el caché falla. Cachea donde el contenido es estable — los esquemas de herramienta y el prompt del sistema son las opciones habituales — y ten presentes las reglas: un **mínimo de 1024 tokens** para poder cachear, los breakpoints pueden abarcar herramientas → sistema → mensajes en ese orden de unión, y hasta **cuatro** breakpoints en total. El caché recorta latencia y costo en contexto repetido; no es una herramienta de confiabilidad.
+
+**Files API y contenido de PDF/documento — saca el volumen de la solicitud.** Dos funciones de la API evitan que el contenido grande o repetido infle cada solicitud. La **Files API** te deja subir un archivo (PDF, imagen, texto, CSV) una vez y recibir un **file ID** dentro de un objeto de metadatos de archivo; las solicitudes posteriores referencian el archivo por ID dentro del bloque de contenido en vez de recodificar base64 en bruto en cada turno — el mismo archivo, referenciado a lo largo de muchos turnos, es la contraparte en eficiencia de contexto del caché de texto estable. El **soporte de PDF** es una cuestión de bloque de contenido: envía un bloque `document` con `media_type: "application/pdf"` (y los bytes del archivo o el file ID) en lugar de un bloque `image`; Claude lee el texto del PDF directamente, que es lo que permite que las **Citations** (ver 5.6) apunten a páginas específicas. La Files API también alimenta la herramienta **code execution**: un bloque `container_upload` inyecta un archivo subido en el contenedor aislado, y cualquier gráfico o salida que Claude genere vuelve como un file ID que descargas — el volumen entra por ID, los resultados salen por ID, y nada grande se pone inline dos veces.
+
+## 5.2 Diseño de patrones de escalada efectivos y resolución de ambigüedad
+
+### Conocimientos clave:
+- Disparadores de escalada adecuados: petición explícita de un humano, huecos o excepciones de política, incapacidad de avanzar
+- Escalada inmediata (petición explícita) vs intento de resolver (dentro del alcance del agente)
+- El análisis de sentimiento y la autoevaluación de confianza del modelo son proxies poco confiables de la complejidad del caso
+- Múltiples coincidencias de cliente requieren pedir identificadores adicionales, no adivinar por heurística
+
+### Habilidades clave:
+- Criterios de escalada explícitos con ejemplos few-shot en el prompt del sistema
+- Ejecutar de inmediato las peticiones explícitas de un humano, sin investigación adicional
+- Escalar cuando la política es ambigua o guarda silencio ante una solicitud específica
+- Pedir identificadores adicionales cuando los resultados de herramientas contienen múltiples coincidencias
+
+**Disparadores que se sostienen.** Escala ante peticiones explícitas de un humano (de inmediato, sin investigar), ante huecos de política (la solicitud es ambigua o no está contemplada) y ante la incapacidad de avanzar tras un intento razonable. Los disparadores poco confiables — el sentimiento y la confianza autoevaluada del modelo — fallan porque el estado de ánimo y la autoconfianza no siguen la complejidad del caso. Ante ambigüedad en los *datos* (una búsqueda devuelve varios clientes), no adivines: pide otro identificador. Ante una queja con varias facetas, reconoce primero la emoción, ofrece una resolución concreta y escala solo si el cliente reitera la petición de un humano — una primera expresión de insatisfacción no es lo mismo que pedir un gerente.
+
+## 5.3 Implementación de estrategias de propagación de errores en sistemas multiagente
+
+### Conocimientos clave:
+- El contexto de error estructurado (tipo de fallo, consulta, resultados parciales, alternativas) permite una recuperación más inteligente del coordinador
+- Distinguir fallos de acceso (los timeouts requieren una decisión de reintento) de resultados vacíos válidos (sin coincidencias)
+- Los estados de error genéricos (“búsqueda no disponible”) ocultan contexto valioso al coordinador
+- La supresión silenciosa y abortar todo el flujo de trabajo ante un solo fallo son ambos antipatrones
+
+### Habilidades clave:
+- Devolver contexto de error estructurado: tipo de fallo, qué se intentó, resultados parciales, alternativas posibles
+- Distinguir fallos de acceso de resultados vacíos válidos
+- Recuperación local en subagentes para fallos transitorios; propagar solo errores no recuperables con resultados parciales
+- Anotar la cobertura en la síntesis: qué está bien respaldado vs dónde quedan huecos
+
+**Propaga lo suficiente para poder recuperarte.** Un error de subagente debe entregarle al coordinador una decisión: el tipo de fallo, la consulta que se intentó, cualquier resultado parcial y enfoques alternativos. Eso deja que el coordinador elija — reintentar con una consulta más estrecha, usar los resultados parciales, delegar en otra parte, o continuar y anotar el hueco. Distingue un **fallo de acceso** (timeout → decisión de reintento) de un **resultado vacío válido** (sin coincidencias → nada que reintentar); confundirlos es el antipatrón de supresión silenciosa. Haz recuperación local (1–2 reintentos) dentro del subagente para fallos transitorios y propaga solo lo que no pueda arreglar, siempre con los resultados parciales adjuntos.
+
+## 5.4 Gestión eficiente de contexto al investigar bases de código grandes
+
+### Conocimientos clave:
+- Degradación de contexto en sesiones largas: el modelo empieza a producir respuestas inestables y a referirse a “patrones típicos” en vez de clases específicas
+- Los archivos scratchpad preservan los hallazgos clave a través de las fronteras de contexto
+- Delegar en subagentes aísla la salida verbosa del descubrimiento
+- La persistencia estructurada de estado permite la recuperación ante caídas
+
+### Habilidades clave:
+- Generar subagentes para preguntas específicas manteniendo la coordinación de alto nivel en el agente principal
+- Usar archivos scratchpad para guardar hallazgos clave y consultarlos después
+- Resumir los hallazgos clave antes de generar los subagentes de la siguiente fase
+- Usar `/compact` para reducir el uso de contexto en investigaciones largas
+
+**Detectar la degradación de contexto.** Una sesión larga se está degradando cuando el modelo empieza a referirse a “patrones típicos” y a nombres genéricos de clase en vez del código específico que estaba leyendo. En ese punto, deja de volver a derivar: escribe los hallazgos clave en un **archivo scratchpad** y consúltalo en vez de repetir el descubrimiento; delega la lectura verbosa a un subagente y guarda solo su resumen de una línea en el contexto principal; y usa `/compact` para recuperar la ventana. Para la recuperación ante caídas, haz que cada agente exporte su estado a una ubicación conocida y que el coordinador lea un manifiesto al reanudar, de modo que sepa qué está hecho, en curso y sin empezar.
+
+## 5.5 Diseño de flujos de trabajo con supervisión humana y calibración de confianza
+
+### Conocimientos clave:
+- Las métricas agregadas (p.ej., 97% de precisión global) pueden enmascarar mal desempeño en tipos de documento o campos específicos
+- El muestreo aleatorio estratificado mide las tasas de error en extracciones de alta confianza
+- Calibración de confianza a nivel de campo usando conjuntos de validación etiquetados
+- Validar la precisión por tipo de documento y por segmento de campo antes de automatizar
+
+### Habilidades clave:
+- Implementar muestreo aleatorio estratificado para detectar nuevos patrones de error
+- Analizar la precisión por tipo de documento y por campo para validar un desempeño estable
+- Emitir puntuaciones de confianza a nivel de campo y calibrar los umbrales de revisión con datos etiquetados
+- Enrutar a revisión humana las extracciones de baja confianza o de fuentes ambiguas
+
+**Calibra y luego automatiza.** Una precisión agregada del 97% puede esconder un 40% de errores en un tipo de documento, así que valida **por segmento** — por tipo de documento y por campo — no solo en conjunto. Emite confianza a **nivel de campo** y ajusta el umbral de revisión humana con datos de validación etiquetados; alta confianza más precisión estable por segmento automatiza, baja confianza o fuentes ambiguas van a un humano. Sigue auditando: el muestreo aleatorio estratificado incluso de las salidas de alta confianza detecta nuevos patrones de error antes de que se acumulen.
+
+## 5.6 Preservación de la procedencia y manejo de la incertidumbre en síntesis multifuente
+
+### Conocimientos clave:
+- La atribución se pierde durante la sumarización si no se preservan los mapeos “afirmación → fuente”
+- Los mapeos estructurados deben preservarse durante la agregación
+- Manejar estadísticas en conflicto anotando los conflictos con su atribución en vez de elegir arbitrariamente un valor
+- Incluir fechas de publicación/recolección para no leer diferencias temporales como contradicciones
+
+### Habilidades clave:
+- Requerir a los subagentes que emitan mapeos “afirmación → fuente” (URL, nombre del documento, citas)
+- Estructurar los reportes para separar los hallazgos estables de los disputados
+- Preservar los valores en conflicto con anotaciones y pasarlos al coordinador para su reconciliación
+- Incluir fechas de publicación para una interpretación temporal correcta
+- Renderizar el contenido por tipo: datos financieros como tablas, noticias como prosa, hallazgos técnicos como listas estructuradas
+
+**Mantén el vínculo afirmación→fuente, y cita.** La sumarización corta la atribución; exige que cada afirmación cargue su fuente (URL, nombre del documento, cita textual). La función **Citations** de Claude formaliza esto para respuestas fundamentadas: habilitada en un bloque de documento, los bloques de texto de la respuesta llevan `citation_page_location` (o `citation_char_location` para texto plano) con el texto citado, el título del documento y la página inicial/final — úsala siempre que un usuario deba poder verificar de dónde salió un dato.
+
+**Conflictos y tiempo.** Cuando dos fuentes discrepan, preserva **ambos** valores con su atribución y una bandera `conflict_detected` en vez de elegir uno — la diferencia puede ser de metodología, no un error. Carga siempre la fecha de publicación/recolección: “10% (2023) vs 15% (2024)” es crecimiento, no una contradicción. Renderiza por tipo de contenido — tablas para datos financieros, prosa para noticias, listas estructuradas para hallazgos técnicos — para que cada tipo siga siendo auditable.
 
 ---
 

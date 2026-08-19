@@ -1526,6 +1526,8 @@ Quando Edit falha por correspondência de texto não única:
 - Anexar resultados de ferramentas ao contexto entre iterações
 - Anti-padrões a evitar: parsear texto do assistente para detectar conclusão, usar limites arbitrários de iteração como mecanismo primário de parada
 
+**Mecânica do loop.** Um turno de ferramenta produz uma mensagem do assistente cujo `content` é uma lista de blocos — tipicamente um bloco `text` (o modelo narrando a intenção) mais um ou mais blocos `tool_use`. Você executa cada ferramenta solicitada e responde com uma mensagem de *usuário* contendo blocos `tool_result`; cada um carrega um `tool_use_id` que deve corresponder ao `tool_use` que ele responde, de modo que, quando o Claude pede várias ferramentas em um turno, são os ids — e não a ordem — que pareiam resultados a solicitações. A requisição de acompanhamento deve reenviar o histórico completo (usuário → `tool_use` do assistente → `tool_result` do usuário) *e* os esquemas de ferramenta originais, mesmo em um turno em que não se espera nova chamada, porque os blocos anteriores fazem referência a eles. O loop só termina quando `stop_reason` não for mais `"tool_use"`; nunca termine checando se o assistente disse que acabou.
+
 ## 1.2 Orquestrando Sistemas Multi-agente (Coordenador–Subagente)
 
 ### Conhecimento-chave:
@@ -1538,6 +1540,21 @@ Quando Edit falha por correspondência de texto não única:
 - Dividir cobertura de pesquisa entre subagentes para minimizar duplicação
 - Implementar loops iterativos de refinamento (coordenador avalia síntese e re-roteia tarefas)
 - Rotear toda comunicação pelo coordenador para observabilidade
+
+**Workflow vs. agente — a decisão governante.** Use um **workflow** quando você consegue escrever a sequência exata de passos com antecedência; use um **agente** quando os passos são desconhecidos e o Claude precisa planejar a partir de um conjunto de ferramentas. Workflows são mais confiáveis e muito mais fáceis de testar e avaliar porque o caminho é fixo; agentes trocam confiabilidade e testabilidade por flexibilidade (uma taxa de conclusão bem-sucedida menor, mais difícil de reproduzir). Prefira workflows e recorra a um agente apenas quando a tarefa genuinamente não puder ser scriptada.
+
+**Padrões de workflow nomeados** (todos fixos, chamadas ao Claude orquestradas em código):
+
+| Padrão | Quando se encaixa |
+|---|---|
+| Encadeamento | Um prompt longo com muitas restrições que o Claude continua violando; divida em passos sequenciais focados para que cada chamada cuide de uma preocupação |
+| Roteamento | A entrada precisa ser tratada por um pipeline especializado — a primeira chamada categoriza e então despacha para o prompt/ferramentas correspondentes |
+| Paralelização | Uma tarefa dividida em subtarefas independentes (avaliar cada material separadamente); rodam em paralelo, depois agregam |
+| Otimizador avaliador | Produzir → avaliar → dar feedback → repetir até o avaliador aceitar |
+
+**Abstração de ferramentas para agentes.** Dê a um agente um pequeno conjunto de ferramentas abstratas (`read_file`, `write_file`, `run_command`) e deixe o Claude compô-las — do jeito que o Claude Code usa `Bash`/`Read`/`Write`. Ferramentas super especializadas (`refactor_file`, `install_dependencies`) removem o planejamento que torna um agente flexível e só cobrem cenários pré-planejados.
+
+**Inspeção de ambiente.** Depois (e muitas vezes antes) de uma ação, o agente precisa de uma forma de observar seu resultado além do valor de retorno da ferramenta — uma captura de tela após um clique, uma leitura de arquivo antes de uma escrita. Sem inspeção o agente não consegue medir o progresso nem se recuperar de surpresas; embuta isso no prompt de sistema (por exemplo, rodar um extrator de legendas no vídeo gerado e então inspecionar os quadros).
 
 ## 1.3 Configurando Chamadas de Subagente, Passagem de Contexto e Spawn
 
@@ -1553,6 +1570,8 @@ Quando Edit falha por correspondência de texto não única:
 - Spawne subagentes em paralelo via múltiplas chamadas `Task` em um único turno do coordenador
 - Escreva prompts do coordenador em termos de objetivos e critérios de qualidade em vez de instruções passo-a-passo
 
+**Passando contexto para subagentes.** Como o contexto do subagente é isolado, o prompt precisa ser autossuficiente: as saídas anteriores completas, o texto do documento e o esquema de saída. Separe dados de metadados com estrutura explícita para que o subagente não consiga confundir um achado com sua fonte. Spawne trabalho paralelo emitindo várias chamadas `Task` em um único turno do coordenador. Descreva o trabalho em termos de objetivos e critérios de qualidade (“produza uma síntese anotada por cobertura com uma citação para cada afirmação”) em vez de uma lista rígida de passos — uma lista rígida derrota a flexibilidade da delegação e tende a reproduzir o viés do próprio coordenador.
+
 ## 1.4 Implementando Workflows Multi-passo com Padrões de Enforcement e Handoff
 
 ### Conhecimento-chave:
@@ -1564,6 +1583,8 @@ Quando Edit falha por correspondência de texto não única:
 - Pré-condições programáticas que bloqueiam chamadas a jusante até que passos anteriores estejam completos (ex.: bloquear `process_refund` até que `get_customer` retorne um ID verificado)
 - Decompor pedidos multi-aspecto do cliente em itens separados
 - Produzir sumários estruturados ao escalar para um humano
+
+**Enforcement vs. orientação.** Ordenar um workflow por prompt (“sempre verifique a identidade primeiro”) é *probabilístico* — o Claude geralmente obedece, mas pode pular. Uma pré-condição programática (um hook ou uma guarda que recusa `process_refund` até que `get_customer` tenha retornado um id verificado) é *determinística*. Use orientação para preferência e fluxo; use pré-condições para qualquer coisa com peso financeiro, legal ou de segurança. Para solicitações multiface (“meu pedido está quebrado e eu quero um gerente”), decomponha em itens separados e trate cada um por seus próprios méritos em vez de colapsá-los em uma única ação.
 
 ## 1.5 Hooks do Agent SDK para Interceptar Chamadas de Ferramenta e Normalizar Dados
 
@@ -1577,6 +1598,8 @@ Quando Edit falha por correspondência de texto não única:
 - Hooks de interceptação para bloquear ações que violem políticas com redirecionamento para escalonamento
 - Escolha hooks em vez de prompts quando regras de negócio exigem conformidade garantida
 
+**Por que hooks, e não prompts, para regras duras.** Uma instrução de prompt é um pedido que o Claude pode recusar; um hook é código em um ponto fixo do loop que não pode ser pulado. `PostToolUse` é ideal para normalização (epoch Unix → ISO 8601, códigos de status → rótulos) porque transforma um resultado antes de o modelo vê-lo. `PreToolUse` é a primitiva de imposição — ele pode `deny`, `ask` ou `update` silenciosamente a entrada (por exemplo, redigir um segredo de um comando Bash e ainda assim deixá-lo rodar). Reserve hooks para regras em que a falha tem consequências; exagerar em hooks de formatação rotineira só adiciona latência.
+
 ## 1.6 Estratégias de Decomposição de Tarefas para Workflows Complexos
 
 ### Conhecimento-chave:
@@ -1588,6 +1611,8 @@ Quando Edit falha por correspondência de texto não única:
 - Use prompt chaining para reviews previsíveis multi-aspecto; use decomposição dinâmica para investigações abertas
 - Divida code reviews grandes em análise por arquivo mais uma passagem cross-file separada
 - Decomponha tarefas abertas: mapeie a estrutura primeiro, depois construa um plano priorizado
+
+**Decomposição fixa vs. dinâmica.** Escolha um pipeline fixo (encadeamento de prompts) quando a estrutura é conhecida de antemão e a reprodutibilidade importa — revisão por arquivo e depois um passe de integração, ou extração → validação → enriquecimento. Escolha decomposição adaptativa dinâmica quando o escopo só fica claro conforme você trabalha: mapeie a estrutura primeiro, deixe os achados definir a próxima tarefa e replaneje quando uma dependência aparecer. Para revisões grandes, a divisão por-arquivo-depois-integração é o que evita a diluição de atenção — um único passe sobre muitos arquivos produz análise profunda para alguns arquivos e rasa para outros, e sinaliza um padrão em um arquivo que ignora em outro.
 
 ## 1.7 Estado de Sessão, Resumo e Forking
 
@@ -1602,6 +1627,8 @@ Quando Edit falha por correspondência de texto não única:
 - Use `--resume` para continuar sessões investigativas nomeadas
 - Use `fork_session` para comparar abordagens em paralelo
 - Escolha entre retomar (contexto ainda válido) vs iniciar nova sessão (resultados desatualizados)
+
+**Resumir vs. forkar vs. começar de novo.** `--resume <session>` continua uma sessão nomeada com seu contexto salvo — bom para uma longa investigação da qual você se afastou, mas arriscado se os arquivos mudaram, porque resultados de ferramenta em cache podem estar desatualizados. `fork_session` ramifica a partir de um contexto compartilhado para que duas abordagens (Redux vs. Context API) diverjam independentemente sem se poluir. Quando os resultados envelheceram ou o contexto degradou, uma sessão nova aberta com um pequeno resumo escrito é mais confiável do que retomar dados de ferramenta desatualizados — e diga ao agente o que mudou desde a sessão anterior.
 
 ---
 
@@ -1620,6 +1647,8 @@ Quando Edit falha por correspondência de texto não única:
 - Renomeie ferramentas para eliminar sobreposição funcional (ex.: `analyze_content` -> `extract_web_results`)
 - Divida ferramentas de uso geral em especializadas com contratos claros de entrada/saída
 
+**Escrevendo a descrição.** A descrição é o mecanismo de seleção, então faça-a discriminante: diga o que a ferramenta faz, o que ela retorna, o formato da entrada com um valor de exemplo, os casos de borda e — criticamente — *quando usar esta ferramenta versus uma quase-gêmea*. Se `analyze_content` e `analyze_document` soam parecidos, o modelo vai rotear errado; ou renomeie para eliminar a sobreposição (`analyze_content` → `extract_web_results`) ou divida uma ferramenta geral em especializadas com contratos distintos. Fique de olho no prompt de sistema também: uma linha como “sempre verifique o cliente” pode enviesar o modelo em direção ao `get_customer` mesmo quando é desnecessário. Quando uma ferramenta MCP se sobrepõe a uma embutida (seu `search_code` vs `Grep`), detalhe a vantagem concreta que só a sua ferramenta oferece, ou o modelo usa a embutida por padrão.
+
 ## 2.2 Implementando Respostas de Erro Estruturadas para Ferramentas MCP
 
 ### Conhecimento-chave:
@@ -1633,6 +1662,8 @@ Quando Edit falha por correspondência de texto não única:
 - Use `retryable: false` para violações de regras de negócio com explicações claras para o usuário
 - Faça recuperação local em subagentes para falhas transitórias; propague apenas o que não conseguir resolver
 - Distinga falhas de acesso (decisão de retry) de resultados vazios válidos (sem correspondência)
+
+**`isError` e o que pôr nele.** Defina `isError: true` e retorne um payload **estruturado** — `errorCategory` (transitória / validação / negócio / permissão), `isRetryable`, uma mensagem legível para humanos, o que foi tentado e quaisquer resultados parciais. Um mero “Operation failed” não dá ao agente nada para decidir. As categorias guiam a ação: transitória (timeout, 503) → retentar com backoff; validação (entrada ruim) → corrigir a requisição e retentar; negócio (política/limite) → explicar ao usuário, não retentável; permissão (acesso negado) → escalar. Dois anti-padrões a evitar: **supressão silenciosa** (retornar um resultado vazio na falha, de modo que o coordenador confunde “a busca quebrou” com “sem correspondências”) e **abortar o workflow inteiro** em uma falha só (você perde todos os resultados parciais) — em vez disso, anote a lacuna e continue.
 
 ## 2.3 Alocando Ferramentas Entre Agentes e Configurando `tool_choice`
 
@@ -1648,6 +1679,8 @@ Quando Edit falha por correspondência de texto não única:
 - Use `tool_choice: "any"` para garantir uma chamada de ferramenta em vez de resposta em texto
 - Force uma ferramenta específica para garantir ordem de execução
 
+**Dimensione bem o conjunto de ferramentas.** A confiabilidade cai à medida que as ferramentas se multiplicam — cerca de 4–5 ferramentas bem escolhidas por agente batem 18. Limite cada subagente ao seu papel mais apenas algumas utilidades cross-role; um agente com ferramentas fora da sua especialização tende a usá-las mal. Substitua uma ferramenta geral por uma restrita quando a restrição é o ponto (`fetch_url` → `load_document` que rejeita URLs que não sejam de documentos). `tool_choice` então governa a seleção: `"auto"` deixa o modelo responder em texto ou chamar uma ferramenta (padrão), `"any"` força *alguma* chamada de ferramenta (saída estruturada garantida quando vários esquemas existem) e `{"type":"tool","name":"extract_metadata"}` força uma ferramenta específica para travar uma ordem de execução (metadados antes do enriquecimento).
+
 ## 2.4 Integrando Servidores MCP em Claude Code e Workflows de Agentes
 
 ### Conhecimento-chave:
@@ -1661,6 +1694,10 @@ Quando Edit falha por correspondência de texto não única:
 - Mantenha servidores pessoais/experimentais em `~/.claude.json`
 - Prefira servidores MCP da comunidade em vez de servidores customizados para integrações padrão
 
+**Topologia e configuração do MCP.** Um deployment de MCP é **Host → Client → Server**: o servidor é dono das ferramentas, recursos e prompts; o cliente é a ponte que lista e chama eles (um `ListToolsRequest` descobre ferramentas, um `CallToolRequest` roda uma). A conexão é **agnóstica a transporte** — stdio na mesma máquina é o transporte de dev comum; HTTP e WebSocket são alternativas. Para configuração, o guia testa **dois escopos**: o `.mcp.json` do projeto (versionado, compartilhado, tokens via substituição de `${ENV_VAR}` para que segredos não sejam commitados) e o `~/.claude.json` do usuário (pessoal, experimental). Na conexão, ferramentas de *todos* os servidores são descobertas e ficam disponíveis de uma vez. (Nota: o curso preparatório descreve escopos adicionais do MCP; o guia do exame testa dois — mantenha o modelo de dois escopos.)
+
+**As três primitivas e quando cada uma se encaixa.** **Tools** são funções que o modelo chama para agir; **Resources** são dados que o cliente lê para contexto sem um round-trip de ferramenta (uma menção `@document` pode ser expandida via um recurso *com template* como `docs://documents/{doc_id}`, vs. um recurso *direto* com um URI estático); **Prompts** são modelos de mensagem escritos pelo servidor e pré-testados para um workflow que o *usuário* dispara (um slash command `/format`) — use um Prompt, e não uma Tool, quando o usuário controla quando o workflow começa. Teste os três no **MCP Inspector** (`mcp dev mcp_server.py`) antes de ligar ao Claude. No SDK Python, defina uma ferramenta com o decorator `@mcp.tool()` e deixe o SDK gerar o esquema JSON em vez de escrevê-lo à mão.
+
 ## 2.5 Selecionando e Aplicando Ferramentas Embutidas (Read, Write, Edit, Bash, Grep, Glob)
 
 ### Conhecimento-chave:
@@ -1673,6 +1710,10 @@ Quando Edit falha por correspondência de texto não única:
 - Use Grep para busca de conteúdo e Glob para descoberta de arquivos por padrões
 - Construa entendimento incrementalmente: Grep nos pontos de entrada, depois Read para rastrear fluxos
 - Rastreie uso de funções por meio de módulos wrapper
+
+**Escolhendo entre Read/Write/Edit/Bash/Grep/Glob.** `Glob` encontra arquivos por nome ou padrão (`**/*.test.tsx`); `Grep` busca *dentro* dos arquivos (um nome de função, uma string de erro, um import). Investigue de forma incremental — `Grep` um ponto de entrada, `Read` os hits, `Grep` os usos, `Read` os chamadores — em vez de ler tudo de uma vez. `Edit` faz uma substituição precisa via uma correspondência única de texto; quando a correspondência não é única, recue para `Read` o arquivo inteiro, modificá-lo e `Write` de volta. `Bash` roda shell (git, testes, build) e é a saída de emergência quando nenhuma ferramenta de arquivo se encaixa.
+
+**Dois sentidos de “ferramenta embutida”.** Não confunda as ferramentas locais de arquivo/shell do Claude Code com as ferramentas embutidas do lado do servidor da API — elas dividem a palavra “embutida” mas repartem o trabalho de forma diferente. As ferramentas do Claude Code acima rodam na *sua* máquina; o próprio Claude Code fornece esquema e execução. No nível da API, “embutida” significa que o Claude fornece o *esquema* (um pequeno stub desatualizado que o modelo expande numa especificação completa), e quem fornece a *execução* depende da ferramenta: a ferramenta **text editor** dá ao Claude habilidades de criação de arquivo e string-replace, mas **você** precisa implementar as funções que de fato tocam o sistema de arquivos — o esquema é grátis, a execução não. As ferramentas **web search** e **code execution** são *do lado do servidor*: você adiciona só o esquema predefinido e o Claude as roda — web search devolve blocos de resultado mais blocos de citação que você pode renderizar, e code execution roda Python em um **contêiner Docker isolado sem acesso à rede** (mova dados para dentro e para fora com o bloco `container_upload` da Files API e os IDs de arquivo de saída baixados). A lição de design: uma embutida do lado do servidor te dá capacidade sem código para manter, mas sem controle sobre como roda; o text editor deixa a execução nas suas mãos, então você mantém o controle mas é dono do código de cola. Quando uma ferramenta customizada se sobrepõe a uma embutida do lado do servidor (seu próprio `search` vs a ferramenta web search), prefira a embutida a menos que você precise de dados ou comportamento que ela não alcança.
 
 ---
 
@@ -1691,6 +1732,8 @@ Quando Edit falha por correspondência de texto não única:
 - Use `@path` (ex.: `@./standards/testing.md`) para incluir padrões seletivamente no CLAUDE.md de cada pacote
 - Divida um CLAUDE.md grande em múltiplos arquivos `.claude/rules/` (testing.md, api-conventions.md, deployment.md)
 
+**CLAUDE.md é instrução, não configuração.** É uma orientação que o Claude *tenta* seguir, não uma regra que ele *deve* seguir — então uma regra dura (“nunca faça push para a main”) pertence a um hook `PreToolUse`, que para a ação mesmo quando o Claude a tenta. O arquivo também compete consigo mesmo: quanto mais ele cresce, menos dele o Claude honra de forma confiável. Mantenha-o enxuto (a) tornando as regras **específicas e verificáveis** (“ponha novas rotas de API em `src/api/handlers/`, uma por arquivo”, não “siga as melhores práticas”), (b) **nomeando o substituto** (“use exportações nomeadas, não exportações padrão” fecha a brecha que “não use exportações padrão” deixa aberta) e (c) tratando a **ênfase como um orçamento** — reserve “IMPORTANT”/“you must” para as duas ou três regras que doem quando quebradas. Quando o Claude faz a coisa errada, trate como um relatório de bug contra o arquivo e peça a ele que adicione a regra. Note que imports `@path` organizam um arquivo grande mas **não reduzem o contexto** — os arquivos importados são expandidos inline na inicialização, então tudo ainda carrega de antemão.
+
 ## 3.2 Criando e Configurando Slash Commands e Skills Customizados
 
 ### Conhecimento-chave:
@@ -1705,6 +1748,10 @@ Quando Edit falha por correspondência de texto não única:
 - Use `allowed-tools` para restringir quais ferramentas a skill pode usar
 - Use `argument-hint` para pedir parâmetros aos desenvolvedores
 
+**Empacotamento de skills.** Uma skill é uma pasta: um `SKILL.md` com um nome, uma `description` que a dispara e o procedimento, mais um `reference.md` opcional para material profundo e scripts que o Claude *executa* em vez de carrega. Mantenha o `SKILL.md` enxuto e empurre a profundidade para os arquivos laterais — só as descrições carregam até uma skill ser invocada, então uma skill gorda não desperdiça contexto em repouso. `context: fork` roda a skill em um subagente isolado para que a saída verbosa nunca chegue à sessão principal; `allowed-tools` é a fronteira de segurança (uma skill que nunca deve apagar arquivos não pode listar `Write`/`Bash`). Se você digitou o mesmo procedimento multi-passo duas vezes, é uma skill.
+
+**Plugins — leia antes de instalar.** Instalar um plugin lhe concede os seus próprios privilégios, e qualquer hook que ele carrega se junta aos seus em vez de substituí-los — chamadas de ferramenta correspondentes disparam ambos. Esse é o risco todo: um plugin pode registrar um hook `Stop` que alcança a rede, e a sua configuração não dá sinal de que isso aconteceu. Popularidade não é revisão. Enumere os hooks, agentes e servidores MCP que um plugin contribui antes de habilitá-lo. Skills, agentes e comandos ficam sob o namespace do nome do plugin, então não podem colidir com os seus, mas chaves de `settings.json` que mudam comportamento (por exemplo, promover um subagente do plugin à thread principal) de fato mudam como o Claude Code se comporta por padrão.
+
 ## 3.3 Usando Regras Específicas por Path para Carregamento Condicional de Convenções
 
 ### Conhecimento-chave:
@@ -1716,6 +1763,8 @@ Quando Edit falha por correspondência de texto não única:
 - Crie arquivos `.claude/rules/` com `paths: ["terraform/**/*"]` para carregar apenas ao trabalhar em arquivos correspondentes
 - Use padrões glob (`**/*.test.tsx`) para aplicar convenções por tipo de arquivo, independente da localização
 - Prefira regras path-specific a CLAUDE.md em nível de diretório quando convenções atravessam a base de código
+
+**Por que regras com escopo de path economizam contexto.** Um arquivo `.claude/rules/` com `paths: ["terraform/**/*"]` só é carregado quando o Claude edita um arquivo correspondente; todo o resto fica de fora do contexto. Essa é a ferramenta certa quando uma convenção se aplica a um *tipo* de arquivo espalhado pela árvore (testes, migrações) — um `CLAUDE.md` no nível de diretório forçaria você a repetir a mesma regra em todo diretório. Para convenções atreladas a um só lugar, um `CLAUDE.md` no nível de diretório ainda é mais simples.
 
 ## 3.4 Decidindo Quando Usar Modo de Planejamento vs Execução Direta
 
@@ -1731,6 +1780,8 @@ Quando Edit falha por correspondência de texto não única:
 - Use o subagente Explore para evitar esgotar a janela de contexto em tarefas multi-fase
 - Combine abordagens: plano para descoberta, execução para implementação
 
+**Modo de planejamento e conduzir uma execução longa.** O plan mode pesquisa em modo somente leitura e te entrega um plano; quanto mais minuciosamente você ler e revisar aquele plano antes de aprovar, menos percalços durante a execução. Para autonomia, `/goal` define uma **condição de conclusão verificável** (“todos os testes em `src/billing` passam e o verificador de tipos reporta zero erros”) e mantém o Claude trabalhando ao longo dos turnos até um avaliador rápido confirmá-la — a condição precisa ser verificável a partir da saída que o Claude produz (resultados de testes), não de estado privado; `/goal clear` a cancela. `/loop` re-roda um prompt em um intervalo para observar um estado externo (uma execução de CI, um deploy) e agir na mudança. Quando a sessão deriva, `/compact` com uma instrução dirige *o que* o resumo guarda (“guarde só as mudanças de API, descarte o debugging”); `Rewind` (toque duplo em Escape com o prompt vazio) restaura um checkpoint anterior para que você não precise se sair de um caminho errado a base de prompts. Para duas sessões no mesmo repo, use **worktrees** para que elas não briguem pelos mesmos arquivos.
+
 ## 3.5 Refinamento Iterativo para Melhoria Progressiva
 
 ### Conhecimento-chave:
@@ -1744,6 +1795,18 @@ Quando Edit falha por correspondência de texto não única:
 - Construa conjuntos de teste com comportamento esperado, casos de borda e requisitos de performance antes da implementação
 - Use o padrão de entrevista para fazer emergir aspectos de design (invalidação de cache, modos de falha)
 - Forneça casos de teste concretos com entradas-exemplo e saídas esperadas para casos de borda
+
+**Itere contra uma avaliação, não no olho.** Um fluxo típico de prompt-eval: (1) escreva um prompt rascunho; (2) monte um dataset de entradas — à mão, ou gerado pelo Claude (use um modelo rápido como o Haiku para geração, nunca o modelo sob teste); (3) rode o prompt em cada caso; (4) **avalie** cada saída; (5) tire a média das pontuações para uma baseline objetiva; (6) mude o prompt e rode de novo para comparar. Teste com mais do que uma ou duas das suas próprias entradas antes de publicar — usuários de verdade fornecem as entradas que quebram um prompt.
+
+**Tipos de avaliador.**
+
+| Avaliador | O que checa | Notas |
+|---|---|---|
+| Código | Programático: comprimento, presença de substring, sintaxe JSON/Python/regex (faz o parse do AST ou da regex) | Rápido, determinístico; retorna uma pontuação |
+| Modelo | Outra chamada do Claude julga qualidade, seguimento de instruções, completude | Mais flexível; peça **pontos fortes, fracos e o raciocínio** junto com a pontuação, não só um número — um mero 1–10 colapsa para valores médios seguros |
+| Humano | Uma pessoa avalia as saídas | Mais flexível, mais lento e mais tedioso |
+
+Alimente o avaliador com a tarefa, a saída gerada e **critérios de solução** explícitos (“uma boa solução inclui…”) para que ele julgue contra um padrão. Depois de aplicar qualquer técnica de engenharia de prompt, rode a avaliação de novo para confirmar que ela de fato melhorou — nunca assuma.
 
 ## 3.6 Integrando Claude Code em Pipelines CI/CD
 
@@ -1759,6 +1822,16 @@ Quando Edit falha por correspondência de texto não única:
 - Inclua resultados de reviews anteriores ao rerodar após novos commits (reporte apenas problemas novos/não-corrigidos)
 - Documente padrões de teste e fixtures disponíveis no CLAUDE.md para melhorar a qualidade da geração de testes
 - Inclua arquivos de teste existentes no contexto ao gerar novos testes para evitar duplicação e manter estilo consistente
+
+**Execução não interativa.** `-p`/`--print` roda o Claude Code de uma só vez (stdin entra, stdout sai) e é a única forma correta de rodá-lo em um pipeline — ele nunca espera por entrada interativa. Combine `--output-format json` com `--json-schema` para que o resultado estruturado caia em um campo conhecido que você pode extrair com `jq` e canalizar adiante; para jobs multi-passo, capture o id da sessão a partir da saída JSON e faça `--resume` depois. `--bare` pula o autodescobrimento de hooks, skills, plugins, servidores MCP e CLAUDE.md — você fica com o Claude mais só as ferramentas que você permite explicitamente, o que torna as execuções de CI reproduzíveis.
+
+**Modos de permissão para execuções desacompanhadas.** `auto` deixa o Claude rodar sem avisos enquanto um classificador separado revisa cada ação em busca de *perigo* (deploys, force-pushes, canalizar downloads para um shell, enviar dados para endpoints externos) — mas ele **não** julga correção, então código quebrado-mas-seguro passa. Combine `auto` com um hook `Stop` que roda os seus testes para que a correção também seja controlada. `don't ask` nega automaticamente qualquer coisa não pré-aprovada e é certo para CI; `bypass permissions` pula todas as verificações e pertence só dentro de um contêiner isolado ou VM.
+
+**Opções de revisão.** **Managed code review** (o GitHub app do Claude) é hospedado pela Anthropic: agentes de revisão analisam o diff contra a base de código completa, publicam achados como comentários inline marcados por severidade, os deduplicam e os ordenam, e **nunca aprovam nem bloqueiam** o PR — o julgamento fica com um humano; aplique correções localmente com `/code-review --fix`. Recorra à **GitHub Action do Claude Code** quando o job é mais do que revisão (implementar a partir de um comentário, relatórios agendados, qualquer evento do GitHub); ela roda o agente em comentários de PR, cron ou disparo manual, com `claude_args` ajustando (`max_turns`, `permission_mode: don't ask`, `allow_tools`).
+
+**Routines** rodam um prompt salvo mais repo e conectores na infraestrutura da Anthropic num gatilho cron ou webhook — nenhuma máquina sua fica ligada e nenhum arquivo de workflow para manter; cada execução começa de um clone novo da branch padrão e só pode fazer push para branches com o prefixo `claude/`, o que mantém uma execução autônoma fora da `main`.
+
+**Verificando uma execução que você não assistiu.** Escale a verificação para o quão pouca supervisão a execução teve. Leia a mudança, não o relato dela: `git diff` é a evidência, e um resumo confiante pode coexistir com uma edição num arquivo que nunca esteve no escopo. Trate “testes passam” como uma afirmação até algo independente confirmá-la — um hook `Stop` que condiciona a conclusão ao resultado real a torna intransponível, e retornar código de saída 2 devolve a falha para conserto sem a sua intervenção. Quando os stakes justificarem, adicione uma **segunda opinião fria**: entregue o diff a um revisor que nunca viu o build — uma sessão ou subagente separado, sem carregar nenhum do contexto original. Independência é o mecanismo, porque um revisor que detém o raciocínio que produziu o código herda os seus pontos cegos.
 
 ---
 
@@ -1776,6 +1849,12 @@ Quando Edit falha por correspondência de texto não única:
 - Desabilite temporariamente categorias com altas taxas de falsos positivos
 - Defina critérios explícitos de severidade com exemplos de código para cada nível
 
+**Primeira linha, especificidade, estrutura.** A primeira linha carrega o maior peso: comece com um verbo de ação e a tarefa (“escreva três parágrafos explicando como painéis solares funcionam”), não uma hesitação (“você pode me ajudar com algo sobre painéis solares?”). Então seja específico de uma de duas formas — liste **atributos** que a saída deve ter (comprimento, estrutura, elementos obrigatórios) para quase qualquer prompt, ou liste **passos** para um problema complexo em que você quer forçar o Claude a considerar pontos de vista que ele de outro modo não consideraria. Envolva conteúdo grande ou interpolado em **tags XML** (`<sales_records>…</sales_records>`, `<doc>…</doc> <instructions>…</instructions>`) para que o Claude consiga dizer onde um bloco termina e o outro começa — isso importa mais quando você cola muitas páginas.
+
+**Temperatura.** A temperatura (0–1) molda a distribuição de amostragem: baixa (≈0.0–0.3) torna a saída determinística e é certa para **Q&A factual, código e extração de dados**; alta (≈0.8–1.0) alarga a distribuição de tokens e é certa para **brainstorming, escrita criativa e marketing**. Aumentar a temperatura só *aumenta a chance* de variedade — não a garante.
+
+**Papel via prompt de sistema.** Um prompt de sistema define papel e tom (“você é um tutor de matemática paciente; dê dicas, não a resposta”) e se aplica a cada turno; sem ele, o Claude usa por padrão um estilo útil-mas-genérico.
+
 ## 4.2 Usando Few-shot Prompting para Melhorar a Consistência da Saída
 
 ### Conhecimento-chave:
@@ -1789,6 +1868,8 @@ Quando Edit falha por correspondência de texto não única:
 - Inclua exemplos few-shot que demonstrem o formato de saída (location, issue, severity, suggested fix)
 - Forneça exemplos que distingam padrões aceitáveis de problemas reais
 - Forneça exemplos de extração correta a partir de documentos com diferentes estruturas
+
+**Como escrever um exemplo few-shot.** Diga explicitamente “aqui está um exemplo com uma entrada de amostra e uma saída ideal”, e então envolva a entrada e a saída em tags XML. Use multi-shot para **casos-limite** (sarcasmo, intenções ambíguas) e adicione uma linha de contexto (“tenha cuidado especial com tweets que contenham sarcasmo”) logo antes do exemplo que o demonstra. Para formatos de saída complexos, um exemplo totalmente trabalhado ensina a estrutura mais rápido do que descrevê-la. Uma fonte valiosa de exemplos é a sua própria avaliação: copie um caso de teste que o avaliador pontuou alto e inclua uma frase sobre *por que* ele é ideal — o raciocínio reforça o alvo, não só a forma.
 
 ## 4.3 Aplicando Saída Estruturada com `tool_use` e JSON Schemas
 
@@ -1805,6 +1886,14 @@ Quando Edit falha por correspondência de texto não única:
 - Torne campos opcionais/nuláveis quando a fonte pode não conter informação para evitar fabricar valores
 - Use valores enum como `"unclear"` e `"other"` mais campos de detalhe para categorização extensível
 
+**`tool_use` + esquema é o caminho recomendado pelo guia** para saída estruturada: ele garante JSON sintaticamente válido e a forma exigida, e um `tool_choice` forçado pode garantir que uma ferramenta de extração específica rode primeiro. Lembre da mecânica: um turno de ferramenta devolve conteúdo **multi-bloco** (texto + `tool_use`), você responde com blocos `tool_result` numa mensagem de *usuário* identificados por `tool_use_id`, e você reenvia os esquemas no acompanhamento. Marque campos como anuláveis (`"type": ["string","null"]`) e adicione enums `"other"`/`"unclear"` para que o modelo retorne `null` ou “unclear” em vez de fabricar — campos obrigatórios com dados faltantes é o que impulsiona a alucinação.
+
+**A alternativa no nível da API do curso (note o conflito).** O curso preparatório também ensina a obter dados estruturados brutos sem uma ferramenta: **pré-preencha** uma mensagem do assistente com o delimitador de abertura (`` ```json ``) e defina a cerca de fechamento correspondente como uma **sequência de parada**, de modo que o Claude emita só o JSON entre elas. É a mesma ideia por trás de “pré-preenchimento + sequências de parada para JSON limpo”. O guia do exame trata `tool_use` + esquema como o método *mais confiável*; trate pré-preenchimento + parada como uma alternativa mais leve para extração de conteúdo bruto, não uma substituição.
+
+**Pré-preenchimento do assistente para guiar, não só para formatar.** Pré-preencher “Coffee is better because” faz o Claude *continuar a partir do fim dessa string* (você precisa emendar o pré-preenchimento e a resposta) — útil para forçar uma postura ou um formato, nunca para dar uma primeira frase completa.
+
+**“Batch tool” ≠ Message Batches API.** Um **batch tool** é uma meta-ferramenta que você implementa para que o Claude chame várias sub-ferramentas em um `tool_use` só (execução paralela num único turno) — útil quando o Claude não paraleliza por conta própria. Ela não tem relação com a **Message Batches API** (lote assíncrono de requisições independentes, até 24 h, 50% de economia). Não confunda as duas no exame.
+
 ## 4.4 Implementando Validação, Retries e Feedback Loops para Qualidade de Extração
 
 ### Conhecimento-chave:
@@ -1818,6 +1907,10 @@ Quando Edit falha por correspondência de texto não única:
 - Identifique quando retry será inefetivo (a informação necessária está em documento externo)
 - Inclua campos `detected_pattern` em achados para analisar falsos positivos
 - Projete autocorreção extraindo `calculated_total` e `stated_total` para detectar discrepâncias
+
+**Retentar com o erro no prompt.** Numa validação falha, reenvie o documento original, a extração incorreta e o erro *específico* (“`total`=150 mas `sum(line_items)`=145; verifique de novo”) — o modelo consegue rechecar aritmética e corrigir o posicionamento, mas não consegue conjurar informação ausente da fonte, então não retente para sempre. Auto-correção é a mesma ideia virada para dentro: extraia tanto um `stated_total` quanto um `calculated_total` e sinalize o conflito para tratamento a jusante.
+
+**Extended thinking como alavanca de acurácia de último recurso.** Quando você esgotou melhorias de prompt e a avaliação ainda patina, habilite o extended thinking: o Claude raciocina num bloco `thinking` antes da resposta final, ao custo de latência e dos tokens que ele gasta pensando. O bloco `thinking` carrega uma **signature** que você deve devolver sem modificar em turnos posteriores (adulteração é rejeitada); `budget_tokens` tem um mínimo de 1024 e `max_tokens` precisa excedê-lo. Trate como uma decisão guiada por avaliação, não como padrão.
 
 ## 4.5 Projetando Estratégias Eficientes de Processamento em Lote
 
@@ -1833,6 +1926,8 @@ Quando Edit falha por correspondência de texto não única:
 - Trate falhas reenviando apenas os documentos que falharam (identificados por `custom_id`)
 - Itere prompts em uma amostra antes de rodar processamento em larga escala
 
+**Mecânica da Batch API.** A Message Batches API recebe uma lista de requisições independentes, processa de forma assíncrona (até 24 h, sem SLA de latência), cobra ~50% a menos e **não suporta chamada de ferramenta multi-turno** — cada requisição é um tiro só. Marque cada requisição com `custom_id` para que você possa correlacionar resultados e, numa falha parcial, reenviar só os documentos que falharam (dividir os longos que bateram no limite de contexto) sem re-rodar os que deram certo. Dimensione a cadência de envio ao prazo: uma necessidade de 30 horas menos a janela de 24 horas deixa um orçamento de envio de 6 horas. Itere o prompt numa amostra pequena antes de lançar um lote grande.
+
 ## 4.6 Projetando Arquiteturas de Review Multi-instância e Multi-passagem
 
 ### Conhecimento-chave:
@@ -1844,6 +1939,8 @@ Quando Edit falha por correspondência de texto não única:
 - Use uma segunda instância independente do Claude para revisar as mudanças sem contexto de geração
 - Divida reviews de múltiplos arquivos em passagens por arquivo mais passagens de integração para análise de fluxo de dados cross-file
 - Use passagens de verificação com confiança auto-avaliada para rotear reviews de forma calibrada
+
+**Por que uma segunda instância supera a auto-revisão.** A sessão que gerou o código carrega o seu próprio contexto de raciocínio e, por isso, reluta em desafiar as suas decisões; uma instância independente, recebendo só o diff e os critérios, não tem interesse na abordagem e acha o que o autor se convenceu a passar. Para muitos arquivos, rode um **passe por arquivo** para problemas locais e um **passe de integração** separado para o fluxo de dados entre arquivos — um único passe sobre muitos arquivos dilui a atenção e sinaliza o mesmo padrão de forma inconsistente. Roteie por confiança auto-avaliada *só depois* de calibrar essas pontuações em dados rotulados; confiança não calibrada é o gatilho não confiável que este domínio adverte.
 
 ---
 
@@ -1863,6 +1960,12 @@ Quando Edit falha por correspondência de texto não única:
 - Posicione achados-chave no início de dados agregados com cabeçalhos de seção explícitos
 - Exija que subagentes incluam metadados (datas, fontes) em saídas estruturadas
 
+**Onde o contexto realmente vaza.** Três modos de falha: a sumarização progressiva derruba números, porcentagens e datas em prosa vaga (“cerca de”, “mais ou menos”); o efeito **lost-in-the-middle** significa que achados enterrados no meio de uma entrada longa são perdidos; e os resultados de ferramenta se acumulam (40 campos devolvidos quando 5 importam). Contrarie com um **bloco case-facts** persistente reinjetado a cada turno, trimming via `PostToolUse` dos resultados verbosos para os campos que você precisa, e os achados-chave colocados no *topo* de qualquer bloco agregado.
+
+**Prompt caching para contexto repetido.** Quando o mesmo conteúdo grande se repete entre requisições (um prompt de sistema, uma lista de ferramentas, um documento longo), o **prompt caching** reutiliza o trabalho de processá-lo: adicione um breakpoint `cache_control` a um bloco e o conteúdo *até e incluindo* aquele breakpoint fica em cache por cerca de uma hora. A requisição de acompanhamento precisa ser **idêntica** até o breakpoint ou o cache falha. Faça cache onde o conteúdo é estável — esquemas de ferramenta e o prompt de sistema são as escolhas usuais — e note as regras: um **mínimo de 1024 tokens** para fazer cache, os breakpoints podem abranger ferramentas → sistema → mensagens nessa ordem de junção, e até **quatro** breakpoints no total. Caching corta latência e custo em contexto repetido; não é uma ferramenta de confiabilidade.
+
+**Files API e conteúdo de PDF/documento — tire o volume da requisição.** Dois recursos da API impedem que conteúdo grande ou repetido inche cada requisição. A **Files API** deixa você fazer upload de um arquivo (PDF, imagem, texto, CSV) uma vez e receber um **file ID** num objeto de metadados de arquivo; requisições posteriores referenciam o arquivo pelo ID dentro do bloco de conteúdo em vez de re-codificar base64 bruto a cada turno — o mesmo arquivo, referenciado ao longo de muitos turnos, é a contrapartida de eficiência de contexto do caching de texto estável. O **suporte a PDF** é uma questão de bloco de conteúdo: mande um bloco `document` com `media_type: "application/pdf"` (e os bytes do arquivo ou o file ID) em vez de um bloco `image`; o Claude lê o texto do PDF diretamente, o que é o que torna as **Citações** (ver 5.6) capazes de apontar para páginas específicas. A Files API também alimenta a ferramenta **code execution**: um bloco `container_upload` injeta um arquivo enviado no contêiner isolado, e qualquer plotagem ou saída que o Claude gera volta como um file ID que você baixa — o volume entra por ID, os resultados saem por ID, e nada grande é jamais inlined duas vezes.
+
 ## 5.2 Projetando Padrões Eficazes de Escalonamento e Resolvendo Ambiguidade
 
 ### Conhecimento-chave:
@@ -1876,6 +1979,8 @@ Quando Edit falha por correspondência de texto não única:
 - Execute pedidos explícitos por humano imediatamente, sem investigação adicional
 - Escale quando a política for ambígua ou silente para um pedido específico
 - Peça identificadores adicionais quando resultados de ferramentas contiverem múltiplas correspondências
+
+**Gatilhos que se sustentam.** Escale em pedidos explícitos por um humano (imediatamente, sem investigação), em lacunas de política (a solicitação é silenciosa ou ambígua) e em incapacidade de progredir após uma tentativa razoável. Os gatilhos não confiáveis — sentimento e a confiança auto-avaliada do modelo — falham porque humor e autoconfiança não acompanham a complexidade do caso. Para ambiguidade em *dados* (uma busca devolve vários clientes), não adivinhe: peça outro identificador. Para uma reclamação multifacetada, reconheça a emoção primeiro, ofereça uma resolução concreta e escale só se o cliente reiterar o pedido por um humano — uma primeira expressão de insatisfação não é o mesmo que pedir um gerente.
 
 ## 5.3 Implementando Estratégias de Propagação de Erro em Sistemas Multi-agente
 
@@ -1891,6 +1996,8 @@ Quando Edit falha por correspondência de texto não única:
 - Faça recuperação local em subagentes para falhas transitórias; propague apenas erros não recuperáveis com resultados parciais
 - Anote cobertura na síntese: o que está bem suportado vs onde restam lacunas
 
+**Propague o suficiente para se recuperar.** Um erro de subagente deve entregar ao coordenador uma decisão: o tipo de falha, a query que foi tentada, quaisquer resultados parciais e abordagens alternativas. Isso deixa o coordenador escolher — retentar com uma query mais estreita, usar os resultados parciais, delegar a outro lugar ou continuar e anotar a lacuna. Distinga uma **falha de acesso** (timeout → decisão de retentar) de um **resultado vazio válido** (sem correspondências → nada a retentar); confundir os dois é o anti-padrão de supressão silenciosa. Faça recuperação local (1–2 retentativas) dentro do subagente para falhas transitórias e propague só o que ele não consegue consertar, sempre com os resultados parciais anexados.
+
 ## 5.4 Gerenciando Contexto de Forma Eficiente ao Investigar Bases de Código Grandes
 
 ### Conhecimento-chave:
@@ -1904,6 +2011,8 @@ Quando Edit falha por correspondência de texto não única:
 - Use arquivos de scratchpad para armazenar achados-chave e referenciá-los depois
 - Sumarize achados-chave antes de spawnar subagentes da próxima fase
 - Use `/compact` para reduzir uso de contexto em investigações longas
+
+**Identificando a degradação de contexto.** Uma sessão longa está degradando quando o modelo começa a se referir a “padrões típicos” e nomes genéricos de classe em vez do código específico que estava lendo. Nesse ponto, pare de re-derivar: escreva os achados-chave num **arquivo scratchpad** e consulte-o em vez de re-rodar a descoberta; delegue a leitura verbosa a um subagente e guarde só o resumo de uma linha dele no contexto principal; e use `/compact` para recuperar a janela. Para recuperação de crash, faça cada agente exportar seu estado para um local conhecido e o coordenador ler um manifesto no resume, para saber o que está pronto, em andamento e não começado.
 
 ## 5.5 Projetando Workflows com Supervisão Humana e Calibração de Confiança
 
@@ -1919,6 +2028,8 @@ Quando Edit falha por correspondência de texto não única:
 - Emita scores de confiança por campo e calibre limiares de revisão usando dados rotulados
 - Roteie extrações de baixa confiança ou de fontes ambíguas para revisão humana
 
+**Calibre, então automatize.** Uma acurácia agregada de 97% pode esconder 40% de erros num tipo de documento, então valide **por segmento** — por tipo de documento e por campo — não só no geral. Produza confiança em **nível de campo** e ajuste o limiar de revisão humana nos dados de validação rotulados; confiança alta mais acurácia estável por segmento automatiza, confiança baixa ou fontes ambíguas vão para um humano. Continue auditando: amostragem aleatória estratificada até das saídas de alta confiança pega novos padrões de erro antes que se acumulem.
+
 ## 5.6 Preservando Proveniência e Tratando Incerteza em Síntese Multi-fonte
 
 ### Conhecimento-chave:
@@ -1933,6 +2044,10 @@ Quando Edit falha por correspondência de texto não única:
 - Preserve valores conflitantes com anotações e passe-os ao coordenador para reconciliação
 - Inclua datas de publicação para interpretação temporal correta
 - Renderize conteúdo por tipo: dados financeiros como tabelas, notícias como prosa, achados técnicos como listas estruturadas
+
+**Mantenha o vínculo afirmação→fonte, e cite.** A sumarização corta a atribuição; exija que cada afirmação carregue a sua fonte (URL, nome do documento, citação). O recurso **Citations** do Claude formaliza isso para respostas fundamentadas: habilitado num bloco de documento, os blocos de texto da resposta carregam `citation_page_location` (ou `citation_char_location` para texto puro) com o texto citado, o título do documento e a página inicial/final — use-o sempre que um usuário precise poder verificar de onde veio um fato.
+
+**Conflitos e tempo.** Quando duas fontes discordam, preserve **ambos** os valores com a sua atribuição e uma flag `conflict_detected` em vez de escolher um — a diferença pode ser metodologia, não erro. Carregue sempre a data de publicação/coleta: “10% (2023) vs 15% (2024)” é crescimento, não contradição. Renderize por tipo de conteúdo — tabelas para financeiros, prosa para notícias, listas estruturadas para achados técnicos — para que cada tipo continue auditável.
 
 ---
 
