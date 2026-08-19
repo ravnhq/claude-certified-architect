@@ -51,6 +51,10 @@ El candidato ideal es un **arquitecto de soluciones (solution architect)** que d
 
 ## Escenarios del examen
 
+La guía oficial del examen (v1.0, julio de 2026) define un banco de **seis** escenarios, de los cuales **cuatro aparecen en cada intento**, elegidos al azar. Los escenarios 1 a 6 son esos seis.
+
+Los escenarios 7 y 8 **no están en la guía oficial**. Circulan en material de estudio comunitario como temas reportados por candidatos. Tómalos como práctica adicional sobre temas que los dominios ya cubren, no como parte del banco de escenarios: organiza tu preparación en torno a los seis oficiales.
+
 ### Escenario 1: Agente de soporte al cliente
 Creas un agente para procesar devoluciones, disputas de facturas y problemas de cuenta usando Claude Agent SDK. El agente utiliza herramientas MCP (`get_customer`, `lookup_order`, `process_refund`, `escalate_to_human`). Objetivo: resolución de 80%+ en el primer contacto con escalada adecuada.
 

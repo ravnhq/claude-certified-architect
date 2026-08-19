@@ -51,6 +51,11 @@ O candidato ideal é um **arquiteto de soluções** que projeta e entrega aplica
 
 ## Cenários do Exame
 
+O guia oficial do exame (v1.0, julho de 2026) define um banco de **seis** cenários, dos quais **quatro aparecem em cada tentativa**, sorteados aleatoriamente. Os cenários 1 a 6 são esses seis.
+
+Os cenários 7 e 8 **não estão no guia oficial**. Eles circulam em material de estudo da comunidade como tópicos relatados por candidatos. Trate-os como prática extra sobre temas que os domínios já cobrem, não como parte do banco de cenários — organize sua preparação em torno dos seis oficiais.
+
+
 ### Cenário 1: Agente de Suporte ao Cliente
 Você constrói um agente para lidar com devoluções, disputas de cobrança e questões de conta usando o Claude Agent SDK. O agente usa ferramentas MCP (`get_customer`, `lookup_order`, `process_refund`, `escalate_to_human`). A meta é 80%+ de resolução no primeiro contato com escalonamento apropriado.
 

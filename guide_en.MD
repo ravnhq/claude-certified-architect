@@ -51,6 +51,10 @@ The ideal candidate is a **solution architect** who designs and ships production
 
 ## Exam Scenarios
 
+The official exam guide (v1.0, July 2026) defines a bank of **six** scenarios, of which **four appear on any given attempt**, drawn at random. Scenarios 1 to 6 below are those six.
+
+Scenarios 7 and 8 are **not in the official guide**. They circulate in community study material as candidate-reported topics. Read them as extra practice on themes the domains already cover, not as part of the scenario bank — budget your preparation against the official six.
+
 ### Scenario 1: Customer Support Agent
 You build an agent to handle returns, billing disputes, and account issues using the Claude Agent SDK. The agent uses MCP tools (`get_customer`, `lookup_order`, `process_refund`, `escalate_to_human`). The target is 80%+ first-contact resolution with appropriate escalation.
 
@@ -72,8 +76,8 @@ The system extracts information from unstructured documents, validates output wi
 ### Scenario 7: Conversational AI Architecture Patterns
 You design multi-turn conversational systems covering context window management, instruction persistence across turns, memory strategies, tool design for safe execution, and handling ambiguous or conflicting user inputs.
 
-### Scenario 8: Agentic AI Tools *(content missing — help us fill it in!)*
-This scenario has been reported by exam candidates but is not yet covered in this guide. If you have encountered questions from this scenario on the real exam, please share them in [GitHub Issues](https://github.com/ravnhq/claude-certified-architect/issues) so we can add full coverage. Your contribution will help everyone preparing for the exam.
+### Scenario 8: Agentic AI Tools *(community-reported, not official)*
+This title circulates in community study material but does not appear in the official exam guide, whose scenario bank stops at six. Its subject matter — tool selection, tool descriptions, and agentic tool loops — is already examined under Domain 2, so no coverage is missing. Do not treat it as a seventh or eighth scenario you must prepare separately.
 
 ---
 
