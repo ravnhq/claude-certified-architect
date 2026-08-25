@@ -46,7 +46,15 @@ const MINISEARCH_BROWSER = path.resolve(
 // (white on the dark canvas, near-black on the light variant).
 const RAVN_LOGO = '<svg viewBox="0 0 148 33" role="img" aria-label="Ravn"><path d="M147.001 0.000976562H139.097V21.1196L120.763 0.00198534H112.859V32.9979H120.763V11.8853L139.095 33.001L139.098 32.9979H147.001V0.000976562Z"/><path d="M94.3156 33H85.8811L73.0273 0H81.4608L90.0978 22.1056L98.7348 0H107.169L94.3156 33Z"/><path d="M64.4406 0H56.0061L43.1523 33H51.5868L60.2238 10.8934L68.8598 33H77.2943L64.4406 0Z"/><path d="M28.8517 22.5101C33.8779 21.1825 37.5735 16.7376 37.5735 11.4583C37.5735 5.23989 32.4481 0.178564 26.0589 0.00605301V0H7.64995H0L6.34956 7.63688H7.64995V7.6389H25.7781C27.9333 7.66916 29.671 9.36703 29.671 11.4573C29.671 13.5668 27.902 15.2768 25.7197 15.2768H22.8382H12.7002L27.4355 33H37.5724L28.8517 22.5101Z"/><path d="M8.53644 32.9974C11.4172 32.9974 13.7526 30.7402 13.7526 27.9557C13.7526 25.1713 11.4172 22.9141 8.53644 22.9141C5.65565 22.9141 3.32031 25.1713 3.32031 27.9557C3.32031 30.7402 5.65565 32.9974 8.53644 32.9974Z"/></svg>';
 
+// Localized labels for the per-guide navigation chrome (TOC + heading anchors).
+const GUIDE_UI = {
+  en: { contents: 'Contents', anchor: 'Copy link to this section' },
+  es: { contents: 'Contenido', anchor: 'Copiar el enlace a esta sección' },
+  pt: { contents: 'Conteúdo', anchor: 'Copiar o link para esta seção' },
+};
+
 let headingSlug = createSlugger();
+let anchorLabel = GUIDE_UI.en.anchor;
 
 marked.use({
   useNewRenderer: true,
@@ -55,7 +63,8 @@ marked.use({
       const raw = tokens.map(t => t.raw ?? t.text ?? '').join('');
       const id = headingSlug(raw);
       const inner = this.parser.parseInline(tokens);
-      return `<h${depth} id="${id}">${inner}</h${depth}>\n`;
+      const anchor = `<a class="heading-anchor" href="#${id}" aria-label="${anchorLabel}">#</a>`;
+      return `<h${depth} id="${id}">${inner} ${anchor}</h${depth}>\n`;
     },
   },
 });
@@ -876,19 +885,13 @@ async function buildGuides() {
       continue;
     }
     const md = await fs.readFile(src, 'utf8');
-    headingSlug = createSlugger();
-    const html = marked.parse(md);
-    const out = path.join(DOCS, 'guides', `${l.output}.html`);
-    await ensureDir(path.dirname(out));
-    await fs.writeFile(out, pageShell({
-      title: `${l.title || l.label} — Claude Certified Architect · Ravn`,
-      lang: l.code,
-      baseHref: RAVN_BASE_HREF,
-      body: `${header(l.code)}<main class="guide">${html}</main>`,
-    }));
+    const ui = GUIDE_UI[l.code] || GUIDE_UI.en;
 
-    // index headings + lead paragraph for search
+    // walk the tokens once: search-index entries + TOC outline (h1/h2).
+    // The slugger advances on every heading so ids stay in step with the
+    // renderer's slugger, which also sees every heading.
     const tokens = marked.lexer(md);
+    const tocEntries = [];
     let currentHeading = null;
     let currentHeadingId = null;
     let buffer = '';
@@ -912,15 +915,59 @@ async function buildGuides() {
         currentHeading = t.text;
         const raw = t.tokens?.map(token => token.raw ?? token.text ?? '').join('') || t.text;
         currentHeadingId = searchSlug(raw);
+        if (t.depth <= 2) {
+          tocEntries.push({ depth: t.depth, text: headingText(raw), id: currentHeadingId });
+        }
       }
       else if (t.type === 'paragraph' || t.type === 'code') { buffer += ' ' + (t.text || t.raw || ''); }
     }
     flush();
+
+    headingSlug = createSlugger();
+    anchorLabel = ui.anchor;
+    const html = marked.parse(md);
+    const out = path.join(DOCS, 'guides', `${l.output}.html`);
+    await ensureDir(path.dirname(out));
+    await fs.writeFile(out, pageShell({
+      title: `${l.title || l.label} — Claude Certified Architect · Ravn`,
+      lang: l.code,
+      baseHref: RAVN_BASE_HREF,
+      body: `${header(l.code)}<main class="guide">${renderToc(tocEntries, ui.contents)}${html}</main>`,
+    }));
   }
 
   const mini = new MiniSearch({ fields: ['heading', 'body'], storeFields: ['heading', 'lang', 'url'] });
   mini.addAll(searchDocs);
   await fs.writeFile(path.join(DOCS, 'search-index.json'), JSON.stringify(mini.toJSON()));
+}
+
+// Plain text for TOC entries: drop inline markdown, escape for HTML.
+function headingText(s) {
+  return String(s)
+    .replace(/`([^`]*)`/g, '$1')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/(\*\*|__)(.*?)\1/g, '$2')
+    .replace(/(\*|_)(.*?)\1/g, '$2')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .trim();
+}
+
+// Collapsible table of contents from h1/h2 headings. h2s nest under the
+// preceding h1; a leading h2 with no h1 stays at the top level.
+function renderToc(entries, label) {
+  if (entries.length < 2) return '';
+  const tree = [];
+  for (const e of entries) {
+    const last = tree[tree.length - 1];
+    if (e.depth === 1 || !last || last.depth !== 1) tree.push({ ...e, children: [] });
+    else last.children.push(e);
+  }
+  const li = e =>
+    `<li><a href="#${e.id}">${e.text}</a>${e.children?.length ? `<ol>${e.children.map(li).join('')}</ol>` : ''}</li>`;
+  return `<details class="guide-toc">
+<summary>${label}</summary>
+<nav aria-label="${label}"><ol>${tree.map(li).join('')}</ol></nav>
+</details>\n`;
 }
 
 function slug(s) {

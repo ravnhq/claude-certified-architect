@@ -470,6 +470,41 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 }
 .guide th { font-weight: 600; color: var(--accent); font-size: 0.78em; letter-spacing: 0.12em; text-transform: uppercase; }
 .guide hr { border: 0; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+/* heading anchors — revealed on hover/focus; clicking copies a shareable URL */
+.guide .heading-anchor {
+  margin-left: 0.1em;
+  color: var(--subtle);
+  border-bottom: none;
+  opacity: 0;
+  transition: opacity 0.15s var(--ease);
+}
+.guide h1:hover .heading-anchor, .guide h2:hover .heading-anchor,
+.guide h3:hover .heading-anchor, .guide h4:hover .heading-anchor,
+.guide .heading-anchor:focus-visible { opacity: 1; }
+.guide .heading-anchor:hover { color: var(--accent); border-bottom: none; }
+.guide .heading-anchor.copied { color: var(--accent); opacity: 1; }
+.guide .heading-anchor.copied::after { content: " ✓"; }
+@media (hover: none) { .guide .heading-anchor { opacity: 0.45; } }
+
+/* table of contents — collapsed by default, scrolls internally */
+.guide-toc {
+  margin: 2rem 0 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-elev);
+}
+.guide-toc summary { padding: 14px 18px; cursor: pointer; font-weight: 600; }
+.guide-toc summary::marker { color: var(--accent); }
+.guide-toc nav { max-height: min(60vh, 520px); overflow-y: auto; padding: 2px 18px 16px; }
+.guide .guide-toc ol { list-style: none; margin: 0; padding-left: 0; }
+.guide .guide-toc ol ol { padding-left: 1.1em; }
+.guide-toc li { margin: 0.35em 0; }
+.guide .guide-toc a { color: var(--fg); border-bottom: none; }
+.guide .guide-toc a:hover { color: var(--accent); }
+.guide-toc ol ol a { font-size: 0.93em; }
+.guide .guide-toc ol ol a { color: var(--muted); }
+.guide .guide-toc ol ol a:hover { color: var(--accent); }
 .guide img { max-width: 100%; }
 .guide { overflow-wrap: break-word; }
 

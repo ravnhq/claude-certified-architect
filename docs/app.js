@@ -102,4 +102,16 @@
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); searchToggle?.click(); }
     if (e.key === 'Escape' && dialog?.open) dialog.close();
   });
+
+  // Heading anchors: copy the section URL on click. Hash navigation still
+  // happens, so the address bar matches what was copied.
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest?.('.heading-anchor');
+    if (!anchor || !navigator.clipboard) return;
+    const url = new URL(anchor.getAttribute('href'), location.href).href;
+    navigator.clipboard.writeText(url).then(() => {
+      anchor.classList.add('copied');
+      setTimeout(() => anchor.classList.remove('copied'), 1200);
+    }).catch(() => {});
+  });
 })();
