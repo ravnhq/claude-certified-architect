@@ -55,6 +55,9 @@ const GUIDE_UI = {
 
 let headingSlug = createSlugger();
 let anchorLabel = GUIDE_UI.en.anchor;
+// The pages carry a <base href>, so a bare "#id" would resolve against the
+// site root (the home page). Fragment links must be page-qualified.
+let pageHref = '';
 
 marked.use({
   useNewRenderer: true,
@@ -63,7 +66,7 @@ marked.use({
       const raw = tokens.map(t => t.raw ?? t.text ?? '').join('');
       const id = headingSlug(raw);
       const inner = this.parser.parseInline(tokens);
-      const anchor = `<a class="heading-anchor" href="#${id}" aria-label="${anchorLabel}">#</a>`;
+      const anchor = `<a class="heading-anchor" href="${pageHref}#${id}" aria-label="${anchorLabel}">#</a>`;
       return `<h${depth} id="${id}">${inner} ${anchor}</h${depth}>\n`;
     },
   },
@@ -925,6 +928,7 @@ async function buildGuides() {
 
     headingSlug = createSlugger();
     anchorLabel = ui.anchor;
+    pageHref = `guides/${l.output}.html`;
     const html = marked.parse(md);
     const out = path.join(DOCS, 'guides', `${l.output}.html`);
     await ensureDir(path.dirname(out));
@@ -932,7 +936,7 @@ async function buildGuides() {
       title: `${l.title || l.label} — Claude Certified Architect · Ravn`,
       lang: l.code,
       baseHref: RAVN_BASE_HREF,
-      body: `${header(l.code)}<main class="guide">${renderToc(tocEntries, ui.contents)}${html}</main>`,
+      body: `${header(l.code)}<main class="guide">${renderToc(tocEntries, ui.contents, pageHref)}${html}</main>`,
     }));
   }
 
@@ -954,7 +958,7 @@ function headingText(s) {
 
 // Collapsible table of contents from h1/h2 headings. h2s nest under the
 // preceding h1; a leading h2 with no h1 stays at the top level.
-function renderToc(entries, label) {
+function renderToc(entries, label, pageHref) {
   if (entries.length < 2) return '';
   const tree = [];
   for (const e of entries) {
@@ -963,7 +967,7 @@ function renderToc(entries, label) {
     else last.children.push(e);
   }
   const li = e =>
-    `<li><a href="#${e.id}">${e.text}</a>${e.children?.length ? `<ol>${e.children.map(li).join('')}</ol>` : ''}</li>`;
+    `<li><a href="${pageHref}#${e.id}">${e.text}</a>${e.children?.length ? `<ol>${e.children.map(li).join('')}</ol>` : ''}</li>`;
   return `<details class="guide-toc">
 <summary>${label}</summary>
 <nav aria-label="${label}"><ol>${tree.map(li).join('')}</ol></nav>

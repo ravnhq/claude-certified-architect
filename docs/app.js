@@ -108,8 +108,8 @@
   document.addEventListener('click', (e) => {
     const anchor = e.target.closest?.('.heading-anchor');
     if (!anchor || !navigator.clipboard) return;
-    const url = new URL(anchor.getAttribute('href'), location.href).href;
-    navigator.clipboard.writeText(url).then(() => {
+    // anchor.href is resolved against the page's <base href>
+    navigator.clipboard.writeText(anchor.href).then(() => {
       anchor.classList.add('copied');
       setTimeout(() => anchor.classList.remove('copied'), 1200);
     }).catch(() => {});
