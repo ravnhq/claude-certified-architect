@@ -365,7 +365,7 @@ const PREFLIGHT_TRACKS = [
         group: 'Ravn materials',
         items: [
           { name: 'Study guide', href: 'guides/en.html', note: 'The full Foundations guide, about a 2-hour read. Also in <a href="guides/es.html">Spanish</a> and <a href="guides/pt.html">Portuguese</a>.', internal: true },
-          { name: 'Practice exam', href: 'practical/en.html', note: '60 questions drawn <strong>fresh from a bank of 136 on every attempt</strong>, scored per domain to 1000 — full length on purpose, because the real exam is 60 questions in 120 minutes. Also in <a href="practical/es.html">Spanish</a> and <a href="practical/pt.html">Portuguese</a>.', internal: true },
+          { name: 'Practice exam', href: 'practical/en.html', note: '60 questions drawn <strong>fresh from a bank of 136 on every attempt</strong>, scored per domain to 1000 — full length on purpose, because the real exam is 60 questions in 120 minutes. A domain selector drills a single domain&rsquo;s whole bank instead. Also in <a href="practical/es.html">Spanish</a> and <a href="practical/pt.html">Portuguese</a>.', internal: true },
           { name: 'Cheatsheet', href: 'cheatsheet/en.html', note: 'One-page recap of the five domains. Also in <a href="cheatsheet/es.html">Spanish</a> and <a href="cheatsheet/pt.html">Portuguese</a>.', internal: true },
         ],
       },

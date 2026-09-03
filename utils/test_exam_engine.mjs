@@ -174,6 +174,77 @@ function checkSharedEngine(e, file) {
   e.localStorage.setItem(e.STORE_KEY, fullRaw);
 }
 
+// Domain drill: focusing one domain draws its whole bank (shuffled), and a
+// saved payload is validated against its own focus — never against the live
+// state's. The UI half (setFocus/restart) is exercised in test_exam_render.mjs.
+function checkFocusDrill(e, file) {
+  console.log(`Drill mode (${file})`);
+  const d = Object.keys(e.drawPerDomain()).sort((a, b) => a - b)[0];
+  const bank = e.QUESTIONS.filter(q => String(q.domain) === String(d)).length;
+  check(`drill draw holds the whole D${d} bank (${bank} items)`,
+    JSON.stringify(e.drawPerDomain(undefined, d)) === JSON.stringify({ [d]: bank }));
+  check(`drill size matches the D${d} bank`, e.examSize(undefined, d) === bank);
+
+  e.state.focus = d;
+  const order = e.shuffleOrder();
+  const per = {};
+  order.forEach(id => { const dd = String(e.qById(id).domain); per[dd] = (per[dd] || 0) + 1; });
+  check(`a drill shuffle draws all ${bank} D${d} items`,
+    order.length === bank && new Set(order).size === bank, `${order.length} vs ${bank}`);
+  check(`a drill shuffle stays inside D${d}`,
+    Object.keys(per).length === 1 && per[String(d)] === bank, JSON.stringify(per));
+
+  e.state.order = order;
+  e.state.answers = {};
+  e.state.mode = 'exam';
+  e.state.current = 0;
+  e.save();
+  const rawDrill = e.localStorage.getItem(e.STORE_KEY);
+  const loaded = e.load();
+  check('a drill attempt round-trips through storage',
+    !!loaded && String(loaded.focus) === String(d) && loaded.order.length === bank);
+
+  // A drill order labelled as a full draw (or the reverse) must not validate:
+  // each focus is checked against its own expectation.
+  const asAll = JSON.parse(rawDrill); asAll.focus = 'all';
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(asAll));
+  check('a drill order labelled as a full draw is rejected', e.load() === null);
+
+  e.state.focus = 'all';
+  e.state.length = 'full';
+  const fullOrder = e.shuffleOrder();
+  e.state.order = fullOrder;
+  e.state.answers = {};
+  e.save();
+  const asDrill = JSON.parse(e.localStorage.getItem(e.STORE_KEY)); asDrill.focus = d;
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(asDrill));
+  check('a full order labelled as a drill is rejected', e.load() === null);
+
+  const bogus = JSON.parse(rawDrill); bogus.focus = '99';
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(bogus));
+  check('a payload focused on an unknown domain is rejected', e.load() === null);
+
+  // A payload from before the drill existed carries no focus: it is a full
+  // draw, the only scope that engine could produce.
+  const legacy = JSON.parse(e.localStorage.getItem(e.STORE_KEY));
+  legacy.focus = 'all'; legacy.order = fullOrder; delete legacy.focus;
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(legacy));
+  const legacyLoaded = e.load();
+  check('a payload without a focus loads as a full draw',
+    !!legacyLoaded && legacyLoaded.focus === 'all');
+
+  // Leave storage as a valid full draw in progress; the shared checks below
+  // re-save from scratch anyway, but the focus must be back to "all" for the
+  // draw totals they assert.
+  e.state.focus = 'all';
+  e.state.length = 'full';
+  e.state.order = fullOrder;
+  e.state.answers = {};
+  e.state.mode = 'exam';
+  e.state.current = 0;
+  e.save();
+}
+
 console.log('Foundations engine (exam_en.html)');
 {
   const e = loadEngine('exam_en.html');
@@ -199,6 +270,7 @@ console.log('Foundations engine (exam_en.html)');
   check('an array is not answered on a single-response item', !e.hasAnswer(q, [q.correct]));
   check('no multi items leaked into Foundations',
     e.QUESTIONS.every(x => !Array.isArray(x.correct)));
+  checkFocusDrill(e, 'exam_en.html');
   checkSharedEngine(e, 'exam_en.html');
 }
 
@@ -352,6 +424,7 @@ console.log('Professional engine (professional_exam_en.html)');
     t.correct === 1 && Object.values(t.domStat).reduce((s, x) => s + x.correct, 0) === 1 &&
     Object.values(t.domStat).reduce((s, x) => s + x.total, 0) === 2);
 
+  checkFocusDrill(e, 'professional_exam_en.html');
   checkSharedEngine(e, 'professional_exam_en.html');
 }
 

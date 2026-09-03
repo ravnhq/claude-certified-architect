@@ -12,6 +12,8 @@ into one quiz per language with:
     the same order and answers)
   * two attempt lengths: full (default, mirrors the real exam's size) and a
     quick drill of about a third of the draw, still weighted per domain
+  * a domain drill: scope the attempt to one domain to work its whole bank,
+    scored raw (no scaled pass/fail verdict)
   * scoring over the full total with a pass threshold and a per-domain breakdown
 
 This module also hosts the quiz engine itself: render_page() below is shared with
@@ -62,6 +64,12 @@ UI = {
         "length_full": "Full · {n}", "length_quick": "Quick · {n}",
         "length_aria": "Attempt length",
         "new_set": "New set",
+        "focus_all": "All domains",
+        "focus_label": "Drill one domain",
+        "focus_note": ("Domain {d} drill: all {n} questions from this domain, "
+                       "reshuffled every attempt. Switch back to All domains "
+                       "for a full exam draw."),
+        "drill_score": "Domain {d} score",
         "new_draw_confirm": ("Start a new attempt with a fresh random draw? "
                              "Your current answers will be cleared."),
         "draw_note_full": ("Every attempt draws a fresh random set: {n} of the "
@@ -105,6 +113,12 @@ UI = {
         "length_full": "Completo · {n}", "length_quick": "Rápido · {n}",
         "length_aria": "Duración del intento",
         "new_set": "Nuevo sorteo",
+        "focus_all": "Todos los dominios",
+        "focus_label": "Practicar un dominio",
+        "focus_note": ("Práctica del dominio {d}: las {n} preguntas de este "
+                       "dominio, reordenadas en cada intento. Vuelve a Todos "
+                       "los dominios para un sorteo completo."),
+        "drill_score": "Puntaje del dominio {d}",
         "new_draw_confirm": ("¿Iniciar un nuevo intento con un nuevo sorteo "
                              "aleatorio? Tus respuestas actuales se borrarán."),
         "draw_note_full": ("Cada intento sortea un conjunto aleatorio nuevo: "
@@ -148,6 +162,12 @@ UI = {
         "length_full": "Completo · {n}", "length_quick": "Rápido · {n}",
         "length_aria": "Duração da tentativa",
         "new_set": "Novo sorteio",
+        "focus_all": "Todos os domínios",
+        "focus_label": "Treinar um domínio",
+        "focus_note": ("Treino do domínio {d}: as {n} perguntas deste domínio, "
+                       "reordenadas a cada tentativa. Volte a Todos os domínios "
+                       "para um sorteio completo."),
+        "drill_score": "Pontuação do domínio {d}",
         "new_draw_confirm": ("Iniciar uma nova tentativa com um novo sorteio "
                              "aleatório? Suas respostas atuais serão "
                              "apagadas."),
@@ -229,6 +249,13 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .mode-hint { font-size: 11.5px; color: var(--subtle); margin-left: 12px; }
 .mode-controls { display: flex; align-items: center; }
 .length-toggle { margin-left: 10px; }
+.mode-toggle button:disabled { opacity: .35; cursor: default; }
+.focus-select { margin-left: 10px; background: var(--surface); color: var(--fg);
+  border: 1px solid var(--border-strong); border-radius: var(--r-md);
+  font-family: inherit; font-size: 11.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .08em; padding: 6px 8px;
+  max-width: 100%; cursor: pointer; }
+.focus-select:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
 .new-draw-btn { margin-left: 10px; }
 .new-draw-btn .dn-icon { margin-right: 5px; }
 
@@ -444,6 +471,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   .mode-controls { gap: 6px; justify-content: flex-start; }
   .mode-toggle button { padding: 5px 7px; font-size: 0.66rem; letter-spacing: 0.04em; }
   .length-toggle, .new-draw-btn { margin-left: 4px; }
+  .focus-select { margin-left: 4px; max-width: 140px; }
   .new-draw-btn { padding: 5px 8px; font-size: 0.66rem; }
   .new-draw-btn .dn-icon { margin-right: 3px; }
   .draw-note { font-size: 0.78rem; line-height: 1.45; padding: 8px 16px; }
@@ -474,9 +502,10 @@ const PER_DOMAIN = __PER_DOMAIN__;
 const QUICK_DIVISOR = 3;
 const STORE_KEY = "__STOREKEY__";
 // Bumped when a saved attempt stops being valid — a blueprint revision that
-// changes the per-domain draw, or a change to the shape of a stored answer.
+// changes the per-domain draw, a change to the shape of a stored answer, or a
+// new field the order validation depends on (the domain focus in version 3).
 // An older payload is dropped, which resets an attempt in progress once.
-const STORE_VERSION = 2;
+const STORE_VERSION = 3;
 
 // `length` ("full" | "quick") defaults to the attempt in progress. load()
 // passes it explicitly: a saved payload must be checked against its own
@@ -489,7 +518,17 @@ function drawCount(domain, length) {
 
 // The draw actually achievable per domain: the requested count, capped by how
 // many questions that domain holds (so it never over-draws a small domain).
-function drawPerDomain(length) {
+// A domain focus overrides the draw: the attempt holds every bank question of
+// that one domain, so the candidate can drill it exhaustively. `focus`
+// defaults to the attempt in progress; pass "all" explicitly to describe the
+// full-draw lengths regardless of the live state (the length toggle labels).
+function drawPerDomain(length, focus) {
+  if (focus === undefined) focus = state.focus;
+  if (focus !== "all") {
+    const out = {};
+    out[focus] = QUESTIONS.filter(q => String(q.domain) === String(focus)).length;
+    return out;
+  }
   const byDomain = {};
   QUESTIONS.forEach(q => { byDomain[q.domain] = (byDomain[q.domain] || 0) + 1; });
   const out = {};
@@ -498,8 +537,8 @@ function drawPerDomain(length) {
 }
 
 // Number of questions in one attempt.
-function examSize(length) {
-  return Object.values(drawPerDomain(length)).reduce((s, c) => s + c, 0);
+function examSize(length, focus) {
+  return Object.values(drawPerDomain(length, focus)).reduce((s, c) => s + c, 0);
 }
 
 // ---- answer shape --------------------------------------------------------
@@ -568,13 +607,17 @@ function tallyAttempt(active, answers) {
            domStat: domStat, wrongByDomain: wrongByDomain };
 }
 
-const state = { current: 0, answers: {}, order: [], mode: "study", length: "full" };
+// `focus` ("all" | a domain id) scopes an attempt: "all" draws across every
+// domain, a domain id drills that domain's whole bank. It persists like the
+// attempt length, and the order validation below reads it from the payload.
+const state = { current: 0, answers: {}, order: [], mode: "study", length: "full", focus: "all" };
 
 // ---- persistence ---------------------------------------------------------
 function save() {
   try { localStorage.setItem(STORE_KEY, JSON.stringify(
     { v: STORE_VERSION, answers: state.answers, order: state.order,
-      mode: state.mode, length: state.length, current: state.current })); } catch (e) {}
+      mode: state.mode, length: state.length, focus: state.focus,
+      current: state.current })); } catch (e) {}
 }
 function load() {
   try {
@@ -591,17 +634,24 @@ function load() {
     // from before the quick drill existed carries no length: it is a full
     // attempt, the only length that engine could draw.
     const length = d.length === "quick" ? "quick" : "full";
+    // Same for the focus: a drill of one domain must be checked against that
+    // domain's bank, never against the full draw. A payload from before the
+    // domain drill existed carries no focus: it drew across every domain.
+    const focus = d.focus === undefined ? "all" : d.focus;
+    if (focus !== "all" && !QUESTIONS.some(q => String(q.domain) === String(focus))) return null;
     // Order is valid only if it still matches that length's attempt size.
-    if (!Array.isArray(d.order) || d.order.length !== examSize(length)) return null;
+    if (!Array.isArray(d.order) || d.order.length !== examSize(length, focus)) return null;
     const ids = new Set(QUESTIONS.map(q => q.id));
     if (!d.order.every(id => ids.has(id))) return null;
     // The total survives a blueprint revision that only moves items between
     // domains, so check the per-domain mix too. Without this a returning
     // candidate keeps the old weighting under a note that claims the new one.
-    const want = drawPerDomain(length), got = {};
+    // In a drill the same check pins the order to the focused domain's bank.
+    const want = drawPerDomain(length, focus), got = {};
     d.order.forEach(id => { const q = qById(id); if (q) got[q.domain] = (got[q.domain] || 0) + 1; });
     if (Object.keys(want).some(d2 => (got[d2] || 0) !== want[d2])) return null;
     d.length = length;
+    d.focus = focus;
     return d;
   } catch (e) { return null; }
 }
@@ -610,18 +660,23 @@ function load() {
 // Draw PER_DOMAIN random questions from each domain (the "question bank"
 // behavior), keeping domains in order. Within a domain the drawn questions are
 // already in random order from the shuffle. Option order is never shuffled (the
-// answer key is by letter).
+// answer key is by letter). A domain focus instead shuffles that domain's whole
+// bank: the drill is exhaustive, so a new set only reorders it.
 function shuffleOrder() {
   const byDomain = {};
   QUESTIONS.forEach(q => { (byDomain[q.domain] = byDomain[q.domain] || []).push(q.id); });
   const order = [];
-  Object.keys(byDomain).sort((a, b) => a - b).forEach(d => {
-    const ids = byDomain[d].slice();
+  const domains = state.focus !== "all"
+    ? [String(state.focus)].filter(d => byDomain[d] || byDomain[Number(d)] !== undefined)
+    : Object.keys(byDomain).sort((a, b) => a - b);
+  domains.forEach(d => {
+    const key = byDomain[d] !== undefined ? d : Number(d);
+    const ids = byDomain[key].slice();
     for (let i = ids.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [ids[i], ids[j]] = [ids[j], ids[i]];
     }
-    order.push(...ids.slice(0, drawCount(d)));
+    order.push(...(state.focus !== "all" ? ids : ids.slice(0, drawCount(key))));
   });
   return order;
 }
@@ -830,7 +885,10 @@ function newDraw() {
 // ---- attempt length ------------------------------------------------------
 // "full" mirrors the real exam's draw; "quick" is a short drill for a spare
 // twenty minutes. Switching lengths redraws, so a started attempt asks first.
+// Length is meaningless while a domain is focused (the drill holds the whole
+// domain bank), so the toggle is disabled there and this is unreachable.
 function setLength(length) {
+  if (state.focus !== "all") return;
   if (length === state.length) return;
   if (!confirmDiscard()) return;
   state.length = length;
@@ -841,15 +899,52 @@ function updateLengthUI() {
   [["lengthFull", "full", T.length_full], ["lengthQuick", "quick", T.length_quick]]
     .forEach(([id, len, label]) => {
       const btn = document.getElementById(id);
-      btn.textContent = label.replace("{n}", examSize(len));
+      // The toggle labels always describe the full draw, even mid-drill.
+      btn.textContent = label.replace("{n}", examSize(len, "all"));
       btn.classList.toggle("active", state.length === len);
       btn.setAttribute("aria-pressed", String(state.length === len));
+      btn.disabled = state.focus !== "all";
     });
+  const note = state.focus !== "all"
+    ? T.focus_note.replace("{n}", examSize()).replace("{d}", state.focus)
+    : (state.length === "quick" ? T.draw_note_quick : T.draw_note_full)
+        .replace("{n}", examSize())
+        .replace("{bank}", QUESTIONS.length);
   document.getElementById("drawNote").innerHTML =
-    "<span class='dn-icon'>&#10227;</span>" +
-    (state.length === "quick" ? T.draw_note_quick : T.draw_note_full)
-      .replace("{n}", examSize())
-      .replace("{bank}", QUESTIONS.length);
+    "<span class='dn-icon'>&#10227;</span>" + note;
+  updateFocusUI();
+}
+
+// ---- domain focus ----------------------------------------------------------
+// Scoping an attempt to one domain drills its whole bank: every question in
+// the domain, shuffled. Switching scope redraws, so a started attempt asks
+// first, through the same guard a new draw uses.
+function setFocus(focus) {
+  if (String(focus) === String(state.focus)) return;
+  if (!confirmDiscard()) { updateFocusUI(); return; }
+  state.focus = focus;
+  restart();
+}
+
+function buildFocusOptions() {
+  const sel = document.getElementById("focusSelect");
+  sel.innerHTML = "";
+  const all = document.createElement("option");
+  all.value = "all";
+  all.textContent = T.focus_all;
+  sel.appendChild(all);
+  Object.keys(DOMAINS).sort((a, b) => a - b).forEach(d => {
+    const opt = document.createElement("option");
+    opt.value = d;
+    opt.textContent = T.domain + " " + d + " · " + DOMAINS[d].name;
+    sel.appendChild(opt);
+  });
+}
+
+function updateFocusUI() {
+  const sel = document.getElementById("focusSelect");
+  if (!sel) return;
+  sel.value = String(state.focus);
 }
 
 // ---- summary -------------------------------------------------------------
@@ -869,6 +964,10 @@ function showSummary() {
   const pct = total ? Math.round(correct / total * 100) : 0;
   const score = total ? Math.round(correct / total * 1000) : 0; // scaled to 1000
   const passed = score >= PASS_SCORE;
+  // A domain drill covers one domain only, so the 100–1000 scaled score and
+  // its pass/fail verdict would mislead: the summary reports the raw domain
+  // result instead, with the same review pane below.
+  const drilling = state.focus !== "all";
 
   let domainScoresHtml = "";
   Object.keys(domStat).sort((a, b) => a - b).forEach(d => {
@@ -930,28 +1029,50 @@ function showSummary() {
     ? "<p style='color:#e53e3e;font-size:14px;margin-bottom:18px;font-weight:600;'>" +
       T.unanswered.replace("{n}", unanswered) + "</p>" : "";
 
+  // Raw-only head for a drill; the scaled head for a full draw.
+  const headHtml = drilling
+    ? "<div class='score-grid'>" +
+        "<div class='score-card total'><div class='big'>" + correct + "/" + total + "</div>" +
+          "<div class='label'>" + T.drill_score.replace("{d}", state.focus) +
+            " · " + pct + "%</div></div>" +
+        "<div class='score-card correct-c'><div class='big'>" + correct + "</div>" +
+          "<div class='label'>" + T.correct + "</div></div>" +
+        "<div class='score-card wrong-c'><div class='big'>" + (wrong + unanswered) + "</div>" +
+          "<div class='label'>" + T.incorrect + "</div></div>" +
+      "</div>" +
+      "<p class='threshold-note'>" +
+        T.focus_note.replace("{n}", total).replace("{d}", state.focus) + "</p>"
+    : "<div class='verdict " + (passed ? "pass" : "fail") + "'>" + (passed ? T.pass : T.fail) + "</div>" +
+      unansweredNote +
+      "<div class='score-grid'>" +
+        "<div class='score-card total'><div class='big'>" + score +
+          "<span style='font-size:18px;color:#a0aec0;font-weight:700;'>/1000</span></div>" +
+          "<div class='label'>" + T.score + "</div></div>" +
+        "<div class='score-card correct-c'><div class='big'>" + correct + "</div><div class='label'>" + T.correct + "</div></div>" +
+        "<div class='score-card wrong-c'><div class='big'>" + (wrong + unanswered) + "</div><div class='label'>" + T.incorrect + "</div></div>" +
+      "</div>" +
+      "<p class='threshold-note'>" +
+        (state.length === "quick" ? T.threshold_note_quick : T.threshold_note)
+          .replace("{p}", PASS_SCORE) + "</p>";
+
+  // In a drill the unanswered warning still matters, so it comes back below
+  // the head: the raw branch above skips it, prepending it here keeps both
+  // heads honest without duplicating it in the full-draw branch.
+  const drillUnanswered = (drilling && unanswered > 0) ? unansweredNote : "";
+
   document.getElementById("summaryContent").innerHTML =
     "<h1>" + T.complete + "</h1>" +
     "<p class='summary-subtitle'>" + T.answered_of.replace("{a}", answered).replace("{t}", total) + "</p>" +
-    "<div class='verdict " + (passed ? "pass" : "fail") + "'>" + (passed ? T.pass : T.fail) + "</div>" +
-    unansweredNote +
-    "<div class='score-grid'>" +
-      "<div class='score-card total'><div class='big'>" + score +
-        "<span style='font-size:18px;color:#a0aec0;font-weight:700;'>/1000</span></div>" +
-        "<div class='label'>" + T.score + "</div></div>" +
-      "<div class='score-card correct-c'><div class='big'>" + correct + "</div><div class='label'>" + T.correct + "</div></div>" +
-      "<div class='score-card wrong-c'><div class='big'>" + (wrong + unanswered) + "</div><div class='label'>" + T.incorrect + "</div></div>" +
-    "</div>" +
-    "<p class='threshold-note'>" +
-      (state.length === "quick" ? T.threshold_note_quick : T.threshold_note)
-        .replace("{p}", PASS_SCORE) + "</p>" +
+    headHtml + drillUnanswered +
     "<div class='section-title'>" + T.by_domain + "</div>" +
     "<div class='domain-scores'>" + domainScoresHtml + "</div>" +
     ((wrong + unanswered) > 0
       ? "<div class='section-title'>" + T.review_wrong + "</div>" + wrongGroupsHtml
       : "<p style='color:#38a169;font-weight:700;font-size:17px;'>" + T.all_correct + "</p>") +
     "<div class='rotate-note'><span class='dn-icon'>&#10227;</span>" +
-      T.summary_rotate.replace("{n}", total).replace("{bank}", QUESTIONS.length) + "</div>" +
+      (drilling
+        ? T.focus_note.replace("{n}", total).replace("{d}", state.focus)
+        : T.summary_rotate.replace("{n}", total).replace("{bank}", QUESTIONS.length)) + "</div>" +
     "<button type='button' class='restart-btn' onclick='restart()'>" + T.restart + "</button>";
 }
 
@@ -970,6 +1091,7 @@ function restart() {
 
 // ---- init ----------------------------------------------------------------
 (function init() {
+  buildFocusOptions();
   const saved = load();
   if (saved) {
     state.answers = saved.answers || {};
@@ -977,6 +1099,8 @@ function restart() {
     state.mode = saved.mode || "study";
     // load() normalized the length, so a pre-quick payload restores as "full".
     state.length = saved.length;
+    // Same for the focus: a pre-drill payload restores as the full draw.
+    state.focus = saved.focus;
     state.current = Math.min(saved.current || 0, state.order.length - 1);
   } else {
     state.order = shuffleOrder();
@@ -1042,6 +1166,7 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
         '<button type="button" id="lengthFull" aria-pressed="false" onclick="setLength(\'full\')"></button>'
         '<button type="button" id="lengthQuick" aria-pressed="false" onclick="setLength(\'quick\')"></button>'
         '</div>'
+        f'<select class="focus-select" id="focusSelect" aria-label="{ui["focus_label"]}" onchange="setFocus(this.value)"></select>'
         '<button type="button" class="nav-btn new-draw-btn" id="newDrawBtn" onclick="newDraw()">'
         f'<span class="dn-icon">&#10227;</span>{ui["new_set"]}</button>'
         '<span class="mode-hint" id="modeHint"></span>'

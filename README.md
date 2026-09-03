@@ -111,7 +111,8 @@ passing cut of **720**, mirroring the real scale.
 Features: a fresh 60-question draw each attempt, questions randomized within each domain, a
 **study** mode that reveals answers as you go with a rationale for every option, an **exam** mode
 that reveals at the end, per-domain breakdown against the pass threshold, and progress saved in
-`localStorage` so a refresh keeps your place. **Restart** draws a new set.
+`localStorage` so a refresh keeps your place. **Restart** draws a new set. A domain selector
+drills a single domain's whole bank instead, scored raw with no pass/fail verdict.
 
 - [`exam_en.html`](./exam_en.html) · [`exam_es.html`](./exam_es.html) · [`exam_pt.html`](./exam_pt.html)
 
@@ -149,7 +150,8 @@ percentages:
 Every item is written against one of the 25 official objectives and records which one. About 20%
 are **multiple-response** items, scored all-or-nothing and stating how many responses to select.
 Scoring uses the real **720** cut with a per-domain breakdown, on the same engine as the other
-two tracks.
+two tracks. A domain selector drills a single domain's whole bank instead, scored raw with
+no pass/fail verdict.
 
 - [`developer_exam_en.html`](./developer_exam_en.html)
 
@@ -183,7 +185,8 @@ percentages:
 
 Every item is written against one of the 38 official objectives and records which one. About 21%
 are **multiple-response** items, scored all-or-nothing and stating how many responses to select.
-Scoring uses the real **720** cut with a per-domain breakdown.
+Scoring uses the real **720** cut with a per-domain breakdown. A domain selector drills a single
+domain's whole bank instead, scored raw with no pass/fail verdict.
 
 - [`professional_exam_en.html`](./professional_exam_en.html)
 
