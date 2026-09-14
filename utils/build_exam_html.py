@@ -561,8 +561,6 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   font-size: 11px; letter-spacing: normal; text-transform: none; }
 .br-tag.src { border-style: dashed; }
 .br-body { padding: 0 16px 14px; }
-.br-situation { margin-bottom: 12px; padding-left: 12px; font-size: 14px; line-height: 1.6;
-  color: var(--fg-soft); border-left: 2px solid var(--border-strong); }
 .br-opt { display: flex; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); }
 .br-opt .opt-letter { width: 24px; height: 24px; min-width: 24px; font-size: 12px; }
 .br-opt.is-correct .opt-letter { background: var(--good); color: var(--good-fg); }
@@ -1333,8 +1331,7 @@ function browseRowHtml(r) {
   // approach is most effective?") repeats across the bank, so it is demoted to
   // a subline when a situation exists.
   const lead = q.situation
-    ? md(q.situation.length > 150 ? q.situation.slice(0, 150).replace(/\s+\S*$/, "") + "…" : q.situation) +
-      "<span class='br-ask'>" + md(q.question) + "</span>"
+    ? md(q.situation) + "<span class='br-ask'>" + md(q.question) + "</span>"
     : md(q.question);
   return "<details class='br-item' data-id='" + esc(q.id) + "'>" +
     "<summary class='br-head'>" +
@@ -1356,8 +1353,8 @@ function browseBody(id) {
       "</span>" +
       (o.explanation ? "<div class='br-opt-expl'>" + md(o.explanation) + "</div>" : "") +
       "</span></div>").join("");
-  return (q.situation ? "<div class='br-situation'>" + md(q.situation) + "</div>" : "") +
-    (isMulti(q) ? "<div class='q-select'>" + T.select_n.replace("{n}", selectCount(q)) + "</div>" : "") +
+  // The head already shows the full situation, so the body starts at the options.
+  return (isMulti(q) ? "<div class='q-select'>" + T.select_n.replace("{n}", selectCount(q)) + "</div>" : "") +
     opts;
 }
 
