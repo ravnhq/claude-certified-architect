@@ -383,6 +383,11 @@ const PREFLIGHT_TRACKS = [
         group: 'Drill after you have read the guide',
         items: [
           {
+            name: 'certsafari.com — start here',
+            href: 'https://www.certsafari.com/anthropic/claude-certified-architect-foundations',
+            note: 'Aligned to guide v1.0, configurable by domain and subdomain, and harder than the guide&rsquo;s own samples. The sharpest drilling tool of the free banks.',
+          },
+          {
             name: 'claudecertificationguide.com — diagnostic',
             href: 'https://claudecertificationguide.com/learn/diagnostic',
             note: 'Short. Use it to gauge where you stand before spending time on full-length mocks.',
