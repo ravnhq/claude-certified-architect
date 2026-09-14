@@ -69,7 +69,7 @@ function loadPage(file) {
   vm.runInContext(script +
     '\nthis.__api = { state, showSummary, renderQuestion, answer, orderedQuestions,' +
     ' selectCount, isMulti, T, DOMAINS, QUESTIONS, shuffleOrder, qById, restart, setFocus,' +
-    ' examSize, GROUPS, toggleBrowse, renderBrowse, filteredBank, browseBody, setBrowseDomain,' +
+    ' examSize, GROUPS, gotoSub, gotoGroup, toggleBrowse, renderBrowse, filteredBank, browseBody, setBrowseDomain,' +
     ' onBrowseSearch, toggleMisses, updateMissesUI, missedIds, saveMisses, MISS_KEY };', ctx);
   return { api: ctx.__api, el: id => ctx.document.getElementById(id) };
 }
@@ -292,6 +292,17 @@ function checkBrowse(file) {
     const opening = scen.situation.slice(0, 30).replace(/[*_`]/g, '');
     check('a scenario row leads with its situation, not the ask',
       new RegExp("br-stem'>[^<]*" + opening.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).test(el('browseList').innerHTML));
+  }
+  check('the table of contents links every subdomain once',
+    (el('bankToc').innerHTML.match(/class='toc-sub/g) || []).length === subs.size);
+  const anySub = api.QUESTIONS.find(q => q.task_id);
+  if (anySub) {
+    api.gotoSub(anySub.task_id);
+    check(`a subdomain link scopes the list to its group and marks itself (${anySub.task_id})`,
+      api.state.browse.domain === gk(anySub) &&
+      el('bankToc').innerHTML.includes("toc-sub active' id='toc-" + anySub.task_id) &&
+      el('browseList').innerHTML.includes("id='s-" + anySub.task_id + "'"));
+    api.gotoGroup('all');
   }
   check('browse lists the whole bank unfiltered',
     api.filteredBank().length === api.QUESTIONS.length);

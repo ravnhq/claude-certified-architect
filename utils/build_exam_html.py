@@ -327,6 +327,26 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 
 .shell { display: flex; flex: 1; min-height: 0; overflow: hidden; }
 .shell.bank .main { flex: 1 1 auto; }
+/* Bank table of contents: one row per group, its subdomains beneath, counts on
+   the right. Mirrors the exam sidebar so the two pages feel like one tool. */
+.toc-group { display: flex; align-items: center; width: 100%; padding: 12px 16px 5px;
+  background: none; border: none; color: var(--muted); cursor: pointer; text-align: left;
+  font-family: inherit; font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; }
+.toc-group:hover, .toc-group.active { color: var(--gold); }
+.toc-sub { display: flex; align-items: baseline; gap: 8px; width: 100%; padding: 5px 16px 5px 18px;
+  color: var(--muted); text-decoration: none; font-size: 12.5px; line-height: 1.4;
+  border-left: 2px solid transparent; }
+.toc-sub:hover { background: var(--surface-2); color: var(--fg); }
+.toc-sub.active { background: var(--gold-soft); color: var(--gold); border-left-color: var(--gold); }
+.toc-sub .toc-id { flex: 0 0 auto; font-family: "Source Code Pro", ui-monospace, Menlo, monospace;
+  font-size: 11px; font-weight: 600; color: var(--gold); }
+.toc-sub .toc-n { margin-left: auto; flex: 0 0 auto; font-size: 11px; color: var(--subtle); }
+.br-sub .br-anchor { margin-left: auto; color: var(--subtle); text-decoration: none;
+  font-weight: 400; opacity: 0; }
+.br-sub:hover .br-anchor, .br-sub:target .br-anchor { opacity: 1; }
+.br-sub .br-anchor:hover { color: var(--gold); }
+.br-sub:target { color: var(--gold); }
 
 .sidebar { width: 272px; min-width: 272px; background: var(--surface); color: var(--muted);
   display: flex; flex-direction: column; overflow: hidden; min-height: 0;
@@ -555,6 +575,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   body { min-height: 100vh; height: auto; overflow: auto; display: block; }
   .ravn-topbar { position: static; padding: 10px 16px; gap: 10px; flex-wrap: wrap; }
   .draw-note { padding: 8px 16px; }
+  .shell.bank .sidebar { display: none; }
   .ravn-brand-tagline { display: none; }
   .mode-controls { max-width: 100%; justify-content: flex-start; }
   .mode-hint { margin-left: 8px; }
@@ -803,7 +824,7 @@ function tallyAttempt(active, answers) {
 // so answering in study mode and then finishing cannot count one item twice.
 // `browse` is the bank-browser filter; it is view state, so it is not saved.
 const state = { current: 0, answers: {}, order: [], mode: "study", length: "full",
-                focus: "all", graded: {}, browse: { domain: "all", q: "" } };
+                focus: "all", graded: {}, browse: { domain: "all", q: "", sub: null } };
 
 // ---- persistence ---------------------------------------------------------
 function save() {
@@ -1352,6 +1373,81 @@ function renderBrowse() {
   list.innerHTML = rows.length
     ? groupedBrowseHtml(rows)
     : "<p class='br-empty'>" + esc(T.browse_none) + "</p>";
+  renderToc();
+}
+
+// ---- bank navigation ------------------------------------------------------
+// The table of contents lists every group and subdomain in the bank with its
+// item count, whatever the current filter, so it doubles as a map of coverage.
+function tocEntries() {
+  const groups = {};
+  browseIndex().forEach(r => {
+    const g = groupKey(r.q);
+    const entry = groups[g] = groups[g] || { key: g, n: 0, subs: {} };
+    entry.n += 1;
+    if (r.q.task_id) {
+      const s = entry.subs[r.q.task_id] = entry.subs[r.q.task_id] ||
+        { id: r.q.task_id, name: r.q.objective || "", n: 0 };
+      s.n += 1;
+    }
+  });
+  return Object.keys(groups).map(k => groups[k]);
+}
+
+function renderToc() {
+  const toc = document.getElementById("bankToc");
+  if (!toc) return;
+  const cur = state.browse;
+  toc.innerHTML = tocEntries().map(g =>
+    "<button type='button' class='toc-group" + (String(cur.domain) === g.key ? " active" : "") +
+      "' onclick=\"gotoGroup('" + esc(g.key) + "')\">" + esc(groupLabel(g.key)) + "</button>" +
+    Object.keys(g.subs).sort((a, b) => a.localeCompare(b, undefined, { numeric: true })).map(id => {
+      const s = g.subs[id];
+      return "<a class='toc-sub" + (cur.sub === id ? " active" : "") + "' id='toc-" + esc(id) + "' href='#" + esc(id) +
+        "' onclick=\"gotoSub('" + esc(id) + "'); return false;\" title='" + esc(s.name) + "'>" +
+        "<span class='toc-id'>" + esc(id) + "</span><span>" + esc(s.name) + "</span>" +
+        "<span class='toc-n'>" + s.n + "</span></a>";
+    }).join("")).join("");
+}
+
+function setHash(h) {
+  if (typeof history !== "undefined" && history.replaceState) {
+    try { history.replaceState(null, "", h ? "#" + h : location.pathname + location.search); } catch (e) {}
+  }
+}
+
+// A group link scopes the list to that group; a subdomain link scopes to its
+// group and scrolls to its heading. Either is a shareable URL: #A or #1.5.
+function gotoGroup(key) {
+  state.browse.sub = null;
+  setBrowseDomain(key);
+  setHash(key === "all" ? "" : key);
+}
+
+function gotoSub(id) {
+  const owner = browseIndex().find(r => r.q.task_id === id);
+  if (!owner) return;
+  state.browse.sub = id;
+  setBrowseDomain(groupKey(owner.q));
+  setHash(id);
+  // Scroll the list pane itself: the sticky group heading sits at its top,
+  // so the subheading needs to land just below it, not under it.
+  const h = document.getElementById("s-" + id);
+  const pane = h && h.closest ? h.closest(".content") : null;
+  if (h && pane && h.getBoundingClientRect) {
+    const top = h.getBoundingClientRect().top - pane.getBoundingClientRect().top + pane.scrollTop;
+    pane.scrollTop = Math.max(0, top - 88);
+  }
+  const active = document.getElementById("toc-" + id);
+  if (active && typeof active.scrollIntoView === "function") active.scrollIntoView({ block: "nearest" });
+}
+
+function applyHash() {
+  if (typeof location === "undefined") return;
+  const h = decodeURIComponent((location.hash || "").slice(1));
+  if (!h) return;
+  if (groupKeys().indexOf(h) >= 0) gotoGroup(h);
+  else gotoSub(h);
 }
 
 // Domain heading, then one subheading per blueprint subdomain (task_id) for
@@ -1363,14 +1459,15 @@ function groupedBrowseHtml(rows) {
     const q = r.q;
     if (groupKey(q) !== dom) {
       dom = groupKey(q); sub = null;
-      out.push("<h2 class='br-group'>" + esc(groupLabel(dom)) + "</h2>");
+      out.push("<h2 class='br-group' id='g-" + esc(dom) + "'>" + esc(groupLabel(dom)) + "</h2>");
     }
     if (q.task_id && q.task_id !== sub) {
       sub = q.task_id;
       const n = rows.filter(x => x.q.task_id === sub && groupKey(x.q) === dom).length;
-      out.push("<h3 class='br-sub'><span class='br-id'>" + esc(sub) + "</span>" +
+      out.push("<h3 class='br-sub' id='s-" + esc(sub) + "'><span class='br-id'>" + esc(sub) + "</span>" +
                (q.objective ? "<span>" + esc(q.objective) + "</span>" : "") +
-               "<span class='br-n'>" + n + "</span></h3>");
+               "<span class='br-n'>" + n + "</span>" +
+               "<a class='br-anchor' href='#" + esc(sub) + "' title='" + esc(T.bank_link) + "'>#</a></h3>");
     }
     out.push(browseRowHtml(r));
   });
@@ -1393,6 +1490,8 @@ function wireBrowse() {
 
 function setBrowseDomain(d) {
   state.browse.domain = d;
+  const sel = document.getElementById("browseDomain");
+  if (sel) sel.value = d;
   renderBrowse();
 }
 
@@ -1580,6 +1679,10 @@ function restart() {
     showScreen("browseScreen");
     wireBrowse();
     renderBrowse();
+    applyHash();
+    if (typeof window !== "undefined" && window.addEventListener) {
+      window.addEventListener("hashchange", applyHash);
+    }
     return;
   }
   buildFocusOptions();
@@ -1706,6 +1809,10 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
     if view == "bank":
         body = f"""{bank_topbar}
 <div class="shell bank">
+  <nav class="sidebar" aria-label="{ui['browse_title']}">
+    <div class="sidebar-header">{ui['browse_title']}</div>
+    <div class="sidebar-scroll" id="bankToc"></div>
+  </nav>
   <main class="main">
     <div class="content">
       {browse_screen}
