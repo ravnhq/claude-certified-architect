@@ -1,0 +1,23 @@
+{
+  "exam": "CCDV-F",
+  "source": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "question": "A customer support session sends the same lengthy system prompt, containing product policies and tone guidelines, on every turn of a multi-turn conversation. The team wants to reduce the repeated processing cost and latency of that unchanged content. Which feature should they enable?",
+  "options": [
+    "A) Prompt caching",
+    "B) Token counting",
+    "C) Batch processing",
+    "D) Data residency"
+  ],
+  "correct_answers": [
+    "A) Prompt caching"
+  ],
+  "explanations": [
+    "Prompt caching lets Claude reuse previously processed background content, such as a repeated system prompt, across turns to reduce cost and latency for the unchanged portion.",
+    "Token counting only estimates how many tokens a prompt will use before sending it; it does not reduce the cost or latency of processing repeated content.",
+    "Batch processing is for asynchronous, non-latency-sensitive bulk workloads, not for reducing repeated-content cost within an interactive multi-turn conversation.",
+    "Data residency controls the geographic location where inference runs; it has no effect on reducing repeated processing cost for unchanged prompt content."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Developer – Foundations (CCDV-F)\n- button \"6 / 15 correct (40%) View by domain\":\n  - generic: 6 / 15 correct (40%)\n  - generic: View by domain\n- progressbar\n- generic: Question 16 of 60\n- generic: \"Subdomain 2.1: Understanding Requirements\"\n- heading \"A customer support session sends the same lengthy system prompt, containing product policies and tone guidelines, on every turn of a multi-turn conversation. The team wants to reduce the repeated processing cost and latency of that unchanged content. Which feature should they enable?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Prompt caching\" [checked] [disabled]:\n  - generic: A) Prompt caching\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Prompt caching lets Claude reuse previously processed background content, such as a repeated system prompt, across turns to reduce cost and latency for the unchanged portion.\n  - radio \"B) Token counting\" [disabled]\n  - generic: B) Token counting\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Token counting only estimates how many tokens a prompt will use before sending it; it does not reduce the cost or latency of processing repeated content.\n  - radio \"C) Batch processing\" [disabled]\n  - generic: C) Batch processing\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Batch processing is for asynchronous, non-latency-sensitive bulk workloads, not for reducing repeated-content cost within an interactive multi-turn conversation.\n  - radio \"D) Data residency\" [disabled]\n  - generic: D) Data residency\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Data residency controls the geographic location where inference runs; it has no effect on reducing repeated processing cost for unchanged prompt content.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:49:24.367Z",
+  "fingerprint": "a9eb4c3692bc2d8767a2ac1eb981522af27ba208de70938dee22f3ea2b03c027"
+}

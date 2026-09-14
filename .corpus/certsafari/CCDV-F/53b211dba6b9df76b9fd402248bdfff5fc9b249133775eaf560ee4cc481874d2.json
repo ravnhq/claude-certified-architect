@@ -1,0 +1,23 @@
+{
+  "exam": "CCDV-F",
+  "source": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "question": "A team using Claude Sonnet 5 wants to guarantee the lowest possible latency on simple lookup queries by turning reasoning off completely for those requests. Simply omitting the thinking configuration does not achieve this. What should they do instead?",
+  "options": [
+    "A) Set thinking type to disabled explicitly in the request",
+    "B) Set effort to low while leaving the thinking parameter untouched",
+    "C) Set thinking type to enabled with an explicit budget_tokens value",
+    "D) Omit the thinking parameter entirely from every request"
+  ],
+  "correct_answers": [
+    "A) Set thinking type to disabled explicitly in the request"
+  ],
+  "explanations": [
+    "Claude Sonnet 5 requires passing thinking type disabled explicitly to turn off adaptive thinking, since it is on by default otherwise.",
+    "Lowering effort only reduces how much Claude thinks; it does not disable thinking outright, since thinking remains active by default on this model.",
+    "Manual thinking with type enabled and budget_tokens is rejected with a 400 error on Claude Sonnet 5, since it only supports adaptive thinking.",
+    "On Claude Sonnet 5, adaptive thinking is on by default, so omitting the thinking parameter still leaves thinking active rather than turning it off."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Developer – Foundations (CCDV-F)\n- button \"10 / 54 correct (19%) View by domain\":\n  - generic: 10 / 54 correct (19%)\n  - generic: View by domain\n- progressbar\n- generic: Question 55 of 60\n- generic: \"Subdomain 5.1: LLM Fundamentals\"\n- heading \"A team using Claude Sonnet 5 wants to guarantee the lowest possible latency on simple lookup queries by turning reasoning off completely for those requests. Simply omitting the thinking configuration does not achieve this. What should they do instead?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Set thinking type to disabled explicitly in the request\" [checked] [disabled]:\n  - generic: A) Set thinking type to disabled explicitly in the request\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Claude Sonnet 5 requires passing thinking type disabled explicitly to turn off adaptive thinking, since it is on by default otherwise.\n  - radio \"B) Set effort to low while leaving the thinking parameter untouched\" [disabled]\n  - generic: B) Set effort to low while leaving the thinking parameter untouched\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Lowering effort only reduces how much Claude thinks; it does not disable thinking outright, since thinking remains active by default on this model.\n  - radio \"C) Set thinking type to enabled with an explicit budget_tokens value\" [disabled]\n  - generic: C) Set thinking type to enabled with an explicit budget_tokens value\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Manual thinking with type enabled and budget_tokens is rejected with a 400 error on Claude Sonnet 5, since it only supports adaptive thinking.\n  - radio \"D) Omit the thinking parameter entirely from every request\" [disabled]\n  - generic: D) Omit the thinking parameter entirely from every request\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: On Claude Sonnet 5, adaptive thinking is on by default, so omitting the thinking parameter still leaves thinking active rather than turning it off.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:03:17.850Z",
+  "fingerprint": "53b211dba6b9df76b9fd402248bdfff5fc9b249133775eaf560ee4cc481874d2"
+}

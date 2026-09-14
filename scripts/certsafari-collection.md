@@ -52,7 +52,12 @@ ones. Completed questions have already been checkpointed.
 If `collector.save()` fails, fix the receiver and retry saving the retained
 batch before collecting more. `loadKnown()` restores only records already saved.
 
-Output is checkpointed under `.corpus/certsafari/`, which is ignored by Git.
+Output is checkpointed under `.corpus/certsafari/`. The requested CertSafari
+snapshot is tracked explicitly; other `.corpus` material remains ignored.
+When committing a refreshed snapshot, stage only the three exam directories,
+the six combined JSON/Markdown exports, `README.md`, and `status.json`.
+Do not include `resume.json`, `duplicates/`, or generated ZIP archives.
+New checkpoint files under the ignored parent need a targeted `git add -f`.
 `status.json` reports unique counts against the published totals observed on
 September 14, 2026: 480 CCAR-F, 456 CCAR-P, and 524 CCDV-F. Check the live totals
 when resuming another day. Random selection means a fixed number of quizzes
