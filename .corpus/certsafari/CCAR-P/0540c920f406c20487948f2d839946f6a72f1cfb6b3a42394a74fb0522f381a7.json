@@ -1,0 +1,29 @@
+{
+  "exam": "CCAR-P",
+  "source": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "question": "A developer is deciding what to mark with cache_control in a Messages API request that includes tool definitions, a system prompt, multi-turn message history with images, and citation-enabled document blocks. Which of the following are directly cacheable? (Select all that apply.)",
+  "options": [
+    "A) The tools array that holds the tool definitions Claude can call",
+    "B) Thinking blocks marked directly with their own cache_control entry",
+    "C) Message content blocks like text, images, and tool results",
+    "D) Empty text blocks inserted as placeholders between conversation turns",
+    "E) The system array that holds Claude's fixed instructions",
+    "F) Citation sub-content blocks nested inside a cached document block"
+  ],
+  "correct_answers": [
+    "A) The tools array that holds the tool definitions Claude can call",
+    "C) Message content blocks like text, images, and tool results",
+    "E) The system array that holds Claude's fixed instructions"
+  ],
+  "explanations": [
+    "Correct. The tools array is explicitly listed as cacheable content.",
+    "Incorrect. Thinking blocks cannot be explicitly marked with their own cache_control entry; they are only cached implicitly as part of a previous assistant turn.",
+    "Correct. Message content blocks, including text, images, documents, tool use, and tool results, are cacheable.",
+    "Incorrect. Empty text blocks are explicitly excluded from caching.",
+    "Correct. The system array is explicitly listed as cacheable content.",
+    "Incorrect. Sub-content blocks like citations are not cached individually; the guidance is to cache the top-level document block instead."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Architect – Professional (CCAR-P)\n- button \"18 / 59 correct (31%) View by domain\":\n  - generic: 18 / 59 correct (31%)\n  - generic: View by domain\n- progressbar\n- generic: Question 60 of 60\n- generic: \"Subdomain 2.5: Implement prompt reuse strategies\"\n- heading \"A developer is deciding what to mark with cache_control in a Messages API request that includes tool definitions, a system prompt, multi-turn message history with images, and citation-enabled document blocks. Which of the following are directly cacheable? (Select all that apply.)\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- checkbox \"A) The tools array that holds the tool definitions Claude can call\" [checked] [disabled]:\n- generic: A) The tools array that holds the tool definitions Claude can call\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. The tools array is explicitly listed as cacheable content.\n- checkbox \"B) Thinking blocks marked directly with their own cache_control entry\" [checked] [disabled]:\n- generic: B) Thinking blocks marked directly with their own cache_control entry\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Incorrect. Thinking blocks cannot be explicitly marked with their own cache_control entry; they are only cached implicitly as part of a previous assistant turn.\n- checkbox \"C) Message content blocks like text, images, and tool results\" [checked] [disabled]:\n- generic: C) Message content blocks like text, images, and tool results\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. Message content blocks, including text, images, documents, tool use, and tool results, are cacheable.\n- checkbox \"D) Empty text blocks inserted as placeholders between conversation turns\" [disabled]\n- generic: D) Empty text blocks inserted as placeholders between conversation turns\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Incorrect. Empty text blocks are explicitly excluded from caching.\n- checkbox \"E) The system array that holds Claude's fixed instructions\" [disabled]\n- generic: E) The system array that holds Claude's fixed instructions\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. The system array is explicitly listed as cacheable content.\n- checkbox \"F) Citation sub-content blocks nested inside a cached document block\" [disabled]\n- generic: F) Citation sub-content blocks nested inside a cached document block\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded] [active]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Incorrect. Sub-content blocks like citations are not cached individually; the guidance is to cache the top-level document block instead.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Finish Quiz\":\n  - text: Finish Quiz",
+  "captured_at": "2026-09-14T16:23:48.931Z",
+  "fingerprint": "0540c920f406c20487948f2d839946f6a72f1cfb6b3a42394a74fb0522f381a7"
+}

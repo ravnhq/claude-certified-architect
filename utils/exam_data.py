@@ -127,17 +127,47 @@ def _infer_domain(q):
     return 1
 
 
+def objective_themes():
+    """{theme letter: theme name} from objectives.json."""
+    return _read_json(os.path.join(DATA_DIR, "objectives.json"), {}).get("themes", {})
+
+
+def _imported_questions(lang):
+    # The collected corpus is English only; other languages keep the hand-authored bank.
+    return _read_json(os.path.join(DATA_DIR, f"imported_{lang}.json"), [])
+
+
 def load(lang):
     """Return the merged, domain-tagged, deduped question list for `lang`."""
     domain_map = _read_json(os.path.join(DATA_DIR, "domains.json"), {})
     dupes = set(_read_json(os.path.join(DATA_DIR, "duplicates.json"), []))
 
-    questions = _guide_questions(lang) + _mock_questions(lang)
+    # Score-report objectives (objectives.json) and the hand-made item → objective
+    # map. An item without a mapping simply carries no task_id.
+    # Every item displays an official task statement (blueprint.json) under a
+    # score-report theme (objectives.json), whether it was hand-tagged to a
+    # score-report objective or imported with a subdomain label: one heading
+    # scheme, so the bank gives no hint of where an item came from.
+    meta = _read_json(os.path.join(DATA_DIR, "objectives.json"), {})
+    objective_subdomains = meta.get("objective_subdomains", {})
+    subdomain_themes = meta.get("subdomain_themes", {})
+    statements = {}
+    for d, v in _read_json(os.path.join(DATA_DIR, "blueprint.json"), {}).get("domains", {}).items():
+        for i, text in enumerate(v.get("objectives", []), 1):
+            statements[f"{d}.{i}"] = text
+    objective_map = _read_json(os.path.join(DATA_DIR, "objective_map.json"), {})
+
+    questions = _guide_questions(lang) + _mock_questions(lang) + _imported_questions(lang)
     merged = []
     for q in questions:
         if q["id"] in dupes:
             continue
         q["domain"] = domain_map.get(q["id"]) or q.get("domain") or _infer_domain(q)
+        tid = objective_subdomains.get(objective_map.get(q["id"])) or q.get("task_id")
+        if tid in statements:
+            q["task_id"] = tid
+            q["objective"] = statements[tid]
+            q["group"] = subdomain_themes.get(tid, "")
         merged.append(q)
 
     # Group by domain (1..5), preserving discovery order within each domain.

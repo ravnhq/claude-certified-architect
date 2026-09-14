@@ -11,9 +11,11 @@ build_professional_exam.py does. The differences from Architect Foundations:
   * multiple-response items, scored all-or-nothing
   * English only — Anthropic delivers the exam and its prep content in English
 
-Question bank: ccdf/data/questions.json (Ravn-authored practice items,
-written against the official blueprint objectives — not real exam content).
-Validate it with utils/validate_developer_bank.py.
+Question bank: ccdf/data/questions.json, imported from the collected CertSafari
+corpus by utils/import_certsafari.py and tagged to the official blueprint
+objectives. The items and their answer keys are CertSafari's, not real exam
+content and not independently verified here. Validate the bank with
+utils/validate_developer_bank.py.
 
 Usage: python3 utils/build_developer_exam.py
 """
@@ -36,8 +38,7 @@ UI["threshold_note"] = (
     + str(EXAM_SIZE) + " questions weighted to the official domain blueprint ("
     + SPLIT + "). "
     "Multiple-response items are scored all-or-nothing. The score is scaled to "
-    "1000 as a study approximation of the real 100–1,000 scaled score. These are "
-    "Ravn-authored practice items, not real exam content."
+    "1000 as a study approximation of the real 100–1,000 scaled score."
 )
 
 
@@ -70,8 +71,7 @@ def main():
     pass_score = blueprint["_exam"]["pass_score"]
     scale_top = blueprint["_exam"]["scale"][1]
 
-    engine.render_page(
-        questions=questions,
+    common = dict(
         domains_js=domains_js,
         ui=UI,
         per_domain=DRAW,
@@ -79,9 +79,23 @@ def main():
         pass_pct=round(pass_score / scale_top * 100),
         store_key="ccdvf-exam-en",
         lang_attr="en",
+    )
+    engine.render_page(
+        questions=questions,
         title="Claude Certified Developer — Foundations Practice Exam",
         page_title="Developer Foundations Practice Exam · Ravn",
         out_path=os.path.join(ROOT_DIR, "ccdf", "dist", "exam_en.html"),
+        bank_href="bank-developer-en.html",
+        **common,
+    )
+    engine.render_page(
+        questions=questions,
+        title=UI["browse_title"],
+        page_title=f"{UI['browse_title']} · Ravn",
+        out_path=os.path.join(ROOT_DIR, "ccdf", "dist", "bank_en.html"),
+        view="bank",
+        exam_href="developer-en.html",
+        **common,
     )
     print(f"Draw per attempt: {drawn} questions across {len(domains_js)} domains "
           f"(bank of {len(questions)}).")

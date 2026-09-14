@@ -567,13 +567,13 @@ The rule is general. When two options both look like improvements, ask which one
 
 This repository ships a **Professional practice exam** you can run in the browser:
 
-- **126-question bank**, every item written against one of the 38 official objectives
+- A bank of collected practice items, each tagged to one of the 38 official objectives
 - Each attempt draws **63 questions weighted to the blueprint** — 11/8/12/10/9/9/4 across the seven domains
 - **Multiple-response items** included, scored all-or-nothing, each stating how many responses to select
 - **Study mode** (rationale reveals per question) and **exam mode** (results at the end)
 - Per-domain breakdown against the 720 cut score, and progress saved in the browser
 
-> These are **Ravn-authored practice items, not real exam content**, and no third party can reproduce the live item bank. They are written to rehearse the reasoning the blueprint rewards. Treat a passing practice score as a readiness signal, never as a prediction.
+> These are **collected practice items, not real exam content**, and no third party can reproduce the live item bank. They rehearse the reasoning the blueprint rewards. Treat a passing practice score as a readiness signal, never as a prediction.
 
 ## A Four-Phase Preparation Plan
 

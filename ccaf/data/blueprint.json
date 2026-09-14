@@ -1,0 +1,60 @@
+{
+  "_source": "CCAR-F task statements as labelled on the collected practice items (Subdomain X.Y), matching the official Foundations exam guide numbering; used by utils/import_certsafari.py to place imported items.",
+  "domains": {
+    "1": {
+      "name": "Agent Architecture and Orchestration",
+      "objectives": [
+        "Design and implement agentic loops for autonomous task execution",
+        "Orchestrate multi-agent systems with coordinator-subagent patterns",
+        "Configure subagent invocation, context passing, and spawning",
+        "Implement multi-step workflows with enforcement and handoff patterns",
+        "Apply Agent SDK hooks for tool call interception and data normalization",
+        "Design task decomposition strategies for complex workflows",
+        "Manage session state, resumption, and forking"
+      ]
+    },
+    "2": {
+      "name": "Tool Design and MCP Integration",
+      "objectives": [
+        "Design effective tool interfaces with clear descriptions and boundaries",
+        "Implement structured error responses for MCP tools",
+        "Distribute tools appropriately across agents and configure tool choice",
+        "Integrate MCP servers into Claude Code and agent workflows",
+        "Select and apply built-in tools (Read, Write, Edit, Bash, Grep, Glob) effectively"
+      ]
+    },
+    "3": {
+      "name": "Claude Code Configuration and Workflows",
+      "objectives": [
+        "Configure CLAUDE.md files with appropriate hierarchy, scoping, and modular organization",
+        "Create and configure custom slash commands and skills",
+        "Apply path-specific rules for conditional convention loading",
+        "Determine when to use plan mode vs direct execution",
+        "Apply iterative refinement techniques for progressive improvement",
+        "Integrate Claude Code into CI/CD pipelines"
+      ]
+    },
+    "4": {
+      "name": "Prompt Engineering and Structured Output",
+      "objectives": [
+        "Design prompts with explicit criteria to improve precision and reduce false positives",
+        "Apply few-shot prompting to improve output consistency and quality",
+        "Enforce structured output using tool use and JSON schemas",
+        "Implement validation, retry, and feedback loops for extraction quality",
+        "Design efficient batch processing strategies",
+        "Design multi-instance and multi-pass review architectures"
+      ]
+    },
+    "5": {
+      "name": "Context Management and Reliability",
+      "objectives": [
+        "Manage conversation context to preserve critical information across long interactions",
+        "Design effective escalation and ambiguity resolution patterns",
+        "Implement error propagation strategies across multi-agent systems",
+        "Manage context effectively in large codebase exploration",
+        "Design human review workflows and confidence calibration",
+        "Preserve information provenance and handle uncertainty in multi-source synthesis"
+      ]
+    }
+  }
+}

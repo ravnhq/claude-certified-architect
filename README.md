@@ -17,7 +17,7 @@ the browser.
 | Track | Exam code | Best fit | What this repo gives you |
 |---|---|---|---|
 | **Architect – Foundations** | CCAR-F | Practitioners building with Claude Code, the Claude Agent SDK, the Claude API, and MCP | Study guide, practice exam, and cheatsheet in EN / ES / PT, plus the preflight checklist |
-| **Architect – Professional** | CCAR-P | Architects responsible for production AI architecture, evaluation, governance, and lifecycle decisions | English study guide and a 126-question practice exam |
+| **Architect – Professional** | CCAR-P | Architects responsible for production AI architecture, evaluation, governance, and lifecycle decisions | English study guide and a 63-question practice exam |
 | **Developer – Foundations** | CCDV-F | Engineers building and shipping production applications, agents, and workflows on the Claude platform | English study guide and a 53-question practice exam |
 
 The three exams use different blueprints. Foundations has five domains, Developer eight,
@@ -104,9 +104,11 @@ PDFs are generated fresh on every deploy from the current markdown sources.
 ## Foundations practice exam
 
 A self-paced HTML quiz that runs entirely in your browser. Each attempt draws **12 random
-questions per domain — 60 in total** — from a pool of 136: the 76 scenario questions from the
-guide plus 60 domain-style questions from the mock bank. The score is scaled to 1,000 with a
-passing cut of **720**, mirroring the real scale.
+questions per domain — 60 in total**. The English bank holds 607 items: the 76 scenario
+questions from the guide, 60 domain-style questions from the mock bank, and 471 imported
+practice items tagged to the official task statements. Spanish and Portuguese draw from the
+136 hand-authored items. The score is scaled to 1,000 with a passing cut of **720**, mirroring
+the real scale.
 
 Features: a fresh 60-question draw each attempt, questions randomized within each domain, a
 **study** mode that reveals answers as you go with a rationale for every option, an **exam** mode
@@ -120,7 +122,7 @@ drills a single domain's whole bank instead, scored raw with no pass/fail verdic
 
 A one-page reference distilling the exam into **12 recurring principles** — each with the correct
 approach and the trap to avoid — **5 questions to ask when two answers look equally good**, and a
-breakdown of the 136-question, 5-domain pool with domain weights and answer-letter distribution.
+breakdown of the 136 hand-authored questions by domain, with weights and answer-letter distribution.
 
 - [`ccaf/dist/cheatsheet_en.html`](./ccaf/dist/cheatsheet_en.html) · [`ccaf/dist/cheatsheet_es.html`](./ccaf/dist/cheatsheet_es.html) · [`ccaf/dist/cheatsheet_pt.html`](./ccaf/dist/cheatsheet_pt.html)
 
@@ -132,31 +134,31 @@ Covers the **eight-domain Developer – Foundations blueprint (CCDV-F)**: agents
 
 ## Developer practice exam
 
-Draws **53 questions per attempt from a 106-question bank**, weighted to the official domain
-percentages:
+Draws **53 questions per attempt**, weighted to the official domain percentages:
 
-| Domain | Weight | Drawn | Bank |
-|---|---:|---:|---:|
-| 1. Agents and Workflows | 14.7% | 8 | 16 |
-| 2. Applications and Integration | 33.1% | 17 | 34 |
-| 3. Claude Code | 3.1% | 2 | 4 |
-| 4. Eval, Testing, and Debugging | 2.6% | 1 | 2 |
-| 5. Model Selection and Optimization | 16.8% | 9 | 18 |
-| 6. Prompt and Context Engineering | 11.0% | 6 | 12 |
-| 7. Security and Safety | 8.1% | 4 | 8 |
-| 8. Tools and MCPs | 10.6% | 6 | 12 |
-| **Total** | **100%** | **53** | **106** |
+| Domain | Weight | Drawn |
+|---|---:|---:|
+| 1. Agents and Workflows | 14.7% | 8 |
+| 2. Applications and Integration | 33.1% | 17 |
+| 3. Claude Code | 3.1% | 2 |
+| 4. Eval, Testing, and Debugging | 2.6% | 1 |
+| 5. Model Selection and Optimization | 16.8% | 9 |
+| 6. Prompt and Context Engineering | 11.0% | 6 |
+| 7. Security and Safety | 8.1% | 4 |
+| 8. Tools and MCPs | 10.6% | 6 |
+| **Total** | **100%** | **53** |
 
-Every item is written against one of the 25 official objectives and records which one. About 20%
-are **multiple-response** items, scored all-or-nothing and stating how many responses to select.
-Scoring uses the real **720** cut with a per-domain breakdown, on the same engine as the other
-two tracks. A domain selector drills a single domain's whole bank instead, scored raw with
-no pass/fail verdict.
+The bank behind that draw is several times the size of one
+attempt, so repeat attempts overlap little. Every item is tagged to one of the 25 official
+objectives and records which one. About 20% are **multiple-response** items, scored
+all-or-nothing and stating how many responses to select. Scoring uses the real **720** cut with
+a per-domain breakdown, on the same engine as the other two tracks. A domain selector drills a
+single domain's whole bank instead, scored raw with no pass/fail verdict.
 
 - [`ccdf/dist/exam_en.html`](./ccdf/dist/exam_en.html)
 
-> **These are Ravn-authored practice items, not real exam content.** They rehearse the reasoning
-> the blueprint rewards; they do not predict or reproduce the live item bank.
+> **Not real exam content.** These items rehearse the reasoning the blueprint rewards; they do
+> not predict or reproduce the live item bank.
 
 ## Professional study guide
 
@@ -169,29 +171,30 @@ blueprint rewards, not just the objective titles.
 
 ## Professional practice exam
 
-Draws **63 questions per attempt from a 126-question bank**, weighted to the official domain
-percentages:
+Draws **63 questions per attempt**, weighted to the official domain percentages:
 
-| Domain | Weight | Drawn | Bank |
-|---|---:|---:|---:|
-| 1. Solution Design & Architecture | 17% | 11 | 22 |
-| 2. Claude Models, Prompting & Context Engineering | 13% | 8 | 16 |
-| 3. Integration | 19% | 12 | 24 |
-| 4. Evaluation, Testing & Optimization | 16% | 10 | 20 |
-| 5. Governance, Safety & Risk Management | 14% | 9 | 18 |
-| 6. Stakeholder Communication & Lifecycle Management | 14% | 9 | 18 |
-| 7. Developer Productivity & Operational Enablement | 7% | 4 | 8 |
-| **Total** | **100%** | **63** | **126** |
+| Domain | Weight | Drawn |
+|---|---:|---:|
+| 1. Solution Design & Architecture | 17% | 11 |
+| 2. Claude Models, Prompting & Context Engineering | 13% | 8 |
+| 3. Integration | 19% | 12 |
+| 4. Evaluation, Testing & Optimization | 16% | 10 |
+| 5. Governance, Safety & Risk Management | 14% | 9 |
+| 6. Stakeholder Communication & Lifecycle Management | 14% | 9 |
+| 7. Developer Productivity & Operational Enablement | 7% | 4 |
+| **Total** | **100%** | **63** |
 
-Every item is written against one of the 38 official objectives and records which one. About 21%
-are **multiple-response** items, scored all-or-nothing and stating how many responses to select.
-Scoring uses the real **720** cut with a per-domain breakdown. A domain selector drills a single
-domain's whole bank instead, scored raw with no pass/fail verdict.
+The bank behind that draw is several times the size of one
+attempt, so repeat attempts overlap little. Every item is tagged to one of the 38 official
+objectives and records which one. About a quarter are **multiple-response** items, scored
+all-or-nothing and stating how many responses to select. Scoring uses the real **720** cut with
+a per-domain breakdown. A domain selector drills a single domain's whole bank instead, scored
+raw with no pass/fail verdict.
 
 - [`ccap/dist/exam_en.html`](./ccap/dist/exam_en.html)
 
-> **These are Ravn-authored practice items, not real exam content.** They rehearse the reasoning
-> the blueprint rewards; they do not predict or reproduce the live item bank.
+> **Not real exam content.** These items rehearse the reasoning the blueprint rewards; they do
+> not predict or reproduce the live item bank.
 
 ## How to use
 
@@ -212,6 +215,7 @@ npm install --no-save marked@13 minisearch@7   # build dependencies
 
 python3 utils/build_exam_html.py               # → ccaf/dist/exam_{en,es,pt}.html
 python3 utils/build_exam_html.py en es         # specific languages
+python3 utils/import_certsafari.py             # corpus + tags → ccap,ccdf data/questions.json
 python3 utils/build_professional_exam.py       # → ccap/dist/exam_en.html
 python3 utils/build_developer_exam.py          # → ccdf/dist/exam_en.html
 python3 utils/build_cheatsheet.py              # → ccaf/dist/cheatsheet_{en,es,pt}.html
@@ -223,8 +227,10 @@ node utils/test_exam_engine.mjs                # engine checks (Foundations + Pr
 node utils/test_exam_render.mjs                # render checks
 ```
 
-Each validator fails on a bad answer key, an objective absent from the official guide, an
-uncovered objective, or a domain whose bank is smaller than its draw.
+Each validator fails on a bad answer key, an objective absent from the official guide, a stem
+that states a different number of answers than its key, or a domain whose bank is smaller than
+its draw. An objective no item covers is reported as a warning, since the CCAR-P and CCDV-F
+banks are imported rather than commissioned.
 
 The Foundations and Professional exams and the site regenerate on every deploy. The Developer
 exam and the cheatsheet ship their committed HTML — re-run their generators only when editing
@@ -239,14 +245,23 @@ Each exam owns a top-level directory with the same internal shape:
 |---|---|---|---|
 | Study guide | `ccaf/guide_{en,es,pt}.md` | `ccap/guide_en.md` | `ccdf/guide_en.md` |
 | Question data | `ccaf/data/` | `ccap/data/` | `ccdf/data/` |
-| Source material | `ccaf/sources/` | `ccap/sources/` | `ccdf/sources/` |
+| Source material | `ccaf/sources/` | `.corpus/certsafari/` | `ccdf/sources/`, `.corpus/certsafari/` |
 | Exercises | `ccaf/exercises/` | — | — |
 | Generated HTML | `ccaf/dist/` | `ccap/dist/` | `ccdf/dist/` |
 
-`data/` holds the editable question banks and blueprint transcriptions; `sources/` holds
-third-party inputs like the official exam-guide PDFs and external question samples;
-`dist/` holds generated exam and cheatsheet HTML — edit sources, not `dist/`. Shared
-tooling stays in `utils/` (builders, validators, engine tests) and `scripts/` (site build).
+`data/` holds the question banks and blueprint transcriptions; `sources/` holds third-party
+inputs like the official exam-guide PDFs; `dist/` holds generated exam and cheatsheet HTML —
+edit sources, not `dist/`. Shared tooling stays in `utils/` (importer, builders, validators,
+engine tests) and `scripts/` (site build and the CertSafari collector).
+
+The Foundations bank in `ccaf/data/questions.json` is Ravn-authored and edited by hand. The
+CCAR-P and CCDV-F banks are not: `ccap/data/questions.json` and `ccdf/data/questions.json` are
+generated by `utils/import_certsafari.py` from the CertSafari corpus under `.corpus/certsafari/`,
+so an edit made directly to either file is lost on the next import. The same script writes
+`ccaf/data/imported_en.json`, the imported half of the English Foundations bank, placed by
+`ccaf/data/blueprint.json` and grouped in the bank browser through `ccaf/data/objectives.json`. Each item's domain and
+objective come from the `Subdomain X.Y` label CertSafari itself puts on the question, read out of
+the captured page snapshot and checked against `objectives.json` before it is trusted.
 
 A few files are not what they look like: `ccaf/sources/mock-exam.txt` is the source for the
 60-question mock bank, and the preflight checklist has no markdown source — its content
@@ -260,7 +275,10 @@ build.
   `ccaf/guide_en.md`, `ccaf/guide_es.md`, and `ccaf/guide_pt.md` so question extraction stays consistent.
 - Run the validators and both test scripts before opening a PR.
 - **Do not commit material from the Partner Academy courses.** That content is partner-gated.
-  Practice items and guide prose here are Ravn-authored; keep it that way.
+  Guide prose and the Foundations practice items are Ravn-authored; keep it that way. The
+  CertSafari archive under `.corpus/certsafari/` is the tracked third-party exception — see
+  `scripts/certsafari-collection.md` — and it is the source of the CCAR-P and CCDV-F banks,
+  which are regenerated from it by `utils/import_certsafari.py` rather than edited by hand.
 - PDFs regenerate automatically on merge to `main` as part of the Pages deploy.
 
 ## License

@@ -1,0 +1,17 @@
+{
+  "CCAR-F": {
+    "collected": 471,
+    "published_total": 480,
+    "remaining": 9
+  },
+  "CCAR-P": {
+    "collected": 421,
+    "published_total": 456,
+    "remaining": 35
+  },
+  "CCDV-F": {
+    "collected": 475,
+    "published_total": 524,
+    "remaining": 49
+  }
+}

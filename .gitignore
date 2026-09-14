@@ -20,7 +20,8 @@ docs/pdf/
 docs/vendor/
 __pycache__/
 
-# local Skilljar course corpus — partner-gated source, never published
+# local corpus — Skilljar course material is partner-gated, never published;
+# certsafari/ is a tracked exception (see scripts/certsafari-collection.md)
 .corpus/
 
 # vendored agent tooling — reinstall from skills-lock.json, do not commit

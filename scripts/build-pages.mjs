@@ -9,9 +9,9 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const DOCS = path.join(ROOT, 'docs');
 
 const LANGS = [
-  { code: 'en', label: 'English',    guide: 'ccaf/guide_en.md',  test: 'ccaf/dist/exam_en.html' },
-  { code: 'es', label: 'Español',    guide: 'ccaf/guide_es.md',  test: 'ccaf/dist/exam_es.html' },
-  { code: 'pt', label: 'Português',  guide: 'ccaf/guide_pt.md',  test: 'ccaf/dist/exam_pt.html' },
+  { code: 'en', label: 'English',    guide: 'ccaf/guide_en.md',  test: 'ccaf/dist/exam_en.html', bank: 'ccaf/dist/bank_en.html' },
+  { code: 'es', label: 'Español',    guide: 'ccaf/guide_es.md',  test: 'ccaf/dist/exam_es.html', bank: 'ccaf/dist/bank_es.html' },
+  { code: 'pt', label: 'Português',  guide: 'ccaf/guide_pt.md',  test: 'ccaf/dist/exam_pt.html', bank: 'ccaf/dist/bank_pt.html' },
 ];
 
 const PROFESSIONAL_GUIDES = [
@@ -22,6 +22,7 @@ const PROFESSIONAL_GUIDES = [
     guide: 'ccap/guide_en.md',
     output: 'professional-en',
     test: 'ccap/dist/exam_en.html',
+    bank: 'ccap/dist/bank_en.html',
   },
 ];
 
@@ -33,6 +34,7 @@ const DEVELOPER_GUIDES = [
     guide: 'ccdf/guide_en.md',
     output: 'developer-en',
     test: 'ccdf/dist/exam_en.html',
+    bank: 'ccdf/dist/bank_en.html',
   },
 ];
 
@@ -149,6 +151,7 @@ function landing() {
       <ul>
         <li><a href="guides/${l.code}.html">Read the guide</a></li>
         <li><a href="practical/${l.code}.html">Practice exam</a></li>
+        <li><a href="practical/bank-${l.code}.html">Question bank</a></li>
         <li><a href="cheatsheet/${l.code}.html">Cheatsheet</a></li>
         <li><a href="pdf/guide_${l.code}.pdf">PDF download</a></li>
       </ul>
@@ -161,6 +164,7 @@ function landing() {
       <ul>
         <li><a href="guides/${l.output}.html">Read the study guide</a></li>
         <li><a href="practical/${l.output}.html">Practice exam (63 questions)</a></li>
+        <li><a href="practical/bank-${l.output}.html">Question bank</a></li>
         <li><a href="https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification">Official registration</a></li>
       </ul>
     </article>`).join('');
@@ -196,6 +200,7 @@ function landing() {
       resources: [
         { label: 'Study guide', langs: [['EN', 'guides/en.html'], ['ES', 'guides/es.html'], ['PT', 'guides/pt.html']] },
         { label: 'Practice exam', langs: [['EN', 'practical/en.html'], ['ES', 'practical/es.html'], ['PT', 'practical/pt.html']] },
+        { label: 'Question bank', langs: [['EN', 'practical/bank-en.html'], ['ES', 'practical/bank-es.html'], ['PT', 'practical/bank-pt.html']] },
         { label: 'Cheatsheet', langs: [['EN', 'cheatsheet/en.html'], ['ES', 'cheatsheet/es.html'], ['PT', 'cheatsheet/pt.html']] },
         { label: 'PDF', langs: [['EN', 'pdf/guide_en.pdf'], ['ES', 'pdf/guide_es.pdf'], ['PT', 'pdf/guide_pt.pdf']] },
         { label: 'Preflight checklist', langs: [['EN', 'preflight/architect-foundations.html']] },
@@ -212,6 +217,7 @@ function landing() {
       resources: [
         { label: 'Study guide', langs: [['EN', 'guides/professional-en.html']] },
         { label: 'Practice exam', langs: [['EN', 'practical/professional-en.html']] },
+        { label: 'Question bank', langs: [['EN', 'practical/bank-professional-en.html']] },
         { label: 'Preflight checklist', langs: [['EN', 'preflight/architect-professional.html']] },
       ],
       register: 'https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification',
@@ -226,6 +232,7 @@ function landing() {
       resources: [
         { label: 'Study guide', langs: [['EN', 'guides/developer-en.html']] },
         { label: 'Practice exam', langs: [['EN', 'practical/developer-en.html']] },
+        { label: 'Question bank', langs: [['EN', 'practical/bank-developer-en.html']] },
         { label: 'Preflight checklist', langs: [['EN', 'preflight/developer-foundations.html']] },
       ],
       register: 'https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification',
@@ -365,7 +372,7 @@ const PREFLIGHT_TRACKS = [
         group: 'Ravn materials',
         items: [
           { name: 'Study guide', href: 'guides/en.html', note: 'The full Foundations guide, about a 2-hour read. Also in <a href="guides/es.html">Spanish</a> and <a href="guides/pt.html">Portuguese</a>.', internal: true },
-          { name: 'Practice exam', href: 'practical/en.html', note: '60 questions drawn <strong>fresh from a bank of 136 on every attempt</strong>, scored per domain to 1000 — full length on purpose, because the real exam is 60 questions in 120 minutes. A domain selector drills a single domain&rsquo;s whole bank instead. Also in <a href="practical/es.html">Spanish</a> and <a href="practical/pt.html">Portuguese</a>.', internal: true },
+          { name: 'Practice exam', href: 'practical/en.html', note: '60 questions drawn <strong>fresh from a bank of 600+ on every attempt</strong>, scored per domain to 1000 — full length on purpose, because the real exam is 60 questions in 120 minutes. A domain selector drills a single domain&rsquo;s whole bank instead. Also in <a href="practical/es.html">Spanish</a> and <a href="practical/pt.html">Portuguese</a>.', internal: true },
           { name: 'Cheatsheet', href: 'cheatsheet/en.html', note: 'One-page recap of the five domains. Also in <a href="cheatsheet/es.html">Spanish</a> and <a href="cheatsheet/pt.html">Portuguese</a>.', internal: true },
         ],
       },
@@ -500,7 +507,7 @@ const PREFLIGHT_TRACKS = [
         group: 'Ravn materials',
         items: [
           { name: 'Study guide', href: 'guides/professional-en.html', note: 'The full Professional guide, English only.', internal: true },
-          { name: 'Practice exam', href: 'practical/professional-en.html', note: '63 questions drawn from a bank of 126, scored to 1000.', internal: true },
+          { name: 'Practice exam', href: 'practical/professional-en.html', note: '63 questions drawn fresh on every attempt from a much larger bank, scored to 1000.', internal: true },
         ],
       },
       {
@@ -617,7 +624,7 @@ const PREFLIGHT_TRACKS = [
         group: 'Ravn materials',
         items: [
           { name: 'Study guide', href: 'guides/developer-en.html', note: 'The full Developer guide, English only.', internal: true },
-        { name: 'Practice exam', href: 'practical/developer-en.html', note: '53 questions drawn from a bank of 106, weighted to the eight domains and scored to 1000.', internal: true },
+        { name: 'Practice exam', href: 'practical/developer-en.html', note: '53 questions drawn fresh on every attempt from a much larger bank, weighted to the eight domains and scored to 1000.', internal: true },
         ],
       },
       {
@@ -1000,6 +1007,9 @@ async function copyPracticalTests() {
   await ensureDir(out);
   for (const l of LANGS) {
     const src = path.join(ROOT, l.test);
+    if (l.bank && await exists(path.join(ROOT, l.bank))) {
+      await fs.copyFile(path.join(ROOT, l.bank), path.join(out, `bank-${l.code}.html`));
+    }
     const dest = path.join(out, `${l.code}.html`);
     if (await exists(src)) {
       await fs.copyFile(src, dest);
@@ -1029,6 +1039,9 @@ async function copyProfessionalExams() {
   for (const l of [...PROFESSIONAL_GUIDES, ...DEVELOPER_GUIDES]) {
     if (!l.test) continue;
     const src = path.join(ROOT, l.test);
+    if (l.bank && await exists(path.join(ROOT, l.bank))) {
+      await fs.copyFile(path.join(ROOT, l.bank), path.join(out, `bank-${l.output}.html`));
+    }
     const dest = path.join(out, `${l.output}.html`);
     if (await exists(src)) {
       await fs.copyFile(src, dest);
