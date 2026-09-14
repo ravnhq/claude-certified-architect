@@ -1064,7 +1064,11 @@ function browseIndex() {
     (GROUPS ? groupKey(a).localeCompare(groupKey(b)) : Number(a.domain) - Number(b.domain)) ||
     String(a.task_id || "").localeCompare(String(b.task_id || ""), undefined, { numeric: true }) ||
     String(a.id).localeCompare(String(b.id), undefined, { numeric: true }));
-  BROWSE_INDEX = ordered.map(q => {
+  BROWSE_INDEX = ordered.map((q, idx) => {
+    // Rows are numbered in bank order, not filter order, so "#42" names the
+    // same question whatever the reader has typed or scoped to. Typing "#42"
+    // in the search box finds it.
+    const n = idx + 1;
     // `task_id` is the blueprint subdomain ("3.2"), so typing it finds every
     // item on that objective. The objective *text* is deliberately left out:
     // every item in a domain repeats it, so it would match half the bank on a
@@ -1073,22 +1077,23 @@ function browseIndex() {
       .concat(q.options.map(o => o.text))
       .concat(q.options.map(o => o.explanation))
       .filter(Boolean).join(" ").toLowerCase();
-    const n = q.cluster ? size[q.cluster] : 0;
-    const i = q.cluster ? (seen[q.cluster] = (seen[q.cluster] || 0) + 1) : 0;
-    return { q: q, hay: hay, ci: i, cn: n };
+    const cn = q.cluster ? size[q.cluster] : 0;
+    const ci = q.cluster ? (seen[q.cluster] = (seen[q.cluster] || 0) + 1) : 0;
+    return { q: q, n: n, hay: hay, ci: ci, cn: cn };
   });
   return BROWSE_INDEX;
 }
 
 // Pure, so the filter can be checked without a DOM. Every whitespace-separated
 // term must appear somewhere in the item — question, options or explanations.
+// A "#42" term names one row exactly, so it does not also surface #420-#429.
 function filteredBank(domain, query) {
   if (domain === undefined) domain = state.browse.domain;
   if (query === undefined) query = state.browse.q;
   const terms = String(query || "").toLowerCase().split(/\s+/).filter(Boolean);
   return browseIndex().filter(r =>
     (String(domain) === "all" || groupKey(r.q) === String(domain)) &&
-    terms.every(t => r.hay.indexOf(t) >= 0));
+    terms.every(t => /^#\d+$/.test(t) ? String(r.n) === t.slice(1) : r.hay.indexOf(t) >= 0));
 }
 
 function browseRowHtml(r) {
@@ -1105,6 +1110,7 @@ function browseRowHtml(r) {
     : md(q.question);
   return "<details class='br-item' data-id='" + esc(q.id) + "'>" +
     "<summary class='br-head'>" +
+      "<span class='br-id'>#" + r.n + "</span>" +
       "<span class='br-stem'>" + lead + "</span>" +
       "<span class='br-tags'>" + tags + "</span>" +
     "</summary><div class='br-body'></div></details>";
