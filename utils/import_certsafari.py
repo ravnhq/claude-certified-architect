@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Rebuild the CCAR-P / CCDV-F question banks from the collected CertSafari corpus.
+"""Rebuild the CCAR-P / CCDV-F question banks, and the imported half of the
+CCAR-F bank, from the collected CertSafari corpus.
 
 Those two banks are no longer hand-written. Their items come from
 .corpus/certsafari/<CODE>.json — the archive scripts/certsafari-collection.md
@@ -38,7 +39,12 @@ The import does not need them and does not wait for them.
 
 Answers are as CertSafari marked them and have not been independently verified.
 
-Usage: python3 utils/import_certsafari.py [ccap|ccdf|all] [--tags-dir DIR]
+Usage: python3 utils/import_certsafari.py [ccaf|ccap|ccdf|all] [--tags-dir DIR]
+
+Foundations differs in two ways: its objectives file is blueprint.json (the
+official task statements; objectives.json there holds the score-report list the
+bank browser groups by), and the output is imported_en.json, merged at load time
+with the hand-authored guide and mock items rather than replacing them.
 """
 from __future__ import annotations
 import argparse, glob, hashlib, json, os, re, sys
@@ -55,8 +61,12 @@ sys.path.insert(0, UTILS_DIR)
 # its stem-count reader, so the count this script appends is read back by the
 # exact function that checks it.
 TRACKS = {
-    "ccap": {"code": "CCAR-P", "prefix": "p", "validator": "validate_professional_bank"},
-    "ccdf": {"code": "CCDV-F", "prefix": "d", "validator": "validate_developer_bank"},
+    "ccaf": {"code": "CCAR-F", "prefix": "f", "validator": "validate_professional_bank",
+             "objectives": "blueprint.json", "out": "imported_en.json"},
+    "ccap": {"code": "CCAR-P", "prefix": "p", "validator": "validate_professional_bank",
+             "objectives": "objectives.json", "out": "questions.json"},
+    "ccdf": {"code": "CCDV-F", "prefix": "d", "validator": "validate_developer_bank",
+             "objectives": "objectives.json", "out": "questions.json"},
 }
 
 # CertSafari's own label for the item, read out of the captured page snapshot.
@@ -243,7 +253,7 @@ def import_track(track_key: str, tags_dir: str) -> int:
     data_dir = os.path.join(ROOT_DIR, track_key, "data")
     with open(os.path.join(CORPUS_DIR, f"{code}.json"), encoding="utf-8") as fh:
         records = json.load(fh)
-    with open(os.path.join(data_dir, "objectives.json"), encoding="utf-8") as fh:
+    with open(os.path.join(data_dir, track["objectives"]), encoding="utf-8") as fh:
         # Order matters here, unlike everywhere else in the repo: a subdomain
         # label addresses an objective by its position in this list.
         objectives = {int(d): list(v["objectives"])
@@ -305,7 +315,7 @@ def import_track(track_key: str, tags_dir: str) -> int:
         seq[item["domain"]] += 1
         item["id"] = f"{prefix}{item['domain']}-{seq[item['domain']]:03d}"
 
-    out_path = os.path.join(data_dir, "questions.json")
+    out_path = os.path.join(data_dir, track["out"])
     with open(out_path, "w", encoding="utf-8") as fh:
         json.dump(items, fh, indent=1, ensure_ascii=False)
 
@@ -327,7 +337,7 @@ def import_track(track_key: str, tags_dir: str) -> int:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("track", nargs="*", default=["all"], choices=["ccap", "ccdf", "all"])
+    parser.add_argument("track", nargs="*", default=["all"], choices=["ccaf", "ccap", "ccdf", "all"])
     parser.add_argument("--tags-dir", default=TAGS_DIR,
                         help="optional <CODE>.*.json tag files to cross-check the "
                              "snapshot labels against")

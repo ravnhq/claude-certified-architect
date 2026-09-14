@@ -3,7 +3,7 @@
 
 Usage: python3 utils/build_exam_html.py [lang ...]   (lang: en es pt — default: all)
 
-Merges the 76 scenario questions and the 60 domain questions (see exam_data.py)
+Merges the guide, mock and (English only) imported questions (see exam_data.py)
 into one quiz per language with:
   * sidebar grouped by CCAF domain
   * study mode (reveal on answer) vs exam mode (reveal at the end)
@@ -1788,11 +1788,9 @@ def build(lang):
         bank_href=f"bank-{lang}.html",
         **common,
     )
-    # The bank groups Foundations by score-report theme (objectives.json), the
-    # first letter of each task_id, because those objectives cut across domains.
+    # The bank groups Foundations by score-report theme (objectives.json),
+    # attached as `group` by exam_data, because those objectives cut across domains.
     themes = exam_data.objective_themes()
-    for q in questions:
-        q["group"] = (q.get("task_id") or "")[:1]
     render_page(
         questions=questions,
         title=UI[lang]["browse_title"],

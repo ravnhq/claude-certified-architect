@@ -132,6 +132,11 @@ def objective_themes():
     return _read_json(os.path.join(DATA_DIR, "objectives.json"), {}).get("themes", {})
 
 
+def _imported_questions(lang):
+    # The collected corpus is English only; other languages keep the hand-authored bank.
+    return _read_json(os.path.join(DATA_DIR, f"imported_{lang}.json"), [])
+
+
 def load(lang):
     """Return the merged, domain-tagged, deduped question list for `lang`."""
     domain_map = _read_json(os.path.join(DATA_DIR, "domains.json"), {})
@@ -139,10 +144,12 @@ def load(lang):
 
     # Score-report objectives (objectives.json) and the hand-made item → objective
     # map. An item without a mapping simply carries no task_id.
-    objectives = _read_json(os.path.join(DATA_DIR, "objectives.json"), {}).get("objectives", {})
+    meta = _read_json(os.path.join(DATA_DIR, "objectives.json"), {})
+    objectives = meta.get("objectives", {})
+    subdomain_themes = meta.get("subdomain_themes", {})
     objective_map = _read_json(os.path.join(DATA_DIR, "objective_map.json"), {})
 
-    questions = _guide_questions(lang) + _mock_questions(lang)
+    questions = _guide_questions(lang) + _mock_questions(lang) + _imported_questions(lang)
     merged = []
     for q in questions:
         if q["id"] in dupes:
@@ -152,6 +159,10 @@ def load(lang):
         if tid and tid in objectives:
             q["task_id"] = tid
             q["objective"] = objectives[tid]
+        # Bank heading: the score-report theme, by letter for hand-tagged items
+        # and via subdomain_themes for imported ones keyed to official statements.
+        tid = q.get("task_id") or ""
+        q["group"] = subdomain_themes.get(tid, tid[:1])
         merged.append(q)
 
     # Group by domain (1..5), preserving discovery order within each domain.
