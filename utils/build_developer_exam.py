@@ -38,9 +38,7 @@ UI["threshold_note"] = (
     + str(EXAM_SIZE) + " questions weighted to the official domain blueprint ("
     + SPLIT + "). "
     "Multiple-response items are scored all-or-nothing. The score is scaled to "
-    "1000 as a study approximation of the real 100–1,000 scaled score. These are "
-    "collected practice items, not real exam content; the answer keys have not "
-    "been independently verified."
+    "1000 as a study approximation of the real 100–1,000 scaled score."
 )
 
 

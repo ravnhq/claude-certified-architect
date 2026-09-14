@@ -88,8 +88,6 @@ UI = {
                                  "domains and scales the score to 1000 the "
                                  "same way; use the full length for a "
                                  "realistic rehearsal."),
-        "source_note": ("Collected practice item; the answer key has not been "
-                        "independently verified"),
         "misses_btn": "My misses · {n}",
         "misses_label": "Drill my misses",
         "misses_empty": "No misses yet",
@@ -156,8 +154,6 @@ UI = {
                                  "corto ponderado entre dominios y escala el "
                                  "puntaje a 1000 de la misma forma; usa la "
                                  "duración completa para un ensayo realista."),
-        "source_note": ("Pregunta de práctica recopilada; la clave de respuesta "
-                        "no fue verificada de forma independiente"),
         "misses_btn": "Mis fallos · {n}",
         "misses_label": "Practicar mis fallos",
         "misses_empty": "Sin fallos aún",
@@ -225,8 +221,6 @@ UI = {
                                  "curto ponderado entre os domínios e escala "
                                  "a pontuação para 1000 da mesma forma; use a "
                                  "duração completa para um ensaio realista."),
-        "source_note": ("Questão de prática coletada; o gabarito não foi "
-                        "verificado de forma independente"),
         "misses_btn": "Meus erros · {n}",
         "misses_label": "Treinar meus erros",
         "misses_empty": "Sem erros ainda",
@@ -496,11 +490,6 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .screen { display: none; }
 .screen.active { display: block; }
 
-/* Provenance — an imported practice item says where its answer key comes from,
-   quietly enough that it does not compete with the question itself. */
-.q-source { font-size: 12px; color: var(--subtle); line-height: 1.45;
-  margin: -6px 0 16px; padding-left: 10px; border-left: 2px solid var(--border-strong); }
-
 /* Weak-spot drill + browse entry points share the nav-btn shape; `active`
    marks the one currently scoping the page. */
 .nav-btn.active { background: var(--gold); color: var(--gold-fg); border-color: var(--gold); }
@@ -551,7 +540,6 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .br-opt-text { font-size: 14px; line-height: 1.5; color: var(--fg-soft); }
 .br-opt.is-correct .br-opt-text { color: var(--fg); font-weight: 600; }
 .br-opt-expl { margin-top: 4px; font-size: 12.5px; line-height: 1.55; color: var(--muted); }
-.br-source { margin-top: 10px; font-size: 12px; color: var(--subtle); }
 
 @media (max-width: 760px) {
   html, body { height: auto; }
@@ -902,13 +890,6 @@ function md(text) {
                   .replace(/\n/g, " ");
 }
 
-// An imported item's answer key is the collector's, not re-derived here. Says so
-// wherever the item is read, on the card and in browse mode.
-function sourceNoteHtml(q, cls) {
-  return q.imported
-    ? "<div class='" + cls + "'>" + esc(T.source_note) + "</div>" : "";
-}
-
 // ---- sidebar -------------------------------------------------------------
 function buildSidebar() {
   const list = document.getElementById("sidebarList");
@@ -981,7 +962,6 @@ function renderQuestion(idx) {
   const dm = DOMAINS[q.domain];
   const scenarioTag = q.scenario ? "<span class='q-scenario'>" + esc(q.scenario) + "</span>" : "";
   const situation = q.situation ? "<div class='q-situation'>" + md(q.situation) + "</div>" : "";
-  const sourceNote = sourceNoteHtml(q, "q-source");
 
   // A multi item with all N picks in place: the remaining options are dimmed
   // and inert, so it reads as "deselect one first" instead of a dead click.
@@ -1025,7 +1005,6 @@ function renderQuestion(idx) {
     "<div class='q-number'>" + T.question + " " + (idx + 1) + "</div>" +
     "<div><span class='q-domain'>" + T.domain + " " + q.domain + " · " + esc(dm.name) + "</span>" +
     scenarioTag + "</div>" +
-    sourceNote +
     situation +
     "<div class='q-prompt'>" + md(q.question) + "</div>" +
     (isMulti(q)
@@ -1313,7 +1292,7 @@ function browseBody(id) {
       "</span></div>").join("");
   return (q.situation ? "<div class='br-situation'>" + md(q.situation) + "</div>" : "") +
     (isMulti(q) ? "<div class='q-select'>" + T.select_n.replace("{n}", selectCount(q)) + "</div>" : "") +
-    opts + sourceNoteHtml(q, "br-source");
+    opts;
 }
 
 function renderBrowse() {
@@ -1557,10 +1536,7 @@ _INTERNAL_FIELDS = ("source", "source_url", "fingerprint", "stem_note")
 
 
 def _public(q):
-    out = {k: v for k, v in q.items() if k not in _INTERNAL_FIELDS}
-    if q.get("source"):
-        out["imported"] = True
-    return out
+    return {k: v for k, v in q.items() if k not in _INTERNAL_FIELDS}
 
 
 def _payload(obj):

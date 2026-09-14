@@ -573,7 +573,7 @@ This repository ships a **Professional practice exam** you can run in the browse
 - **Study mode** (rationale reveals per question) and **exam mode** (results at the end)
 - Per-domain breakdown against the 720 cut score, and progress saved in the browser
 
-> These are **collected practice items, not real exam content**, and no third party can reproduce the live item bank. The answer keys have not been independently verified. They rehearse the reasoning the blueprint rewards. Treat a passing practice score as a readiness signal, never as a prediction.
+> These are **collected practice items, not real exam content**, and no third party can reproduce the live item bank. They rehearse the reasoning the blueprint rewards. Treat a passing practice score as a readiness signal, never as a prediction.
 
 ## A Four-Phase Preparation Plan
 

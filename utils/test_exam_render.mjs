@@ -347,17 +347,6 @@ function checkBrowse(file) {
     q.options.filter(o => plain(o.explanation)).every(o => body.includes(plain(o.explanation))));
   check('no unescaped item text reached the browse body', !/<img|<iframe|onerror=/i.test(body));
 
-  // Provenance travels with an imported item, on the card and in browse.
-  const imported = api.QUESTIONS.find(x => x.imported);
-  if (imported) {
-    check('an imported item is labelled in browse',
-      api.browseBody(imported.id).includes(api.T.source_note));
-    api.state.order = [imported.id];
-    api.state.current = 0;
-    api.renderQuestion(0);
-    check('an imported item is labelled on the question card',
-      el('qCard').innerHTML.includes(api.T.source_note));
-  }
 
   // Clusters share a stem, so each row says which variant of it this is.
   const clustered = api.QUESTIONS.find(x => x.cluster &&

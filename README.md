@@ -155,9 +155,8 @@ single domain's whole bank instead, scored raw with no pass/fail verdict.
 
 - [`ccdf/dist/exam_en.html`](./ccdf/dist/exam_en.html)
 
-> **These are collected practice items, not real exam content.** The answer keys have not been
-> independently verified. They rehearse the reasoning
-> the blueprint rewards; they do not predict or reproduce the live item bank.
+> **Not real exam content.** These items rehearse the reasoning the blueprint rewards; they do
+> not predict or reproduce the live item bank.
 
 ## Professional study guide
 
@@ -192,9 +191,8 @@ raw with no pass/fail verdict.
 
 - [`ccap/dist/exam_en.html`](./ccap/dist/exam_en.html)
 
-> **These are collected practice items, not real exam content.** The answer keys have not been
-> independently verified. They rehearse the reasoning
-> the blueprint rewards; they do not predict or reproduce the live item bank.
+> **Not real exam content.** These items rehearse the reasoning the blueprint rewards; they do
+> not predict or reproduce the live item bank.
 
 ## How to use
 
