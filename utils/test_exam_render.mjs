@@ -69,7 +69,7 @@ function loadPage(file) {
   vm.runInContext(script +
     '\nthis.__api = { state, showSummary, renderQuestion, answer, orderedQuestions,' +
     ' selectCount, isMulti, T, DOMAINS, QUESTIONS, shuffleOrder, qById, restart, setFocus,' +
-    ' examSize, toggleBrowse, renderBrowse, filteredBank, browseBody, setBrowseDomain,' +
+    ' examSize, GROUPS, toggleBrowse, renderBrowse, filteredBank, browseBody, setBrowseDomain,' +
     ' onBrowseSearch, toggleMisses, updateMissesUI, missedIds, saveMisses, MISS_KEY };', ctx);
   return { api: ctx.__api, el: id => ctx.document.getElementById(id) };
 }
@@ -278,14 +278,13 @@ function checkBrowse(file) {
   console.log(`\nBrowse mode (${file})`);
   const { api, el } = loadPage(file);
 
-  api.toggleBrowse();
-  check('the browse screen opens', el('browseScreen').classList.contains('active'));
-  check('opening browse hides the question screen',
-    !el('questionScreen').classList.contains('active'));
-  check('rows are grouped under one heading per domain',
+  const gk = q => (api.GROUPS ? String(q.group || '') : String(q.domain));
+  check('a bank page opens straight onto the browse screen',
+    el('browseScreen').classList.contains('active'));
+  check('rows are grouped under one heading per group',
     (el('browseList').innerHTML.match(/br-group/g) || []).length ===
-      new Set(api.QUESTIONS.map(q => String(q.domain))).size);
-  const subs = new Set(api.QUESTIONS.filter(q => q.task_id).map(q => q.domain + ':' + q.task_id));
+      new Set(api.QUESTIONS.map(gk)).size);
+  const subs = new Set(api.QUESTIONS.filter(q => q.task_id).map(q => gk(q) + ':' + q.task_id));
   check(`each blueprint subdomain gets one subheading (${subs.size})`,
     (el('browseList').innerHTML.match(/br-sub'/g) || []).length === subs.size);
   const scen = api.QUESTIONS.find(q => q.situation && q.situation.length > 40);
@@ -303,24 +302,24 @@ function checkBrowse(file) {
   check('rows ship closed, so 500 answer keys are not rendered at once',
     !el('browseList').innerHTML.includes('br-opt'));
 
-  const d = Object.keys(api.DOMAINS).sort((a, b) => a - b)[0];
-  const inD = api.QUESTIONS.filter(q => String(q.domain) === String(d)).length;
+  const d = api.GROUPS ? Object.keys(api.GROUPS).sort()[0] : Object.keys(api.DOMAINS).sort((a, b) => a - b)[0];
+  const inD = api.QUESTIONS.filter(q => gk(q) === d).length;
   api.setBrowseDomain(d);
-  check(`the domain filter scopes the list to D${d} (${inD} items)`,
+  check(`the group filter scopes the list to ${d} (${inD} items)`,
     api.filteredBank().length === inD &&
-    api.filteredBank().every(r => String(r.q.domain) === String(d)));
+    api.filteredBank().every(r => gk(r.q) === d));
 
   // A term drawn from one item's own explanation must find that item, and the
   // domain filter must still apply on top of it.
-  const target = api.QUESTIONS.find(q => String(q.domain) === String(d) &&
+  const target = api.QUESTIONS.find(q => gk(q) === d &&
     q.options.some(o => o.explanation));
   const word = target.question.split(/\s+/).find(w => w.length > 7).replace(/[^\w]/g, '');
   api.onBrowseSearch(word);
   const hits = api.filteredBank();
   check(`a search term narrows the list ("${word}": ${hits.length} of ${inD})`,
     hits.length > 0 && hits.length <= inD && hits.some(r => r.q.id === target.id));
-  check('search stacks on the domain filter',
-    hits.every(r => String(r.q.domain) === String(d)));
+  check('search stacks on the group filter',
+    hits.every(r => gk(r.q) === d));
 
   // Searching the blueprint subdomain id gathers every item on that objective.
   const withTask = api.QUESTIONS.find(x => x.task_id);
@@ -374,16 +373,14 @@ function checkBrowse(file) {
     console.log('  --   this bank ships no clustered items');
   }
 
-  api.toggleBrowse();
-  check('browse closes back to the attempt',
-    el('questionScreen').classList.contains('active') &&
-    !el('browseScreen').classList.contains('active'));
-
   const rawHtml = fs.readFileSync(path.join(ROOT, file), 'utf8');
-  check('a browse entry point sits in the always-on header',
-    rawHtml.includes('id="browseBtn"') && rawHtml.includes(api.T.browse_btn));
-  check('a weak-spot entry point sits in the always-on header',
-    rawHtml.includes('id="missesBtn"') && rawHtml.includes(api.T.misses_label));
+  check('the bank page links back to the practice exam',
+    rawHtml.includes(api.T.exam_link) && !rawHtml.includes('id="missesBtn"'));
+  const examHtml = fs.readFileSync(path.join(ROOT, file.replace('bank_', 'exam_')), 'utf8');
+  check('the practice exam links out to the bank',
+    examHtml.includes(api.T.bank_link) && !examHtml.includes('id="browseScreen"'));
+  check('a weak-spot entry point sits in the always-on exam header',
+    examHtml.includes('id="missesBtn"') && examHtml.includes(api.T.misses_label));
 }
 
 // The weak-spot drill's UI half: the button counts what is stored, the drill
@@ -465,10 +462,10 @@ checkDrill('ccap/dist/exam_en.html');
 checkDrill('ccdf/dist/exam_en.html');
 checkWideItems('ccap/dist/exam_en.html');
 checkWideItems('ccdf/dist/exam_en.html');
-checkBrowse('ccaf/dist/exam_en.html');
-checkBrowse('ccaf/dist/exam_pt.html');
-checkBrowse('ccap/dist/exam_en.html');
-checkBrowse('ccdf/dist/exam_en.html');
+checkBrowse('ccaf/dist/bank_en.html');
+checkBrowse('ccaf/dist/bank_pt.html');
+checkBrowse('ccap/dist/bank_en.html');
+checkBrowse('ccdf/dist/bank_en.html');
 checkMissesUI('ccaf/dist/exam_es.html');
 checkMissesUI('ccap/dist/exam_en.html');
 checkMissesUI('ccdf/dist/exam_en.html');

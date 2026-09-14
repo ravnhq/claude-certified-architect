@@ -70,8 +70,7 @@ def main():
     pass_score = blueprint["_exam"]["pass_score"]
     scale_top = blueprint["_exam"]["scale"][1]
 
-    engine.render_page(
-        questions=questions,
+    common = dict(
         domains_js=domains_js,
         ui=UI,
         per_domain=DRAW,
@@ -79,9 +78,23 @@ def main():
         pass_pct=round(pass_score / scale_top * 100),
         store_key="ccarp-exam-en",
         lang_attr="en",
+    )
+    engine.render_page(
+        questions=questions,
         title="Claude Certified Architect — Professional Practice Exam",
         page_title="Professional Practice Exam · Ravn",
         out_path=os.path.join(ROOT_DIR, "ccap", "dist", "exam_en.html"),
+        bank_href="bank-professional-en.html",
+        **common,
+    )
+    engine.render_page(
+        questions=questions,
+        title=UI["browse_title"],
+        page_title=f"{UI['browse_title']} · Ravn",
+        out_path=os.path.join(ROOT_DIR, "ccap", "dist", "bank_en.html"),
+        view="bank",
+        exam_href="professional-en.html",
+        **common,
     )
     print(f"Draw per attempt: {drawn} questions across {len(domains_js)} domains "
           f"(bank of {len(questions)}).")

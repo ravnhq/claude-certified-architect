@@ -71,8 +71,7 @@ def main():
     pass_score = blueprint["_exam"]["pass_score"]
     scale_top = blueprint["_exam"]["scale"][1]
 
-    engine.render_page(
-        questions=questions,
+    common = dict(
         domains_js=domains_js,
         ui=UI,
         per_domain=DRAW,
@@ -80,9 +79,23 @@ def main():
         pass_pct=round(pass_score / scale_top * 100),
         store_key="ccdvf-exam-en",
         lang_attr="en",
+    )
+    engine.render_page(
+        questions=questions,
         title="Claude Certified Developer — Foundations Practice Exam",
         page_title="Developer Foundations Practice Exam · Ravn",
         out_path=os.path.join(ROOT_DIR, "ccdf", "dist", "exam_en.html"),
+        bank_href="bank-developer-en.html",
+        **common,
+    )
+    engine.render_page(
+        questions=questions,
+        title=UI["browse_title"],
+        page_title=f"{UI['browse_title']} · Ravn",
+        out_path=os.path.join(ROOT_DIR, "ccdf", "dist", "bank_en.html"),
+        view="bank",
+        exam_href="developer-en.html",
+        **common,
     )
     print(f"Draw per attempt: {drawn} questions across {len(domains_js)} domains "
           f"(bank of {len(questions)}).")

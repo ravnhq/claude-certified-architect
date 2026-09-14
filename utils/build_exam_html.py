@@ -98,8 +98,8 @@ UI = {
         "misses_clear_confirm": ("Clear the record of every question you have "
                                  "missed? This also ends the attempt in "
                                  "progress."),
-        "browse_btn": "Browse the bank",
-        "browse_title": "Browse the bank",
+        "bank_link": "Question bank", "exam_link": "Practice exam", "browse_all": "All topics",
+        "browse_title": "Question bank",
         "browse_search": "Search questions, options and explanations",
         "browse_domain": "Filter by domain",
         "browse_count": "{n} of {bank} questions",
@@ -164,8 +164,8 @@ UI = {
         "misses_clear_confirm": ("¿Borrar el registro de todas las preguntas "
                                  "que fallaste? También termina el intento en "
                                  "curso."),
-        "browse_btn": "Explorar el banco",
-        "browse_title": "Explorar el banco",
+        "bank_link": "Banco de preguntas", "exam_link": "Examen de práctica", "browse_all": "Todos los temas",
+        "browse_title": "Banco de preguntas",
         "browse_search": "Buscar en preguntas, opciones y explicaciones",
         "browse_domain": "Filtrar por dominio",
         "browse_count": "{n} de {bank} preguntas",
@@ -231,8 +231,8 @@ UI = {
         "misses_clear_confirm": ("Limpar o registro de todas as perguntas que "
                                  "você errou? Isso também encerra a tentativa "
                                  "em curso."),
-        "browse_btn": "Explorar o banco",
-        "browse_title": "Explorar o banco",
+        "bank_link": "Banco de questões", "exam_link": "Exame de prática", "browse_all": "Todos os temas",
+        "browse_title": "Banco de questões",
         "browse_search": "Buscar em perguntas, opções e explicações",
         "browse_domain": "Filtrar por domínio",
         "browse_count": "{n} de {bank} perguntas",
@@ -326,6 +326,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   color: var(--fg-soft); line-height: 1.6; }
 
 .shell { display: flex; flex: 1; min-height: 0; overflow: hidden; }
+.shell.bank .main { flex: 1 1 auto; }
 
 .sidebar { width: 272px; min-width: 272px; background: var(--surface); color: var(--muted);
   display: flex; flex-direction: column; overflow: hidden; min-height: 0;
@@ -616,6 +617,10 @@ QUESTIONS.forEach(q => (q.options || []).forEach((o, i) => {
   if (!o.letter) o.letter = LETTERS.charAt(i) || String(i + 1);
 }));
 const DOMAINS = __DOMAINS__;
+// Bank pages group rows by GROUPS when a track supplies them (Foundations:
+// score-report themes, which cut across domains); otherwise by domain.
+const GROUPS = __GROUPS__;
+const BANK_ONLY = __BANK_ONLY__;
 const T = __UI__;
 const PASS_PCT = __PASS__;          // per-domain bar coloring threshold (%)
 const PASS_SCORE = __PASS_SCORE__;  // overall cut score on the 100–1000 scale
@@ -1212,7 +1217,33 @@ function fillDomainOptions(sel) {
 
 function buildFocusOptions() {
   fillDomainOptions(document.getElementById("focusSelect"));
-  fillDomainOptions(document.getElementById("browseDomain"));
+  fillBrowseOptions(document.getElementById("browseDomain"));
+}
+
+function groupKey(q) { return GROUPS ? String(q.group || "") : String(q.domain); }
+function groupLabel(key) {
+  if (GROUPS) return GROUPS[key] || key;
+  const dm = DOMAINS[key] || {};
+  return T.domain + " " + key + (dm.name ? " · " + dm.name : "");
+}
+function groupKeys() {
+  if (GROUPS) return Object.keys(GROUPS).sort();
+  return Object.keys(DOMAINS).sort((a, b) => a - b);
+}
+
+function fillBrowseOptions(sel) {
+  if (!sel) return;
+  sel.innerHTML = "";
+  const all = document.createElement("option");
+  all.value = "all";
+  all.textContent = GROUPS ? T.browse_all : T.focus_all;
+  sel.appendChild(all);
+  groupKeys().forEach(k => {
+    const opt = document.createElement("option");
+    opt.value = k;
+    opt.textContent = groupLabel(k);
+    sel.appendChild(opt);
+  });
 }
 
 function updateFocusUI() {
@@ -1241,7 +1272,7 @@ function browseIndex() {
   const size = {}, seen = {};
   QUESTIONS.forEach(q => { if (q.cluster) size[q.cluster] = (size[q.cluster] || 0) + 1; });
   const ordered = QUESTIONS.slice().sort((a, b) =>
-    (Number(a.domain) - Number(b.domain)) ||
+    (GROUPS ? groupKey(a).localeCompare(groupKey(b)) : Number(a.domain) - Number(b.domain)) ||
     String(a.task_id || "").localeCompare(String(b.task_id || ""), undefined, { numeric: true }) ||
     String(a.id).localeCompare(String(b.id), undefined, { numeric: true }));
   BROWSE_INDEX = ordered.map(q => {
@@ -1267,7 +1298,7 @@ function filteredBank(domain, query) {
   if (query === undefined) query = state.browse.q;
   const terms = String(query || "").toLowerCase().split(/\s+/).filter(Boolean);
   return browseIndex().filter(r =>
-    (String(domain) === "all" || String(r.q.domain) === String(domain)) &&
+    (String(domain) === "all" || groupKey(r.q) === String(domain)) &&
     terms.every(t => r.hay.indexOf(t) >= 0));
 }
 
@@ -1331,15 +1362,13 @@ function groupedBrowseHtml(rows) {
   let dom = null, sub = null;
   rows.forEach(r => {
     const q = r.q;
-    if (String(q.domain) !== dom) {
-      dom = String(q.domain); sub = null;
-      const dm = DOMAINS[q.domain] || {};
-      out.push("<h2 class='br-group'>" + T.domain + " " + esc(q.domain) +
-               (dm.name ? " · " + esc(dm.name) : "") + "</h2>");
+    if (groupKey(q) !== dom) {
+      dom = groupKey(q); sub = null;
+      out.push("<h2 class='br-group'>" + esc(groupLabel(dom)) + "</h2>");
     }
     if (q.task_id && q.task_id !== sub) {
       sub = q.task_id;
-      const n = rows.filter(x => x.q.task_id === sub && String(x.q.domain) === dom).length;
+      const n = rows.filter(x => x.q.task_id === sub && groupKey(x.q) === dom).length;
       out.push("<h3 class='br-sub'><span class='br-id'>" + esc(sub) + "</span>" +
                (q.objective ? "<span>" + esc(q.objective) + "</span>" : "") +
                "<span class='br-n'>" + n + "</span></h3>");
@@ -1547,6 +1576,13 @@ function restart() {
 
 // ---- init ----------------------------------------------------------------
 (function init() {
+  if (BANK_ONLY) {
+    fillBrowseOptions(document.getElementById("browseDomain"));
+    showScreen("browseScreen");
+    wireBrowse();
+    renderBrowse();
+    return;
+  }
   buildFocusOptions();
   const saved = load();
   if (saved) {
@@ -1594,7 +1630,8 @@ def _payload(obj):
 
 
 def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
-                store_key, lang_attr, title, page_title, out_path):
+                store_key, lang_attr, title, page_title, out_path,
+                view="exam", bank_href=None, exam_href=None, groups_js=None):
     """Render one self-contained quiz page.
 
     Shared by the Foundations builder below and by build_professional_exam.py,
@@ -1602,6 +1639,13 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
     for every domain) or a {domain: count} map for a weighted draw. Each track
     supplies its own `pass_score` / `pass_pct`: the two cut scores are equal
     today, but Professional's authority is its own blueprint, not this module.
+
+    `view` is "exam" (the quiz, linking to `bank_href`) or "bank" (the browse
+    view alone, linking back to `exam_href`). Hrefs are relative to the
+    published docs/practical/ layout, where scripts/build-pages.mjs renames
+    the files, so they do not resolve inside dist/. `groups_js` optionally
+    maps an item `group` key to a heading, replacing domains as the bank's
+    top-level grouping.
     """
     # The data-driven payloads go in last: question and objective text can hold
     # anything, and an earlier injection would let it be rewritten by a later
@@ -1612,6 +1656,8 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
             .replace("__PASS__", str(pass_pct))
             .replace("__UI__", _payload(ui))
             .replace("__DOMAINS__", _payload(domains_js))
+            .replace("__GROUPS__", _payload(groups_js))
+            .replace("__BANK_ONLY__", "true" if view == "bank" else "false")
             .replace("__DATA__", _payload([_public(q) for q in questions])))
 
     favicon_tag = (f'<link rel="icon" type="image/png" href="{_FAVICON_DATA_URI}">'
@@ -1637,26 +1683,38 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
         f'<button type="button" class="nav-btn misses-btn" id="missesBtn" '
         f'aria-pressed="false" aria-label="{ui["misses_label"]}" '
         f'title="{ui["misses_label"]}" onclick="toggleMisses()" disabled></button>'
-        f'<button type="button" class="nav-btn browse-btn" id="browseBtn" '
-        f'aria-pressed="false" onclick="toggleBrowse()">{ui["browse_btn"]}</button>'
-        '<span class="mode-hint" id="modeHint"></span>'
+        + (f'<a class="nav-btn browse-btn" href="{bank_href}">{ui["bank_link"]}</a>' if bank_href else "")
+        + '<span class="mode-hint" id="modeHint"></span>'
         '</div></header>'
     )
-
-    HTML = f"""<!DOCTYPE html>
-<html lang="{lang}">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{page_title}</title>
-{favicon_tag}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800&family=Source+Code+Pro:wght@400;600&display=swap">
-<style>{CSS}</style>
-</head>
-<body>
-{ravn_topbar}
+    bank_topbar = (
+        '<header class="ravn-topbar">'
+        '<a class="ravn-brand" href="../index.html" aria-label="Ravn — Claude Certified Architect">'
+        f'{RAVN_LOGO_SVG}<span class="ravn-brand-tagline">Claude Certified Architect</span></a>'
+        '<div class="mode-controls">'
+        + (f'<a class="nav-btn" href="{exam_href}">{ui["exam_link"]}</a>' if exam_href else "")
+        + '</div></header>'
+    )
+    browse_screen = f"""<div class="screen" id="browseScreen">
+        <div class="browse-head">
+          <h1>{ui['browse_title']}</h1>
+          <select class="focus-select" id="browseDomain" aria-label="{ui['browse_domain']}" onchange="setBrowseDomain(this.value)"></select>
+          <input type="search" class="browse-search" id="browseSearch" placeholder="{ui['browse_search']}" aria-label="{ui['browse_search']}" oninput="onBrowseSearch(this.value)">
+          <span class="browse-count" id="browseCount"></span>
+        </div>
+        <div class="browse-list" id="browseList"></div>
+      </div>"""
+    if view == "bank":
+        body = f"""{bank_topbar}
+<div class="shell bank">
+  <main class="main">
+    <div class="content">
+      {browse_screen}
+    </div>
+  </main>
+</div>"""
+    else:
+        body = f"""{ravn_topbar}
 <div class="draw-note" id="drawNote"></div>
 <div class="shell">
   <nav class="sidebar" aria-label="{ui['questions']}">
@@ -1677,18 +1735,24 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
     <div class="content">
       <div class="screen active" id="questionScreen"><div class="q-card" id="qCard"></div></div>
       <div class="screen" id="summaryScreen"><div class="summary show" id="summaryContent"></div></div>
-      <div class="screen" id="browseScreen">
-        <div class="browse-head">
-          <h1>{ui['browse_title']}</h1>
-          <select class="focus-select" id="browseDomain" aria-label="{ui['browse_domain']}" onchange="setBrowseDomain(this.value)"></select>
-          <input type="search" class="browse-search" id="browseSearch" placeholder="{ui['browse_search']}" aria-label="{ui['browse_search']}" oninput="onBrowseSearch(this.value)">
-          <span class="browse-count" id="browseCount"></span>
-        </div>
-        <div class="browse-list" id="browseList"></div>
-      </div>
     </div>
   </main>
-</div>
+</div>"""
+
+    HTML = f"""<!DOCTYPE html>
+<html lang="{lang}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{page_title}</title>
+{favicon_tag}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800&family=Source+Code+Pro:wght@400;600&display=swap">
+<style>{CSS}</style>
+</head>
+<body>
+{body}
 <script>{js}</script>
 </body>
 </html>"""
@@ -1707,8 +1771,7 @@ def build(lang):
         str(d): {"name": exam_data.DOMAIN_NAMES[lang][d], "weight": w}
         for d, (_, w) in exam_data.DOMAINS.items()
     }
-    render_page(
-        questions=questions,
+    common = dict(
         domains_js=domains_js,
         ui=UI[lang],
         per_domain=PER_DOMAIN,
@@ -1716,9 +1779,29 @@ def build(lang):
         pass_pct=PASS_PCT,
         store_key=f"ccaf-exam-{lang}",
         lang_attr=lang,
+    )
+    render_page(
+        questions=questions,
         title=LANG_TITLES[lang],
         page_title=f"{LANG_LABELS[lang]} — Practice Exam · Ravn",
         out_path=os.path.join(ROOT_DIR, "ccaf", "dist", f"exam_{lang}.html"),
+        bank_href=f"bank-{lang}.html",
+        **common,
+    )
+    # The bank groups Foundations by score-report theme (objectives.json), the
+    # first letter of each task_id, because those objectives cut across domains.
+    themes = exam_data.objective_themes()
+    for q in questions:
+        q["group"] = (q.get("task_id") or "")[:1]
+    render_page(
+        questions=questions,
+        title=UI[lang]["browse_title"],
+        page_title=f"{LANG_LABELS[lang]} — {UI[lang]['browse_title']} · Ravn",
+        out_path=os.path.join(ROOT_DIR, "ccaf", "dist", f"bank_{lang}.html"),
+        view="bank",
+        exam_href=f"{lang}.html",
+        groups_js=themes,
+        **common,
     )
 
 

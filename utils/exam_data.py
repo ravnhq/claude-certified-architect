@@ -127,6 +127,11 @@ def _infer_domain(q):
     return 1
 
 
+def objective_themes():
+    """{theme letter: theme name} from objectives.json."""
+    return _read_json(os.path.join(DATA_DIR, "objectives.json"), {}).get("themes", {})
+
+
 def load(lang):
     """Return the merged, domain-tagged, deduped question list for `lang`."""
     domain_map = _read_json(os.path.join(DATA_DIR, "domains.json"), {})
