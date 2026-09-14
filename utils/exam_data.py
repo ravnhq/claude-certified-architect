@@ -132,12 +132,21 @@ def load(lang):
     domain_map = _read_json(os.path.join(DATA_DIR, "domains.json"), {})
     dupes = set(_read_json(os.path.join(DATA_DIR, "duplicates.json"), []))
 
+    # Score-report objectives (objectives.json) and the hand-made item → objective
+    # map. An item without a mapping simply carries no task_id.
+    objectives = _read_json(os.path.join(DATA_DIR, "objectives.json"), {}).get("objectives", {})
+    objective_map = _read_json(os.path.join(DATA_DIR, "objective_map.json"), {})
+
     questions = _guide_questions(lang) + _mock_questions(lang)
     merged = []
     for q in questions:
         if q["id"] in dupes:
             continue
         q["domain"] = domain_map.get(q["id"]) or q.get("domain") or _infer_domain(q)
+        tid = objective_map.get(q["id"])
+        if tid and tid in objectives:
+            q["task_id"] = tid
+            q["objective"] = objectives[tid]
         merged.append(q)
 
     # Group by domain (1..5), preserving discovery order within each domain.
