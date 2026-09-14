@@ -268,11 +268,19 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .br-id { flex: 0 0 auto; font-family: "Source Code Pro", ui-monospace, Menlo, monospace;
   font-size: 11.5px; font-weight: 600; color: var(--gold); }
 .br-stem { flex: 1 1 260px; font-size: 14.5px; line-height: 1.5; color: var(--fg-soft); }
-.br-hint { display: block; margin-top: 3px; font-size: 12.5px; color: var(--subtle);
+.br-ask { display: block; margin-top: 3px; font-size: 12.5px; color: var(--subtle);
   line-height: 1.45; }
-/* The full situation sits right below once the item is open, so the preview
-   in the clickable head would only repeat itself. */
-.br-item[open] .br-hint { display: none; }
+/* Rows are grouped by domain, then blueprint subdomain, so a reader scans
+   headings instead of tags. Headings stick so the group stays named while its
+   rows scroll past. */
+.br-group { position: sticky; top: 0; z-index: 1; margin: 22px 0 10px; padding: 6px 0;
+  background: var(--bg); font-size: 11px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gold); }
+.br-group:first-child { margin-top: 0; }
+.br-sub { display: flex; align-items: baseline; gap: 10px; margin: 14px 0 8px; padding: 0 2px;
+  font-size: 13.5px; font-weight: 600; color: var(--fg-soft); }
+.br-sub .br-id { font-size: 11px; }
+.br-sub .br-n { font-size: 12px; font-weight: 500; color: var(--subtle); }
 .br-tags { flex: 0 0 auto; display: flex; flex-wrap: wrap; gap: 6px; }
 .br-tag { padding: 3px 8px; border: 1px solid var(--border-strong); border-radius: var(--r-sm);
   font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
@@ -1015,7 +1023,11 @@ function browseIndex() {
   // reader who meets the same setup three times knows why.
   const size = {}, seen = {};
   QUESTIONS.forEach(q => { if (q.cluster) size[q.cluster] = (size[q.cluster] || 0) + 1; });
-  BROWSE_INDEX = QUESTIONS.map(q => {
+  const ordered = QUESTIONS.slice().sort((a, b) =>
+    (Number(a.domain) - Number(b.domain)) ||
+    String(a.task_id || "").localeCompare(String(b.task_id || ""), undefined, { numeric: true }) ||
+    String(a.id).localeCompare(String(b.id), undefined, { numeric: true }));
+  BROWSE_INDEX = ordered.map(q => {
     // `task_id` is the blueprint subdomain ("3.2"), so typing it finds every
     // item on that objective. The objective *text* is deliberately left out:
     // every item in a domain repeats it, so it would match half the bank on a
@@ -1045,17 +1057,20 @@ function filteredBank(domain, query) {
 function browseRowHtml(r) {
   const q = r.q;
   const tags =
-    "<span class='br-tag'>" + T.domain + " " + esc(q.domain) + "</span>" +
     (r.cn > 1
       ? "<span class='br-tag cluster'>" +
         esc(T.cluster_note.replace("{i}", r.ci).replace("{n}", r.cn)) + "</span>" : "");
-  const hint = (q.situation && q.question.length < 90)
-    ? "<span class='br-hint'>" + md(q.situation.slice(0, 110)) +
-      (q.situation.length > 110 ? "…" : "") + "</span>" : "";
+  // The situation is what tells one row from the next; the ask ("Which
+  // approach is most effective?") repeats across the bank, so it is demoted to
+  // a subline when a situation exists.
+  const lead = q.situation
+    ? md(q.situation.length > 150 ? q.situation.slice(0, 150).replace(/\s+\S*$/, "") + "…" : q.situation) +
+      "<span class='br-ask'>" + md(q.question) + "</span>"
+    : md(q.question);
   return "<details class='br-item' data-id='" + esc(q.id) + "'>" +
     "<summary class='br-head'>" +
       "<span class='br-id'>" + esc(q.id).toUpperCase() + "</span>" +
-      "<span class='br-stem'>" + md(q.question) + hint + "</span>" +
+      "<span class='br-stem'>" + lead + "</span>" +
       "<span class='br-tags'>" + tags + "</span>" +
     "</summary><div class='br-body'></div></details>";
 }
@@ -1088,8 +1103,33 @@ function renderBrowse() {
   const list = document.getElementById("browseList");
   if (!list) return;
   list.innerHTML = rows.length
-    ? rows.map(browseRowHtml).join("")
+    ? groupedBrowseHtml(rows)
     : "<p class='br-empty'>" + esc(T.browse_none) + "</p>";
+}
+
+// Domain heading, then one subheading per blueprint subdomain (task_id) for
+// banks that carry them. Order is bank order, which is already domain-sorted.
+function groupedBrowseHtml(rows) {
+  const out = [];
+  let dom = null, sub = null;
+  rows.forEach(r => {
+    const q = r.q;
+    if (String(q.domain) !== dom) {
+      dom = String(q.domain); sub = null;
+      const dm = DOMAINS[q.domain] || {};
+      out.push("<h2 class='br-group'>" + T.domain + " " + esc(q.domain) +
+               (dm.name ? " · " + esc(dm.name) : "") + "</h2>");
+    }
+    if (q.task_id && q.task_id !== sub) {
+      sub = q.task_id;
+      const n = rows.filter(x => x.q.task_id === sub && String(x.q.domain) === dom).length;
+      out.push("<h3 class='br-sub'><span class='br-id'>" + esc(sub) + "</span>" +
+               (q.objective ? "<span>" + esc(q.objective) + "</span>" : "") +
+               "<span class='br-n'>" + n + "</span></h3>");
+    }
+    out.push(browseRowHtml(r));
+  });
+  return out.join("");
 }
 
 // One delegated listener for the whole list, so 500 rows cost 500 strings and

@@ -282,6 +282,18 @@ function checkBrowse(file) {
   check('the browse screen opens', el('browseScreen').classList.contains('active'));
   check('opening browse hides the question screen',
     !el('questionScreen').classList.contains('active'));
+  check('rows are grouped under one heading per domain',
+    (el('browseList').innerHTML.match(/br-group/g) || []).length ===
+      new Set(api.QUESTIONS.map(q => String(q.domain))).size);
+  const subs = new Set(api.QUESTIONS.filter(q => q.task_id).map(q => q.domain + ':' + q.task_id));
+  check(`each blueprint subdomain gets one subheading (${subs.size})`,
+    (el('browseList').innerHTML.match(/br-sub'/g) || []).length === subs.size);
+  const scen = api.QUESTIONS.find(q => q.situation && q.situation.length > 40);
+  if (scen) {
+    const opening = scen.situation.slice(0, 30).replace(/[*_`]/g, '');
+    check('a scenario row leads with its situation, not the ask',
+      new RegExp("br-stem'>[^<]*" + opening.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).test(el('browseList').innerHTML));
+  }
   check('browse lists the whole bank unfiltered',
     api.filteredBank().length === api.QUESTIONS.length);
   check('the count line names the bank size',
