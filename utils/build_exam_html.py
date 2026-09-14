@@ -88,6 +88,26 @@ UI = {
                                  "domains and scales the score to 1000 the "
                                  "same way; use the full length for a "
                                  "realistic rehearsal."),
+        "source_note": ("Practice item from CertSafari; answer as marked "
+                        "there, not independently verified"),
+        "source_label": "CertSafari",
+        "misses_btn": "My misses · {n}",
+        "misses_label": "Drill my misses",
+        "misses_empty": "No misses yet",
+        "misses_note": ("Weak-spot drill: the {n} question(s) you have "
+                        "answered wrong before, most-missed first."),
+        "misses_score": "Weak-spot score",
+        "misses_clear": "Clear my misses",
+        "misses_clear_confirm": ("Clear the record of every question you have "
+                                 "missed? This also ends the attempt in "
+                                 "progress."),
+        "browse_btn": "Browse the bank",
+        "browse_title": "Browse the bank",
+        "browse_search": "Search questions, options and explanations",
+        "browse_domain": "Filter by domain",
+        "browse_count": "{n} of {bank} questions",
+        "browse_none": "No question matches this filter.",
+        "cluster_note": "{i} of {n} variants of this scenario",
     },
     "es": {
         "questions": "Preguntas", "answered": "Respondidas", "mode_study": "Estudio",
@@ -137,6 +157,27 @@ UI = {
                                  "corto ponderado entre dominios y escala el "
                                  "puntaje a 1000 de la misma forma; usa la "
                                  "duración completa para un ensayo realista."),
+        "source_note": ("Pregunta de práctica de CertSafari; la respuesta es "
+                        "la que marca ese sitio, sin verificación "
+                        "independiente"),
+        "source_label": "CertSafari",
+        "misses_btn": "Mis fallos · {n}",
+        "misses_label": "Practicar mis fallos",
+        "misses_empty": "Sin fallos aún",
+        "misses_note": ("Práctica de puntos débiles: las {n} pregunta(s) que "
+                        "ya respondiste mal, empezando por las más falladas."),
+        "misses_score": "Puntaje de puntos débiles",
+        "misses_clear": "Borrar mis fallos",
+        "misses_clear_confirm": ("¿Borrar el registro de todas las preguntas "
+                                 "que fallaste? También termina el intento en "
+                                 "curso."),
+        "browse_btn": "Explorar el banco",
+        "browse_title": "Explorar el banco",
+        "browse_search": "Buscar en preguntas, opciones y explicaciones",
+        "browse_domain": "Filtrar por dominio",
+        "browse_count": "{n} de {bank} preguntas",
+        "browse_none": "Ninguna pregunta coincide con este filtro.",
+        "cluster_note": "{i} de {n} variantes de este escenario",
     },
     "pt": {
         "questions": "Perguntas", "answered": "Respondidas", "mode_study": "Estudo",
@@ -187,6 +228,26 @@ UI = {
                                  "curto ponderado entre os domínios e escala "
                                  "a pontuação para 1000 da mesma forma; use a "
                                  "duração completa para um ensaio realista."),
+        "source_note": ("Questão de prática do CertSafari; a resposta é a "
+                        "marcada por esse site, sem verificação independente"),
+        "source_label": "CertSafari",
+        "misses_btn": "Meus erros · {n}",
+        "misses_label": "Treinar meus erros",
+        "misses_empty": "Sem erros ainda",
+        "misses_note": ("Treino de pontos fracos: as {n} pergunta(s) que você "
+                        "já errou, começando pelas mais erradas."),
+        "misses_score": "Pontuação dos pontos fracos",
+        "misses_clear": "Limpar meus erros",
+        "misses_clear_confirm": ("Limpar o registro de todas as perguntas que "
+                                 "você errou? Isso também encerra a tentativa "
+                                 "em curso."),
+        "browse_btn": "Explorar o banco",
+        "browse_title": "Explorar o banco",
+        "browse_search": "Buscar em perguntas, opções e explicações",
+        "browse_domain": "Filtrar por domínio",
+        "browse_count": "{n} de {bank} perguntas",
+        "browse_none": "Nenhuma pergunta corresponde a este filtro.",
+        "cluster_note": "{i} de {n} variantes deste cenário",
     },
 }
 
@@ -247,15 +308,20 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   letter-spacing: 0.1em; padding: 6px 14px; transition: background .15s, color .15s; }
 .mode-toggle button.active { background: var(--gold); color: var(--gold-fg); }
 .mode-hint { font-size: 11.5px; color: var(--subtle); margin-left: 12px; }
-.mode-controls { display: flex; align-items: center; }
+.mode-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 0;
+  min-width: 0; justify-content: flex-end; }
+.mode-toggle, .new-draw-btn, .misses-btn, .browse-btn { flex-shrink: 0; }
 .length-toggle { margin-left: 10px; }
 .mode-toggle button:disabled { opacity: .35; cursor: default; }
 .focus-select { margin-left: 10px; background: var(--surface); color: var(--fg);
   border: 1px solid var(--border-strong); border-radius: var(--r-md);
   font-family: inherit; font-size: 11.5px; font-weight: 600;
   text-transform: uppercase; letter-spacing: .08em; padding: 6px 8px;
-  max-width: 100%; cursor: pointer; }
+  /* A select sizes to its longest option, and the domain names are long
+     enough to push the rest of the header off the row. */
+  max-width: 220px; min-width: 0; cursor: pointer; }
 .focus-select:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.focus-select:disabled { opacity: .35; cursor: default; }
 .new-draw-btn { margin-left: 10px; }
 .new-draw-btn .dn-icon { margin-right: 5px; }
 
@@ -434,13 +500,70 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .screen { display: none; }
 .screen.active { display: block; }
 
+/* Provenance — an imported practice item says where its answer key comes from,
+   quietly enough that it does not compete with the question itself. */
+.q-source { font-size: 12px; color: var(--subtle); line-height: 1.45;
+  margin: -6px 0 16px; padding-left: 10px; border-left: 2px solid var(--border-strong); }
+
+/* Weak-spot drill + browse entry points share the nav-btn shape; `active`
+   marks the one currently scoping the page. */
+.nav-btn.active { background: var(--gold); color: var(--gold-fg); border-color: var(--gold); }
+.dn-action { margin-left: 10px; background: none; border: 0; padding: 0; color: var(--gold);
+  font: inherit; font-size: 12.5px; text-decoration: underline; cursor: pointer; }
+
+/* Browse the bank — every question, filtered by domain and free text. Bodies
+   are filled on expand, so a 500-item list paints one <summary> row each. */
+.browse-head { max-width: 980px; margin: 0 auto 16px; display: flex; flex-wrap: wrap;
+  align-items: center; gap: 10px; }
+.browse-head h1 { flex: 1 1 100%; font-size: 22px; font-weight: 800; color: var(--fg); }
+.browse-head .focus-select { margin-left: 0; }
+.browse-search { flex: 1 1 240px; min-width: 0; background: var(--surface); color: var(--fg);
+  border: 1px solid var(--border-strong); border-radius: var(--r-md);
+  font-family: inherit; font-size: 14px; padding: 8px 12px; }
+.browse-search:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.browse-count { flex: 0 0 auto; font-size: 12.5px; color: var(--subtle); }
+.browse-list, .br-empty { max-width: 980px; margin: 0 auto; }
+.br-empty { color: var(--muted); font-size: 14px; }
+.br-item { background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-md); margin-bottom: 8px; }
+.br-item[open] { border-color: var(--border-strong); }
+.br-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px;
+  padding: 12px 16px; cursor: pointer; list-style: none; }
+.br-head::-webkit-details-marker { display: none; }
+.br-head:hover { background: var(--surface-2); }
+.br-id { flex: 0 0 auto; font-family: "Source Code Pro", ui-monospace, Menlo, monospace;
+  font-size: 11.5px; font-weight: 600; color: var(--gold); }
+.br-stem { flex: 1 1 260px; font-size: 14.5px; line-height: 1.5; color: var(--fg-soft); }
+.br-hint { display: block; margin-top: 3px; font-size: 12.5px; color: var(--subtle);
+  line-height: 1.45; }
+/* The full situation sits right below once the item is open, so the preview
+   in the clickable head would only repeat itself. */
+.br-item[open] .br-hint { display: none; }
+.br-tags { flex: 0 0 auto; display: flex; flex-wrap: wrap; gap: 6px; }
+.br-tag { padding: 3px 8px; border: 1px solid var(--border-strong); border-radius: var(--r-sm);
+  font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); white-space: nowrap; }
+.br-tag.cluster { border-color: var(--gold); color: var(--gold);
+  font-size: 11px; letter-spacing: normal; text-transform: none; }
+.br-tag.src { border-style: dashed; }
+.br-body { padding: 0 16px 14px; }
+.br-situation { margin-bottom: 12px; padding-left: 12px; font-size: 14px; line-height: 1.6;
+  color: var(--fg-soft); border-left: 2px solid var(--border-strong); }
+.br-opt { display: flex; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); }
+.br-opt .opt-letter { width: 24px; height: 24px; min-width: 24px; font-size: 12px; }
+.br-opt.is-correct .opt-letter { background: var(--good); color: var(--good-fg); }
+.br-opt-text { font-size: 14px; line-height: 1.5; color: var(--fg-soft); }
+.br-opt.is-correct .br-opt-text { color: var(--fg); font-weight: 600; }
+.br-opt-expl { margin-top: 4px; font-size: 12.5px; line-height: 1.55; color: var(--muted); }
+.br-source { margin-top: 10px; font-size: 12px; color: var(--subtle); }
+
 @media (max-width: 760px) {
   html, body { height: auto; }
   body { min-height: 100vh; height: auto; overflow: auto; display: block; }
   .ravn-topbar { position: static; padding: 10px 16px; gap: 10px; flex-wrap: wrap; }
   .draw-note { padding: 8px 16px; }
   .ravn-brand-tagline { display: none; }
-  .mode-controls { max-width: 100%; flex-wrap: wrap; gap: 6px 0; }
+  .mode-controls { max-width: 100%; justify-content: flex-start; }
   .mode-hint { margin-left: 8px; }
   /* Phone order: question first. The navigator and the page title used to
      push the question ~590px down an 844px screen. */
@@ -461,6 +584,9 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   .ds-row { flex-wrap: wrap; }
   .ds-name { flex-basis: 100%; }
   .ds-bar { flex: 1; min-width: 140px; }
+  .browse-head, .browse-list, .br-empty { max-width: none; }
+  .br-head { padding: 10px 12px; gap: 8px; }
+  .br-stem { flex-basis: 100%; }
 }
 
 @media (max-width: 420px) {
@@ -478,6 +604,8 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   .q-counter { width: 100%; }
   .wrong-item { display: block; }
   .wrong-item .wi-n { margin-bottom: 4px; }
+  .browse-head h1 { font-size: 1.15rem; }
+  .br-tag { font-size: 0.6rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -487,6 +615,14 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 
 JS = r"""
 const QUESTIONS = __DATA__;
+// Option letters come from the bank, but an imported item may ship without
+// them. Filling them in here — A..H, in the order the options are written —
+// is what lets everything downstream (the answer key, the review pane, browse
+// mode) key on a letter regardless of how many options an item carries.
+const LETTERS = "ABCDEFGH";
+QUESTIONS.forEach(q => (q.options || []).forEach((o, i) => {
+  if (!o.letter) o.letter = LETTERS.charAt(i) || String(i + 1);
+}));
 const DOMAINS = __DOMAINS__;
 const T = __UI__;
 const PASS_PCT = __PASS__;          // per-domain bar coloring threshold (%)
@@ -506,6 +642,55 @@ const STORE_KEY = "__STOREKEY__";
 // new field the order validation depends on (the domain focus in version 3).
 // An older payload is dropped, which resets an attempt in progress once.
 const STORE_VERSION = 3;
+// Per-question miss counts, namespaced under the page's own store key so the
+// three tracks never read each other's weak spots. `{ id: { n, t } }`: how
+// many times the item was answered wrong, and when it was last graded.
+const MISS_KEY = STORE_KEY + ":misses";
+const MISS_VERSION = 1;
+
+function loadMisses() {
+  try {
+    const raw = localStorage.getItem(MISS_KEY);
+    if (!raw) return {};
+    const d = JSON.parse(raw);
+    if (!d || d.v !== MISS_VERSION || !d.items || typeof d.items !== "object") return {};
+    return d.items;
+  } catch (e) { return {}; }
+}
+function saveMisses(items) {
+  try {
+    localStorage.setItem(MISS_KEY, JSON.stringify({ v: MISS_VERSION, items: items }));
+  } catch (e) {}
+}
+
+// The weak-spot draw: every question missed at least once, most-missed first,
+// oldest first among ties so a stale miss resurfaces before a fresh one. It is
+// capped at the full draw size — a candidate with 200 misses still gets an
+// attempt the length of a real one.
+function missedIds() {
+  const m = loadMisses();
+  const ids = Object.keys(m).filter(id => (m[id] && m[id].n > 0) && qById(id));
+  ids.sort((a, b) => (m[b].n - m[a].n) || ((m[a].t || 0) - (m[b].t || 0)) ||
+                     (a < b ? -1 : a > b ? 1 : 0));
+  return ids.slice(0, examSize("full", "all"));
+}
+
+// Record one graded item. Called once per question per attempt (state.graded
+// is the guard, and it is saved with the attempt so a reload cannot double
+// count): in study mode the moment the answer completes and reveals, in exam
+// mode when the attempt is scored.
+function noteResult(q, ans) {
+  if (!q || state.graded[q.id]) return;
+  const touched = Array.isArray(ans) ? ans.length > 0 : (ans !== undefined && ans !== null);
+  if (!touched) return;
+  state.graded[q.id] = true;
+  const m = loadMisses();
+  const cur = m[q.id];
+  if (!isCorrect(q, ans)) m[q.id] = { n: ((cur && cur.n) || 0) + 1, t: Date.now() };
+  else if (cur) cur.t = Date.now();
+  else return;   // a first-time correct answer is not a weak spot to remember
+  saveMisses(m);
+}
 
 // `length` ("full" | "quick") defaults to the attempt in progress. load()
 // passes it explicitly: a saved payload must be checked against its own
@@ -524,6 +709,11 @@ function drawCount(domain, length) {
 // full-draw lengths regardless of the live state (the length toggle labels).
 function drawPerDomain(length, focus) {
   if (focus === undefined) focus = state.focus;
+  if (focus === "misses") {
+    const out = {};
+    missedIds().forEach(id => { const d = qById(id).domain; out[d] = (out[d] || 0) + 1; });
+    return out;
+  }
   if (focus !== "all") {
     const out = {};
     out[focus] = QUESTIONS.filter(q => String(q.domain) === String(focus)).length;
@@ -607,17 +797,23 @@ function tallyAttempt(active, answers) {
            domStat: domStat, wrongByDomain: wrongByDomain };
 }
 
-// `focus` ("all" | a domain id) scopes an attempt: "all" draws across every
-// domain, a domain id drills that domain's whole bank. It persists like the
-// attempt length, and the order validation below reads it from the payload.
-const state = { current: 0, answers: {}, order: [], mode: "study", length: "full", focus: "all" };
+// `focus` ("all" | a domain id | "misses") scopes an attempt: "all" draws
+// across every domain, a domain id drills that domain's whole bank, "misses"
+// draws the questions this candidate has answered wrong before. It persists
+// like the attempt length, and the order validation below reads it from the
+// payload.
+// `graded` holds the ids already folded into the miss counts for this attempt,
+// so answering in study mode and then finishing cannot count one item twice.
+// `browse` is the bank-browser filter; it is view state, so it is not saved.
+const state = { current: 0, answers: {}, order: [], mode: "study", length: "full",
+                focus: "all", graded: {}, browse: { domain: "all", q: "" } };
 
 // ---- persistence ---------------------------------------------------------
 function save() {
   try { localStorage.setItem(STORE_KEY, JSON.stringify(
     { v: STORE_VERSION, answers: state.answers, order: state.order,
       mode: state.mode, length: state.length, focus: state.focus,
-      current: state.current })); } catch (e) {}
+      graded: state.graded, current: state.current })); } catch (e) {}
 }
 function load() {
   try {
@@ -638,18 +834,28 @@ function load() {
     // domain's bank, never against the full draw. A payload from before the
     // domain drill existed carries no focus: it drew across every domain.
     const focus = d.focus === undefined ? "all" : d.focus;
-    if (focus !== "all" && !QUESTIONS.some(q => String(q.domain) === String(focus))) return null;
-    // Order is valid only if it still matches that length's attempt size.
-    if (!Array.isArray(d.order) || d.order.length !== examSize(length, focus)) return null;
+    if (focus !== "all" && focus !== "misses" &&
+        !QUESTIONS.some(q => String(q.domain) === String(focus))) return null;
     const ids = new Set(QUESTIONS.map(q => q.id));
-    if (!d.order.every(id => ids.has(id))) return null;
-    // The total survives a blueprint revision that only moves items between
-    // domains, so check the per-domain mix too. Without this a returning
-    // candidate keeps the old weighting under a note that claims the new one.
-    // In a drill the same check pins the order to the focused domain's bank.
-    const want = drawPerDomain(length, focus), got = {};
-    d.order.forEach(id => { const q = qById(id); if (q) got[q.domain] = (got[q.domain] || 0) + 1; });
-    if (Object.keys(want).some(d2 => (got[d2] || 0) !== want[d2])) return null;
+    if (!Array.isArray(d.order) || !d.order.every(id => ids.has(id))) return null;
+    if (focus === "misses") {
+      // A weak-spot drill is drawn from a set that grows as the candidate
+      // answers, so its composition cannot be recomputed and compared — doing
+      // so would throw the attempt away on the first new miss. What still
+      // holds: real ids, no repeats, and never longer than a full draw.
+      if (!d.order.length || d.order.length > examSize("full", "all")) return null;
+      if (new Set(d.order).size !== d.order.length) return null;
+    } else {
+      // Order is valid only if it still matches that length's attempt size.
+      if (d.order.length !== examSize(length, focus)) return null;
+      // The total survives a blueprint revision that only moves items between
+      // domains, so check the per-domain mix too. Without this a returning
+      // candidate keeps the old weighting under a note that claims the new one.
+      // In a drill the same check pins the order to the focused domain's bank.
+      const want = drawPerDomain(length, focus), got = {};
+      d.order.forEach(id => { const q = qById(id); if (q) got[q.domain] = (got[q.domain] || 0) + 1; });
+      if (Object.keys(want).some(d2 => (got[d2] || 0) !== want[d2])) return null;
+    }
     d.length = length;
     d.focus = focus;
     return d;
@@ -663,6 +869,8 @@ function load() {
 // answer key is by letter). A domain focus instead shuffles that domain's whole
 // bank: the drill is exhaustive, so a new set only reorders it.
 function shuffleOrder() {
+  // Weak-spot order is ranked, not random: most-missed first is the point.
+  if (state.focus === "misses") return missedIds();
   const byDomain = {};
   QUESTIONS.forEach(q => { (byDomain[q.domain] = byDomain[q.domain] || []).push(q.id); });
   const order = [];
@@ -698,23 +906,38 @@ function md(text) {
                   .replace(/\n/g, " ");
 }
 
+// An item imported from a practice site carries its origin with it: the answer
+// key is that site's, and this repo has not re-derived it. Says so wherever the
+// item is read, on the card and in browse mode.
+function sourceNoteHtml(q, cls) {
+  return q.source === "certsafari"
+    ? "<div class='" + cls + "'>" + esc(T.source_note) + "</div>" : "";
+}
+
 // ---- sidebar -------------------------------------------------------------
 function buildSidebar() {
   const list = document.getElementById("sidebarList");
   list.innerHTML = "";
   document.getElementById("totalCount").textContent = state.order.length;
   const qs = orderedQuestions();
+  // A weak-spot drill is ordered by miss count, so its domains interleave:
+  // grouping it by domain would produce a column of one-item headings. It gets
+  // a single group instead, under the drill's own name.
+  const weak = state.focus === "misses";
   let curDomain = null, groupEl = null;
   qs.forEach((q, idx) => {
-    if (q.domain !== curDomain) {
-      curDomain = q.domain;
+    const groupKey = weak ? "misses" : q.domain;
+    if (groupKey !== curDomain) {
+      curDomain = groupKey;
       const sg = document.createElement("div");
       sg.className = "domain-group";
       const lbl = document.createElement("div");
       lbl.className = "domain-label";
       const dm = DOMAINS[q.domain];
-      lbl.innerHTML = "<span>" + T.domain + " " + q.domain + " · " + esc(dm.name) +
-        "</span><span class='dl-weight'>" + dm.weight + "%</span>";
+      lbl.innerHTML = weak
+        ? "<span>" + esc(T.misses_label) + "</span><span class='dl-weight'>" + qs.length + "</span>"
+        : "<span>" + T.domain + " " + q.domain + " · " + esc(dm.name) +
+          "</span><span class='dl-weight'>" + dm.weight + "%</span>";
       sg.appendChild(lbl);
       groupEl = sg;
       list.appendChild(sg);
@@ -763,6 +986,7 @@ function renderQuestion(idx) {
   const dm = DOMAINS[q.domain];
   const scenarioTag = q.scenario ? "<span class='q-scenario'>" + esc(q.scenario) + "</span>" : "";
   const situation = q.situation ? "<div class='q-situation'>" + md(q.situation) + "</div>" : "";
+  const sourceNote = sourceNoteHtml(q, "q-source");
 
   // A multi item with all N picks in place: the remaining options are dimmed
   // and inert, so it reads as "deselect one first" instead of a dead click.
@@ -806,6 +1030,7 @@ function renderQuestion(idx) {
     "<div class='q-number'>" + T.question + " " + (idx + 1) + "</div>" +
     "<div><span class='q-domain'>" + T.domain + " " + q.domain + " · " + esc(dm.name) + "</span>" +
     scenarioTag + "</div>" +
+    sourceNote +
     situation +
     "<div class='q-prompt'>" + md(q.question) + "</div>" +
     (isMulti(q)
@@ -837,17 +1062,35 @@ function answer(id, letter) {
     else return;
     state.answers[id] = cur;
   }
+  // Study mode reveals the answer as soon as it is complete — that reveal is
+  // the grading the candidate sees, so the weak-spot record follows it. Exam
+  // mode stays editable until the attempt is scored, so it records there.
+  if (state.mode === "study" && hasAnswer(q, state.answers[id])) {
+    noteResult(q, state.answers[id]);
+    updateMissesUI();
+  }
   save();
   renderQuestion(state.current);
   updateSidebar();
 }
 
 function navigate(dir) { goto(state.current + dir); }
+
+// Three screens now share the content pane, so showing one always hides the
+// other two: a half-hidden browse list under a summary was the failure mode.
+function showScreen(name) {
+  ["questionScreen", "summaryScreen", "browseScreen"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle("active", id === name);
+  });
+  const btn = document.getElementById("browseBtn");
+  if (btn) btn.classList.toggle("active", name === "browseScreen");
+}
+
 function goto(idx) {
   const qs = orderedQuestions();
   if (idx < 0 || idx >= qs.length) return;
-  document.getElementById("questionScreen").classList.add("active");
-  document.getElementById("summaryScreen").classList.remove("active");
+  showScreen("questionScreen");
   state.current = idx;
   save();
   renderQuestion(idx);
@@ -905,13 +1148,22 @@ function updateLengthUI() {
       btn.setAttribute("aria-pressed", String(state.length === len));
       btn.disabled = state.focus !== "all";
     });
-  const note = state.focus !== "all"
-    ? T.focus_note.replace("{n}", examSize()).replace("{d}", state.focus)
-    : (state.length === "quick" ? T.draw_note_quick : T.draw_note_full)
-        .replace("{n}", examSize())
-        .replace("{bank}", QUESTIONS.length);
+  // The weak-spot drill reads its size off the order in play, not off a
+  // recomputed draw: answering during the drill adds misses, and the strip
+  // must keep describing the attempt the candidate is actually taking.
+  const note = state.focus === "misses"
+    ? T.misses_note.replace("{n}", state.order.length)
+    : (state.focus !== "all"
+        ? T.focus_note.replace("{n}", examSize()).replace("{d}", state.focus)
+        : (state.length === "quick" ? T.draw_note_quick : T.draw_note_full)
+            .replace("{n}", examSize())
+            .replace("{bank}", QUESTIONS.length));
   document.getElementById("drawNote").innerHTML =
-    "<span class='dn-icon'>&#10227;</span>" + note;
+    "<span class='dn-icon'>&#10227;</span>" + note +
+    (state.focus === "misses"
+      ? "<button type='button' class='dn-action' onclick='clearMisses()'>" +
+        esc(T.misses_clear) + "</button>"
+      : "");
   updateFocusUI();
 }
 
@@ -921,13 +1173,48 @@ function updateLengthUI() {
 // first, through the same guard a new draw uses.
 function setFocus(focus) {
   if (String(focus) === String(state.focus)) return;
+  if (focus === "misses" && missedIds().length === 0) return;
   if (!confirmDiscard()) { updateFocusUI(); return; }
   state.focus = focus;
   restart();
 }
 
-function buildFocusOptions() {
-  const sel = document.getElementById("focusSelect");
+// ---- weak-spot drill -------------------------------------------------------
+// Only the questions this candidate has answered wrong before, most-missed
+// first. It is a scope like the domain drill, so it goes through setFocus and
+// inherits the discard guard, the disabled length toggle and the raw scoring.
+function toggleMisses() {
+  setFocus(state.focus === "misses" ? "all" : "misses");
+}
+
+function updateMissesUI() {
+  const btn = document.getElementById("missesBtn");
+  if (!btn) return;
+  const n = missedIds().length;
+  btn.textContent = n ? T.misses_btn.replace("{n}", n) : T.misses_empty;
+  btn.disabled = n === 0 && state.focus !== "misses";
+  btn.classList.toggle("active", state.focus === "misses");
+  btn.setAttribute("aria-pressed", String(state.focus === "misses"));
+}
+
+// Clearing the weak-spot record also ends the attempt in progress: a drill
+// scoped to misses that no longer exist is not an attempt anyone can finish.
+function clearMisses() {
+  if (typeof confirm === "function" && !confirm(T.misses_clear_confirm)) return;
+  clearProgress();
+}
+
+function clearProgress() {
+  try { localStorage.removeItem(MISS_KEY); localStorage.removeItem(STORE_KEY); } catch (e) {}
+  state.answers = {};
+  state.graded = {};
+  state.current = 0;
+  state.focus = "all";
+  restart();
+}
+
+function fillDomainOptions(sel) {
+  if (!sel) return;
   sel.innerHTML = "";
   const all = document.createElement("option");
   all.value = "all";
@@ -941,22 +1228,166 @@ function buildFocusOptions() {
   });
 }
 
+function buildFocusOptions() {
+  fillDomainOptions(document.getElementById("focusSelect"));
+  fillDomainOptions(document.getElementById("browseDomain"));
+}
+
 function updateFocusUI() {
+  updateMissesUI();
   const sel = document.getElementById("focusSelect");
   if (!sel) return;
-  sel.value = String(state.focus);
+  // The weak-spot drill is not a domain, so the domain select has nothing
+  // truthful to show: it goes inert for the duration, the way the length
+  // toggle already does inside a drill.
+  sel.disabled = state.focus === "misses";
+  sel.value = state.focus === "misses" ? "all" : String(state.focus);
+}
+
+// ---- browse the bank -------------------------------------------------------
+// Every question in the bank, filtered by domain and free text, each one
+// expandable to its full answer key. Built for ~500 items on a phone: the
+// index is computed once, a filter paints one <summary> row per match, and an
+// item's options and explanations are rendered only when it is opened.
+let BROWSE_INDEX = null;
+
+function browseIndex() {
+  if (BROWSE_INDEX) return BROWSE_INDEX;
+  // Items that share a stem are imported as a cluster. Counting the cluster up
+  // front is what lets each row say which variant of the scenario it is, so a
+  // reader who meets the same setup three times knows why.
+  const size = {}, seen = {};
+  QUESTIONS.forEach(q => { if (q.cluster) size[q.cluster] = (size[q.cluster] || 0) + 1; });
+  BROWSE_INDEX = QUESTIONS.map(q => {
+    // `task_id` is the blueprint subdomain ("3.2"), so typing it finds every
+    // item on that objective. The objective *text* is deliberately left out:
+    // every item in a domain repeats it, so it would match half the bank on a
+    // common word and drown the question the reader was actually looking for.
+    const hay = [q.id, q.task_id, q.situation, q.question]
+      .concat(q.options.map(o => o.text))
+      .concat(q.options.map(o => o.explanation))
+      .filter(Boolean).join(" ").toLowerCase();
+    const n = q.cluster ? size[q.cluster] : 0;
+    const i = q.cluster ? (seen[q.cluster] = (seen[q.cluster] || 0) + 1) : 0;
+    return { q: q, hay: hay, ci: i, cn: n };
+  });
+  return BROWSE_INDEX;
+}
+
+// Pure, so the filter can be checked without a DOM. Every whitespace-separated
+// term must appear somewhere in the item — question, options or explanations.
+function filteredBank(domain, query) {
+  if (domain === undefined) domain = state.browse.domain;
+  if (query === undefined) query = state.browse.q;
+  const terms = String(query || "").toLowerCase().split(/\s+/).filter(Boolean);
+  return browseIndex().filter(r =>
+    (String(domain) === "all" || String(r.q.domain) === String(domain)) &&
+    terms.every(t => r.hay.indexOf(t) >= 0));
+}
+
+function browseRowHtml(r) {
+  const q = r.q;
+  const tags =
+    "<span class='br-tag'>" + T.domain + " " + esc(q.domain) + "</span>" +
+    (r.cn > 1
+      ? "<span class='br-tag cluster'>" +
+        esc(T.cluster_note.replace("{i}", r.ci).replace("{n}", r.cn)) + "</span>" : "") +
+    (q.source === "certsafari" ? "<span class='br-tag src'>" + esc(T.source_label) + "</span>" : "");
+  const hint = (q.situation && q.question.length < 90)
+    ? "<span class='br-hint'>" + md(q.situation.slice(0, 110)) +
+      (q.situation.length > 110 ? "…" : "") + "</span>" : "";
+  return "<details class='br-item' data-id='" + esc(q.id) + "'>" +
+    "<summary class='br-head'>" +
+      "<span class='br-id'>" + esc(q.id).toUpperCase() + "</span>" +
+      "<span class='br-stem'>" + md(q.question) + hint + "</span>" +
+      "<span class='br-tags'>" + tags + "</span>" +
+    "</summary><div class='br-body'></div></details>";
+}
+
+// The expensive half: options, correctness marks and every explanation. Kept
+// out of the list render so the cost is paid per opened item, not per bank.
+function browseBody(id) {
+  const q = qById(id);
+  if (!q) return "";
+  const opts = q.options.map(o =>
+    "<div class='br-opt" + (o.correct ? " is-correct" : "") + "'>" +
+      "<span class='opt-letter'>" + esc(o.letter) + "</span>" +
+      "<span><span class='br-opt-text'>" + md(o.text) +
+        (o.correct ? " <span class='wi-correct-tag'>&#10003; " + T.correct + "</span>" : "") +
+      "</span>" +
+      (o.explanation ? "<div class='br-opt-expl'>" + md(o.explanation) + "</div>" : "") +
+      "</span></div>").join("");
+  return (q.situation ? "<div class='br-situation'>" + md(q.situation) + "</div>" : "") +
+    (isMulti(q) ? "<div class='q-select'>" + T.select_n.replace("{n}", selectCount(q)) + "</div>" : "") +
+    opts + sourceNoteHtml(q, "br-source");
+}
+
+function renderBrowse() {
+  const rows = filteredBank();
+  const count = document.getElementById("browseCount");
+  if (count) {
+    count.textContent = T.browse_count.replace("{n}", rows.length)
+                                      .replace("{bank}", QUESTIONS.length);
+  }
+  const list = document.getElementById("browseList");
+  if (!list) return;
+  list.innerHTML = rows.length
+    ? rows.map(browseRowHtml).join("")
+    : "<p class='br-empty'>" + esc(T.browse_none) + "</p>";
+}
+
+// One delegated listener for the whole list, so 500 rows cost 500 strings and
+// no handlers. `toggle` does not bubble, hence the capture phase.
+function wireBrowse() {
+  const list = document.getElementById("browseList");
+  if (!list || list.__wired || typeof list.addEventListener !== "function") return;
+  list.__wired = true;
+  list.addEventListener("toggle", ev => {
+    const d = ev.target;
+    if (!d || !d.open || !d.getAttribute) return;
+    const body = d.lastElementChild;
+    if (body && !body.innerHTML) body.innerHTML = browseBody(d.getAttribute("data-id"));
+  }, true);
+}
+
+function setBrowseDomain(d) {
+  state.browse.domain = d;
+  renderBrowse();
+}
+
+// The search box repaints the list, so it waits for a pause in typing. On a
+// phone that is the difference between a smooth field and a stuttering one.
+let browseTimer = null;
+function onBrowseSearch(v) {
+  state.browse.q = v;
+  if (typeof setTimeout !== "function") { renderBrowse(); return; }
+  if (browseTimer) clearTimeout(browseTimer);
+  browseTimer = setTimeout(renderBrowse, 120);
+}
+
+function toggleBrowse() {
+  const screen = document.getElementById("browseScreen");
+  if (screen && screen.classList.contains("active")) { goto(state.current); return; }
+  showScreen("browseScreen");
+  wireBrowse();
+  renderBrowse();
 }
 
 // ---- summary -------------------------------------------------------------
 function showSummary() {
-  document.getElementById("questionScreen").classList.remove("active");
-  document.getElementById("summaryScreen").classList.add("active");
+  showScreen("summaryScreen");
 
   // Only the questions in this attempt (PER_DOMAIN per domain) count. The
   // review pane lists every item that did not score, including the ones left
   // blank or half-picked: those count as incorrect, so they need a rationale.
   const active = orderedQuestions();
   const tally = tallyAttempt(active, state.answers);
+  // Scoring is the grading a candidate sees in exam mode, so the weak-spot
+  // record is written here. noteResult() skips anything study mode already
+  // counted, so finishing after answering cannot double-count an item.
+  active.forEach(q => noteResult(q, state.answers[q.id]));
+  save();
+  updateMissesUI();
   const total = tally.total, answered = tally.answered, correct = tally.correct;
   const wrong = tally.wrong, unanswered = tally.unanswered;
   const domStat = tally.domStat, wrongByDomain = tally.wrongByDomain;
@@ -968,6 +1399,13 @@ function showSummary() {
   // its pass/fail verdict would mislead: the summary reports the raw domain
   // result instead, with the same review pane below.
   const drilling = state.focus !== "all";
+  const weak = state.focus === "misses";
+
+  // What this attempt was scoped to, in the scope's own words — the sentence
+  // is repeated under the score and again at the foot of the review pane.
+  const scopeNote = weak
+    ? T.misses_note.replace("{n}", total)
+    : T.focus_note.replace("{n}", total).replace("{d}", state.focus);
 
   let domainScoresHtml = "";
   Object.keys(domStat).sort((a, b) => a - b).forEach(d => {
@@ -1033,15 +1471,15 @@ function showSummary() {
   const headHtml = drilling
     ? "<div class='score-grid'>" +
         "<div class='score-card total'><div class='big'>" + correct + "/" + total + "</div>" +
-          "<div class='label'>" + T.drill_score.replace("{d}", state.focus) +
+          "<div class='label'>" +
+            (weak ? T.misses_score : T.drill_score.replace("{d}", state.focus)) +
             " · " + pct + "%</div></div>" +
         "<div class='score-card correct-c'><div class='big'>" + correct + "</div>" +
           "<div class='label'>" + T.correct + "</div></div>" +
         "<div class='score-card wrong-c'><div class='big'>" + (wrong + unanswered) + "</div>" +
           "<div class='label'>" + T.incorrect + "</div></div>" +
       "</div>" +
-      "<p class='threshold-note'>" +
-        T.focus_note.replace("{n}", total).replace("{d}", state.focus) + "</p>"
+      "<p class='threshold-note'>" + scopeNote + "</p>"
     : "<div class='verdict " + (passed ? "pass" : "fail") + "'>" + (passed ? T.pass : T.fail) + "</div>" +
       unansweredNote +
       "<div class='score-grid'>" +
@@ -1070,21 +1508,26 @@ function showSummary() {
       ? "<div class='section-title'>" + T.review_wrong + "</div>" + wrongGroupsHtml
       : "<p style='color:#38a169;font-weight:700;font-size:17px;'>" + T.all_correct + "</p>") +
     "<div class='rotate-note'><span class='dn-icon'>&#10227;</span>" +
-      (drilling
-        ? T.focus_note.replace("{n}", total).replace("{d}", state.focus)
-        : T.summary_rotate.replace("{n}", total).replace("{bank}", QUESTIONS.length)) + "</div>" +
+      (drilling ? scopeNote
+                : T.summary_rotate.replace("{n}", total).replace("{bank}", QUESTIONS.length)) + "</div>" +
     "<button type='button' class='restart-btn' onclick='restart()'>" + T.restart + "</button>";
 }
 
 function restart() {
   state.answers = {};
+  // A fresh attempt has graded nothing yet, so every item in it can record a
+  // miss again — that is what makes a repeated mistake count twice.
+  state.graded = {};
   state.current = 0;
   state.order = shuffleOrder();
+  if (!state.order.length && state.focus !== "all") {
+    state.focus = "all";
+    state.order = shuffleOrder();
+  }
   save();
   updateLengthUI();
   buildSidebar();
-  document.getElementById("questionScreen").classList.add("active");
-  document.getElementById("summaryScreen").classList.remove("active");
+  showScreen("questionScreen");
   renderQuestion(0);
   updateSidebar();
 }
@@ -1101,6 +1544,7 @@ function restart() {
     state.length = saved.length;
     // Same for the focus: a pre-drill payload restores as the full draw.
     state.focus = saved.focus;
+    state.graded = saved.graded || {};
     state.current = Math.min(saved.current || 0, state.order.length - 1);
   } else {
     state.order = shuffleOrder();
@@ -1169,6 +1613,11 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
         f'<select class="focus-select" id="focusSelect" aria-label="{ui["focus_label"]}" onchange="setFocus(this.value)"></select>'
         '<button type="button" class="nav-btn new-draw-btn" id="newDrawBtn" onclick="newDraw()">'
         f'<span class="dn-icon">&#10227;</span>{ui["new_set"]}</button>'
+        f'<button type="button" class="nav-btn misses-btn" id="missesBtn" '
+        f'aria-pressed="false" aria-label="{ui["misses_label"]}" '
+        f'title="{ui["misses_label"]}" onclick="toggleMisses()" disabled></button>'
+        f'<button type="button" class="nav-btn browse-btn" id="browseBtn" '
+        f'aria-pressed="false" onclick="toggleBrowse()">{ui["browse_btn"]}</button>'
         '<span class="mode-hint" id="modeHint"></span>'
         '</div></header>'
     )
@@ -1207,6 +1656,15 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
     <div class="content">
       <div class="screen active" id="questionScreen"><div class="q-card" id="qCard"></div></div>
       <div class="screen" id="summaryScreen"><div class="summary show" id="summaryContent"></div></div>
+      <div class="screen" id="browseScreen">
+        <div class="browse-head">
+          <h1>{ui['browse_title']}</h1>
+          <select class="focus-select" id="browseDomain" aria-label="{ui['browse_domain']}" onchange="setBrowseDomain(this.value)"></select>
+          <input type="search" class="browse-search" id="browseSearch" placeholder="{ui['browse_search']}" aria-label="{ui['browse_search']}" oninput="onBrowseSearch(this.value)">
+          <span class="browse-count" id="browseCount"></span>
+        </div>
+        <div class="browse-list" id="browseList"></div>
+      </div>
     </div>
   </main>
 </div>

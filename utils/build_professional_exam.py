@@ -10,9 +10,11 @@ Reuses the quiz engine in build_exam_html.py. The differences from Foundations:
   * multiple-response items, scored all-or-nothing
   * English only — Anthropic delivers the exam and its prep content in English
 
-Question bank: ccap/data/questions.json (Ravn-authored practice items,
-written against the official blueprint objectives — not real exam content).
-Validate it with utils/validate_professional_bank.py.
+Question bank: ccap/data/questions.json, imported from the collected CertSafari
+corpus by utils/import_certsafari.py and tagged to the official blueprint
+objectives. The items and their answer keys are CertSafari's, not real exam
+content and not independently verified here. Validate the bank with
+utils/validate_professional_bank.py.
 
 Usage: python3 utils/build_professional_exam.py
 """
@@ -36,7 +38,8 @@ UI["threshold_note"] = (
     + SPLIT + "). "
     "Multiple-response items are scored all-or-nothing. The score is scaled to "
     "1000 as a study approximation of the real 100–1,000 scaled score. These are "
-    "Ravn-authored practice items, not real exam content."
+    "practice items collected from CertSafari, not real exam content; the answers "
+    "are as CertSafari marks them and have not been independently verified."
 )
 
 

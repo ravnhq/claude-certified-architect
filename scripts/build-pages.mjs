@@ -500,7 +500,7 @@ const PREFLIGHT_TRACKS = [
         group: 'Ravn materials',
         items: [
           { name: 'Study guide', href: 'guides/professional-en.html', note: 'The full Professional guide, English only.', internal: true },
-          { name: 'Practice exam', href: 'practical/professional-en.html', note: '63 questions drawn from a bank of 126, scored to 1000.', internal: true },
+          { name: 'Practice exam', href: 'practical/professional-en.html', note: '63 questions drawn fresh on every attempt from the much larger CertSafari bank, scored to 1000.', internal: true },
         ],
       },
       {
@@ -617,7 +617,7 @@ const PREFLIGHT_TRACKS = [
         group: 'Ravn materials',
         items: [
           { name: 'Study guide', href: 'guides/developer-en.html', note: 'The full Developer guide, English only.', internal: true },
-        { name: 'Practice exam', href: 'practical/developer-en.html', note: '53 questions drawn from a bank of 106, weighted to the eight domains and scored to 1000.', internal: true },
+        { name: 'Practice exam', href: 'practical/developer-en.html', note: '53 questions drawn fresh on every attempt from the much larger CertSafari bank, weighted to the eight domains and scored to 1000.', internal: true },
         ],
       },
       {

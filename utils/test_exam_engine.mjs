@@ -44,14 +44,16 @@ function loadEngine(file) {
     localStorage: {
       getItem: k => (store.has(k) ? store.get(k) : null),
       setItem: (k, v) => store.set(k, String(v)),
+      removeItem: k => store.delete(k),
     },
     console,
     renderQuestion() {},
     updateSidebar() {},
+    updateMissesUI() {},
   };
   vm.createContext(ctx);
   vm.runInContext(src + '\n' + answerFn +
-    '\nthis.__api = { QUESTIONS, PER_DOMAIN, DOMAINS, STORE_KEY, STORE_VERSION, state, answer, drawCount, drawPerDomain, examSize, isMulti, selectCount, hasAnswer, isCorrect, isChosenLetter, letterLabel, shuffleOrder, qById, classify, tallyAttempt, esc, md, save, load, localStorage };', ctx);
+    '\nthis.__api = { QUESTIONS, PER_DOMAIN, DOMAINS, STORE_KEY, STORE_VERSION, state, answer, drawCount, drawPerDomain, examSize, isMulti, selectCount, hasAnswer, isCorrect, isChosenLetter, letterLabel, shuffleOrder, qById, classify, tallyAttempt, esc, md, save, load, localStorage, MISS_KEY, loadMisses, saveMisses, missedIds, noteResult };', ctx);
   return ctx.__api;
 }
 
@@ -245,6 +247,164 @@ function checkFocusDrill(e, file) {
   e.save();
 }
 
+// The weak-spot record: which questions this candidate has answered wrong, how
+// often, and when they were last graded. It lives beside the attempt under the
+// page's own store key, and it is what the "drill my misses" scope draws from.
+function checkMisses(e, file) {
+  console.log(`Weak-spot record (${file})`);
+  check('the miss store is namespaced under the page key',
+    e.MISS_KEY.indexOf(e.STORE_KEY) === 0, e.MISS_KEY);
+  e.localStorage.removeItem(e.MISS_KEY);
+  check('no record means no weak-spot draw', e.missedIds().length === 0);
+
+  // A complete answer of the right shape that is nonetheless wrong.
+  const wrongFor = q => Array.isArray(q.correct)
+    ? q.options.filter(o => q.correct.indexOf(o.letter) < 0)
+        .slice(0, q.correct.length).map(o => o.letter)
+    : q.options.find(o => o.letter !== q.correct).letter;
+
+  const [a, b] = e.QUESTIONS;
+  e.state.graded = {};
+  e.noteResult(a, wrongFor(a));
+  e.noteResult(b, b.correct);
+  check('a wrong answer is recorded as a miss', (e.loadMisses()[a.id] || {}).n === 1);
+  check('a first correct answer leaves no record', e.loadMisses()[b.id] === undefined);
+  check('only missed items reach the weak-spot draw',
+    e.missedIds().length === 1 && e.missedIds()[0] === a.id);
+
+  e.noteResult(a, wrongFor(a));
+  check('one attempt counts an item once', e.loadMisses()[a.id].n === 1);
+  e.state.graded = {};
+  e.noteResult(a, wrongFor(a));
+  check('a repeated miss in a later attempt increments the count',
+    e.loadMisses()[a.id].n === 2);
+  const beforeT = e.loadMisses()[a.id].t;
+  e.state.graded = {};
+  e.noteResult(a, a.correct);
+  check('getting it right later keeps the miss but refreshes last-seen',
+    e.loadMisses()[a.id].n === 2 && e.loadMisses()[a.id].t >= beforeT);
+  // A question never touched is skipped, not missed: recording blanks would
+  // put every question a candidate ran out of time for into the drill.
+  const c = e.QUESTIONS[2];
+  e.state.graded = {};
+  e.noteResult(c, undefined);
+  e.noteResult(c, []);
+  check('a question left blank is not recorded as a miss',
+    e.loadMisses()[c.id] === undefined && e.missedIds().indexOf(c.id) < 0);
+
+  // Ranking and the cap. Written straight into the store, so the draw is
+  // checked against a record larger than any attempt could produce by hand.
+  const seeded = {};
+  e.QUESTIONS.forEach((q, i) => { seeded[q.id] = { n: 1 + (i % 4), t: i }; });
+  e.saveMisses(seeded);
+  const drill = e.missedIds();
+  const cap = e.examSize('full', 'all');
+  check('the weak-spot draw is capped at a full draw',
+    drill.length === Math.min(e.QUESTIONS.length, cap), `${drill.length} vs ${cap}`);
+  check('the weak-spot draw is ordered most-missed first',
+    drill.every((id, i) => i === 0 || seeded[drill[i - 1]].n >= seeded[id].n));
+  check('the weak-spot draw repeats nothing', new Set(drill).size === drill.length);
+  check('a stale miss outranks a fresh one at the same count', (() => {
+    const tie = drill.filter(id => seeded[id].n === seeded[drill[0]].n);
+    return tie.every((id, i) => i === 0 || seeded[tie[i - 1]].t <= seeded[id].t);
+  })());
+
+  // The scope behaves like the domain drill: it is a focus, it round-trips,
+  // and a payload naming ids this bank does not hold is discarded.
+  e.state.focus = 'misses';
+  e.state.length = 'full';
+  e.state.order = e.shuffleOrder();
+  e.state.answers = {};
+  e.state.graded = {};
+  e.state.current = 0;
+  check('a weak-spot shuffle is the weak-spot draw',
+    JSON.stringify(e.state.order) === JSON.stringify(drill));
+  check('drawPerDomain reports the weak-spot draw by domain',
+    e.examSize(undefined, 'misses') === drill.length);
+  e.save();
+  const rawMiss = e.localStorage.getItem(e.STORE_KEY);
+  const loaded = e.load();
+  check('a weak-spot attempt round-trips through storage',
+    !!loaded && loaded.focus === 'misses' && loaded.order.length === drill.length);
+
+  // The drill grows as the candidate answers, so its order is deliberately not
+  // re-derived on load — but it still has to name real, distinct questions.
+  const bogus = JSON.parse(rawMiss); bogus.order = bogus.order.concat(['no-such-id']);
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(bogus));
+  check('a weak-spot order naming an unknown question is rejected', e.load() === null);
+  const dupes = JSON.parse(rawMiss); dupes.order = [dupes.order[0], dupes.order[0]];
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(dupes));
+  check('a weak-spot order repeating a question is rejected', e.load() === null);
+  const empty = JSON.parse(rawMiss); empty.order = [];
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(empty));
+  check('an empty weak-spot order is rejected', e.load() === null);
+
+  // A shorter order than the draw is normal mid-drill and must survive: the
+  // record changes under the attempt every time an answer is graded.
+  const shorter = JSON.parse(rawMiss); shorter.order = shorter.order.slice(1);
+  e.localStorage.setItem(e.STORE_KEY, JSON.stringify(shorter));
+  check('a weak-spot attempt survives the record changing under it', !!e.load());
+
+  // The attempt carries what it has already graded, so a reload cannot make
+  // the same mistake count twice.
+  check('the graded set is saved with the attempt',
+    Array.isArray(Object.keys(JSON.parse(rawMiss).graded || {})));
+
+  e.localStorage.removeItem(e.MISS_KEY);
+  e.state.focus = 'all';
+  e.state.length = 'full';
+  e.state.graded = {};
+  e.state.order = e.shuffleOrder();
+  e.state.answers = {};
+  e.save();
+}
+
+// Imported items carry more options and higher select counts than the
+// hand-written banks did. Letters run A..H and scoring stays all-or-nothing.
+function checkWideItems(e, file) {
+  const wide = e.QUESTIONS.slice().sort((x, y) => y.options.length - x.options.length)[0];
+  const most = e.QUESTIONS.slice().sort((x, y) => e.selectCount(y) - e.selectCount(x))[0];
+  console.log(`Wide items (${file})`);
+  if (wide.options.length <= 5 && e.selectCount(most) <= 3) {
+    // Not a pass: the imported banks are meant to carry these. Say so loudly
+    // rather than reporting a green run over a bank that no longer has them.
+    console.log(`  --   this bank tops out at ${wide.options.length} options / ` +
+      `select ${e.selectCount(most)}; the wide-item checks did not run`);
+    return;
+  }
+  check(`the widest item holds ${wide.options.length} options (${wide.id})`,
+    wide.options.length > 5);
+  check('every option letter is unique and inside A..H',
+    e.QUESTIONS.every(q => {
+      const ls = q.options.map(o => o.letter);
+      return new Set(ls).size === ls.length && ls.every(L => 'ABCDEFGH'.indexOf(L) >= 0);
+    }));
+  check('every answer key names options the item actually has',
+    e.QUESTIONS.every(q => {
+      const ls = q.options.map(o => o.letter);
+      return (Array.isArray(q.correct) ? q.correct : [q.correct])
+        .every(L => ls.indexOf(L) >= 0);
+    }));
+  check('the option flagged correct matches the answer key',
+    e.QUESTIONS.every(q => {
+      const flagged = q.options.filter(o => o.correct).map(o => o.letter).sort().join(',');
+      return flagged === e.letterLabel(q.correct).split(', ').join(',');
+    }));
+
+  const need = e.selectCount(most);
+  check(`the largest select count is ${need} (${most.id})`, need >= 4);
+  check('a wide multi item scores only on the exact set',
+    e.isCorrect(most, most.correct.slice()) &&
+    !e.isCorrect(most, most.correct.slice(0, need - 1)) &&
+    !e.isCorrect(most, most.correct.slice().reverse().slice(0, need - 1)
+      .concat(most.options.find(o => most.correct.indexOf(o.letter) < 0).letter)));
+  check('a wide multi item is answered only at its full count',
+    !e.hasAnswer(most, most.correct.slice(0, need - 1)) &&
+    e.hasAnswer(most, most.correct.slice()));
+  check('every item declares a select count matching its key',
+    e.QUESTIONS.every(q => q.select === (Array.isArray(q.correct) ? q.correct.length : 1)));
+}
+
 console.log('Foundations engine (ccaf/dist/exam_en.html)');
 {
   const e = loadEngine('ccaf/dist/exam_en.html');
@@ -271,6 +431,7 @@ console.log('Foundations engine (ccaf/dist/exam_en.html)');
   check('no multi items leaked into Foundations',
     e.QUESTIONS.every(x => !Array.isArray(x.correct)));
   checkFocusDrill(e, 'ccaf/dist/exam_en.html');
+  checkMisses(e, 'ccaf/dist/exam_en.html');
   checkSharedEngine(e, 'ccaf/dist/exam_en.html');
 }
 
@@ -278,7 +439,10 @@ console.log('Professional engine (ccap/dist/exam_en.html)');
 {
   const e = loadEngine('ccap/dist/exam_en.html');
   check('7 domains in the bank', new Set(e.QUESTIONS.map(q => q.domain)).size === 7);
-  check('bank holds 126 items', e.QUESTIONS.length === 126, `got ${e.QUESTIONS.length}`);
+  check('the page embeds the whole bank', (() => {
+    const bank = JSON.parse(fs.readFileSync(path.join(ROOT, 'ccap/data/questions.json'), 'utf8'));
+    return e.QUESTIONS.length === bank.length;
+  })(), `page holds ${e.QUESTIONS.length}`);
   check('weighted draw map', typeof e.PER_DOMAIN === 'object' && e.PER_DOMAIN['3'] === 12);
   check('attempt size is 63', e.examSize() === 63, `got ${e.examSize()}`);
   check('quick drill draws 21 weighted (4/3/4/3/3/3/1)', (() => {
@@ -424,8 +588,29 @@ console.log('Professional engine (ccap/dist/exam_en.html)');
     t.correct === 1 && Object.values(t.domStat).reduce((s, x) => s + x.correct, 0) === 1 &&
     Object.values(t.domStat).reduce((s, x) => s + x.total, 0) === 2);
 
+  checkWideItems(e, 'ccap/dist/exam_en.html');
   checkFocusDrill(e, 'ccap/dist/exam_en.html');
+  checkMisses(e, 'ccap/dist/exam_en.html');
   checkSharedEngine(e, 'ccap/dist/exam_en.html');
+}
+
+// The Developer Foundations page runs the same engine on the widest bank —
+// eight-option items and five-response keys — so it gets the same checks.
+console.log('Developer Foundations engine (ccdf/dist/exam_en.html)');
+{
+  const e = loadEngine('ccdf/dist/exam_en.html');
+  check('the page embeds the whole bank', (() => {
+    const bank = JSON.parse(fs.readFileSync(path.join(ROOT, 'ccdf/data/questions.json'), 'utf8'));
+    return e.QUESTIONS.length === bank.length;
+  })(), `page holds ${e.QUESTIONS.length}`);
+  check('store key does not collide with the other tracks',
+    e.STORE_KEY === 'ccdvf-exam-en', e.STORE_KEY);
+  check('the weighted draw covers every domain',
+    Object.keys(e.drawPerDomain()).length === new Set(e.QUESTIONS.map(q => q.domain)).size);
+  checkWideItems(e, 'ccdf/dist/exam_en.html');
+  checkFocusDrill(e, 'ccdf/dist/exam_en.html');
+  checkMisses(e, 'ccdf/dist/exam_en.html');
+  checkSharedEngine(e, 'ccdf/dist/exam_en.html');
 }
 
 console.log(failures === 0 ? '\nAll engine checks passed.' : `\n${failures} check(s) FAILED.`);

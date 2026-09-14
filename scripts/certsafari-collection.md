@@ -53,7 +53,12 @@ If `collector.save()` fails, fix the receiver and retry saving the retained
 batch before collecting more. `loadKnown()` restores only records already saved.
 
 Output is checkpointed under `.corpus/certsafari/`. The requested CertSafari
-snapshot is tracked explicitly; other `.corpus` material remains ignored.
+snapshot is tracked explicitly; other `.corpus` material remains ignored. The
+CCAR-P and CCDV-F exports are the source of the two practice-exam banks:
+`utils/import_certsafari.py` folds them into `ccap/data/questions.json` and
+`ccdf/data/questions.json`, keying each item to a blueprint objective through the
+`Subdomain X.Y` label CertSafari puts on the question, which the collector keeps
+in each record's `snapshot`. Re-run that importer after refreshing a snapshot.
 When committing a refreshed snapshot, stage only the three exam directories,
 the six combined JSON/Markdown exports, `README.md`, and `status.json`.
 Do not include `resume.json`, `duplicates/`, or generated ZIP archives.
