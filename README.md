@@ -246,7 +246,8 @@ Each exam owns a top-level directory with the same internal shape:
 `data/` holds the editable question banks and blueprint transcriptions; `sources/` holds
 third-party inputs like the official exam-guide PDFs and external question samples;
 `dist/` holds generated exam and cheatsheet HTML — edit sources, not `dist/`. Shared
-tooling stays in `utils/` (builders, validators, engine tests) and `scripts/` (site build).
+tooling stays in `utils/` (builders, validators, engine tests) and `scripts/` (site build and
+the CertSafari collector).
 
 A few files are not what they look like: `ccaf/sources/mock-exam.txt` is the source for the
 60-question mock bank, and the preflight checklist has no markdown source — its content
@@ -260,7 +261,9 @@ build.
   `ccaf/guide_en.md`, `ccaf/guide_es.md`, and `ccaf/guide_pt.md` so question extraction stays consistent.
 - Run the validators and both test scripts before opening a PR.
 - **Do not commit material from the Partner Academy courses.** That content is partner-gated.
-  Practice items and guide prose here are Ravn-authored; keep it that way.
+  Practice items and guide prose in the exam directories are Ravn-authored; keep it that way.
+  The CertSafari archive under `.corpus/certsafari/` is the tracked third-party exception,
+  kept as source data — see `scripts/certsafari-collection.md`; do not fold it into the banks.
 - PDFs regenerate automatically on merge to `main` as part of the Pages deploy.
 
 ## License
