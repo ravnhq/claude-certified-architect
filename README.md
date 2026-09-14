@@ -95,9 +95,9 @@ Fluency are orientation rather than exam preparation.
 
 | Language | Markdown | PDF |
 |---|---|---|
-| English | [`guide_en.MD`](./guide_en.MD) | [Download](https://ravnhq.github.io/claude-certified-architect/pdf/guide_en.pdf) |
-| Spanish | [`guide_es.md`](./guide_es.md) | [Download](https://ravnhq.github.io/claude-certified-architect/pdf/guide_es.pdf) |
-| Portuguese | [`guide_pt.md`](./guide_pt.md) | [Download](https://ravnhq.github.io/claude-certified-architect/pdf/guide_pt.pdf) |
+| English | [`ccaf/guide_en.md`](./ccaf/guide_en.md) | [Download](https://ravnhq.github.io/claude-certified-architect/pdf/guide_en.pdf) |
+| Spanish | [`ccaf/guide_es.md`](./ccaf/guide_es.md) | [Download](https://ravnhq.github.io/claude-certified-architect/pdf/guide_es.pdf) |
+| Portuguese | [`ccaf/guide_pt.md`](./ccaf/guide_pt.md) | [Download](https://ravnhq.github.io/claude-certified-architect/pdf/guide_pt.pdf) |
 
 PDFs are generated fresh on every deploy from the current markdown sources.
 
@@ -114,7 +114,7 @@ that reveals at the end, per-domain breakdown against the pass threshold, and pr
 `localStorage` so a refresh keeps your place. **Restart** draws a new set. A domain selector
 drills a single domain's whole bank instead, scored raw with no pass/fail verdict.
 
-- [`exam_en.html`](./exam_en.html) · [`exam_es.html`](./exam_es.html) · [`exam_pt.html`](./exam_pt.html)
+- [`ccaf/dist/exam_en.html`](./ccaf/dist/exam_en.html) · [`ccaf/dist/exam_es.html`](./ccaf/dist/exam_es.html) · [`ccaf/dist/exam_pt.html`](./ccaf/dist/exam_pt.html)
 
 ## Foundations cheatsheet
 
@@ -122,11 +122,11 @@ A one-page reference distilling the exam into **12 recurring principles** — ea
 approach and the trap to avoid — **5 questions to ask when two answers look equally good**, and a
 breakdown of the 136-question, 5-domain pool with domain weights and answer-letter distribution.
 
-- [`cheatsheet_en.html`](./cheatsheet_en.html) · [`cheatsheet_es.html`](./cheatsheet_es.html) · [`cheatsheet_pt.html`](./cheatsheet_pt.html)
+- [`ccaf/dist/cheatsheet_en.html`](./ccaf/dist/cheatsheet_en.html) · [`ccaf/dist/cheatsheet_es.html`](./ccaf/dist/cheatsheet_es.html) · [`ccaf/dist/cheatsheet_pt.html`](./ccaf/dist/cheatsheet_pt.html)
 
 ## Developer study guide
 
-[`developer_en.md`](./developer_en.md) · [read online](https://ravnhq.github.io/claude-certified-architect/guides/developer-en.html)
+[`ccdf/guide_en.md`](./ccdf/guide_en.md) · [read online](https://ravnhq.github.io/claude-certified-architect/guides/developer-en.html)
 
 Covers the **eight-domain Developer – Foundations blueprint (CCDV-F)**: agents and workflows, applications and integration, Claude Code, eval and debugging, model selection and optimization, prompt and context engineering, security and safety, and tools and MCPs. It turns the official objectives into a practical preparation plan with the exam and policy details and the decision rules the blueprint rewards — without reproducing or predicting live exam content.
 
@@ -153,14 +153,14 @@ Scoring uses the real **720** cut with a per-domain breakdown, on the same engin
 two tracks. A domain selector drills a single domain's whole bank instead, scored raw with
 no pass/fail verdict.
 
-- [`developer_exam_en.html`](./developer_exam_en.html)
+- [`ccdf/dist/exam_en.html`](./ccdf/dist/exam_en.html)
 
 > **These are Ravn-authored practice items, not real exam content.** They rehearse the reasoning
 > the blueprint rewards; they do not predict or reproduce the live item bank.
 
 ## Professional study guide
 
-[`professional_en.md`](./professional_en.md) · [read online](https://ravnhq.github.io/claude-certified-architect/guides/professional-en.html)
+[`ccap/guide_en.md`](./ccap/guide_en.md) · [read online](https://ravnhq.github.io/claude-certified-architect/guides/professional-en.html)
 
 Reproduces all **38 official objectives** across the seven domains, with the exam and policy
 details, the official prep path, a breakdown of the three official sample questions, and the
@@ -188,7 +188,7 @@ are **multiple-response** items, scored all-or-nothing and stating how many resp
 Scoring uses the real **720** cut with a per-domain breakdown. A domain selector drills a single
 domain's whole bank instead, scored raw with no pass/fail verdict.
 
-- [`professional_exam_en.html`](./professional_exam_en.html)
+- [`ccap/dist/exam_en.html`](./ccap/dist/exam_en.html)
 
 > **These are Ravn-authored practice items, not real exam content.** They rehearse the reasoning
 > the blueprint rewards; they do not predict or reproduce the live item bank.
@@ -210,11 +210,11 @@ domain's whole bank instead, scored raw with no pass/fail verdict.
 ```bash
 npm install --no-save marked@13 minisearch@7   # build dependencies
 
-python3 utils/build_exam_html.py               # → exam_{en,es,pt}.html
+python3 utils/build_exam_html.py               # → ccaf/dist/exam_{en,es,pt}.html
 python3 utils/build_exam_html.py en es         # specific languages
-python3 utils/build_professional_exam.py       # → professional_exam_en.html
-python3 utils/build_developer_exam.py          # → developer_exam_en.html
-python3 utils/build_cheatsheet.py              # → cheatsheet_{en,es,pt}.html
+python3 utils/build_professional_exam.py       # → ccap/dist/exam_en.html
+python3 utils/build_developer_exam.py          # → ccdf/dist/exam_en.html
+python3 utils/build_cheatsheet.py              # → ccaf/dist/cheatsheet_{en,es,pt}.html
 node scripts/build-pages.mjs                   # → docs/ site
 
 python3 utils/validate_professional_bank.py    # CCAR-P bank vs. official blueprint
@@ -228,21 +228,36 @@ uncovered objective, or a domain whose bank is smaller than its draw.
 
 The Foundations and Professional exams and the site regenerate on every deploy. The Developer
 exam and the cheatsheet ship their committed HTML — re-run their generators only when editing
-their content, and keep the cheatsheet stats in sync with `data/domains.json` and
+their content, and keep the cheatsheet stats in sync with `ccaf/data/domains.json` and
 `utils/exam_data.py` (`DOMAIN_NAMES`).
 
-Question banks live in `data/*.json`, and the validators check them against the official
-blueprints in `data/professional_objectives.json` and `data/developer_objectives.json`. A few
-files are not what they look like: `reference/` holds the official exam-guide PDFs,
-version-pinned; `CCAF_Mock_Exam_Preguntas_y_Respuestas.txt` is the source for the 60-question
-mock bank; and the preflight checklist has no markdown source — its content lives in
-`scripts/build-pages.mjs` (`PREFLIGHT_ITEMS`, `PREFLIGHT_FACTS`, `PREFLIGHT_DOMAINS`,
-`PREFLIGHT_RESOURCES`) and `docs/preflight/` is overwritten on every build.
+## Repository layout
+
+Each exam owns a top-level directory with the same internal shape:
+
+| | CCAF (CCAR-F) | CCAP (CCAR-P) | CCDF (CCDV-F) |
+|---|---|---|---|
+| Study guide | `ccaf/guide_{en,es,pt}.md` | `ccap/guide_en.md` | `ccdf/guide_en.md` |
+| Question data | `ccaf/data/` | `ccap/data/` | `ccdf/data/` |
+| Source material | `ccaf/sources/` | `ccap/sources/` | `ccdf/sources/` |
+| Exercises | `ccaf/exercises/` | — | — |
+| Generated HTML | `ccaf/dist/` | `ccap/dist/` | `ccdf/dist/` |
+
+`data/` holds the editable question banks and blueprint transcriptions; `sources/` holds
+third-party inputs like the official exam-guide PDFs and external question samples;
+`dist/` holds generated exam and cheatsheet HTML — edit sources, not `dist/`. Shared
+tooling stays in `utils/` (builders, validators, engine tests) and `scripts/` (site build).
+
+A few files are not what they look like: `ccaf/sources/mock-exam.txt` is the source for the
+60-question mock bank, and the preflight checklist has no markdown source — its content
+lives in `scripts/build-pages.mjs` (`PREFLIGHT_ITEMS`, `PREFLIGHT_FACTS`,
+`PREFLIGHT_DOMAINS`, `PREFLIGHT_RESOURCES`) and `docs/preflight/` is overwritten on every
+build.
 
 ## Contributing
 
 - Translation fixes and clarifications are welcome. Keep the heading structure aligned across
-  `guide_en.MD`, `guide_es.md`, and `guide_pt.md` so question extraction stays consistent.
+  `ccaf/guide_en.md`, `ccaf/guide_es.md`, and `ccaf/guide_pt.md` so question extraction stays consistent.
 - Run the validators and both test scripts before opening a PR.
 - **Do not commit material from the Partner Academy courses.** That content is partner-gated.
   Practice items and guide prose here are Ravn-authored; keep it that way.

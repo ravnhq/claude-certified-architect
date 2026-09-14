@@ -9,9 +9,9 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const DOCS = path.join(ROOT, 'docs');
 
 const LANGS = [
-  { code: 'en', label: 'English',    guide: 'guide_en.MD',  test: 'exam_en.html' },
-  { code: 'es', label: 'Español',    guide: 'guide_es.md',  test: 'exam_es.html' },
-  { code: 'pt', label: 'Português',  guide: 'guide_pt.md',  test: 'exam_pt.html' },
+  { code: 'en', label: 'English',    guide: 'ccaf/guide_en.md',  test: 'ccaf/dist/exam_en.html' },
+  { code: 'es', label: 'Español',    guide: 'ccaf/guide_es.md',  test: 'ccaf/dist/exam_es.html' },
+  { code: 'pt', label: 'Português',  guide: 'ccaf/guide_pt.md',  test: 'ccaf/dist/exam_pt.html' },
 ];
 
 const PROFESSIONAL_GUIDES = [
@@ -19,9 +19,9 @@ const PROFESSIONAL_GUIDES = [
     code: 'en',
     label: 'English',
     title: 'Professional - English',
-    guide: 'professional_en.md',
+    guide: 'ccap/guide_en.md',
     output: 'professional-en',
-    test: 'professional_exam_en.html',
+    test: 'ccap/dist/exam_en.html',
   },
 ];
 
@@ -30,9 +30,9 @@ const DEVELOPER_GUIDES = [
     code: 'en',
     label: 'English',
     title: 'Developer - English',
-    guide: 'developer_en.md',
+    guide: 'ccdf/guide_en.md',
     output: 'developer-en',
-    test: 'developer_exam_en.html',
+    test: 'ccdf/dist/exam_en.html',
   },
 ];
 
@@ -1052,7 +1052,7 @@ async function copyCheatsheets() {
   const out = path.join(DOCS, 'cheatsheet');
   await ensureDir(out);
   for (const l of LANGS) {
-    const src = path.join(ROOT, `cheatsheet_${l.code}.html`);
+    const src = path.join(ROOT, 'ccaf', 'dist', `cheatsheet_${l.code}.html`);
     const dest = path.join(out, `${l.code}.html`);
     if (await exists(src)) {
       await fs.copyFile(src, dest);

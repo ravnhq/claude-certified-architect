@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Shared CCDV-F blueprint facts: the official domains and the per-attempt draw.
 
-data/developer_objectives.json is a pure transcription of Section 6 of the
+ccdf/data/objectives.json is a pure transcription of Section 6 of the
 official exam guide, so the draw — a property of this practice exam, not of the
 guide — lives here instead. The builder and the validator both import it, so the
 split cannot drift between the shipped page and the gate that checks it.
@@ -16,8 +16,8 @@ import json, os
 
 UTILS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(UTILS_DIR)
-DATA_DIR = os.path.join(ROOT_DIR, "data")
-BLUEPRINT_PATH = os.path.join(DATA_DIR, "developer_objectives.json")
+DATA_DIR = os.path.join(ROOT_DIR, "ccdf", "data")
+BLUEPRINT_PATH = os.path.join(DATA_DIR, "objectives.json")
 
 EXAM_SIZE = 53
 

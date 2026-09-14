@@ -198,16 +198,16 @@ function checkDrill(file) {
 }
 
 // Every shipped page, so a UI string missing from one language cannot pass.
-checkPage('exam_en.html');
-checkPage('exam_es.html');
-checkPage('exam_pt.html');
-checkPage('professional_exam_en.html');
-checkPage('developer_exam_en.html');
-checkDrill('exam_en.html');
-checkDrill('exam_es.html');
-checkDrill('exam_pt.html');
-checkDrill('professional_exam_en.html');
-checkDrill('developer_exam_en.html');
+checkPage('ccaf/dist/exam_en.html');
+checkPage('ccaf/dist/exam_es.html');
+checkPage('ccaf/dist/exam_pt.html');
+checkPage('ccap/dist/exam_en.html');
+checkPage('ccdf/dist/exam_en.html');
+checkDrill('ccaf/dist/exam_en.html');
+checkDrill('ccaf/dist/exam_es.html');
+checkDrill('ccaf/dist/exam_pt.html');
+checkDrill('ccap/dist/exam_en.html');
+checkDrill('ccdf/dist/exam_en.html');
 
 console.log(failures === 0 ? '\nAll render checks passed.' : `\n${failures} check(s) FAILED.`);
 process.exit(failures === 0 ? 0 : 1);

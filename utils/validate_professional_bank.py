@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate data/professional_questions.json against the official CCAR-P blueprint.
+"""Validate ccap/data/questions.json against the official CCAR-P blueprint.
 
 Fails loudly on anything that would produce a wrong or unusable practice item:
 schema drift, an answer key that disagrees with the option flags, an objective
@@ -47,7 +47,7 @@ def stated_select_counts(question: str) -> list[int]:
 
 UTILS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(UTILS_DIR)
-DATA_DIR = os.path.join(ROOT_DIR, "data")
+DATA_DIR = os.path.join(ROOT_DIR, "ccap", "data")
 sys.path.insert(0, UTILS_DIR)
 
 from professional_blueprint import check_draw, draw_by_int_domain  # noqa: E402
@@ -61,8 +61,8 @@ LETTERS = "ABCDE"
 
 
 def main():
-    path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(DATA_DIR, "professional_questions.json")
-    blueprint = json.load(open(os.path.join(DATA_DIR, "professional_objectives.json"), encoding="utf-8"))
+    path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(DATA_DIR, "questions.json")
+    blueprint = json.load(open(os.path.join(DATA_DIR, "objectives.json"), encoding="utf-8"))
     check_draw(blueprint)
     official = {int(d): set(v["objectives"]) for d, v in blueprint["domains"].items()}
 

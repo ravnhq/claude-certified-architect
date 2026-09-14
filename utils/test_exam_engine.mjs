@@ -245,9 +245,9 @@ function checkFocusDrill(e, file) {
   e.save();
 }
 
-console.log('Foundations engine (exam_en.html)');
+console.log('Foundations engine (ccaf/dist/exam_en.html)');
 {
-  const e = loadEngine('exam_en.html');
+  const e = loadEngine('ccaf/dist/exam_en.html');
   check('5 domains in the bank', new Set(e.QUESTIONS.map(q => q.domain)).size === 5);
   check('flat draw of 12 per domain', e.PER_DOMAIN === 12, `got ${JSON.stringify(e.PER_DOMAIN)}`);
   check('attempt size is 60', e.examSize() === 60, `got ${e.examSize()}`);
@@ -270,13 +270,13 @@ console.log('Foundations engine (exam_en.html)');
   check('an array is not answered on a single-response item', !e.hasAnswer(q, [q.correct]));
   check('no multi items leaked into Foundations',
     e.QUESTIONS.every(x => !Array.isArray(x.correct)));
-  checkFocusDrill(e, 'exam_en.html');
-  checkSharedEngine(e, 'exam_en.html');
+  checkFocusDrill(e, 'ccaf/dist/exam_en.html');
+  checkSharedEngine(e, 'ccaf/dist/exam_en.html');
 }
 
-console.log('Professional engine (professional_exam_en.html)');
+console.log('Professional engine (ccap/dist/exam_en.html)');
 {
-  const e = loadEngine('professional_exam_en.html');
+  const e = loadEngine('ccap/dist/exam_en.html');
   check('7 domains in the bank', new Set(e.QUESTIONS.map(q => q.domain)).size === 7);
   check('bank holds 126 items', e.QUESTIONS.length === 126, `got ${e.QUESTIONS.length}`);
   check('weighted draw map', typeof e.PER_DOMAIN === 'object' && e.PER_DOMAIN['3'] === 12);
@@ -424,8 +424,8 @@ console.log('Professional engine (professional_exam_en.html)');
     t.correct === 1 && Object.values(t.domStat).reduce((s, x) => s + x.correct, 0) === 1 &&
     Object.values(t.domStat).reduce((s, x) => s + x.total, 0) === 2);
 
-  checkFocusDrill(e, 'professional_exam_en.html');
-  checkSharedEngine(e, 'professional_exam_en.html');
+  checkFocusDrill(e, 'ccap/dist/exam_en.html');
+  checkSharedEngine(e, 'ccap/dist/exam_en.html');
 }
 
 console.log(failures === 0 ? '\nAll engine checks passed.' : `\n${failures} check(s) FAILED.`);

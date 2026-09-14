@@ -1214,6 +1214,7 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
 </body>
 </html>"""
 
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(HTML)
     name = os.path.basename(out_path)
@@ -1238,7 +1239,7 @@ def build(lang):
         lang_attr=lang,
         title=LANG_TITLES[lang],
         page_title=f"{LANG_LABELS[lang]} — Practice Exam · Ravn",
-        out_path=os.path.join(ROOT_DIR, f"exam_{lang}.html"),
+        out_path=os.path.join(ROOT_DIR, "ccaf", "dist", f"exam_{lang}.html"),
     )
 
 

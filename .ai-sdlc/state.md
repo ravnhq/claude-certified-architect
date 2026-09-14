@@ -7,10 +7,10 @@ Keep the established multilingual Foundations materials working while adding acc
 clearly sourced guidance for the Professional certification.
 
 ## Now
-The Professional (CCAR-P) practice exam is delivered. `professional_en.md` carries all
+The Professional (CCAR-P) practice exam is delivered. `ccap/guide_en.md` carries all
 38 official blueprint objectives, the scoring and policy detail, the official prep-course
 path, and an official-only resource list. The 126-item bank in
-`data/professional_questions.json` draws 63 items per attempt.
+`ccap/data/questions.json` draws 63 items per attempt.
 The quiz engine in `utils/build_exam_html.py` is shared: `build()` was split into a
 parameterized `render_page()`, so Foundations and Professional run one engine. The engine
 now scores multiple-response items all-or-nothing, and the per-domain draw accepts either
@@ -26,7 +26,7 @@ Correct-answer feedback uses a green accent (`--good: #6FA97C`); gold carries
 selection/emphasis, red marks wrong/fail.
 The exam CSS and JS live in the Python template `utils/build_exam_html.py` — edit there
 and regenerate. Never hand-edit the generated `exam_<lang>.html` or
-`professional_exam_en.html`.
+`ccap/dist/exam_en.html`.
 This change set sits on `feature/ccarp-professional-study-materials`; production Pages
 remains to be checked.
 
@@ -76,7 +76,7 @@ remains to be checked.
   The rendering engine is deliberately shared, the question banks are not.
 - Practice items are Ravn-authored and are labeled as not real exam content. Write them
   against the official objectives; never copy from any published bank.
-- `data/professional_objectives.json` is the checked-in official blueprint and the
+- `ccap/data/objectives.json` is the checked-in official blueprint and the
   validation source of truth for the bank.
 - Explanations must not reference another option by letter. Letters are reassigned when the
   bank is rebalanced; this had already broken two items silently, so the validator now

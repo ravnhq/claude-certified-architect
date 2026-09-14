@@ -34,7 +34,7 @@ jobs:
         run: |
           mkdir -p pdf
           shopt -s nullglob nocaseglob
-          for file in guide_*.md; do
+          for file in ccaf/guide_*.md; do
             echo "Generating PDF for $file"
             npx md-to-pdf "$file" \
               --basedir "$(pwd)" \

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build professional_exam_en.html — the CCAR-P (Professional) practice exam.
+"""Build ccap/dist/exam_en.html — the CCAR-P (Professional) practice exam.
 
 Reuses the quiz engine in build_exam_html.py. The differences from Foundations:
 
@@ -10,7 +10,7 @@ Reuses the quiz engine in build_exam_html.py. The differences from Foundations:
   * multiple-response items, scored all-or-nothing
   * English only — Anthropic delivers the exam and its prep content in English
 
-Question bank: data/professional_questions.json (Ravn-authored practice items,
+Question bank: ccap/data/questions.json (Ravn-authored practice items,
 written against the official blueprint objectives — not real exam content).
 Validate it with utils/validate_professional_bank.py.
 
@@ -21,7 +21,7 @@ import json, os, sys
 
 UTILS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(UTILS_DIR)
-DATA_DIR = os.path.join(ROOT_DIR, "data")
+DATA_DIR = os.path.join(ROOT_DIR, "ccap", "data")
 sys.path.insert(0, UTILS_DIR)
 
 import build_exam_html as engine  # noqa: E402
@@ -41,8 +41,8 @@ UI["threshold_note"] = (
 
 
 def main():
-    blueprint = json.load(open(os.path.join(DATA_DIR, "professional_objectives.json"), encoding="utf-8"))
-    questions = json.load(open(os.path.join(DATA_DIR, "professional_questions.json"), encoding="utf-8"))
+    blueprint = json.load(open(os.path.join(DATA_DIR, "objectives.json"), encoding="utf-8"))
+    questions = json.load(open(os.path.join(DATA_DIR, "questions.json"), encoding="utf-8"))
     check_draw(blueprint)
 
     # Real-exam facts for the rotation strip come from the blueprint, so the
@@ -80,7 +80,7 @@ def main():
         lang_attr="en",
         title="Claude Certified Architect — Professional Practice Exam",
         page_title="Professional Practice Exam · Ravn",
-        out_path=os.path.join(ROOT_DIR, "professional_exam_en.html"),
+        out_path=os.path.join(ROOT_DIR, "ccap", "dist", "exam_en.html"),
     )
     print(f"Draw per attempt: {drawn} questions across {len(domains_js)} domains "
           f"(bank of {len(questions)}).")

@@ -16,12 +16,12 @@ UTILS_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(UTILS_DIR)
 
 # --- reuse the favicon data-URI from exam_en.html ---
-exam = open(os.path.join(REPO, "exam_en.html"), encoding="utf-8").read()
+exam = open(os.path.join(REPO, "ccaf", "dist", "exam_en.html"), encoding="utf-8").read()
 favicon = re.search(r'href="(data:image/png;base64,[A-Za-z0-9+/=]+)"', exam).group(1)
 
 # --- exam questions per language (for the per-principle dropdowns) ---
 def _load_exam(lang):
-    s = open(os.path.join(REPO, f"exam_{lang}.html"), encoding="utf-8").read()
+    s = open(os.path.join(REPO, "ccaf", "dist", f"exam_{lang}.html"), encoding="utf-8").read()
     i = s.find("const QUESTIONS = ")
     arr = json.JSONDecoder().raw_decode(s[s.find("[", i):])[0]
     d, order = {}, []
@@ -48,7 +48,7 @@ for _l in ("en", "es", "pt"):
 QNUM = {qid: i + 1 for i, qid in enumerate(_order)}
 
 # id -> principle (1-12), and principle -> [ids] preserving exam order
-PRINCIPLE_MAP = json.load(open(os.path.join(REPO, "data", "principle_map.json")))
+PRINCIPLE_MAP = json.load(open(os.path.join(REPO, "ccaf", "data", "principle_map.json")))
 PMAP_IDS = {}
 for _qid, _p in PRINCIPLE_MAP.items():
     PMAP_IDS.setdefault(int(_p), []).append(_qid)
@@ -623,6 +623,6 @@ def build(lang):
 
 
 for lang in ("en", "es", "pt"):
-    path = os.path.join(REPO, "cheatsheet_%s.html" % lang)
+    path = os.path.join(REPO, "ccaf", "dist", "cheatsheet_%s.html" % lang)
     open(path, "w", encoding="utf-8").write(build(lang))
     print("wrote", path, os.path.getsize(path), "bytes")

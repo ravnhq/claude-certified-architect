@@ -2,8 +2,8 @@
 """Build the unified, merged question set for one language.
 
 Merges two sources into a single schema:
-  * the 76 scenario questions extracted from guide_<lang>.md (utils/extract_question.py)
-  * the 60 domain questions parsed from the mock-exam .txt (utils/parse_mock_exam.py)
+  * the 76 scenario questions extracted from ccaf/guide_<lang>.md (utils/extract_question.py)
+  * the 60 domain questions parsed from ccaf/sources/mock-exam.txt (utils/parse_mock_exam.py)
 
 Unified question schema:
   {
@@ -17,17 +17,17 @@ Unified question schema:
     "correct": "C"
   }
 
-Reviewable sidecars (so classification/dedup decisions live in data/, not code):
-  data/domains.json     { "<id>": <1..5>, ... }   — domain per question
-  data/duplicates.json  [ "<mock id>", ... ]      — mock ids dropped as dupes of guide qs
-  data/mock_<lang>.json [ <unified mock question>, ... ] — translated mock set (es/pt)
+Reviewable sidecars (so classification/dedup decisions live in ccaf/data/, not code):
+  ccaf/data/domains.json     { "<id>": <1..5>, ... }   — domain per question
+  ccaf/data/duplicates.json  [ "<mock id>", ... ]      — mock ids dropped as dupes of guide qs
+  ccaf/data/mock_<lang>.json [ <unified mock question>, ... ] — translated mock set (es/pt)
 """
 from __future__ import annotations
 import json, os, subprocess
 
 UTILS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(UTILS_DIR)
-DATA_DIR = os.path.join(ROOT_DIR, "data")
+DATA_DIR = os.path.join(ROOT_DIR, "ccaf", "data")
 
 DOMAINS = {
     1: ("Agent Architecture and Orchestration", 27),
@@ -50,7 +50,7 @@ DOMAIN_NAMES = {
            5: "Gerenciamento de Contexto e Confiabilidade"},
 }
 
-# Heuristic fallback when a question is not yet in data/domains.json. Scenario
+# Heuristic fallback when a question is not yet in ccaf/data/domains.json. Scenario
 # names map to their dominant domain; mock questions fall back to keyword scan.
 SCENARIO_DOMAIN = {
     "multi-agent research system": 1, "sistema de investigación multiagente": 1, "sistema de pesquisa multiagente": 1,

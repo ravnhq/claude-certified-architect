@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build developer_exam_en.html — the CCDV-F (Developer Foundations) practice exam.
+"""Build ccdf/dist/exam_en.html — the CCDV-F (Developer Foundations) practice exam.
 
 Reuses the quiz engine in build_exam_html.py, the same way
 build_professional_exam.py does. The differences from Architect Foundations:
@@ -11,7 +11,7 @@ build_professional_exam.py does. The differences from Architect Foundations:
   * multiple-response items, scored all-or-nothing
   * English only — Anthropic delivers the exam and its prep content in English
 
-Question bank: data/developer_questions.json (Ravn-authored practice items,
+Question bank: ccdf/data/questions.json (Ravn-authored practice items,
 written against the official blueprint objectives — not real exam content).
 Validate it with utils/validate_developer_bank.py.
 
@@ -22,7 +22,7 @@ import json, os, sys
 
 UTILS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(UTILS_DIR)
-DATA_DIR = os.path.join(ROOT_DIR, "data")
+DATA_DIR = os.path.join(ROOT_DIR, "ccdf", "data")
 sys.path.insert(0, UTILS_DIR)
 
 import build_exam_html as engine  # noqa: E402
@@ -42,8 +42,8 @@ UI["threshold_note"] = (
 
 
 def main():
-    blueprint = json.load(open(os.path.join(DATA_DIR, "developer_objectives.json"), encoding="utf-8"))
-    questions = json.load(open(os.path.join(DATA_DIR, "developer_questions.json"), encoding="utf-8"))
+    blueprint = json.load(open(os.path.join(DATA_DIR, "objectives.json"), encoding="utf-8"))
+    questions = json.load(open(os.path.join(DATA_DIR, "questions.json"), encoding="utf-8"))
     check_draw(blueprint)
 
     # Real-exam facts for the rotation strip come from the blueprint, so the
@@ -81,7 +81,7 @@ def main():
         lang_attr="en",
         title="Claude Certified Developer — Foundations Practice Exam",
         page_title="Developer Foundations Practice Exam · Ravn",
-        out_path=os.path.join(ROOT_DIR, "developer_exam_en.html"),
+        out_path=os.path.join(ROOT_DIR, "ccdf", "dist", "exam_en.html"),
     )
     print(f"Draw per attempt: {drawn} questions across {len(domains_js)} domains "
           f"(bank of {len(questions)}).")

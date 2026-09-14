@@ -3,7 +3,7 @@
 
 Usage:  python3 utils/extract_question.py <lang> [all]
 
-Reads ./guide_<lang>.md (case-insensitive extension) and emits a JSON
+Reads ccaf/guide_<lang>.md (case-insensitive extension) and emits a JSON
 array on stdout with the schema consumed by utils/exam_data.py:
 
     [
@@ -23,7 +23,7 @@ array on stdout with the schema consumed by utils/exam_data.py:
       ...
     ]
 
-Markdown shape (recovered from guide_en.MD):
+Markdown shape (recovered from ccaf/guide_en.md):
 
     ## Scenario: <name>
     ---
@@ -45,16 +45,17 @@ Markdown shape (recovered from guide_en.MD):
 from __future__ import annotations
 import json, os, re, sys
 
-# Repo root: this script lives in utils/, the guides and mock bank sit one level up.
+# Repo root: this script lives in utils/, the CCAF guides sit in ccaf/.
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CCAF_DIR = os.path.join(ROOT, "ccaf")
 
 
 def find_guide(lang: str) -> str:
     for ext in ("md", "MD", "Md", "mD"):
-        p = os.path.join(ROOT, f"guide_{lang}.{ext}")
+        p = os.path.join(CCAF_DIR, f"guide_{lang}.{ext}")
         if os.path.exists(p):
             return p
-    raise FileNotFoundError(f"No guide_{lang}.md/.MD next to {ROOT}")
+    raise FileNotFoundError(f"No guide_{lang}.md/.MD in {CCAF_DIR}")
 
 
 # Question header: `## Question 12 (Scenario: Multi-agent Research System)`
