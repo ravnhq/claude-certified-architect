@@ -383,11 +383,6 @@ const PREFLIGHT_TRACKS = [
         group: 'Drill after you have read the guide',
         items: [
           {
-            name: 'certsafari.com — start here',
-            href: 'https://www.certsafari.com/anthropic/claude-certified-architect-foundations',
-            note: 'Aligned to guide v1.0, configurable by domain and subdomain, and harder than the guide&rsquo;s own samples. The sharpest drilling tool of the free banks.',
-          },
-          {
             name: 'claudecertificationguide.com — diagnostic',
             href: 'https://claudecertificationguide.com/learn/diagnostic',
             note: 'Short. Use it to gauge where you stand before spending time on full-length mocks.',
@@ -500,7 +495,7 @@ const PREFLIGHT_TRACKS = [
         group: 'Ravn materials',
         items: [
           { name: 'Study guide', href: 'guides/professional-en.html', note: 'The full Professional guide, English only.', internal: true },
-          { name: 'Practice exam', href: 'practical/professional-en.html', note: '63 questions drawn fresh on every attempt from the much larger CertSafari bank, scored to 1000.', internal: true },
+          { name: 'Practice exam', href: 'practical/professional-en.html', note: '63 questions drawn fresh on every attempt from a much larger bank, scored to 1000.', internal: true },
         ],
       },
       {
@@ -617,7 +612,7 @@ const PREFLIGHT_TRACKS = [
         group: 'Ravn materials',
         items: [
           { name: 'Study guide', href: 'guides/developer-en.html', note: 'The full Developer guide, English only.', internal: true },
-        { name: 'Practice exam', href: 'practical/developer-en.html', note: '53 questions drawn fresh on every attempt from the much larger CertSafari bank, weighted to the eight domains and scored to 1000.', internal: true },
+        { name: 'Practice exam', href: 'practical/developer-en.html', note: '53 questions drawn fresh on every attempt from a much larger bank, weighted to the eight domains and scored to 1000.', internal: true },
         ],
       },
       {

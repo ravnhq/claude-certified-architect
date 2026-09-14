@@ -348,13 +348,10 @@ function checkBrowse(file) {
   check('no unescaped item text reached the browse body', !/<img|<iframe|onerror=/i.test(body));
 
   // Provenance travels with an imported item, on the card and in browse.
-  const imported = api.QUESTIONS.find(x => x.source === 'certsafari');
+  const imported = api.QUESTIONS.find(x => x.imported);
   if (imported) {
     check('an imported item is labelled in browse',
       api.browseBody(imported.id).includes(api.T.source_note));
-    check('the browse row tags the source',
-      api.filteredBank('all', '').length > 0 &&
-      el('browseList').innerHTML.includes(api.T.source_label));
     api.state.order = [imported.id];
     api.state.current = 0;
     api.renderQuestion(0);

@@ -146,7 +146,7 @@ Draws **53 questions per attempt**, weighted to the official domain percentages:
 | 8. Tools and MCPs | 10.6% | 6 |
 | **Total** | **100%** | **53** |
 
-The bank behind that draw is the collected CertSafari corpus, several times the size of one
+The bank behind that draw is several times the size of one
 attempt, so repeat attempts overlap little. Every item is tagged to one of the 25 official
 objectives and records which one. About 20% are **multiple-response** items, scored
 all-or-nothing and stating how many responses to select. Scoring uses the real **720** cut with
@@ -155,8 +155,8 @@ single domain's whole bank instead, scored raw with no pass/fail verdict.
 
 - [`ccdf/dist/exam_en.html`](./ccdf/dist/exam_en.html)
 
-> **These are practice items collected from CertSafari, not real exam content.** The answers are
-> as CertSafari marks them and have not been independently verified. They rehearse the reasoning
+> **These are collected practice items, not real exam content.** The answer keys have not been
+> independently verified. They rehearse the reasoning
 > the blueprint rewards; they do not predict or reproduce the live item bank.
 
 ## Professional study guide
@@ -183,7 +183,7 @@ Draws **63 questions per attempt**, weighted to the official domain percentages:
 | 7. Developer Productivity & Operational Enablement | 7% | 4 |
 | **Total** | **100%** | **63** |
 
-The bank behind that draw is the collected CertSafari corpus, several times the size of one
+The bank behind that draw is several times the size of one
 attempt, so repeat attempts overlap little. Every item is tagged to one of the 38 official
 objectives and records which one. About a quarter are **multiple-response** items, scored
 all-or-nothing and stating how many responses to select. Scoring uses the real **720** cut with
@@ -192,8 +192,8 @@ raw with no pass/fail verdict.
 
 - [`ccap/dist/exam_en.html`](./ccap/dist/exam_en.html)
 
-> **These are practice items collected from CertSafari, not real exam content.** The answers are
-> as CertSafari marks them and have not been independently verified. They rehearse the reasoning
+> **These are collected practice items, not real exam content.** The answer keys have not been
+> independently verified. They rehearse the reasoning
 > the blueprint rewards; they do not predict or reproduce the live item bank.
 
 ## How to use

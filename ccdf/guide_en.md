@@ -6,7 +6,7 @@
 
 The Developer – Foundations track tests whether you can build, integrate, and ship production-grade applications, agents, and workflows on Anthropic's Claude platform at a foundational level. It sits below the Architect – Professional exam in scope: it rewards hands-on mechanics — the API, the agent loop, tool schemas, streaming, context engineering, model and cost selection, debugging, security, and MCP — more than architecture or stakeholder negotiation.
 
-This guide turns the official blueprint into a practical preparation plan. It does not reproduce or predict live exam content. The guide prose is Ravn-authored; the practice exam it points to is built from questions collected from CertSafari, with answers as CertSafari marks them. Neither is real exam content, and no third party can reproduce the live item bank.
+This guide turns the official blueprint into a practical preparation plan. It does not reproduce or predict live exam content. The guide prose is Ravn-authored; the practice exam it points to is built from collected practice questions whose answer keys have not been independently verified. Neither is real exam content, and no third party can reproduce the live item bank.
 
 ## Exam at a glance
 
@@ -494,7 +494,7 @@ Two habits follow. Read the stem for the variable that changed and the constrain
 
 ## Ravn practice material
 
-This study guide is **Ravn-authored** and is not real exam content. The practice items Ravn publishes for this track come from **CertSafari**, with answers as CertSafari marks them and not independently verified; they rehearse the reasoning the blueprint rewards, and no third party can reproduce the live item bank. Treat a passing practice score as a readiness signal, never as a prediction.
+This study guide is **Ravn-authored** and is not real exam content. The practice items Ravn publishes for this track are **collected practice questions** whose answer keys have not been independently verified; they rehearse the reasoning the blueprint rewards, and no third party can reproduce the live item bank. Treat a passing practice score as a readiness signal, never as a prediction.
 
 The repository ships a browser practice exam for this blueprint at `ccdf/dist/exam_en.html`, drawing 53 questions per attempt across the eight CCDV-F domains. Do not substitute the **Architect – Foundations** exam (exam code CCAR-F, 60 items, five domains): its domain mix and item count do not represent Developer – Foundations coverage. For item-style calibration, the authoritative reference is the three sample questions in Section 8 of the official exam guide.
 

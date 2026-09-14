@@ -88,9 +88,8 @@ UI = {
                                  "domains and scales the score to 1000 the "
                                  "same way; use the full length for a "
                                  "realistic rehearsal."),
-        "source_note": ("Practice item from CertSafari; answer as marked "
-                        "there, not independently verified"),
-        "source_label": "CertSafari",
+        "source_note": ("Collected practice item; the answer key has not been "
+                        "independently verified"),
         "misses_btn": "My misses · {n}",
         "misses_label": "Drill my misses",
         "misses_empty": "No misses yet",
@@ -157,10 +156,8 @@ UI = {
                                  "corto ponderado entre dominios y escala el "
                                  "puntaje a 1000 de la misma forma; usa la "
                                  "duración completa para un ensayo realista."),
-        "source_note": ("Pregunta de práctica de CertSafari; la respuesta es "
-                        "la que marca ese sitio, sin verificación "
-                        "independiente"),
-        "source_label": "CertSafari",
+        "source_note": ("Pregunta de práctica recopilada; la clave de respuesta "
+                        "no fue verificada de forma independiente"),
         "misses_btn": "Mis fallos · {n}",
         "misses_label": "Practicar mis fallos",
         "misses_empty": "Sin fallos aún",
@@ -228,9 +225,8 @@ UI = {
                                  "curto ponderado entre os domínios e escala "
                                  "a pontuação para 1000 da mesma forma; use a "
                                  "duração completa para um ensaio realista."),
-        "source_note": ("Questão de prática do CertSafari; a resposta é a "
-                        "marcada por esse site, sem verificação independente"),
-        "source_label": "CertSafari",
+        "source_note": ("Questão de prática coletada; o gabarito não foi "
+                        "verificado de forma independente"),
         "misses_btn": "Meus erros · {n}",
         "misses_label": "Treinar meus erros",
         "misses_empty": "Sem erros ainda",
@@ -906,11 +902,10 @@ function md(text) {
                   .replace(/\n/g, " ");
 }
 
-// An item imported from a practice site carries its origin with it: the answer
-// key is that site's, and this repo has not re-derived it. Says so wherever the
-// item is read, on the card and in browse mode.
+// An imported item's answer key is the collector's, not re-derived here. Says so
+// wherever the item is read, on the card and in browse mode.
 function sourceNoteHtml(q, cls) {
-  return q.source === "certsafari"
+  return q.imported
     ? "<div class='" + cls + "'>" + esc(T.source_note) + "</div>" : "";
 }
 
@@ -1291,8 +1286,7 @@ function browseRowHtml(r) {
     "<span class='br-tag'>" + T.domain + " " + esc(q.domain) + "</span>" +
     (r.cn > 1
       ? "<span class='br-tag cluster'>" +
-        esc(T.cluster_note.replace("{i}", r.ci).replace("{n}", r.cn)) + "</span>" : "") +
-    (q.source === "certsafari" ? "<span class='br-tag src'>" + esc(T.source_label) + "</span>" : "");
+        esc(T.cluster_note.replace("{i}", r.ci).replace("{n}", r.cn)) + "</span>" : "");
   const hint = (q.situation && q.question.length < 90)
     ? "<span class='br-hint'>" + md(q.situation.slice(0, 110)) +
       (q.situation.length > 110 ? "…" : "") + "</span>" : "";
@@ -1558,6 +1552,17 @@ function restart() {
 """
 
 
+# Import bookkeeping stays in the bank file; the page only needs what it renders.
+_INTERNAL_FIELDS = ("source", "source_url", "fingerprint", "stem_note")
+
+
+def _public(q):
+    out = {k: v for k, v in q.items() if k not in _INTERNAL_FIELDS}
+    if q.get("source"):
+        out["imported"] = True
+    return out
+
+
 def _payload(obj):
     """JSON for embedding in an inline <script> block.
 
@@ -1591,7 +1596,7 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
             .replace("__PASS__", str(pass_pct))
             .replace("__UI__", _payload(ui))
             .replace("__DOMAINS__", _payload(domains_js))
-            .replace("__DATA__", _payload(questions)))
+            .replace("__DATA__", _payload([_public(q) for q in questions])))
 
     favicon_tag = (f'<link rel="icon" type="image/png" href="{_FAVICON_DATA_URI}">'
                    if _FAVICON_DATA_URI else "")
