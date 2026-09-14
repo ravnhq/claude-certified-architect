@@ -103,6 +103,45 @@
     if (e.key === 'Escape' && dialog?.open) dialog.close();
   });
 
+  // Guide TOC: open by default when it floats beside the prose (wide
+  // viewports), collapsed inline otherwise; highlight the section in view.
+  const toc = document.querySelector('.guide-toc');
+  if (toc) {
+    const wide = matchMedia('(min-width: 1240px)');
+    const syncOpen = () => { toc.open = wide.matches; };
+    syncOpen();
+    wide.addEventListener('change', syncOpen);
+
+    const links = new Map();
+    toc.querySelectorAll('a[href*="#"]').forEach(a => {
+      const id = decodeURIComponent(a.hash.slice(1));
+      if (id) links.set(id, a);
+    });
+    const headings = [...links.keys()].map(id => document.getElementById(id)).filter(Boolean);
+    let active = null;
+    const setActive = id => {
+      if (id === active) return;
+      links.get(active)?.classList.remove('active');
+      active = id;
+      const link = links.get(id);
+      link?.classList.add('active');
+      if (link && toc.open) link.scrollIntoView({ block: 'nearest' });
+    };
+    const update = () => {
+      const line = (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 80) + 8;
+      let current = headings[0];
+      for (const h of headings) {
+        if (h.getBoundingClientRect().top <= line) current = h; else break;
+      }
+      if (current) setActive(current.id);
+    };
+    if (headings.length) {
+      update();
+      addEventListener('scroll', update, { passive: true });
+      addEventListener('resize', update);
+    }
+  }
+
   // Heading anchors: copy the section URL on click. Hash navigation still
   // happens, so the address bar matches what was copied.
   document.addEventListener('click', (e) => {
