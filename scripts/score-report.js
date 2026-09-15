@@ -484,7 +484,11 @@
   }
 
   function reviewHasIssues(summary = reviewSummary()) {
-    return Boolean(summary.unknown || summary.invalid || summary.duplicateIds.size);
+    return Boolean(summary.invalid || summary.duplicateIds.size);
+  }
+
+  function canBuildPlan(summary = reviewSummary()) {
+    return Boolean(state.rows.length) && summary.matchedValid > 0 && !summary.invalid && !summary.duplicateIds.size;
   }
 
   function updateReviewVisibility(summary = reviewSummary()) {
@@ -542,26 +546,27 @@
 
   function reviewSummary() {
     const matched = state.rows.filter(row => row.objectiveId).length;
+    const matchedValid = state.rows.filter(row => row.objectiveId && validScore(row.score)).length;
     const unknown = state.rows.length - matched;
-    const invalid = state.rows.filter(row => !validScore(row.score)).length;
+    const invalid = state.rows.filter(row => row.objectiveId && !validScore(row.score)).length;
     const duplicateIds = new Set();
     const seen = new Set();
     state.rows.forEach(row => {
       if (row.objectiveId && seen.has(row.objectiveId)) duplicateIds.add(row.objectiveId);
       if (row.objectiveId) seen.add(row.objectiveId);
     });
-    return { matched, unknown, invalid, duplicateIds };
+    return { matched, matchedValid, unknown, invalid, duplicateIds };
   }
 
   function renderReviewSummary({ updateVisibility = true } = {}) {
     const summary = reviewSummary();
     const messages = [];
-    if (summary.unknown) messages.push(`${summary.unknown} row${summary.unknown === 1 ? "" : "s"} need an objective selection.`);
+    if (summary.unknown) messages.push(`${summary.unknown} row${summary.unknown === 1 ? "" : "s"} will be skipped (no objective match).`);
     if (summary.invalid) messages.push(`${summary.invalid} percentage${summary.invalid === 1 ? "" : "s"} need a value from 0 to 100.`);
     if (summary.duplicateIds.size) messages.push(`${summary.duplicateIds.size} objective${summary.duplicateIds.size === 1 ? " is" : "s are"} assigned more than once.`);
     const summaryElement = el("review-summary");
     if (summaryElement) summaryElement.textContent = messages.length ? messages.join(" ") : `${summary.matched} rows are ready.`;
-    const canBuild = state.rows.length > 0 && !summary.unknown && !summary.invalid && !summary.duplicateIds.size;
+    const canBuild = canBuildPlan(summary);
     const buildButton = el("build-plan");
     if (buildButton) buildButton.disabled = !canBuild;
     updatePracticeLink(canBuild);
@@ -579,7 +584,7 @@
   function renderReview() {
     const summary = reviewSummary();
     const rowsToRender = reviewHasIssues(summary)
-      ? state.rows.filter(row => !row.objectiveId || !validScore(row.score) || summary.duplicateIds.has(row.objectiveId))
+      ? state.rows.filter(row => !row.objectiveId || (row.objectiveId && !validScore(row.score)) || summary.duplicateIds.has(row.objectiveId))
       : state.rows;
     const reviewList = el("review-list");
     if (!reviewList) return;
@@ -593,7 +598,7 @@
         : "";
       const matchNote = row.objectiveId
         ? `<small>Matched ${row.matchType === "alias" ? "with the documented wording alias" : row.matchType === "suggested" ? "from a keyword suggestion" : row.matchType === "manual" ? "by your selection" : "to the objective metadata"}.</small>`
-        : '<small class="report-unknown">No safe metadata match. Choose the objective that describes this row.</small>';
+        : '<small class="report-unknown">No safe metadata match. This row will be skipped unless you choose the objective that describes it.</small>';
       return `<article class="report-row ${priority(row.score)}" data-row="${index}">
         <div class="report-row-copy">
           <div class="report-row-meta">${row.page ? `Page ${row.page} · ` : ""}${escapeHtml(label)}</div>
@@ -690,11 +695,16 @@
     if (messageElement) messageElement.textContent = "";
     renderReview();
 
-    if (reviewHasIssues()) {
+    const summary = reviewSummary();
+    if (!canBuildPlan(summary)) {
       showStatus("A few rows need correction before your guide is ready.", "error");
       return;
     }
-    showStatus("Report loaded.", "success");
+    if (summary.unknown) {
+      showStatus(`Report loaded with ${summary.matchedValid} matched row${summary.matchedValid === 1 ? "" : "s"}. ${summary.unknown} unmatched row${summary.unknown === 1 ? "" : "s"} will be skipped.`, "success");
+    } else {
+      showStatus("Report loaded.", "success");
+    }
     buildPlan();
   }
 
@@ -719,9 +729,9 @@
 
   function saveTarget() {
     const summary = reviewSummary();
-    if (summary.unknown || summary.invalid || summary.duplicateIds.size || !state.rows.length) return false;
+    if (!canBuildPlan(summary)) return false;
     const scores = {};
-    state.rows.forEach(row => { scores[row.objectiveId] = row.score; });
+    state.rows.forEach(row => { if (row.objectiveId && validScore(row.score)) scores[row.objectiveId] = row.score; });
     const identity = reportIdentity(state.examIdentity);
     if (!identity || !setExamData(identity.code)) return false;
     const next = { examIdentity: identity, scores };
@@ -812,9 +822,9 @@
 
   function currentSavedRecord() {
     const summary = reviewSummary();
-    if (summary.unknown || summary.invalid || summary.duplicateIds.size || !state.rows.length) return null;
+    if (!canBuildPlan(summary)) return null;
     const scores = {};
-    state.rows.forEach(row => { scores[row.objectiveId] = row.score; });
+    state.rows.forEach(row => { if (row.objectiveId && validScore(row.score)) scores[row.objectiveId] = row.score; });
     const identity = reportIdentity(state.examIdentity);
     if (!identity) return null;
     return { examIdentity: identity, scores };
@@ -887,7 +897,7 @@
 
   function buildPlan() {
     const summary = reviewSummary();
-    if (summary.unknown || summary.invalid || summary.duplicateIds.size || !state.rows.length) return;
+    if (!canBuildPlan(summary)) return;
     const targetSaved = saveTarget();
     state.planVisible = true;
     renderPlan();
@@ -910,7 +920,7 @@
   function refreshVisiblePlan() {
     if (!state.planVisible) return;
     const summary = reviewSummary();
-    if (summary.unknown || summary.invalid || summary.duplicateIds.size) {
+    if (!canBuildPlan(summary)) {
       state.planVisible = false;
       renderPlan();
       return;
