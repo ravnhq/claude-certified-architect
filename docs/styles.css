@@ -371,7 +371,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
   gap: 28px;
-  align-items: end;
+  align-items: center;
   padding: 32px;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius);
@@ -402,7 +402,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .report-panel-heading p, .report-plan-heading p { margin: 6px 0 0; color: var(--muted); }
 .report-step { flex: 0 0 auto; padding-top: 3px; color: var(--accent); font: 600 0.72rem/1.5 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.14em; }
 .file-picker { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1px solid var(--fg); border-radius: var(--radius-md); background: var(--fg); color: var(--bg); font-weight: 600; cursor: pointer; }
-.file-picker:hover { border-color: var(--accent); background: var(--accent); }
+.file-picker:hover { border-color: var(--accent); background: var(--accent); color: var(--accent-fg); }
 .file-picker input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .report-status { min-height: 1.5em; margin: 16px 0 0; color: var(--muted); font-size: 0.9rem; }
 .report-status.busy { color: var(--accent); }
@@ -425,7 +425,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .report-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 .report-primary, .report-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px; border-radius: var(--radius-md); font: 600 0.9rem/1.3 Inter, system-ui, sans-serif; cursor: pointer; }
 .report-primary { border: 1px solid var(--fg); background: var(--fg); color: var(--bg); }
-.report-primary:hover:not(:disabled) { border-color: var(--accent); background: var(--accent); }
+.report-primary:hover:not(:disabled) { border-color: var(--accent); background: var(--accent); color: var(--accent-fg); }
 .report-primary:disabled { cursor: not-allowed; opacity: 0.45; }
 .report-secondary { border: 1px solid var(--border-strong); background: transparent; color: var(--fg); }
 .report-secondary:hover:not(.disabled) { border-color: var(--accent); color: var(--accent); }

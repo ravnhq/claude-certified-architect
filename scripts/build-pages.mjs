@@ -282,11 +282,11 @@ function landing() {
   </section>
   <section class="report-entry" aria-labelledby="report-entry-title">
     <div>
-      <p class="track-label">CCAR-F score report</p>
-      <h2 id="report-entry-title">Turn section percentages into a study plan.</h2>
-      <p>Read a score-report PDF locally, correct any ambiguous objective matches, then get focused readings and a practice draw weighted toward your weak areas.</p>
+      <p class="track-label">After the exam</p>
+      <h2 id="report-entry-title">Turn your score report into a study plan.</h2>
+      <p>Upload the PDF Pearson VUE sends you and get the readings and practice questions that target your weakest objectives — the report never leaves your device.</p>
     </div>
-    <a class="chooser-link" href="score-report.html">Review a score report</a>
+    <a class="chooser-link" href="score-report.html">Upload a score report</a>
   </section>
 </main>`;
 }
@@ -371,8 +371,8 @@ function scoreReportPage() {
   return `<main class="report-page">
   <div id="report-intro">
     <section class="report-hero">
-      <h1>Your next study plan.</h1>
-      <p class="report-lede">Upload your score report for a personalized study guide and practice exam.</p>
+      <h1>Turn your score report into a study plan.</h1>
+      <p class="report-lede">Upload the PDF Pearson VUE sent you and get the guide readings and practice questions for your weakest objectives.</p>
     </section>
     <section class="report-upload" aria-label="Upload your report">
       <label class="file-picker" for="report-file"><span>Upload score report</span><input id="report-file" type="file" accept="application/pdf,.pdf"></label>
@@ -1145,7 +1145,7 @@ async function copyScoreReport() {
   await fs.copyFile(path.join(ROOT, 'scripts', 'score-report.js'), path.join(DOCS, 'score-report.js'));
   await fs.writeFile(path.join(DOCS, 'score-report-data.json'), JSON.stringify(data));
   await fs.writeFile(path.join(DOCS, 'score-report.html'), pageShell({
-    title: 'CCAF Score Report · Ravn',
+    title: 'Score Report · Ravn',
     lang: 'en',
     baseHref: RAVN_BASE_HREF,
     body: `${header('en')}${scoreReportPage()}`,

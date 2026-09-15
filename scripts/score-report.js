@@ -853,7 +853,7 @@
       }
       state.examIdentity = identity;
       if (identity.code !== "CCAR-F") {
-        showStatus(`This guide supports CCAR-F. Detected ${identity.code}.`, "error");
+        showStatus(`Personalization for ${identity.name} (${identity.code}) isn’t available yet.`, "error");
         return;
       }
       if (!rows.length) {
