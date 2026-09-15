@@ -313,9 +313,11 @@ const REPORT_THEME_READINGS = {
 const REPORT_ALIASES = {
   C3: [
     'Select the appropriate agentic review architecture—plan mode, direct execution, or multi-phase workflow—based on task scope, risk level, and human approval requirements.',
+    'Determine when to use plan mode versus direct execution based on task scope, reversibility, stakeholder uncertainty, and the need for stakeholder review before implementation.',
   ],
   J4: [
     "Write MCP tool descriptions that clearly distinguish each tool's purpose, input formats, use-case boundaries, and relationships to semantically similar tools, reducing misrouting and incorrect tool selection.",
+    'Improve tool selection reliability by expanding tool descriptions with use-case examples, input format specifications, and explicit disambiguation guidance for semantically similar tools.',
   ],
 };
 
@@ -522,6 +524,13 @@ function scoreReportPage() {
       <button id="replace-report" class="report-text-button" type="button">Upload another report</button>
     </div>
     <div class="report-result-actions"><a id="practice-link" class="report-primary disabled" href="practical/en.html?targeted=1" aria-disabled="true">Start practice exam</a><span id="practice-note"></span></div>
+    <div class="report-result-actions report-share-actions">
+      <button id="download-guide" class="report-secondary" type="button" disabled>Download study guide (.md)</button>
+      <button id="copy-exam-link" class="report-secondary" type="button" disabled>Copy link to custom exam</button>
+      <button id="save-exam-file" class="report-secondary" type="button" disabled>Save custom exam (.json)</button>
+      <label class="report-secondary report-file-label" for="load-exam-file">Load custom exam<input id="load-exam-file" type="file" accept="application/json,.json" hidden></label>
+    </div>
+    <p id="share-status" class="report-status" role="status" aria-live="polite"></p>
     <p id="plan-status" class="report-status" role="status" aria-live="polite"></p>
     <p id="persistence-note" class="report-file-note"></p>
     <div id="plan-list" class="study-list"></div>
@@ -534,6 +543,13 @@ function scoreReportPage() {
     <div id="review-list" class="review-list"></div>
     <button id="build-plan" type="button" hidden disabled>Update study guide</button>
   </details>
+  <dialog id="objective-picker" aria-labelledby="objective-picker-title">
+    <h2 id="objective-picker-title">Choose an objective</h2>
+    <input id="objective-picker-search" type="search" placeholder="Search objectives…" autocomplete="off">
+    <p id="objective-picker-status" class="search-status" role="status" aria-live="polite"></p>
+    <ul id="objective-picker-results" aria-label="Objectives"></ul>
+    <div class="report-actions"><button id="objective-picker-close" class="report-secondary" type="button">Close</button></div>
+  </dialog>
 </main>`;
 }
 

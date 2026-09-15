@@ -540,6 +540,16 @@ function parseReportRecord(raw) {
 function serializeReportRecord(record) {
   return JSON.stringify({ v: 2, examIdentity: record.examIdentity, scores: record.scores });
 }
+function parseHashReportRecord() {
+  try {
+    if (typeof window === "undefined" || !window.location || !window.location.hash) return null;
+    const match = String(window.location.hash).match(/#r=([A-Za-z0-9\-_]+)/);
+    if (!match) return null;
+    const padded = match[1].replace(/-/g, "+").replace(/_/g, "/");
+    const json = decodeURIComponent(escape(atob(padded)));
+    return parseReportRecord(json);
+  } catch (e) { return null; }
+}
 function migrateSessionAttempt(forceSession) {
   const session = storage("session");
   if (!session) return false;
@@ -562,6 +572,20 @@ function reportRecord() {
   reportRecordSource = null;
   reportMigratedFromSession = false;
   if (!TARGETED_MODE || !Object.keys(REPORT_SUBDOMAINS || {}).length) return null;
+
+  // A shared custom-exam link carries the report in the URL hash. It wins over
+  // stored data so the exact shared set restores, then persists locally.
+  const hashed = parseHashReportRecord();
+  if (hashed) {
+    reportRecordCache = hashed;
+    reportRecordSource = "local";
+    const canonical = serializeReportRecord(hashed);
+    if (!writeStored("local", REPORT_TARGET_KEY, canonical)) persistenceUnavailable = true;
+    else removeStored("local", REPORT_CLEARED_KEY);
+    removeStored("session", REPORT_TARGET_KEY);
+    removeStored("session", STORE_KEY);
+    return reportRecordCache;
+  }
 
   const durable = readStored("local", REPORT_TARGET_KEY);
   if (!durable.available) persistenceUnavailable = true;

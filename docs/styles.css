@@ -428,8 +428,9 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .report-primary:hover:not(:disabled) { border-color: var(--accent); background: var(--accent); color: var(--accent-fg); }
 .report-primary:disabled { cursor: not-allowed; opacity: 0.45; }
 .report-secondary { border: 1px solid var(--border-strong); background: transparent; color: var(--fg); }
-.report-secondary:hover:not(.disabled) { border-color: var(--accent); color: var(--accent); }
+.report-secondary:hover:not(.disabled):not(:disabled) { border-color: var(--accent); color: var(--accent); }
 .report-secondary.disabled { cursor: not-allowed; opacity: 0.45; pointer-events: none; }
+.report-secondary:disabled { cursor: not-allowed; opacity: 0.45; }
 .report-plan { padding: 0; }
 .report-plan-heading { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin-bottom: 24px; }
 .report-plan-heading > div { max-width: 760px; }
@@ -456,6 +457,22 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .report-file-note { margin: 12px 0 0; color: var(--muted); font-size: 0.82rem; }
 .report-result-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin: 28px 0; }
 .report-result-actions > span { color: var(--muted); font-size: 0.9rem; }
+.report-share-actions { margin-top: -12px; }
+.report-file-label { cursor: pointer; }
+.report-file-label input { display: none; }
+.report-objective-field input[type="search"] {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--bg-elev);
+  color: var(--fg);
+  font: 500 0.9rem/1.3 "JetBrains Mono", ui-monospace, monospace;
+}
+.report-objective-field input[type="search"]:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+.report-row-copy .report-text-button { margin-top: 8px; text-align: left; white-space: normal; }
 .report-text-button { padding: 6px 0; border: 0; border-bottom: 1px solid var(--border-strong); background: transparent; color: var(--muted); font: inherit; cursor: pointer; white-space: nowrap; }
 .report-text-button:hover { color: var(--fg); }
 .report-review { margin-top: 36px; border-top: 1px solid var(--border); padding-top: 20px; }
@@ -631,7 +648,8 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 }
 
 /* ---------- search ---------- */
-#search-dialog {
+#search-dialog,
+#objective-picker {
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
   padding: 0;
@@ -639,10 +657,12 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   color: var(--fg);
   width: min(640px, 92vw);
 }
-#search-dialog::backdrop {
+#search-dialog::backdrop,
+#objective-picker::backdrop {
   background: rgba(0, 0, 0, .55);
 }
-#search-input {
+#search-input,
+#objective-picker-search {
   width: 100%;
   padding: 18px 20px;
   border: 0;
@@ -653,7 +673,8 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   outline: none;
   font-family: inherit;
 }
-#search-input::placeholder { color: var(--subtle); }
+#search-input::placeholder,
+#objective-picker-search::placeholder { color: var(--subtle); }
 .search-status {
   min-height: 1.5em;
   margin: 0;
@@ -662,7 +683,9 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   font-size: 0.82rem;
 }
 #search-results { list-style: none; margin: 0; padding: 8px; max-height: 56vh; overflow-y: auto; }
+#objective-picker-results { list-style: none; margin: 0; padding: 8px; max-height: 56vh; overflow-y: auto; }
 #search-results li { padding: 0; }
+#objective-picker-results li { padding: 0; }
 #search-results a {
   display: block;
   padding: 10px 14px;
@@ -672,6 +695,21 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   font-size: 0.95rem;
 }
 #search-results a:hover { background: var(--bg); color: var(--accent); }
+#objective-picker-results button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--fg);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+#objective-picker-results button:hover { background: var(--bg); color: var(--accent); }
+#objective-picker .report-actions { padding: 12px 20px 20px; }
+#objective-picker-title { padding: 20px 20px 0; margin: 0; }
 #search-results .lang-tag {
   display: inline-block;
   font-size: 10px;

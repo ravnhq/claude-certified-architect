@@ -141,17 +141,60 @@
     return text => byText.get(normalizeObjectiveText(text)) || null;
   }
 
+  function tokenizeObjective(value) {
+    return normalizeObjectiveText(value).split(/[^a-z0-9]+/).filter(token => token.length > 2);
+  }
+
+  function suggestObjectiveId(text) {
+    if (!state.data) return null;
+    const tokens = new Set(tokenizeObjective(text));
+    if (!tokens.size) return null;
+    let best = null;
+    Object.entries(state.data.objectives).forEach(([id, objective]) => {
+      const objectiveTokens = new Set(tokenizeObjective(objective));
+      let overlap = 0;
+      tokens.forEach(token => { if (objectiveTokens.has(token)) overlap += 1; });
+      const score = overlap / Math.sqrt(tokens.size * Math.max(objectiveTokens.size, 1));
+      if (!best || score > best.score) best = { id, score, overlap };
+    });
+    if (!best || best.overlap < 3 || best.score < 0.25) return null;
+    return best;
+  }
+
+  function encodeSharePayload(record) {
+    const json = JSON.stringify({ v: REPORT_VERSION, examIdentity: record.examIdentity, scores: record.scores });
+    return btoa(unescape(encodeURIComponent(json))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+
+  function decodeSharePayload(value) {
+    const padded = String(value || "").replace(/-/g, "+").replace(/_/g, "/");
+    const json = decodeURIComponent(escape(atob(padded)));
+    const payload = JSON.parse(json);
+    if (!payload || typeof payload !== "object") return null;
+    return JSON.stringify(payload);
+  }
+
+  function showShareStatus(message, kind = "") {
+    const status = el("share-status");
+    if (!status) return;
+    status.textContent = message;
+    status.className = `report-status ${kind}`.trim();
+  }
+
   function mapRowsToObjectives(rows) {
     const match = reportMatches(state.data);
     return rows.map(row => {
       const objectiveId = match(row.text);
-      return {
-        ...row,
-        objectiveId,
-        matchType: objectiveId
-          ? (normalizeObjectiveText(state.data.objectives[objectiveId]) === normalizeObjectiveText(row.text) ? "exact" : "alias")
-          : "unknown",
-      };
+      if (objectiveId) {
+        return {
+          ...row,
+          objectiveId,
+          matchType: normalizeObjectiveText(state.data.objectives[objectiveId]) === normalizeObjectiveText(row.text) ? "exact" : "alias",
+          suggestedId: null,
+        };
+      }
+      const suggestion = suggestObjectiveId(row.text);
+      return { ...row, objectiveId: null, matchType: "unknown", suggestedId: suggestion ? suggestion.id : null };
     });
   }
 
@@ -522,6 +565,7 @@
     const buildButton = el("build-plan");
     if (buildButton) buildButton.disabled = !canBuild;
     updatePracticeLink(canBuild);
+    updateShareButtons();
     if (updateVisibility) updateReviewVisibility(summary);
   }
 
@@ -544,21 +588,95 @@
       const label = row.objectiveId
         ? `${row.objectiveId} · ${state.data.themes[state.data.objectiveThemes[row.objectiveId]]}`
         : "Unmatched row";
+      const suggestion = !row.objectiveId && row.suggestedId
+        ? `<button type="button" class="report-text-button" data-apply-suggestion="${index}">Use suggested: ${escapeHtml(row.suggestedId)} · ${escapeHtml(state.data.objectives[row.suggestedId])}</button>`
+        : "";
+      const matchNote = row.objectiveId
+        ? `<small>Matched ${row.matchType === "alias" ? "with the documented wording alias" : row.matchType === "suggested" ? "from a keyword suggestion" : row.matchType === "manual" ? "by your selection" : "to the objective metadata"}.</small>`
+        : '<small class="report-unknown">No safe metadata match. Choose the objective that describes this row.</small>';
       return `<article class="report-row ${priority(row.score)}" data-row="${index}">
         <div class="report-row-copy">
           <div class="report-row-meta">${row.page ? `Page ${row.page} · ` : ""}${escapeHtml(label)}</div>
           <p>${escapeHtml(row.text)}</p>
-          ${row.objectiveId ? `<small>Matched ${row.matchType === "alias" ? "with the documented wording alias" : "to the objective metadata"}.</small>` : "<small class=\"report-unknown\">No safe metadata match. Choose the objective that describes this row.</small>"}
+          ${matchNote}
+          ${suggestion}
         </div>
         <label class="report-score-field">Percent correct
           <input type="number" min="0" max="100" step="1" value="${row.score ?? ""}" data-score="${index}">
         </label>
-        <label class="report-objective-field">Objective
+        <div class="report-objective-field">
+          <label for="objective-search-${index}">Objective</label>
+          <input id="objective-search-${index}" type="search" placeholder="Search objectives…" autocomplete="off" data-objective-search="${index}" value="">
           <select data-objective="${index}">${objectiveOptions(row.objectiveId)}</select>
-        </label>
+          <button type="button" class="report-text-button" data-browse-objectives="${index}">Browse all</button>
+        </div>
       </article>`;
     }).join("");
     renderReviewSummary();
+  }
+
+  function filterObjectiveSelect(index, query) {
+    const reviewList = el("review-list");
+    if (!reviewList) return;
+    const select = reviewList.querySelector(`select[data-objective="${index}"]`);
+    if (!select) return;
+    const needle = normalizeObjectiveText(query);
+    Array.from(select.options).forEach(option => {
+      if (!option.value) {
+        option.hidden = false;
+        return;
+      }
+      const haystack = normalizeObjectiveText(`${option.value} ${option.textContent}`);
+      option.hidden = Boolean(needle) && !needle.split(/[^a-z0-9]+/).filter(Boolean).every(token => haystack.includes(token));
+    });
+  }
+
+  let pickerRowIndex = null;
+
+  function pickerEntries(query) {
+    const needle = normalizeObjectiveText(query);
+    const tokens = needle.split(/[^a-z0-9]+/).filter(token => token.length > 2);
+    return Object.entries(state.data.objectives)
+      .filter(([id, text]) => {
+        if (!tokens.length) return true;
+        const haystack = normalizeObjectiveText(`${id} ${text} ${state.data.themes[state.data.objectiveThemes[id]] || ""}`);
+        return tokens.every(token => haystack.includes(token));
+      })
+      .slice(0, 30);
+  }
+
+  function renderPickerResults(query) {
+    const results = el("objective-picker-results");
+    const status = el("objective-picker-status");
+    if (!results) return;
+    const entries = state.data ? pickerEntries(query) : [];
+    results.innerHTML = entries.map(([id, text]) => (
+      `<li><button type="button" data-pick-objective="${escapeHtml(id)}"><strong>${escapeHtml(id)}</strong> · ${escapeHtml(text)}</button></li>`
+    )).join("");
+    if (status) status.textContent = entries.length ? `${entries.length} objective${entries.length === 1 ? "" : "s"}` : "No objectives match that search.";
+  }
+
+  function openObjectivePicker(index) {
+    if (!state.data || !state.rows[index]) return;
+    pickerRowIndex = index;
+    const dialog = el("objective-picker");
+    const search = el("objective-picker-search");
+    if (search) search.value = "";
+    renderPickerResults("");
+    if (dialog && typeof dialog.showModal === "function") dialog.showModal();
+    if (search) search.focus();
+  }
+
+  function applyObjectiveSelection(index, objectiveId, matchType = "manual") {
+    if (!state.rows[index]) return;
+    state.rows[index].objectiveId = objectiveId || null;
+    state.rows[index].matchType = objectiveId ? matchType : "unknown";
+    if (!objectiveId) {
+      const suggestion = suggestObjectiveId(state.rows[index].text);
+      state.rows[index].suggestedId = suggestion ? suggestion.id : null;
+    } else {
+      state.rows[index].suggestedId = null;
+    }
   }
 
   function useParsedRows(identity, rows) {
@@ -643,6 +761,73 @@
     return `<a href="${href}">${count ? `${count} related bank questions` : "Browse the question bank"}</a>`;
   }
 
+  function readingText(row) {
+    const reading = state.data.readings[row.objectiveId];
+    const broad = state.data.themeReadings[state.data.objectiveThemes[row.objectiveId]] || [];
+    const links = [reading, ...broad].filter(Boolean).filter((item, index, all) => all.findIndex(other => other.href === item.href) === index);
+    return links.map(item => `${item.label} (${item.href})`).join("; ");
+  }
+
+  function orderedPlanRows() {
+    return state.rows.filter(row => row.objectiveId && validScore(row.score))
+      .sort((a, b) => a.score - b.score || a.objectiveId.localeCompare(b.objectiveId));
+  }
+
+  function buildStudyGuideMarkdown() {
+    const rows = orderedPlanRows();
+    const exam = state.examIdentity ? `${state.examIdentity.code} · ${state.examIdentity.name}` : "";
+    const date = new Date().toISOString().slice(0, 10);
+    const lines = [`# Personalized study guide — ${exam}`, ``, `Exported ${date}. Scores are percent correct per objective, weakest first.`, ``];
+    rows.forEach((row, index) => {
+      const id = row.objectiveId;
+      const guidance = state.data.guidance[id] || {};
+      lines.push(`## ${String(index + 1).padStart(2, "0")} · ${id} — ${row.score}% (${priorityLabel(row.score)})`);
+      lines.push(``);
+      lines.push(`${state.data.objectives[id]}`);
+      lines.push(``);
+      if (guidance.explanation) lines.push(`Concept: ${guidance.explanation}`);
+      if (guidance.example) lines.push(`Example: ${guidance.example}`);
+      if (guidance.guidance) lines.push(`What to look for: ${guidance.guidance}`);
+      lines.push(``);
+      const reading = readingText(row);
+      if (reading) lines.push(`Further reading: ${reading}`);
+      const count = state.data.questionCounts[id] || 0;
+      lines.push(`Related questions: ${count ? `${count} bank questions` : "question bank"} (${state.data.practice.bank.href}#${id})`);
+      lines.push(``);
+    });
+    return lines.join("\n");
+  }
+
+  function downloadBlob(filename, text, type) {
+    const blob = new Blob([text], { type });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function currentSavedRecord() {
+    const summary = reviewSummary();
+    if (summary.unknown || summary.invalid || summary.duplicateIds.size || !state.rows.length) return null;
+    const scores = {};
+    state.rows.forEach(row => { scores[row.objectiveId] = row.score; });
+    const identity = reportIdentity(state.examIdentity);
+    if (!identity) return null;
+    return { examIdentity: identity, scores };
+  }
+
+  function updateShareButtons() {
+    const ready = Boolean(currentSavedRecord()) && state.planVisible && !state.storageUnavailable;
+    ["download-guide", "copy-exam-link", "save-exam-file"].forEach(id => {
+      const button = el(id);
+      if (button) button.disabled = !ready;
+    });
+  }
+
   function renderPlan() {
     const matched = state.rows.filter(row => row.objectiveId && validScore(row.score))
       .sort((a, b) => a.score - b.score || a.objectiveId.localeCompare(b.objectiveId));
@@ -697,6 +882,7 @@
       state.planVisible && state.storageUnavailable ? "error" : "",
     );
     updatePracticeLink(!reviewHasIssues());
+    updateShareButtons();
   }
 
   function buildPlan() {
@@ -716,8 +902,9 @@
       state.rows[index].score = Number.isInteger(value) && value >= 0 && value <= 100 ? value : null;
       return;
     }
-    state.rows[index].objectiveId = target.value || null;
-    state.rows[index].matchType = target.value ? "manual" : "unknown";
+    if (target.dataset.objective !== undefined) {
+      applyObjectiveSelection(index, target.value || null, target.value ? "manual" : "unknown");
+    }
   }
 
   function refreshVisiblePlan() {
@@ -749,6 +936,125 @@
       if (commit) buildPlan();
     } else if (commit || !scoreEdit) {
       refreshVisiblePlan();
+    }
+  }
+
+  function handleReviewSearch(event) {
+    const target = event.target;
+    if (target.dataset && target.dataset.objectiveSearch !== undefined) {
+      filterObjectiveSelect(Number(target.dataset.objectiveSearch), target.value);
+    }
+  }
+
+  function handleReviewClick(event) {
+    const suggestion = event.target.closest("[data-apply-suggestion]");
+    if (suggestion) {
+      const index = Number(suggestion.dataset.applySuggestion);
+      const row = state.rows[index];
+      if (row && row.suggestedId) {
+        applyObjectiveSelection(index, row.suggestedId, "suggested");
+        renderReview();
+        refreshVisiblePlan();
+        if (!reviewHasIssues() && !state.planVisible) buildPlan();
+      }
+      return;
+    }
+    const browse = event.target.closest("[data-browse-objectives]");
+    if (browse) {
+      openObjectivePicker(Number(browse.dataset.browseObjectives));
+      return;
+    }
+    const pick = event.target.closest("[data-pick-objective]");
+    if (pick && pickerRowIndex !== null) {
+      const index = pickerRowIndex;
+      applyObjectiveSelection(index, pick.dataset.pickObjective, "manual");
+      const dialog = el("objective-picker");
+      if (dialog && typeof dialog.close === "function") dialog.close();
+      pickerRowIndex = null;
+      renderReview();
+      refreshVisiblePlan();
+      if (!reviewHasIssues() && !state.planVisible) buildPlan();
+    }
+  }
+
+  function handleDownloadGuide() {
+    const record = currentSavedRecord();
+    if (!record || !state.planVisible) return;
+    downloadBlob(`${record.examIdentity.code.toLowerCase()}-study-guide.md`, buildStudyGuideMarkdown(), "text/markdown");
+    showShareStatus("Study guide downloaded.", "success");
+  }
+
+  function practiceUrlForRecord(record) {
+    const path = (state.data && state.data.practice && state.data.practice.href) || "practical/en.html";
+    const url = new URL(path, window.location.href);
+    url.searchParams.set("targeted", "1");
+    url.hash = `r=${encodeSharePayload(record)}`;
+    return url.toString();
+  }
+
+  async function handleCopyExamLink() {
+    const record = currentSavedRecord();
+    if (!record) return;
+    const url = practiceUrlForRecord(record);
+    try {
+      await navigator.clipboard.writeText(url);
+      showShareStatus("Custom exam link copied. Opening it restores this exact targeted set.", "success");
+    } catch {
+      showShareStatus(url, "");
+    }
+  }
+
+  function handleSaveExamFile() {
+    const record = currentSavedRecord();
+    if (!record) return;
+    downloadBlob(`${record.examIdentity.code.toLowerCase()}-custom-exam.json`, serializeSavedReport(record), "application/json");
+    showShareStatus("Custom exam saved.", "success");
+  }
+
+  function importSharedRecord(raw, sourceLabel) {
+    const parsed = parseSavedReport(raw);
+    if (!parsed) {
+      showShareStatus("That custom exam file or link is not valid for this site.", "error");
+      return false;
+    }
+    if (!setExamData(parsed.examIdentity.code)) return false;
+    state.examIdentity = { status: "restored", ...parsed.examIdentity };
+    state.rows = Object.entries(parsed.scores).map(([id, score]) => ({
+      page: null,
+      text: state.data.objectives[id],
+      score,
+      objectiveId: id,
+      matchType: "exact",
+      suggestedId: null,
+    }));
+    savedReportCache = parsed;
+    savedReportSource = "local";
+    if (!writeStorage("local", REPORT_TARGET_KEY, serializeSavedReport(parsed))) state.storageUnavailable = true;
+    removeStorage("local", REPORT_CLEARED_KEY);
+    state.planVisible = true;
+    renderReview();
+    renderPlan();
+    showShareStatus(sourceLabel ? `Custom exam loaded from ${sourceLabel}.` : "Custom exam loaded.", "success");
+    return true;
+  }
+
+  function handleLoadExamFile(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => importSharedRecord(String(reader.result || ""), "file");
+    reader.readAsText(file);
+    event.target.value = "";
+  }
+
+  function importHashRecord() {
+    const hash = String(window.location.hash || "");
+    const match = hash.match(/#r=([A-Za-z0-9\-_]+)/);
+    if (!match) return false;
+    try {
+      return importSharedRecord(decodeSharePayload(match[1]), "link");
+    } catch {
+      return false;
     }
   }
 
@@ -800,8 +1106,10 @@
     if (resultExam) resultExam.textContent = "";
     showStatus("");
     showPlanStatus("");
+    showShareStatus("");
     updateResultVisibility();
     updatePracticeLink(false);
+    updateShareButtons();
   }
 
   function deleteSavedStudy() {
@@ -884,8 +1192,20 @@
       const pdfjs = await import("./vendor/pdfjs/pdf.min.mjs");
       window.pdfjsLib = pdfjs;
       el("report-file").addEventListener("change", event => handleFile(event.target.files[0]));
+      el("review-list").addEventListener("input", handleReviewSearch);
       el("review-list").addEventListener("input", handleReviewChange);
       el("review-list").addEventListener("change", handleReviewChange);
+      el("review-list").addEventListener("click", handleReviewClick);
+      const pickerSearch = el("objective-picker-search");
+      if (pickerSearch) pickerSearch.addEventListener("input", event => renderPickerResults(event.target.value));
+      const pickerClose = el("objective-picker-close");
+      if (pickerClose) pickerClose.addEventListener("click", () => {
+        const dialog = el("objective-picker");
+        if (dialog && typeof dialog.close === "function") dialog.close();
+        pickerRowIndex = null;
+      });
+      const picker = el("objective-picker");
+      if (picker) picker.addEventListener("click", handleReviewClick);
       const examSelect = el("exam-select");
       const confirmExam = el("confirm-exam");
       if (examSelect) {
@@ -904,6 +1224,14 @@
       if (replace) replace.addEventListener("click", replaceReport);
       const deleteSaved = el("delete-saved-study");
       if (deleteSaved) deleteSaved.addEventListener("click", deleteSavedStudy);
+      const download = el("download-guide");
+      if (download) download.addEventListener("click", handleDownloadGuide);
+      const copyLink = el("copy-exam-link");
+      if (copyLink) copyLink.addEventListener("click", handleCopyExamLink);
+      const saveFile = el("save-exam-file");
+      if (saveFile) saveFile.addEventListener("click", handleSaveExamFile);
+      const loadFile = el("load-exam-file");
+      if (loadFile) loadFile.addEventListener("change", handleLoadExamFile);
       if (typeof window !== "undefined" && window.addEventListener) {
         window.addEventListener("storage", event => {
           if (event.key !== REPORT_TARGET_KEY && event.key !== REPORT_CLEARED_KEY) return;
@@ -919,7 +1247,8 @@
       }
       showStatus("");
       renderReviewSummary();
-      restoreSavedPlan();
+      if (!importHashRecord()) restoreSavedPlan();
+      updateShareButtons();
     } catch (error) {
       console.error("Score report feature failed to load", error);
       showStatus("The score-report tool could not load its local PDF reader. Refresh the page or rebuild the site.", "error");
