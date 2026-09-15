@@ -43,6 +43,8 @@ const MINISEARCH_BROWSER = path.resolve(
   path.dirname(fileURLToPath(import.meta.resolve('minisearch'))),
   '../umd/index.js',
 );
+const PDFJS_VERSION = '4.10.38';
+const PDFJS_BUILD = path.join(ROOT, 'node_modules', 'pdfjs-dist', 'build');
 
 // Official RAVN wordmark — inlined so `fill: currentColor` follows the theme
 // (white on the dark canvas, near-black on the light variant).
@@ -80,7 +82,7 @@ async function exists(p) {
 
 async function ensureDir(p) { await fs.mkdir(p, { recursive: true }); }
 
-function pageShell({ title, lang, body, baseHref }) {
+function pageShell({ title, lang, body, baseHref, extraScripts = '' }) {
   return `<!doctype html>
 <html lang="${lang}" data-theme="dark">
 <head>
@@ -104,6 +106,7 @@ ${body}
 ${siteFooter()}
 <script src="vendor/minisearch.js" defer></script>
 <script src="app.js" defer></script>
+${extraScripts}
 </body>
 </html>`;
 }
@@ -277,6 +280,139 @@ function landing() {
       <div class="cards chooser-cards">${cardsFor('Developer')}</div>
     </div>
   </section>
+  <section class="report-entry" aria-labelledby="report-entry-title">
+    <div>
+      <p class="track-label">CCAR-F score report</p>
+      <h2 id="report-entry-title">Turn section percentages into a study plan.</h2>
+      <p>Read a score-report PDF locally, correct any ambiguous objective matches, then get focused readings and a practice draw weighted toward your weak areas.</p>
+    </div>
+    <a class="chooser-link" href="score-report.html">Review a score report</a>
+  </section>
+</main>`;
+}
+
+const REPORT_THEME_READINGS = {
+  A: [
+    { label: 'Chapter 3 · Agentic systems', href: 'guides/en.html#chapter-3-claude-agent-sdk-building-agentic-systems' },
+    { label: 'Chapter 8 · Task decomposition', href: 'guides/en.html#chapter-8-task-decomposition-strategies' },
+  ],
+  B: [{ label: 'Chapter 3 · Agentic systems', href: 'guides/en.html#chapter-3-claude-agent-sdk-building-agentic-systems' }],
+  C: [{ label: 'Chapter 9 · Human oversight', href: 'guides/en.html#chapter-9-escalation-and-human-in-the-loop' }],
+  D: [{ label: 'Chapter 5 · Claude Code', href: 'guides/en.html#chapter-5-claude-code-configuration-and-workflows' }],
+  E: [{ label: 'Chapter 3 · Agentic systems', href: 'guides/en.html#chapter-3-claude-agent-sdk-building-agentic-systems' }],
+  F: [{ label: 'Chapter 13 · Built-in tools', href: 'guides/en.html#chapter-13-claude-code-built-in-tools' }],
+  G: [{ label: 'Chapter 11 · Context management', href: 'guides/en.html#chapter-11-context-management-in-production-systems' }],
+  H: [
+    { label: 'Chapter 2 · Tools and structured output', href: 'guides/en.html#chapter-2-tools-and-tool-use' },
+    { label: 'Chapter 7 · Message Batches API', href: 'guides/en.html#chapter-7-message-batches-api' },
+  ],
+  I: [{ label: 'Chapter 6 · Prompt engineering', href: 'guides/en.html#chapter-6-prompt-engineering-advanced-techniques' }],
+  J: [{ label: 'Chapter 4 · MCP', href: 'guides/en.html#chapter-4-model-context-protocol-mcp' }],
+};
+
+const REPORT_ALIASES = {
+  C3: [
+    'Select the appropriate agentic review architecture—plan mode, direct execution, or multi-phase workflow—based on task scope, risk level, and human approval requirements.',
+  ],
+  J4: [
+    "Write MCP tool descriptions that clearly distinguish each tool's purpose, input formats, use-case boundaries, and relationships to semantically similar tools, reducing misrouting and incorrect tool selection.",
+  ],
+};
+
+function guideHeadingSlug(value) {
+  return slug(String(value).replace(/`/g, ''));
+}
+
+async function buildScoreReportData() {
+  const meta = JSON.parse(await fs.readFile(path.join(ROOT, 'ccaf', 'data', 'objectives.json'), 'utf8'));
+  const guidance = JSON.parse(await fs.readFile(path.join(ROOT, 'ccaf', 'data', 'objective_guidance.json'), 'utf8'));
+  for (const id of Object.keys(meta.objectives)) {
+    if (!['explanation', 'example', 'guidance'].every(field => typeof guidance[id]?.[field] === 'string' && guidance[id][field].trim())) {
+      throw new Error(`Missing study guidance for ${id}`);
+    }
+  }
+  const guide = await fs.readFile(path.join(ROOT, 'ccaf', 'guide_en.md'), 'utf8');
+  const headings = new Map();
+  guide.split(/\r?\n/).forEach(line => {
+    const match = line.match(/^## (\d+\.\d+) (.+)$/);
+    if (match) headings.set(match[1], { title: match[2], href: `guides/en.html#${guideHeadingSlug(`${match[1]} ${match[2]}`)}` });
+  });
+
+  const exam = await fs.readFile(path.join(ROOT, 'ccaf', 'dist', 'exam_en.html'), 'utf8');
+  const questionMatch = exam.match(/const QUESTIONS = (.+);\n\/\/ Option letters/);
+  if (!questionMatch) throw new Error('CCAF exam data was not generated before the site build');
+  const questions = JSON.parse(questionMatch[1]);
+  const questionCounts = {};
+  Object.entries(meta.objective_subdomains).forEach(([id, subdomain]) => {
+    questionCounts[id] = questions.filter(question => String(question.task_id || '') === String(subdomain)).length;
+  });
+
+  const readings = {};
+  Object.entries(meta.objective_subdomains).forEach(([id, subdomain]) => {
+    const heading = headings.get(subdomain);
+    if (heading) readings[id] = { label: `${subdomain} · ${heading.title.replace(/`/g, '')}`, href: heading.href };
+  });
+
+  return {
+    version: 1,
+    themes: meta.themes,
+    objectives: meta.objectives,
+    objectiveThemes: Object.fromEntries(Object.keys(meta.objectives).map(id => [id, id.slice(0, 1)])),
+    objectiveSubdomains: meta.objective_subdomains,
+    aliases: REPORT_ALIASES,
+    readings,
+    themeReadings: REPORT_THEME_READINGS,
+    guidance,
+    questionCounts,
+  };
+}
+
+function scoreReportPage() {
+  return `<main class="report-page">
+  <div id="report-intro">
+    <section class="report-hero">
+      <h1>Your next study plan.</h1>
+      <p class="report-lede">Upload your score report for a personalized study guide and practice exam.</p>
+    </section>
+    <section class="report-upload" aria-label="Upload your report">
+      <label class="file-picker" for="report-file"><span>Upload score report</span><input id="report-file" type="file" accept="application/pdf,.pdf"></label>
+      <p class="report-file-note">PDF · Your report stays private on this device.</p>
+      <p id="report-status" class="report-status" role="status" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section id="exam-choice" class="report-panel" aria-labelledby="exam-choice-title" hidden>
+    <h2 id="exam-choice-title">Which exam is this report for?</h2>
+    <p id="exam-choice-message">Choose the exam shown on your report.</p>
+    <label class="report-objective-field" for="exam-select">Exam
+      <select id="exam-select">
+        <option value="">Choose an exam</option>
+        <option value="CCAR-F">Architect Foundations (CCAR-F)</option>
+        <option value="CCAR-P">Architect Professional (CCAR-P)</option>
+        <option value="CCDV-F">Developer Foundations (CCDV-F)</option>
+      </select>
+    </label>
+    <div class="report-actions"><button id="confirm-exam" class="report-primary" type="button" disabled>Continue</button></div>
+  </section>
+
+  <section id="plan" class="report-plan" aria-labelledby="plan-title" hidden>
+    <div class="report-plan-heading">
+      <div><p id="result-exam" class="track-label"></p><h1 id="plan-title">Your personalized study guide.</h1><p id="plan-count" class="plan-count"></p></div>
+      <button id="replace-report" class="report-text-button" type="button">Upload another report</button>
+    </div>
+    <div class="report-result-actions"><a id="practice-link" class="report-primary disabled" href="practical/en.html?targeted=1" aria-disabled="true">Start practice exam</a><span>60 questions focused on your weak areas</span></div>
+    <p id="plan-status" class="report-status" role="status" aria-live="polite"></p>
+    <p id="persistence-note" class="report-file-note"></p>
+    <div id="plan-list" class="study-list"></div>
+  </section>
+
+  <details id="review" class="report-review" hidden>
+    <summary id="review-title">Report details</summary>
+    <button id="delete-saved-study" class="report-text-button" type="button">Delete saved study data</button>
+    <p id="review-summary" class="review-summary"></p>
+    <div id="review-list" class="review-list"></div>
+    <button id="build-plan" type="button" hidden disabled>Update study guide</button>
+  </details>
 </main>`;
 }
 
@@ -998,6 +1134,24 @@ async function copyBrowserDependencies() {
   await ensureDir(vendor);
   await fs.copyFile(MINISEARCH_BROWSER, path.join(vendor, 'minisearch.js'));
   await fs.copyFile(`${MINISEARCH_BROWSER}.map`, path.join(vendor, 'index.js.map'));
+  const pdfjs = path.join(vendor, 'pdfjs');
+  await ensureDir(pdfjs);
+  await fs.copyFile(path.join(PDFJS_BUILD, 'pdf.min.mjs'), path.join(pdfjs, 'pdf.min.mjs'));
+  await fs.copyFile(path.join(PDFJS_BUILD, 'pdf.worker.min.mjs'), path.join(pdfjs, 'pdf.worker.min.mjs'));
+}
+
+async function copyScoreReport() {
+  const data = await buildScoreReportData();
+  await fs.copyFile(path.join(ROOT, 'scripts', 'score-report.js'), path.join(DOCS, 'score-report.js'));
+  await fs.writeFile(path.join(DOCS, 'score-report-data.json'), JSON.stringify(data));
+  await fs.writeFile(path.join(DOCS, 'score-report.html'), pageShell({
+    title: 'CCAF Score Report · Ravn',
+    lang: 'en',
+    baseHref: RAVN_BASE_HREF,
+    body: `${header('en')}${scoreReportPage()}`,
+    extraScripts: '<script type="module" src="score-report.js"></script>',
+  }));
+  console.log(`Score report reader built with PDF.js ${PDFJS_VERSION} (${Object.keys(data.objectives).length} objectives)`);
 }
 
 async function copyPracticalTests() {
@@ -1106,6 +1260,7 @@ async function writeIndex() {
 async function main() {
   await ensureDir(DOCS);
   await copyBrowserDependencies();
+  await copyScoreReport();
   await writeIndex();
   await buildGuides();
   await copyPracticalTests();

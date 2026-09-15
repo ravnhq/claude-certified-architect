@@ -28,7 +28,7 @@ jobs:
       # enough for the PDFs. Add `fonts-noto-cjk` back if a JA/ZH/KO guide lands.
 
       - name: Install build deps
-        run: npm install --no-save marked@13 minisearch@7 md-to-pdf
+        run: npm install --no-save marked@13.0.3 minisearch@7.2.0 pdfjs-dist@4.10.38 md-to-pdf
 
       - name: Regenerate guide PDFs from current markdown
         run: |

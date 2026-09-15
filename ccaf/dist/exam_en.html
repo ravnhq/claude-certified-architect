@@ -428,8 +428,11 @@ const DOMAINS = {"1": {"name": "Agent Architecture and Orchestration", "weight":
 // Bank pages group rows by GROUPS when a track supplies them (Foundations:
 // score-report themes, which cut across domains); otherwise by domain.
 const GROUPS = null;
+// CCAF score-report objective IDs map to the official subdomains carried by
+// each question. The report drill uses this bridge without copying a report.
+const REPORT_SUBDOMAINS = {"A1": "1.1", "A2": "1.1", "A3": "1.4", "A4": "1.2", "A5": "1.6", "A6": "1.7", "A7": "1.7", "A8": "1.4", "B1": "1.3", "B2": "1.3", "B3": "1.3", "B4": "1.3", "B5": "5.6", "B6": "5.6", "B7": "2.3", "C1": "5.2", "C2": "5.5", "C3": "3.4", "D1": "3.1", "D2": "3.1", "D3": "3.1", "D4": "3.2", "D5": "3.2", "D6": "3.6", "E1": "1.5", "E2": "1.5", "F1": "5.4", "F2": "2.5", "F3": "4.6", "F4": "3.5", "G1": "5.4", "G2": "5.1", "G3": "5.1", "H1": "4.5", "H2": "4.3", "H3": "4.3", "H4": "2.3", "H5": "4.3", "H6": "4.3", "I1": "4.2", "I2": "4.1", "I3": "4.6", "I4": "4.1", "I5": "3.5", "I6": "4.4", "J1": "2.4", "J2": "2.4", "J3": "2.4", "J4": "2.1", "J5": "2.2"};
 const BANK_ONLY = false;
-const T = {"questions": "Questions", "answered": "Answered", "mode_study": "Study", "mode_exam": "Exam", "mode_hint_study": "Answers reveal as you go", "mode_hint_exam": "Answers reveal at the end", "prev": "← Prev", "next": "Next →", "finish": "Finish &amp; Review", "question": "Question", "your_answer": "Your answer", "correct": "Correct", "why": "Why", "complete": "Exam Complete", "answered_of": "You answered {a} of {t} questions.", "unanswered": "&#9888; {n} question(s) not answered (counted as incorrect).", "score": "Score", "pass": "PASS", "fail": "FAIL", "by_domain": "Score by domain", "review_wrong": "Review incorrect answers", "all_correct": "Every question correct — outstanding!", "restart": "New attempt — new random draw", "weight": "weight", "threshold_note": "Pass mark set at {p}/1000. Each attempt draws 12 random questions per domain (60 total); the score is scaled to 1000 as a study approximation of the real 100–1000 scaled score.", "incorrect": "incorrect", "domain": "Domain", "select_n": "Select {n} responses.", "select_full": "All {n} responses chosen. Deselect one to change your answer.", "not_answered": "Not answered", "incomplete_answer": "incomplete answer", "length_full": "Full · {n}", "length_quick": "Quick · {n}", "length_aria": "Attempt length", "new_set": "New set", "focus_all": "All domains", "focus_label": "Drill one domain", "focus_note": "Domain {d} drill: all {n} questions from this domain, reshuffled every attempt. Switch back to All domains for a full exam draw.", "drill_score": "Domain {d} score", "new_draw_confirm": "Start a new attempt with a fresh random draw? Your current answers will be cleared.", "draw_note_full": "Every attempt draws a fresh random set: {n} of the {bank} bank questions this time. Full length mirrors the real exam — 60 questions in 120 minutes.", "draw_note_quick": "Quick drill: {n} questions drawn at random, weighted across domains — a fresh set every attempt.", "summary_rotate": "This attempt was one random draw of {n} questions from the {bank}-question bank. Start a new attempt for a different set — the questions rotate every time.", "threshold_note_quick": "Pass mark set at {p}/1000. A quick drill draws a shorter random set weighted across domains and scales the score to 1000 the same way; use the full length for a realistic rehearsal.", "misses_btn": "My misses · {n}", "misses_label": "Drill my misses", "misses_empty": "No misses yet", "misses_note": "Weak-spot drill: the {n} question(s) you have answered wrong before, most-missed first.", "misses_score": "Weak-spot score", "misses_clear": "Clear my misses", "misses_clear_confirm": "Clear the record of every question you have missed? This also ends the attempt in progress.", "bank_link": "Question bank", "exam_link": "Practice exam", "browse_all": "All topics", "browse_title": "Question bank", "browse_search": "Search questions, options and explanations", "browse_domain": "Filter by domain", "browse_count": "{n} of {bank} questions", "browse_none": "No question matches this filter.", "cluster_note": "{i} of {n} variants of this scenario"};
+const T = {"questions": "Questions", "answered": "Answered", "mode_study": "Study", "mode_exam": "Exam", "mode_hint_study": "Answers reveal as you go", "mode_hint_exam": "Answers reveal at the end", "prev": "← Prev", "next": "Next →", "finish": "Finish &amp; Review", "question": "Question", "your_answer": "Your answer", "correct": "Correct", "why": "Why", "complete": "Exam Complete", "answered_of": "You answered {a} of {t} questions.", "unanswered": "&#9888; {n} question(s) not answered (counted as incorrect).", "score": "Score", "pass": "PASS", "fail": "FAIL", "by_domain": "Score by domain", "review_wrong": "Review incorrect answers", "all_correct": "Every question correct — outstanding!", "restart": "New attempt — new random draw", "weight": "weight", "threshold_note": "Pass mark set at {p}/1000. Each attempt draws 12 random questions per domain (60 total); the score is scaled to 1000 as a study approximation of the real 100–1000 scaled score.", "incorrect": "incorrect", "domain": "Domain", "select_n": "Select {n} responses.", "select_full": "All {n} responses chosen. Deselect one to change your answer.", "not_answered": "Not answered", "incomplete_answer": "incomplete answer", "length_full": "Full · {n}", "length_quick": "Quick · {n}", "length_aria": "Attempt length", "new_set": "New set", "focus_all": "All domains", "focus_label": "Drill one domain", "focus_note": "Domain {d} drill: all {n} questions from this domain, reshuffled every attempt. Switch back to All domains for a full exam draw.", "drill_score": "Domain {d} score", "focus_report": "Score-report focus", "report_note": "Targeted score-report drill: {n} questions with extra weight on weaker reviewed objectives, while retaining coverage across all five domains.", "report_score": "Targeted practice", "new_draw_confirm": "Start a new attempt with a fresh random draw? Your current answers will be cleared.", "draw_note_full": "Every attempt draws a fresh random set: {n} of the {bank} bank questions this time. Full length mirrors the real exam — 60 questions in 120 minutes.", "draw_note_quick": "Quick drill: {n} questions drawn at random, weighted across domains — a fresh set every attempt.", "summary_rotate": "This attempt was one random draw of {n} questions from the {bank}-question bank. Start a new attempt for a different set — the questions rotate every time.", "threshold_note_quick": "Pass mark set at {p}/1000. A quick drill draws a shorter random set weighted across domains and scales the score to 1000 the same way; use the full length for a realistic rehearsal.", "misses_btn": "My misses · {n}", "misses_label": "Drill my misses", "misses_empty": "No misses yet", "misses_note": "Weak-spot drill: the {n} question(s) you have answered wrong before, most-missed first.", "misses_score": "Weak-spot score", "misses_clear": "Clear my misses", "misses_clear_confirm": "Clear the record of every question you have missed? This also ends the attempt in progress.", "bank_link": "Question bank", "exam_link": "Practice exam", "browse_all": "All topics", "browse_title": "Question bank", "browse_search": "Search questions, options and explanations", "browse_domain": "Filter by domain", "browse_count": "{n} of {bank} questions", "browse_none": "No question matches this filter.", "cluster_note": "{i} of {n} variants of this scenario"};
 const PASS_PCT = 72;          // per-domain bar coloring threshold (%)
 const PASS_SCORE = 720;  // overall cut score on the 100–1000 scale
 // Questions drawn per domain each attempt. Either a single number applied to
@@ -441,7 +444,12 @@ const PER_DOMAIN = 12;
 // full draw covers stays present. Deriving it from PER_DOMAIN keeps the full
 // draw the single source of the weighting.
 const QUICK_DIVISOR = 3;
-const STORE_KEY = "ccaf-exam-en";
+const BASE_STORE_KEY = "ccaf-exam-en";
+const TARGETED_MODE = typeof window !== "undefined" &&
+  new URLSearchParams(window.location.search).get("targeted") === "1";
+const STORE_KEY = TARGETED_MODE ? BASE_STORE_KEY + ":targeted" : BASE_STORE_KEY;
+const REPORT_TARGET_KEY = "ccaf-score-report-target";
+const REPORT_CLEARED_KEY = "ccaf-score-report-target:cleared";
 // Bumped when a saved attempt stops being valid — a blueprint revision that
 // changes the per-domain draw, a change to the shape of a stored answer, or a
 // new field the order validation depends on (the domain focus in version 3).
@@ -453,9 +461,41 @@ const STORE_VERSION = 3;
 const MISS_KEY = STORE_KEY + ":misses";
 const MISS_VERSION = 1;
 
+let persistenceUnavailable = false;
+
+function storage(kind) {
+  try {
+    if (typeof window !== "undefined") return kind === "local" ? window.localStorage : window.sessionStorage;
+    return kind === "local" && typeof localStorage !== "undefined" ? localStorage
+      : (kind === "session" && typeof sessionStorage !== "undefined" ? sessionStorage : null);
+  } catch (e) { return null; }
+}
+function readStored(kind, key) {
+  const store = storage(kind);
+  if (!store) return { available: false, raw: null };
+  try { return { available: true, raw: store.getItem(key) }; }
+  catch (e) { return { available: false, raw: null }; }
+}
+function writeStored(kind, key, raw) {
+  const store = storage(kind);
+  if (!store) return false;
+  try {
+    store.setItem(key, raw);
+    return store.getItem(key) === raw;
+  } catch (e) { return false; }
+}
+function removeStored(kind, key) {
+  const store = storage(kind);
+  if (!store) return false;
+  try {
+    store.removeItem(key);
+    return store.getItem(key) === null;
+  } catch (e) { return false; }
+}
+
 function loadMisses() {
   try {
-    const raw = localStorage.getItem(MISS_KEY);
+    const raw = storage("local")?.getItem(MISS_KEY);
     if (!raw) return {};
     const d = JSON.parse(raw);
     if (!d || d.v !== MISS_VERSION || !d.items || typeof d.items !== "object") return {};
@@ -463,9 +503,135 @@ function loadMisses() {
   } catch (e) { return {}; }
 }
 function saveMisses(items) {
+  const raw = JSON.stringify({ v: MISS_VERSION, items: items });
+  if (!writeStored("local", MISS_KEY, raw)) {
+    persistenceUnavailable = true;
+    updateModeHint();
+  }
+}
+
+let reportRecordCache;
+let reportRecordSource = null;
+let reportMigratedFromSession = false;
+function parseReportRecord(raw) {
+  if (!raw) return null;
   try {
-    localStorage.setItem(MISS_KEY, JSON.stringify({ v: MISS_VERSION, items: items }));
-  } catch (e) {}
+    const d = JSON.parse(raw);
+    // v1 was the session-only format and implied CCAF-F. v2 carries the
+    // sanitized exam identity alongside the validated scores.
+    const identity = d && d.v === 1
+      ? { code: "CCAR-F", name: "Claude Certified Architect Foundations" }
+      : (d && d.v === 2 && d.examIdentity && d.examIdentity.code === "CCAR-F"
+          ? { code: "CCAR-F", name: "Claude Certified Architect Foundations" }
+          : null);
+    if (!identity || !d.scores || typeof d.scores !== "object" || Array.isArray(d.scores)) return null;
+    const scores = {};
+    Object.keys(REPORT_SUBDOMAINS).forEach(id => {
+      const value = d.scores[id];
+      if (Number.isInteger(value) && value >= 0 && value <= 100) scores[id] = value;
+    });
+    return Object.keys(scores).length ? { examIdentity: identity, scores: scores } : null;
+  } catch (e) { return null; }
+}
+function serializeReportRecord(record) {
+  return JSON.stringify({ v: 2, examIdentity: record.examIdentity, scores: record.scores });
+}
+function migrateSessionAttempt(forceSession) {
+  const session = storage("session");
+  if (!session) return false;
+  let sessionRaw = null, localRaw = null;
+  try {
+    sessionRaw = session.getItem(STORE_KEY);
+    localRaw = storage("local")?.getItem(STORE_KEY) ?? null;
+  } catch (e) {
+    persistenceUnavailable = true;
+    return false;
+  }
+  if (!sessionRaw || (!forceSession && localRaw)) return true;
+  if (writeStored("local", STORE_KEY, sessionRaw)) return removeStored("session", STORE_KEY);
+  persistenceUnavailable = true;
+  return false;
+}
+function reportRecord() {
+  if (reportRecordCache !== undefined) return reportRecordCache;
+  reportRecordCache = null;
+  reportRecordSource = null;
+  reportMigratedFromSession = false;
+  if (!TARGETED_MODE || !Object.keys(REPORT_SUBDOMAINS || {}).length) return null;
+
+  const durable = readStored("local", REPORT_TARGET_KEY);
+  if (!durable.available) persistenceUnavailable = true;
+  const durableRecord = parseReportRecord(durable.raw);
+  if (durableRecord) {
+    reportRecordCache = durableRecord;
+    reportRecordSource = "local";
+    const canonical = serializeReportRecord(durableRecord);
+    if (durable.raw !== canonical && !writeStored("local", REPORT_TARGET_KEY, canonical)) persistenceUnavailable = true;
+    // Once a durable report exists, a session copy is stale and must not win.
+    removeStored("session", REPORT_TARGET_KEY);
+    removeStored("session", STORE_KEY);
+    return reportRecordCache;
+  }
+
+  // Explicit deletion leaves a local tombstone so a stale session tab cannot
+  // resurrect the report after the durable record has been removed.
+  if (readStored("local", REPORT_CLEARED_KEY).raw) {
+    removeStored("session", REPORT_TARGET_KEY);
+    removeStored("session", STORE_KEY);
+    return null;
+  }
+
+  const session = readStored("session", REPORT_TARGET_KEY);
+  const sessionRecord = parseReportRecord(session.raw);
+  if (!sessionRecord) return null;
+  reportRecordCache = sessionRecord;
+  reportRecordSource = "session";
+  reportMigratedFromSession = true;
+  const canonical = serializeReportRecord(sessionRecord);
+  // Migrate the report and this tab's current targeted attempt together. If
+  // an old local attempt exists, session progress is the authoritative one.
+  if (writeStored("local", REPORT_TARGET_KEY, canonical)) {
+    removeStored("session", REPORT_TARGET_KEY);
+    reportRecordSource = migrateSessionAttempt(true) ? "local" : "session";
+  } else persistenceUnavailable = true;
+  return reportRecordCache;
+}
+function reportScores() {
+  const record = reportRecord();
+  return record ? record.scores : null;
+}
+function reportScoreSignature() {
+  const record = reportRecord();
+  return record ? JSON.stringify(Object.keys(record.scores).sort().map(id => [id, record.scores[id]])) : null;
+}
+
+function reportWeight(q) {
+  const scores = reportScores();
+  if (!scores || !q || !q.task_id) return 1;
+  const values = Object.keys(REPORT_SUBDOMAINS)
+    .filter(id => String(REPORT_SUBDOMAINS[id]) === String(q.task_id) && scores[id] !== undefined)
+    .map(id => scores[id]);
+  if (!values.length) return 1;
+  // Multiple score-report objectives can share one official subdomain. Using
+  // the weakest reviewed value keeps that bucket useful without inventing a
+  // finer question mapping than the bank actually carries.
+  const weakest = Math.min(...values);
+  return 1 + (100 - weakest) / 25;
+}
+
+function weightedSample(items, count) {
+  const pool = items.slice(), picked = [];
+  while (pool.length && picked.length < count) {
+    const total = pool.reduce((sum, q) => sum + reportWeight(q), 0);
+    let cursor = Math.random() * total;
+    let index = pool.length - 1;
+    for (let i = 0; i < pool.length; i++) {
+      cursor -= reportWeight(pool[i]);
+      if (cursor <= 0) { index = i; break; }
+    }
+    picked.push(pool.splice(index, 1)[0]);
+  }
+  return picked;
 }
 
 // The weak-spot draw: every question missed at least once, most-missed first,
@@ -519,6 +685,9 @@ function drawPerDomain(length, focus) {
     missedIds().forEach(id => { const d = qById(id).domain; out[d] = (out[d] || 0) + 1; });
     return out;
   }
+  // The report drill keeps the normal five-domain allocation and only changes
+  // which questions are sampled inside each domain.
+  if (focus === "report") focus = "all";
   if (focus !== "all") {
     const out = {};
     out[focus] = QUESTIONS.filter(q => String(q.domain) === String(focus)).length;
@@ -602,28 +771,47 @@ function tallyAttempt(active, answers) {
            domStat: domStat, wrongByDomain: wrongByDomain };
 }
 
-// `focus` ("all" | a domain id | "misses") scopes an attempt: "all" draws
+// `focus` ("all" | a domain id | "misses" | "report") scopes an attempt: "all" draws
 // across every domain, a domain id drills that domain's whole bank, "misses"
-// draws the questions this candidate has answered wrong before. It persists
-// like the attempt length, and the order validation below reads it from the
-// payload.
+// draws the questions this candidate has answered wrong before, and "report"
+// keeps the normal domain coverage while weighting weaker reviewed objectives.
+// It persists like the attempt length, and the order validation below reads it
+// from the payload.
 // `graded` holds the ids already folded into the miss counts for this attempt,
 // so answering in study mode and then finishing cannot count one item twice.
 // `browse` is the bank-browser filter; it is view state, so it is not saved.
 const state = { current: 0, answers: {}, order: [], mode: "study", length: "full",
-                focus: "all", graded: {}, browse: { domain: "all", q: "", sub: null } };
+                focus: "all", reportSignature: null, graded: {}, browse: { domain: "all", q: "", sub: null } };
 
 // ---- persistence ---------------------------------------------------------
 function save() {
-  try { localStorage.setItem(STORE_KEY, JSON.stringify(
+  const currentSignature = state.focus === "report" ? reportScoreSignature() : null;
+  // A report can be deleted or replaced in another tab while this attempt is
+  // open. Refusing this stale write prevents it from recreating old study data.
+  if (state.focus === "report" && state.reportSignature !== currentSignature) return false;
+  const raw = JSON.stringify(
     { v: STORE_VERSION, answers: state.answers, order: state.order,
       mode: state.mode, length: state.length, focus: state.focus,
-      graded: state.graded, current: state.current })); } catch (e) {}
+      graded: state.graded, current: state.current,
+      reportSignature: state.focus === "report" ? state.reportSignature : null });
+  if (!writeStored("local", STORE_KEY, raw)) {
+    persistenceUnavailable = true;
+    updateModeHint();
+    return false;
+  }
+  return true;
 }
 function load() {
   try {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (!raw) return null;
+    let stored = readStored("local", STORE_KEY);
+    // A session attempt is only eligible while its report is also being
+    // migrated. A durable report makes any session attempt stale.
+    if (TARGETED_MODE && reportRecordSource === "session") {
+      const sessionStored = readStored("session", STORE_KEY);
+      if (sessionStored.raw) stored = sessionStored;
+    }
+    if (!stored.raw) return null;
+    const raw = stored.raw;
     const d = JSON.parse(raw);
     // A payload from a different version is discarded, not migrated. A payload
     // written before versioning existed carries no stamp: it is still accepted,
@@ -639,10 +827,20 @@ function load() {
     // domain's bank, never against the full draw. A payload from before the
     // domain drill existed carries no focus: it drew across every domain.
     const focus = d.focus === undefined ? "all" : d.focus;
-    if (focus !== "all" && focus !== "misses" &&
+    if (focus !== "all" && focus !== "misses" && focus !== "report" &&
         !QUESTIONS.some(q => String(q.domain) === String(focus))) return null;
+    if (focus === "report") {
+      const signature = reportScoreSignature();
+      // Pre-persistence targeted attempts had no signature. They are safe to
+      // adopt only as part of the paired session migration; every durable
+      // attempt written now carries a signature and is invalidated on change.
+      if (!signature || (d.reportSignature === undefined && !reportMigratedFromSession) ||
+          (d.reportSignature !== undefined && d.reportSignature !== signature)) return null;
+      d.reportSignature = signature;
+    }
     const ids = new Set(QUESTIONS.map(q => q.id));
     if (!Array.isArray(d.order) || !d.order.every(id => ids.has(id))) return null;
+    if (focus === "report" && new Set(d.order).size !== d.order.length) return null;
     if (focus === "misses") {
       // A weak-spot drill is drawn from a set that grows as the candidate
       // answers, so its composition cannot be recomputed and compared — doing
@@ -663,8 +861,34 @@ function load() {
     }
     d.length = length;
     d.focus = focus;
+    d.reportSignature = focus === "report" ? d.reportSignature : null;
     return d;
   } catch (e) { return null; }
+}
+
+function resetAfterReportStorageChange() {
+  if (!TARGETED_MODE) return;
+  const signature = reportScoreSignature();
+  if (state.focus === "report" && state.reportSignature === signature) return;
+  state.focus = signature ? "report" : "all";
+  state.reportSignature = signature;
+  state.answers = {};
+  state.graded = {};
+  state.current = 0;
+  state.order = shuffleOrder();
+  buildSidebar();
+  updateLengthUI();
+  showScreen("questionScreen");
+  renderQuestion(0);
+  updateSidebar();
+}
+
+function onReportStorageChange(event) {
+  if (event.key !== REPORT_TARGET_KEY && event.key !== REPORT_CLEARED_KEY) return;
+  reportRecordCache = undefined;
+  reportRecordSource = null;
+  reportMigratedFromSession = false;
+  resetAfterReportStorageChange();
 }
 
 // ---- order ---------------------------------------------------------------
@@ -679,12 +903,16 @@ function shuffleOrder() {
   const byDomain = {};
   QUESTIONS.forEach(q => { (byDomain[q.domain] = byDomain[q.domain] || []).push(q.id); });
   const order = [];
-  const domains = state.focus !== "all"
+  const domains = state.focus !== "all" && state.focus !== "report"
     ? [String(state.focus)].filter(d => byDomain[d] || byDomain[Number(d)] !== undefined)
     : Object.keys(byDomain).sort((a, b) => a - b);
   domains.forEach(d => {
     const key = byDomain[d] !== undefined ? d : Number(d);
     const ids = byDomain[key].slice();
+    if (state.focus === "report") {
+      order.push(...weightedSample(ids.map(qById), drawCount(key)).map(q => q.id));
+      return;
+    }
     for (let i = ids.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [ids[i], ids[j]] = [ids[j], ids[i]];
@@ -898,11 +1126,17 @@ function setMode(mode) {
   document.getElementById("modeExam").classList.toggle("active", mode === "exam");
   document.getElementById("modeStudy").setAttribute("aria-pressed", String(mode === "study"));
   document.getElementById("modeExam").setAttribute("aria-pressed", String(mode === "exam"));
-  document.getElementById("modeHint").textContent =
-    mode === "study" ? T.mode_hint_study : T.mode_hint_exam;
+  updateModeHint();
   save();
   renderQuestion(state.current);
   updateSidebar();
+}
+
+function updateModeHint() {
+  const hint = document.getElementById("modeHint");
+  if (!hint) return;
+  hint.textContent = (state.mode === "study" ? T.mode_hint_study : T.mode_hint_exam) +
+    (persistenceUnavailable ? " Progress could not be saved on this device." : "");
 }
 
 // ---- new draw ------------------------------------------------------------
@@ -948,11 +1182,13 @@ function updateLengthUI() {
   // must keep describing the attempt the candidate is actually taking.
   const note = state.focus === "misses"
     ? T.misses_note.replace("{n}", state.order.length)
-    : (state.focus !== "all"
-        ? T.focus_note.replace("{n}", examSize()).replace("{d}", state.focus)
-        : (state.length === "quick" ? T.draw_note_quick : T.draw_note_full)
-            .replace("{n}", examSize())
-            .replace("{bank}", QUESTIONS.length));
+    : (state.focus === "report"
+        ? T.report_note.replace("{n}", examSize())
+        : (state.focus !== "all"
+            ? T.focus_note.replace("{n}", examSize()).replace("{d}", state.focus)
+            : (state.length === "quick" ? T.draw_note_quick : T.draw_note_full)
+                .replace("{n}", examSize())
+                .replace("{bank}", QUESTIONS.length)));
   document.getElementById("drawNote").innerHTML =
     "<span class='dn-icon'>&#10227;</span>" + note +
     (state.focus === "misses"
@@ -969,8 +1205,10 @@ function updateLengthUI() {
 function setFocus(focus) {
   if (String(focus) === String(state.focus)) return;
   if (focus === "misses" && missedIds().length === 0) return;
+  if (focus === "report" && !reportScores()) return;
   if (!confirmDiscard()) { updateFocusUI(); return; }
   state.focus = focus;
+  state.reportSignature = focus === "report" ? reportScoreSignature() : null;
   restart();
 }
 
@@ -1000,11 +1238,17 @@ function clearMisses() {
 }
 
 function clearProgress() {
-  try { localStorage.removeItem(MISS_KEY); localStorage.removeItem(STORE_KEY); } catch (e) {}
+  const cleared = removeStored("local", MISS_KEY) && removeStored("local", STORE_KEY) &&
+    removeStored("session", MISS_KEY) && removeStored("session", STORE_KEY);
+  if (!cleared) {
+    persistenceUnavailable = true;
+    updateModeHint();
+  }
   state.answers = {};
   state.graded = {};
   state.current = 0;
   state.focus = "all";
+  state.reportSignature = null;
   restart();
 }
 
@@ -1015,6 +1259,12 @@ function fillDomainOptions(sel) {
   all.value = "all";
   all.textContent = T.focus_all;
   sel.appendChild(all);
+  if (reportScores()) {
+    const report = document.createElement("option");
+    report.value = "report";
+    report.textContent = T.focus_report;
+    sel.appendChild(report);
+  }
   Object.keys(DOMAINS).sort((a, b) => a - b).forEach(d => {
     const opt = document.createElement("option");
     opt.value = d;
@@ -1058,9 +1308,8 @@ function updateFocusUI() {
   updateMissesUI();
   const sel = document.getElementById("focusSelect");
   if (!sel) return;
-  // The weak-spot drill is not a domain, so the domain select has nothing
-  // truthful to show: it goes inert for the duration, the way the length
-  // toggle already does inside a drill.
+  // Weak-spot and score-report drills are not domains, so the selector has no
+  // domain value to show while either focused attempt is active.
   sel.disabled = state.focus === "misses";
   sel.value = state.focus === "misses" ? "all" : String(state.focus);
 }
@@ -1337,7 +1586,9 @@ function showSummary() {
   // is repeated under the score and again at the foot of the review pane.
   const scopeNote = weak
     ? T.misses_note.replace("{n}", total)
-    : T.focus_note.replace("{n}", total).replace("{d}", state.focus);
+    : (state.focus === "report"
+        ? T.report_note.replace("{n}", total)
+        : T.focus_note.replace("{n}", total).replace("{d}", state.focus));
 
   let domainScoresHtml = "";
   Object.keys(domStat).sort((a, b) => a - b).forEach(d => {
@@ -1404,7 +1655,7 @@ function showSummary() {
     ? "<div class='score-grid'>" +
         "<div class='score-card total'><div class='big'>" + correct + "/" + total + "</div>" +
           "<div class='label'>" +
-            (weak ? T.misses_score : T.drill_score.replace("{d}", state.focus)) +
+            (weak ? T.misses_score : (state.focus === "report" ? T.report_score : T.drill_score.replace("{d}", state.focus))) +
             " · " + pct + "%</div></div>" +
         "<div class='score-card correct-c'><div class='big'>" + correct + "</div>" +
           "<div class='label'>" + T.correct + "</div></div>" +
@@ -1466,6 +1717,9 @@ function restart() {
 
 // ---- init ----------------------------------------------------------------
 (function init() {
+  if (typeof window !== "undefined" && window.addEventListener) {
+    window.addEventListener("storage", onReportStorageChange);
+  }
   if (BANK_ONLY) {
     fillBrowseOptions(document.getElementById("browseDomain"));
     showScreen("browseScreen");
@@ -1487,9 +1741,14 @@ function restart() {
     state.length = saved.length;
     // Same for the focus: a pre-drill payload restores as the full draw.
     state.focus = saved.focus;
+    state.reportSignature = saved.reportSignature || null;
     state.graded = saved.graded || {};
     state.current = Math.min(saved.current || 0, state.order.length - 1);
   } else {
+    if (reportScores()) {
+      state.focus = "report";
+      state.reportSignature = reportScoreSignature();
+    }
     state.order = shuffleOrder();
   }
   setMode(state.mode);

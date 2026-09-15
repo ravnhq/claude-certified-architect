@@ -208,6 +208,23 @@ raw with no pass/fail verdict.
    objectives, build one end-to-end reference system, then rehearse trade-offs under time
    pressure. Use exam mode for the timed run and study mode to read the rationale on every miss.
 
+### Review a CCAF score report
+
+Upload a score-report PDF to get a personalized study guide and practice exam automatically.
+The report stays on your device. If the exam cannot be identified, choose it; if any scores
+need correction, the page asks only for those corrections. Report details remain available
+below the guide. Each topic card expands into an objective-specific explanation, example,
+and practical guidance. Personalization currently supports Architect Foundations (CCAR-F).
+
+Objective scores and personalized exam progress are saved in this browser on this device,
+so the guide and attempt can be resumed after closing the tab. The PDF and candidate details
+are not saved. Use **Report details → Delete saved study data** to clear the personalized
+guide and attempt. Clearing browser data also removes them; they do not sync across devices.
+
+The practice exam draws from the existing bank, favors weaker topics, and retains coverage
+across all five domains. Results show practice accuracy and explanations, not an official
+score prediction.
+
 ## Design
 
 [DESIGN.md](./DESIGN.md) documents the current Ravn identity, extracted with Firecrawl
@@ -217,7 +234,7 @@ edit generator styles and regenerate every exam, bank, and cheatsheet after desi
 ## Build and test
 
 ```bash
-npm install --no-save marked@13 minisearch@7   # build dependencies
+npm install --no-save marked@13.0.3 minisearch@7.2.0 pdfjs-dist@4.10.38 md-to-pdf   # pinned build dependencies
 
 python3 utils/build_exam_html.py               # → ccaf/dist/exam_{en,es,pt}.html
 python3 utils/build_exam_html.py en es         # specific languages

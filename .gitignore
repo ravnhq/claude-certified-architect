@@ -12,6 +12,9 @@ package.json
 docs/index.html
 docs/.nojekyll
 docs/search-index.json
+docs/score-report.html
+docs/score-report.js
+docs/score-report-data.json
 docs/guides/
 docs/practical/
 docs/cheatsheet/

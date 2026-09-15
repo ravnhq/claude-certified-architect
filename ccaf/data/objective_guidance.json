@@ -1,0 +1,252 @@
+{
+  "A1": {
+    "explanation": "An agentic loop may receive several tool_use blocks in one assistant response. Execute independent calls together, then return one user message containing a tool_result for each matching tool_use_id; the IDs, rather than list position, pair requests and results. This reduces avoidable round trips while preserving the model-driven loop.",
+    "example": "A research coordinator asks for the company profile, the latest filing, and a currency rate. Those lookups do not depend on one another, so the executor starts all three in the same turn. A later calculation waits until the filing and rate results are available.",
+    "guidance": "Use parallel calls only when their inputs and side effects are independent. Keep the full message history and original tool schemas on the follow-up request, and preserve one correctly keyed result per call so Claude can decide what comes next."
+  },
+  "A2": {
+    "explanation": "The stop_reason field is the loop's control signal. A response with tool_use asks the application to execute requested tools and send their results back; end_turn means Claude has finished its response. Text such as 'done', the presence of a text block, or an arbitrary iteration count is not a reliable completion test.",
+    "example": "Claude first returns tool_use to inspect an order. The application performs the lookup and continues. Claude then returns end_turn with the answer, so the application presents it. If max_tokens appears instead, the response is incomplete and needs application-specific handling.",
+    "guidance": "Branch on the API field, not on wording in the generated answer. Treat each tool turn as a new loop iteration, append tool results in the required message structure, and define an explicit failure or escalation outcome for unexpected termination reasons."
+  },
+  "A3": {
+    "explanation": "A robust orchestration layer owns the terminal states of a session. It should record either a completed resolution or a human escalation, even when a tool fails, the model stops unexpectedly, or a policy blocks the requested action. Prompt instructions alone cannot guarantee that every path reaches one of those outcomes.",
+    "example": "A support agent verifies an order, but the refund service times out twice. The coordinator marks the case unresolved, preserves the verification and error details, and creates a human handoff rather than silently ending with an apology or retrying forever.",
+    "guidance": "Model the outcome as explicit state, such as resolved, escalated, or failed pending escalation. Put guards around terminal paths, attach the reason and evidence to an escalation, and separate recoverable tool retries from the final decision that the session cannot continue autonomously."
+  },
+  "A4": {
+    "explanation": "Coordinator-worker, parallel, and sequential pipeline patterns solve different constraints. A coordinator is useful when it must route and synthesize; parallel workers reduce wall-clock time for independent work; sequential stages provide predictable ordering. The right design balances coverage, latency, coordination overhead, and recovery needs.",
+    "example": "For a literature report, independent agents search three topics in parallel and a coordinator synthesizes their cited findings. For invoice processing with a fixed metadata-then-line-items sequence, a sequential pipeline is easier to test and reason about.",
+    "guidance": "Choose a workflow when the steps are known and reproducibility matters. Choose adaptive orchestration when the required workers depend on discoveries. Keep communication through the coordinator, which should detect missing coverage and route a focused follow-up rather than duplicating every task."
+  },
+  "A5": {
+    "explanation": "Adaptive decomposition means the system discovers the next useful subtask from current findings. It starts by mapping the problem, then changes priorities or creates new work when a dependency, gap, or risk appears. A fixed checklist cannot represent scope that is unknown until investigation begins.",
+    "example": "A codebase investigation first maps modules and finds that the payment path calls an undocumented gateway. The coordinator adds a gateway contract investigation before reviewing payment retries, because the new dependency changes the risk and the next useful question.",
+    "guidance": "Use fixed chaining for predictable stages such as extraction followed by validation. Use adaptive decomposition for open-ended work: summarize discoveries, rank the next questions, and re-plan when evidence changes scope. Do not confuse adaptive planning with merely running a fixed list in parallel."
+  },
+  "A6": {
+    "explanation": "Persistence for a multi-agent pipeline records enough state to resume from a checkpoint: task status, inputs, completed outputs, identifiers, findings, and known gaps. Saving only a final transcript makes interruption expensive because the coordinator cannot distinguish completed work from work that still needs execution.",
+    "example": "A 12-file review completes eight files before the worker process stops. A manifest records those eight outputs and marks four as pending. On restart, the coordinator loads the manifest, skips completed files, and runs only the pending reviews before the integration pass.",
+    "guidance": "Make checkpoints durable and outputs idempotent, so a repeated operation does not duplicate comments or records. Store partial results and coverage alongside status, and let the coordinator derive the next action from state rather than assuming that a prior process reached its last step."
+  },
+  "A7": {
+    "explanation": "Resuming a session restores useful context only when its assumptions still match the files and systems being inspected. Changed files require targeted re-analysis, while a concise summary can inject the prior findings and current status without replaying every old tool result. A stale resume can produce confident advice about code that no longer exists.",
+    "example": "An agent reviewed an authentication module, then a developer changed its token parser. When work resumes, the coordinator names the changed file, re-reads the relevant callers, and supplies the prior findings as context so the review checks what is new rather than repeating the unchanged discovery.",
+    "guidance": "Before resuming, compare the saved state with the current revision and identify changed inputs. Revalidate affected findings, inject exact identifiers and remaining work, and start fresh with a structured summary when the old context is too stale to trust."
+  },
+  "A8": {
+    "explanation": "A handoff is a structured transfer of state, not a sentence saying that another agent should take over. It must preserve the facts needed to act, what has already happened, the evidence behind the conclusion, authorization or approval status, and a clear next action. This prevents the recipient from reconstructing the case.",
+    "example": "A refund case hands a human the customer and order IDs, damaged-item evidence, verification and replacement attempts, requested amount, escalation reason, and whether approval is still required. The human can decide immediately without access to the original transcript.",
+    "guidance": "Define a stable handoff schema with identifiers, issue summary, actions taken, findings, unresolved questions, recommended action, and escalation reason. Include only verified authorization state; never imply that a human approved an operation when the record says it is pending."
+  },
+  "B1": {
+    "explanation": "Subagents operate in isolated context, so a prompt such as 'analyze the document above' is incomplete unless the document was actually passed. A self-contained delegation includes the task, relevant source data, prior findings, metadata, constraints, and the output schema that the coordinator needs to synthesize the result.",
+    "example": "A research worker receives the full article text, publication date, source URL, the coordinator's question, and a required result shape containing claims, supporting passages, and uncertainty. It can finish without asking what article or citation format the coordinator meant.",
+    "guidance": "Delimit source data, metadata, instructions, and expected output so they cannot be confused. Pass the smallest complete context, but never omit a fact needed to make a decision. Require citations or identifiers in the result when downstream synthesis must preserve provenance."
+  },
+  "B2": {
+    "explanation": "Goal-oriented delegation states the outcome, boundaries, and quality criteria while leaving the worker room to adapt its investigation. Procedural delegation dictates every action and can prevent useful responses to unexpected evidence. The coordinator still retains visibility through a structured result and explicit scope.",
+    "example": "Instead of ordering a worker to run three named searches, the coordinator asks it to determine whether an API has authentication risks, inspect the relevant evidence, and return findings with severity and file or source references. The worker can follow a new dependency if one appears.",
+    "guidance": "Specify the objective, allowed scope, stop conditions, and result contract. Reserve rigid step sequences for genuinely fixed workflows. Ask for concise progress or coverage metadata so adaptive worker behavior remains observable and the coordinator can re-route incomplete work."
+  },
+  "B3": {
+    "explanation": "An AgentDefinition makes a subagent's role concrete through its description, system prompt, and allowed tools. Context scoping and tool restrictions reduce accidental work outside that role; the system prompt explains the responsibility and output expectations. These controls complement one another rather than replacing least-privilege access.",
+    "example": "A billing-review agent can read invoices, calculate totals, and escalate, but cannot send email or issue refunds. Its system prompt says to report discrepancies with line references. A separate notification agent owns customer messaging.",
+    "guidance": "Give each worker the narrowest useful tools and a role-specific prompt. Pass task context explicitly, define the expected result, and keep the coordinator's orchestration tools on the coordinator. Treat permissions as an architectural boundary, not as a suggestion in prose."
+  },
+  "B4": {
+    "explanation": "Spawning failures often come from wiring rather than model reasoning. The coordinator must be allowed to call Task, the AgentDefinition must have valid role and tool settings, and the application must connect the returned worker result back into the coordinator's flow. A missing link can look like a worker that simply ignored its assignment.",
+    "example": "A coordinator has a well-written delegation prompt but never spawns a worker because Task is absent from allowedTools. In another case, the worker runs but has no Read permission and returns an empty review. Both are configuration defects with different fixes.",
+    "guidance": "Inspect the chain in order: coordinator permission, invocation parameters, worker role and system prompt, allowed tools, context payload, and result aggregation. Verify that the worker's output is actually delivered to the coordinator, then classify missing context separately from an unavailable tool."
+  },
+  "B5": {
+    "explanation": "A subagent output schema should match how its result will be consumed. Structured fields support filtering and aggregation; prose explains rationale; citation metadata preserves auditability. A single unstructured paragraph forces the synthesis agent to rediscover boundaries, sources, and uncertainty that could have been explicit.",
+    "example": "A document worker returns an array of findings with category, claim, evidence quote, source location, confidence, and a short rationale. A coordinator can render technical findings as a list while retaining quotes for a reviewer and confidence for routing.",
+    "guidance": "Design fields around downstream decisions: identifiers for joins, enums for stable categories, prose for explanations, and source metadata for verification. Keep optional information nullable rather than inventing placeholders, and state whether a result is complete, partial, or unsupported."
+  },
+  "B6": {
+    "explanation": "Synthesis should preserve uncertainty instead of averaging disagreement into a confident sentence. Each claim needs its source and date, while conflicting values or interpretations remain visible with an explanation of the possible difference. The coordinator can then distinguish established findings from contested or incomplete coverage.",
+    "example": "Two reports estimate a market share at 8% and 12%. The synthesis records both figures, their publication dates and methods, and flags a conflict. It does not silently select the larger number or describe the disagreement as a model error.",
+    "guidance": "Require claim-to-source mappings in worker results, separate supported and disputed sections, and retain partial coverage notes. Treat temporal or methodological differences as evidence to investigate, not permission to choose a value without attribution."
+  },
+  "B7": {
+    "explanation": "Tool distribution should follow the subagent's responsibility. Extra tools increase the number of choices Claude must distinguish and create opportunities for out-of-role actions. A small, relevant set improves routing reliability and acts as a permission boundary for the multi-agent design.",
+    "example": "A search worker receives web search and document-read tools, while a synthesis worker receives only the structured findings and a report writer. Neither needs the refund, deployment, or database mutation tools used elsewhere in the system.",
+    "guidance": "Start with the role's essential tools and add a narrowly scoped utility only when a real task requires it. Keep shared access small, explain each tool's boundary, and let the coordinator handle cross-role operations that need broader authority."
+  },
+  "C1": {
+    "explanation": "An explicit request for a human is a direct escalation decision, not a signal to investigate further. The guide separates that trigger from ordinary dissatisfaction, which can receive acknowledgment and a concrete resolution attempt. Policy gaps and inability to make progress are other reasons to escalate, but they follow their own criteria.",
+    "example": "A customer says, 'Please connect me to a manager.' The agent immediately creates the escalation handoff. If the customer only says the service is frustrating, the agent may acknowledge the concern and offer a documented solution unless the customer then asks for a person.",
+    "guidance": "Detect and honor an explicit human request immediately, with no extra lookup that delays the transfer. Encode the trigger as a clear rule, preserve the conversation facts for the recipient, and do not substitute sentiment scores or model confidence for the customer's stated choice."
+  },
+  "C2": {
+    "explanation": "Human review is most useful when routed to likely sources of error. Confidence must be considered at field level alongside document type and ambiguity; random sampling alone can miss a weak segment or waste reviewers on stable cases. Thresholds should come from labeled validation data, then be audited over time.",
+    "example": "An invoice extractor is reliable on typed English invoices but often misses handwritten tax fields. The system routes low-confidence tax fields and all handwritten documents to a specialist, while stable fields continue automatically with stratified audit samples.",
+    "guidance": "Measure accuracy by field and document segment before setting a threshold. Route ambiguous or low-confidence cases with the relevant evidence, calibrate against labeled outcomes, and retain periodic random audits so a high aggregate score does not hide a new failure pattern."
+  },
+  "C3": {
+    "explanation": "Plan mode, direct execution, and multi-phase workflows differ in when decisions and approvals occur. Direct execution fits a small, reversible change with a clear path. Planning creates a reviewable design for broad or uncertain work. Multi-phase workflows separate investigation, implementation, and approval when risk or dependencies justify the boundary.",
+    "example": "Changing a typo in one file can be direct. A database migration affecting many services merits a plan before edits, followed by an approval gate. A high-risk deployment may use investigation, implementation, validation, and human approval as separate phases.",
+    "guidance": "Assess scope, uncertainty, reversibility, and the consequences of a wrong action. Keep irreversible or high-impact steps behind explicit approval or programmatic controls, while avoiding planning overhead for a well-understood, low-risk fix."
+  },
+  "D1": {
+    "explanation": "Claude Code configuration mechanisms have different scopes and guarantees. CLAUDE.md carries generally useful guidance; path-scoped rules load conventions conditionally; Skills provide on-demand workflow instructions; hooks and settings permissions enforce tool-time controls. Selecting among them depends on what the instruction means and when it should apply.",
+    "example": "A repository-wide naming convention belongs in CLAUDE.md. A testing rule for only `src/api/**` belongs in a path-scoped rule. A reusable release workflow belongs in a Skill, while blocking pushes to a protected branch belongs in a hook or permission setting.",
+    "guidance": "Ask two questions: is this guidance or a guarantee, and is it universal or conditional? Keep always-loaded instructions focused, scope workflow content to invocation, and place rules that must survive model discretion at the enforcement boundary."
+  },
+  "D2": {
+    "explanation": "CLAUDE.md influences behavior but does not remove a tool or guarantee that a rule will be obeyed. Settings permissions and hooks operate at the action boundary, so they can allow, ask, deny, update, or validate a tool call regardless of the model's wording. The distinction matters for safety and compliance.",
+    "example": "'Use named exports' is useful project guidance in CLAUDE.md. 'Never push directly to main' requires a pre-tool control that denies the push or asks for approval, because a prompt could be forgotten or overridden during a long session.",
+    "guidance": "Put conventions, examples, and preferred workflows in the appropriate instruction file. Put financial, legal, security, or irreversible-action rules in deterministic controls, and make the control's decision and escalation path explicit so failures are visible."
+  },
+  "D3": {
+    "explanation": "Inline context is specific to one request, CLAUDE.md is persistent guidance loaded for the project or user scope, and an @ reference imports reusable file content into the instruction context. An import organizes content but still expands it into context, so it improves maintainability rather than shrinking the loaded material.",
+    "example": "A one-off request can state the exact function and acceptance criteria inline. A repository convention belongs in CLAUDE.md. Shared API conventions used by several instruction files can live in `standards/api.md` and be included with an @ path.",
+    "guidance": "Choose inline text for a narrow, non-repeating request; persistent files for conventions that should survive sessions; and @ references for modular reuse. Keep imports readable and resolve relative paths from the file containing the reference."
+  },
+  "D4": {
+    "explanation": "Custom slash commands and Skills package reusable, on-demand workflows. Project commands live under the repository's `.claude/commands/` or `.claude/skills/` and travel with the team; user commands live under the corresponding user directory and remain personal. Both can expose a named slash command, while Skills add frontmatter configuration.",
+    "example": "A team puts a review workflow in `.claude/skills/review/SKILL.md` so every clone offers `/review`. An individual keeps a personal `/notes` command in the user-level skills directory because it depends on private preferences and should not enter version control.",
+    "guidance": "Place shared workflows at project scope and personal experiments at user scope. Give the command a distinct name, describe its inputs and output, and use Skill frontmatter when isolation or tool restrictions are part of the workflow contract."
+  },
+  "D5": {
+    "explanation": "The `context: fork` frontmatter option runs a Skill or slash command in an isolated subagent context. Isolation keeps verbose discovery, intermediate reasoning, and task-specific state from crowding the invoking conversation. It is a context boundary, not a replacement for passing the files, facts, and output contract the fork needs.",
+    "example": "A `/review` Skill reads many files and returns a short findings report. With `context: fork`, those reads stay in the isolated review context, while the main session receives the report and can decide whether to act on it.",
+    "guidance": "Use a fork when the workflow is self-contained and its output is easier to consume than its full trace. Combine it with `allowed-tools` and a clear result format, and explicitly provide any context the fork cannot inherit from the parent session."
+  },
+  "D6": {
+    "explanation": "CI must invoke Claude non-interactively and make its output machine-readable. The CLI print mode processes a prompt and exits; output format and schema options make results parsable, while permission modes and turn or cost limits constrain unattended execution. Interactive assumptions do not belong in a pipeline.",
+    "example": "A pull-request job runs Claude in print mode with a review prompt, JSON output, and a schema for findings. The job parses the result into comments, applies a bounded permission configuration, and fails or requests review according to the returned severity.",
+    "guidance": "Define a deterministic prompt, explicit output contract, and bounded runtime or spend policy. Keep credentials in the CI secret system, use an independent review context when checking generated changes, and make duplicate-comment handling part of the pipeline state."
+  },
+  "E1": {
+    "explanation": "Hooks intercept a tool call or result at a fixed lifecycle point, which makes them suitable for rules that must not depend on model compliance. PreToolUse can deny, ask, or update an outgoing action; PostToolUse can normalize a result before Claude sees it. This gives programmatic policy a deterministic boundary.",
+    "example": "A PreToolUse hook blocks a refund above the approved threshold and redirects it to escalation. A PostToolUse hook converts timestamps from several services into one ISO format before the coordinator reasons over the results.",
+    "guidance": "Use hooks for financial, legal, security, and data-integrity constraints, and use prompts for preferences. Keep hook behavior narrow and observable: identify the affected tool, return a useful reason, and specify the safe next action when a call is denied."
+  },
+  "E2": {
+    "explanation": "A PostToolUse hook can run formatting, linting, or tests after a file edit, so quality checks occur independently of whether Claude remembered an instruction. This differs from a general policy hook: the trigger is a successful edit and the result feeds concrete validation feedback into the next model turn.",
+    "example": "After Claude edits a TypeScript file, a PostToolUse hook runs the repository formatter and targeted tests. It returns the actual lint error and failing assertion, allowing Claude to correct the code before the workflow reports completion.",
+    "guidance": "Attach checks to the edit event and scope them to the affected project or file type so feedback remains timely. Return actionable diagnostics, preserve the original tool result when useful, and treat a failed check as unresolved work rather than silently accepting the edit."
+  },
+  "F1": {
+    "explanation": "Incremental exploration builds a reliable codebase model while controlling context. Glob finds candidate files, Grep locates symbols or text, and Read supplies the surrounding implementation. Repeating that sequence from entry points through callers and dependencies is more useful than loading an entire repository into one prompt.",
+    "example": "To trace an authentication bug, the agent first finds the auth module with Glob, searches for the failing error with Grep, reads the handler, then searches for its callers and reads the relevant tests. The final summary retains the dependency path and evidence.",
+    "guidance": "Start with the smallest search that can reveal an entry point, then expand only along relevant edges. Summarize findings as you go, preserve exact file and symbol names, and use isolated workers or scratchpads when discovery output would overwhelm the main context."
+  },
+  "F2": {
+    "explanation": "Built-in tools have distinct jobs. Glob discovers files by name or pattern; Grep searches file contents; Read loads a file; Edit makes a precise replacement; Write creates or replaces a file; Bash runs a shell operation when no narrower file tool fits. Choosing by operation avoids noisy or risky exploration.",
+    "example": "Finding every test file uses Glob, locating `parseInvoice` uses Grep, understanding its implementation uses Read, changing one unique condition uses Edit, and running the test suite uses Bash. A broad shell search is unnecessary when Grep expresses the intent directly.",
+    "guidance": "Match the tool to the question: names versus contents, inspection versus mutation, or file work versus command execution. If an edit target is not unique, read the file and make a controlled whole-file update rather than applying an ambiguous replacement."
+  },
+  "F3": {
+    "explanation": "A Claude Code review configuration defines how a review agent receives project standards, what tools it may use, and what result downstream automation can parse. It is about repeatable review behavior and boundaries. Loading review guidance, limiting unnecessary access, and requiring structured findings makes the reviewer easier to trust and integrate.",
+    "example": "A CI review Skill loads the repository's security and API rules, allows Read and Grep but no deployment tool, and returns JSON findings with file, line, severity, rationale, and confidence. A separate formatter can then turn those records into comments.",
+    "guidance": "Keep project conventions in the review context, scope tools to inspection, and define a schema that distinguishes no finding from an incomplete review. Use an independent review instance when possible so the reviewer does not inherit the author's reasoning context."
+  },
+  "F4": {
+    "explanation": "Meaningful automated test generation depends on behavioral context, not merely a request to add assertions. Existing tests reveal conventions and boundaries; fixtures show setup and representative data; explicit criteria prevent tautological tests that only restate implementation details or compare a value with itself.",
+    "example": "For a date parser, the generator sees existing fixture factories and tests for valid dates. It adds cases for an invalid calendar date and a documented format boundary, asserting the public parse result or error behavior rather than checking that an internal helper was called.",
+    "guidance": "Give the generator nearby tests, fixture conventions, and the behavior that must remain true. Require cases that could expose a plausible regression, including meaningful edge conditions, and reject tests that merely assert symbol existence or duplicate the implementation's own calculation."
+  },
+  "G1": {
+    "explanation": "Long investigations need context boundaries. Subagent isolation keeps verbose discovery away from the coordinator, scratchpads preserve exact findings across compaction or sessions, and targeted reads limit the material in each turn. Together they retain the important structure without carrying every raw tool response forward.",
+    "example": "An exploration worker traces a payments module through 15 files and returns three dependencies and one external rate limit. The coordinator stores that summary in a scratchpad and keeps only the relevant paths while a separate worker investigates the gateway.",
+    "guidance": "Delegate bounded discovery questions, request concise structured output, and persist exact facts such as identifiers, dates, and file paths. Read the scratchpad when context degrades, then send only the needed findings to the next phase instead of replaying the full exploration."
+  },
+  "G2": {
+    "explanation": "Context optimization selects what must remain visible as a conversation grows. Summarization and sliding windows reduce history, structured state preserves facts, and selective retention trims irrelevant tool output. Each technique has a loss risk, especially for numbers, dates, and findings buried in the middle of a long input.",
+    "example": "An order agent keeps a structured case-facts block with the exact customer ID, amount, and status while summarizing resolved turns. It trims a 40-field order response to the five return fields needed for the next decision.",
+    "guidance": "Protect transactional facts outside lossy history, put key findings near a clear boundary, and keep only fields needed for the active task. Use summaries to compress stable narrative, not to replace exact values that later decisions must reproduce."
+  },
+  "G3": {
+    "explanation": "The Messages API is stateless between requests: Claude does not retain the prior turn unless the application sends the relevant history again. Continuing a conversation therefore means appending the new user or tool result to the existing sequence and resending it, along with the system prompt and applicable tool definitions.",
+    "example": "After Claude requests `lookup_order`, the application sends the assistant tool_use block followed by a user tool_result block, then includes that full history in the next request. Sending only the latest result would leave Claude without the question or the requested call it is answering.",
+    "guidance": "Treat conversation state as application-owned data. Preserve role and block structure, pair tool results with their tool_use IDs, and store or reconstruct the history deliberately when a session spans requests, workers, or a process restart."
+  },
+  "H1": {
+    "explanation": "Synchronous Messages requests fit work that blocks a user or pipeline and needs a prompt response. The asynchronous Message Batches API fits many independent requests whose results can arrive later, trading immediate latency guarantees for lower-cost, scheduled processing. Batch requests do not provide a multi-turn tool loop inside one item.",
+    "example": "A pre-merge check uses the synchronous API because the result gates a deployment. A nightly audit submits independent documents as a batch, correlates responses later, and reprocesses only failed items rather than holding a user request open.",
+    "guidance": "Choose by deadline and interaction model: blocking decisions need synchronous handling; overnight, weekly, or queueable work can be batched. Give every request a stable custom_id, test prompts on a small sample, and make partial failure recovery explicit."
+  },
+  "H2": {
+    "explanation": "Tool use with a JSON schema is the strongest choice when downstream code needs reliable structure. Prompt formatting or assistant prefill can shape raw output but remains less strict and still needs parsing and validation. The method should match the consequence of malformed structure and the flexibility the task requires.",
+    "example": "An invoice pipeline uses a forced extraction tool with a schema for totals and line items. A one-off report may use a prefilled JSON fence for convenience, but the application still parses it and handles malformed or semantically inconsistent values.",
+    "guidance": "Prefer schema-backed tool use for production contracts, then validate meaning separately. Use lighter formatting techniques only when the output is not a strict integration boundary, and document the fallback behavior when a field is absent or ambiguous."
+  },
+  "H3": {
+    "explanation": "Tool use plus JSON Schema constrains the response to a known structured call and eliminates many syntax and shape errors. It does not make the values true: totals can still disagree, fields can be semantically wrong, and source information can be missing. Required fields and tool_choice should reflect the contract.",
+    "example": "An extraction tool requires `category` and `severity`, allows a nullable `owner`, and defines an `unclear` category. The application receives valid structured data, then checks whether the cited text actually supports the selected category and severity.",
+    "guidance": "Use `tool_choice: any` when some extraction tool must run, or force a named tool when one schema is required. Mark unavailable facts nullable, include honest enum values, and add semantic validation after parsing rather than treating schema validity as accuracy."
+  },
+  "H4": {
+    "explanation": "tool_choice controls whether Claude may answer in text, must call some tool, or must call a named tool. A forced call is useful when workflow order matters, such as collecting metadata before an enrichment lookup. Subsequent dependent calls should receive the prerequisite result rather than racing ahead.",
+    "example": "A document workflow forces `extract_metadata` first, then permits an enrichment tool using the returned document type and identifier. If metadata extraction finds no identifier, the coordinator asks for clarification or records an unresolved field instead of calling enrichment with a guess.",
+    "guidance": "Use auto for open conversation, any for guaranteed structured invocation among several tools, and a named choice for a required first step. Encode dependencies in orchestration state and tool schemas; do not rely solely on the order in which Claude happens to list calls."
+  },
+  "H5": {
+    "explanation": "A structured response can truncate when a review is too large for one request's combined context and output budget. Raising max_tokens only changes the output allowance and may not solve an oversized input or a practical response limit. Splitting the work into scoped calls and merging validated structures addresses the actual scale problem.",
+    "example": "A long contract review exceeds the response budget when all clauses are requested together. The system extracts clause-level findings in smaller calls, tags each with its section, and merges them into a report while checking for duplicate or missing sections.",
+    "guidance": "Separate large inputs by coherent boundaries, preserve document and section identifiers, and define a merge step that checks coverage and conflicts. Diagnose whether the limit is input, output, or both before changing token settings, and do not re-run successful chunks unnecessarily."
+  },
+  "H6": {
+    "explanation": "Schemas should represent the information a source can actually contain. Optional or nullable fields let the model say that a value is absent; `unclear` expresses unresolved classification; and `other` plus a detail field preserves categories outside a closed enum. Overly required fields create pressure to fabricate values.",
+    "example": "A form extractor receives a document with a company name but no phone number and an unfamiliar document type. It returns `phone: null` and `type: other` with a detail string, rather than inventing a number or forcing the type into the closest enum.",
+    "guidance": "Make required only what the downstream contract truly needs. Use null for missing source information, unclear for unresolved interpretation, and other for valid out-of-set values. Validate the selected enum and preserve source evidence so uncertainty remains visible."
+  },
+  "I1": {
+    "explanation": "Reliable extraction combines a structured schema with optional fields, normalization rules, and representative few-shot examples. The schema controls shape, normalization aligns variations such as dates or status labels, and examples demonstrate how the intended behavior handles real document differences without guessing missing facts.",
+    "example": "Invoices from three vendors write dates as `03/04/25`, `4 March 2025`, and an ISO value. The prompt defines the target format, shows examples of each source style, and returns null when a purchase date is not present.",
+    "guidance": "Define field meanings and missing-value behavior explicitly, include examples that cover different layouts and corner cases, and validate normalized values against source text. Improve the prompt from observed errors rather than adding vague instructions such as 'be accurate.'"
+  },
+  "I2": {
+    "explanation": "Explicit inclusion and exclusion criteria tell a model where a category begins and ends. This is more reliable than a broad request to find everything because the prompt states what counts, what does not count, and how borderline evidence should be represented.",
+    "example": "A security review includes exploitable authorization flaws and secrets exposed in production paths, but excludes stylistic naming issues and hypothetical risks with no reachable data. A finding outside those boundaries is omitted or labeled unclear according to the contract.",
+    "guidance": "Write observable criteria with positive and negative examples, specify the evidence required for inclusion, and define an explicit outcome for uncertain cases. Keep exclusions close to the category they limit so the reviewer can apply the boundary consistently."
+  },
+  "I3": {
+    "explanation": "Specialized review passes separate concerns that compete for attention. A security pass can use security-specific criteria and examples; a business-logic pass can inspect invariants; an API pass can inspect contracts. Independent focused passes improve recall and make each finding easier to explain.",
+    "example": "A pull request receives separate security, business-rule, and API compatibility reviews, followed by an integration pass. The integration stage catches that a locally valid type change breaks a caller, while the focused passes avoid diluting their own checks.",
+    "guidance": "Give each pass a narrow scope, dedicated examples, and a shared finding schema. Use an independent instance for review when possible, then run a cross-file integration pass that examines data flow and consolidates duplicates without erasing which pass found an issue."
+  },
+  "I4": {
+    "explanation": "False positives often reflect missing project context rather than a general lack of model capability. Supplying accepted patterns, local conventions, and explicit exclusions gives the reviewer a stable reference for distinguishing a deliberate design choice from a defect.",
+    "example": "A service intentionally uses direct SQL for a reporting path with a reviewed query helper. The review configuration records that accepted pattern and excludes it from the generic ORM warning, while still flagging unparameterized queries outside the helper.",
+    "guidance": "Collect recurring false positives, encode the project-specific reason and boundary in persistent review context, and keep the exclusion narrow enough to preserve real findings. Re-evaluate conventions when the codebase changes instead of broadening an exclusion until every warning disappears."
+  },
+  "I5": {
+    "explanation": "Iterative refinement improves a prompt through concrete evidence: representative inputs, ideal outputs, targeted feedback, and a repeatable comparison. Batching related issue descriptions lets the model address known failure patterns together, while a precise correction explains what was wrong and what should change.",
+    "example": "A reviewer repeatedly reports a valid project convention as a defect. The team adds a paired input-output example showing the accepted pattern, names the false-positive rule, and evaluates the revised prompt on a set of past findings before adopting it.",
+    "guidance": "Record the failure and desired behavior, change the smallest relevant prompt or schema element, and compare results on varied cases. Prefer concrete criteria and examples over stronger adjectives, and keep unresolved failures visible rather than grading the revision only on one favorable input."
+  },
+  "I6": {
+    "explanation": "A feedback loop becomes useful when each model error carries structured metadata about what happened. Fields such as error category, detected pattern, source segment, confidence, and validation result let the team aggregate recurring failures and decide whether the fix belongs in the prompt, schema, examples, or routing.",
+    "example": "An extractor mislabels totals when a document contains both a stated total and a calculated total. The system records the field, detected layout pattern, validation mismatch, and source type. Later analysis shows the issue is concentrated in scanned receipts, guiding a targeted example and review route.",
+    "guidance": "Capture errors in a stable record, group them by meaningful dimensions, and change one part of the system at a time when comparing results. Use labeled outcomes to judge whether a feedback change improves the target without increasing another error class."
+  },
+  "J1": {
+    "explanation": "MCP tools are callable functions that take actions or retrieve data on demand; resources are content the client can read as context. A resource can expose a catalog, schema, or document map up front, reducing exploratory tool calls when the agent needs to understand what is available rather than perform an action.",
+    "example": "An MCP server exposes a database schema and project-document catalog as resources. The agent reads those to plan a query, then calls a narrowly defined search tool for the actual lookup. It does not call a tool repeatedly just to discover table names.",
+    "guidance": "Expose stable descriptive content as resources and operational actions as tools. Keep resource identifiers and returned metadata clear, and use tools for mutations or parameterized work where the model must request an action explicitly."
+  },
+  "J2": {
+    "explanation": "MCP integration requires choosing the right configuration scope, keeping credentials outside version control, and confirming that the client discovers the expected server tools. Project configuration supports shared team wiring; environment-variable expansion lets each environment supply its own secret without embedding the token.",
+    "example": "A team configures a GitHub MCP server in the project `.mcp.json` with `${GITHUB_TOKEN}`. Each developer or CI environment supplies that variable, and the team verifies the connection and discovered tools before the agent workflow depends on them.",
+    "guidance": "Use project scope for shared integrations and user scope for personal experiments. Expand secrets from the environment, inspect the resulting tool list, and test representative calls or an MCP inspector so a connection that starts successfully is not mistaken for a correctly wired server."
+  },
+  "J3": {
+    "explanation": "Configuration scope communicates ownership and distribution. Project-level MCP settings are shared with the repository and should describe team tooling without committing secrets; user-level settings are personal and suit experiments or private services. Choosing the wrong scope either hides a needed integration from teammates or spreads a private one too widely.",
+    "example": "A shared issue tracker server belongs in the project's configuration so every contributor receives the same tools. A developer's prototype data server belongs in user configuration and is not required for cloning or building the repository.",
+    "guidance": "Place integrations required by the workflow at project scope, using environment variables for credentials. Keep optional or personal servers at user scope, and document any assumptions that the application makes about tool availability so missing experimental services fail clearly."
+  },
+  "J4": {
+    "explanation": "An MCP tool description is the model's main routing signal. It should say what the tool does and returns, accepted inputs with examples, edge cases, limits, and when to choose it over a similar tool. Distinct boundaries reduce misrouting better than generic names or short descriptions.",
+    "example": "`lookup_customer` accepts an email or numeric ID and returns one verified profile; `search_orders` accepts a verified customer ID and returns matching orders. Their descriptions state the dependency, so the model does not use the order search as an identity lookup.",
+    "guidance": "Describe purpose, input format, output shape, use and non-use cases, and nearby alternatives. If two tools remain semantically indistinguishable, narrow or rename one and make its unique value explicit rather than relying on the model to infer the difference."
+  },
+  "J5": {
+    "explanation": "An MCP error should tell the agent what failed and what recovery is safe. Structured fields such as category, retryability, attempted input, partial results, and next actions distinguish a transient access problem from invalid input, a policy violation, or a valid empty result.",
+    "example": "A search timeout returns `isError: true`, category `transient`, retryable true, the attempted query, and no partial results. A successful search with zero matches returns `isError: false` and an empty list, so the coordinator does not retry a valid absence.",
+    "guidance": "Return typed errors with human-readable detail and recovery metadata. Retry transient failures locally a bounded number of times, fix validation errors before retrying, escalate permission or business failures, and preserve partial results and coverage gaps for the coordinator."
+  }
+}
