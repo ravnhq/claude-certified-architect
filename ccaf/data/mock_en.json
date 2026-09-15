@@ -29,7 +29,7 @@
         "letter": "D",
         "text": "Index all agent outputs in a shared vector store. When resuming, each agent queries the store using semantic search to retrieve relevant prior findings.",
         "correct": false,
-        "explanation": "Semantic retrieval over agent outputs is overkill for resuming a crashed pipeline — it adds a retrieval failure mode and can miss precise state that a structured report preserves exactly. ════════════════════════════════════════════════════════════"
+        "explanation": "Semantic retrieval over agent outputs is overkill for resuming a crashed pipeline — it adds a retrieval failure mode and can miss precise state that a structured report preserves exactly."
       }
     ],
     "correct": "C"
@@ -64,7 +64,7 @@
         "letter": "D",
         "text": "Pass the full accumulated context from all prior agents.",
         "correct": false,
-        "explanation": "Maximum completeness but wasteful — 120K+ tokens of raw search content is mostly irrelevant noise at the report-generation stage. ════════════════════════════════════════════════════════════"
+        "explanation": "Maximum completeness but wasteful — 120K+ tokens of raw search content is mostly irrelevant noise at the report-generation stage."
       }
     ],
     "correct": "B"
@@ -99,7 +99,7 @@
         "letter": "D",
         "text": "Enhance the tool description with detailed examples showing how different instruction phrasings should map to different output formats.",
         "correct": false,
-        "explanation": "Examples help, but tool-use reliability comes first from clear tool boundaries and output schemas, not from heroic prompt engineering on one generic tool. ════════════════════════════════════════════════════════════"
+        "explanation": "Examples help, but tool-use reliability comes first from clear tool boundaries and output schemas, not from heroic prompt engineering on one generic tool."
       }
     ],
     "correct": "A"
@@ -134,7 +134,7 @@
         "letter": "D",
         "text": "Both agents access a shared memory store where the web search agent writes findings and the document analysis agent reads them.",
         "correct": false,
-        "explanation": "A shared store can be layered in as an optimization, but it's not how subagents typically communicate — and it introduces stale-read and consistency problems. ════════════════════════════════════════════════════════════"
+        "explanation": "A shared store can be layered in as an optimization, but it's not how subagents typically communicate — and it introduces stale-read and consistency problems."
       }
     ],
     "correct": "C"
@@ -169,7 +169,7 @@
         "letter": "D",
         "text": "Train a query complexity classifier on labeled historical data to predict optimal subagent combinations, retraining periodically as query patterns evolve.",
         "correct": false,
-        "explanation": "A trained classifier needs labels, retraining, and drift monitoring. That's over-engineered when the coordinator can make the same call at runtime from the query itself. ════════════════════════════════════════════════════════════"
+        "explanation": "A trained classifier needs labels, retraining, and drift monitoring. That's over-engineered when the coordinator can make the same call at runtime from the query itself."
       }
     ],
     "correct": "C"
@@ -204,7 +204,7 @@
         "letter": "D",
         "text": "Instruct the synthesis agent to always treat the most recent data as authoritative and place older findings in a separate historical appendix.",
         "correct": false,
-        "explanation": "Prompt instructions alone are unreliable and still hide temporal reasoning behind a rule. Structuring the data with dates is the systematic fix. ════════════════════════════════════════════════════════════"
+        "explanation": "Prompt instructions alone are unreliable and still hide temporal reasoning behind a rule. Structuring the data with dates is the systematic fix."
       }
     ],
     "correct": "A"
@@ -239,7 +239,7 @@
         "letter": "D",
         "text": "Skip summarization and pass full raw outputs from web search and document analysis directly to the report generator.",
         "correct": false,
-        "explanation": "You'd blow the context budget and make the report generator's job harder. Summarization is useful; losing metadata during summarization is the actual bug. ════════════════════════════════════════════════════════════"
+        "explanation": "You'd blow the context budget and make the report generator's job harder. Summarization is useful; losing metadata during summarization is the actual bug."
       }
     ],
     "correct": "A"
@@ -274,7 +274,7 @@
         "letter": "D",
         "text": "Add a verification subagent that cross-references findings across sources, only passing claims to synthesis that are corroborated by at least two independent sources.",
         "correct": false,
-        "explanation": "Two-source minimums drop legitimate single-source findings and don't resolve genuinely conflicting estimates with different methodologies. ════════════════════════════════════════════════════════════"
+        "explanation": "Two-source minimums drop legitimate single-source findings and don't resolve genuinely conflicting estimates with different methodologies."
       }
     ],
     "correct": "C"
@@ -309,7 +309,7 @@
         "letter": "D",
         "text": "Have the coordinator inject source identifier prefixes into text before each handoff, then parse these prefixes at report generation to reconstruct citations.",
         "correct": false,
-        "explanation": "Prefix tokens inside prose get dropped, paraphrased, or hallucinated. Structured mappings outside the prose are more robust. ════════════════════════════════════════════════════════════"
+        "explanation": "Prefix tokens inside prose get dropped, paraphrased, or hallucinated. Structured mappings outside the prose are more robust."
       }
     ],
     "correct": "B"
@@ -344,7 +344,7 @@
         "letter": "D",
         "text": "The synthesis agent needs tools that can fetch results directly from the other agents' conversation histories.",
         "correct": false,
-        "explanation": "Cross-agent history fetching isn't a standard capability and isn't the right fix — the coordinator should be forwarding findings explicitly. ════════════════════════════════════════════════════════════"
+        "explanation": "Cross-agent history fetching isn't a standard capability and isn't the right fix — the coordinator should be forwarding findings explicitly."
       }
     ],
     "correct": "B"
@@ -379,7 +379,7 @@
         "letter": "D",
         "text": "Standardize all subagent outputs to JSON with fields for claim, evidence, source, and confidence.",
         "correct": false,
-        "explanation": "Forcing prose-heavy news into a claim/evidence schema strips the narrative flow executives actually read. ════════════════════════════════════════════════════════════"
+        "explanation": "Forcing prose-heavy news into a claim/evidence schema strips the narrative flow executives actually read."
       }
     ],
     "correct": "C"
@@ -414,7 +414,7 @@
         "letter": "D",
         "text": "Specify research goals and quality criteria (coverage breadth, source diversity, recency) rather than procedural steps, letting the subagent determine its search strategy.",
         "correct": true,
-        "explanation": "Correct. Delegate intent and quality bars, not procedures. The subagent can then choose queries, follow promising tangents, and recover from dead ends on its own. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. Delegate intent and quality bars, not procedures. The subagent can then choose queries, follow promising tangents, and recover from dead ends on its own."
       }
     ],
     "correct": "D"
@@ -449,7 +449,7 @@
         "letter": "D",
         "text": "Spawn the synthesis subagent with reduced context and have it request specific findings from the coordinator on-demand.",
         "correct": false,
-        "explanation": "Adds round-trips and complexity for the same result the coordinator could produce directly. ════════════════════════════════════════════════════════════"
+        "explanation": "Adds round-trips and complexity for the same result the coordinator could produce directly."
       }
     ],
     "correct": "B"
@@ -484,7 +484,7 @@
         "letter": "D",
         "text": "Enable the document analysis subagent to spawn its own specialized subagents dynamically when it encounters cases with many citations.",
         "correct": false,
-        "explanation": "Nested spawning hides execution inside subagents and makes the coordinator's debug view incomplete. ════════════════════════════════════════════════════════════"
+        "explanation": "Nested spawning hides execution inside subagents and makes the coordinator's debug view incomplete."
       }
     ],
     "correct": "C"
@@ -519,7 +519,7 @@
         "letter": "D",
         "text": "Subagent context isolation means task descriptions from the coordinator don't automatically reach subagents; you need to configure explicit context forwarding in ClaudeAgentOptions.",
         "correct": false,
-        "explanation": "Context isolation is real, but it affects what the subagent sees once spawned — not whether the coordinator can spawn it at all. ════════════════════════════════════════════════════════════"
+        "explanation": "Context isolation is real, but it affects what the subagent sees once spawned — not whether the coordinator can spawn it at all."
       }
     ],
     "correct": "C"
@@ -554,7 +554,7 @@
         "letter": "D",
         "text": "Expand MCP tool descriptions to detail capabilities and outputs—e.g., \"Builds dependency graph showing direct imports, transitive dependencies, and cycles.\"",
         "correct": true,
-        "explanation": "Correct. Tool selection is driven by the descriptions the model sees. A one-line description like 'Analyzes dependency graph' loses against Grep's rich description. Beef up the MCP tool's description. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. Tool selection is driven by the descriptions the model sees. A one-line description like 'Analyzes dependency graph' loses against Grep's rich description. Beef up the MCP tool's description."
       }
     ],
     "correct": "D"
@@ -589,7 +589,7 @@
         "letter": "D",
         "text": "Search for the function name in project documentation to understand intended usage patterns and navigate to documented integration points.",
         "correct": false,
-        "explanation": "Docs are incomplete and often stale. You can't safely remove a function based on documentation-level evidence. ════════════════════════════════════════════════════════════"
+        "explanation": "Docs are incomplete and often stale. You can't safely remove a function based on documentation-level evidence."
       }
     ],
     "correct": "A"
@@ -624,7 +624,7 @@
         "letter": "D",
         "text": "Create summaries of all source files before exploration begins, loading only these compressed representations into context.",
         "correct": false,
-        "explanation": "Pre-summaries lose the detail that makes code exploration useful and often misrepresent files the engineer cares about most. ════════════════════════════════════════════════════════════"
+        "explanation": "Pre-summaries lose the detail that makes code exploration useful and often misrepresent files the engineer cares about most."
       }
     ],
     "correct": "A"
@@ -659,7 +659,7 @@
         "letter": "D",
         "text": "Use `--resume` auth-deep-dive to load that specific session by name",
         "correct": true,
-        "explanation": "Correct. `--resume` with the session name is designed for exactly this: pick a specific prior session out of many, by the name you gave it. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. `--resume` with the session name is designed for exactly this: pick a specific prior session out of many, by the name you gave it."
       }
     ],
     "correct": "D"
@@ -694,7 +694,7 @@
         "letter": "D",
         "text": "Use /clear to reset context completely, then start fresh with physics exploration using file paths from the project's CLAUDE.md.",
         "correct": false,
-        "explanation": "/clear nukes the rendering findings you actually need for the cross-cut question about collision debug overlays. ════════════════════════════════════════════════════════════"
+        "explanation": "/clear nukes the rendering findings you actually need for the cross-cut question about collision debug overlays."
       }
     ],
     "correct": "C"
@@ -729,7 +729,7 @@
         "letter": "D",
         "text": "Resume the session and immediately have the agent re-read all 12 previously analyzed files",
         "correct": false,
-        "explanation": "Unnecessary for the 9 unchanged files. Just adds tokens without improving accuracy. ════════════════════════════════════════════════════════════"
+        "explanation": "Unnecessary for the 9 unchanged files. Just adds tokens without improving accuracy."
       }
     ],
     "correct": "C"
@@ -764,7 +764,7 @@
         "letter": "D",
         "text": "Use `fork_session` to create two branches from yesterday's analysis, exploring one approach in each fork.",
         "correct": true,
-        "explanation": "Correct. Forking from yesterday's session gives each approach its own independent context starting from the same analysis baseline — clean, parallel, no contamination. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. Forking from yesterday's session gives each approach its own independent context starting from the same analysis baseline — clean, parallel, no contamination."
       }
     ],
     "correct": "D"
@@ -799,7 +799,7 @@
         "letter": "D",
         "text": "Use Glob to find files matching common caching patterns (cache.py, caching/), prioritize the largest files by reading them first, then check smaller files for gaps.",
         "correct": false,
-        "explanation": "Size is a poor proxy for importance. You'd waste context on big utility files and miss the small strategic ones. ════════════════════════════════════════════════════════════"
+        "explanation": "Size is a poor proxy for importance. You'd waste context on big utility files and miss the small strategic ones."
       }
     ],
     "correct": "B"
@@ -834,7 +834,7 @@
         "letter": "D",
         "text": "Switch to using Grep to search for specific function names instead of reading full files, reducing the content loaded into context for remaining exploration.",
         "correct": false,
-        "explanation": "You can't identify untested paths just by grepping names — you need to read enough of each path to know what branches the tests don't cover. ════════════════════════════════════════════════════════════"
+        "explanation": "You can't identify untested paths just by grepping names — you need to read enough of each path to know what branches the tests don't cover."
       }
     ],
     "correct": "B"
@@ -869,7 +869,7 @@
         "letter": "D",
         "text": "Run parallel worker agents that simultaneously investigate all four layers, then synthesize their findings to identify where the error originates.",
         "correct": false,
-        "explanation": "Fan-out is useful once you have well-scoped subtasks. Here, you don't — you'd pay 4× the cost to look in three layers that aren't the problem. ════════════════════════════════════════════════════════════"
+        "explanation": "Fan-out is useful once you have well-scoped subtasks. Here, you don't — you'd pay 4× the cost to look in three layers that aren't the problem."
       }
     ],
     "correct": "B"
@@ -904,7 +904,7 @@
         "letter": "D",
         "text": "Resume the subagent from its previous transcript and inform it about the renamed functions.",
         "correct": true,
-        "explanation": "Correct. Keep the accumulated understanding, and give it a targeted delta about the renames so it can update its mental model — minimum waste, maximum accuracy. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. Keep the accumulated understanding, and give it a targeted delta about the renames so it can update its mental model — minimum waste, maximum accuracy."
       }
     ],
     "correct": "D"
@@ -939,7 +939,7 @@
         "letter": "D",
         "text": "Enhance the MCP tool descriptions to explain when each tool is preferable to text manipulation and clarify expected inputs and outputs.",
         "correct": true,
-        "explanation": "Correct. Tool selection is driven by the descriptions Claude sees. When the MCP tools say 'extracts a function from code' and Write/sed come with rich documentation, Claude picks Write/sed. Beef up the descriptions. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. Tool selection is driven by the descriptions Claude sees. When the MCP tools say 'extracts a function from code' and Write/sed come with rich documentation, Claude picks Write/sed. Beef up the descriptions."
       }
     ],
     "correct": "D"
@@ -974,7 +974,7 @@
         "letter": "D",
         "text": "Continue in the original session, developing end-to-end tests first, then snapshot tests sequentially.",
         "correct": false,
-        "explanation": "Sequential development in one thread lets the first strategy's implementation bias reasoning about the second. ════════════════════════════════════════════════════════════"
+        "explanation": "Sequential development in one thread lets the first strategy's implementation bias reasoning about the second."
       }
     ],
     "correct": "B"
@@ -1009,7 +1009,7 @@
         "letter": "D",
         "text": "Use Read to load the file, add the function at the appropriate location, then Write the updated file",
         "correct": true,
-        "explanation": "Correct. When Edit's unique-match contract can't be satisfied in a repetitive file, fall back to Read → modify in memory at the intended line → Write the full file back. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. When Edit's unique-match contract can't be satisfied in a repetitive file, fall back to Read → modify in memory at the intended line → Write the full file back."
       }
     ],
     "correct": "D"
@@ -1044,7 +1044,7 @@
         "letter": "D",
         "text": "Read all files containing \"auth\", \"login\", \"permission\", or \"token\" in their content or filename.",
         "correct": false,
-        "explanation": "Those keywords hit a huge amount of unrelated code across 800+ files and drown context in noise. ════════════════════════════════════════════════════════════"
+        "explanation": "Those keywords hit a huge amount of unrelated code across 800+ files and drown context in noise."
       }
     ],
     "correct": "C"
@@ -1079,7 +1079,7 @@
         "letter": "D",
         "text": "Resume with full history and configure the agent to automatically re-call all previously-used tools at session start to ensure data freshness.",
         "correct": false,
-        "explanation": "Blanket re-calling is wasteful, slow, and still leaves the old results sitting in context to confuse the model. ════════════════════════════════════════════════════════════"
+        "explanation": "Blanket re-calling is wasteful, slow, and still leaves the old results sitting in context to confuse the model."
       }
     ],
     "correct": "B"
@@ -1114,7 +1114,7 @@
         "letter": "D",
         "text": "Build a rules engine that maps specific issue types, customer segments, and product categories to escalation decisions, removing the need for model judgment calls.",
         "correct": false,
-        "explanation": "Rules engines break on the cases they weren't designed for — and customer support is full of those. ════════════════════════════════════════════════════════════"
+        "explanation": "Rules engines break on the cases they weren't designed for — and customer support is full of those."
       }
     ],
     "correct": "A"
@@ -1149,7 +1149,7 @@
         "letter": "D",
         "text": "Your diagnosis and the refund amount only.",
         "correct": false,
-        "explanation": "Missing customer identifiers and recommended action — the human can't act without them. ════════════════════════════════════════════════════════════"
+        "explanation": "Missing customer identifiers and recommended action — the human can't act without them."
       }
     ],
     "correct": "B"
@@ -1184,7 +1184,7 @@
         "letter": "D",
         "text": "Strengthen the system prompt with emphatic language: \"CRITICAL POLICY: Refunds over $500 MUST trigger human escalation. NEVER process these directly.\"",
         "correct": false,
-        "explanation": "Emphatic prompts reduce but don't eliminate misuse. 'Cannot be left to model discretion' rules out any prompt-only solution. ════════════════════════════════════════════════════════════"
+        "explanation": "Emphatic prompts reduce but don't eliminate misuse. 'Cannot be left to model discretion' rules out any prompt-only solution."
       }
     ],
     "correct": "C"
@@ -1219,7 +1219,7 @@
         "letter": "D",
         "text": "Confirm the refund will be processed and close the conversation, since the system has all necessary information to complete it automatically",
         "correct": false,
-        "explanation": "Committing to an outcome that didn't happen is misleading the customer — a bigger failure than the timeout. ════════════════════════════════════════════════════════════"
+        "explanation": "Committing to an outcome that didn't happen is misleading the customer — a bigger failure than the timeout."
       }
     ],
     "correct": "C"
@@ -1254,7 +1254,7 @@
         "letter": "D",
         "text": "Ask what specifically hasn't worked in previous attempts before deciding whether to escalate or resolve automatically",
         "correct": false,
-        "explanation": "Interrogating a frustrated customer about past failures is the opposite of what they asked for. ════════════════════════════════════════════════════════════"
+        "explanation": "Interrogating a frustrated customer about past failures is the opposite of what they asked for."
       }
     ],
     "correct": "A"
@@ -1289,7 +1289,7 @@
         "letter": "D",
         "text": "Claude's memory retention is limited to two conversational turns by default, requiring explicit configuration to extend it.",
         "correct": false,
-        "explanation": "No such default limit exists. Context is bounded by the window, and history length is under your control. ════════════════════════════════════════════════════════════"
+        "explanation": "No such default limit exists. Context is bounded by the window, and history length is under your control."
       }
     ],
     "correct": "C"
@@ -1324,7 +1324,7 @@
         "letter": "D",
         "text": "Add few-shot examples to the system prompt demonstrating how to interpret error message patterns and select appropriate responses for each.",
         "correct": false,
-        "explanation": "If the tool returns 'Operation failed' for every failure, no amount of few-shots can extract category info that isn't there. ════════════════════════════════════════════════════════════"
+        "explanation": "If the tool returns 'Operation failed' for every failure, no amount of few-shots can extract category info that isn't there."
       }
     ],
     "correct": "A"
@@ -1359,7 +1359,7 @@
         "letter": "D",
         "text": "The agent executes the remaining steps in a tool sequence planned at the start of the request.",
         "correct": false,
-        "explanation": "There's no upfront, committed plan — the agent chooses each next step based on the latest context. ════════════════════════════════════════════════════════════"
+        "explanation": "There's no upfront, committed plan — the agent chooses each next step based on the latest context."
       }
     ],
     "correct": "C"
@@ -1394,7 +1394,7 @@
         "letter": "D",
         "text": "First call `get_customer` and `lookup_order` to gather account context, then escalate to a human agent.",
         "correct": false,
-        "explanation": "Investigating without asking adds latency and doesn't respect the customer's request. A single acknowledging question is faster and more respectful. ════════════════════════════════════════════════════════════"
+        "explanation": "Investigating without asking adds latency and doesn't respect the customer's request. A single acknowledging question is faster and more respectful."
       }
     ],
     "correct": "A"
@@ -1429,7 +1429,7 @@
         "letter": "D",
         "text": "Persist the complete conversation and tool response history to a database, then call `escalate_to_human` with a reference ID.",
         "correct": false,
-        "explanation": "Adds infrastructure and an extra lookup step when an inline structured brief is simpler and faster. ════════════════════════════════════════════════════════════"
+        "explanation": "Adds infrastructure and an extra lookup step when an inline structured brief is simpler and faster."
       }
     ],
     "correct": "B"
@@ -1464,7 +1464,7 @@
         "letter": "D",
         "text": "Implement sliding window context that retains the most recent 30 turns.",
         "correct": false,
-        "explanation": "A pure sliding window silently drops the refund issue (turns 1–15) from context, which is exactly what the customer is asking about. ════════════════════════════════════════════════════════════"
+        "explanation": "A pure sliding window silently drops the refund issue (turns 1–15) from context, which is exactly what the customer is asking about."
       }
     ],
     "correct": "C"
@@ -1499,7 +1499,7 @@
         "letter": "D",
         "text": "Return a success response with a \"status\" field indicating the error type",
         "correct": false,
-        "explanation": "Ad-hoc 'status' fields vary across tools and the model has no standard way to interpret them. isError is the standard. ════════════════════════════════════════════════════════════"
+        "explanation": "Ad-hoc 'status' fields vary across tools and the model has no standard way to interpret them. isError is the standard."
       }
     ],
     "correct": "B"
@@ -1534,7 +1534,7 @@
         "letter": "D",
         "text": "Implement automatic retry logic at the tool level for technical errors only, passing business errors to Claude without retries.",
         "correct": false,
-        "explanation": "Hiding transient retries inside the tool can mask latency and takes the model out of the loop on recovery decisions. Business errors also still arrive as a plain string, so the customer-facing response doesn't improve. ════════════════════════════════════════════════════════════"
+        "explanation": "Hiding transient retries inside the tool can mask latency and takes the model out of the loop on recovery decisions. Business errors also still arrive as a plain string, so the customer-facing response doesn't improve."
       }
     ],
     "correct": "A"
@@ -1569,7 +1569,7 @@
         "letter": "D",
         "text": "Proceed with additional lookups without modifying the existing tool output context",
         "correct": false,
-        "explanation": "Does nothing about the bloat — you're heading for context exhaustion. ════════════════════════════════════════════════════════════"
+        "explanation": "Does nothing about the bloat — you're heading for context exhaustion."
       }
     ],
     "correct": "A"
@@ -1604,7 +1604,7 @@
         "letter": "D",
         "text": "Route standard reports to the `Batch API` for 50% cost savings, and route urgent exception reports to the real-time Messages API.",
         "correct": true,
-        "explanation": "Correct. Match latency profile to document urgency: batch for the bulk (cheap), real-time for the latency-sensitive exceptions (fast). Minimizes cost while meeting SLA. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. Match latency profile to document urgency: batch for the bulk (cheap), real-time for the latency-sensitive exceptions (fast). Minimizes cost while meeting SLA."
       }
     ],
     "correct": "D"
@@ -1639,7 +1639,7 @@
         "letter": "D",
         "text": "Enrich the schema to {skill: string, confidence: float, `source_quote`: string}[] to capture extraction metadata.",
         "correct": false,
-        "explanation": "Useful signal, but doesn't address the underlying inconsistency in how skills are parsed in the first place. ════════════════════════════════════════════════════════════"
+        "explanation": "Useful signal, but doesn't address the underlying inconsistency in how skills are parsed in the first place."
       }
     ],
     "correct": "A"
@@ -1674,7 +1674,7 @@
         "letter": "D",
         "text": "Verify that 97% accuracy meets requirements for all downstream systems that consume the extracted data.",
         "correct": false,
-        "explanation": "An important product question, but it assumes the 97% holds everywhere — again, that's what segment analysis verifies first. ════════════════════════════════════════════════════════════"
+        "explanation": "An important product question, but it assumes the 97% holds everywhere — again, that's what segment analysis verifies first."
       }
     ],
     "correct": "A"
@@ -1709,7 +1709,7 @@
         "letter": "D",
         "text": "Implement post-extraction validation using pattern matching to detect amendments and flag those extractions for manual review.",
         "correct": false,
-        "explanation": "Routes every amended contract to a human — expensive, and still doesn't give downstream systems a structured answer. ════════════════════════════════════════════════════════════"
+        "explanation": "Routes every amended contract to a human — expensive, and still doesn't give downstream systems a structured answer."
       }
     ],
     "correct": "A"
@@ -1744,7 +1744,7 @@
         "letter": "D",
         "text": "The model extracts \"et al.\" for co-authors when the full list exists only in an external document not in the input",
         "correct": true,
-        "explanation": "Correct. No amount of retrying teaches the model information that isn't in the input. Retry-with-error-feedback only fixes mistakes the model could have gotten right from the source. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. No amount of retrying teaches the model information that isn't in the input. Retry-with-error-feedback only fixes mistakes the model could have gotten right from the source."
       }
     ],
     "correct": "D"
@@ -1779,7 +1779,7 @@
         "letter": "D",
         "text": "Define a strict output schema and include format normalization rules in your prompt.",
         "correct": true,
-        "explanation": "Correct. Strict schema + explicit normalization rules ('prices as decimal with two places', 'dietary as enumerated tags') lets the model both extract and normalize in one pass. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. Strict schema + explicit normalization rules ('prices as decimal with two places', 'dietary as enumerated tags') lets the model both extract and normalize in one pass."
       }
     ],
     "correct": "D"
@@ -1814,7 +1814,7 @@
         "letter": "D",
         "text": "Upgrade to a more capable model tier with improved instruction-following to reduce hallucination tendencies.",
         "correct": false,
-        "explanation": "Adds cost and still doesn't tell the model your policy — returning null instead of inventing. ════════════════════════════════════════════════════════════"
+        "explanation": "Adds cost and still doesn't tell the model your policy — returning null instead of inventing."
       }
     ],
     "correct": "B"
@@ -1849,7 +1849,7 @@
         "letter": "D",
         "text": "Add few-shot examples demonstrating extractions from documents with varied structures—showing how to identify citations in different formats and locate methodology details across section types.",
         "correct": true,
-        "explanation": "Correct. The failure mode is the model not recognizing varied formats. Concrete examples across the format distribution directly raise recall on the 5%. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. The failure mode is the model not recognizing varied formats. Concrete examples across the format distribution directly raise recall on the 5%."
       }
     ],
     "correct": "D"
@@ -1884,7 +1884,7 @@
         "letter": "D",
         "text": "Implement post-processing that automatically adjusts line item amounts proportionally when their sum doesn't match the stated total.",
         "correct": false,
-        "explanation": "Silent financial data rewrites are dangerous — you'd be fabricating line items for a downstream accounting system. ════════════════════════════════════════════════════════════"
+        "explanation": "Silent financial data rewrites are dangerous — you'd be fabricating line items for a downstream accounting system."
       }
     ],
     "correct": "A"
@@ -1919,7 +1919,7 @@
         "letter": "D",
         "text": "Set `tool_choice` to {\"type\": \"tool\", \"name\": \"`extract_metadata`\"} for every API call in the pipeline, ensuring Claude always extracts metadata before any enrichment can occur.",
         "correct": false,
-        "explanation": "Pinning `extract_metadata` on every call prevents the enrichment tools from ever being used. ════════════════════════════════════════════════════════════"
+        "explanation": "Pinning `extract_metadata` on every call prevents the enrichment tools from ever being used."
       }
     ],
     "correct": "C"
@@ -1954,7 +1954,7 @@
         "letter": "D",
         "text": "Add few-shot examples to your prompt demonstrating how to map unexpected property types to the closest existing enum value.",
         "correct": false,
-        "explanation": "Forcing 'tiny house' into 'house' drops real distinctions downstream — you're silently lossy. ════════════════════════════════════════════════════════════"
+        "explanation": "Forcing 'tiny house' into 'house' drops real distinctions downstream — you're silently lossy."
       }
     ],
     "correct": "B"
@@ -1989,7 +1989,7 @@
         "letter": "D",
         "text": "Add few-shot examples showing 2-3 complete input-output pairs with standardized material description formats",
         "correct": true,
-        "explanation": "Correct. Few-shot examples demonstrate the exact canonical format you want ('cotton/polyester' as a normalized list), and they also raise recall on material info that was being skipped. ════════════════════════════════════════════════════════════"
+        "explanation": "Correct. Few-shot examples demonstrate the exact canonical format you want ('cotton/polyester' as a normalized list), and they also raise recall on material info that was being skipped."
       }
     ],
     "correct": "D"
@@ -2024,7 +2024,7 @@
         "letter": "D",
         "text": "Use the real-time API for all documents instead of batch processing",
         "correct": false,
-        "explanation": "Meets SLA trivially but throws away the 50% cost saving the question asks you to capture. ════════════════════════════════════════════════════════════"
+        "explanation": "Meets SLA trivially but throws away the 50% cost saving the question asks you to capture."
       }
     ],
     "correct": "C"
@@ -2059,7 +2059,7 @@
         "letter": "D",
         "text": "Review all extractions from documents with formatting anomalies such as unusual layouts or mixed content types.",
         "correct": false,
-        "explanation": "A useful heuristic, but formatting anomaly doesn't reliably predict where fields got confused with each other. ════════════════════════════════════════════════════════════"
+        "explanation": "A useful heuristic, but formatting anomaly doesn't reliably predict where fields got confused with each other."
       }
     ],
     "correct": "A"
@@ -2094,7 +2094,7 @@
         "letter": "D",
         "text": "Increase the `max_tokens` parameter for the 300 failed documents and resubmit them in a new batch",
         "correct": false,
-        "explanation": "`max_tokens` controls output length, not input length. It doesn't solve `context_length_exceeded`, which is about the combined input-plus-output budget. ════════════════════════════════════════════════════════════ Total de preguntas: 60 Generado: 8 de junio de 2026"
+        "explanation": "`max_tokens` controls output length, not input length. It doesn't solve `context_length_exceeded`, which is about the combined input-plus-output budget."
       }
     ],
     "correct": "B"

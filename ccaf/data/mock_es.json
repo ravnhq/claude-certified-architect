@@ -29,7 +29,7 @@
         "letter": "D",
         "text": "Indexar todas las salidas de los agentes en un almacén vectorial compartido. Al reanudar, cada agente consulta el almacén mediante búsqueda semántica para recuperar los hallazgos previos relevantes.",
         "correct": false,
-        "explanation": "La recuperación semántica sobre las salidas de los agentes es excesiva para reanudar un pipeline caído: añade un modo de fallo de recuperación y puede pasar por alto el estado preciso que un reporte estructurado preserva exactamente. ════════════════════════════════════════════════════════════"
+        "explanation": "La recuperación semántica sobre las salidas de los agentes es excesiva para reanudar un pipeline caído: añade un modo de fallo de recuperación y puede pasar por alto el estado preciso que un reporte estructurado preserva exactamente."
       }
     ],
     "correct": "C"
@@ -64,7 +64,7 @@
         "letter": "D",
         "text": "Pasar el contexto completo acumulado de todos los agentes previos.",
         "correct": false,
-        "explanation": "Máxima completitud pero derrochadora: más de 120K tokens de contenido de búsqueda sin procesar son, en su mayoría, ruido irrelevante en la etapa de generación de reportes. ════════════════════════════════════════════════════════════"
+        "explanation": "Máxima completitud pero derrochadora: más de 120K tokens de contenido de búsqueda sin procesar son, en su mayoría, ruido irrelevante en la etapa de generación de reportes."
       }
     ],
     "correct": "B"
@@ -99,7 +99,7 @@
         "letter": "D",
         "text": "Mejorar la descripción de la herramienta con ejemplos detallados que muestren cómo distintas formulaciones de las instrucciones deberían mapearse a distintos formatos de salida.",
         "correct": false,
-        "explanation": "Los ejemplos ayudan, pero la fiabilidad en el uso de herramientas viene primero de límites claros y esquemas de salida, no de una ingeniería de prompts heroica sobre una herramienta genérica. ════════════════════════════════════════════════════════════"
+        "explanation": "Los ejemplos ayudan, pero la fiabilidad en el uso de herramientas viene primero de límites claros y esquemas de salida, no de una ingeniería de prompts heroica sobre una herramienta genérica."
       }
     ],
     "correct": "A"
@@ -134,7 +134,7 @@
         "letter": "D",
         "text": "Ambos agentes acceden a un almacén de memoria compartido donde el agente de búsqueda web escribe los hallazgos y el agente de análisis de documentos los lee.",
         "correct": false,
-        "explanation": "Un almacén compartido puede añadirse como optimización, pero no es la forma habitual en que se comunican los subagentes, y además introduce problemas de lecturas obsoletas y consistencia. ════════════════════════════════════════════════════════════"
+        "explanation": "Un almacén compartido puede añadirse como optimización, pero no es la forma habitual en que se comunican los subagentes, y además introduce problemas de lecturas obsoletas y consistencia."
       }
     ],
     "correct": "C"
@@ -169,7 +169,7 @@
         "letter": "D",
         "text": "Entrenar un clasificador de complejidad de consultas con datos históricos etiquetados para predecir las combinaciones óptimas de subagentes, reentrenándolo periódicamente a medida que evolucionan los patrones de consulta.",
         "correct": false,
-        "explanation": "Un clasificador entrenado necesita etiquetas, reentrenamiento y monitoreo de deriva. Es sobreingeniería cuando el coordinador puede tomar la misma decisión en tiempo de ejecución a partir de la propia consulta. ════════════════════════════════════════════════════════════"
+        "explanation": "Un clasificador entrenado necesita etiquetas, reentrenamiento y monitoreo de deriva. Es sobreingeniería cuando el coordinador puede tomar la misma decisión en tiempo de ejecución a partir de la propia consulta."
       }
     ],
     "correct": "C"
@@ -204,7 +204,7 @@
         "letter": "D",
         "text": "Instruir al agente de síntesis para que siempre trate los datos más recientes como autoritativos y coloque los hallazgos más antiguos en un apéndice histórico separado.",
         "correct": false,
-        "explanation": "Las instrucciones de prompt por sí solas no son confiables y, además, esconden el razonamiento temporal detrás de una regla. Estructurar los datos con fechas es la solución sistemática. ════════════════════════════════════════════════════════════"
+        "explanation": "Las instrucciones de prompt por sí solas no son confiables y, además, esconden el razonamiento temporal detrás de una regla. Estructurar los datos con fechas es la solución sistemática."
       }
     ],
     "correct": "A"
@@ -239,7 +239,7 @@
         "letter": "D",
         "text": "Omitir el resumen y pasar las salidas completas sin procesar de la búsqueda web y del análisis de documentos directamente al generador de reportes.",
         "correct": false,
-        "explanation": "Reventarías el presupuesto de contexto y le complicarías la tarea al generador de reportes. El resumen es útil; el verdadero bug es perder los metadatos durante el resumen. ════════════════════════════════════════════════════════════"
+        "explanation": "Reventarías el presupuesto de contexto y le complicarías la tarea al generador de reportes. El resumen es útil; el verdadero bug es perder los metadatos durante el resumen."
       }
     ],
     "correct": "A"
@@ -274,7 +274,7 @@
         "letter": "D",
         "text": "Añadir un subagente de verificación que cruce los hallazgos entre fuentes, pasando a la síntesis solo las afirmaciones corroboradas por al menos dos fuentes independientes.",
         "correct": false,
-        "explanation": "El mínimo de dos fuentes descarta hallazgos legítimos de una sola fuente y no resuelve estimaciones genuinamente conflictivas con metodologías distintas. ════════════════════════════════════════════════════════════"
+        "explanation": "El mínimo de dos fuentes descarta hallazgos legítimos de una sola fuente y no resuelve estimaciones genuinamente conflictivas con metodologías distintas."
       }
     ],
     "correct": "C"
@@ -309,7 +309,7 @@
         "letter": "D",
         "text": "Que el coordinador inyecte prefijos identificadores de fuente en el texto antes de cada traspaso, y luego analice esos prefijos en la generación del reporte para reconstruir las citas.",
         "correct": false,
-        "explanation": "Los tokens de prefijo dentro de la prosa se pierden, se parafrasean o se alucinan. Los mapeos estructurados fuera de la prosa son más robustos. ════════════════════════════════════════════════════════════"
+        "explanation": "Los tokens de prefijo dentro de la prosa se pierden, se parafrasean o se alucinan. Los mapeos estructurados fuera de la prosa son más robustos."
       }
     ],
     "correct": "B"
@@ -344,7 +344,7 @@
         "letter": "D",
         "text": "El agente de síntesis necesita herramientas que puedan obtener resultados directamente de los historiales de conversación de los otros agentes.",
         "correct": false,
-        "explanation": "Obtener el historial entre agentes no es una capacidad estándar ni la solución correcta: el coordinador debería reenviar los hallazgos explícitamente. ════════════════════════════════════════════════════════════"
+        "explanation": "Obtener el historial entre agentes no es una capacidad estándar ni la solución correcta: el coordinador debería reenviar los hallazgos explícitamente."
       }
     ],
     "correct": "B"
@@ -379,7 +379,7 @@
         "letter": "D",
         "text": "Estandarizar todas las salidas de los subagentes a JSON con campos para afirmación, evidencia, fuente y confianza.",
         "correct": false,
-        "explanation": "Forzar las noticias, cargadas de prosa, a un esquema de afirmación/evidencia despoja la fluidez narrativa que los ejecutivos realmente leen. ════════════════════════════════════════════════════════════"
+        "explanation": "Forzar las noticias, cargadas de prosa, a un esquema de afirmación/evidencia despoja la fluidez narrativa que los ejecutivos realmente leen."
       }
     ],
     "correct": "C"
@@ -414,7 +414,7 @@
         "letter": "D",
         "text": "Especificar los objetivos de investigación y los criterios de calidad (amplitud de cobertura, diversidad de fuentes, actualidad) en lugar de pasos procedimentales, dejando que el subagente determine su estrategia de búsqueda.",
         "correct": true,
-        "explanation": "Correcto. Delega la intención y los estándares de calidad, no los procedimientos. Así el subagente puede elegir consultas, seguir tangentes prometedoras y recuperarse de callejones sin salida por su cuenta. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. Delega la intención y los estándares de calidad, no los procedimientos. Así el subagente puede elegir consultas, seguir tangentes prometedoras y recuperarse de callejones sin salida por su cuenta."
       }
     ],
     "correct": "D"
@@ -449,7 +449,7 @@
         "letter": "D",
         "text": "Generar el subagente de síntesis con contexto reducido y hacer que solicite hallazgos específicos al coordinador bajo demanda.",
         "correct": false,
-        "explanation": "Añade idas y vueltas y complejidad para el mismo resultado que el coordinador podría producir directamente. ════════════════════════════════════════════════════════════"
+        "explanation": "Añade idas y vueltas y complejidad para el mismo resultado que el coordinador podría producir directamente."
       }
     ],
     "correct": "B"
@@ -484,7 +484,7 @@
         "letter": "D",
         "text": "Permitir que el subagente de análisis de documentos genere dinámicamente sus propios subagentes especializados cuando se encuentre con casos que tengan muchas citas.",
         "correct": false,
-        "explanation": "La generación anidada esconde la ejecución dentro de los subagentes y deja incompleta la vista de depuración del coordinador. ════════════════════════════════════════════════════════════"
+        "explanation": "La generación anidada esconde la ejecución dentro de los subagentes y deja incompleta la vista de depuración del coordinador."
       }
     ],
     "correct": "C"
@@ -519,7 +519,7 @@
         "letter": "D",
         "text": "El aislamiento de contexto de los subagentes implica que las descripciones de tareas del coordinador no llegan automáticamente a los subagentes; necesitas configurar el reenvío explícito de contexto en ClaudeAgentOptions.",
         "correct": false,
-        "explanation": "El aislamiento de contexto es real, pero afecta lo que ve el subagente una vez generado, no si el coordinador puede generarlo siquiera. ════════════════════════════════════════════════════════════"
+        "explanation": "El aislamiento de contexto es real, pero afecta lo que ve el subagente una vez generado, no si el coordinador puede generarlo siquiera."
       }
     ],
     "correct": "C"
@@ -554,7 +554,7 @@
         "letter": "D",
         "text": "Ampliar las descripciones de las herramientas MCP para detallar sus capacidades y resultados; por ejemplo, \"Construye un grafo de dependencias que muestra importaciones directas, dependencias transitivas y ciclos.\"",
         "correct": true,
-        "explanation": "Correcto. La selección de herramientas se guía por las descripciones que ve el modelo. Una descripción de una línea como 'Analiza el grafo de dependencias' pierde frente a la descripción rica de Grep. Refuerza la descripción de la herramienta MCP. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. La selección de herramientas se guía por las descripciones que ve el modelo. Una descripción de una línea como 'Analiza el grafo de dependencias' pierde frente a la descripción rica de Grep. Refuerza la descripción de la herramienta MCP."
       }
     ],
     "correct": "D"
@@ -589,7 +589,7 @@
         "letter": "D",
         "text": "Buscar el nombre de la función en la documentación del proyecto para entender los patrones de uso previstos y navegar a los puntos de integración documentados.",
         "correct": false,
-        "explanation": "La documentación es incompleta y a menudo está desactualizada. No puedes eliminar una función de forma segura basándote en evidencia a nivel de documentación. ════════════════════════════════════════════════════════════"
+        "explanation": "La documentación es incompleta y a menudo está desactualizada. No puedes eliminar una función de forma segura basándote en evidencia a nivel de documentación."
       }
     ],
     "correct": "A"
@@ -624,7 +624,7 @@
         "letter": "D",
         "text": "Crear resúmenes de todos los archivos fuente antes de comenzar la exploración, cargando en el contexto solo estas representaciones comprimidas.",
         "correct": false,
-        "explanation": "Los resúmenes previos pierden el detalle que hace útil la exploración de código y a menudo tergiversan los archivos que más le importan al ingeniero. ════════════════════════════════════════════════════════════"
+        "explanation": "Los resúmenes previos pierden el detalle que hace útil la exploración de código y a menudo tergiversan los archivos que más le importan al ingeniero."
       }
     ],
     "correct": "A"
@@ -659,7 +659,7 @@
         "letter": "D",
         "text": "Usar `--resume` auth-deep-dive para cargar esa sesión específica por nombre",
         "correct": true,
-        "explanation": "Correcto. `--resume` con el nombre de la sesión está diseñado exactamente para esto: elegir una sesión previa específica entre muchas, por el nombre que le diste. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. `--resume` con el nombre de la sesión está diseñado exactamente para esto: elegir una sesión previa específica entre muchas, por el nombre que le diste."
       }
     ],
     "correct": "D"
@@ -694,7 +694,7 @@
         "letter": "D",
         "text": "Usar /clear para reiniciar por completo el contexto y luego empezar de cero la exploración de la física usando las rutas de archivo del CLAUDE.md del proyecto.",
         "correct": false,
-        "explanation": "/clear borra los hallazgos de renderizado que en realidad necesitas para la pregunta transversal sobre las superposiciones de depuración de colisiones. ════════════════════════════════════════════════════════════"
+        "explanation": "/clear borra los hallazgos de renderizado que en realidad necesitas para la pregunta transversal sobre las superposiciones de depuración de colisiones."
       }
     ],
     "correct": "C"
@@ -729,7 +729,7 @@
         "letter": "D",
         "text": "Reanudar la sesión y hacer que el agente relea de inmediato los 12 archivos analizados previamente",
         "correct": false,
-        "explanation": "Innecesario para los 9 archivos sin cambios. Solo agrega tokens sin mejorar la precisión. ════════════════════════════════════════════════════════════"
+        "explanation": "Innecesario para los 9 archivos sin cambios. Solo agrega tokens sin mejorar la precisión."
       }
     ],
     "correct": "C"
@@ -764,7 +764,7 @@
         "letter": "D",
         "text": "Usar `fork_session` para crear dos ramas a partir del análisis de ayer, explorando un enfoque en cada bifurcación.",
         "correct": true,
-        "explanation": "Correcto. Bifurcar desde la sesión de ayer le da a cada enfoque su propio contexto independiente a partir de la misma base de análisis: limpio, paralelo y sin contaminación. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. Bifurcar desde la sesión de ayer le da a cada enfoque su propio contexto independiente a partir de la misma base de análisis: limpio, paralelo y sin contaminación."
       }
     ],
     "correct": "D"
@@ -799,7 +799,7 @@
         "letter": "D",
         "text": "Usar Glob para encontrar archivos que coincidan con patrones comunes de caché (cache.py, caching/), priorizar los archivos más grandes leyéndolos primero y luego revisar los archivos más pequeños en busca de vacíos.",
         "correct": false,
-        "explanation": "El tamaño es un mal indicador de importancia. Desperdiciarías contexto en grandes archivos de utilidades y te perderías los pequeños archivos estratégicos. ════════════════════════════════════════════════════════════"
+        "explanation": "El tamaño es un mal indicador de importancia. Desperdiciarías contexto en grandes archivos de utilidades y te perderías los pequeños archivos estratégicos."
       }
     ],
     "correct": "B"
@@ -834,7 +834,7 @@
         "letter": "D",
         "text": "Cambiar a usar Grep para buscar nombres de funciones específicos en lugar de leer archivos completos, reduciendo el contenido cargado en el contexto para la exploración restante.",
         "correct": false,
-        "explanation": "No puedes identificar rutas sin pruebas con solo hacer grep de nombres: necesitas leer lo suficiente de cada ruta para saber qué ramas no cubren las pruebas. ════════════════════════════════════════════════════════════"
+        "explanation": "No puedes identificar rutas sin pruebas con solo hacer grep de nombres: necesitas leer lo suficiente de cada ruta para saber qué ramas no cubren las pruebas."
       }
     ],
     "correct": "B"
@@ -869,7 +869,7 @@
         "letter": "D",
         "text": "Ejecutar agentes trabajadores en paralelo que investiguen simultáneamente las cuatro capas, y luego sintetizar sus hallazgos para identificar dónde se origina el error.",
         "correct": false,
-        "explanation": "El despliegue en paralelo es útil una vez que tienes subtareas bien acotadas. Aquí no las tienes: pagarías 4 veces el costo para buscar en tres capas que no son el problema. ════════════════════════════════════════════════════════════"
+        "explanation": "El despliegue en paralelo es útil una vez que tienes subtareas bien acotadas. Aquí no las tienes: pagarías 4 veces el costo para buscar en tres capas que no son el problema."
       }
     ],
     "correct": "B"
@@ -904,7 +904,7 @@
         "letter": "D",
         "text": "Reanudar el subagente desde su transcripción anterior e informarle sobre las funciones renombradas.",
         "correct": true,
-        "explanation": "Correcto. Conserva la comprensión acumulada y dale un delta dirigido sobre los renombramientos para que pueda actualizar su modelo mental: mínimo desperdicio, máxima precisión. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. Conserva la comprensión acumulada y dale un delta dirigido sobre los renombramientos para que pueda actualizar su modelo mental: mínimo desperdicio, máxima precisión."
       }
     ],
     "correct": "D"
@@ -939,7 +939,7 @@
         "letter": "D",
         "text": "Mejorar las descripciones de las herramientas MCP para explicar cuándo es preferible cada herramienta frente a la manipulación de texto y aclarar las entradas y salidas esperadas.",
         "correct": true,
-        "explanation": "Correcto. La selección de herramientas se guía por las descripciones que ve Claude. Cuando las herramientas MCP dicen 'extrae una función del código' y Write/sed vienen con documentación rica, Claude elige Write/sed. Refuerza las descripciones. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. La selección de herramientas se guía por las descripciones que ve Claude. Cuando las herramientas MCP dicen 'extrae una función del código' y Write/sed vienen con documentación rica, Claude elige Write/sed. Refuerza las descripciones."
       }
     ],
     "correct": "D"
@@ -974,7 +974,7 @@
         "letter": "D",
         "text": "Continuar en la sesión original, desarrollando primero las pruebas de extremo a extremo y luego las pruebas de snapshot de forma secuencial.",
         "correct": false,
-        "explanation": "El desarrollo secuencial en un solo hilo permite que la implementación de la primera estrategia sesgue el razonamiento sobre la segunda. ════════════════════════════════════════════════════════════"
+        "explanation": "El desarrollo secuencial en un solo hilo permite que la implementación de la primera estrategia sesgue el razonamiento sobre la segunda."
       }
     ],
     "correct": "B"
@@ -1009,7 +1009,7 @@
         "letter": "D",
         "text": "Usar Read para cargar el archivo, agregar la función en la ubicación apropiada y luego usar Write para escribir el archivo actualizado",
         "correct": true,
-        "explanation": "Correcto. Cuando el contrato de coincidencia única de Edit no puede satisfacerse en un archivo repetitivo, recurre a Read → modificar en memoria en la línea prevista → escribir el archivo completo de vuelta con Write. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. Cuando el contrato de coincidencia única de Edit no puede satisfacerse en un archivo repetitivo, recurre a Read → modificar en memoria en la línea prevista → escribir el archivo completo de vuelta con Write."
       }
     ],
     "correct": "D"
@@ -1044,7 +1044,7 @@
         "letter": "D",
         "text": "Leer todos los archivos que contengan \"auth\", \"login\", \"permission\" o \"token\" en su contenido o nombre de archivo.",
         "correct": false,
-        "explanation": "Esas palabras clave coinciden con una enorme cantidad de código no relacionado a lo largo de más de 800 archivos y ahogan el contexto en ruido. ════════════════════════════════════════════════════════════"
+        "explanation": "Esas palabras clave coinciden con una enorme cantidad de código no relacionado a lo largo de más de 800 archivos y ahogan el contexto en ruido."
       }
     ],
     "correct": "C"
@@ -1079,7 +1079,7 @@
         "letter": "D",
         "text": "Reanudar con el historial completo y configurar el agente para que vuelva a llamar automáticamente a todas las herramientas usadas previamente al inicio de la sesión para asegurar la frescura de los datos.",
         "correct": false,
-        "explanation": "Volver a llamar todo de forma indiscriminada es un desperdicio, es lento y aun así deja los resultados antiguos en el contexto, confundiendo al modelo. ════════════════════════════════════════════════════════════"
+        "explanation": "Volver a llamar todo de forma indiscriminada es un desperdicio, es lento y aun así deja los resultados antiguos en el contexto, confundiendo al modelo."
       }
     ],
     "correct": "B"
@@ -1114,7 +1114,7 @@
         "letter": "D",
         "text": "Construir un motor de reglas que mapee tipos específicos de problemas, segmentos de clientes y categorías de productos a decisiones de escalamiento, eliminando la necesidad de juicios del modelo.",
         "correct": false,
-        "explanation": "Los motores de reglas se rompen ante los casos para los que no fueron diseñados, y el soporte al cliente está lleno de esos. ════════════════════════════════════════════════════════════"
+        "explanation": "Los motores de reglas se rompen ante los casos para los que no fueron diseñados, y el soporte al cliente está lleno de esos."
       }
     ],
     "correct": "A"
@@ -1149,7 +1149,7 @@
         "letter": "D",
         "text": "Solo tu diagnóstico y el monto del reembolso.",
         "correct": false,
-        "explanation": "Faltan los identificadores del cliente y la acción recomendada: el humano no puede actuar sin ellos. ════════════════════════════════════════════════════════════"
+        "explanation": "Faltan los identificadores del cliente y la acción recomendada: el humano no puede actuar sin ellos."
       }
     ],
     "correct": "B"
@@ -1184,7 +1184,7 @@
         "letter": "D",
         "text": "Reforzar el prompt del sistema con lenguaje enfático: \"CRITICAL POLICY: Refunds over $500 MUST trigger human escalation. NEVER process these directly.\"",
         "correct": false,
-        "explanation": "Los prompts enfáticos reducen pero no eliminan el mal uso. La frase \"no puede dejarse a discreción del modelo\" descarta cualquier solución basada solo en el prompt. ════════════════════════════════════════════════════════════"
+        "explanation": "Los prompts enfáticos reducen pero no eliminan el mal uso. La frase \"no puede dejarse a discreción del modelo\" descarta cualquier solución basada solo en el prompt."
       }
     ],
     "correct": "C"
@@ -1219,7 +1219,7 @@
         "letter": "D",
         "text": "Confirmar que el reembolso se procesará y cerrar la conversación, ya que el sistema tiene toda la información necesaria para completarlo automáticamente.",
         "correct": false,
-        "explanation": "Comprometerse con un resultado que no ocurrió es engañar al cliente, una falla mayor que el timeout. ════════════════════════════════════════════════════════════"
+        "explanation": "Comprometerse con un resultado que no ocurrió es engañar al cliente, una falla mayor que el timeout."
       }
     ],
     "correct": "C"
@@ -1254,7 +1254,7 @@
         "letter": "D",
         "text": "Preguntar qué específicamente no ha funcionado en los intentos anteriores antes de decidir si escalar o resolver automáticamente.",
         "correct": false,
-        "explanation": "Interrogar a un cliente frustrado sobre fallas pasadas es lo opuesto a lo que pidió. ════════════════════════════════════════════════════════════"
+        "explanation": "Interrogar a un cliente frustrado sobre fallas pasadas es lo opuesto a lo que pidió."
       }
     ],
     "correct": "A"
@@ -1289,7 +1289,7 @@
         "letter": "D",
         "text": "La retención de memoria de Claude está limitada por defecto a dos turnos de conversación, y se requiere configuración explícita para extenderla.",
         "correct": false,
-        "explanation": "No existe tal límite por defecto. El contexto está acotado por la ventana, y la longitud del historial está bajo tu control. ════════════════════════════════════════════════════════════"
+        "explanation": "No existe tal límite por defecto. El contexto está acotado por la ventana, y la longitud del historial está bajo tu control."
       }
     ],
     "correct": "C"
@@ -1324,7 +1324,7 @@
         "letter": "D",
         "text": "Agregar ejemplos few-shot al prompt del sistema que demuestren cómo interpretar los patrones de los mensajes de error y seleccionar respuestas apropiadas para cada uno.",
         "correct": false,
-        "explanation": "Si la herramienta devuelve \"Operation failed\" ante cada falla, ningún número de few-shots puede extraer información de categoría que no está ahí. ════════════════════════════════════════════════════════════"
+        "explanation": "Si la herramienta devuelve \"Operation failed\" ante cada falla, ningún número de few-shots puede extraer información de categoría que no está ahí."
       }
     ],
     "correct": "A"
@@ -1359,7 +1359,7 @@
         "letter": "D",
         "text": "El agente ejecuta los pasos restantes en una secuencia de herramientas planificada al inicio de la solicitud.",
         "correct": false,
-        "explanation": "No hay un plan comprometido por adelantado; el agente elige cada siguiente paso según el contexto más reciente. ════════════════════════════════════════════════════════════"
+        "explanation": "No hay un plan comprometido por adelantado; el agente elige cada siguiente paso según el contexto más reciente."
       }
     ],
     "correct": "C"
@@ -1394,7 +1394,7 @@
         "letter": "D",
         "text": "Primero llamar a `get_customer` y `lookup_order` para reunir contexto de la cuenta y luego escalar a un agente humano.",
         "correct": false,
-        "explanation": "Investigar sin preguntar añade latencia y no respeta la solicitud del cliente. Una sola pregunta que reconozca la situación es más rápida y respetuosa. ════════════════════════════════════════════════════════════"
+        "explanation": "Investigar sin preguntar añade latencia y no respeta la solicitud del cliente. Una sola pregunta que reconozca la situación es más rápida y respetuosa."
       }
     ],
     "correct": "A"
@@ -1429,7 +1429,7 @@
         "letter": "D",
         "text": "Persistir la conversación completa y el historial de respuestas de las herramientas en una base de datos, y luego llamar a `escalate_to_human` con un ID de referencia.",
         "correct": false,
-        "explanation": "Añade infraestructura y un paso de búsqueda adicional cuando un resumen estructurado en línea es más simple y rápido. ════════════════════════════════════════════════════════════"
+        "explanation": "Añade infraestructura y un paso de búsqueda adicional cuando un resumen estructurado en línea es más simple y rápido."
       }
     ],
     "correct": "B"
@@ -1464,7 +1464,7 @@
         "letter": "D",
         "text": "Implementar un contexto de ventana deslizante que retenga los 30 turnos más recientes.",
         "correct": false,
-        "explanation": "Una ventana deslizante pura descarta silenciosamente el problema del reembolso (turnos 1-15) del contexto, que es exactamente lo que el cliente está preguntando. ════════════════════════════════════════════════════════════"
+        "explanation": "Una ventana deslizante pura descarta silenciosamente el problema del reembolso (turnos 1-15) del contexto, que es exactamente lo que el cliente está preguntando."
       }
     ],
     "correct": "C"
@@ -1499,7 +1499,7 @@
         "letter": "D",
         "text": "Devolver una respuesta exitosa con un campo \"status\" que indique el tipo de error.",
         "correct": false,
-        "explanation": "Los campos \"status\" ad hoc varían entre herramientas y el modelo no tiene una forma estándar de interpretarlos. isError es el estándar. ════════════════════════════════════════════════════════════"
+        "explanation": "Los campos \"status\" ad hoc varían entre herramientas y el modelo no tiene una forma estándar de interpretarlos. isError es el estándar."
       }
     ],
     "correct": "B"
@@ -1534,7 +1534,7 @@
         "letter": "D",
         "text": "Implementar lógica de reintento automático a nivel de la herramienta solo para los errores técnicos, pasando los errores de negocio a Claude sin reintentos.",
         "correct": false,
-        "explanation": "Ocultar los reintentos transitorios dentro de la herramienta puede enmascarar la latencia y saca al modelo del circuito en las decisiones de recuperación. Los errores de negocio también siguen llegando como una cadena plana, por lo que la respuesta hacia el cliente no mejora. ════════════════════════════════════════════════════════════"
+        "explanation": "Ocultar los reintentos transitorios dentro de la herramienta puede enmascarar la latencia y saca al modelo del circuito en las decisiones de recuperación. Los errores de negocio también siguen llegando como una cadena plana, por lo que la respuesta hacia el cliente no mejora."
       }
     ],
     "correct": "A"
@@ -1569,7 +1569,7 @@
         "letter": "D",
         "text": "Proceder con búsquedas adicionales sin modificar el contexto existente de salidas de las herramientas.",
         "correct": false,
-        "explanation": "No hace nada respecto a la saturación: te diriges al agotamiento del contexto. ════════════════════════════════════════════════════════════"
+        "explanation": "No hace nada respecto a la saturación: te diriges al agotamiento del contexto."
       }
     ],
     "correct": "A"
@@ -1604,7 +1604,7 @@
         "letter": "D",
         "text": "Enrutar los reportes estándar a la `Batch API` para ahorrar 50% en costos, y enrutar los reportes de excepciones urgentes a la Messages API en tiempo real.",
         "correct": true,
-        "explanation": "Correcto. Ajusta el perfil de latencia a la urgencia del documento: batch para el grueso (barato), tiempo real para las excepciones sensibles a la latencia (rápido). Minimiza el costo cumpliendo el SLA. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. Ajusta el perfil de latencia a la urgencia del documento: batch para el grueso (barato), tiempo real para las excepciones sensibles a la latencia (rápido). Minimiza el costo cumpliendo el SLA."
       }
     ],
     "correct": "D"
@@ -1639,7 +1639,7 @@
         "letter": "D",
         "text": "Enriquecer el esquema a {skill: string, confidence: float, `source_quote`: string}[] para capturar metadatos de la extracción.",
         "correct": false,
-        "explanation": "Es una señal útil, pero no aborda la inconsistencia subyacente en cómo se interpretan las habilidades en primer lugar. ════════════════════════════════════════════════════════════"
+        "explanation": "Es una señal útil, pero no aborda la inconsistencia subyacente en cómo se interpretan las habilidades en primer lugar."
       }
     ],
     "correct": "A"
@@ -1674,7 +1674,7 @@
         "letter": "D",
         "text": "Verificar que el 97% de precisión cumple los requisitos de todos los sistemas posteriores que consumen los datos extraídos.",
         "correct": false,
-        "explanation": "Es una pregunta importante de producto, pero asume que el 97% se mantiene en todas partes; de nuevo, eso es lo que verifica primero el análisis por segmento. ════════════════════════════════════════════════════════════"
+        "explanation": "Es una pregunta importante de producto, pero asume que el 97% se mantiene en todas partes; de nuevo, eso es lo que verifica primero el análisis por segmento."
       }
     ],
     "correct": "A"
@@ -1709,7 +1709,7 @@
         "letter": "D",
         "text": "Implementar una validación posterior a la extracción que use coincidencia de patrones para detectar enmiendas y marcar esas extracciones para revisión manual.",
         "correct": false,
-        "explanation": "Enruta cada contrato enmendado a un humano: es costoso, y aun así no le da a los sistemas posteriores una respuesta estructurada. ════════════════════════════════════════════════════════════"
+        "explanation": "Enruta cada contrato enmendado a un humano: es costoso, y aun así no le da a los sistemas posteriores una respuesta estructurada."
       }
     ],
     "correct": "A"
@@ -1744,7 +1744,7 @@
         "letter": "D",
         "text": "El modelo extrae \"et al.\" para los coautores cuando la lista completa solo existe en un documento externo que no está en la entrada",
         "correct": true,
-        "explanation": "Correcto. Ninguna cantidad de reintentos le enseña al modelo información que no está en la entrada. El reintento con retroalimentación de error solo corrige errores que el modelo podría haber resuelto a partir de la fuente. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. Ninguna cantidad de reintentos le enseña al modelo información que no está en la entrada. El reintento con retroalimentación de error solo corrige errores que el modelo podría haber resuelto a partir de la fuente."
       }
     ],
     "correct": "D"
@@ -1779,7 +1779,7 @@
         "letter": "D",
         "text": "Definir un esquema de salida estricto e incluir reglas de normalización de formato en tu prompt.",
         "correct": true,
-        "explanation": "Correcto. Un esquema estricto + reglas de normalización explícitas ('precios como decimal con dos posiciones', 'dietético como etiquetas enumeradas') permite al modelo extraer y normalizar en una sola pasada. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. Un esquema estricto + reglas de normalización explícitas ('precios como decimal con dos posiciones', 'dietético como etiquetas enumeradas') permite al modelo extraer y normalizar en una sola pasada."
       }
     ],
     "correct": "D"
@@ -1814,7 +1814,7 @@
         "letter": "D",
         "text": "Actualizar a un nivel de modelo más capaz con mejor seguimiento de instrucciones para reducir las tendencias de alucinación.",
         "correct": false,
-        "explanation": "Agrega costo y aun así no le comunica al modelo tu política: devolver null en lugar de inventar. ════════════════════════════════════════════════════════════"
+        "explanation": "Agrega costo y aun así no le comunica al modelo tu política: devolver null en lugar de inventar."
       }
     ],
     "correct": "B"
@@ -1849,7 +1849,7 @@
         "letter": "D",
         "text": "Agregar ejemplos few-shot que demuestren extracciones de documentos con estructuras variadas, mostrando cómo identificar citas en distintos formatos y localizar detalles de metodología a través de distintos tipos de secciones.",
         "correct": true,
-        "explanation": "Correcto. El modo de fallo es que el modelo no reconoce los formatos variados. Ejemplos concretos a lo largo de la distribución de formatos elevan directamente el recall sobre ese 5%. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. El modo de fallo es que el modelo no reconoce los formatos variados. Ejemplos concretos a lo largo de la distribución de formatos elevan directamente el recall sobre ese 5%."
       }
     ],
     "correct": "D"
@@ -1884,7 +1884,7 @@
         "letter": "D",
         "text": "Implementar un postprocesamiento que ajuste automáticamente los montos de las líneas de detalle de forma proporcional cuando su suma no coincida con el total declarado.",
         "correct": false,
-        "explanation": "Las reescrituras silenciosas de datos financieros son peligrosas: estarías fabricando líneas de detalle para un sistema contable posterior. ════════════════════════════════════════════════════════════"
+        "explanation": "Las reescrituras silenciosas de datos financieros son peligrosas: estarías fabricando líneas de detalle para un sistema contable posterior."
       }
     ],
     "correct": "A"
@@ -1919,7 +1919,7 @@
         "letter": "D",
         "text": "Configurar `tool_choice` en {\"type\": \"tool\", \"name\": \"`extract_metadata`\"} para cada llamada a la API en el pipeline, asegurando que Claude siempre extraiga metadatos antes de que pueda ocurrir cualquier enriquecimiento.",
         "correct": false,
-        "explanation": "Fijar `extract_metadata` en cada llamada impide que las herramientas de enriquecimiento se usen alguna vez. ════════════════════════════════════════════════════════════"
+        "explanation": "Fijar `extract_metadata` en cada llamada impide que las herramientas de enriquecimiento se usen alguna vez."
       }
     ],
     "correct": "C"
@@ -1954,7 +1954,7 @@
         "letter": "D",
         "text": "Agregar ejemplos few-shot a tu prompt que demuestren cómo mapear los tipos de propiedad inesperados al valor de enum existente más cercano.",
         "correct": false,
-        "explanation": "Forzar 'tiny house' a 'house' descarta distinciones reales más adelante: estás perdiendo información de forma silenciosa. ════════════════════════════════════════════════════════════"
+        "explanation": "Forzar 'tiny house' a 'house' descarta distinciones reales más adelante: estás perdiendo información de forma silenciosa."
       }
     ],
     "correct": "B"
@@ -1989,7 +1989,7 @@
         "letter": "D",
         "text": "Agregar ejemplos few-shot que muestren 2-3 pares completos de entrada-salida con formatos estandarizados de descripción de materiales",
         "correct": true,
-        "explanation": "Correcto. Los ejemplos few-shot demuestran el formato canónico exacto que quieres ('cotton/polyester' como lista normalizada), y también elevan el recall sobre la información de material que se estaba omitiendo. ════════════════════════════════════════════════════════════"
+        "explanation": "Correcto. Los ejemplos few-shot demuestran el formato canónico exacto que quieres ('cotton/polyester' como lista normalizada), y también elevan el recall sobre la información de material que se estaba omitiendo."
       }
     ],
     "correct": "D"
@@ -2024,7 +2024,7 @@
         "letter": "D",
         "text": "Usar la API en tiempo real para todos los documentos en lugar del procesamiento por lotes",
         "correct": false,
-        "explanation": "Cumple el SLA trivialmente pero descarta el ahorro de costos del 50% que la pregunta te pide capturar. ════════════════════════════════════════════════════════════"
+        "explanation": "Cumple el SLA trivialmente pero descarta el ahorro de costos del 50% que la pregunta te pide capturar."
       }
     ],
     "correct": "C"
@@ -2059,7 +2059,7 @@
         "letter": "D",
         "text": "Revisar todas las extracciones de documentos con anomalías de formato, como diseños inusuales o tipos de contenido mixtos.",
         "correct": false,
-        "explanation": "Una heurística útil, pero la anomalía de formato no predice de forma confiable dónde se confundieron los campos entre sí. ════════════════════════════════════════════════════════════"
+        "explanation": "Una heurística útil, pero la anomalía de formato no predice de forma confiable dónde se confundieron los campos entre sí."
       }
     ],
     "correct": "A"
@@ -2094,7 +2094,7 @@
         "letter": "D",
         "text": "Aumentar el parámetro `max_tokens` para los 300 documentos fallidos y reenviarlos en un nuevo lote",
         "correct": false,
-        "explanation": "`max_tokens` controla la longitud de salida, no la de entrada. No resuelve `context_length_exceeded`, que tiene que ver con el presupuesto combinado de entrada más salida. ════════════════════════════════════════════════════════════ Total de preguntas: 60 Generado: 8 de junio de 2026"
+        "explanation": "`max_tokens` controla la longitud de salida, no la de entrada. No resuelve `context_length_exceeded`, que tiene que ver con el presupuesto combinado de entrada más salida."
       }
     ],
     "correct": "B"

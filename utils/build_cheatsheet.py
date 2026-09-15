@@ -356,11 +356,17 @@ h1 .key { color: var(--gold); }
 
 .grid { display: flex; flex-direction: column; gap: 16px; padding-top: 26px; }
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 24px 26px;
-  display: grid; grid-template-columns: 54px 1fr; gap: 4px 20px;
+  /* minmax(0, 1fr), not 1fr: a bare 1fr has a min-content floor, so one long
+     token inside the question drawer widened the whole card past the viewport. */
+  display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 4px 20px;
   opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
 .card.in { opacity: 1; transform: none; }
 .card .num { font-weight: 800; font-size: 30px; color: var(--subtle); line-height: 1; grid-row: 1 / span 4; }
 .card h3 { font-size: 18px; margin: 2px 0 4px; letter-spacing: 0; font-weight: 700; color: var(--fg); }
+/* Principle and question prose can carry long unbreakable tokens (paths,
+   identifiers); let them wrap rather than widen the card. Kept off the flex
+   badges, where it would let a count shrink to one digit per line. */
+.card h3, .card p { overflow-wrap: anywhere; }
 .card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
 .tag { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600;
   border-radius: var(--r-sm); padding: 3px 9px; border: 1px solid var(--border-strong); color: var(--muted); }
@@ -432,7 +438,7 @@ footer { padding: 48px 0 64px; color: var(--subtle); font-size: 12px; letter-spa
 
 @media (max-width: 680px) {
   .meta-grid { grid-template-columns: 1fr; }
-  .card { grid-template-columns: 1fr; }
+  .card { grid-template-columns: minmax(0, 1fr); }
   .card .num { grid-row: auto; }
   .line-row { grid-template-columns: 1fr; gap: 4px; }
   .ravn-topbar { padding: 12px 18px; }

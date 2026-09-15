@@ -440,6 +440,12 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   font-size: 0.85em;
   line-height: 1.875;
   font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Most fenced blocks in the guides are prose-like transcripts and JSON, not
+     column-aligned code. Wrap them (as the PDF stylesheet already does) so a
+     long line does not turn every block into a horizontal scroller, even on
+     desktop where the 70ch column is narrower than several blocks. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 .guide code {
   background: var(--code-bg);
@@ -468,6 +474,14 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   padding: 10px 14px;
   text-align: left;
 }
+/* Bare URLs in the documentation tables set the table's minimum width (630px
+   on a 320px phone). Let link text break anywhere; ordinary cell text keeps
+   whole words, and a dense table still falls back to the scroller below. */
+.guide td a { overflow-wrap: anywhere; }
+/* Chrome then hands that column only its min-content width and the rest to
+   the label column, so a URL wraps into seven lines beside empty space. Give
+   link-only cells (the URL column of the documentation tables) a fixed share. */
+.guide td:has(> a:only-child) { width: 60%; }
 .guide th { font-weight: 600; color: var(--accent); font-size: 0.78em; letter-spacing: 0.12em; text-transform: uppercase; }
 .guide hr { border: 0; border-top: 1px solid var(--border); margin: 3rem 0; }
 
@@ -602,6 +616,9 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   .landing { padding: 48px 20px 64px; }
   .hero { padding-bottom: 48px; margin-bottom: 40px; }
   .guide { padding: 40px 20px 80px; }
+  /* At 2.4rem a single word such as "Documentation" is wider than a 320px
+     column and breaks mid-word; scale the title with the viewport instead. */
+  .guide h1 { font-size: clamp(1.75rem, 9vw, 2.4rem); }
   /* A wide table used to widen main/body/html; let it scroll on its own. */
   .guide table { display: block; width: 100%; max-width: 100%; overflow-x: auto; }
 }

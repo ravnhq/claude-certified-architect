@@ -395,6 +395,13 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .q-counter { font-size: 13px; color: var(--muted); font-weight: 500; }
 
 .content { flex: 1; overflow-y: auto; padding: 36px 48px; }
+/* Question text carries paths, env-var names and error codes that have no
+   break opportunity of their own; `anywhere` lets them wrap so a long token
+   never widens the page past the viewport on a phone. Scoped to the prose
+   containers: on a flex row it would also let short labels such as a count
+   ("19") shrink to one character per line. */
+.q-situation, .q-prompt, .q-select-hint, .opt-text, .opt-expl, .explanation,
+.wi-q, .ds-name, .rotate-note, .br-stem, .br-opt-text, .br-opt-expl { overflow-wrap: anywhere; }
 .content::-webkit-scrollbar { width: 6px; }
 .content::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
 
@@ -495,7 +502,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   border-bottom: 1px solid var(--border); font-size: 14px; color: var(--muted); }
 .wrong-item:last-child { border-bottom: none; }
 .wrong-item .wi-n { min-width: 36px; font-weight: 700; color: var(--subtle); font-size: 12px; padding-top: 2px; }
-.wrong-item .wi-q { flex: 1; }
+.wrong-item .wi-q { flex: 1; min-width: 0; }
 .wrong-item .wi-situation { font-size: 13.5px; color: var(--fg-soft); font-weight: 500; margin-bottom: 4px; line-height: 1.5; }
 .wrong-item .wi-prompt { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 4px; }
 .wrong-item .wi-ans { font-size: 12.5px; margin-top: 3px; color: var(--muted); }
@@ -604,6 +611,16 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 @media (max-width: 420px) {
   .mode-hint { width: 100%; margin-left: 0; order: 99; }
   .nav-btn { padding: 8px 10px; }
+  /* Prev / Next / Finish share one row and cannot shrink below their longest
+     word. At 320px the Spanish and Portuguese labels ("Finalizar y revisar")
+     overran the viewport by ~22px, so drop the tracking and padding on that
+     row only, and give the three-word Finish label twice the room of Prev /
+     Next so it does not stack one word per line. */
+  .topbar-nav .nav-btn { padding: 8px 6px; letter-spacing: 0; font-size: 11px; }
+  .topbar-nav .nav-btn.finish { flex: 2; }
+  /* The counter sits inside the nav row; with nowrap it shared the row with
+     the buttons and its `width: 100%` below never took effect. */
+  .topbar-nav { flex-wrap: wrap; }
   /* Fit all three controls on one row at 390px instead of orphaning New set
      onto its own line: trim padding, tracking and the gaps between groups. */
   .mode-controls { gap: 6px; justify-content: flex-start; }
