@@ -3,13 +3,16 @@
   const REPORT_TARGET_KEY = "ccaf-score-report-target";
   const REPORT_CLEARED_KEY = "ccaf-score-report-target:cleared";
   const REPORT_VERSION = 2;
-  // The report feature launches the English CCAF practice page today, but all
-  // three localized CCAF targeted pages share this feature's saved attempt.
-  // Keep this list explicit so clearing report data cannot touch normal exams.
+  // Every targeted practice page whose saved attempt this feature owns. The
+  // report reader launches the English page per exam, and the localized
+  // Foundations pages share the Foundations attempt. Keep this list explicit
+  // so clearing report data cannot touch normal (untargeted) exams.
   const TARGETED_STORE_KEYS = Object.freeze([
     "ccaf-exam-en:targeted",
     "ccaf-exam-es:targeted",
     "ccaf-exam-pt:targeted",
+    "ccarp-exam-en:targeted",
+    "ccdvf-exam-en:targeted",
   ]);
   const MAX_FILE_BYTES = 20 * 1024 * 1024;
   const LINE_TOLERANCE = 4;
@@ -20,6 +23,7 @@
   });
 
   const state = {
+    exams: null,
     data: null,
     examIdentity: null,
     pendingRows: null,
@@ -318,6 +322,13 @@
     return cleared;
   }
 
+  function setExamData(code) {
+    const exam = state.exams && state.exams[code];
+    if (!exam) return false;
+    state.data = exam;
+    return true;
+  }
+
   function reportIdentity(identity) {
     const definition = identity && EXAM_DEFINITIONS[identity.code];
     return definition ? { code: definition.code, name: definition.name } : null;
@@ -335,10 +346,11 @@
       const entries = payload && payload.scores && typeof payload.scores === "object" && !Array.isArray(payload.scores)
         ? Object.entries(payload.scores)
         : [];
-      if (!identity || identity.code !== "CCAR-F" || !entries.length) return null;
+      const exam = identity && state.exams ? state.exams[identity.code] : null;
+      if (!exam || !entries.length) return null;
       const scores = {};
       if (!entries.every(([id, score]) => {
-        if (!Object.prototype.hasOwnProperty.call(state.data.objectives, id) || !validScore(score)) return false;
+        if (!Object.prototype.hasOwnProperty.call(exam.objectives, id) || !validScore(score)) return false;
         scores[id] = score;
         return true;
       })) return null;
@@ -551,6 +563,7 @@
 
   function useParsedRows(identity, rows) {
     state.examIdentity = identity;
+    setExamData(identity.code);
     state.rows = mapRowsToObjectives(rows);
     state.pendingRows = null;
     const choice = el("exam-choice");
@@ -592,7 +605,7 @@
     const scores = {};
     state.rows.forEach(row => { scores[row.objectiveId] = row.score; });
     const identity = reportIdentity(state.examIdentity);
-    if (!identity || identity.code !== "CCAR-F") return false;
+    if (!identity || !setExamData(identity.code)) return false;
     const next = { examIdentity: identity, scores };
     const previousRaw = readStorage("local", REPORT_TARGET_KEY);
     const previous = parseSavedReport(previousRaw.raw);
@@ -625,9 +638,9 @@
 
   function practiceLink(row) {
     const subdomain = state.data.objectiveSubdomains[row.objectiveId];
-    const href = `practical/bank-en.html#${encodeURIComponent(subdomain || "")}`;
+    const href = `${state.data.practice.bank.href}#${encodeURIComponent(subdomain || "")}`;
     const count = state.data.questionCounts[row.objectiveId] || 0;
-    return `<a href="${href}">${count ? `${count} related bank questions` : "Browse the CCAF question bank"}</a>`;
+    return `<a href="${href}">${count ? `${count} related bank questions` : "Browse the question bank"}</a>`;
   }
 
   function renderPlan() {
@@ -671,6 +684,10 @@
     if (plan) plan.hidden = !state.planVisible;
     const resultExam = el("result-exam");
     if (resultExam) resultExam.textContent = state.examIdentity ? `${state.examIdentity.code} · ${state.examIdentity.name}` : "";
+    const practice = el("practice-link");
+    if (practice && state.data && state.data.practice) practice.href = `${state.data.practice.href}?targeted=1`;
+    const practiceNote = el("practice-note");
+    if (practiceNote && state.data && state.data.practice) practiceNote.textContent = `${state.data.practice.questions} questions focused on your weak areas`;
     updateResultVisibility();
     updateReviewVisibility();
     showPlanStatus(
@@ -743,13 +760,6 @@
 
     state.selectedExamCode = code;
     state.examIdentity = { status: "selected", ...identity };
-    if (code !== "CCAR-F") {
-      const message = `Personalization for ${identity.name} (${identity.code}) isn’t available yet.`;
-      const messageElement = el("exam-choice-message");
-      if (messageElement) messageElement.textContent = message;
-      showStatus(message, "error");
-      return;
-    }
 
     if (!state.pendingRows.length) {
       const message = "No score rows found. Choose the original score report PDF.";
@@ -852,10 +862,6 @@
         return;
       }
       state.examIdentity = identity;
-      if (identity.code !== "CCAR-F") {
-        showStatus(`Personalization for ${identity.name} (${identity.code}) isn’t available yet.`, "error");
-        return;
-      }
       if (!rows.length) {
         showStatus("No score rows found. Choose the original score report PDF.", "error");
         return;
@@ -872,7 +878,9 @@
     try {
       const response = await fetch("score-report-data.json");
       if (!response.ok) throw new Error(`Data request failed: ${response.status}`);
-      state.data = await response.json();
+      state.exams = (await response.json()).exams;
+      const saved = savedReport();
+      if (saved) setExamData(saved.examIdentity.code);
       const pdfjs = await import("./vendor/pdfjs/pdf.min.mjs");
       window.pdfjsLib = pdfjs;
       el("report-file").addEventListener("change", event => handleFile(event.target.files[0]));
@@ -902,7 +910,11 @@
           savedReportCache = undefined;
           savedReportSource = null;
           resetReport();
-          if (event.key === REPORT_TARGET_KEY && event.newValue) restoreSavedPlan();
+          if (event.key === REPORT_TARGET_KEY && event.newValue) {
+            const saved = parseSavedReport(event.newValue);
+            if (saved) setExamData(saved.examIdentity.code);
+            restoreSavedPlan();
+          }
         });
       }
       showStatus("");

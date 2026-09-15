@@ -674,6 +674,10 @@ const GROUPS = __GROUPS__;
 // CCAF score-report objective IDs map to the official subdomains carried by
 // each question. The report drill uses this bridge without copying a report.
 const REPORT_SUBDOMAINS = __REPORT_SUBDOMAINS__;
+// The exam this page drills. A saved report record carries the exam it was
+// read from, and a page adopts only records for its own exam, so a
+// Foundations report can never drive a Professional targeted draw.
+const OWN_EXAM_CODE = "__EXAM_CODE__";
 const BANK_ONLY = __BANK_ONLY__;
 const T = __UI__;
 const PASS_PCT = __PASS__;          // per-domain bar coloring threshold (%)
@@ -764,8 +768,8 @@ function parseReportRecord(raw) {
     // sanitized exam identity alongside the validated scores.
     const identity = d && d.v === 1
       ? { code: "CCAR-F", name: "Claude Certified Architect Foundations" }
-      : (d && d.v === 2 && d.examIdentity && d.examIdentity.code === "CCAR-F"
-          ? { code: "CCAR-F", name: "Claude Certified Architect Foundations" }
+      : (d && d.v === 2 && d.examIdentity && d.examIdentity.code === OWN_EXAM_CODE
+          ? { code: OWN_EXAM_CODE, name: String(d.examIdentity.name || "") }
           : null);
     if (!identity || !d.scores || typeof d.scores !== "object" || Array.isArray(d.scores)) return null;
     const scores = {};
@@ -2028,7 +2032,7 @@ def _payload(obj):
 def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
                 store_key, lang_attr, title, page_title, out_path,
                 view="exam", bank_href=None, exam_href=None, groups_js=None,
-                report_map=None):
+                report_map=None, exam_code="CCAR-F"):
     """Render one self-contained quiz page.
 
     Shared by the Foundations builder below and by build_professional_exam.py,
@@ -2055,6 +2059,7 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
             .replace("__DOMAINS__", _payload(domains_js))
             .replace("__GROUPS__", _payload(groups_js))
             .replace("__REPORT_SUBDOMAINS__", _payload(report_map or {}))
+            .replace("__EXAM_CODE__", exam_code)
             .replace("__BANK_ONLY__", "true" if view == "bank" else "false")
             .replace("__DATA__", _payload([_public(q) for q in questions])))
 

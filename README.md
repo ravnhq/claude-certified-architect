@@ -214,7 +214,8 @@ Upload a score-report PDF to get a personalized study guide and practice exam au
 The report stays on your device. If the exam cannot be identified, choose it; if any scores
 need correction, the page asks only for those corrections. Report details remain available
 below the guide. Each topic card expands into an objective-specific explanation, example,
-and practical guidance. Personalization currently supports Architect Foundations (CCAR-F).
+and practical guidance. All three exams are supported: Architect Foundations (CCAR-F),
+Architect Professional (CCAR-P), and Developer Foundations (CCDV-F).
 
 Objective scores and personalized exam progress are saved in this browser on this device,
 so the guide and attempt can be resumed after closing the tab. The PDF and candidate details

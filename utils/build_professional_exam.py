@@ -70,6 +70,11 @@ def main():
     pass_score = blueprint["_exam"]["pass_score"]
     scale_top = blueprint["_exam"]["scale"][1]
 
+    # Score-report objectives for this exam are the blueprint task ids
+    # themselves, so the report bridge is the identity map and the targeted
+    # draw weights each question by the score recorded against its id.
+    report_map = {str(q["task_id"]): str(q["task_id"]) for q in questions}
+
     common = dict(
         domains_js=domains_js,
         ui=UI,
@@ -78,6 +83,8 @@ def main():
         pass_pct=round(pass_score / scale_top * 100),
         store_key="ccarp-exam-en",
         lang_attr="en",
+        exam_code="CCAR-P",
+        report_map=report_map,
     )
     engine.render_page(
         questions=questions,

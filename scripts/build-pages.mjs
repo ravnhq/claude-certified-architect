@@ -323,7 +323,11 @@ function guideHeadingSlug(value) {
   return slug(String(value).replace(/`/g, ''));
 }
 
-async function buildScoreReportData() {
+// The report reader serves all three exams. Foundations keeps its own shape
+// (report objectives keyed A1–J5 mapped to official subdomains); the two
+// blueprint exams share buildBlueprintExamData below, where the report
+// objective ids are the blueprint task ids themselves.
+async function buildFoundationsReportData() {
   const meta = JSON.parse(await fs.readFile(path.join(ROOT, 'ccaf', 'data', 'objectives.json'), 'utf8'));
   const guidance = JSON.parse(await fs.readFile(path.join(ROOT, 'ccaf', 'data', 'objective_guidance.json'), 'utf8'));
   for (const id of Object.keys(meta.objectives)) {
@@ -354,7 +358,9 @@ async function buildScoreReportData() {
   });
 
   return {
-    version: 1,
+    code: 'CCAR-F',
+    name: 'Claude Certified Architect Foundations',
+    practice: { href: 'practical/en.html', questions: 60, bank: { href: 'practical/bank-en.html' } },
     themes: meta.themes,
     objectives: meta.objectives,
     objectiveThemes: Object.fromEntries(Object.keys(meta.objectives).map(id => [id, id.slice(0, 1)])),
@@ -365,6 +371,121 @@ async function buildScoreReportData() {
     guidance,
     questionCounts,
   };
+}
+
+// Domain-guidance headings carry the weight ("### 3. Integration - 19%"),
+// which separates them from every other numbered heading in the guide.
+function guideDomainHeadings(markdown) {
+  const headings = new Map();
+  markdown.split(/\r?\n/).forEach(line => {
+    const match = line.match(/^### (\d+)\. (.+ [—–-] \d+(?:\.\d+)?%)$/);
+    if (match && !headings.has(match[1])) headings.set(match[1], `${match[1]}. ${match[2]}`);
+  });
+  return headings;
+}
+
+async function buildBlueprintExamData({ code, name, objectivesFile, guidanceFile, bankFile, guideFile, guideHref, practiceHref, bankHref }) {
+  const [metaRaw, guidanceRaw, bankRaw, guide] = await Promise.all([
+    fs.readFile(path.join(ROOT, objectivesFile), 'utf8'),
+    fs.readFile(path.join(ROOT, guidanceFile), 'utf8'),
+    fs.readFile(path.join(ROOT, bankFile), 'utf8'),
+    fs.readFile(path.join(ROOT, guideFile), 'utf8'),
+  ]);
+  const meta = JSON.parse(metaRaw);
+  const guidance = JSON.parse(guidanceRaw);
+  const bank = JSON.parse(bankRaw);
+
+  const themes = {};
+  const objectives = {};
+  const objectiveThemes = {};
+  Object.keys(meta.domains).sort((a, b) => Number(a) - Number(b)).forEach(d => {
+    themes[d] = meta.domains[d].name;
+    meta.domains[d].objectives.forEach((text, i) => {
+      objectives[`${d}.${i + 1}`] = text;
+      objectiveThemes[`${d}.${i + 1}`] = d;
+    });
+  });
+
+  // The report matcher needs the official blueprint wording, and the bank
+  // deep links need every objective to carry questions — enforce both here.
+  const bankObjective = new Map();
+  bank.forEach(question => {
+    const id = String(question.task_id);
+    if (!Object.prototype.hasOwnProperty.call(objectives, id)) throw new Error(`${code}: bank task_id ${id} is not a blueprint objective`);
+    if (bankObjective.has(id) && bankObjective.get(id) !== question.objective) throw new Error(`${code}: bank disagrees with itself on ${id}`);
+    bankObjective.set(id, question.objective);
+  });
+  Object.keys(objectives).forEach(id => {
+    if (!bankObjective.has(id)) throw new Error(`${code}: objective ${id} has no bank questions`);
+    if (bankObjective.get(id) !== objectives[id]) throw new Error(`${code}: bank wording differs from the blueprint for ${id}`);
+  });
+
+  const questionCounts = {};
+  bank.forEach(question => {
+    const id = String(question.task_id);
+    questionCounts[id] = (questionCounts[id] || 0) + 1;
+  });
+
+  Object.keys(objectives).forEach(id => {
+    const entry = guidance[id];
+    if (!entry || !['explanation', 'example', 'guidance'].every(field => typeof entry[field] === 'string' && entry[field].trim())) {
+      throw new Error(`Missing study guidance for ${code} ${id}`);
+    }
+  });
+
+  const headings = guideDomainHeadings(guide);
+  const themeReadings = {};
+  Object.keys(themes).forEach(d => {
+    const heading = headings.get(d);
+    if (!heading) throw new Error(`${code}: guide has no domain heading for ${d}`);
+    themeReadings[d] = [{ label: themes[d], href: `${guideHref}#${slug(heading)}` }];
+  });
+
+  const objectiveSubdomains = {};
+  Object.keys(objectives).forEach(id => { objectiveSubdomains[id] = id; });
+
+  return {
+    code,
+    name,
+    practice: { href: practiceHref, questions: meta._exam.items, bank: { href: bankHref } },
+    themes,
+    objectives,
+    objectiveThemes,
+    objectiveSubdomains,
+    aliases: {},
+    readings: {},
+    themeReadings,
+    guidance,
+    questionCounts,
+  };
+}
+
+async function buildScoreReportData() {
+  const exams = {};
+  exams['CCAR-F'] = await buildFoundationsReportData();
+  exams['CCAR-P'] = await buildBlueprintExamData({
+    code: 'CCAR-P',
+    name: 'Claude Certified Architect Professional',
+    objectivesFile: path.join('ccap', 'data', 'objectives.json'),
+    guidanceFile: path.join('ccap', 'data', 'objective_guidance.json'),
+    bankFile: path.join('ccap', 'data', 'questions.json'),
+    guideFile: path.join('ccap', 'guide_en.md'),
+    guideHref: 'guides/professional-en.html',
+    practiceHref: 'practical/professional-en.html',
+    bankHref: 'practical/bank-professional-en.html',
+  });
+  exams['CCDV-F'] = await buildBlueprintExamData({
+    code: 'CCDV-F',
+    name: 'Claude Certified Developer Foundations',
+    objectivesFile: path.join('ccdf', 'data', 'objectives.json'),
+    guidanceFile: path.join('ccdf', 'data', 'objective_guidance.json'),
+    bankFile: path.join('ccdf', 'data', 'questions.json'),
+    guideFile: path.join('ccdf', 'guide_en.md'),
+    guideHref: 'guides/developer-en.html',
+    practiceHref: 'practical/developer-en.html',
+    bankHref: 'practical/bank-developer-en.html',
+  });
+  return { version: 2, exams };
 }
 
 function scoreReportPage() {
@@ -400,7 +521,7 @@ function scoreReportPage() {
       <div><p id="result-exam" class="track-label"></p><h1 id="plan-title">Your personalized study guide.</h1><p id="plan-count" class="plan-count"></p></div>
       <button id="replace-report" class="report-text-button" type="button">Upload another report</button>
     </div>
-    <div class="report-result-actions"><a id="practice-link" class="report-primary disabled" href="practical/en.html?targeted=1" aria-disabled="true">Start practice exam</a><span>60 questions focused on your weak areas</span></div>
+    <div class="report-result-actions"><a id="practice-link" class="report-primary disabled" href="practical/en.html?targeted=1" aria-disabled="true">Start practice exam</a><span id="practice-note"></span></div>
     <p id="plan-status" class="report-status" role="status" aria-live="polite"></p>
     <p id="persistence-note" class="report-file-note"></p>
     <div id="plan-list" class="study-list"></div>
@@ -1142,6 +1263,15 @@ async function copyBrowserDependencies() {
 
 async function copyScoreReport() {
   const data = await buildScoreReportData();
+  // The theme readings deep-link into the generated guide pages; a slug
+  // drift would silently produce dead links, so verify them post-build.
+  const guidePages = { 'CCAR-P': 'guides/professional-en.html', 'CCDV-F': 'guides/developer-en.html' };
+  for (const [code, page] of Object.entries(guidePages)) {
+    const html = await fs.readFile(path.join(DOCS, page), 'utf8');
+    Object.values(data.exams[code].themeReadings).flat().forEach(reading => {
+      if (!html.includes(`id="${reading.href.split('#')[1]}"`)) throw new Error(`${code}: guide is missing the anchor ${reading.href}`);
+    });
+  }
   await fs.copyFile(path.join(ROOT, 'scripts', 'score-report.js'), path.join(DOCS, 'score-report.js'));
   await fs.writeFile(path.join(DOCS, 'score-report-data.json'), JSON.stringify(data));
   await fs.writeFile(path.join(DOCS, 'score-report.html'), pageShell({
@@ -1151,7 +1281,7 @@ async function copyScoreReport() {
     body: `${header('en')}${scoreReportPage()}`,
     extraScripts: '<script type="module" src="score-report.js"></script>',
   }));
-  console.log(`Score report reader built with PDF.js ${PDFJS_VERSION} (${Object.keys(data.objectives).length} objectives)`);
+  console.log(`Score report reader built with PDF.js ${PDFJS_VERSION} (${Object.keys(data.exams).length} exams, ${Object.values(data.exams).reduce((n, exam) => n + Object.keys(exam.objectives).length, 0)} objectives)`);
 }
 
 async function copyPracticalTests() {
@@ -1260,9 +1390,9 @@ async function writeIndex() {
 async function main() {
   await ensureDir(DOCS);
   await copyBrowserDependencies();
-  await copyScoreReport();
   await writeIndex();
   await buildGuides();
+  await copyScoreReport();
   await copyPracticalTests();
   await copyProfessionalExams();
   await copyCheatsheets();

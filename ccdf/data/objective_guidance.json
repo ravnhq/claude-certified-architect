@@ -1,0 +1,127 @@
+{
+  "1.1": {
+    "explanation": "Workflow versus agent is decided before the first line: workflows fit enumerated steps, real error cost, and constrained inputs; agents fit goals whose path cannot be written down, bounded by their toolset. The safe default is the cheapest pattern that survives your inputs — one call, then a workflow, then an agent.",
+    "example": "A ticket router with five known categories is a workflow; an open-ended research task whose steps depend on what it finds needs an agent with a turn limit.",
+    "guidance": "Promote a tier only when the current one cannot absorb the input variety you actually see. A workflow chosen where an agent was needed collapses on the first off-path input; the reverse buys nondeterminism you never use."
+  },
+  "1.2": {
+    "explanation": "The agent pattern is constant — a loop that calls tools, manages context, and runs until a goal is met — while three wiring paths differ in who runs it: a raw loop over the Messages API, the Agent SDK in your process, or Anthropic-managed execution. Set settingSources explicitly, because it decides whether CLAUDE.md and Skills load.",
+    "example": "A long-running monitoring agent that must run for hours without someone owning the loop fits managed agents — unless a Zero Data Retention or HIPAA BAA constraint rules out server-side session storage.",
+    "guidance": "Wire the loop the same way on every path: register tools, scope the system prompt, return one tool_result per tool_use with matching IDs, and define explicit exit conditions. Place human checkpoints by the worst outcome of an unchecked step."
+  },
+  "1.3": {
+    "explanation": "Agent patterns compose tool-use loops with sub-agents, memory scopes, and context-window management, and frameworks such as Strands, LangGraph, and PydanticAI package the loop. Memory scope is a design-time choice: in-context, external storage, summarized, or stateless.",
+    "example": "A cross-session assistant persists state to a database read at session start, while a self-contained summarization job runs stateless and closes out.",
+    "guidance": "Measure expected state size — history plus system prompt plus tool schemas — against the window before defaulting to in-context, remembering tool outputs often run three to five times larger in production than in fixtures. Add a framework only when its abstraction earns more than the loop costs."
+  },
+  "2.1": {
+    "explanation": "A business problem yields two kinds of requirement: functional (what the system must do, split across the model, existing systems, and people) and infrastructure (where it runs — cloud, region, identity model, compliance posture). Undocumented constraints become infeasible systems the moment production violates them.",
+    "example": "A document assistant's requirements name the extraction behavior and the model split — plus a residency rule and an approval gate that shape where and how it deploys.",
+    "guidance": "Write constraints down during discovery, before the architecture sketch. The expensive failure is a confident design that stops stakeholders from answering the questions it depends on."
+  },
+  "2.2": {
+    "explanation": "A Claude application lives through the same lifecycle as any system: development, implementation, operation, and maintenance, each phase with its own exit criteria. Treating the prompt and configuration as versioned, reviewed artifacts is what makes later phases possible.",
+    "example": "A shipped assistant has a versioned prompt, pinned model, and monitored error rates — so an iteration is a reviewed change rather than a live edit.",
+    "guidance": "Know which lifecycle phase an activity belongs to, because that decides when it can close. Exam items often mark the phase and reject options that belong later, however sound."
+  },
+  "2.3": {
+    "explanation": "API mechanics cover messages, tool use, streaming, vision, thinking, caching, the Batch API, and third-party vendors. Request shape follows who is waiting: synchronous for short backend work, streaming for a user watching, the async client for concurrency, batches for bulk offline volume at lower cost.",
+    "example": "A chat surface streams tokens as they generate, while a nightly corpus-labeling job submits through the Batch API and compounds with prompt caching on the shared prefix.",
+    "guidance": "Never act on a half-built streamed tool_use block — buffer deltas by index, rebuild after the stream closes, and treat a dropped stream as transient: retry in full and discard what you buffered. Confirm sampling-parameter support at build time, because the newest models reject non-default temperature, top_p, and top_k."
+  },
+  "2.4": {
+    "explanation": "The engineering substrate is ordinary production discipline: REST and JSON under a thin SDK, asynchronous programming to stay responsive while calls are in flight, and version control, code review, SDLC integration, and staged refactoring as scored practices rather than Claude-specific trivia.",
+    "example": "An integration keeps its Claude calls behind a reviewed service module with retries owned in one place, so a model or prompt change ships through the same review gate as any other code.",
+    "guidance": "Design the Claude application to survive its own lifecycle — reviewed, tested, and refactorable in stages. Treat SDK conveniences as a layer over the REST contract, not a replacement for understanding it."
+  },
+  "2.5": {
+    "explanation": "The same instruction is interpreted differently across Claude Code, Desktop, claude.ai, the API, and SDKs, so a prompt tuned on one surface is a draft for another. Application design holds content boundaries (trusted instructions versus untrusted fetched content), keeps session hygiene by trimming or summarizing before each call, and treats plugins as versioned dependencies.",
+    "example": "A deployment prompt tested on the API is re-verified in Claude Code, where filesystem context and tool descriptions change what the model sees — and history is summarized before the window fills.",
+    "guidance": "Separate trusted from untrusted content explicitly and design output schemas for what your code consumes. The window is a ceiling, not a target — trim before each call rather than after a failure."
+  },
+  "2.6": {
+    "explanation": "Five configuration surfaces recur: CLAUDE.md (project instructions loaded every session), settings.json (permissions, allow and deny rules, hooks — at user, project, local, and enterprise scopes), the model version pin, prompt versioning, and plugin dependencies. Each is a governance choice about who can change behavior and how it rolls back.",
+    "example": "A production app pins the full model ID rather than an alias, versions its prompts alongside the code, and keeps its API key out of the repo — so an upstream model update is a gated change, not a silent one.",
+    "guidance": "Pin the model snapshot, not the alias: an alias resolves to a moving target and turns an upstream update into an unaudited production change. Version prompts and plugins with the code so a regression is a rollback."
+  },
+  "3.1": {
+    "explanation": "Claude Code runs the agent loop in the terminal behind a permission layer, working through tasks in explore-plan-code phases, with plan mode holding it read-only. Its moving parts — rules, Skills, commands, agents, agent memory, session management, and settings — each carry something different into a session.",
+    "example": "A refactor starts in plan mode so the proposed edits are reviewed before any write, then switches to acceptEdits once the plan is trusted.",
+    "guidance": "Pick the permission mode from the worst-case cost of an unchecked action, and remember deny always wins over allow at any scope — an enterprise deny is the durable control. Keep CLAUDE.md to behavior-changing rules; move the rest into path-scoped rules files or Skills."
+  },
+  "4.1": {
+    "explanation": "Every failure is first sorted as retriable or terminal: 429, 529, and 5xx retry with backoff (honoring retry-after), while 400, 401, and 403 are terminal — the identical request will fail again. Tool errors come back to Claude explicitly with is_error, because a silenced failure manufactures a confident, wrong answer.",
+    "example": "A 429 from a burst of requests backs off exponentially with jitter and caps attempts, while a 400 from a malformed tool argument raises immediately — retrying it would only hide the bug.",
+    "guidance": "Decide where retry lives: the SDK already retries transient failures, and wrapping your own loop around the same call multiplies attempts against the rate limit. Use traces to localize failures between the integration layer and the model output — most silent breaks live at the handoff between components that each pass their own tests."
+  },
+  "5.1": {
+    "explanation": "Tokens are the unit of input, output, and cost; the context window is the fixed budget everything shares; and sampling makes generation non-deterministic — the same prompt can return different wording twice. The consequence for testing: assert on properties that must hold, not on exact text.",
+    "example": "A test asserts the response parses and carries the required fields in range, rather than comparing an exact string that will fail intermittently.",
+    "guidance": "Two limits bite differently: an overflowing input fails validation before generation, while an input that fits can still halt mid-generation with a context-window stop reason. Nothing is quietly dropped — staying under the ceiling is your code's job."
+  },
+  "5.2": {
+    "explanation": "Technical fundamentals are the integration substrate: SDKs that wrap REST APIs, websockets for streaming transport, and the ordinary disciplines — request construction, error handling, asynchronous execution — that any networked service needs.",
+    "example": "A service consumes the streaming API through the SDK's event interface while treating the underlying REST contract as the source of truth for errors and retries.",
+    "guidance": "Know what the SDK owns — authentication, retries, parsing — and what remains yours: timeouts, fallbacks, and the decision of where retry lives. Debug against the wire contract when the abstraction misbehaves."
+  },
+  "5.3": {
+    "explanation": "Model choice and reasoning mode are two separate decisions: which tier answers (Sonnet as the balanced default, Haiku for speed and cost, Opus for demanding work) and whether it thinks before answering, steered by effort rather than a token budget. A model change is a release gated by evaluation, not a preference.",
+    "example": "A classification stage runs on a fast tier with thinking off, while a hard multi-step analysis pays for extended thinking — and any tier change ships only after the eval passes on your cases.",
+    "guidance": "Move tiers on eval evidence in both directions, and spend reasoning only where the path genuinely benefits — engaging it on a step that does no reasoning is a recurring tax. Respect the carry-back rule: thinking blocks return verbatim on the next turn or the request fails."
+  },
+  "5.4": {
+    "explanation": "Cost management starts from three per-call metrics — token usage, latency, and error rate — and pulls the levers that actually move bills: model selection, context size, call count, and streaming versus batch. Prompt caching reuses work on a stable exact prefix, and the Batch API trades latency for lower per-token cost on bulk work.",
+    "example": "A nightly labeling job batches its requests and caches the shared policy prefix, so the per-request cost drops on both levers at once.",
+    "guidance": "Model cost against the tail, not the average — token distributions are skewed and averages understate spend. Place stable content first and variable content last: caching is an ordering decision, and one changed character before the breakpoint invalidates it."
+  },
+  "6.1": {
+    "explanation": "Context engineering decides in advance what enters the window, what leaves as a summary, and what never enters at all. Four strategies — pruning, compaction, clearing, and subagent handoff — each lose a different kind of continuity, and what compaction preserves depends entirely on how the summarizer is written.",
+    "example": "A multi-session agent's summarizer explicitly preserves which files were modified and which decision was taken at a branch point — the task-critical state an under-specified summary drops.",
+    "guidance": "Choose the strategy by the continuity you can afford to lose, and write the summarizer against the state the next turn needs. Subagent isolation keeps per-turn cost low but costs visibility into how the conclusion was reached."
+  },
+  "6.2": {
+    "explanation": "Use the lightest prompting technique that clears the bar: instruction alone, then examples when showing the shape is easier than describing it, then explicit reasoning only when the path determines the answer. Diagnose a drifting prompt by the technique it is missing — three failed revision passes is the cutoff for adding words.",
+    "example": "A misshapen classifier output is fixed by two lines — an output constraint pinning the format and one few-shot example covering the ambiguous case — instead of a sixth round of longer prose.",
+    "guidance": "Bloated prompts return bloated output and latency for no accuracy gain. Model capability and prompting mode are the same optimization: run both down at once, starting from the cheapest model and fewest shots that satisfy the eval."
+  },
+  "6.3": {
+    "explanation": "Output handling treats confident output with skepticism: validate against the contract, parse defensively, and read stop_reason before treating any response as parseable. When a format must hold, move it from the prompt into the API — a JSON schema enforces the grammar at generation time.",
+    "example": "An extraction endpoint passes a schema so a shape-violating response cannot be emitted, and still checks stop_reason, because a refusal or a max_tokens cut returns non-matching text.",
+    "guidance": "Structured output costs a slower first request per schema and added input tokens, and a guaranteed schema still does not guarantee success. Validation confirms the value is the right shape — the eval, not the parser, guards the right value."
+  },
+  "7.1": {
+    "explanation": "Prompt injection is the core threat for any agent that reads content it did not write: the hostile instruction rides inside retrieved pages, documents, or tool results, and the model flattens trusted and untrusted content into one stream. Jailbreaks attack the model's guardrails while injections attack your instructions — the defense is the same layered shape.",
+    "example": "An agent that fetches web pages treats page content as data to inspect — fenced, never obeyed — and gates any consequential action regardless of what the page says.",
+    "guidance": "Mark untrusted content as data, and cap what the agent is permitted to do as a consequence: guarding the prompt while leaving the action open is the common gap. Least privilege bounds the blast radius — the same injection under a scoped identity is a denied action and a log line."
+  },
+  "7.2": {
+    "explanation": "Guardrails layer input screening, output screening, and action authorization, each answering a different question, with secure-by-design defaults: least privilege, managed identity, and privacy in the design rather than bolted on. The failure direction is chosen deliberately — a screening service that errors open is protection in appearance only.",
+    "example": "Where an unscreened request would cause harm, the integration fails closed: if the screening layer is down, requests are rejected rather than passed through unchecked.",
+    "guidance": "Place each control where its harm occurs — one filter at the end of the path covers one of the three points and sits downstream of the irreversible step. A policy is not a control until the system enforces it and produces evidence."
+  },
+  "7.3": {
+    "explanation": "Hooks are enforcement, not convention: a PreToolUse hook runs before a tool call and can block it with a non-zero exit, while a PostToolUse hook runs after for side effects and audit logging. Precedence is deny over ask over allow — one deny rule blocks the action regardless of how many allows exist.",
+    "example": "A destructive-write guard ships as a PreToolUse hook that blocks writes outside the workspace and returns the reason on stderr, paired with a CLAUDE.md line that communicates the same intent.",
+    "guidance": "Use both layers: the instruction communicates intent, the hook enforces it deterministically at every relevant call. A rule a prompt can follow inconsistently, a hook cannot skip."
+  },
+  "7.4": {
+    "explanation": "Secrets never travel with the configuration that references them: config carries a variable reference and the value is injected at execution from an environment variable or a managed store, where rotation reaches every consumer and reads are logged. A credential baked into committed code cannot be rotated — overwriting the file never erases history.",
+    "example": "An MCP server config references an environment variable for its token, and the store rotates that token without touching any committed file.",
+    "guidance": "Scope every production identity to the narrowest access the task needs, and guard the authorization configuration itself as a target — anything that can rewrite it acts with that identity. Validate identity server-side and monitor authorized access, not just failed attempts."
+  },
+  "8.1": {
+    "explanation": "Claude does not run tools; it selects them and tells your code what to call. Selection is driven almost entirely by the schema — name, description, and input schema — so descriptions state what the tool does and when to use it, and your code returns one tool_result per tool_use with matching IDs.",
+    "example": "Two overlapping search tools cause erratic routing until their descriptions are rewritten to state distinct purposes and boundaries — after which selection stabilizes without any model change.",
+    "guidance": "Vague or overlapping descriptions produce erratic routing; too many tools dilute selection. Return tool errors explicitly with is_error so the model can change tack — an empty result read as data is how a tool bug becomes a confident wrong answer."
+  },
+  "8.2": {
+    "explanation": "An MCP server packages a tool surface once so any MCP client can reach it, exposing tools, resources, and prompts over a transport such as stdio or sockets. The payoff is reuse across clients; the cost is the extra layer, which only pays when more than one client exists.",
+    "example": "An internal knowledge-base server written once is consumed by both a Claude Code deployment and a support agent, with one place to fix, version, and authorize the surface.",
+    "guidance": "Choose the transport by where the server runs relative to the client, and keep credentials out of the server configuration — reference them from the environment. Build an MCP server when reuse is real, and a direct integration when it is not."
+  },
+  "8.3": {
+    "explanation": "Agentic customization chooses among built-in tools, custom tools, Skills, and MCP per use case: built-ins cover common capabilities without configuration, custom tools bind to your systems, Skills load task-specific procedure only when a request matches, and MCP shares a surface across clients.",
+    "example": "A codebase task uses built-in file tools plus a project Skill for the team's release procedure, while a shared internal API is exposed once through MCP rather than re-implemented as a custom tool per project.",
+    "guidance": "Match the mechanism to the reuse pattern — a Skill for procedure that should load on demand, a custom tool for one application, MCP for a surface many clients share. Adding a mechanism costs tokens and selection accuracy, so carry only what the task needs."
+  }
+}
