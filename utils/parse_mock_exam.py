@@ -128,6 +128,12 @@ def parse_block(n: int, body: str) -> dict:
             cur["explanation"] = em.group(1)
             field = "explanation"
             continue
+        # The `═` rule closes the block; whatever follows it (the file footer
+        # after the last question) is not part of the explanation. Left in,
+        # the rule renders as a 60-character unbreakable token that forces
+        # the exam summary and the cheatsheet to scroll sideways on phones.
+        if RE_RULE.match(ln):
+            break
         # continuation line for whatever field we're in
         if ln.strip():
             if field == "text":

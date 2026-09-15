@@ -26,3 +26,5 @@ __pycache__/
 
 # vendored agent tooling — reinstall from skills-lock.json, do not commit
 .agents/
+
+.firecrawl/

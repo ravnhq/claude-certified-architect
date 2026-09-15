@@ -88,11 +88,9 @@ function pageShell({ title, lang, body, baseHref }) {
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title}</title>
 <base href="${baseHref}">
+<link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;800&family=Source+Code+Pro:wght@400;600&display=swap">
 <script>
   // theme bootstrap (no FOUC) — defaults to dark, matches Ravn's identity
   (() => {
@@ -113,7 +111,7 @@ ${siteFooter()}
 function siteFooter() {
   return `<footer class="site-footer">
   <p>© Ravn</p>
-  <p><a href="https://www.ravn.co/">ravn.co</a></p>
+  <p><a href="https://ravn.com/">ravn.com</a></p>
 </footer>`;
 }
 
@@ -668,9 +666,9 @@ function preflightStyles() {
 .preflight .hero { margin-bottom: 0; }
 .pf-headline { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; }
 .pf-count { text-align: right; line-height: 1; }
-.pf-count .pf-count-n { font-size: clamp(3.4rem, 9vw, 5.6rem); font-weight: 800; color: var(--fg); font-variant-numeric: tabular-nums; }
+.pf-count .pf-count-n { font-size: clamp(3.4rem, 9vw, 5.6rem); font-weight: 600; color: var(--fg); font-variant-numeric: tabular-nums; }
 .pf-count .pf-count-n.done { color: var(--accent); }
-.pf-count .pf-count-label { display: block; margin-top: 6px; font-family: 'Source Code Pro', monospace; font-size: 0.66rem; letter-spacing: 0.167em; text-transform: uppercase; color: var(--subtle); }
+.pf-count .pf-count-label { display: block; margin-top: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.167em; text-transform: uppercase; color: var(--subtle); }
 .pf-scope { max-width: 68ch; margin: 0; padding: 12px 14px; border-left: 2px solid var(--accent); background: var(--bg-elev); font-size: 0.84rem; line-height: 1.6; color: var(--muted); }
 .pf-scope a { color: var(--accent); }
 .pf-dots { display: flex; gap: 8px; margin: 28px 0 36px; }
@@ -678,18 +676,18 @@ function preflightStyles() {
 .pf-dot.on { background: var(--accent); }
 
 .pf-panel { border: 1px solid var(--border); padding: 22px 24px; margin-bottom: 36px; }
-.pf-eyebrow { font-family: 'Source Code Pro', monospace; font-size: 0.68rem; letter-spacing: 0.167em; text-transform: uppercase; color: var(--subtle); margin: 0 0 16px; }
+.pf-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.167em; text-transform: uppercase; color: var(--subtle); margin: 0 0 16px; }
 .pf-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 22px; }
 .pf-fact { display: grid; gap: 7px; padding: 14px 16px; border-right: 1px solid var(--border); }
 .pf-fact:last-child { border-right: 0; }
-.pf-fact-k { font-family: 'Source Code Pro', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--subtle); }
-.pf-fact-v { font-family: 'Source Code Pro', monospace; font-size: 0.95rem; color: var(--fg); font-weight: 600; }
+.pf-fact-k { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--subtle); }
+.pf-fact-v { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: var(--fg); font-weight: 600; }
 .pf-note { font-size: 0.82rem; color: var(--muted); line-height: 1.55; margin: 0 0 18px; }
 .pf-domains { display: grid; gap: 18px; }
 .pf-domain-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 6px; }
 .pf-domain-name { display: flex; gap: 14px; align-items: baseline; min-width: 0; }
-.pf-domain-n { font-family: 'Source Code Pro', monospace; font-size: 0.72rem; color: var(--subtle); flex-shrink: 0; }
-.pf-domain-w { font-family: 'Source Code Pro', monospace; font-size: 0.88rem; color: var(--accent); font-weight: 600; flex-shrink: 0; }
+.pf-domain-n { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--subtle); flex-shrink: 0; }
+.pf-domain-w { font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; color: var(--accent); font-weight: 600; flex-shrink: 0; }
 .pf-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
 .pf-bar span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
 
@@ -698,7 +696,7 @@ function preflightStyles() {
 .pf-row:hover { background: var(--bg-elev); }
 .pf-row:has(.pf-check:checked) { background: color-mix(in srgb, var(--accent) 7%, transparent); }
 .pf-check { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
-.pf-n { font-family: 'Source Code Pro', monospace; font-size: 0.85rem; padding-top: 2px; letter-spacing: 0.05em; color: var(--subtle); transition: color .25s var(--ease); }
+.pf-n { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; padding-top: 2px; letter-spacing: 0.05em; color: var(--subtle); transition: color .25s var(--ease); }
 .pf-row:has(.pf-check:checked) .pf-n { color: var(--accent); }
 .pf-box { width: 22px; height: 22px; margin-top: 1px; border: 1.5px solid var(--border-strong); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: transparent; transition: background .18s var(--ease), border-color .18s var(--ease); }
 .pf-row:hover .pf-box { border-color: var(--fg); }

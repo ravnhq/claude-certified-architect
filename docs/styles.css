@@ -1,56 +1,41 @@
-/* Ravn Brand System — Claude Certified Architect
-   Dark, minimal, direct. Near-black canvas, white text, muted gray metadata,
-   one champagne-gold accent. Flat: no shadows, no gradients (except the gold
-   dot-matrix motif), no glass. Work Sans + Source Code Pro. Tokens are taken
-   verbatim from the brand-intelligence DESIGN.md standard. */
+/* Current Ravn design, sourced and adapted in DESIGN.md. */
 
 :root {
-  /* DESIGN.md tokens */
-  --primary:    #161616;
-  --on-primary: #FFFFFF;
-  --secondary:  #ADB5BD;
-  --gold:       #B7986A;
-  --neutral:    #FFFFFF;
-
-  /* dark canvas (default) */
-  --bg:          #161616;
-  --bg-elev:     #1d1d1d;
+  --bg:          #0E0E0E;
+  --bg-elev:     #141414;
   --fg:          #FFFFFF;
-  --muted:       #ADB5BD;
-  --subtle:      #8B949E;
-  --border:      #2A2A2A;
-  --border-strong: #3A3A3A;
-  --accent:      #B7986A;
-  --accent-fg:   #161616;
-  --code-bg:     #222222;
-  --code-fg:     #B7986A;
+  --muted:       #A3A3A3;
+  --subtle:      #949494;
+  --border:      #292929;
+  --border-strong: #333333;
+  --accent:      #F8E3A0;
+  --accent-fg:   #0E0E0E;
+  --code-bg:     #1C1C1C;
+  --code-fg:     #F8E3A0;
 
   --max:       980px;
   --max-prose: 70ch;
-  --radius:    0px;     /* large surfaces: square */
+  --radius:    18px;
   --radius-sm: 4px;     /* chips */
   --radius-md: 8px;     /* buttons */
   --ease:      cubic-bezier(.2, .8, .2, 1);
 
-  /* gold dot-matrix motif (the only atmospheric treatment) */
-  --dot: radial-gradient(circle, rgba(183,152,106,0.55) 1.6px, transparent 1.7px);
   color-scheme: dark;
 }
 
 :root[data-theme="light"] {
-  /* print-friendly neutral variant; gold remains the only accent */
+  /* Reading-mode adaptation; the source website is dark. */
   --bg:          #FFFFFF;
   --bg-elev:     #F4F4F4;
-  --fg:          #161616;
+  --fg:          #0E0E0E;
   --muted:       #6C757D;
   --subtle:      #6C757D;
   --border:      #E5E5E5;
   --border-strong: #CFCFCF;
-  --accent:      #B7986A;
-  --accent-fg:   #161616;
+  --accent:      #725B1A;
+  --accent-fg:   #FFFFFF;
   --code-bg:     #F4F4F4;
   --code-fg:     #8A6D3B;
-  --dot: radial-gradient(circle, rgba(183,152,106,0.45) 1.6px, transparent 1.7px);
   color-scheme: light;
 }
 
@@ -71,7 +56,7 @@ html { -webkit-text-size-adjust: 100%; }
 }
 
 body {
-  font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
   font-synthesis: none;
   background: var(--bg);
   color: var(--fg);
@@ -181,19 +166,6 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   border-bottom: 1px solid var(--border);
   margin-bottom: 64px;
 }
-/* dot-matrix motif anchored to the top-right corner of the hero */
-.hero::after {
-  content: "";
-  position: absolute;
-  top: -8px; right: -8px;
-  width: 180px; height: 120px;
-  background-image: var(--dot);
-  background-size: 16px 16px;
-  -webkit-mask-image: linear-gradient(225deg, #000 0%, transparent 70%);
-  mask-image: linear-gradient(225deg, #000 0%, transparent 70%);
-  pointer-events: none;
-}
-@media (max-width: 720px) { .hero::after { display: none; } }
 .hero .eyebrow {
   font-size: 12px;
   letter-spacing: 0.167em;
@@ -203,21 +175,15 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   margin: 0;
   display: inline-flex; align-items: center; gap: 12px;
 }
-/* gold eyebrow rule — 40px x 2px per DESIGN.md */
-.hero .eyebrow::before {
-  content: "";
-  width: 40px; height: 2px;
-  background: var(--accent);
-}
 .hero h1 {
-  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
   line-height: 1.16;
-  letter-spacing: 0;
-  font-weight: 800;
+  letter-spacing: -0.025em;
+  font-weight: 600;
   margin: 0;
-  max-width: 18ch;
+  max-width: 24ch;
 }
-.hero h1 .accent { color: var(--accent); }
+.hero h1 .accent { color: var(--fg); }
 .hero .lede {
   color: var(--muted);
   margin: 0;
@@ -250,12 +216,12 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  gap: 16px;
 }
 .card {
-  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--bg-elev);
   padding: 32px 28px;
   display: grid;
   align-content: start;
@@ -273,8 +239,8 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 }
 .card .lang-name {
   font-size: 1.85rem;
-  font-weight: 800;
-  letter-spacing: 0;
+  font-weight: 600;
+  letter-spacing: -0.025em;
   line-height: 1;
   color: var(--fg);
 }
@@ -313,7 +279,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .chooser-role {
   margin: 0;
   display: inline-flex; align-items: center; gap: 12px;
-  font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.72rem;
   letter-spacing: 0.167em;
   text-transform: uppercase;
@@ -329,15 +295,15 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .card.chooser-card h2 {
   margin: 0;
   font-size: 1.55rem;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.15;
-  letter-spacing: 0;
+  letter-spacing: -0.025em;
   text-transform: none;
   color: var(--fg);
 }
 .chooser-code {
   margin: 0;
-  font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.72rem;
   letter-spacing: 0.167em;
   text-transform: uppercase;
@@ -351,7 +317,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 }
 .chooser-fact { display: grid; gap: 3px; }
 .chooser-fact-k {
-  font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.62rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -359,7 +325,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 }
 .chooser-fact-v {
   margin: 0;
-  font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.95rem;
   color: var(--fg);
   font-weight: 600;
@@ -419,8 +385,8 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 }
 .guide h1, .guide h2, .guide h3, .guide h4 {
   line-height: 1.19;
-  letter-spacing: 0;
-  font-weight: 800;
+  letter-spacing: -0.025em;
+  font-weight: 600;
 }
 .guide h1 { font-size: 2.4rem; margin-top: 0; margin-bottom: 1rem; }
 .guide h2 { font-size: 1.7rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
@@ -439,14 +405,20 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   overflow-x: auto;
   font-size: 0.85em;
   line-height: 1.875;
-  font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Most fenced blocks in the guides are prose-like transcripts and JSON, not
+     column-aligned code. Wrap them (as the PDF stylesheet already does) so a
+     long line does not turn every block into a horizontal scroller, even on
+     desktop where the 70ch column is narrower than several blocks. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 .guide code {
   background: var(--code-bg);
   padding: 2px 6px;
   border-radius: var(--radius-sm);
   font-size: 0.85em;
-  font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   color: var(--code-fg);
 }
 .guide pre code { background: transparent; padding: 0; border: 0; color: inherit; }
@@ -468,6 +440,14 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   padding: 10px 14px;
   text-align: left;
 }
+/* Bare URLs in the documentation tables set the table's minimum width (630px
+   on a 320px phone). Let link text break anywhere; ordinary cell text keeps
+   whole words, and a dense table still falls back to the scroller below. */
+.guide td a { overflow-wrap: anywhere; }
+/* Chrome then hands that column only its min-content width and the rest to
+   the label column, so a URL wraps into seven lines beside empty space. Give
+   link-only cells (the URL column of the documentation tables) a fixed share. */
+.guide td:has(> a:only-child) { width: 60%; }
 .guide th { font-weight: 600; color: var(--accent); font-size: 0.78em; letter-spacing: 0.12em; text-transform: uppercase; }
 .guide hr { border: 0; border-top: 1px solid var(--border); margin: 3rem 0; }
 
@@ -537,8 +517,8 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 }
 .placeholder h1 {
   font-size: 2rem;
-  letter-spacing: 0;
-  font-weight: 800;
+  letter-spacing: -0.025em;
+  font-weight: 600;
   color: var(--fg);
   margin-bottom: 1rem;
 }
@@ -602,6 +582,9 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   .landing { padding: 48px 20px 64px; }
   .hero { padding-bottom: 48px; margin-bottom: 40px; }
   .guide { padding: 40px 20px 80px; }
+  /* At 2.4rem a single word such as "Documentation" is wider than a 320px
+     column and breaks mid-word; scale the title with the viewport instead. */
+  .guide h1 { font-size: clamp(1.75rem, 9vw, 2.4rem); }
   /* A wide table used to widen main/body/html; let it scroll on its own. */
   .guide table { display: block; width: 100%; max-width: 100%; overflow-x: auto; }
 }
@@ -625,7 +608,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .chooser-card .cr-langs { display: inline-flex; gap: 6px; flex-shrink: 0; }
 .chooser-card .chooser-res li a { display: inline-block; width: auto; padding: 3px 9px;
   border: 1px solid var(--border); border-bottom: 1px solid var(--border);
-  border-radius: var(--radius-sm); font-family: 'Source Code Pro', monospace;
+  border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem; letter-spacing: 0.06em; color: var(--accent); }
 .chooser-card .chooser-res li a::after { content: none; }
 .chooser-card .chooser-res li a:hover { border-color: var(--accent); background: var(--bg-elev); }
@@ -641,3 +624,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .chooser-card:hover .chooser-name .chooser-primary { color: var(--accent); }
 .chooser-card .chooser-res,
 .chooser-card .chooser-link { position: relative; z-index: 1; }
+
+.hero .eyebrow, .track-label, .card h2, .guide .eyebrow { font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 500; letter-spacing: .06em; }
+.hero { background: radial-gradient(ellipse at 65% 35%, rgba(148,163,184,.09), transparent 70%); }
+h1, h2, h3 { text-wrap: balance; }

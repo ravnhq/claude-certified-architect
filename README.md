@@ -208,6 +208,12 @@ raw with no pass/fail verdict.
    objectives, build one end-to-end reference system, then rehearse trade-offs under time
    pressure. Use exam mode for the timed run and study mode to read the rationale on every miss.
 
+## Design
+
+[DESIGN.md](./DESIGN.md) documents the current Ravn identity, extracted with Firecrawl
+and checked against the live site. Shared embedded fonts live in `docs/assets/fonts.css`;
+edit generator styles and regenerate every exam, bank, and cheatsheet after design changes.
+
 ## Build and test
 
 ```bash

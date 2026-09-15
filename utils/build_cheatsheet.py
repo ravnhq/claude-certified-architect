@@ -4,8 +4,7 @@
 
 Usage: python3 utils/build_cheatsheet.py
 
-Self-contained static pages in the Ravn brand theme (dark canvas, Work Sans,
-gold accent) per the brand-intelligence DESIGN.md standard, with the Ravn topbar.
+Self-contained static pages using the Ravn design documented in DESIGN.md.
 Stats are kept in sync with the 136-question, 5-domain exam; domain names match
 utils/exam_data.py (DOMAIN_NAMES). The deploy workflow does not run this script —
 it copies the committed cheatsheet_*.html via scripts/build-pages.mjs — so re-run
@@ -300,114 +299,111 @@ KEYS = {
 }
 
 CSS = """
-/* Ravn Brand System — dark canvas, white text, muted gray, single gold accent.
-   Flat (no shadows/gradients), Work Sans + Source Code Pro. Functional red is
-   kept only for the trap / avoid lines; gold carries the correct approach. */
+/* Shared Ravn typography and palette; warm emphasis marks study guidance. */
 :root {
-  --bg: #161616; --surface: #1d1d1d; --surface-2: #222222;
-  --fg: #FFFFFF; --fg-soft: #D4D4D4; --muted: #ADB5BD; --subtle: #6C757D;
-  --border: #2A2A2A; --border-strong: #3A3A3A;
-  --gold: #B7986A; --gold-soft: rgba(183,152,106,0.12); --gold-fg: #161616;
+  --bg: #0E0E0E; --surface: #141414; --surface-2: #1C1C1C;
+  --fg: #FFFFFF; --fg-soft: #D4D4D4; --muted: #A3A3A3; --subtle: #949494;
+  --border: #292929; --border-strong: #333333;
+  --accent: #F8E3A0; --accent-soft: rgba(248,227,160,0.12); --accent-fg: #0E0E0E;
   --bad: #C16B57;
   --r-sm: 4px; --r-md: 8px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--topbar-h, 58px) + 16px); }
-body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 16px; line-height: 1.65; background: var(--bg); color: var(--fg);
   -webkit-font-smoothing: antialiased; }
-.mono { font-family: "Source Code Pro", ui-monospace, Menlo, Monaco, monospace; }
+.mono { font-family: "JetBrains Mono", ui-monospace, Menlo, Monaco, monospace; }
 
 .ravn-topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center;
   justify-content: space-between; padding: 12px 32px; background: var(--bg); color: var(--fg);
   border-bottom: 1px solid var(--border); }
 .ravn-brand { display: inline-flex; align-items: center; gap: 16px; color: var(--fg);
   text-decoration: none; font-weight: 600; }
-.ravn-brand:hover { color: var(--gold); }
+.ravn-brand:hover { color: var(--accent); }
 .ravn-brand svg { height: 20px; width: auto; fill: currentColor; flex-shrink: 0; }
 .ravn-brand-tagline { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.167em; font-weight: 600; }
-.topbar-kicker { font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.167em; font-weight: 600; }
+.topbar-kicker { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.167em; font-weight: 600; }
 
 .wrap { max-width: 940px; margin: 0 auto; padding: 0 24px; }
 
 header.hero { position: relative; padding: 60px 0 44px; border-bottom: 1px solid var(--border); overflow: hidden; }
-header.hero::after { content: ""; position: absolute; top: 24px; right: -10px; width: 200px; height: 130px;
-  background-image: radial-gradient(circle, rgba(183,152,106,0.5) 1.6px, transparent 1.7px);
-  background-size: 16px 16px;
-  -webkit-mask-image: linear-gradient(225deg, #000 0%, transparent 72%);
-  mask-image: linear-gradient(225deg, #000 0%, transparent 72%); pointer-events: none; }
-.eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; letter-spacing: .167em;
+.eyebrow { font-family: "JetBrains Mono", ui-monospace, monospace; display: inline-flex; align-items: center; gap: 12px; font-size: 12px; letter-spacing: .167em;
   text-transform: uppercase; font-weight: 600; color: var(--muted); margin-bottom: 18px; }
-.eyebrow::before { content: ""; width: 40px; height: 2px; background: var(--gold); }
-h1 { font-size: clamp(30px, 5vw, 50px); line-height: 1.16; letter-spacing: 0; font-weight: 800; margin-bottom: 18px; }
-h1 .key { color: var(--gold); }
+h1 { font-size: clamp(30px, 5vw, 50px); line-height: 1.16; letter-spacing: -0.025em; font-weight: 600; margin-bottom: 18px; }
+h1 .key { color: var(--fg); }
 .lede { font-size: clamp(16px, 2vw, 19px); color: var(--muted); max-width: 62ch; }
 .stats { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
 .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 16px 20px; min-width: 128px; }
-.stat .n { font-size: 32px; font-weight: 800; color: var(--gold); line-height: 1; }
+.stat .n { font-size: 32px; font-weight: 600; color: var(--accent); line-height: 1; }
 .stat .l { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 8px; font-weight: 600; }
 .legend { display: flex; flex-wrap: wrap; gap: 22px; padding-top: 26px; }
 .legend span { display: inline-flex; align-items: center; gap: 9px; font-size: 13.5px; color: var(--muted); }
 .swatch { width: 13px; height: 13px; border-radius: var(--r-sm); }
 
 .section-head { padding: 54px 0 6px; }
-.section-head h2 { font-size: 24px; font-weight: 800; letter-spacing: 0; color: var(--fg); }
+.section-head h2 { font-size: 24px; font-weight: 600; letter-spacing: -0.025em; color: var(--fg); }
 .section-head p { color: var(--muted); margin-top: 8px; font-size: 15px; }
 
 .grid { display: flex; flex-direction: column; gap: 16px; padding-top: 26px; }
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 24px 26px;
-  display: grid; grid-template-columns: 54px 1fr; gap: 4px 20px;
-  opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
-.card.in { opacity: 1; transform: none; }
-.card .num { font-weight: 800; font-size: 30px; color: var(--subtle); line-height: 1; grid-row: 1 / span 4; }
-.card h3 { font-size: 18px; margin: 2px 0 4px; letter-spacing: 0; font-weight: 700; color: var(--fg); }
+  /* minmax(0, 1fr), not 1fr: a bare 1fr has a min-content floor, so one long
+     token inside the question drawer widened the whole card past the viewport. */
+  display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 4px 20px;
+   }
+.card .num { font-weight: 600; font-size: 30px; color: var(--subtle); line-height: 1; grid-row: 1 / span 4; }
+.card h3 { font-size: 18px; margin: 2px 0 4px; letter-spacing: -0.025em; font-weight: 700; color: var(--fg); }
+/* Principle and question prose can carry long unbreakable tokens (paths,
+   identifiers); let them wrap rather than widen the card. Kept off the flex
+   badges, where it would let a count shrink to one digit per line. */
+.card h3, .card p { overflow-wrap: anywhere; }
 .card .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
 .tag { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600;
   border-radius: var(--r-sm); padding: 3px 9px; border: 1px solid var(--border-strong); color: var(--muted); }
 .tag.dom { color: var(--fg); border-color: var(--border-strong); }
-.tag.scn { color: var(--gold); border-color: var(--gold); }
+.tag.scn { color: var(--accent); border-color: var(--accent); }
 
 .line-row { display: grid; grid-template-columns: 86px 1fr; gap: 14px; padding: 10px 0; align-items: baseline; }
 .line-row + .line-row { border-top: 1px solid var(--border); }
 .badge { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
-.badge.do { color: var(--gold); }
+.badge.do { color: var(--accent); }
 .badge.no { color: var(--bad); }
 .line-row p { margin: 0; font-size: 14.5px; }
 .line-row.do p { color: var(--fg-soft); }
 .line-row.no p { color: var(--muted); }
-code { font-family: "Source Code Pro", ui-monospace, Menlo, monospace; font-size: 13px; background: var(--surface-2);
-  color: var(--gold); padding: 1px 6px; border-radius: var(--r-sm); }
+code { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 13px; background: var(--surface-2);
+  color: var(--accent); padding: 1px 6px; border-radius: var(--r-sm); }
 
 .qdrop { grid-column: 1 / -1; margin-top: 12px; border-top: 1px solid var(--border); }
 .qdrop > summary { cursor: pointer; list-style: none; font-size: 11px; letter-spacing: .14em;
-  text-transform: uppercase; font-weight: 600; color: var(--gold);
+  text-transform: uppercase; font-weight: 600; color: var(--accent);
   padding: 11px 0 3px; display: flex; align-items: center; gap: 9px; }
 .qdrop > summary::-webkit-details-marker { display: none; }
 .qdrop > summary::after { content: "▸"; color: var(--subtle); transition: transform .15s; margin-left: auto; }
 .qdrop[open] > summary::after { transform: rotate(90deg); }
 .qdrop > summary:hover { color: var(--fg); }
-.qdrop .qn { background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold); border-radius: var(--r-sm);
+.qdrop .qn { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); border-radius: var(--r-sm);
   padding: 1px 9px; font-size: 11px; font-weight: 700; }
 .qlist { list-style: none; margin: 8px 0 4px; padding: 0; display: flex; flex-direction: column; gap: 18px; }
 .qlist > li { border-left: 2px solid var(--border-strong); padding: 2px 0 2px 14px; }
 .qhead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 6px; }
-.qnum { font-size: 11px; font-weight: 700; color: var(--gold);
-  background: var(--gold-soft); border: 1px solid var(--gold); border-radius: var(--r-sm); padding: 1px 7px; }
+.qnum { font-size: 11px; font-weight: 700; color: var(--accent);
+  background: var(--accent-soft); border: 1px solid var(--accent); border-radius: var(--r-sm); padding: 1px 7px; }
 .qscenario { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .qsituation { margin: 0 0 7px; font-size: 13.5px; color: var(--muted); line-height: 1.6; }
 .qq { margin: 0 0 6px; font-size: 14px; font-weight: 600; color: var(--fg); }
 .qa { margin: 0; font-size: 13.5px; color: var(--fg-soft); }
-.qa .qa-tag { font-size: 9.5px; text-transform: uppercase; letter-spacing: .12em; font-weight: 600; color: var(--gold); margin-right: 7px; }
-.qa .qa-l { font-weight: 700; color: var(--gold); }
+.qa .qa-tag { font-size: 9.5px; text-transform: uppercase; letter-spacing: .12em; font-weight: 600; color: var(--accent); margin-right: 7px; }
+.qa .qa-l { font-weight: 700; color: var(--accent); }
 .qexp { margin: 6px 0 0; font-size: 13px; color: var(--muted); line-height: 1.55; }
 
-.key-block { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: var(--r-md);
+.key-block { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--r-md);
   padding: 26px 30px; margin-top: 26px; }
 .key-block ol { margin: 0; padding-left: 0; list-style: none; counter-reset: k; }
 .key-block li { counter-increment: k; position: relative; padding: 13px 0 13px 44px; font-size: 15.5px; color: var(--fg-soft); }
 .key-block li + li { border-top: 1px solid var(--border); }
-.key-block li::before { content: counter(k); position: absolute; left: 0; top: 12px; font-weight: 800;
-  font-size: 18px; color: var(--gold); }
+.key-block li::before { content: counter(k); position: absolute; left: 0; top: 12px; font-weight: 600;
+  font-size: 18px; color: var(--accent); }
 .key-block strong { color: var(--fg); }
 .key-block .q { color: var(--muted); }
 
@@ -418,13 +414,13 @@ code { font-family: "Source Code Pro", ui-monospace, Menlo, monospace; font-size
 .bar-row { margin: 12px 0; font-size: 14px; }
 .bar-row .top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 5px; }
 .bar-row .lab { color: var(--fg-soft); }
-.bar-row .ct { font-family: "Source Code Pro", ui-monospace, Menlo, monospace; color: var(--gold); font-size: 12.5px; white-space: nowrap; }
+.bar-row .ct { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; color: var(--accent); font-size: 12.5px; white-space: nowrap; }
 .bar-track { height: 7px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
-.bar-fill { height: 100%; background: var(--gold); border-radius: 999px; }
+.bar-fill { height: 100%; background: var(--accent); border-radius: 999px; }
 .lettr { display: flex; gap: 10px; }
 .lettr div { flex: 1; text-align: center; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-md); padding: 14px 0; }
-.lettr .L { font-size: 22px; color: var(--gold); font-weight: 800; }
-.lettr .V { font-family: "Source Code Pro", ui-monospace, Menlo, monospace; font-size: 12px; color: var(--muted); margin-top: 4px; }
+.lettr .L { font-size: 22px; color: var(--accent); font-weight: 600; }
+.lettr .V { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; font-size: 12px; color: var(--muted); margin-top: 4px; }
 .note { color: var(--muted); font-size: 13.5px; margin-top: 16px; }
 
 footer { padding: 48px 0 64px; color: var(--subtle); font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
@@ -432,7 +428,7 @@ footer { padding: 48px 0 64px; color: var(--subtle); font-size: 12px; letter-spa
 
 @media (max-width: 680px) {
   .meta-grid { grid-template-columns: 1fr; }
-  .card { grid-template-columns: 1fr; }
+  .card { grid-template-columns: minmax(0, 1fr); }
   .card .num { grid-row: auto; }
   .line-row { grid-template-columns: 1fr; gap: 4px; }
   .ravn-topbar { padding: 12px 18px; }
@@ -532,9 +528,6 @@ def build(lang):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
 <link rel="icon" type="image/png" href="{favicon}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800&family=Source+Code+Pro:wght@400;600&display=swap">
 <style>{css}</style>
 </head>
 <body>
@@ -550,7 +543,7 @@ def build(lang):
       <div class="stat"><div class="n">12</div><div class="l">{s_p}</div></div>
     </div>
     <div class="legend">
-      <span><span class="swatch" style="background:#B7986A"></span>{lg1}</span>
+      <span><span class="swatch" style="background:#F8E3A0"></span>{lg1}</span>
       <span><span class="swatch" style="background:#C16B57"></span>{lg2}</span>
       <span><span class="swatch" style="background:#FFFFFF"></span>{lg3}</span>
     </div>
@@ -593,24 +586,12 @@ def build(lang):
   setTopbarH();
   window.addEventListener("resize", setTopbarH);
 
-  var cards = document.querySelectorAll(".card");
-  if (!("IntersectionObserver" in window) ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches) {{
-    cards.forEach(function (c) {{ c.classList.add("in"); }});
-    return;
-  }}
-  var io = new IntersectionObserver(function (entries) {{
-    entries.forEach(function (e) {{
-      if (e.isIntersecting) {{ e.target.classList.add("in"); io.unobserve(e.target); }}
-    }});
-  }}, {{ threshold: 0.12 }});
-  cards.forEach(function (c) {{ io.observe(c); }});
 }})();
 </script>
 </body>
 </html>
 """.format(
-        lang=lang, title=u["title"], favicon=favicon, css=CSS,
+        lang=lang, title=u["title"], favicon=favicon, css=open(os.path.join(REPO, "docs/assets/fonts.css"), encoding="utf-8").read() + CSS,
         topbar=TOPBAR.format(kicker=u["eyebrow"].split("·")[-1].strip()),
         eyebrow=u["eyebrow"], h1=u["h1"], lede=u["lede"],
         s_q=u["s_q"], s_d=u["s_d"], s_p=u["s_p"],

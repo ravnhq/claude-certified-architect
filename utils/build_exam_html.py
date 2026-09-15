@@ -259,23 +259,22 @@ RAVN_LOGO_SVG = (
     '<path d="M8.53644 32.9974C11.4172 32.9974 13.7526 30.7402 13.7526 27.9557C13.7526 25.1713 11.4172 22.9141 8.53644 22.9141C5.65565 22.9141 3.32031 25.1713 3.32031 27.9557C3.32031 30.7402 5.65565 32.9974 8.53644 32.9974Z"/></svg>'
 )
 
+FONT_CSS = open(os.path.join(os.path.dirname(UTILS_DIR), "docs/assets/fonts.css"), encoding="utf-8").read()
+
 CSS = """
-/* Ravn Brand System — dark canvas, white text, muted gray, single gold accent.
-   Flat (no shadows/gradients), Work Sans + Source Code Pro. Functional red is
-   kept only for wrong-answer / fail feedback; green marks correct answers;
-   gold carries selection / emphasis. */
+/* Study controls use the current Ravn palette; feedback colors remain semantic. */
 :root {
-  --bg: #161616; --surface: #1d1d1d; --surface-2: #222222;
-  --fg: #FFFFFF; --fg-soft: #D4D4D4; --muted: #ADB5BD; --subtle: #8B949E;
-  --border: #2A2A2A; --border-strong: #3A3A3A;
-  --gold: #B7986A; --gold-soft: rgba(183,152,106,0.12); --gold-fg: #161616;
+  --bg: #0E0E0E; --surface: #141414; --surface-2: #1C1C1C;
+  --fg: #FFFFFF; --fg-soft: #D4D4D4; --muted: #A3A3A3; --subtle: #949494;
+  --border: #292929; --border-strong: #333333;
+  --accent: #F8E3A0; --accent-soft: rgba(248,227,160,0.12); --accent-fg: #0E0E0E;
   --bad: #C16B57; --bad-soft: rgba(193,107,87,0.14);
-  --good: #6FA97C; --good-soft: rgba(111,169,124,0.14); --good-fg: #161616;
+  --good: #6FA97C; --good-soft: rgba(111,169,124,0.14); --good-fg: #0E0E0E;
   --r-sm: 4px; --r-md: 8px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
-body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 16px; line-height: 1.6; background: var(--bg); color: var(--fg);
   height: 100vh; overflow: hidden; display: flex; flex-direction: column;
   -webkit-font-smoothing: antialiased; }
@@ -285,7 +284,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   border-bottom: 1px solid var(--border); flex-shrink: 0; }
 .ravn-brand { display: inline-flex; align-items: center; gap: 16px; color: var(--fg);
   text-decoration: none; font-weight: 600; }
-.ravn-brand:hover { color: var(--gold); }
+.ravn-brand:hover { color: var(--accent); }
 .ravn-brand svg { height: 20px; width: auto; fill: currentColor; flex-shrink: 0; }
 .ravn-brand-tagline { font-size: 12px; color: var(--muted); text-transform: uppercase;
   letter-spacing: 0.167em; font-weight: 600; }
@@ -296,7 +295,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .mode-toggle button { background: none; border: none; color: var(--muted); cursor: pointer;
   font-family: inherit; font-size: 11.5px; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.1em; padding: 6px 14px; transition: background .15s, color .15s; }
-.mode-toggle button.active { background: var(--gold); color: var(--gold-fg); }
+.mode-toggle button.active { background: var(--accent); color: var(--accent-fg); }
 .mode-hint { font-size: 11.5px; color: var(--subtle); margin-left: 12px; }
 .mode-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 0;
   min-width: 0; justify-content: flex-end; }
@@ -310,7 +309,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   /* A select sizes to its longest option, and the domain names are long
      enough to push the rest of the header off the row. */
   max-width: 220px; min-width: 0; cursor: pointer; }
-.focus-select:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.focus-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .focus-select:disabled { opacity: .35; cursor: default; }
 .new-draw-btn { margin-left: 10px; }
 .new-draw-btn .dn-icon { margin-right: 5px; }
@@ -320,9 +319,9 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .draw-note { padding: 8px 32px; background: var(--surface); color: var(--muted);
   font-size: 12.5px; line-height: 1.5; border-bottom: 1px solid var(--border);
   flex-shrink: 0; }
-.dn-icon { color: var(--gold); font-weight: 700; margin-right: 7px; }
-.rotate-note { margin-top: 26px; padding: 14px 18px; background: var(--gold-soft);
-  border: 1px solid var(--gold); border-radius: var(--r-md); font-size: 13.5px;
+.dn-icon { color: var(--accent); font-weight: 700; margin-right: 7px; }
+.rotate-note { margin-top: 26px; padding: 14px 18px; background: var(--accent-soft);
+  border: 1px solid var(--accent); border-radius: var(--r-md); font-size: 13.5px;
   color: var(--fg-soft); line-height: 1.6; }
 
 .shell { display: flex; flex: 1; min-height: 0; overflow: hidden; }
@@ -333,26 +332,26 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   background: none; border: none; color: var(--muted); cursor: pointer; text-align: left;
   font-family: inherit; font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
   text-transform: uppercase; }
-.toc-group:hover, .toc-group.active { color: var(--gold); }
+.toc-group:hover, .toc-group.active { color: var(--accent); }
 .toc-sub { display: flex; align-items: baseline; gap: 8px; width: 100%; padding: 5px 16px 5px 18px;
   color: var(--muted); text-decoration: none; font-size: 12.5px; line-height: 1.4;
   border-left: 2px solid transparent; }
 .toc-sub:hover { background: var(--surface-2); color: var(--fg); }
-.toc-sub.active { background: var(--gold-soft); color: var(--gold); border-left-color: var(--gold); }
-.toc-sub .toc-id { flex: 0 0 auto; font-family: "Source Code Pro", ui-monospace, Menlo, monospace;
-  font-size: 11px; font-weight: 600; color: var(--gold); }
+.toc-sub.active { background: var(--accent-soft); color: var(--accent); border-left-color: var(--accent); }
+.toc-sub .toc-id { flex: 0 0 auto; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: 11px; font-weight: 600; color: var(--accent); }
 .toc-sub .toc-n { margin-left: auto; flex: 0 0 auto; font-size: 11px; color: var(--subtle); }
 .br-sub .br-anchor { margin-left: auto; color: var(--subtle); text-decoration: none;
   font-weight: 400; opacity: 0; }
 .br-sub:hover .br-anchor, .br-sub:target .br-anchor { opacity: 1; }
-.br-sub .br-anchor:hover { color: var(--gold); }
-.br-sub:target { color: var(--gold); }
+.br-sub .br-anchor:hover { color: var(--accent); }
+.br-sub:target { color: var(--accent); }
 
 .sidebar { width: 272px; min-width: 272px; background: var(--surface); color: var(--muted);
   display: flex; flex-direction: column; overflow: hidden; min-height: 0;
   border-right: 1px solid var(--border); }
 .sidebar-header { padding: 18px 16px 12px; font-size: 11.5px; font-weight: 600;
-  letter-spacing: .167em; text-transform: uppercase; color: var(--gold);
+  letter-spacing: .167em; text-transform: uppercase; color: var(--accent);
   border-bottom: 1px solid var(--border); flex-shrink: 0; }
 .sidebar-progress { padding: 10px 16px; font-size: 12px; color: var(--muted);
   border-bottom: 1px solid var(--border); flex-shrink: 0; }
@@ -371,8 +370,8 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   font-family: inherit; text-align: left; transition: background .15s, color .15s;
   border-left: 3px solid transparent; }
 .q-btn:hover { background: var(--surface-2); color: var(--fg); }
-.q-btn.active { background: var(--gold-soft); color: var(--gold); border-left-color: var(--gold); }
-.q-btn.answered .q-dot { background: var(--gold); }
+.q-btn.active { background: var(--accent-soft); color: var(--accent); border-left-color: var(--accent); }
+.q-btn.answered .q-dot { background: var(--accent); }
 .q-btn.answered-correct { color: var(--good); }
 .q-btn.answered-correct .q-dot { background: var(--good); }
 .q-btn.answered-wrong { color: var(--bad); }
@@ -388,13 +387,20 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .nav-btn { padding: 8px 18px; border-radius: var(--r-md); border: 1px solid var(--border-strong);
   background: transparent; font-family: inherit; font-size: 12px; cursor: pointer; color: var(--muted);
   font-weight: 600; text-transform: uppercase; letter-spacing: .1em; transition: all .15s; }
-.nav-btn:hover { color: var(--fg); border-color: var(--gold); }
+.nav-btn:hover { color: var(--fg); border-color: var(--accent); }
 .nav-btn:disabled { opacity: .35; cursor: default; }
 .nav-btn.finish { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-.nav-btn.finish:hover { background: var(--gold); border-color: var(--gold); color: var(--gold-fg); }
+.nav-btn.finish:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
 .q-counter { font-size: 13px; color: var(--muted); font-weight: 500; }
 
 .content { flex: 1; overflow-y: auto; padding: 36px 48px; }
+/* Question text carries paths, env-var names and error codes that have no
+   break opportunity of their own; `anywhere` lets them wrap so a long token
+   never widens the page past the viewport on a phone. Scoped to the prose
+   containers: on a flex row it would also let short labels such as a count
+   ("19") shrink to one character per line. */
+.q-situation, .q-prompt, .q-select-hint, .opt-text, .opt-expl, .explanation,
+.wi-q, .ds-name, .rotate-note, .br-stem, .br-opt-text, .br-opt-expl { overflow-wrap: anywhere; }
 .content::-webkit-scrollbar { width: 6px; }
 .content::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
 
@@ -402,9 +408,9 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .q-domain { display: inline-block; background: transparent; color: var(--fg); font-size: 11px;
   font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 4px 11px;
   border: 1px solid var(--border-strong); border-radius: var(--r-sm); margin-bottom: 8px; }
-.q-scenario { display: inline-block; background: transparent; color: var(--gold); font-size: 11px;
+.q-scenario { display: inline-block; background: transparent; color: var(--accent); font-size: 11px;
   font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 4px 11px;
-  border: 1px solid var(--gold); border-radius: var(--r-sm); margin-bottom: 16px; margin-left: 8px; }
+  border: 1px solid var(--accent); border-radius: var(--r-sm); margin-bottom: 16px; margin-left: 8px; }
 .q-number { font-size: 11px; color: var(--subtle); margin-bottom: 6px; font-weight: 600;
   letter-spacing: .12em; text-transform: uppercase; }
 .q-situation { font-size: 16.5px; color: var(--fg-soft); font-weight: 400; line-height: 1.7;
@@ -412,10 +418,10 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   padding: 16px 20px; margin-bottom: 22px; }
 .q-situation code, .opt-text code, .explanation code, .opt-expl code {
   background: var(--surface-2); padding: 1px 5px; border-radius: var(--r-sm);
-  font-family: "Source Code Pro", ui-monospace, Menlo, Monaco, monospace; font-size: 13.5px; color: var(--gold); }
+  font-family: "JetBrains Mono", ui-monospace, Menlo, Monaco, monospace; font-size: 13.5px; color: var(--accent); }
 .q-prompt { font-size: 17px; font-weight: 700; color: var(--fg); margin-bottom: 20px; }
 
-.q-select { display: inline-block; background: var(--gold-soft); color: var(--gold); font-size: 11.5px;
+.q-select { display: inline-block; background: var(--accent-soft); color: var(--accent); font-size: 11.5px;
   font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px;
   border-radius: var(--r-sm); margin-bottom: 16px; }
 .q-select-hint { font-size: 12.5px; color: var(--subtle); margin: -8px 0 16px; }
@@ -424,16 +430,16 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   transition: border-color .15s, background .15s; overflow: hidden; }
 .option-head { display: flex; align-items: flex-start; gap: 14px; width: 100%; padding: 14px 18px;
   border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
-.option-head:focus-visible { outline: 2px solid var(--gold); outline-offset: -3px; }
+.option-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
 .option:hover:not(.locked):not(.dimmed) .option-head { background: var(--surface-2); }
-.option:hover:not(.locked):not(.dimmed) { border-color: var(--gold); }
+.option:hover:not(.locked):not(.dimmed) { border-color: var(--accent); }
 .option.locked .option-head, .option-head[aria-disabled="true"] { cursor: default; }
 .option.locked .option-head:disabled { opacity: 1; }
-.option.selected { border-color: var(--gold); }
+.option.selected { border-color: var(--accent); }
 .opt-letter { width: 30px; height: 30px; min-width: 30px; border-radius: 50%; background: var(--surface-2);
   display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;
   color: var(--muted); transition: background .2s, color .2s; flex-shrink: 0; }
-.option.selected .opt-letter { background: var(--gold); color: var(--gold-fg); }
+.option.selected .opt-letter { background: var(--accent); color: var(--accent-fg); }
 .opt-text { font-size: 15px; color: var(--fg-soft); line-height: 1.55; padding-top: 3px; }
 .option.correct { border-color: var(--good); background: var(--good-soft); }
 .option.correct .opt-letter { background: var(--good); color: var(--good-fg); }
@@ -447,23 +453,23 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .option.wrong .opt-expl { color: var(--bad); }
 
 .explanation { margin-top: 4px; padding: 14px 18px; background: var(--surface);
-  border-left: 3px solid var(--gold); border-radius: 0 var(--r-md) var(--r-md) 0; font-size: 14.5px;
+  border-left: 3px solid var(--accent); border-radius: 0 var(--r-md) var(--r-md) 0; font-size: 14.5px;
   color: var(--muted); line-height: 1.65; display: none; }
 .explanation.show { display: block; }
-.explanation strong { color: var(--gold); }
+.explanation strong { color: var(--accent); }
 
 .summary { max-width: 860px; margin: 0 auto; display: none; }
 .summary.show { display: block; }
-.summary h1 { font-size: 26px; font-weight: 800; color: var(--fg); margin-bottom: 6px; }
+.summary h1 { font-size: 26px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
 .summary-subtitle { color: var(--muted); font-size: 15px; margin-bottom: 22px; }
 .verdict { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .12em;
   text-transform: uppercase; padding: 7px 18px; border-radius: var(--r-sm); margin-bottom: 22px; }
-.verdict.pass { background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold); }
+.verdict.pass { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
 .verdict.fail { background: var(--bad-soft); color: var(--bad); border: 1px solid var(--bad); }
 .score-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 14px; }
 .score-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md);
   padding: 20px; text-align: center; }
-.score-card .big { font-size: 38px; font-weight: 800; line-height: 1; margin-bottom: 6px; }
+.score-card .big { font-size: 38px; font-weight: 600; line-height: 1; margin-bottom: 6px; }
 .score-card .label { font-size: 11px; color: var(--muted); font-weight: 600;
   text-transform: uppercase; letter-spacing: .12em; }
 .score-card.total .big { color: var(--fg); }
@@ -478,7 +484,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .ds-name { flex: 1; font-size: 14px; font-weight: 600; color: var(--fg); }
 .ds-name small { color: var(--subtle); font-weight: 500; }
 .ds-bar { width: 160px; height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
-.ds-bar > div { height: 100%; background: var(--gold); }
+.ds-bar > div { height: 100%; background: var(--accent); }
 .ds-bar > div.low { background: var(--muted); }
 .ds-bar > div.bad { background: var(--bad); }
 .ds-pct { width: 92px; text-align: right; font-size: 13px; color: var(--muted); font-weight: 600; }
@@ -495,7 +501,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   border-bottom: 1px solid var(--border); font-size: 14px; color: var(--muted); }
 .wrong-item:last-child { border-bottom: none; }
 .wrong-item .wi-n { min-width: 36px; font-weight: 700; color: var(--subtle); font-size: 12px; padding-top: 2px; }
-.wrong-item .wi-q { flex: 1; }
+.wrong-item .wi-q { flex: 1; min-width: 0; }
 .wrong-item .wi-situation { font-size: 13.5px; color: var(--fg-soft); font-weight: 500; margin-bottom: 4px; line-height: 1.5; }
 .wrong-item .wi-prompt { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 4px; }
 .wrong-item .wi-ans { font-size: 12.5px; margin-top: 3px; color: var(--muted); }
@@ -507,26 +513,26 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .restart-btn { margin-top: 28px; padding: 12px 32px; background: var(--fg); color: var(--bg);
   border: none; border-radius: var(--r-md); font-family: inherit; font-size: 12px; font-weight: 600;
   text-transform: uppercase; letter-spacing: .1em; cursor: pointer; transition: background .15s, color .15s; }
-.restart-btn:hover { background: var(--gold); color: var(--gold-fg); }
+.restart-btn:hover { background: var(--accent); color: var(--accent-fg); }
 .screen { display: none; }
 .screen.active { display: block; }
 
 /* Weak-spot drill + browse entry points share the nav-btn shape; `active`
    marks the one currently scoping the page. */
-.nav-btn.active { background: var(--gold); color: var(--gold-fg); border-color: var(--gold); }
-.dn-action { margin-left: 10px; background: none; border: 0; padding: 0; color: var(--gold);
+.nav-btn.active { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+.dn-action { margin-left: 10px; background: none; border: 0; padding: 0; color: var(--accent);
   font: inherit; font-size: 12.5px; text-decoration: underline; cursor: pointer; }
 
 /* Browse the bank — every question, filtered by domain and free text. Bodies
    are filled on expand, so a 500-item list paints one <summary> row each. */
 .browse-head { max-width: 980px; margin: 0 auto 16px; display: flex; flex-wrap: wrap;
   align-items: center; gap: 10px; }
-.browse-head h1 { flex: 1 1 100%; font-size: 22px; font-weight: 800; color: var(--fg); }
+.browse-head h1 { flex: 1 1 100%; font-size: 22px; font-weight: 600; color: var(--fg); }
 .browse-head .focus-select { margin-left: 0; }
 .browse-search { flex: 1 1 240px; min-width: 0; background: var(--surface); color: var(--fg);
   border: 1px solid var(--border-strong); border-radius: var(--r-md);
   font-family: inherit; font-size: 14px; padding: 8px 12px; }
-.browse-search:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+.browse-search:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .browse-count { flex: 0 0 auto; font-size: 12.5px; color: var(--subtle); }
 .browse-list, .br-empty { max-width: 980px; margin: 0 auto; }
 .br-empty { color: var(--muted); font-size: 14px; }
@@ -537,8 +543,8 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
   padding: 12px 16px; cursor: pointer; list-style: none; }
 .br-head::-webkit-details-marker { display: none; }
 .br-head:hover { background: var(--surface-2); }
-.br-id { flex: 0 0 auto; font-family: "Source Code Pro", ui-monospace, Menlo, monospace;
-  font-size: 11.5px; font-weight: 600; color: var(--gold); }
+.br-id { flex: 0 0 auto; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: 11.5px; font-weight: 600; color: var(--accent); }
 .br-stem { flex: 1 1 260px; font-size: 14.5px; line-height: 1.5; color: var(--fg-soft); }
 .br-ask { display: block; margin-top: 3px; font-size: 12.5px; color: var(--subtle);
   line-height: 1.45; }
@@ -547,7 +553,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
    rows scroll past. */
 .br-group { position: sticky; top: 0; z-index: 1; margin: 22px 0 10px; padding: 6px 0;
   background: var(--bg); font-size: 11px; font-weight: 700; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--gold); }
+  text-transform: uppercase; color: var(--accent); }
 .br-group:first-child { margin-top: 0; }
 .br-sub { display: flex; align-items: baseline; gap: 10px; margin: 14px 0 8px; padding: 0 2px;
   font-size: 13.5px; font-weight: 600; color: var(--fg-soft); }
@@ -557,7 +563,7 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 .br-tag { padding: 3px 8px; border: 1px solid var(--border-strong); border-radius: var(--r-sm);
   font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
   color: var(--muted); white-space: nowrap; }
-.br-tag.cluster { border-color: var(--gold); color: var(--gold);
+.br-tag.cluster { border-color: var(--accent); color: var(--accent);
   font-size: 11px; letter-spacing: normal; text-transform: none; }
 .br-tag.src { border-style: dashed; }
 .br-body { padding: 0 16px 14px; }
@@ -604,6 +610,16 @@ body { font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", 
 @media (max-width: 420px) {
   .mode-hint { width: 100%; margin-left: 0; order: 99; }
   .nav-btn { padding: 8px 10px; }
+  /* Prev / Next / Finish share one row and cannot shrink below their longest
+     word. At 320px the Spanish and Portuguese labels ("Finalizar y revisar")
+     overran the viewport by ~22px, so drop the tracking and padding on that
+     row only, and give the three-word Finish label twice the room of Prev /
+     Next so it does not stack one word per line. */
+  .topbar-nav .nav-btn { padding: 8px 6px; letter-spacing: -0.025em; font-size: 11px; }
+  .topbar-nav .nav-btn.finish { flex: 2; }
+  /* The counter sits inside the nav row; with nowrap it shared the row with
+     the buttons and its `width: 100%` below never took effect. */
+  .topbar-nav { flex-wrap: wrap; }
   /* Fit all three controls on one row at 390px instead of orphaning New set
      onto its own line: trim padding, tracking and the gaps between groups. */
   .mode-controls { gap: 6px; justify-content: flex-start; }
@@ -1855,10 +1871,8 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{page_title}</title>
 {favicon_tag}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800&family=Source+Code+Pro:wght@400;600&display=swap">
-<style>{CSS}</style>
+<style>{FONT_CSS}
+{CSS}</style>
 </head>
 <body>
 {body}
