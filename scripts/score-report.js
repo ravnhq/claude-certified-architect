@@ -832,7 +832,7 @@
 
   function updateShareButtons() {
     const ready = Boolean(currentSavedRecord()) && state.planVisible && !state.storageUnavailable;
-    ["download-guide", "copy-exam-link", "save-exam-file"].forEach(id => {
+    ["download-guide", "copy-guide-link", "copy-exam-link", "save-exam-file"].forEach(id => {
       const button = el(id);
       if (button) button.disabled = !ready;
     });
@@ -1000,6 +1000,24 @@
     url.searchParams.set("targeted", "1");
     url.hash = `r=${encodeSharePayload(record)}`;
     return url.toString();
+  }
+
+  function guideUrlForRecord(record) {
+    const url = new URL(window.location.pathname, window.location.href);
+    url.hash = `r=${encodeSharePayload(record)}`;
+    return url.toString();
+  }
+
+  async function handleCopyGuideLink() {
+    const record = currentSavedRecord();
+    if (!record) return;
+    const url = guideUrlForRecord(record);
+    try {
+      await navigator.clipboard.writeText(url);
+      showShareStatus("Study guide link copied. Opening it restores this exact study guide.", "success");
+    } catch {
+      showShareStatus(url, "");
+    }
   }
 
   async function handleCopyExamLink() {
@@ -1236,6 +1254,8 @@
       if (deleteSaved) deleteSaved.addEventListener("click", deleteSavedStudy);
       const download = el("download-guide");
       if (download) download.addEventListener("click", handleDownloadGuide);
+      const copyGuideLink = el("copy-guide-link");
+      if (copyGuideLink) copyGuideLink.addEventListener("click", handleCopyGuideLink);
       const copyLink = el("copy-exam-link");
       if (copyLink) copyLink.addEventListener("click", handleCopyExamLink);
       const saveFile = el("save-exam-file");

@@ -526,6 +526,7 @@ function scoreReportPage() {
     <div class="report-result-actions"><a id="practice-link" class="report-primary disabled" href="practical/en.html?targeted=1" aria-disabled="true">Start practice exam</a><span id="practice-note"></span></div>
     <div class="report-result-actions report-share-actions">
       <button id="download-guide" class="report-secondary" type="button" disabled>Download study guide (.md)</button>
+      <button id="copy-guide-link" class="report-secondary" type="button" disabled>Copy link to study guide</button>
       <button id="copy-exam-link" class="report-secondary" type="button" disabled>Copy link to custom exam</button>
       <button id="save-exam-file" class="report-secondary" type="button" disabled>Save custom exam (.json)</button>
       <label class="report-secondary report-file-label" for="load-exam-file">Load custom exam<input id="load-exam-file" type="file" accept="application/json,.json" hidden></label>
