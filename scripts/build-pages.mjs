@@ -70,7 +70,10 @@ marked.use({
       const raw = tokens.map(t => t.raw ?? t.text ?? '').join('');
       const id = headingSlug(raw);
       const inner = this.parser.parseInline(tokens);
-      const anchor = `<a class="heading-anchor" href="${pageHref}#${id}" aria-label="${anchorLabel}">#</a>`;
+      // aria-hidden + tabindex="-1": the glyph only appears on hover, so it was
+      // never a keyboard affordance, but its text was landing inside every
+      // heading's accessible name ("Introduction #") on ~294 headings per page.
+      const anchor = `<a class="heading-anchor" href="${pageHref}#${id}" aria-hidden="true" tabindex="-1" title="${anchorLabel}">#</a>`;
       return `<h${depth} id="${id}">${inner} ${anchor}</h${depth}>\n`;
     },
   },
@@ -536,13 +539,16 @@ function scoreReportPage() {
       <button id="replace-report" class="report-text-button" type="button">Upload another report</button>
     </div>
     <div class="report-result-actions"><a id="practice-link" class="report-primary disabled" href="practical/en.html?targeted=1" aria-disabled="true">Start practice exam</a><span id="practice-note"></span></div>
-    <div class="report-result-actions report-share-actions">
-      <button id="download-guide" class="report-secondary" type="button" disabled>Download study guide (.md)</button>
-      <button id="copy-guide-link" class="report-secondary" type="button" disabled>Copy link to study guide</button>
-      <button id="copy-exam-link" class="report-secondary" type="button" disabled>Copy link to custom exam</button>
-      <button id="save-exam-file" class="report-secondary" type="button" disabled>Save custom exam (.json)</button>
-      <label class="report-secondary report-file-label" for="load-exam-file">Load custom exam<input id="load-exam-file" type="file" accept="application/json,.json" hidden></label>
-    </div>
+    <details class="report-share">
+      <summary class="report-share-summary">Share or export</summary>
+      <div class="report-result-actions report-share-actions">
+        <button id="download-guide" class="report-secondary" type="button" disabled>Download study guide (.md)</button>
+        <button id="copy-guide-link" class="report-secondary" type="button" disabled>Copy link to study guide</button>
+        <button id="copy-exam-link" class="report-secondary" type="button" disabled>Copy link to custom exam</button>
+        <button id="save-exam-file" class="report-secondary" type="button" disabled>Save custom exam (.json)</button>
+        <label class="report-secondary report-file-label" for="load-exam-file">Load custom exam<input id="load-exam-file" type="file" accept="application/json,.json" hidden></label>
+      </div>
+    </details>
     <p id="share-status" class="report-status" role="status" aria-live="polite"></p>
     <p id="plan-status" class="report-status" role="status" aria-live="polite"></p>
     <p id="persistence-note" class="report-file-note"></p>

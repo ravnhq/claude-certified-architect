@@ -1279,6 +1279,14 @@
       renderReviewSummary();
       if (!importHashRecord()) restoreSavedPlan();
       updateShareButtons();
+      // A share link opened while this page is already at score-report.html is a
+      // same-document navigation: nothing re-runs init, so without this the
+      // second link silently kept showing the first one's plan.
+      if (typeof window !== "undefined" && window.addEventListener) {
+        window.addEventListener("hashchange", () => {
+          if (importHashRecord()) updateShareButtons();
+        });
+      }
     } catch (error) {
       console.error("Score report feature failed to load", error);
       showStatus("The score-report tool could not load its local PDF reader. Refresh the page or rebuild the site.", "error");

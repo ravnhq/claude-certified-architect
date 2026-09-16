@@ -147,7 +147,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .icon-btn {
   background: transparent;
   border: 1px solid var(--border-strong);
-  width: 34px; height: 34px;
+  width: 44px; height: 44px;
   border-radius: var(--radius-md);
   cursor: pointer;
   font-size: 14px;
@@ -396,16 +396,16 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .report-status.error { color: var(--report-focus); }
 .review-summary { margin: 0 0 20px; padding: 12px 14px; border: 1px solid var(--border-strong); border-radius: var(--radius-md); color: var(--muted); font-size: 0.9rem; }
 .review-list { display: grid; gap: 10px; }
-.report-row { display: grid; grid-template-columns: minmax(0, 1fr) 116px minmax(220px, 1.1fr); gap: 16px; align-items: end; padding: 18px; border: 1px solid var(--border); border-left: 3px solid var(--border-strong); border-radius: var(--radius-md); background: var(--bg); }
-.report-row.focus { border-left-color: var(--report-focus); }
-.report-row.next { border-left-color: var(--report-next); }
-.report-row.maintain { border-left-color: var(--report-maintain); }
+.report-row { display: grid; grid-template-columns: minmax(0, 1fr) 116px minmax(220px, 1.1fr); gap: 16px; align-items: end; padding: 18px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); }
+.report-row.focus .report-row-meta { color: var(--report-focus); }
+.report-row.next .report-row-meta { color: var(--report-next); }
+.report-row.maintain .report-row-meta { color: var(--report-maintain); }
 .report-row-copy { min-width: 0; }
 .report-row-copy p { margin: 5px 0 0; line-height: 1.45; }
 .report-row-copy small { display: block; margin-top: 8px; color: var(--subtle); font-size: 0.78rem; line-height: 1.4; }
-.report-row-meta, .study-theme, .study-rank { color: var(--accent); font: 600 0.68rem/1.4 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+.report-row-meta, .study-theme, .study-rank { color: var(--accent); font: 600 0.7rem/1.4 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
 .report-unknown { color: var(--report-focus) !important; }
-.report-score-field, .report-objective-field { display: grid; gap: 6px; color: var(--subtle); font: 600 0.68rem/1.4 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.06em; text-transform: uppercase; }
+.report-score-field, .report-objective-field { display: grid; gap: 6px; color: var(--subtle); font: 600 0.7rem/1.4 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.06em; text-transform: uppercase; }
 .report-score-field input, .report-objective-field select { width: 100%; min-height: 42px; padding: 8px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--bg-elev); color: var(--fg); font: 500 0.9rem/1.3 "JetBrains Mono", ui-monospace, monospace; }
 .report-score-field input:focus, .report-objective-field select:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
 .report-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
@@ -422,10 +422,10 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .report-plan-heading > div { max-width: 760px; }
 .plan-count { flex: 0 0 auto; color: var(--muted); font: 600 0.72rem/1.5 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
 .study-list { display: grid; gap: 12px; }
-.study-card { padding: 22px; border: 1px solid var(--border); border-left: 3px solid var(--border-strong); border-radius: var(--radius-md); background: var(--bg-elev); }
-.study-card.focus { border-left-color: var(--report-focus); }
-.study-card.next { border-left-color: var(--report-next); }
-.study-card.maintain { border-left-color: var(--report-maintain); }
+.study-card { padding: 22px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-elev); }
+.study-card.focus .study-priority { color: var(--report-focus); }
+.study-card.next .study-priority { color: var(--report-next); }
+.study-card.maintain .study-priority { color: var(--report-maintain); }
 .study-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-variant-numeric: tabular-nums; }
 .study-card-head strong { margin-left: auto; font: 600 1.35rem/1 "JetBrains Mono", ui-monospace, monospace; }
 .study-priority { color: var(--muted); font: 600 0.7rem/1.4 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -433,6 +433,15 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .study-card p { margin: 8px 0; color: var(--muted); line-height: 1.5; }
 .study-card strong { color: var(--fg); }
 .study-guidance { margin-top: 16px; border-top: 1px solid var(--border); }
+.study-guidance > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  min-height: 44px; list-style: none;
+}
+.study-guidance > summary::-webkit-details-marker { display: none; }
+.study-guidance > summary::after { content: "+"; font-size: 0.95rem; line-height: 1; }
+.study-guidance[open] > summary::after { content: "\2212"; }
+.study-guidance > summary:hover { color: var(--fg); }
+.study-guidance > summary:hover::after { color: var(--accent); }
 .study-guidance[open] > summary { margin-bottom: 12px; }
 .study-guidance > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .study-guidance h4 { margin: 18px 0 6px; font-size: 0.9rem; }
@@ -443,7 +452,25 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .report-file-note { margin: 12px 0 0; color: var(--muted); font-size: 0.82rem; }
 .report-result-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin: 28px 0; }
 .report-result-actions > span { color: var(--muted); font-size: 0.9rem; }
-.report-share-actions { margin-top: -12px; }
+.report-share-actions { margin-top: 4px; }
+/* .report-result-actions sets display:flex, which outranks the UA rule that
+   hides a closed details' children, so the buttons need hiding explicitly. */
+.report-share:not([open]) .report-share-actions { display: none; }
+.report-share { margin: 4px 0 8px; }
+.report-share-summary {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 44px; cursor: pointer; list-style: none;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--subtle); transition: color .15s var(--ease);
+}
+.report-share-summary::-webkit-details-marker { display: none; }
+.report-share-summary::after { content: "+"; font-size: 0.95rem; line-height: 1; }
+.report-share[open] .report-share-summary::after { content: "\2212"; }
+.report-share-summary:hover,
+.report-share[open] .report-share-summary { color: var(--fg); }
+.report-share-summary:hover::after { color: var(--accent); }
+.report-share-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 .report-file-label { cursor: pointer; }
 .report-file-label input { display: none; }
 .report-objective-field input[type="search"] {
@@ -845,3 +872,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .hero .eyebrow, .track-label, .card h2, .guide .eyebrow { font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 500; letter-spacing: .06em; }
 .hero { background: radial-gradient(ellipse at 65% 35%, rgba(148,163,184,.09), transparent 70%); }
 h1, h2, h3 { text-wrap: balance; }
+
+/* Section rules that sit directly before a heading duplicate the spacing the
+   heading already carries. Part breaks (hr before h1) keep their rule. */
+.guide hr:has(+ h2) { display: none; }
