@@ -236,10 +236,29 @@ function landing() {
     },
   ];
 
-  // The card answers "which track am I?" above the fold and keeps the full
-  // resource matrix one disclosure away, so tracks with four materials and
-  // tracks with six stay the same height in the grid.
-  const trackCard = tr => `
+  // Every track ships these three, so they stay visible on every card and give
+  // the three cards an identical resource block. Matched by label rather than
+  // by position, so reordering a track's resources cannot silently demote one.
+  const CORE_RESOURCES = ['Study guide', 'Practice exam', 'Question bank'];
+
+  // A row with one language has one destination, so the whole row is the link
+  // rather than a chip-sized target beside inert text. Multi-language rows keep
+  // a chip per language, because each one goes somewhere different.
+  const resourceRows = rs => rs.map(r => r.langs.length === 1 ? `
+        <li><a class="cr-row" href="${r.langs[0][1]}"><span class="cr-label">${r.label}</span><span class="cr-langs"><span class="cr-chip">${r.langs[0][0]}</span></span></a></li>` : `
+        <li><span class="cr-label">${r.label}</span><span class="cr-langs">${
+          r.langs.map(([code, href]) => `<a href="${href}">${code}</a>`).join('')
+        }</span></li>`).join('');
+
+  // The card answers "which track am I?" above the fold, shows the three core
+  // materials, and keeps the rest one disclosure away, so a track with six
+  // materials and a track with four stay the same height in the grid.
+  const trackCard = tr => {
+    const core = CORE_RESOURCES
+      .map(label => tr.resources.find(r => r.label === label))
+      .filter(Boolean);
+    const rest = tr.resources.filter(r => !CORE_RESOURCES.includes(r.label));
+    return `
     <article class="card chooser-card">
       <h2 class="chooser-name"><a class="chooser-primary" href="${tr.resources[0].langs[0][1]}">${tr.name}</a></h2>
       <p class="card-summary">${tr.summary}</p>
@@ -248,17 +267,16 @@ function landing() {
         <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">${tr.items}</dd></div>
         <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">${tr.langs}</dd></div>
       </dl>
-      <a class="chooser-link" href="${tr.resources[0].langs[0][1]}">Read the study guide</a>
+      <ul class="chooser-res chooser-res-core">${resourceRows(core)}
+      </ul>${rest.length ? `
       <details class="chooser-more">
-        <summary class="chooser-more-summary">All ${tr.resources.length} materials</summary>
-        <ul class="chooser-res">${tr.resources.map(r => `
-        <li><span class="cr-label">${r.label}</span><span class="cr-langs">${
-          r.langs.map(([code, href]) => `<a href="${href}">${code}</a>`).join('')
-        }</span></li>`).join('')}
+        <summary class="chooser-more-summary">${rest.length} more</summary>
+        <ul class="chooser-res">${resourceRows(rest)}
         </ul>
-      </details>
+      </details>` : ''}
       <a class="chooser-reg" href="${tr.register}">Register with Anthropic</a>
     </article>`;
+  };
 
   return `<main class="landing">
   <section class="hero">

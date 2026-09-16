@@ -151,10 +151,12 @@ Do not apply pill geometry to every control.
 - **Primary action:** white background, dark label, 8px radius, visible focus state.
 - **Secondary action:** transparent or subtly elevated surface with a neutral border.
 - **Track chooser:** all three exams as equal-width peers in one grid, each card
-  carrying the exam name, who it is for, exam code / item count / languages, and a
-  single primary action. The per-language resource matrix sits behind a collapsed
-  disclosure so tracks with four materials and six materials keep the same height;
-  registration is a quiet tertiary link, below the free material this site ships.
+  carrying the exam name, who it is for, and exam code / item count / languages.
+  Study guide, practice exam, and question bank are always visible with a language
+  chip per row; remaining materials sit behind a collapsed disclosure so tracks
+  with four and six materials keep the same height. A row with one language is a
+  full-row link; a row with several keeps one chip per destination. Registration
+  is a quiet tertiary link, below the free material this site ships.
 - **Question bank:** stable question numbers, readable stems, compact metadata,
   expandable answers, and text search. Preserve exact-number search such as `#42`.
 - **Quiz:** selection and correctness remain visually distinct; feedback includes text.

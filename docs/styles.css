@@ -727,7 +727,8 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   .report-plan-heading { display: block; }
   .plan-count { display: block; margin-top: 12px; }
   /* Language chips are the phone-drill entry point; give them a real target. */
-  .chooser-card .chooser-res li a {
+  .chooser-card .chooser-res .cr-langs a,
+  .chooser-card .chooser-res .cr-chip {
     display: inline-flex; align-items: center; justify-content: center;
     min-width: 44px; min-height: 44px; padding: 3px 9px;
   }
@@ -745,18 +746,34 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
    tri-language track and a single-language track on the same card template.
    These override .card li a, which lays links out as full-width rows. */
 .chooser-res { list-style: none; margin: 14px 0 0; padding: 0; display: block; }
+/* The core three sit directly on the card; the disclosure list is already
+   spaced by its summary. */
+.chooser-res-core { margin-top: 18px; }
 .chooser-card .chooser-res li { display: flex; align-items: center;
   justify-content: space-between; gap: 12px; margin: 0; padding: 9px 0;
   border-bottom: 1px solid var(--border); }
 .chooser-card .chooser-res li:first-child { border-top: 1px solid var(--border); }
 .chooser-card .cr-label { font-size: 0.88rem; color: var(--fg); }
 .chooser-card .cr-langs { display: inline-flex; gap: 6px; flex-shrink: 0; }
-.chooser-card .chooser-res li a { display: inline-block; width: auto; padding: 3px 9px;
+.chooser-card .chooser-res .cr-langs a,
+.chooser-card .chooser-res .cr-chip { display: inline-block; width: auto; padding: 3px 9px;
   border: 1px solid var(--border); border-bottom: 1px solid var(--border);
   border-radius: var(--radius-sm); font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem; letter-spacing: 0.06em; color: var(--accent); }
 .chooser-card .chooser-res li a::after { content: none; }
-.chooser-card .chooser-res li a:hover { border-color: var(--accent); background: var(--bg-elev); }
+.chooser-card .chooser-res .cr-langs a:hover { border-color: var(--accent); background: var(--bg-elev); }
+
+/* Single-destination row: the label and its chip are one target. Overrides the
+   .card li a base rule, whose own border and arrow would double the row's. */
+.chooser-card .chooser-res li .cr-row {
+  flex: 1;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 0; border-bottom: 0; color: var(--fg); font-size: 0.88rem;
+}
+.chooser-card .chooser-res li .cr-row:hover { color: var(--accent); }
+.chooser-card .chooser-res li .cr-row:hover .cr-chip {
+  border-color: var(--accent); background: var(--bg-elev);
+}
 
 /* Whole-card tap target. The title link stretches over the card, so tapping
    anywhere opens the English study guide; the language chips and the register
