@@ -1255,7 +1255,7 @@ async function buildGuides() {
       title: `${l.title || l.label} — Claude Certified Architect · Ravn`,
       lang: l.code,
       baseHref: RAVN_BASE_HREF,
-      body: `${header(l.code)}<main class="guide">${renderToc(tocEntries, ui.contents, pageHref)}${html}</main>`,
+      body: `${header(l.code)}<main class="guide">${renderToc(tocEntries, ui.contents, pageHref)}<div class="guide-body">${html}</div></main>`,
     }));
   }
 

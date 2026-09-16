@@ -107,7 +107,7 @@
   // viewports), collapsed inline otherwise; highlight the section in view.
   const toc = document.querySelector('.guide-toc');
   if (toc) {
-    const wide = matchMedia('(min-width: 1240px)');
+    const wide = matchMedia('(min-width: 1160px)');
     const syncOpen = () => { toc.open = wide.matches; };
     syncOpen();
     wide.addEventListener('change', syncOpen);

@@ -713,14 +713,18 @@ html, body { overscroll-behavior-y: none; }
     max-width: calc(252px + 120px + 880px);
     padding: 72px 40px 140px;
   }
-  .guide > * { grid-column: 2; min-width: 0; }
-  .guide > p, .guide > ul, .guide > ol, .guide > blockquote,
-  .guide > h1, .guide > h2, .guide > h3, .guide > h4 { max-width: var(--max-prose); }
-  .guide > table, .guide > pre { max-width: 100%; }
+  .guide-body {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+  }
+  .guide-body > p, .guide-body > ul, .guide-body > ol, .guide-body > blockquote,
+  .guide-body > h1, .guide-body > h2, .guide-body > h3, .guide-body > h4 { max-width: var(--max-prose); }
+  .guide-body > table, .guide-body > pre { max-width: 100%; }
 
   .guide-toc {
     grid-column: 1;
-    grid-row: 1 / -1;
+    grid-row: 1;
     position: sticky;
     top: calc(var(--topbar-h, 64px) + 40px);
     align-self: start;
@@ -739,6 +743,7 @@ html, body { overscroll-behavior-y: none; }
 
 .guide img { max-width: 100%; }
 .guide { overflow-wrap: break-word; }
+.guide-body { min-width: 0; overflow-wrap: break-word; }
 
 /* ---------- placeholder pages ---------- */
 .placeholder {
