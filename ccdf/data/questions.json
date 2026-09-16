@@ -34,8 +34,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "005c34a0ca708d4274bdd5254fb746b2f3691effa6f5a25f4f019278c859e6f1"
  },
  {
@@ -73,8 +72,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0a89c9c77f516fb5432d808dc2e16af3f5e0b5eb1ba72181129b525706b4cf1d",
   "cluster": "288eb50c"
  },
@@ -113,8 +111,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0d99ef3bf33757cc307fb26e0c679371736ad77b7cf4c2a2201e85abaa8e76cc",
   "cluster": "83f1e856"
  },
@@ -169,9 +166,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "0eafd7c9b2d6f0a611a9e4a5fa4762425b227e1fe3c887a4503d620f42141019"
  },
  {
@@ -209,8 +205,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "10c27acad7b34287f6edb2a6273e1cc29bfe8508f2266734c9fd2148fcf55abc",
   "cluster": "fed3dbc6"
  },
@@ -249,8 +244,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "11b32607e9dd1bfe24f6534d2030a269c4d711b3f5d763d496c812ee64062734"
  },
  {
@@ -288,8 +282,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "1aa63ae347b1b866e7516d623aeb9c1b0a36013fb8e45a83134a670df25b4833"
  },
  {
@@ -327,8 +320,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "21d60d2c8c35167505a749c1d710b21afb9954c9261c64aeddc8ef032bf19a6c",
   "cluster": "74be4b2e"
  },
@@ -367,8 +359,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "25809f6f5eee191e6ae68f89bf00fef25c7920eacaa3057b814ca94aed0ce05f",
   "cluster": "a00caada"
  },
@@ -407,8 +398,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "28d512c6d9b7a68f9dbfe1a42be8f99d0908918eda6ca5a9990c1fa3cf64c534"
  },
  {
@@ -446,8 +436,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "28ecffc57d0e539260c45f091a6a3959ec990a226949366e979693374e2b1d54"
  },
  {
@@ -485,8 +474,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2e88542b638809dca5031e75601c515e3d2281e3f201abdf5ae37fcf1962753d"
  },
  {
@@ -524,8 +512,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2fdd1b15672b2fab6bddaa54133e55d48488803ff93ccc942ac246c3859c0a75",
   "cluster": "1aac935f"
  },
@@ -564,8 +551,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3340f5123f86f1d8a69f1e2fef2d4ecf555730f8c7d7b9bd8e66203fe910bcee",
   "cluster": "74be4b2e"
  },
@@ -614,9 +600,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "3c74433c857b280f3dd168c7365a30573fbf0bf17be1a5fb5de2386f6936f2b2",
   "cluster": "625b2801"
  },
@@ -655,8 +640,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "40201bf884c9c35796702e26a460030d339b813f6ea8e37421cc9f8f15b00d79"
  },
  {
@@ -694,8 +678,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "454da1967b23225b53c0a6277ea7bf77fc798e53f0da59ddf535d427bd16797f"
  },
  {
@@ -748,9 +731,8 @@
    "F"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "45fa7581dddaa5e4e2e0324aeb79e90b70f150c6e0916383f70fda5e7eda78e8"
  },
  {
@@ -803,9 +785,8 @@
    "E"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "480569d4a9f40cd4a563fc8ae1307c281a8348aeaf5b2a28dd2fef2f27c30479"
  },
  {
@@ -843,8 +824,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "481583f83b98c9e2d1aaee737286ced52ab4f883bda61fd2d20f23e97de824fd"
  },
  {
@@ -891,9 +871,8 @@
    "C"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "495b514994259c8e30eebc63c2001a5ba62657d3175f23c24eb6abc3ba70ad56",
   "cluster": "c5acb919"
  },
@@ -941,9 +920,8 @@
    "E"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "4abec099de658a1804ee32e925ff071f058e9f9286b2a096acb85767dfec53df",
   "cluster": "c5acb919"
  },
@@ -982,8 +960,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "5195fa35dae34f25ba139039140fc82151d39c0ede637f6ae56ab818747dffdc"
  },
  {
@@ -1021,8 +998,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "537444f83111486a3a8ab239403aaf3c144e157bbb9afaf10b40c9aa810a0e7e"
  },
  {
@@ -1060,8 +1036,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "557e1fd770ae2076e5919082c06621404b226ffb4594966928476982da3aa4ba",
   "cluster": "7e4143a7"
  },
@@ -1100,8 +1075,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "5907d491ea66288a8140cbc0d587eccd5dfd97f3bfaa426364ac64d98b5591b5"
  },
  {
@@ -1149,9 +1123,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "5dfe68ca05c6a7dc984f78beff9afdfc6e2f1c7355f1439e24d0e1a5989d4e1a"
  },
  {
@@ -1189,8 +1162,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "5e26d43cbd05a9462e00ab0543ae806f1a58c2a538f45997b4a80ce1043ee189"
  },
  {
@@ -1228,8 +1200,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "660db99486bf8e523725a2406a25d0548f856b2194d4130033808efd4f0842c1"
  },
  {
@@ -1267,8 +1238,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "6645a9a1d755865c81e86520bb5700dc02ce19eee519f28f31171b9b3cac6fcf"
  },
  {
@@ -1306,8 +1276,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "714ad1e5dbb6ee9c586b013c6943fc555aec2df6f42cef4f49a828fcff981427"
  },
  {
@@ -1345,8 +1314,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "71f02a07c8b4715f2b6328dadf5f8e4a2b3f3bbf94aaa04b9efd7d69d3febfdb"
  },
  {
@@ -1394,9 +1362,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "72a266949cd2c96ce26736768ea4e90d51c11f6684b2d845572c6099822567cb",
   "cluster": "625b2801"
  },
@@ -1435,8 +1402,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "78b08226a06fc6e07b2ff64fdf368a6663093d5a1f739716d2d2d00acd49f38d"
  },
  {
@@ -1474,8 +1440,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "793b4b1c83bc2fe3d23daca5f77c249742175c36037c47202684b65e3836c5dc"
  },
  {
@@ -1529,9 +1494,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "7d2e54ad4aa946ddef5318503799ebc1b0b6ce88b34bca9c820de311d780c483"
  },
  {
@@ -1569,8 +1533,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "84ce8656c87543021e791b7fc8fc278fd4e725e2c58ea2f969ba95e769014760"
  },
  {
@@ -1608,8 +1571,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "88f01f8bf19141c13b16f56d944ecdc4ca2123748758d15704b9807d542fae8f",
   "cluster": "7e4143a7"
  },
@@ -1648,8 +1610,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8dfc8ebab3db5c327c6a7c72b7c5ff2516c8025220b84098cfb8c7b181af78fb",
   "cluster": "b0b06a6d"
  },
@@ -1688,8 +1649,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8eafa90671146c19c6abfa686682383f212f6e0cc4d49e8cccf61e6891c53828"
  },
  {
@@ -1743,9 +1703,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "94ffc55059dedea5931b45e2cc5ddae313a33ea40f8f1cb1d0d632834b79c487"
  },
  {
@@ -1783,8 +1742,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "95a4a3ed54cd8043de3d4a820ac7c16d50fbcfbc40913bf3ab7379458276b5a5",
   "cluster": "fadc26c8"
  },
@@ -1823,8 +1781,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "964ae17949894482f99ee937a1c4ab19bd1a59b17889284f2560e5677827d0d5"
  },
  {
@@ -1862,8 +1819,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "96cf0d7ebaa1c2a0a0ab95788c0c05e6b312cee579cdf8f29aea6a44249cdeb7",
   "cluster": "c9c4e28a"
  },
@@ -1902,8 +1858,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "9bb685785ce748931e630303d04c5df9a47a90ca9272235b80ff684fcc84905f",
   "cluster": "288eb50c"
  },
@@ -1942,8 +1897,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "9c70eefeb74d6fba14f45406b00bbd62f09c667b32dfe01193d877068a303774"
  },
  {
@@ -1981,8 +1935,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "9d19c6bc14dc68fa97ae75d27591fe742a4e44ed4208dff8748ac1b19e5980cf",
   "cluster": "b0b06a6d"
  },
@@ -2021,8 +1974,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a1f950adcc54c96a0ff8897a56de61e69d36ee1afa6d0f6ee593e1fd72320ad4"
  },
  {
@@ -2060,8 +2012,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a208c9f1b426ba8401857f961a8f9d4514d50ba12f6d38e1111543855264516e"
  },
  {
@@ -2099,8 +2050,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b35afba1501926f0520c16c8674722e889da814e356b0f46be86350375b3db4d"
  },
  {
@@ -2138,8 +2088,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "bcc31f5f99de86981d21c273a7272cb5c29e9709c971a6233663df903d2fe0f6"
  },
  {
@@ -2177,8 +2126,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "bcf18bde8e6850addfd618208692edeafbbbc29ed1e7b6dc57c7ec237991249f"
  },
  {
@@ -2216,8 +2164,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "c2d42fa0a2708fb8def443397ebaa4838fc9cb2151298a94f4b8961eb00d9113"
  },
  {
@@ -2255,8 +2202,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "c84734c58d4a85613e2ebdf7b349d2c5b362a409168ed0fad1799828381c662e",
   "cluster": "c9c4e28a"
  },
@@ -2295,8 +2241,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "daabf213e5e7633b605cf8de938597d7d05386b3adadca8387ff8b625daa4fd8"
  },
  {
@@ -2350,9 +2295,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "db09767326039852ea00bf8e8227690f9c99b11bc9b68bb4a321cce37f31c186"
  },
  {
@@ -2406,9 +2350,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "dbe12a232e36a22f3fb08be20e8b5d91766af83d2af3d1b6c342b5f9c9547516"
  },
  {
@@ -2446,8 +2389,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "dc1064ebc7121d1c0d6c5641005dd6152f6985f80094afa510a592c526155552"
  },
  {
@@ -2485,8 +2427,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "de3195faef02016f0b2f311c93c03fcfb5bf3af0bca3a0b2a3d2c677e38de78e"
  },
  {
@@ -2524,8 +2465,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "de386194d8c7b3e95413faa84ea40747b6855e0b7a997a42416f8445587abd5e",
   "cluster": "83f1e856"
  },
@@ -2564,8 +2504,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "de808715d1bac3300a0e4ac0d9b21fb28bb694db7cc94ebbe06db40d10cae818",
   "cluster": "fadc26c8"
  },
@@ -2604,8 +2543,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e3e319f50411d44c12d7b4ec5909606a3e1fbc5d238e027d30c7d055f08b982a"
  },
  {
@@ -2643,8 +2581,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e886a82b643b281b4ea7b323adbcdb354d51d4cf3c593ea1269238abae104399",
   "cluster": "1aac935f"
  },
@@ -2699,9 +2636,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "e8bb369055ebb07a7086be4a6114915b774cb1cd3ef0f5f3780638072b659c9c"
  },
  {
@@ -2749,9 +2685,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "ef49688ac32ddb7ef319cc585b2a184c560345383ce6b309cd52e31fa2f3d68d"
  },
  {
@@ -2789,8 +2724,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "f47814b44b6944f6a5e5bbb784e3e149b8e3c03d5f6ee52fda6ca9ab976da989"
  },
  {
@@ -2828,8 +2762,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "f94f4fea6eec9275b0a462d13745e733bf2d5ed82c86f40239081c577c96ca52",
   "cluster": "fed3dbc6"
  },
@@ -2868,8 +2801,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ff9cecb691d829caeee858aec2903dc2538087722dc997b8d940f78588c33a5c",
   "cluster": "a00caada"
  },
@@ -2908,8 +2840,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "005c00d2ab54b14f26eb07dc7821dbef1e9c832a44dbe9614b9ef4703447ee98"
  },
  {
@@ -2947,8 +2878,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "009727d6439a7da646b667126d0562abe39eb04142f70ba0222807b991eb8b0f"
  },
  {
@@ -2986,8 +2916,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "08a5d62351db38f5d229b4bcc110797e87f328fb7e180fb5f88fd46294d46d26",
   "cluster": "582e03c6"
  },
@@ -3026,8 +2955,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "09ad388edbeda948b46cb95c30aad9a42f846d88ba09b57b9433d756a408a57d"
  },
  {
@@ -3065,8 +2993,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0da73633a8d6df775ece8de0b8ea6af7ff1e7ffe9b51a0087c425c95a622c68d"
  },
  {
@@ -3104,8 +3031,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0e99b82ecd1bc7344e7db60ea76dd3243fccee7388e584cde672ad8797eb8f62"
  },
  {
@@ -3143,8 +3069,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "10afbfc7e2dc2d5b0eca9fe891b417ba20fb977d0fd1ec55b93460e594630e2c"
  },
  {
@@ -3192,9 +3117,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "12bf9a767c50c387a983f4a66a05a5d23598641c609d882ca752a32681bd2aaa"
  },
  {
@@ -3232,8 +3156,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "168fef10f521102084d471cb79403048db53c7ab9ca6ac39a87683c281a34758"
  },
  {
@@ -3281,9 +3204,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "1a3940b69cc104a3927b1ee581f1c69b10bde36b7c19576b0410c20e49c5d8fe"
  },
  {
@@ -3331,9 +3253,8 @@
    "C"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "1cc765f517cde54e5e096baae1ae41b854eccfb8d35eff8cff4a84d29d516c8e"
  },
  {
@@ -3387,9 +3308,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "1d3b1576e42a8578dbdbc49f44465af932cf60bc0111101c4d2dcc08859226ad"
  },
  {
@@ -3427,8 +3347,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "1f498fd760be880e321e871d1a27ac04c7f2685cdc6bb8613704db1a95b85baf"
  },
  {
@@ -3466,8 +3385,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "23d1f6233a41e529958c17458ac0dc1bb9cdca711d76c1438958ed0252922ad8"
  },
  {
@@ -3505,8 +3423,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "24b8987e6e896c05118818f7152da159cb3d89b8fe59b93d1922251bc7cea131"
  },
  {
@@ -3544,8 +3461,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "26b24b53728a62f69cc98f021aea0de8f6b3c9588b06e733c5c6776eb40b6018"
  },
  {
@@ -3583,8 +3499,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "275ac79d63a23f0a7044d13784888098de4cbc0e76a10e4a3bedd207a448b54e",
   "cluster": "582e03c6"
  },
@@ -3633,9 +3548,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "2c3af1d48834920687500658d5876e2d8bb424ced7d8b2dedaaab16268198164"
  },
  {
@@ -3673,8 +3587,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2cec0603b576be8da0f2169c5ba944fe65066921c65700a140150220c752b1b9"
  },
  {
@@ -3712,8 +3625,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2d77af1641ff6e99f29927811c0fd24970e0f2f1980a3652148821e57f909bce",
   "cluster": "b3e00471"
  },
@@ -3752,8 +3664,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "301855cf719efb5fd58229a8f5a8494f1774d8d2ebb47196f740a2c87fb501f0"
  },
  {
@@ -3807,9 +3718,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "31062538628ce19cd1efae3633798a322ebf0432fba0cbf06fbbb4b0a09e09cd"
  },
  {
@@ -3847,8 +3757,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3379d78fe46c2323009eef69130f65abdba1e20fc662f4c73fa746674f625ff2"
  },
  {
@@ -3896,9 +3805,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "34478462dadaf355321c9fe518ed3bdcaa5ea9e648632b798325d5ba7f3fe1f7"
  },
  {
@@ -3936,8 +3844,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3a2c20c2860daab37f9b81f273dd710c9f855b7040b8549f4d9887c9981185d5"
  },
  {
@@ -3975,8 +3882,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3a397f10250cdeb33d96be425f88c413a5d84ca8961acac145daba3bdce48489"
  },
  {
@@ -4030,8 +3936,7 @@
    "E"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3ea50cee08c9810415318dc0014766f7ddd117eaf29ecf07e8dfcf9618558058"
  },
  {
@@ -4069,8 +3974,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3f26495991cb09e1057df695c00da4b13e0a1635bdeb7ace9349c0704f3d7c81"
  },
  {
@@ -4108,8 +4012,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3f7987f1fa2b2215370577c6b5d00eb7f3a13519e855020cc05c3169bd5b0f18"
  },
  {
@@ -4163,9 +4066,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "4281af3bb0505ba483c7a3180e3097615cbb701aabce59d9e2ac59157bddf0e9"
  },
  {
@@ -4206,9 +4108,8 @@
    "C"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "437727d87ab54bc6f2a1a30d32c17cd894b71f9fa9f0317c119ff4c48e4add9f"
  },
  {
@@ -4262,8 +4163,7 @@
    "E"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "44d01693b5f3892456040b2e88bc8f60ffb490f372ebf8146bc34fee7ec0834d"
  },
  {
@@ -4301,8 +4201,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "44d49bf66293c7a31a4fd79d2a0d9c097834a175417f7140375b4b5e81dc537c"
  },
  {
@@ -4340,8 +4239,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "46117b5d7cafbd57ed2e3f13cd552ec963a96938b0ea24cdbfec0d284dd2f62a"
  },
  {
@@ -4379,8 +4277,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "4677afbc2975ea3dbf1dda0eaba281dc02604ea89e083bceca4c66554e0247dd"
  },
  {
@@ -4418,8 +4315,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "476d17669df0ea0d46ad786ae5cf00abe6912c8e524a22bb823703d4a0befbe7"
  },
  {
@@ -4457,8 +4353,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "4aac85e076822f5041470db21e6d4cc7066584ebff601ab710b36224b45a3985"
  },
  {
@@ -4496,8 +4391,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "4ace65b675f3160d45c8868f87f7feca8ecd9aa7ed9c119893bafa3ee69bac90"
  },
  {
@@ -4535,8 +4429,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "4ae2fe0ebb2ca0fd7942251b74ead0b6afdc174289feab7b49b984a5d70f4447",
   "cluster": "6330a93a"
  },
@@ -4575,8 +4468,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "4d0cae5c1cba1e9efb9d213793c5489858983f2740ad3cb065e132ca37e27bab"
  },
  {
@@ -4614,8 +4506,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "4e9f19be991ebdcb74f15f63ad47c87cf2c8d1512b62f61b87943cb05c8795f5",
   "cluster": "323331cc"
  },
@@ -4654,8 +4545,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "4fac84ea4f7a9cf79520acc81e5b6cac9474a144a4e25d73a97cf688386e6cac"
  },
  {
@@ -4702,8 +4592,7 @@
    "D"
   ],
   "select": 2,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "515d44e236e0076062d194394bf4267e38e6d80049e4d3e412378aa8ede427fa"
  },
  {
@@ -4741,8 +4630,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "51ac9697d48c4d9366883d0be207d2e467e6f8342ecaa29f2b3af6f5a984bacc"
  },
  {
@@ -4780,8 +4668,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "531c81025382d8de1c02cf38ebf643e995f7032557feb5402573268954e2cd19"
  },
  {
@@ -4819,8 +4706,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "59fcb68f8404185aa6904b37800472d77117fd5438ff09fd078189480c3675b7"
  },
  {
@@ -4858,8 +4744,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "5a8e8b71a36bfa7d7475131ebba9ad380f7254dbe346da2911711ddccdd4af52"
  },
  {
@@ -4897,8 +4782,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "5b679766f5207c428cc89e342a0f32810c6ef1576c653ec0165df96ad6a916bc"
  },
  {
@@ -4936,8 +4820,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "628ed2e392a5dc061d944d4dffef29237999cdeab80616a1b3926628493b6a06"
  },
  {
@@ -4975,8 +4858,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "6da44230666c609a0ddc58dc6d3c35aabf425ee10f59e99685db9b3e424bee4d"
  },
  {
@@ -5014,8 +4896,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "6f2fa5aa2d0569c04b84ba553676d94021258d0de608a87efde966182a49ed7b"
  },
  {
@@ -5053,8 +4934,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "6f5d0fd4d0bc47449a65eed9369695182983728be6321aa782e7edcef5575265"
  },
  {
@@ -5107,9 +4987,8 @@
    "F"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "7144932d8773000c3c894bfcc401d17fa0fd1e630821c8300d2bb4953c1a6cbf"
  },
  {
@@ -5147,8 +5026,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "77ee5df882785563e21fa3b15d49d47fdf2b69538f0785d3dbe7ba4386d0c271"
  },
  {
@@ -5186,8 +5064,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "7b01372271396d8aecb01d204460047be1126311bbff1017a67e76f0466ef80f"
  },
  {
@@ -5225,8 +5102,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "7c99eb35139dae6fe35d07b80cc643f4140fed64ca571d6decd9c5a6d2588e6e"
  },
  {
@@ -5264,8 +5140,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "81d83b14cb8a57df745b890cb6e1ef6e77df160eca2cf157587941d397de7549"
  },
  {
@@ -5303,8 +5178,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "81ed6fe024579221c11988e1618cdc83e20d086583dc701d6e2e5c748d2ccf8c"
  },
  {
@@ -5342,8 +5216,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8238254181c3317c5d0f2d96ecec59cf3a0d8a6196b55943e3c1252edc16446f"
  },
  {
@@ -5381,8 +5254,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8543a4ad4f93ba99dce73114677e694665eb3cdbc212e08ca1b8202e4765cf1c"
  },
  {
@@ -5430,9 +5302,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "869f8fe177701a0c1ff54d5dc09af6aef195df1574eb071fd22da2b72729566a"
  },
  {
@@ -5480,9 +5351,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "870fa494a991951cf5c507362ca527932e2641ce16ca907abb8dc5aa308f2efa"
  },
  {
@@ -5520,8 +5390,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "874a3d9e58fa45547e1ce6f0263ab745c13117895f22ff5e680d33deb43fd042"
  },
  {
@@ -5559,8 +5428,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8959699ef3f605d38b0959e15f9d6f198e0f299d7add092c58e261e3ae07b977"
  },
  {
@@ -5613,9 +5481,8 @@
    "C"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "8d97dd022875f3471f19cdc908b5babe27647d93f1a7a094e35ac06929b9fc3f"
  },
  {
@@ -5653,8 +5520,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8e9c232852ea3fdb7fa2f38d593b3e7d11f905d90e32d80c360c436a8cba0b47"
  },
  {
@@ -5692,8 +5558,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8f7d31d4b513a862e879a78b312c70f1b7ec733120ad45f096f7ed73ee140f9f"
  },
  {
@@ -5740,9 +5605,8 @@
    "E"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "91427904cfb9bb4bc96b169005bb0cf941268f16c1f013727d79f8d2925366a0"
  },
  {
@@ -5780,8 +5644,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "934289f0c653f65ed4ae29daf0bb7d0777a3a7d0866e8ee70c86d865f49fdfd9"
  },
  {
@@ -5835,9 +5698,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "96192914209d928453d4a355c8f781fb42a185e8b44a5ef7f8e67d9ee46d6c44"
  },
  {
@@ -5875,8 +5737,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "96f970e78babea2da28800b3e62358f68bd02b1c8380ac4b0a2b1d208eb0aa9e"
  },
  {
@@ -5914,8 +5775,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "98d6682a5e4826f8478a15ba1a770c1f4dcea3938be54e6e799e14aa722656ec"
  },
  {
@@ -5953,8 +5813,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "9a0efc7b72383bd26b3253eb037bef1a3df48a2ea7b754b9f2b334627e269424"
  },
  {
@@ -5992,8 +5851,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "9a9bbcdeb2d6c092ac8a2b435d125292f5586f1941c431ba36e36cd4e7d49654"
  },
  {
@@ -6031,8 +5889,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "9ec78fcd256bc48e6d044d614ff2c7ed414b6be63ff18c15f3a827c7681635c0"
  },
  {
@@ -6086,8 +5943,7 @@
    "F"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a0912605042eaa17f5fdc6d782f10bd680e2758570988b5e94435bdc8c9b35bc"
  },
  {
@@ -6125,8 +5981,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a8035e2e071782f7177350d5a5ca5956f598535cefecc7cfb472fe2f3bdb9658"
  },
  {
@@ -6164,8 +6019,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a9eb4c3692bc2d8767a2ac1eb981522af27ba208de70938dee22f3ea2b03c027"
  },
  {
@@ -6219,9 +6073,8 @@
    "C"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "aba4df99478ebd7f51cb9a7ed1782f9f1ae4c86defcdb0ed02f44351822bd528"
  },
  {
@@ -6259,8 +6112,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "adc05e0b0bb3fa8367eb4f6e6db34b1b0c979b7730b0ea2a413880b677ca1ce9"
  },
  {
@@ -6298,8 +6150,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b069623139cee6630df9febdfe1777a5d165844015f5139ec02a6fddfaf3e4d6"
  },
  {
@@ -6337,8 +6188,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b0c233867386e9f7b1e44152451484407313ead88722d35f53154f548cb4f06b"
  },
  {
@@ -6376,8 +6226,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b10c83ce0b32dff4e47220953154a5bc98ce79225b565e0852d3c129250d1a2d"
  },
  {
@@ -6421,8 +6270,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b418a7ce989e7e10a5021fdbee295a0134ff65b8ddeecfd12f033e57d0a6417e"
  },
  {
@@ -6460,8 +6308,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b4780d4bd2062b3dbdbbaa61f126fc7d1cea4898e203f41b8a36030e9abcecc7"
  },
  {
@@ -6499,8 +6346,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b55955fc6039ee0f26e4f819fa536ac7ecb1d3810dac63a4a267aff97d36b63c"
  },
  {
@@ -6538,8 +6384,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b5b4dffdebe6d6a39661875a7bb20d367a1c2f71c852e318c33dabb2281b16e3"
  },
  {
@@ -6577,8 +6422,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b7458746d6b896dfc2fda0485e5d90de6b6058bb0d6d2efc6f9633f2db26ce8f"
  },
  {
@@ -6616,8 +6460,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b7a9ee34a2407fb1a68adbc3b0e3852114fa8b723d5748bfb7d96526fdbded27",
   "cluster": "6330a93a"
  },
@@ -6656,8 +6499,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b85fca0ca17bc3ae21c440ac468d2f045d2268d3f2e3a5c581a3bf7d3837c205"
  },
  {
@@ -6695,8 +6537,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ba9d5a7a5d616d27d1d182758d6ec69dbebf55c847160944930bb98f84fb6943"
  },
  {
@@ -6734,8 +6575,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "bb58a894b505f9f8b40ccfcf40ee53ba4f981e6f0b33507b4fcfab42678eafb4"
  },
  {
@@ -6773,8 +6613,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "bbd6a9548277feba04b486785f1c5fe4c5933f72f3551688eb0f349d9e96b171"
  },
  {
@@ -6812,8 +6651,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "bcf074b0c8c6b9b5efa9c9fdb73cde022abcc478eab00006f4ae200258bd363f"
  },
  {
@@ -6851,8 +6689,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "be62b646120255c0cc3dae1e8fb43adb39e44c62d28c8171cf0baf527da5754a"
  },
  {
@@ -6890,8 +6727,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "bf8ff2ae8175fba23f96b30bc8f98950cf14a9888144992a7be475607f9fad16"
  },
  {
@@ -6938,8 +6774,7 @@
    "E"
   ],
   "select": 2,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "c382d7c965ce6b52b4d797e3d8c5ec2427497264bb576bf099a19dd3079b87b2"
  },
  {
@@ -6977,8 +6812,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "c6692a38e62f718d6fe2db2a833961e8c0b8fd5ba622b1fcc612cdd5e167049b"
  },
  {
@@ -7016,8 +6850,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "cf7c6905fcd8884e6d05c1390f7690b16c769338f9e2c5bb97be707e2ad2a1da"
  },
  {
@@ -7055,8 +6888,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d12c2e48baef539a5bb60e8a1f4f113fef5fa06693bd44c187805e77e16d9e8f"
  },
  {
@@ -7110,8 +6942,7 @@
    "E"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d2d272b1752a8dedf932aea646df6bd511d6fedfac71d873e4430861eb34162d"
  },
  {
@@ -7165,8 +6996,7 @@
    "D"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d49802197742a6eeab4ff083e6d3c76bf5ef27316de0a4cc784e807fcfb200fc"
  },
  {
@@ -7204,8 +7034,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d6bcc97385aca313c4841a849602d5c75c8cd4f9e4bd1705041a8c934275114a",
   "cluster": "323331cc"
  },
@@ -7244,8 +7073,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d88c0fbecdb2e9cee6b8b4ae2afa7678f9e521178b747d5c5c627cab85876989"
  },
  {
@@ -7283,8 +7111,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d8d0c82cb46c529dcdc3600e5ffe2c5ab1b984a421715903eb2d5a938749ab5b"
  },
  {
@@ -7322,8 +7149,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "dc877363bff4e9eb3d6c41bc8822dc7fbf47f8c35cc7f7101875421786469742"
  },
  {
@@ -7361,8 +7187,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e1dd4dec445b0fa7cd9e17257d84ffee7918a14626d9218a70fd0d6609c80355"
  },
  {
@@ -7400,8 +7225,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e702693ec1c333504a5b50612a723f95d71b1855992533bce7d2fdfe5c2df4d2"
  },
  {
@@ -7439,8 +7263,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e73c776116c0e21e2398947fc0ce896c1d9887d979706ca08ce7ddaa0ba76d45"
  },
  {
@@ -7478,8 +7301,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e8f3c1af74caa5f1bac8ac627b9e56fbcbbf8cc85ab28d8c76b5be012b5ac4f7"
  },
  {
@@ -7517,8 +7339,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e9960c519e9e7e7a1be64a64e8c135227b8d9539bc777428582de688ddf438d7",
   "cluster": "b3e00471"
  },
@@ -7557,8 +7378,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ef13866d1a8804efd8de19cb0d2cdee50084700b313f17dc0fbf6e29815657a6"
  },
  {
@@ -7596,8 +7416,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "f1db59b5bc80584d1afb93ec36e7c46cb6e3e1307ef9f4f061fcb022b554424b"
  },
  {
@@ -7635,8 +7454,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "f7f271a4ec6549558b8b798c77af689f11d8d568318b4e5222520a6f98642d31"
  },
  {
@@ -7674,8 +7492,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "fc7f2aa993d72cf203c2ca876fe7543429213ee20d122bea1d0d22da52f634cc"
  },
  {
@@ -7713,8 +7530,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "fe5ac6fc88bf1db1dfced9f24616645242120c904a1c049dcbe80eb06163c833"
  },
  {
@@ -7752,8 +7568,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ffcea1f755c0bbbccf28389a2ac1ecb7f60cd5bd72cbd4dda0ad38dd999d8f3a"
  },
  {
@@ -7791,8 +7606,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "00414658cf7ebf7d6e9a5926f701dbcbb97ff083aeee86674c2ff5565365e729"
  },
  {
@@ -7830,8 +7644,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0b21f706829f491b55a9caf6267d9d72e88a5184bd26897678e6ed732a32f17d"
  },
  {
@@ -7869,8 +7682,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "1aa58fd9a64d50e03c2c87a80b20a8939f174cf86e5b27aedfe988f5ce2d1af7"
  },
  {
@@ -7908,8 +7720,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "1ae4f98ef4d06d55a2988178320ae560920db07e1e564482af6a8bb3e8e06af4"
  },
  {
@@ -7947,8 +7758,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "1be3ec8a2cc703f703856b3836f45cdebc45a7e8fc5097f77764f59de25e567e"
  },
  {
@@ -7986,8 +7796,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "22eaf0c8a2f7bb07825aa5ac4e1526987fa15efc74c7640bd333359254860800"
  },
  {
@@ -8025,8 +7834,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2d8a1f16336d43cb44e52f752452d5ff0d5b8dba31d108bbd09c15508e04ae86"
  },
  {
@@ -8080,8 +7888,7 @@
    "C"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3225a8a6788875aad6cc297c6a4668aa01decf8cb544fd39ac970a6410994ffe"
  },
  {
@@ -8119,8 +7926,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "398b551df1603255f655f680047953a65f9a24d553e17aa91f292b1987e8cfeb"
  },
  {
@@ -8158,8 +7964,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "47bd57208e5225765ba0d9ea88b030778776088709e8750cda7995e92f343bcc"
  },
  {
@@ -8197,8 +8002,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "5cd675cdc2ae00f328eb1c1a1200948c08b9d6e9ac80ce36fe34106362f5f8cc"
  },
  {
@@ -8236,8 +8040,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "73c6adb2b52853b6643ebea298b03148ef7a48e146c9da0692990ce484a24625"
  },
  {
@@ -8275,8 +8078,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a0e85356b81f51f979179b5597b682d18e557733eec52d41521024a08e181a0f"
  },
  {
@@ -8330,8 +8132,7 @@
    "D"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d0849868ee52b503f00b3c70bd3bb7b8aafb4bb126ab3fd8bce1c0c090791e65"
  },
  {
@@ -8369,8 +8170,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d5dc4cb7b0b8200b00fe83aa0bdda8368e726824b619a2c2efd0ff751cca629e"
  },
  {
@@ -8408,8 +8208,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d70b6d102a1b98d1778e1f0f14cec483fbec529dfa2084b5956057d922ac8f79"
  },
  {
@@ -8463,8 +8262,7 @@
    "D"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d9b99ca2906247497459b5e5ba6fc595b27c12c8c37450d1bba63ce71e1c52f1"
  },
  {
@@ -8502,8 +8300,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "235b7aba8c359c14ba9409d5b3320e5537ff5ef87383b42d8ae2a7afe43dbe83"
  },
  {
@@ -8541,8 +8338,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2f4b453ebeb973374f01b4b07ff6210967ca7f3be85728c17f6a37f601fd7a0f"
  },
  {
@@ -8580,8 +8376,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "326f5fedc55737667c0f543d19d98e49137b705cdd454a885ff20eed331e6f98"
  },
  {
@@ -8619,8 +8414,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3d5467759c94d948cda3996df68e247176a4ce9a7249f5388a6801607fcd13b0"
  },
  {
@@ -8658,8 +8452,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3f516d9e75668d9bf94bbc486ff8abc255cf0c7d444ceec5567cc276103b6745"
  },
  {
@@ -8707,9 +8500,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "43c7f7aae996830db1fac658568252b6da4635b5ed3091743e08a346d1c2d3e3"
  },
  {
@@ -8747,8 +8539,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "483b48355cbb779315cea79a880903cf5fed6e228e54b8147dc6541f26c1bb33"
  },
  {
@@ -8786,8 +8577,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "49739bf427592a17df1544fcbf5ab8605da4f744f95ad637475722ead08d2561"
  },
  {
@@ -8835,9 +8625,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "55da2bca02871492386b6b5ee0e084eb0a9dc2f45d5207627fe8f259f62da9c7"
  },
  {
@@ -8875,8 +8664,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "59365fd61149cc6784d6fd137cbd07c51b518c276eacc7d7983c09b037cde01a"
  },
  {
@@ -8914,8 +8702,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "93a46ccd419bd4d2cc661008e7476ae6336ab277e3a4534967cf742e64a1d534"
  },
  {
@@ -8953,8 +8740,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a7cbcb3317c0e91cb15155a98f064d1b0262c96dc715fb2168603d60813b562a"
  },
  {
@@ -9003,9 +8789,8 @@
    "E"
   ],
   "select": 4,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 4.)' was appended to match the 4-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 4.)' was appended to match the 4-answer key.",
+  "source": "practice-bank",
   "fingerprint": "c5010784d8e1c0941218dfe9594fba8e81d0811f36ea8c9408633e075607d5c9"
  },
  {
@@ -9043,8 +8828,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ca23a4bf80be75180073c5909336eab627ed74c1fa7bdd6b43f773a6cd2adb10"
  },
  {
@@ -9082,8 +8866,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d0014212b8c8e2fd501bfa357b77ae82d98121bdb932661682ef935a5d44497a"
  },
  {
@@ -9121,8 +8904,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e5df4b10a97d7d2613ae58d0d7253d35619f0d6328e69e768a29097c8c7842b7"
  },
  {
@@ -9160,8 +8942,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ea22bf2e9e895368fc4205d1b1794052f35586e6e683496dde3286487187d250"
  },
  {
@@ -9215,9 +8996,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "03daaedf71cafe0cf31d22e52ead2ca5033bafff17e953fb1b506917283a375f"
  },
  {
@@ -9255,8 +9035,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0c8f38e3bf2a7cd0b8688684871783ab2becc1b69cf91b4b49595a36d3d73109"
  },
  {
@@ -9294,8 +9073,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "17beb488ef48ebeaddb4ea21c68e41de36926805b1c9824a123f81fce3efedfd"
  },
  {
@@ -9333,8 +9111,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "18de5dcb7f41878333350fddaffc4a2f90a33be5acd542d3899b7431a8d79250"
  },
  {
@@ -9372,8 +9149,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "19dcc2d62eb0314d90690653bea2d4ec4951eff7cb454e66529d2d1258a716da"
  },
  {
@@ -9411,8 +9187,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "255c3f482bcbf58a77e294498569175d916ecc1e24e2995d1c6d4ebfadecbeec"
  },
  {
@@ -9450,8 +9225,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2565df8cc1992e92221103cedc26edd79bd961febe95602403e6c539cc9aaccc"
  },
  {
@@ -9489,8 +9263,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2957505b0b9e82825e9bd025dbe49ce931fa469730fa8572488c88cbb91aaef1"
  },
  {
@@ -9528,8 +9301,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2a022622ac0e48e50009cb76abae5d1ef416165f6ec19862e8cf1f562805bf40"
  },
  {
@@ -9567,8 +9339,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2a3c819ac0bd4136460c7e3f54c155db6e4925c66cba623ee765c1273ef20e03"
  },
  {
@@ -9606,8 +9377,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2c195bc45650772ddc41f10b4fca913eee8d497b5fb0db07d4e16ee19f320600"
  },
  {
@@ -9645,8 +9415,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3449da1649bc7afa33fd210114b6586b5afcc02e06c2860984801babee3fa22a"
  },
  {
@@ -9684,8 +9453,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "357a9d024710e2f1ab11ac46e80feed5ad0cfc1b266ed8a1e97158e104a07a28"
  },
  {
@@ -9723,8 +9491,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3748a1cd46d1bc41916cb2f6900905ba0484bf225118244733ba1e6cb2a68617"
  },
  {
@@ -9762,8 +9529,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "38142c1647c3a6c5b248002c73ac8c9dbf69109c7a4915b5e84cbe1409d35ff8"
  },
  {
@@ -9801,8 +9567,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "398affafc081e41bd359a00dc53fd20eeb5ab4e7d0030da028c206a1666b452e"
  },
  {
@@ -9850,9 +9615,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "3a87993375342b332ede6409001b04afab723069d6addfd16006f050974a4879"
  },
  {
@@ -9890,8 +9654,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3d6d89687e72e380beedd1d69a1524ee18433194b84a62127f394b267031a34c"
  },
  {
@@ -9929,8 +9692,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3eb4c2e2047be66dc78f34df246798328c8b04b7b808cb71aaec3c1a87c02b2b"
  },
  {
@@ -9984,9 +9746,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "408563d91220a9122a6220bff1169ae64c70a57aec65b256036d31c0350429d8"
  },
  {
@@ -10024,8 +9785,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "419af84d5c3c84ebe6f9918ecf8ca1b44d6c126047b32e6551e9e19dc3e3f90e"
  },
  {
@@ -10079,9 +9839,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "4217a870689ed6e98c12c85ece131ec8bdf4feab9659abc994a69daaadb3a62f"
  },
  {
@@ -10119,8 +9878,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "443753e913b9157e6e6ba350f53f28c5273b680a5841f3d38060400e515aab3e"
  },
  {
@@ -10158,8 +9916,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "46527b2bc5edd710d763c49bfed1b4560ae52844b411c7c226e579750cf56e8e"
  },
  {
@@ -10197,8 +9954,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "47b0797deac3bfb8ca0ec457f1380b3d22dc0ee6522419a9a67e39cf94f5c51d"
  },
  {
@@ -10236,8 +9992,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "481bd667ac1b83789a8642de20c2a25501ee27a8e171213c738ba9de689a45ab"
  },
  {
@@ -10275,8 +10030,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "495555962b973afcc367ffaf0feccb4e9ee591d709ac182d28c311b5357c2cba"
  },
  {
@@ -10331,9 +10085,8 @@
    "F"
   ],
   "select": 4,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 4.)' was appended to match the 4-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 4.)' was appended to match the 4-answer key.",
+  "source": "practice-bank",
   "fingerprint": "4c03ecad2b586fbf0bb07c0d28427441e628d211ef0b65ec4c9150599658035b"
  },
  {
@@ -10371,8 +10124,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "4cc3202c70a0959247f8eee66bc7755840e900604b0e5cbf4084530d9b977bb6"
  },
  {
@@ -10410,8 +10162,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "5275c2e526e5258bbb0e6201f7b7ea7068dc7c5934ed2741debb98a29df2b146"
  },
  {
@@ -10449,8 +10200,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "53b211dba6b9df76b9fd402248bdfff5fc9b249133775eaf560ee4cc481874d2"
  },
  {
@@ -10504,9 +10254,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "54ed8f3fc4950206050ae797a5798637ef002f9c05108cdf5a63f6dd3f0918d0"
  },
  {
@@ -10554,9 +10303,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "5ec462fd17667a0ff6aecd444e6627e6cb53caff9c3822b309f42f2f2016b87f"
  },
  {
@@ -10594,8 +10342,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "63387b15ac972d969ce9de348cfc62a89c5fee4fbec54a25d757945136828d4a"
  },
  {
@@ -10633,8 +10380,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "6480be4c6a21fbddde4eddd23dedc1f2cb036467d262384b7f8429cb4df9df28"
  },
  {
@@ -10672,8 +10418,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "64c467ddfdbcf9d394ffc48b641da192fc5975d9a2d90a127997901fe19f03f9"
  },
  {
@@ -10723,8 +10468,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "653d01024f4d6be795cb63ec61289efc9d652a64e9dfd36ab5e9423f43d16b32"
  },
  {
@@ -10762,8 +10506,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "70a46d9da95b1ce3e1af2e874206dc92d9375d71faa63fab2472ab77e50f5fc3"
  },
  {
@@ -10801,8 +10544,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "70d9ff697e6cea882914d337f982e05da13e41af942fb3fbac0d463bd1295f41"
  },
  {
@@ -10850,9 +10592,8 @@
    "C"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "71c0429f9f10afa03cf850a72f1de2ca02796107eb58a095fa025be67ab0255e"
  },
  {
@@ -10890,8 +10631,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "73b8b245f9855852364eda8d71b8c8b20401dafa86e03adead1908210e5f7d19"
  },
  {
@@ -10929,8 +10669,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "7848102c9a5185df9243452b7c976ad218ffecc97ea608052fd92f52f84f3c4d"
  },
  {
@@ -10968,8 +10707,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "7ed2540bc631403df54efbc205fc44dd31a4172c68b3dca9532c23dabe712b02"
  },
  {
@@ -11007,8 +10745,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "7f025fd01419570a255e46ec4273f311af017f02943ac55165d2d6566bae8d19"
  },
  {
@@ -11046,8 +10783,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "86356cb2b16a1e1ef5936f9482679b402a526b46a2a3cc7a9ffa6dc2c801ce76"
  },
  {
@@ -11085,8 +10821,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "900b1da1c69ec19e39ac69880d83a3ea21c8f2513d335cccd5a21ab4e1bb6bb3"
  },
  {
@@ -11124,8 +10859,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "918f143ad601f6466a9c92753e2590535697c951640aa5231ef9355f177b63d5"
  },
  {
@@ -11163,8 +10897,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "94c37a2e9e646627232ac0105e369d50a3c4ec33b0c29b017635c090163d730d"
  },
  {
@@ -11202,8 +10935,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "99d298a84edadae6b84e6f28ba474eed285c9d3c3020f3e3dbf7d6dab2fb50e5"
  },
  {
@@ -11241,8 +10973,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "9cb19fe3a36571e6dfede6b3d612115e733cef987c7ab5b96f2db2120f077d05"
  },
  {
@@ -11290,9 +11021,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "9d2170241a16e35bc0f592a2bb8307d8fd4a4b946c4777e29a73790736deb907"
  },
  {
@@ -11340,9 +11070,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "9e504240ce443470b586309f7d8b241b66861c6803d39133e539a235f4cf11ff"
  },
  {
@@ -11380,8 +11109,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a58e18e52355e1202803ce75d72a1d1a8aec2acc3ec420b06f0b17d7b654cb30"
  },
  {
@@ -11419,8 +11147,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a98ea109682af5f304f68fcd5a274c90fad3f4c95d5ba6c44711c3433bc4a31d"
  },
  {
@@ -11458,8 +11185,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a9a346bec6a6e709ab0b3f10e10f68fc64efab19769c1f6d265bdbd1d5679a2d"
  },
  {
@@ -11497,8 +11223,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ae183d80cd5a4c0a5390cb85ea7484d483e1418012c15e27fc0764a0a1084318"
  },
  {
@@ -11536,8 +11261,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b0c5b4a4b8f6253a1f96372115bbafd04378c6cfc849895bd9b6642057b724a0"
  },
  {
@@ -11575,8 +11299,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b24198e962d26f0cd03ff657aee32029508c77443691c4ce703cc12e091821cf"
  },
  {
@@ -11614,8 +11337,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b6788c1c026c1973f861861cf42fb89e58d7bda31aa0333c2b76c54a7fffb6d7"
  },
  {
@@ -11653,8 +11375,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b9fbe83919186ba8ba4f6ff6280c6a53d1cf8219b0d785411d47b07fa114fa7c"
  },
  {
@@ -11702,9 +11423,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "be124355e4fa08deec7ac120ac70b71b6d6662a387095225987ba93d23317d31"
  },
  {
@@ -11742,8 +11462,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "bf3d69e4433009f832e823a91480c7db480d7c64cc81d065c4fff14db91588cb"
  },
  {
@@ -11781,8 +11500,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "c2f3bf81abc22b661cbff8daab5ae02a4dc5e7a3ffe4476efc5c4cd87b976a09"
  },
  {
@@ -11820,8 +11538,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "c92d2edaf322c206f73e0b51f428ef8b3dcd9e0b7bfd632984448d6a83acaec0"
  },
  {
@@ -11859,8 +11576,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "cb2469271aa2683192fd10e3916c9c67321f10aa785f2db09f5c886fdbd95170"
  },
  {
@@ -11898,8 +11614,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d24016cc13ad3572d5b70115f1ff7590f79bdd4e15a471b827cc38fbfd9871c3"
  },
  {
@@ -11937,8 +11652,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d45d1d1b2594c343aa0eaf99d9ee421cd72a633212f781372274c7c04ca6498c"
  },
  {
@@ -11976,8 +11690,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d4aa1cb60d551f6d408472bcd03b674f3df1ae4cc68d670c53100baee0f366ac"
  },
  {
@@ -12015,8 +11728,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e6458d9fde5d97f4fea9284b43aa81eb18c5cbbf7690eaac90fdc2b8784947f2"
  },
  {
@@ -12054,8 +11766,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e9773dc79f3bdc428f678eaea77896823a60101fe2cddebd86e22205c011c5f8"
  },
  {
@@ -12093,8 +11804,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e9c5acf6120221c65534fbaaf5a52c24871ac5f4bd5051711199a89dd3778fca"
  },
  {
@@ -12132,8 +11842,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "eb8fdc48b275af95af79af2882d8062f4b429e60bc15168e28a5572cc3d2b2ac"
  },
  {
@@ -12181,9 +11890,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "ee1c7750d6fd7f24299639509795fb579ee5569084c7557145aad2d2d086b34d"
  },
  {
@@ -12237,9 +11945,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "f99bdab560a756e17e7d5ba19ecc49c33810dd4a98410d94b703ca972e009aa2"
  },
  {
@@ -12277,8 +11984,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "fc8beafaaffcf2077eebfa84482de3bffc9f2d95e432fa68784a7a12056ce90b"
  },
  {
@@ -12316,8 +12022,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "fcbd2e88380d78d8b9f1db2e4a55922d9d804d5e8851579e421e460abfc3e51f"
  },
  {
@@ -12355,8 +12060,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ff73d836c14503b9ed5a25f5e14b09440fc96155af1bc0cda6037ccde690c759"
  },
  {
@@ -12394,8 +12098,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "04bb66120c1c4e1a1964039e4b06513d7adc1ec48259ec7f77c8eec22c63c9fd"
  },
  {
@@ -12433,8 +12136,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0a4deac407c6c098f3fdbd49971b04da6d64fe78b01a4e80cfb311075c78f399"
  },
  {
@@ -12472,8 +12174,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0bf93e6be20aa5215680a025268b6581ff634d598c93d60af21558276ca0510d"
  },
  {
@@ -12511,8 +12212,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0dc98b8c7e8f5f217f73401b45dc0c4b87588d7d816cb4491e8e57dd05bc8a52"
  },
  {
@@ -12550,8 +12250,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "155a9238bb2da10e4f5e0da6e150566b3b2e02b0b7fd73a0eb685bc7e6303692"
  },
  {
@@ -12589,8 +12288,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "192559eea9f20dc09a2590b50c1bf4db7ad56524ce8f1154a19479b8fd03bfcb"
  },
  {
@@ -12628,8 +12326,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "1c9d6a284a38cde68d8d7fa717c8246704e84f0333ea0a7b8ba6f7280b136469"
  },
  {
@@ -12667,8 +12364,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2306b9a465f5cd15f0c3935561edb2e7936c4f8553c16038a4cfa8846ec6cbf0"
  },
  {
@@ -12722,9 +12418,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "27a87ec11b52d33951b0ab8d6d4ddcdb919668b2c8758a92f9813dfecb2e9f75"
  },
  {
@@ -12762,8 +12457,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2837c62eaddadfd5078007a49e92bfc5161e65f497e57bd53480d2e2cb589cd3"
  },
  {
@@ -12801,8 +12495,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "298ab1caa024c804417e3d2da99a411bdec8707afd1de16635ee56bcb3074232"
  },
  {
@@ -12840,8 +12533,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2a9ecffdb382b8630922243fbe781449f34cfabad43ed8ea1fd194cd28fb38bf"
  },
  {
@@ -12879,8 +12571,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2bbc0fc0c734493ebc071fbcd950a8958894de96b5a9bd18a9c100ac04443b23"
  },
  {
@@ -12918,8 +12609,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "381ffe3dbf3830e1ce43a15714247085f2173569d4647a1a7e1392f7afa81fa9"
  },
  {
@@ -12957,8 +12647,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "39c93fcee940f574dd4c28a393bcf0fabce045ae7287fd50338a20cd9197e598"
  },
  {
@@ -12996,8 +12685,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3aa11649863ccc6e4c05b22ac18177bbcfd7d052c336f4ed167240e7e8dd700a"
  },
  {
@@ -13035,8 +12723,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "484abcf3182a5cd34f5b8e5d72ea965ac05ff71f3097598aa84c0fa31092cef2"
  },
  {
@@ -13074,8 +12761,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "4ebd6fa6232b629b9a368a57d4399e270de55a3cf62c9e219b408ebf840ab4ae"
  },
  {
@@ -13113,8 +12799,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "536ce1312138d07fed91d634d4b08daa5c1fab71871436f72c01637f62399df4"
  },
  {
@@ -13168,9 +12853,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "58b711ee485b35a895221e822d7b5faab4916ef05b0003daf6e914f199accb50"
  },
  {
@@ -13208,8 +12892,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "58d4409df3ad3c4ff9c609dcb1b9b46fde0bb73ed8847a8d52e2ff7bc0a3b98b"
  },
  {
@@ -13247,8 +12930,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "62177614de3727752f24e46620dbe487d81b9d9c91b8071e01be460329a2bfa2"
  },
  {
@@ -13286,8 +12968,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "656b4b172e8d3902a6b6a3c5009881aad3314ef9eb1812650899e9f7d93dec0f"
  },
  {
@@ -13341,9 +13022,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "6d089fe3203455de0bd18d594b60302f5b0935c04c2aae694b55e1f1b4075b38"
  },
  {
@@ -13381,8 +13061,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "74aaf0fc252d9f018939c73084392724b1341fa325a0421c0601f5092d2f77e7"
  },
  {
@@ -13420,8 +13099,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "766b787e940d57d603f60309de8da8793d90835bc03b33082aff8b2d640d1cb1"
  },
  {
@@ -13475,9 +13153,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "7bc871820244ad9c30e01ade1e724371761e47a225db8318f4cae31043fb4552"
  },
  {
@@ -13531,9 +13208,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "7f5f9e30ae40a1f9a9477ebef839337c88d94e3c7321cca24da6a5dfe12b1816"
  },
  {
@@ -13571,8 +13247,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "81e8c73f72495c3ba2be55db282e37c7e3b6be8fcfa7ba47f40fb4a9c5927b94"
  },
  {
@@ -13610,8 +13285,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8a170cd8dd4cf648b0bd5e639e5fd7e6d7daf2011a4c76cd65b1c4081a97a9b9"
  },
  {
@@ -13649,8 +13323,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8e3596a6fe1bffabc8ba56e8e1e3ba19c8fdc795062589d9bbd4413ebaf8e5fa"
  },
  {
@@ -13698,9 +13371,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "98a2175357a50166236f79a8563a6bfa004876a68fc66927a7da1009e2f74cea"
  },
  {
@@ -13738,8 +13410,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "9bd513b16e03acb05108675e5f0893515ba4da63c17f4fa1d303dfa17ccfe86a"
  },
  {
@@ -13793,9 +13464,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "a4902c52fbd32ad5359c0dfccb08a47da1a69aebd0c4460c085ea723e4940cee"
  },
  {
@@ -13849,9 +13519,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "a7575f99b7172815f82bd34718ecdead129af71d96bec2b049feb4e034fd6877"
  },
  {
@@ -13889,8 +13558,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a7d6cc32854fd613697b3c52f35b80eda524eecb7e9601b5ed28c5cc58779f05"
  },
  {
@@ -13928,8 +13596,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b44ef79499c4f96f8f3febbb552687b59fa68db0ca0046e43d90722353eb396f"
  },
  {
@@ -13983,9 +13650,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "b6c26ed669da2ac756b667c47394a46a1d8d52d6df82ef808a5af3e4007dd649"
  },
  {
@@ -14023,8 +13689,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b83dc8c656cfd4877c1c26552aedd0e4c833567708729adc85dfdba993169acc"
  },
  {
@@ -14062,8 +13727,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "bea771368e6f374f7481289e142235d7bed8c0077deda06858e61392c060b73a"
  },
  {
@@ -14117,9 +13781,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "c3427755f4929e5898439f2437c4ada2f7426a2e8c8f0d69f535dcf1fcc4ced2"
  },
  {
@@ -14157,8 +13820,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "c66de4bfa1af915011f6dcdd4b673728fe7405437b468b2cb30c2625be9acd5b"
  },
  {
@@ -14196,8 +13858,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ccab137f5daf96ee71618ac418472b31ef66739230450d9ac72d108344901dd6"
  },
  {
@@ -14235,8 +13896,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d2948e5f82eeb724e5cc75eba3f7bd6cd6f34624ba1ac42482ff0909b92ffe06"
  },
  {
@@ -14274,8 +13934,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d8a0fc33c45e06fcef6bd616596dda1254f2d6a3c530b2e32acd0de7a2fb677c"
  },
  {
@@ -14313,8 +13972,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "dc436b59816d6ec98f6aa4dec3b57ac346e4326a71fb4b81d0d09b8eda438bdb"
  },
  {
@@ -14352,8 +14010,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "dd8e22859702d15939f99206a4e9f01edc4877485203091d6ec058d42135de18"
  },
  {
@@ -14391,8 +14048,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e3b248acc97f6e5526f6bf149249fc214187167299a527719c00f980c8966c6d"
  },
  {
@@ -14430,8 +14086,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ece306a42b03578fa96e156df87771035302c294d406ae3de3c03ac84be7398b"
  },
  {
@@ -14469,8 +14124,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "f0ac0498b1158a1007090b0e85cda3e5d5087b5379df0c23b689092cb05615f5"
  },
  {
@@ -14508,8 +14162,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "f5b3858a5b187fcbb70cde7f7d8d96f3900966d9ca7b967720673a2ba9c19fb0"
  },
  {
@@ -14547,8 +14200,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "fd68bd49529168f9e0e179b7953081432a6f0c0724016911ba4fc80be9498b70"
  },
  {
@@ -14586,8 +14238,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "fd7d9342451abd581dcbe3c1fa183fb29096c29331cebccbf08b7a35a41fef03"
  },
  {
@@ -14641,9 +14292,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "fe4bafbc9e23950e2dece06ad3eb5bf20dfc04aaf891f37531d4e9df2b8c743f"
  },
  {
@@ -14681,8 +14331,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "001a652d7eccf82a67a403f51d352d1cedb6a226071ec2536e70921f3346f3ce"
  },
  {
@@ -14720,8 +14369,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "024eb7e50375c9875f859e65dc549bfdf87deaefbb19398b5ded89a88520031f"
  },
  {
@@ -14759,8 +14407,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "07540b5a36cf5a9c87c03873e3522efbc2b574e5952c76eb944b8d94b6da70f3"
  },
  {
@@ -14798,8 +14445,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0a744582ddef230ed3508d9750d65d476fb680a487b54c5f9d8390e4918e7629"
  },
  {
@@ -14837,8 +14483,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0ca9a7615ccedd0c8261145760fcfdde33976ef9decacb912d7dae2c1c33381d"
  },
  {
@@ -14876,8 +14521,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0cfc51e6e373f90eccfb7219b1560fd845c73871060cb3e896692994f9adc796"
  },
  {
@@ -14915,8 +14559,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "0dcecdecd37082652730de40be3d43559be5a77cb6e7b5fb611464c966731680"
  },
  {
@@ -14970,8 +14613,7 @@
    "F"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "130d09b85bffe0fb7d7c274097232d9f7076d35b6490d8724a2688abf2181574"
  },
  {
@@ -15009,8 +14651,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "154a91cd41d5d116b544fd9cf12bacfa561d84bb01ce193feff6f0b8b479df95"
  },
  {
@@ -15048,8 +14689,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "1741d9d009c8b2739718a5dbe0a3af18ba0e968b7e0af491bf6ae55474c6250a"
  },
  {
@@ -15087,8 +14727,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "178ca303f5dc25246a12e47f210e6ae4f78854418374e45c1a2e134df94c0d4c"
  },
  {
@@ -15126,8 +14765,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "1e575a0906490deedca5fb3779f3a0a2b310f05640fd57a67f2f869d5a03dbe2"
  },
  {
@@ -15165,8 +14803,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "1e588b4301099d44f1498c0b176dc2751523663b59f448f463e951e0cbb7acd2"
  },
  {
@@ -15214,8 +14851,7 @@
    "C"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "20b450e79ba548a7e48a03b174368b30402a0bd8e0cfd6f7b4cbc9f37d9fe05b"
  },
  {
@@ -15253,8 +14889,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "21969b647ccfc1e2c293101cb11db9e976fdcf750502ce84498455adc691cd6a"
  },
  {
@@ -15292,8 +14927,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "26fdd9a5088ae7e84eb9b59b38ee20a9b5b720fe49261ec69329b950a97743b3"
  },
  {
@@ -15331,8 +14965,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2baa22e6806829a09043a80f2c773f422ede4895278b2a77f9abff43218950e9"
  },
  {
@@ -15380,9 +15013,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "2c5f723ecdf10679c34c8835215878ba15c7f2e5791ee1b8d59290283d1a3244"
  },
  {
@@ -15420,8 +15052,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2dd94c6c346a28da8e17a27f530c36cbf36cfadd25d5ed3d7d6dd7ad20ba6d36"
  },
  {
@@ -15459,8 +15090,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2ddc5e9709bdee7865fc7f097e2bf5491d5a98c23263cecf70142a89e12eb4fc"
  },
  {
@@ -15498,8 +15128,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "3d573e7f65a6e4a8510819006b4a1501dc37f63b9de86a63e986d43b51d0063c"
  },
  {
@@ -15553,9 +15182,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "458f7d4be357d5d4db3d662158dfe1f09577fb83d0b944ca4702e49c896d7eb3"
  },
  {
@@ -15602,8 +15230,7 @@
    "E"
   ],
   "select": 2,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "45956a883fa469993be1661916abbb15bbb1910e8e2a6af08bf8a0e5d3e5f25e"
  },
  {
@@ -15641,8 +15268,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "4effb08c56814b4e5b4adc6fcf674cd901f355bb3656a6db11e7568803dd9d3f"
  },
  {
@@ -15680,8 +15306,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "5137d513a19312ccac9f70780c963101ef4869e5b993afb0a335590a3696040b"
  },
  {
@@ -15719,8 +15344,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "66303bf7763e5bd2c29b17be5101b7efe8d99b9c0940a0a2a60cf6c46f9c5087"
  },
  {
@@ -15758,8 +15382,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "667dac670623ef316ab3d2a03fc6b870ef804c207723074ccc75b51b6a3c66f3"
  },
  {
@@ -15797,8 +15420,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "677b9d03edb001becc7293eabbded368ed9d4ac2c10bd4b764fdb48cf42c8fc3"
  },
  {
@@ -15836,8 +15458,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "687eb54538bd67ac236499d2e7c13120a879258582a43531c40e94a9db650c97"
  },
  {
@@ -15891,8 +15512,7 @@
    "F"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "6d021700b89dc4b242d8c3e8dd22ea665cb625c819fd8461836357df60ad2b76"
  },
  {
@@ -15930,8 +15550,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "6e397ba52675cf2b0e763c5bfa3edb10c00851bedc0375731e991f6b2f35d167"
  },
  {
@@ -15979,9 +15598,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "72c6fe7a8364759c56eff1a4649fb775f690e76b003d46968a37394e4458226e"
  },
  {
@@ -16019,8 +15637,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "7372d70b6c2ba15255063abf755b6f33a7440a3d17387a17ac5140e7134a9c00"
  },
  {
@@ -16058,8 +15675,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "74621c84d1231b1927c5c3408a07aef36d564fb39fe3b0691b36562faae4e9d9"
  },
  {
@@ -16097,8 +15713,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "7518012d7c3fdd7a4173dd211495b61f2ca0bcdf35482754483acebf326211b9"
  },
  {
@@ -16136,8 +15751,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "79a2441184a25e75bfc8fba265b108f4c62267d9fee7b9eadd42b700ff48326d"
  },
  {
@@ -16175,8 +15789,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "7b62c8e6bafea6b4244497459485aec7ae01e1f638a994469783c42026cc3100"
  },
  {
@@ -16214,8 +15827,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "7d50a0dc207a01520c557fc9b8f9d10b8a4f5d0508e71acb883bdefaa89ddafb"
  },
  {
@@ -16263,9 +15875,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "7e73f3835dfd20110bfa3ffa9fe4db2268450f31a41e6746680642da47b1ae44"
  },
  {
@@ -16313,9 +15924,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "891fee0de5ec1bf988ff65f366d5ad6b0cec2a317a31ac4d5cd51a7009e0cb43"
  },
  {
@@ -16369,9 +15979,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "8b683e4820ec436d7c873f835ef9cea133edbe4c8ba840052fe948a4fa2ab71b"
  },
  {
@@ -16409,8 +16018,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8cf84d25892acc333f81e5247ed97da1a82b47a10b0f871f576dc27c910414d1"
  },
  {
@@ -16448,8 +16056,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "937314f62ad68bb16c1032587abeaf466c00d2ddbf1868440a73e4d410c21036"
  },
  {
@@ -16503,9 +16110,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "9892325f07b4e31c28a21a988aabc098500b4152ed9e180ce36585b327f17f9c"
  },
  {
@@ -16543,8 +16149,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "aadf90c1c708cae22114facc560a0654b1179aef14f4e3c476bd13d63ea1ec6e"
  },
  {
@@ -16582,8 +16187,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b6468754caa5bf792b2c66188726d4b59d18f0663bd17f559a65de52b9d1726b"
  },
  {
@@ -16621,8 +16225,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b687f07185541c0895ea5f84c107f7d39bdda2c3b97abd485b4eccfe4b32447b"
  },
  {
@@ -16660,8 +16263,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b989452ba35a097bdff23e1d76ed92abd78df4674c7592396a2fca76a0e601a9"
  },
  {
@@ -16699,8 +16301,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "c4d1bed125038ba9e3922b61feb497cac09f290f8ba245b5e6e8ce95c3d734d4"
  },
  {
@@ -16738,8 +16339,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "c87e9ef51682ed37b85688b93773532599df5f1a13e9e35bdb88357381125c2c"
  },
  {
@@ -16777,8 +16377,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "cf47faa5c6ab12659756c0e0670fd2e2ef5d0d62cf1693b8bf567a5237967a53"
  },
  {
@@ -16816,8 +16415,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d02b265d36e9d5c6e7131a08bcf1838a4409ec5a3af0450c07583517caca1a5b"
  },
  {
@@ -16855,8 +16453,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d1be157f3fa8805c46216bb468680999d898e11297fa2308d993f23c4171d2bb"
  },
  {
@@ -16894,8 +16491,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d2613784147ee38d950901f5941f0f882f49775d78d546820bee117ac478e6b8"
  },
  {
@@ -16933,8 +16529,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d60d90a6bbb5987a9bb8462ab16285a084e4bfb30501dd63be871e22e73edd5d"
  },
  {
@@ -16972,8 +16567,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "dad9aae78c11dde8b991bc96f54caaf0bea08d5171aed1c400f97d65cc8f99a0"
  },
  {
@@ -17011,8 +16605,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "dc749d09898ff4012e6a182323e7263bde8b75af9cd1951e9c924b4ec782c054"
  },
  {
@@ -17059,9 +16652,8 @@
    "C"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "dca9d77c092baf3cff13077c78bf28c1081899da88a07896392251ab15c9e740"
  },
  {
@@ -17099,8 +16691,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "dce71dc6f2110dc9475f2442a4e207438b57230697d1d1c4ff1790a029adc2df"
  },
  {
@@ -17138,8 +16729,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "df030fe99b610ff8e0ea02e74eb0819bbebfabd880a193a20148ee6cdc02a98c"
  },
  {
@@ -17177,8 +16767,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e5dc5a001b964b6660142a7195f07c9e16c1350c1414c195d04b801619de3517"
  },
  {
@@ -17216,8 +16805,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e60a5c24a32f8e5157f914466e2dd95bf44f44e01ec9f99d8dc703cdcf3674a6"
  },
  {
@@ -17255,8 +16843,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e6b76da3002dd5d48347ee58fc24d494c1577eb288942644441ca52a344ae161"
  },
  {
@@ -17294,8 +16881,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e7fd59c00a3581032b4e6f087675a2bee4195d9734e673de027ae616bb701980"
  },
  {
@@ -17333,8 +16919,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ee8ad62d356f35cc7667c21133963695c18942ce8994cf295c7c1d79409e0b1a"
  },
  {
@@ -17372,8 +16957,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "eeff53881c90c66b9e38873fc587f0b37cc55e3d184139df57c3b6f516c9d599"
  },
  {
@@ -17427,9 +17011,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "f3240e168582402d805bb9d46e82c4a367fd5ff3ff0fa5f41c103179cd0e45c6"
  },
  {
@@ -17477,9 +17060,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "f9ce3493654eb8a4c8ac74ca860bf4d3e6720631a82b977a1848fe550c95679d"
  },
  {
@@ -17517,8 +17099,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "fc354fd72936cf3501e0d119b36a3daf294b971f6b36ee46ef775581b8bd5765"
  },
  {
@@ -17556,8 +17137,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "fd1be6b4f67a920d74474d7bb6ad2a2f084801db009f8f24fb5c53f9116ad371"
  },
  {
@@ -17595,8 +17175,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "fe991000fb9103d6b7f53d8bf467b96bc904f879e2128311fbbe5ed9e01ef2e6"
  },
  {
@@ -17634,8 +17213,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "111705a8ca0a2ac186ff7933c0b4b424c5cbffc6f885ef1af9da1f7d8757fc7d"
  },
  {
@@ -17673,8 +17251,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "17e79779097bf10304cc1af5a73e5d2c94b1306a16f9e600e998d182ff9a7b1e"
  },
  {
@@ -17712,8 +17289,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "216710cd9b4fb5ed4ffafabd0b2ade65a586bf80b7832927cbba565e5fbb8167"
  },
  {
@@ -17751,8 +17327,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "23072956c67feb1b849397d57f68897d9d2486dbf8b7e47339afa04bfb5072f0"
  },
  {
@@ -17790,8 +17365,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2abbfd26f795e837675f999feb44d77b3a810234d8e30013340d664f1c89d31b"
  },
  {
@@ -17829,8 +17403,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "2f8291e55e5bd3ba9c76a814cd102939ac3aa22dfc3c6dc1493918150d70f89b"
  },
  {
@@ -17878,9 +17451,8 @@
    "C"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "3e94e592e6bd6fe0cd37d5fb7296f3d450fc2e03856b349460116e7fcbcb41e0"
  },
  {
@@ -17918,8 +17490,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "44948a63fe804292ccc0a8800839411431bc8b14eb41a743f818acdeb6e3c075"
  },
  {
@@ -17967,9 +17538,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "4b548b8b1f28842b3102d5e4072edf1bfaec6450647273badcfed7b572e67935"
  },
  {
@@ -18007,8 +17577,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "4c1bd2e7a75ee0191f6a3d927b731699783b4886646c33309bf53beba144d48a"
  },
  {
@@ -18046,8 +17615,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "52bd634f3c26fea3f9aad4cdc41663f338bb3955da38632e07c6b31ef9bb7a74"
  },
  {
@@ -18085,8 +17653,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "53e7b31e66930088676688599eb3ceca450ae56bbeab1291f42544cfaeb483d0"
  },
  {
@@ -18124,8 +17691,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "588e1bdbeae8bbd6299dd0e04efaf88ab7e37ee4679834913e81e69c600af1cc"
  },
  {
@@ -18193,9 +17759,8 @@
    "H"
   ],
   "select": 5,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 5.)' was appended to match the 5-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 5.)' was appended to match the 5-answer key.",
+  "source": "practice-bank",
   "fingerprint": "5c5c280f57cd266fff03651cae2d0536edafd782305e13080fe11801fef53d3a"
  },
  {
@@ -18233,8 +17798,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "5e3e69aebafc9df7351a7787b6b66b6c660381ec5d157986c337854f7b72d00a"
  },
  {
@@ -18272,8 +17836,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "5fdd08a7b3f203f2e8228c11444782461f221ed0b8607db53d4c2957fd9510e4"
  },
  {
@@ -18311,8 +17874,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "62ef7e7d6ed8aba89c664691f2fb9c5e43797f32a7d0ef27dde5c1816f2acb3d"
  },
  {
@@ -18350,8 +17912,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "65b17ecf3a5d633875cd7ef73841255bca5234550ed232f96330638ad124eedc"
  },
  {
@@ -18389,8 +17950,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "66d14e0965701a67e284c634b7ea3090425d1a8ac6d7847952b8fd2f38a27409"
  },
  {
@@ -18428,8 +17988,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "6744e3d2f4bc660553b77520c9783bdb5ae6a0fb23944c4de43938387084e8cf"
  },
  {
@@ -18483,9 +18042,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "6774f2733d2ea7bf47548009151b37501a4b52a7bb894d9278f575422ce47440"
  },
  {
@@ -18523,8 +18081,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "6804ce87e859d22d8e92e247125c94fc9d857fb56bb7977087502477bfe5906b"
  },
  {
@@ -18578,9 +18135,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "69d1088c67738c8622c871b19edf79b3883fe1fab768353ff40904bd10adb999"
  },
  {
@@ -18648,9 +18204,8 @@
    "H"
   ],
   "select": 5,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 5.)' was appended to match the 5-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 5.)' was appended to match the 5-answer key.",
+  "source": "practice-bank",
   "fingerprint": "6a1142b4600363fa4ff2c11447cb49b8aab31d3a086b31fe4f981a9352e4506c"
  },
  {
@@ -18688,8 +18243,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "828c92699f187dc6fd9ee019f92a6a5c476c9bb1f14cb8df9786fa813cb5107c"
  },
  {
@@ -18727,8 +18281,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8590930c6d98cfa0123ef8bff29baa9f06d79d94896bb602ca2b8021d79a8d9b"
  },
  {
@@ -18766,8 +18319,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "8d28f3e9601a53af0ea31ef692b66b87d2cf9dfef7a5a3e31f63134af74960e9"
  },
  {
@@ -18815,9 +18367,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "91587cf78f5f78a8d7a8437725da77042d46378760c5143d96ab51f19885fd9b"
  },
  {
@@ -18855,8 +18406,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "96c8b5e9da4f35c6dafcee21ea9ce4e4bfe77b26bdf1fa99b539d26006b3d8f0"
  },
  {
@@ -18894,8 +18444,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "98d3493037bbb5afb3b4f466ccc8c8ce3ea8ffb86200df6d7f1127d576f9044c"
  },
  {
@@ -18933,8 +18482,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "9bc1879cd98da9144435348d1606fede069e8f613475e94a5e01af4f625e6221"
  },
  {
@@ -18982,9 +18530,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "9dc97957b4ff4d18f95fccb84d09043c8de6092911f6c0698bfbd940c05bda3d"
  },
  {
@@ -19022,8 +18569,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "a41bf7fd9cc31f31bc60eb164bc50224f88c0fb2c4af746271078e25e710e702"
  },
  {
@@ -19061,8 +18607,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b57562d3c66e15935acc369163423b332338339df23abc994f18f9c303237870"
  },
  {
@@ -19100,8 +18645,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b628fdb0b408f10130dcc9862a0a0776d8ccbe07d8d5b7aa9a87cef55e38a440"
  },
  {
@@ -19139,8 +18683,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "b7c755e718b4163957f5c8163ab0b4c88894c26ba1deac217a7e029bd5805aa6"
  },
  {
@@ -19178,8 +18721,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "bc778650e07675d8d3784607523ab1df53e97e505d33b2caf98cf8ae1e017dfb"
  },
  {
@@ -19217,8 +18759,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "bf300597e82dfd41b1cc4278f6614ed78b2a6276b04be0eede13ea8644cea6e1"
  },
  {
@@ -19256,8 +18797,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ca768e9eb32f3d1e0de8a1679b1e297ea2b8d362fb53bef68206296bfabf1d50"
  },
  {
@@ -19295,8 +18835,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "cb6706921351bfa8c056aae3612721c543b0fe9fbed4ff6aa4d86c113d2631d5"
  },
  {
@@ -19344,9 +18883,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "d24e2b3781537611e7641cc7f2feff85fe528eef7a235eafb9d41da78f4466ec"
  },
  {
@@ -19384,8 +18922,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "d28284bd41074136ddb0cd332ff11255d24be9f7b2cc4003037523d9de435081"
  },
  {
@@ -19432,9 +18969,8 @@
    "D"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "d6c69dd00f2578479c4f7edef9fe181fd162579df169cd616aae361a7b7a17f7"
  },
  {
@@ -19472,8 +19008,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "da0b1c28f1ce631b4b5b0b188b8a3ef3af2064b4374f256998e2294d469913ee"
  },
  {
@@ -19511,8 +19046,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e0f8516502dfe385784fe9ce9bc3fab3fcac8033473dfa38aaf387dbd95ffea2"
  },
  {
@@ -19550,8 +19084,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "e67e65c84f289236a94c06d7927ad98ac0bb5bfe8693c989688dba1f0ae05601"
  },
  {
@@ -19589,8 +19122,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "ebc3906f2d7d2721c39f4a0d7585b939c15859f21ed2ce318aab5f9d064e74fa"
  },
  {
@@ -19644,9 +19176,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "f0f38a3fe61cbc7e45894ee7e3ecb09059775e2da0d56aa163d1b674132b46d4"
  },
  {
@@ -19684,8 +19215,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "f19621965aadc1ef10992bb76b65f22f6c8f7f9e3b3cf877708ca19895fb11e2"
  },
  {
@@ -19723,8 +19253,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "f23276be050903faae0f0e65e85d28f54733d41d305dd7c6d4f57bffddc223f2"
  },
  {
@@ -19762,8 +19291,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "f3ebb4786b3ba4c4c4dbe1a318b8d096c64af2e1a412e430d30ae507cfd1d908"
  },
  {
@@ -19801,8 +19329,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "f5d7cd2d259a88e1d91be85aa5c9233dd38e6d56d09c587700ce7a2fc329d2f4"
  },
  {
@@ -19840,8 +19367,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "source": "practice-bank",
   "fingerprint": "f6b3bc1a42bf5006d1126792cb2cc8e3e0fa6434648dc19924398eb29c0cb068"
  },
  {
@@ -19889,9 +19415,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-developer-foundations",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "fb7c84cd51c964514afbc5c01fecd89715017ee0f4808d122dbbb4915532b472"
  }
 ]

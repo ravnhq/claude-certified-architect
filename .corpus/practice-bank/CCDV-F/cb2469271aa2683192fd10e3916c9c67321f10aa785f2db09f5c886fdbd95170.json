@@ -1,0 +1,22 @@
+{
+  "exam": "CCDV-F",
+  "question": "A frontend engineer building a custom SSE parser for streaming Messages API responses needs to know when it is safe to treat one content block as fully received and move on to parsing the next one. Which event signals that a specific content block, identified by its index, will receive no further delta events?",
+  "options": [
+    "A) content_block_start",
+    "B) message_delta",
+    "C) content_block_stop",
+    "D) message_stop"
+  ],
+  "correct_answers": [
+    "C) content_block_stop"
+  ],
+  "explanations": [
+    "content_block_start marks the beginning of a new content block and precedes its delta events, not the end.",
+    "message_delta communicates top-level changes to the Message object, such as stop_reason and cumulative usage, not the completion of an individual content block.",
+    "Correct — content_block_stop is emitted once a content block at a given index has received all of its delta events and will not change further.",
+    "message_stop signals the end of the entire stream, after all content blocks have already closed with their own content_block_stop events."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: the practice bank — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Developer – Foundations (CCDV-F)\n- button \"7 / 12 correct (58%) View by domain\":\n  - generic: 7 / 12 correct (58%)\n  - generic: View by domain\n- progressbar\n- generic: Question 13 of 60\n- generic: \"Subdomain 5.2: Technical Fundamentals\"\n- heading \"A frontend engineer building a custom SSE parser for streaming Messages API responses needs to know when it is safe to treat one content block as fully received and move on to parsing the next one. Which event signals that a specific content block, identified by its index, will receive no further delta events?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) content_block_start\" [checked] [disabled]:\n  - generic: A) content_block_start\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: content_block_start marks the beginning of a new content block and precedes its delta events, not the end.\n  - radio \"B) message_delta\" [disabled]\n  - generic: B) message_delta\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: message_delta communicates top-level changes to the Message object, such as stop_reason and cumulative usage, not the completion of an individual content block.\n  - radio \"C) content_block_stop\" [disabled]\n  - generic: C) content_block_stop\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct — content_block_stop is emitted once a content block at a given index has received all of its delta events and will not change further.\n  - radio \"D) message_stop\" [disabled]\n  - generic: D) message_stop\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: message_stop signals the end of the entire stream, after all content blocks have already closed with their own content_block_stop events.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:25:28.715Z",
+  "fingerprint": "cb2469271aa2683192fd10e3916c9c67321f10aa785f2db09f5c886fdbd95170"
+}

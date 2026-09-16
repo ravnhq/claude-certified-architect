@@ -1,0 +1,22 @@
+{
+  "exam": "CCDV-F",
+  "question": "An enterprise agent platform has thousands of internal tool definitions registered, but including every definition in the model's context on each request is prohibitively expensive and hurts tool-selection accuracy. Which infrastructure feature addresses this at scale?",
+  "options": [
+    "A) Tool search tool",
+    "B) Programmatic tool calling",
+    "C) MCP connector",
+    "D) Fine-grained tool streaming"
+  ],
+  "correct_answers": [
+    "A) Tool search tool"
+  ],
+  "explanations": [
+    "The tool search tool lets Claude scale to thousands of tools by dynamically discovering and loading only relevant ones on demand using regex-based search, optimizing context usage and selection accuracy.",
+    "Programmatic tool calling lets Claude call tools from within code execution containers to reduce latency and token consumption for multi-tool workflows, not to discover tools from a large registry.",
+    "The MCP connector connects to remote MCP servers directly from the Messages API; it does not itself solve on-demand discovery across a large local tool registry.",
+    "Fine-grained tool streaming reduces latency for receiving large tool-call parameters; it does not address the cost of keeping thousands of tool definitions in context."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: the practice bank — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Developer – Foundations (CCDV-F)\n- button \"5 / 10 correct (50%) View by domain\":\n  - generic: 5 / 10 correct (50%)\n  - generic: View by domain\n- progressbar\n- generic: Question 11 of 60\n- generic: \"Subdomain 2.1: Understanding Requirements\"\n- heading \"An enterprise agent platform has thousands of internal tool definitions registered, but including every definition in the model's context on each request is prohibitively expensive and hurts tool-selection accuracy. Which infrastructure feature addresses this at scale?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Tool search tool\" [checked] [disabled]:\n  - generic: A) Tool search tool\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The tool search tool lets Claude scale to thousands of tools by dynamically discovering and loading only relevant ones on demand using regex-based search, optimizing context usage and selection accuracy.\n  - radio \"B) Programmatic tool calling\" [disabled]\n  - generic: B) Programmatic tool calling\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Programmatic tool calling lets Claude call tools from within code execution containers to reduce latency and token consumption for multi-tool workflows, not to discover tools from a large registry.\n  - radio \"C) MCP connector\" [disabled]\n  - generic: C) MCP connector\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The MCP connector connects to remote MCP servers directly from the Messages API; it does not itself solve on-demand discovery across a large local tool registry.\n  - radio \"D) Fine-grained tool streaming\" [disabled]\n  - generic: D) Fine-grained tool streaming\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Fine-grained tool streaming reduces latency for receiving large tool-call parameters; it does not address the cost of keeping thousands of tool definitions in context.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:25:25.180Z",
+  "fingerprint": "e1dd4dec445b0fa7cd9e17257d84ffee7918a14626d9218a70fd0d6609c80355"
+}

@@ -24,7 +24,7 @@ docs/vendor/
 __pycache__/
 
 # local corpus — Skilljar course material is partner-gated, never published;
-# certsafari/ is a tracked exception (see scripts/certsafari-collection.md)
+# practice-bank/ is a tracked exception (see scripts/practice-bank-collection.md)
 .corpus/
 
 # vendored agent tooling — reinstall from skills-lock.json, do not commit

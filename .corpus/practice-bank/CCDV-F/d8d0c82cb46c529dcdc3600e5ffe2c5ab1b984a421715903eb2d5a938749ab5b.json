@@ -1,0 +1,22 @@
+{
+  "exam": "CCDV-F",
+  "question": "A downstream billing system requires that every Claude response parse as valid JSON matching an exact schema, with zero tolerance for malformed output that would require manual repair. Which feature should the integration use?",
+  "options": [
+    "A) Context editing",
+    "B) Structured outputs",
+    "C) Prompt caching",
+    "D) Extended thinking"
+  ],
+  "correct_answers": [
+    "B) Structured outputs"
+  ],
+  "explanations": [
+    "Context editing manages conversation context, such as clearing stale tool results, and does not enforce schema conformance on responses.",
+    "Structured outputs guarantee schema conformance for JSON responses, directly satisfying the requirement that every response parse as valid JSON matching an exact schema.",
+    "Prompt caching reduces repeated-content cost and latency; it has no effect on whether the response conforms to a JSON schema.",
+    "Extended thinking exposes Claude's step-by-step reasoning before the final answer; it does not guarantee that the final output conforms to a specific JSON schema."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: the practice bank — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Developer – Foundations (CCDV-F)\n- button \"14 / 50 correct (28%) View by domain\":\n  - generic: 14 / 50 correct (28%)\n  - generic: View by domain\n- progressbar\n- generic: Question 51 of 60\n- generic: \"Subdomain 2.1: Understanding Requirements\"\n- heading \"A downstream billing system requires that every Claude response parse as valid JSON matching an exact schema, with zero tolerance for malformed output that would require manual repair. Which feature should the integration use?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Context editing\" [checked] [disabled]:\n  - generic: A) Context editing\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Context editing manages conversation context, such as clearing stale tool results, and does not enforce schema conformance on responses.\n  - radio \"B) Structured outputs\" [disabled]\n  - generic: B) Structured outputs\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Structured outputs guarantee schema conformance for JSON responses, directly satisfying the requirement that every response parse as valid JSON matching an exact schema.\n  - radio \"C) Prompt caching\" [disabled]\n  - generic: C) Prompt caching\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Prompt caching reduces repeated-content cost and latency; it has no effect on whether the response conforms to a JSON schema.\n  - radio \"D) Extended thinking\" [disabled]\n  - generic: D) Extended thinking\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Extended thinking exposes Claude's step-by-step reasoning before the final answer; it does not guarantee that the final output conforms to a specific JSON schema.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:45:08.514Z",
+  "fingerprint": "d8d0c82cb46c529dcdc3600e5ffe2c5ab1b984a421715903eb2d5a938749ab5b"
+}

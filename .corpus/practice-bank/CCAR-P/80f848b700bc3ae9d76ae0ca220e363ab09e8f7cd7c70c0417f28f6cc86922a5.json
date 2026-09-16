@@ -1,0 +1,28 @@
+{
+  "exam": "CCAR-P",
+  "question": "A team is containerizing an Agent SDK deployment and plans to mount their application's source directory read-only into the agent's container so it can analyze code without being able to modify it. Before finalizing the mount list, which files should be excluded or sanitized first because read-only access to them would still expose live credentials to the agent? (Select 3)",
+  "options": [
+    "A) .npmrc",
+    "B) README.md",
+    "C) tsconfig.json",
+    "D) .env",
+    "E) ~/.aws/credentials",
+    "F) package.json"
+  ],
+  "correct_answers": [
+    "A) .npmrc",
+    "D) .env",
+    "E) ~/.aws/credentials"
+  ],
+  "explanations": [
+    "Correct. .npmrc can contain package registry authentication tokens, which are live credentials even when the file is only ever read.",
+    "README.md is documentation with no credential content, so it carries no meaningful authorization risk when mounted read-only.",
+    "tsconfig.json configures the TypeScript compiler and does not hold secrets, so it does not need special exclusion.",
+    "Correct. .env and .env.local commonly hold API keys, database passwords, and other secrets in plaintext, so even read-only access exposes them to the agent.",
+    "Correct. ~/.aws/credentials contains AWS access keys; mounting it read-only still lets the agent read and potentially exfiltrate those keys.",
+    "package.json lists dependency metadata and scripts; it is not a credential store and poses no comparable secret-exposure risk."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: the practice bank — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Architect – Professional (CCAR-P)\n- button \"15 / 58 correct (26%) View by domain\":\n  - generic: 15 / 58 correct (26%)\n  - generic: View by domain\n- progressbar\n- generic: Question 59 of 60\n- generic: \"Subdomain 3.2: Analyze authentication and authorization requirements to identify security gaps\"\n- heading \"A team is containerizing an Agent SDK deployment and plans to mount their application's source directory read-only into the agent's container so it can analyze code without being able to modify it. Before finalizing the mount list, which files should be excluded or sanitized first because read-only access to them would still expose live credentials to the agent? (Select 3)\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- checkbox \"A) .npmrc\" [checked] [disabled]:\n- generic: A) .npmrc\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. .npmrc can contain package registry authentication tokens, which are live credentials even when the file is only ever read.\n- checkbox \"B) README.md\" [checked] [disabled]:\n- generic: B) README.md\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: README.md is documentation with no credential content, so it carries no meaningful authorization risk when mounted read-only.\n- checkbox \"C) tsconfig.json\" [checked] [disabled]:\n- generic: C) tsconfig.json\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: tsconfig.json configures the TypeScript compiler and does not hold secrets, so it does not need special exclusion.\n- checkbox \"D) .env\" [disabled]\n- generic: D) .env\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. .env and .env.local commonly hold API keys, database passwords, and other secrets in plaintext, so even read-only access exposes them to the agent.\n- checkbox \"E) ~/.aws/credentials\" [disabled]\n- generic: E) ~/.aws/credentials\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. ~/.aws/credentials contains AWS access keys; mounting it read-only still lets the agent read and potentially exfiltrate those keys.\n- checkbox \"F) package.json\" [disabled]\n- generic: F) package.json\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded] [active]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: package.json lists dependency metadata and scripts; it is not a credential store and poses no comparable secret-exposure risk.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:08:58.525Z",
+  "fingerprint": "80f848b700bc3ae9d76ae0ca220e363ab09e8f7cd7c70c0417f28f6cc86922a5"
+}

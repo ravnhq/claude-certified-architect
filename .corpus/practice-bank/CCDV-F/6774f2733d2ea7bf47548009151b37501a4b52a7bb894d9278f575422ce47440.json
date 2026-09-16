@@ -1,0 +1,28 @@
+{
+  "exam": "CCDV-F",
+  "question": "A developer configures a stdio MCP server for GitHub that requires a personal access token, launched by running a local npx command. Which three of the following fields are valid parts of that server's configuration object? (Select all that apply.)",
+  "options": [
+    "A) port",
+    "B) url",
+    "C) args",
+    "D) env",
+    "E) command",
+    "F) headers"
+  ],
+  "correct_answers": [
+    "C) args",
+    "D) env",
+    "E) command"
+  ],
+  "explanations": [
+    "Incorrect. \"port\" is not a recognized field in MCP server configuration; stdio servers communicate over stdin/stdout, not a network port.",
+    "Incorrect. \"url\" is used for HTTP/SSE servers reachable over the network, not for a stdio server launched by a local command.",
+    "Correct. \"args\" supplies the command-line arguments passed to the executable, such as the package name.",
+    "Correct. \"env\" passes environment variables, such as a GITHUB_TOKEN, to the spawned local process so it can read credentials.",
+    "Correct. \"command\" specifies the executable to run for a stdio server, such as \"npx\".",
+    "Incorrect. \"headers\" configures authentication for HTTP/SSE servers; a stdio server does not communicate over HTTP requests."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: the practice bank — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Developer – Foundations (CCDV-F)\n- button \"0 / 0 correct (0%) View by domain\":\n  - generic: 0 / 0 correct (0%)\n  - generic: View by domain\n- progressbar\n- generic: Question 1 of 60\n- generic: \"Subdomain 8.2: MCP Server Development\"\n- heading \"A developer configures a stdio MCP server for GitHub that requires a personal access token, launched by running a local npx command. Which three of the following fields are valid parts of that server's configuration object? (Select all that apply.)\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- checkbox \"A) port\" [checked] [disabled]:\n- generic: A) port\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Incorrect. \"port\" is not a recognized field in MCP server configuration; stdio servers communicate over stdin/stdout, not a network port.\n- checkbox \"B) url\" [checked] [disabled]:\n- generic: B) url\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Incorrect. \"url\" is used for HTTP/SSE servers reachable over the network, not for a stdio server launched by a local command.\n- checkbox \"C) args\" [checked] [disabled]:\n- generic: C) args\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. \"args\" supplies the command-line arguments passed to the executable, such as the package name.\n- checkbox \"D) env\" [disabled]\n- generic: D) env\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. \"env\" passes environment variables, such as a GITHUB_TOKEN, to the spawned local process so it can read credentials.\n- checkbox \"E) command\" [disabled]\n- generic: E) command\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. \"command\" specifies the executable to run for a stdio server, such as \"npx\".\n- checkbox \"F) headers\" [disabled]\n- generic: F) headers\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded] [active]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Incorrect. \"headers\" configures authentication for HTTP/SSE servers; a stdio server does not communicate over HTTP requests.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:12:14.656Z",
+  "fingerprint": "6774f2733d2ea7bf47548009151b37501a4b52a7bb894d9278f575422ce47440"
+}

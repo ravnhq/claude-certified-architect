@@ -1,0 +1,28 @@
+{
+  "exam": "CCAR-P",
+  "question": "A developer enables auto mode for a long-running refactor session so Claude can work with fewer permission prompts. Which of the following actions does auto mode still block by default, requiring explicit approval? (Select all that apply)",
+  "options": [
+    "A) Reading files and making edits inside the working directory",
+    "B) Running git reset --hard in the working repository",
+    "C) Sending a read-only HTTP GET request to an internal API",
+    "D) Executing curl | bash to download and run a script",
+    "E) Force-pushing to a remote branch",
+    "F) Installing dependencies declared in the project's lock file"
+  ],
+  "correct_answers": [
+    "B) Running git reset --hard in the working repository",
+    "D) Executing curl | bash to download and run a script",
+    "E) Force-pushing to a remote branch"
+  ],
+  "explanations": [
+    "Incorrect. Reads and file edits inside the working directory are auto-approved by default in auto mode, aside from writes to protected paths.",
+    "Correct. auto mode blocks git reset --hard by default because the classifier presumes it would discard uncommitted changes, requiring explicit approval before it runs.",
+    "Incorrect. Read-only HTTP requests are explicitly allowed by default in auto mode.",
+    "Correct. Downloading and executing code such as curl | bash is explicitly listed as blocked by default because it runs unreviewed remote code.",
+    "Correct. Force push is explicitly listed as blocked by default under auto mode, since it can irreversibly overwrite remote history.",
+    "Incorrect. Installing dependencies declared in lock files or manifests is explicitly allowed by default in auto mode."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: the practice bank — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Architect – Professional (CCAR-P)\n- button \"2 / 7 correct (29%) View by domain\":\n  - generic: 2 / 7 correct (29%)\n  - generic: View by domain\n- progressbar\n- generic: Question 8 of 60\n- generic: \"Subdomain 7.2: Improve developer workflows using AI-assisted tooling\"\n- heading \"A developer enables auto mode for a long-running refactor session so Claude can work with fewer permission prompts. Which of the following actions does auto mode still block by default, requiring explicit approval? (Select all that apply)\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- checkbox \"A) Reading files and making edits inside the working directory\" [checked] [disabled]:\n- generic: A) Reading files and making edits inside the working directory\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Incorrect. Reads and file edits inside the working directory are auto-approved by default in auto mode, aside from writes to protected paths.\n- checkbox \"B) Running git reset --hard in the working repository\" [checked] [disabled]:\n- generic: B) Running git reset --hard in the working repository\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. auto mode blocks git reset --hard by default because the classifier presumes it would discard uncommitted changes, requiring explicit approval before it runs.\n- checkbox \"C) Sending a read-only HTTP GET request to an internal API\" [checked] [disabled]:\n- generic: C) Sending a read-only HTTP GET request to an internal API\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Incorrect. Read-only HTTP requests are explicitly allowed by default in auto mode.\n- checkbox \"D) Executing curl | bash to download and run a script\" [disabled]\n- generic: D) Executing curl | bash to download and run a script\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. Downloading and executing code such as curl | bash is explicitly listed as blocked by default because it runs unreviewed remote code.\n- checkbox \"E) Force-pushing to a remote branch\" [disabled]\n- generic: E) Force-pushing to a remote branch\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Correct. Force push is explicitly listed as blocked by default under auto mode, since it can irreversibly overwrite remote history.\n- checkbox \"F) Installing dependencies declared in the project's lock file\" [disabled]\n- generic: F) Installing dependencies declared in the project's lock file\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded] [active]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: Incorrect. Installing dependencies declared in lock files or manifests is explicitly allowed by default in auto mode.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:04:01.436Z",
+  "fingerprint": "7d8c0183cabcb20f2dcc11b261b8a59bcd67cf9a3ff680342082fa6800f43afb"
+}

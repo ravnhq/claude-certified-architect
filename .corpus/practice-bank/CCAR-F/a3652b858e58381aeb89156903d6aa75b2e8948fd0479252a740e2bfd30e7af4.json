@@ -1,0 +1,22 @@
+{
+  "exam": "CCAR-F",
+  "question": "An infrastructure team wants Claude Code to load Terraform-specific formatting and tagging conventions only when Claude edits files under the terraform/ directory, at any subfolder depth. Which YAML frontmatter for a new .claude/rules/terraform.md file correctly scopes the rule to this requirement?",
+  "options": [
+    "A) ---\npaths:\n  - \"terraform/*\"\n---",
+    "B) ---\npaths:\n  - \"terraform/**/*\"\n---",
+    "C) ---\ninclude:\n  - \"terraform/**/*\"\n---",
+    "D) ---\npaths: \"terraform/**/*\"\n---"
+  ],
+  "correct_answers": [
+    "B) ---\npaths:\n  - \"terraform/**/*\"\n---"
+  ],
+  "explanations": [
+    "A single star only matches files directly inside terraform/ and would miss files in nested subfolders such as terraform/modules/network/main.tf.",
+    "Correct. The paths field takes a YAML list, and the double-star glob terraform/**/* matches files under terraform/ at any depth, including nested subfolders.",
+    "The frontmatter field recognized for path scoping is paths, not include; a rule using include would not be treated as path-scoped.",
+    "The paths field is documented as a YAML list of patterns, not a bare string; while a single pattern is common, it should be expressed as a list item under paths:."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: the practice bank — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Architect – Foundations (CCAR-F)\n- button \"0 / 4 correct (0%) View by domain\":\n  - generic: 0 / 4 correct (0%)\n  - generic: View by domain\n- progressbar\n- generic: Question 5 of 60\n- generic: \"Subdomain 3.3: Apply path-specific rules for conditional convention loading\"\n- heading \"An infrastructure team wants Claude Code to load Terraform-specific formatting and tagging conventions only when Claude edits files under the terraform/ directory, at any subfolder depth. Which YAML frontmatter for a new .claude/rules/terraform.md file correctly scopes the rule to this requirement?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - 'radio \"A) --- paths: - \\\"terraform/*\\\" ---\" [checked] [disabled]':\n  - generic: \"A) --- paths: - \\\"terraform/*\\\" ---\"\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A single star only matches files directly inside terraform/ and would miss files in nested subfolders such as terraform/modules/network/main.tf.\n  - 'radio \"B) --- paths: - \\\"terraform/**/*\\\" ---\" [disabled]'\n  - generic: \"B) --- paths: - \\\"terraform/**/*\\\" ---\"\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. The paths field takes a YAML list, and the double-star glob terraform/**/* matches files under terraform/ at any depth, including nested subfolders.\n  - 'radio \"C) --- include: - \\\"terraform/**/*\\\" ---\" [disabled]'\n  - generic: \"C) --- include: - \\\"terraform/**/*\\\" ---\"\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The frontmatter field recognized for path scoping is paths, not include; a rule using include would not be treated as path-scoped.\n  - 'radio \"D) --- paths: \\\"terraform/**/*\\\" ---\" [disabled]'\n  - generic: \"D) --- paths: \\\"terraform/**/*\\\" ---\"\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The paths field is documented as a YAML list of patterns, not a bare string; while a single pattern is common, it should be expressed as a list item under paths:.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:36:58.788Z",
+  "fingerprint": "a3652b858e58381aeb89156903d6aa75b2e8948fd0479252a740e2bfd30e7af4"
+}

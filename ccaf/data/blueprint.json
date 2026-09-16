@@ -1,5 +1,5 @@
 {
-  "_source": "CCAR-F task statements as labelled on the collected practice items (Subdomain X.Y), matching the official Foundations exam guide numbering; used by utils/import_certsafari.py to place imported items.",
+  "_source": "CCAR-F task statements as labelled on the collected practice items (Subdomain X.Y), matching the official Foundations exam guide numbering; used by utils/import_practice_bank.py to place imported items.",
   "domains": {
     "1": {
       "name": "Agent Architecture and Orchestration",

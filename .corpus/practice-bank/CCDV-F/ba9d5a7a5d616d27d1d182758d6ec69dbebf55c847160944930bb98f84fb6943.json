@@ -1,0 +1,22 @@
+{
+  "exam": "CCDV-F",
+  "question": "A legal research assistant must let reviewers verify that each answer is grounded in the exact sentences of source contract PDFs uploaded directly in the request, not just a general summary. Which feature satisfies this auditability requirement?",
+  "options": [
+    "A) Structured outputs",
+    "B) Citations",
+    "C) Search results",
+    "D) Files API"
+  ],
+  "correct_answers": [
+    "B) Citations"
+  ],
+  "explanations": [
+    "Structured outputs enforce a JSON schema on responses; they do not provide sentence-level grounding references back to source documents.",
+    "Citations grounds Claude's responses in provided source documents, letting Claude give detailed references to the exact sentences and passages used, matching this auditability requirement.",
+    "The search results feature enables natural citations for RAG applications backed by tool-based search results, not for citing sentences within documents supplied directly in the request.",
+    "The Files API manages document uploads for reuse across requests; it does not itself produce sentence-level citations within responses."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: the practice bank — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Developer – Foundations (CCDV-F)\n- button \"17 / 45 correct (38%) View by domain\":\n  - generic: 17 / 45 correct (38%)\n  - generic: View by domain\n- progressbar\n- generic: Question 46 of 60\n- generic: \"Subdomain 2.1: Understanding Requirements\"\n- heading \"A legal research assistant must let reviewers verify that each answer is grounded in the exact sentences of source contract PDFs uploaded directly in the request, not just a general summary. Which feature satisfies this auditability requirement?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Structured outputs\" [checked] [disabled]:\n  - generic: A) Structured outputs\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Structured outputs enforce a JSON schema on responses; they do not provide sentence-level grounding references back to source documents.\n  - radio \"B) Citations\" [disabled]\n  - generic: B) Citations\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Citations grounds Claude's responses in provided source documents, letting Claude give detailed references to the exact sentences and passages used, matching this auditability requirement.\n  - radio \"C) Search results\" [disabled]\n  - generic: C) Search results\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The search results feature enables natural citations for RAG applications backed by tool-based search results, not for citing sentences within documents supplied directly in the request.\n  - radio \"D) Files API\" [disabled]\n  - generic: D) Files API\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The Files API manages document uploads for reuse across requests; it does not itself produce sentence-level citations within responses.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:27:42.060Z",
+  "fingerprint": "ba9d5a7a5d616d27d1d182758d6ec69dbebf55c847160944930bb98f84fb6943"
+}

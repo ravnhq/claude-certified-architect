@@ -10,9 +10,9 @@ Reuses the quiz engine in build_exam_html.py. The differences from Foundations:
   * multiple-response items, scored all-or-nothing
   * English only — Anthropic delivers the exam and its prep content in English
 
-Question bank: ccap/data/questions.json, imported from the collected CertSafari
-corpus by utils/import_certsafari.py and tagged to the official blueprint
-objectives. The items and their answer keys are CertSafari's, not real exam
+Question bank: ccap/data/questions.json, imported from the collected practice-bank
+corpus by utils/import_practice_bank.py and tagged to the official blueprint
+objectives. The items and their answer keys are the practice bank's, not real exam
 content and not independently verified here. Validate the bank with
 utils/validate_professional_bank.py.
 

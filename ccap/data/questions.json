@@ -43,9 +43,8 @@
    "E"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "032d1fb4e2d61e856bbf9a2c8a4b8c3567fff00e2544638675d1c9bdc7112f48"
  },
  {
@@ -93,9 +92,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "03bfe6c0ef1400f06158bf0658fabe2b59adaad568088023c311fed85fc28a93"
  },
  {
@@ -133,8 +131,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "0bdfe2df43d58860ab2a5df5abec84725cacfdaa23b8f121fa27f136931111b2"
  },
  {
@@ -188,8 +185,7 @@
    "D"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "0e685e0d9dd4a24f06676bd8e5273892e400659ec34f9fd83242382028377067"
  },
  {
@@ -227,8 +223,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "0ef53897292272085059404ae6bddc3d86a49bf2744f2f8b090848db5ac4f93c"
  },
  {
@@ -266,8 +261,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "10706f5bdc7f3a8478287b3b2b4814324db5332a70b3c7a5a464bcec133bf43c"
  },
  {
@@ -305,8 +299,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "11f10201823cf5be55099562b979c1a3475a7a4b9b7c18085afa15372b85bccc"
  },
  {
@@ -359,8 +352,7 @@
    "E"
   ],
   "select": 2,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "12e74dd1d8156722e8b0dc0f614f11ee188cc272371efd3b7c244393efae1d5d"
  },
  {
@@ -398,8 +390,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "18b40bd04ed93e2dd2ebbc6c9ae2439141f55eb857ee11fc714299e447e50039"
  },
  {
@@ -453,9 +444,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "18d9f2eaf222f8476b8b59e652bcf05e594a86d5e9edba742a9b209d43fbccde"
  },
  {
@@ -493,8 +483,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "1a3d259bd140e981289a2a80624d15386872e5b402c216db828beea75bbb0287"
  },
  {
@@ -532,8 +521,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "23a483978f7f6288a8119af3eb42362e05c4d67f8648488fdcf45cb3216ce9df"
  },
  {
@@ -571,8 +559,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "26176cb4267780ce5a10f62d02a21969b4641c776054d52be6ced0401ff04792"
  },
  {
@@ -619,9 +606,8 @@
    "E"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "27185d1ff31e0d304d106193fdda3b5c4e425cfff46e81ed24d5ffbd9a17c664"
  },
  {
@@ -659,8 +645,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2be9bc62e61a5996e8a78b95d2382c42068175eb1a2b14eeff805830ca45a37b"
  },
  {
@@ -698,8 +683,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "33ac14259dbc00ec9cf6a69be2f9e72d08507860cb39dbb7e03c5b23eeb6af7a"
  },
  {
@@ -737,8 +721,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "3593ba6d8043b0609d9f1c5b9fadeaa757755ec4e01d737d03740b657ebdf944"
  },
  {
@@ -776,8 +759,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "370a84cce0c8650625ed72db1a7e98ce780816ea9372427f5ac91aa8e2e39d2e"
  },
  {
@@ -815,8 +797,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "3b450b05a6411a5ec4bc53c8dca54b1c011c150a94f75c6654a55d044addbe44"
  },
  {
@@ -854,8 +835,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "446c9d5f2199ea301865bc341a9249777f6e3ecdb277ad0b3b00682bdde79ff5"
  },
  {
@@ -909,9 +889,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "49753ac871a967e1a0e713edd854ba9f850b8135008ac7caeeca038b892df98b"
  },
  {
@@ -949,8 +928,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "4b101840e2e437bafa112bdb21fe4400e6fc9a55e4ff5748b951dc7edefc772f"
  },
  {
@@ -988,8 +966,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "4ea337feacb3c11b144f5795b64ebc1d475e54b91d4b9b2d53fa5641f946fe9c"
  },
  {
@@ -1027,8 +1004,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "4fca76c3f3a330dd48ea048a2c21a771ce06160f6740752390e002688d5db3d5"
  },
  {
@@ -1082,9 +1058,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "5091d331b24348bdd9d67ab021e154877671e0f5f8f6c116ace5ead249310d50"
  },
  {
@@ -1139,9 +1114,8 @@
    "F"
   ],
   "select": 4,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 4.)' was appended to match the 4-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 4.)' was appended to match the 4-answer key.",
+  "source": "practice-bank",
   "fingerprint": "558a3903fcaf4c1d8806b5640cd5e25c46f9a468dd6c910acd903fd754dc0600"
  },
  {
@@ -1179,8 +1153,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "57a680e4ff7a1ddac4a462deccc38749397e9b754f20f22b2f8c8c8094c43c67"
  },
  {
@@ -1218,8 +1191,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "58003dce298e7175da806170a612cdc667fa6ea03e6a8c0dd39b048ad60ccba3"
  },
  {
@@ -1257,8 +1229,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "5883dc43cd6cbcae071045111f7e6759732626305003667fb337682224e95d92"
  },
  {
@@ -1296,8 +1267,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "5b478f11a976d6d7a6e08f4882ba761fa8dbffcf346a1bae23ee04b9a90c3e2a"
  },
  {
@@ -1335,8 +1305,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "653532ecbe000832a344c99ae606ed0f34d8055d6912bf8ef1eaa2dbab743bfa"
  },
  {
@@ -1374,8 +1343,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "703e5112bb3141adbb3722d35b794b7209bbdac8c0193a491c976af63ba60a78"
  },
  {
@@ -1413,8 +1381,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "711c6463390257e7905e73b72ac3b4d71b2690399e15aae3d808312af804da2a"
  },
  {
@@ -1452,8 +1419,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "729272362efc06d39a0624a0654ef8a2b210f930739dea3d2762e3fab1dbec94"
  },
  {
@@ -1491,8 +1457,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7362ed2b0c4c2862104e3fb42bc8bf047544453c461f1b9184fab03a4fbc4951"
  },
  {
@@ -1530,8 +1495,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7476d38d57cefd485999192d194959397d686be1a26e7a759ef6334ca8e85cea"
  },
  {
@@ -1569,8 +1533,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "78852897026993ff3e3900cd978a52dfa842b02efaa85130ed847d32bd6417ba"
  },
  {
@@ -1608,8 +1571,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "794b9dd72479ff8182975dffe957374674f4286551be565412b3443327e9ffdf"
  },
  {
@@ -1663,9 +1625,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "7fe8b90e6a15397b9134360344923439cc07d1d9ffecbb0f8c4d21bf0ceacee9"
  },
  {
@@ -1703,8 +1664,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "8127bfb87832cbe134f6b4eabee5d3dbb395dd33c49939c13a6fa1db7228d230"
  },
  {
@@ -1758,9 +1718,8 @@
    "C"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "88425e2a1699d012f3449577091ab05b4739956ee4b335256df08793d3fcee7c"
  },
  {
@@ -1798,8 +1757,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "93f98f64352d1433de12b67fec6f17c11049d3f5682d3d2c6b753403679d86d7"
  },
  {
@@ -1837,8 +1795,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "95b83ec773927b0c8962729fa45faf7147b00043fa55ad8054fab20cdcd64739"
  },
  {
@@ -1885,8 +1842,7 @@
    "C"
   ],
   "select": 2,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "9ceb4d6debd9fee9d153bc6e23ebccb269744e816cba54a1840238dd59bc26f4"
  },
  {
@@ -1924,8 +1880,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "9d8456b5be868e9e48da4291830abeb039a053ca020dd18bd2b9e1916adc4bbd"
  },
  {
@@ -1963,8 +1918,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a33d705769b452ea70de6f7ea64a6efbe942a029ee5828db219ed3edaafb965a"
  },
  {
@@ -2018,9 +1972,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "a4a0bf6fcf0e8a277a53f56b69602958a04393b97cd0915f422220c5aeffda6f"
  },
  {
@@ -2058,8 +2011,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a86684c06dabe2cf9c1302e9718a57700edc8b1ea3531a5aaf741bbda71cbc08"
  },
  {
@@ -2097,8 +2049,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "ab1fd4cadf5de6a675c92c099040fd9948241b4475a65c8cf2719e7782e164ca"
  },
  {
@@ -2136,8 +2087,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "aea4ad3e316b06b48d57e13ab9268f1055383ec6ecce2d8ab7b50c68171dce58"
  },
  {
@@ -2175,8 +2125,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "afc2f9472c3bac2b60f7fefb539ae9fada4e11d25d76cccc36432b545dc2565d"
  },
  {
@@ -2214,8 +2163,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b2b3686705a7436e18c8c04f9273ca61b0092eb1c25085ae8600d88602604652"
  },
  {
@@ -2253,8 +2201,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b328c6aa52c9181ab2ced339cdd569294307dac05f9dbbfa91444e443e200b54"
  },
  {
@@ -2292,8 +2239,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b3725401c02d6e8c6e5a387f07d6f48ea274f600f0c852f42faf75e82a52b157"
  },
  {
@@ -2331,8 +2277,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b38322d319caa927e84f0890abc2810b59835d8d886ef09dc3a8dff620046a2c"
  },
  {
@@ -2370,8 +2315,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "be7cccc3d4a093a2f7e4e85e7ca6136752f06b68dd5d24b76fb96f17196f66fd"
  },
  {
@@ -2418,9 +2362,8 @@
    "D"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "c2d4a20a2fd9ea37df62875a788e076ac5f257e04d11c6739c0fcb8a154319e8"
  },
  {
@@ -2467,8 +2410,7 @@
    "D"
   ],
   "select": 2,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c3163de96d49c9bc538cb865e9f0cd154091061307f0fef23c095a0bccda02a2"
  },
  {
@@ -2506,8 +2448,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "ce550c295b73e37755fffc70e4ef262ca97cdd77445e81940a6e213e8326d823"
  },
  {
@@ -2545,8 +2486,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "cea67f5532afab7fd0a36bc923b8f924f39d88ebf9a2262e1f5081233eecbabc"
  },
  {
@@ -2584,8 +2524,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "cf358d4eeacde7b4f6d273673e2253d980770b6381e40cbdbf0e3105a26b9706"
  },
  {
@@ -2623,8 +2562,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "d826111916ba5368f27eb07e05539fe7f076e653a41f5bc0fee067f0159274ea"
  },
  {
@@ -2679,9 +2617,8 @@
    "E"
   ],
   "select": 4,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 4.)' was appended to match the 4-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 4.)' was appended to match the 4-answer key.",
+  "source": "practice-bank",
   "fingerprint": "da1a904e3a0516f93f21902a509c19f79d095395b48fe14bf66b9bb775fd0365"
  },
  {
@@ -2719,8 +2656,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "dbf0785cff88d5a396645c070f3929140042c64dcae9eead06bd7e50f054cd77"
  },
  {
@@ -2758,8 +2694,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "dbfddb2cdc2a2144a9d09c432ee2f725e14e2f95f5218125c92212f417801058"
  },
  {
@@ -2813,9 +2748,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "e0fc4ac8905cc3de1ebeec83935eac0f63fb79ceb8a3d1826ff31204b051dd6e"
  },
  {
@@ -2853,8 +2787,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e116673314a72f9727452252bdef9d52c9e2262d40562b03efdd4bca7fdf6457"
  },
  {
@@ -2892,8 +2825,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e3ddbfc9cba6f0a93e3f44b5a3c570b932964a078fb24f7b75d4323c7043dc7f"
  },
  {
@@ -2931,8 +2863,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e7e2dc5bc14954bf2f5b4736212bec375fcc1166542209c93a4d5a82794fc167"
  },
  {
@@ -2970,8 +2901,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f73a882f474798c9db2591affb51ec45e75f218c013674b4997041d4448bb2a1"
  },
  {
@@ -3009,8 +2939,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f79f6c37c40a6c39742a512d0639babe51e9e14e94944c2a0886bf4cdaf433d0"
  },
  {
@@ -3064,9 +2993,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "0540c920f406c20487948f2d839946f6a72f1cfb6b3a42394a74fb0522f381a7"
  },
  {
@@ -3120,9 +3048,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "0bcd8416202adcb4f587a1328b870c4bdcd885fb260779d72668e459fbfbaa3e"
  },
  {
@@ -3160,8 +3087,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "0d59dcdb3eecdc1b183f4ad13003464becab44ff5b330fb12cc6b3d73b8d2c19"
  },
  {
@@ -3199,8 +3125,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "0fce76bce3e2bf054a882b490386ea49bc9cb44ed8c4b13870cc8aad2e48f3f0"
  },
  {
@@ -3238,8 +3163,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "18ff00362d59f2dd75672b8c3f99cb1b2501e1f46276fad6a5ac7944af4b6f0f"
  },
  {
@@ -3277,8 +3201,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "19ad73bdbd2ae6698582ba772f17dd6895d8c660dbc4e1de2d1d5bf5ceb7fd77"
  },
  {
@@ -3316,8 +3239,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "24c8e67d167fee564af9a9f2463559c04c6935dc643c435a7b6332660355d393"
  },
  {
@@ -3355,8 +3277,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2e4872a246569ac96592d3de06732233ddf8c4122788fa9ca3873eacc269df1f"
  },
  {
@@ -3394,8 +3315,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "3a2359943dde4219b15df491f13bd277cddd327233728c383a8e0b4dd14da949"
  },
  {
@@ -3433,8 +3353,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "413d347d648b4eab0c62686d821f3d0874c4e849aadfb178894aaade3ead6983"
  },
  {
@@ -3472,8 +3391,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "41c2d86a3f592de4fb0d3dbeb31a4e0fec04aed0442960eb30481bdb145105a8"
  },
  {
@@ -3527,9 +3445,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "47b82842fbf6f202084cbab1ddb48b138e8237fdf588a529972ef7751fde675b"
  },
  {
@@ -3583,9 +3500,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "4f90d44c3833cfe4a2ff2f661f9585108d816f2a04bf0bea982d2bd9fe8bc4fc"
  },
  {
@@ -3623,8 +3539,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "53986d24179381d0b9d926d31be9db1d112234bc4a1b0aeb192bcb273c8814be"
  },
  {
@@ -3672,9 +3587,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "66a8817c3348ef8385c3b98860e7bfe5c0bd5897f18ad330cc0a0f799ef32600"
  },
  {
@@ -3712,8 +3626,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "6b2702d190a4a1fa80fd93509557ba5d6b9fdb1d4c75a4207ead57e32033248a"
  },
  {
@@ -3751,8 +3664,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "6bcf721a2643b173927f7530ecc025b65e4000b959bae71ed76dc1c630a1e594"
  },
  {
@@ -3790,8 +3702,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "6e763ac59e8810e6a7913ee963cd798487a372c4d25b60a2293a373aab69bb32"
  },
  {
@@ -3829,8 +3740,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "6f828cff61d1b7edf3684967d14d27e8289bff44bed2ceb26a6ffec3fd3f9cc3"
  },
  {
@@ -3877,9 +3787,8 @@
    "D"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "737072f00a1ab20ae55abed0e1cb1a858c31769f4b6ca51b0c4abb8cde1afc08"
  },
  {
@@ -3917,8 +3826,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "777d5ff8f2d72eb6c65ae1ee76a3d04a39440a7a2581d45079ed4e7c2f53448f"
  },
  {
@@ -3956,8 +3864,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "79030e6620d34f8f23625a1df3338225b3955b8b861e22bdcce5cd49f9dfd9b6"
  },
  {
@@ -4005,9 +3912,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "7b0fdfd45ab74dcc6cdf17cebe3e0ef509bae0675f52824dbd765ce2ccf23f3f"
  },
  {
@@ -4045,8 +3951,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "82ca4f98e99b230fb441f76a22206528b5d4bef4a27390046f023f82a158b0a9"
  },
  {
@@ -4084,8 +3989,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "85536376b290ce448d07ee03acecb88cd9f3b5781a10096aceff90c158df5306"
  },
  {
@@ -4123,8 +4027,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "893e67af02bda75b5a01f0422a41d06eaa0063a29882cf11c405cd042942b997"
  },
  {
@@ -4178,9 +4081,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "91354683355917689245cd8bd32ebcd79224af078b7d9bdd9c8c316ce51a6ee3"
  },
  {
@@ -4218,8 +4120,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "9785b07bac22be624319dc5c8e9047672dda5de33cda85f4b49791291a6d0538"
  },
  {
@@ -4257,8 +4158,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "9a028ce02756de66b1fa05edcbcfc4e7357f695582870139d7a1f63d1b14716b"
  },
  {
@@ -4312,9 +4212,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "9bbca567a9f55252cbeef3782f8bafefd2bb61701b247a3cfc1e9ec54d74245d"
  },
  {
@@ -4368,9 +4267,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "a095b8f0d43db5538ca795a91e192807f89cb49b1eeef1a761d3280f22d4f127"
  },
  {
@@ -4408,8 +4306,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a29335bea366b279b4adce20d759bf28179da787f77bd8559524eca097f0e3a2"
  },
  {
@@ -4447,8 +4344,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a5bb7589a5b2b2d3d61d43bffe4961a26ce9cf4bab2c9f302569019e7a6a2c0d"
  },
  {
@@ -4496,9 +4392,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "a727bedb6bea4551df69701a304a19a9885234ed0e4547ee60c6e74b24dc40ba"
  },
  {
@@ -4536,8 +4431,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "abc5a400b9ff7dc047ddd45c09fac41c25623ec2f08e2c4ed292ee70238d1db1"
  },
  {
@@ -4575,8 +4469,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "ad93814d530321a1f957df6604f83de7707dcc90601b2b8d19b7df99181fc141"
  },
  {
@@ -4614,8 +4507,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b5f9ba9d37663b8022d184ac04a105eead48bd0b7ece6f7e65808b03682c7ee4"
  },
  {
@@ -4653,8 +4545,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b7163f15b8b0f1a83dd4719a3e8fe04639625442830f5d9ac1a3c92014d530dc"
  },
  {
@@ -4692,8 +4583,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b86286f24dcdc290d6dee814a962c6b6a64cd651989f962909b231e96eb6ef0b"
  },
  {
@@ -4731,8 +4621,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "bab22b96ab48bd5666752c3cafe20631b751932cddd71e2a3c1a1acb8b938f49"
  },
  {
@@ -4770,8 +4659,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "babc610deaeef7e36f48335a2ea1dc8aebbb345e273355005f0a3e1259a5e6eb"
  },
  {
@@ -4825,9 +4713,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "bf3f3f85ec895b85622c4b122653657c6e5a932212fdbd518c2bbaf060342a5b"
  },
  {
@@ -4865,8 +4752,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c65b73c5cad9d5813be24ed3fdf9d392350c26a85954f4aa992dc854f6eda04f"
  },
  {
@@ -4904,8 +4790,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "cb9606426cb52a70059a477a2ed3823b5cc4a89ec77695236f5798b98ae6fa57"
  },
  {
@@ -4943,8 +4828,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "cda02e1ca7cdb0a525043cc29acb38d3ccb50b7380aab960994edec72da3b044"
  },
  {
@@ -4982,8 +4866,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "cf35a7b35bb467013262c9fc039b07d04d9bffa279e5cc7f5d99f460b0b22b64"
  },
  {
@@ -5021,8 +4904,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "d9e7301bf07dc55ac9191b2c1940b8a7518e4d99d9c29b06fba862f20f038c68"
  },
  {
@@ -5070,9 +4952,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "e4ae31e6bb2b4172eeb191a5f09d093bd8af03ce78d27f0eb76153d2f2030500"
  },
  {
@@ -5110,8 +4991,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e52127ab6a4e57ecf46902baf2c1ec388f542ef4eca058a11848b7d3fa9e637b"
  },
  {
@@ -5149,8 +5029,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e5dfb3372063f874c678bacd097b7dac39da9fb838aa9d421b22ddc24650a0dd"
  },
  {
@@ -5188,8 +5067,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e6ec49c87ca44e8cafbdd45b91248baa768aace4f7946a03713b8a373338941e"
  },
  {
@@ -5227,8 +5105,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e7792c6a8e82211ded358113911b2d8ce739816a2f70fd92e29189b0178bd4af"
  },
  {
@@ -5266,8 +5143,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f823805e65095ccc0547a24d34e4ad38f02ec470ca0ad74c5cecffb1c4251ec4"
  },
  {
@@ -5305,8 +5181,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "fcebdcd93935ebd89e9f69dc5f86e220c5376b8ebda413240d0e1c6bea8844fc"
  },
  {
@@ -5344,8 +5219,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "01d81086b038d230e5eb125f91f6dd8153e1536c4dfbe532829760c27cc15e74"
  },
  {
@@ -5383,8 +5257,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "0482f691ba56bbab0939a745b8fb5fc80eb24e6e0c776b1c6235bd402dd5370e"
  },
  {
@@ -5422,8 +5295,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "06bc7dca6b844a7fbb5c34d07c7c616192c86609c1a122f7c4d30e97a5208c55"
  },
  {
@@ -5461,8 +5333,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "094da9ae716d04e2c59ece63c13649288829c68b284aee66f6bfe8fc8b2002bb"
  },
  {
@@ -5500,8 +5371,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "0b7b3ccc7401196186ae7b8ee19d21c8e9a8b846475bfe9def1540e076ea5506"
  },
  {
@@ -5549,9 +5419,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "0d10e69c4db3c9754ab6f11757beaa77115e53bbafede41a9c73e826ed6f0fb2"
  },
  {
@@ -5589,8 +5458,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "17cb37d2ec6ac3c733e108cdff40cd61170c0e3a8fef3c6d7029e56ee864a870"
  },
  {
@@ -5628,8 +5496,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "1a27c78f43f77708832e9149127a486dc23d5fa611aa4f84df4273fe013fdf37"
  },
  {
@@ -5667,8 +5534,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "1e81bfbcfd6ae9ba25566a740afae239f2ca35a70ab20f722af3ebe5df8c4461"
  },
  {
@@ -5706,8 +5572,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "1f57a42e632ef6d40c6dfa01fa36f4abc74d741e01a55befc0e33a6e796d1168"
  },
  {
@@ -5761,9 +5626,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "1f64478f057c7335105e7616dcec452fbd0be7a883853bd22f5d0d62079d099c"
  },
  {
@@ -5801,8 +5665,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2199f3a589a2bb50bf65f1a8c10fb39d24b449e1e54969fff0cbc4aa28ce7836"
  },
  {
@@ -5856,9 +5719,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "2578733bcf0433c30a68fad7970fd7e3d450785b9b634c9e16282275ec61c6c5"
  },
  {
@@ -5896,8 +5758,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "25d347d5c5794bfd07efd66ad3956958232fe3fb35747db8522bf6f69c4fed82"
  },
  {
@@ -5935,8 +5796,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2a47017deed98d62c0c086dd840730d8f13612c4e4d9ac1d5779eadc9d955d20"
  },
  {
@@ -5974,8 +5834,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2d109b2e781d0fe5e134ede768b0eeb71c2c8141cf24db619b94ab39322fef3a"
  },
  {
@@ -6013,8 +5872,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "32ca7bdb855f2786879005ebe52520ab103773065ed839fe5e624d6c9985f3d3"
  },
  {
@@ -6052,8 +5910,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "330f8fa494adff67fd86c66980eef2885ea9d634a10aa777c9f4672da09ece39"
  },
  {
@@ -6091,8 +5948,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "33507468fadbffeb92dc481358054a288430a2b35f34666e3a9596117351401e"
  },
  {
@@ -6140,9 +5996,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "34d07b28c6cd1c4a8970adf9e777cade8e4a8de4bc8e76b40833d72db6af9042"
  },
  {
@@ -6180,8 +6035,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "3b43bc813dabeba513fb76ef24a38faf1e3300cb9d75f8e7c8364d02e7ee8191"
  },
  {
@@ -6219,8 +6073,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "3b772b5783ed34f2996752b1d93d63dee28af1076aba092daeb1dd5a5138ac88"
  },
  {
@@ -6267,9 +6120,8 @@
    "E"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "3b8ace6c5351952409567f9e99c69ee8a071f83a4d8b7c2cce0a0b4cf36799fe"
  },
  {
@@ -6307,8 +6159,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "3cd1aafd7eab90c97ef1d0632f15511f3176a0f55426b1bde9c63f601c4791d9"
  },
  {
@@ -6346,8 +6197,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "42e4f1efb200744cde3a193d5fb0fc3bc1bf456441fff9a2c4fa1705fd05568a"
  },
  {
@@ -6385,8 +6235,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "44a320ddd3a94d4122dd262e358c5a954840587356e9ce7c608249747a70dc14"
  },
  {
@@ -6440,9 +6289,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "48bd4dc5aa7dc18a0cc288a803b2ecfece2bf5c970b9950127631d7a83135c5c"
  },
  {
@@ -6480,8 +6328,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "49057c0345cf810bf0a4ecb6454d86ea61b3ec39bb0cc383f450ca518dc8a1a1"
  },
  {
@@ -6519,8 +6366,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "494612b476182c811604df553f794babf920dc1f59cd13e008f9b4887939d590"
  },
  {
@@ -6558,8 +6404,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "4982314b6158f153747e1d76576a2ea98847ee73751faf04b0542c1a5e6a2a74"
  },
  {
@@ -6613,9 +6458,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "51ac29f27889392fcca57b6ceae2b3910ef1976c4f574a65e22895b6e8b51701"
  },
  {
@@ -6653,8 +6497,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "5356f8f9a94a7b0a6dc830de939949f71be85321bddff84af3a4576742e440ba"
  },
  {
@@ -6692,8 +6535,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "53f710a3686d58b6d7a519073154a39c979e5ad3c3d578d213cac98886c1975e"
  },
  {
@@ -6731,8 +6573,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "5490d6f7e7c26b34d2dcaa441927a6ab42d9d7dfd7db92650b2e754dcb5b36f2"
  },
  {
@@ -6770,8 +6611,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "552cbac70c7ae79757a5fa6afcadda94824fb587db4cc497d3417831bd3e6820"
  },
  {
@@ -6809,8 +6649,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "5658c610a01238d09d743b3e9996e19096621b62831637e5715cec871a56e7e0"
  },
  {
@@ -6848,8 +6687,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "56ab343a4ffd08af53b1f09aadbfe3bfaac3666f0e45e431b1dc20528e19be85"
  },
  {
@@ -6887,8 +6725,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "57e4a7be9a1f45ec87af7f31eb6286c486ee3699bd1635553dd823addd9f9a37"
  },
  {
@@ -6942,9 +6779,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "581b91893751cab0f664e5a6c8c9b99a881bd0b34af73f5f728cc5c9a101cc21"
  },
  {
@@ -6982,8 +6818,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "635ca77cf25e6b39b3262227d11914fa59e4b3cf0db73cdeff66f804a3ec437a"
  },
  {
@@ -7030,8 +6865,7 @@
    "D"
   ],
   "select": 2,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "6895bd71d42225d4c4642245d7d9a25d0da664e669f044d92671f7f51f5b2a29"
  },
  {
@@ -7078,9 +6912,8 @@
    "E"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "691653cc59cb8227db5dbae332d2ec1fae23d3d683566546c82f7676b924bf40"
  },
  {
@@ -7118,8 +6951,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "6f3568b5eb19895e24b80669dbc6c388372fbcc17ed2b86623c80d4f4f6838e5"
  },
  {
@@ -7157,8 +6989,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "70730e5470d82c53629c30d9531d6092ee630e23c5c91725d9f2750c03ac0c56"
  },
  {
@@ -7196,8 +7027,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "71e287734658ac6a4e33734b1c90c0591aaa801ff7fea3ad865c3850e16cd7bb"
  },
  {
@@ -7235,8 +7065,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "766767bc2e8b51233825e7b9f6999695fb633c121df46d5e903c510a8a259adf"
  },
  {
@@ -7274,8 +7103,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "76f6401416203b15b9af4dbc6cd71f90121b3ba72a70d69f58ccf9f721519bae"
  },
  {
@@ -7313,8 +7141,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7811b3876fb2aeb2fdc8e1e29795eac8fc7463c70de188ef11289bfe6afd2f08"
  },
  {
@@ -7368,9 +7195,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "79b70a319e295b4809ace112c4e800c10d67d198e691842f5922db1c3cc395b4"
  },
  {
@@ -7408,8 +7234,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7b36d168f33c53508b38c5d2137ca3ab333fa3da884a93b8a9188e6728f2e51e"
  },
  {
@@ -7447,8 +7272,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7e39cbc37bb9c47120e519859daa28042614dad84d832f4901c2e91c9ae11973"
  },
  {
@@ -7486,8 +7310,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "80536ce3f282a53fde156f428734afca0b24143a950941e54d58dc67c246956c"
  },
  {
@@ -7541,8 +7364,7 @@
    "E"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "80f848b700bc3ae9d76ae0ca220e363ab09e8f7cd7c70c0417f28f6cc86922a5"
  },
  {
@@ -7580,8 +7402,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "8130179ce8d258c1e61fac20e3824648efc02ca59b2dc1cb07962ae16011c6dc"
  },
  {
@@ -7619,8 +7440,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "81accad3876c55e1a6db99d2c7d6e42964eebc9cac2ea2fa365bec97e402c00e"
  },
  {
@@ -7658,8 +7478,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "8771076f893e461123ac23b4edc2cf419dabbf7dc575cea7627f96eaa1ea1cb0"
  },
  {
@@ -7697,8 +7516,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "8d148fb2616867ac100d61a38f8363970751cd897d1e2a3903f2c4b5a55df1fc"
  },
  {
@@ -7736,8 +7554,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "9cfd23d95952771226b8ae15c8712cee0929dd5987048c4425376c0a1da1efb5"
  },
  {
@@ -7775,8 +7592,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "9d25576b045341e37d42893c84dffafc45fdd2dd7a9bd5b4b5594ac4c5aaf6ab"
  },
  {
@@ -7814,8 +7630,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a7e60e2a2f4ee8cbaa4119771dfe2b1a0096d0ca9783a0948d01b5bb925dfa75"
  },
  {
@@ -7853,8 +7668,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a801ac1248523e3d429367e793ffd3d5a8e069a4e15c21cda66dacfd39c7b37f"
  },
  {
@@ -7892,8 +7706,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "aa4cf29a44aed44e9c58c2a2693f22f713104ef3217f4760820d7a7d14553fb0"
  },
  {
@@ -7947,9 +7760,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "b0227edf2327877f1c187a627c1599c02cb3d0c95f80300de65506b23474d571"
  },
  {
@@ -7997,9 +7809,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "b1c3a3bd1d198d6b4e502fc53215e89959c3985cd7c8e8e5959e4a883fc903aa"
  },
  {
@@ -8053,9 +7864,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "b3eaa4e2628c15c28bad0c607940c52510baa312f410b90e156d02e73b3e60a8"
  },
  {
@@ -8093,8 +7903,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b812e58a89f4f92159c52401cc624341344f5b56e9f701ffba60d82a3ad127e9"
  },
  {
@@ -8132,8 +7941,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b9f970ecab3c13c90f56eb270d049d6be1424e866c229dc94775b9ee3544f3cc"
  },
  {
@@ -8171,8 +7979,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "be7767d46e8a92fb78f17501b5dcb2399ff449608bc2e055ad8d968ad6c39d41"
  },
  {
@@ -8210,8 +8017,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c18becf4dfd0fe051d0e1f8696201a21556205a9932babe93c556a7dc0a45e1a"
  },
  {
@@ -8249,8 +8055,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c1c08b057b3d4f74da495cae69e11a69db7e59246c7ccc6be0f9703bfb8a588b"
  },
  {
@@ -8288,8 +8093,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c3b72890064c363863aa3dd3a11598d26e685403d5ed556ab1b705b2735f1460"
  },
  {
@@ -8343,9 +8147,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "c452fca072c6a90a5101a0458db61e2cdd75ee74cb11f746ccfc1677df5ce438"
  },
  {
@@ -8383,8 +8186,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c874b41a6dfc57eb9f08328d81aa0386de1b022f25fc3f3041ecca70096cb4f8"
  },
  {
@@ -8422,8 +8224,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c945136f1739a43bbf7707171d7ca51729e6ec5b403f4c223d0f2f7b64324958"
  },
  {
@@ -8461,8 +8262,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "d6ef25bbb2106147450f17067af9e4dfe1670cecd405b3c76abbf72620d9fc56"
  },
  {
@@ -8500,8 +8300,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "d99d72a18084048a0fcc528b76c508723b4f067c7dbba20787b07487aba77bab"
  },
  {
@@ -8539,8 +8338,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "dc14d4e4140424950fdcab2fcad25569ba174613e68ac01de9cf5c28761e9337"
  },
  {
@@ -8578,8 +8376,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "de60217c91784d7967de234429b5ad9b6f9d3ce3bacdf1134994dde351a2404e"
  },
  {
@@ -8633,9 +8430,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "ded60be47b61bc045a9e986bff46a3ac9ae7d4f4598c7b267fd9a8d5c4b38324"
  },
  {
@@ -8683,9 +8479,8 @@
    "C"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "e0f7077486c6118f5869a96f2b6ac115a7cfd5a1244e74b2dc41e17a1d6d94a5"
  },
  {
@@ -8723,8 +8518,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e76458e512e248dc19e9437eb110d7780baabe66f5e2803ced30899ba4748d81"
  },
  {
@@ -8762,8 +8556,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "eacd9620c28cb719c35d1b8e40dddfbc4a935c24ded3006489c1c23b5236b077"
  },
  {
@@ -8801,8 +8594,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "eef49536a999a9164134dcaf33cf8d9eb484100d664d79f9352fc793d9e1cce6"
  },
  {
@@ -8856,9 +8648,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "f06ab53d0be429e3bc9655585e2e7f3fc6ba14053fbc8359a1e225655cb5f209"
  },
  {
@@ -8896,8 +8687,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f1746283ae0bffe9c8257dbb56924c81f31807e0113563294a04e107a5beb33d"
  },
  {
@@ -8935,8 +8725,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f86a7f1b710e28dcb767589421cd947f1b481f970dee8e5303b11b70190451b8"
  },
  {
@@ -8990,9 +8779,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "0040c13fc44c9ce3e862a0f9843fd1e5e3428e540a8c1feb8a7a5caea42e345a"
  },
  {
@@ -9030,8 +8818,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "0a9d7e8734c5dbd0b5558b0a5e385e6b8b04d54c1eb6b60da992ebf6c0489183"
  },
  {
@@ -9069,8 +8856,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "0ab4f276280050ee0a569f545106b93cdea87d1464416a7379d330e542c5189c"
  },
  {
@@ -9118,9 +8904,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "0cbad957568fc022c0f0bc2e2b1e0178f9c2b161db6336211e1955207953b71f"
  },
  {
@@ -9174,9 +8959,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "0fe3e2318c03c506598417282f078daacdfb67b9a0c52eed1e3ccc9d0b6fc89f"
  },
  {
@@ -9214,8 +8998,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "10747aaa8b08d7668cfe2ab474c8379b6e72d2a2197e32a2aeb489679e4f7626"
  },
  {
@@ -9253,8 +9036,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "14914774b1d860e06a694cd7aaa72b4b187ff23fc1e78b73aeb86d0447531d91"
  },
  {
@@ -9292,8 +9074,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "15197151ab802f52d947dfc3d5aec5b529e03f95b3ff9e5108ae1c07b7b96efb"
  },
  {
@@ -9331,8 +9112,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "166c3a413073e690400773bcace75dd3eb51896697a1d127b1a7f5c709ccdc6d"
  },
  {
@@ -9386,9 +9166,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "1cf2ba23a7126f48734ae18531f6b15f3f8d208637c87e474fbc560c83083e57"
  },
  {
@@ -9426,8 +9205,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "212c2a6414e92f0b9de4080a8e69f2e78cc11e352fd99a358bba383bc6bd022e"
  },
  {
@@ -9465,8 +9243,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "244f7297ca8c127ee602c5d24427069798d03c47fd7d7d7945a0b1d5f446ffb3"
  },
  {
@@ -9504,8 +9281,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "26a0cecb8e0bdeac5918b002e05a43b78092b61019bb053b94197aed63d34605"
  },
  {
@@ -9543,8 +9319,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2796df34c4bcda49e475f3c6973b398bd324abaa86885e16580dd5e7241cc4d0"
  },
  {
@@ -9582,8 +9357,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2b7527b8895978e9aabf6c8006bdced373ded3264c56c057b4c6caf3621de3f1"
  },
  {
@@ -9621,8 +9395,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2cbcbb7c8ef7df1251959cf5e1a4c99fcd7fd002d1ccf303086a0a10ca5e3fb1"
  },
  {
@@ -9660,8 +9433,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "3e762d2352428a82eb4dce0b2c7b572405f904d0de3d9a7071eb25855f2f8e19"
  },
  {
@@ -9699,8 +9471,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "403d407b93cd32e7a7bb1788b124405537a6f46a175bd11d6eeba1ac9ed34072"
  },
  {
@@ -9738,8 +9509,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "419d7be5f51c53bbc682207d187c1373d0d37d1d64a4216d6c5432674a048a9f"
  },
  {
@@ -9777,8 +9547,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "44cd82e910694fa6b863da67e5731b646723fcfd224e11af5696261871ffd3e3"
  },
  {
@@ -9816,8 +9585,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "44ebbf4e5c9299f3a57a08dafa964b5e7b94697a3b12063deea71c97e2dc27cf"
  },
  {
@@ -9855,8 +9623,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "481ab701eb9bb5baeda0a179422ca0884064ff82047058522977fa83d68846e2"
  },
  {
@@ -9894,8 +9661,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "49d27e99cb224e81442cf35ee8f21d4bb35e744ad2ef4649cd7237e4cee4e9f1"
  },
  {
@@ -9933,8 +9699,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "55729de559a027492f83d717fd1bea45593449fab73b57e9e221580cfce84837"
  },
  {
@@ -9972,8 +9737,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "5992fc5a53c82bc39d70688ffd643b3de0802451e413dfed7f608d9918180101"
  },
  {
@@ -10011,8 +9775,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "5a1cd9e728b5b36d12bc27cf4abefaee43998309a7a7e4fb229b95a04a64fc7e"
  },
  {
@@ -10060,9 +9823,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "65b3393dcd756c6d9c3b2a308fe11464d638910898cb13b5c519e3fb7ff6e28c"
  },
  {
@@ -10116,9 +9878,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "65cbe5d024912aa52037a7af19f77041e8f29bcc5558d5b885def33b7c165b49"
  },
  {
@@ -10156,8 +9917,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "687b472d2f1fb689ae8b3c5ef8e6990bbdccc53f3c84a7f703ec5e5627d99400"
  },
  {
@@ -10195,8 +9955,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "68c0c783635b81dcd253c57c11fa167cf8d5e4e188c8ab1366ae3a431c24b82f"
  },
  {
@@ -10250,9 +10009,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "6ab8dabe0222b18b33cfd5532f47bbdb86369656e44b49cbda2669499de0dd6e"
  },
  {
@@ -10290,8 +10048,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "6d592ccf266843af712d4d85d2ecaeedf557a78ad44bdf0f8f9bd8cfe9d5ef16"
  },
  {
@@ -10329,8 +10086,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "6db10192623cb772c0da972b4a4eb3e050f9f99d5ea2871e1a31df1559434403"
  },
  {
@@ -10384,9 +10140,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "6df717985ca445e43b1ad0b6b6970be167d653aba4c23c85c42ddb732fc23e85"
  },
  {
@@ -10424,8 +10179,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "766abf67b050118cfee222376dc6cb1ec02d4b738e13c82289b1934a3f9db75d"
  },
  {
@@ -10463,8 +10217,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "790944bc0c4657955786de6f31961908f4c14bf95b1aac08264e5f9e8b240791"
  },
  {
@@ -10502,8 +10255,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7a52b0329dcfb6cdb1838d8dc905371c7d6fdcf3e3cdfbf5399e6a0c43fb9567"
  },
  {
@@ -10557,9 +10309,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "854ffe56e48d230499145bb318740caae2092149a84dbb2956b4f7a84361c278"
  },
  {
@@ -10597,8 +10348,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "856fc8908ecd16f64ccd7493b8590a02a871587487b52889b0a8b1b6506fba13"
  },
  {
@@ -10636,8 +10386,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "8925b0f9c285d0ebf34899721a54cce1fd2263e45010cdf9e4c7d87e6dc9424f"
  },
  {
@@ -10675,8 +10424,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "8cef906748a4fb69e9df166f5d42e851b099e3d29ca276ccd3210731691f3807"
  },
  {
@@ -10714,8 +10462,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "931b8e537744dd77c46aea540c928cc9a980f7f743b25e4322a87bb15d7f4ff9"
  },
  {
@@ -10753,8 +10500,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "935e5542672356290eb9c8dc8aaba40e5f352c0fb3664c3c5376b0782b5700bb"
  },
  {
@@ -10792,8 +10538,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "96d0892e70fb36e0aa6f591b07259a12d75bf7e0a76f6c49b81f251254f3fec8"
  },
  {
@@ -10841,9 +10586,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "a525a60909ec6eb188a4ed254b0946d27667ac6af6622593ee4a9ec5d070055f"
  },
  {
@@ -10897,9 +10641,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "a621373c428224425657b1d9411f20be01a6b77b0e5e3fa47f995be478fcf61c"
  },
  {
@@ -10953,9 +10696,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "a716c682951373b66a4839ce282803f377612381610eea0fca4536bedfc9ea63"
  },
  {
@@ -10993,8 +10735,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a82720a231b360eff5ee02309ce4f2fc086f7cd4892a2309574f6edf1296c110"
  },
  {
@@ -11048,9 +10789,8 @@
    "C"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "ac3fe3e72713e0df6a9290043b8cda03158e87a1b676e840b88e4a5ed072a956"
  },
  {
@@ -11103,9 +10843,8 @@
    "E"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "ac9745c1279fc611fadbb90cb478c06115b30ca9624b6b4c4ebfcacb8d46e14e"
  },
  {
@@ -11143,8 +10882,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b1074f7a1daf486f268f446dd499e6d94ae6f41eb6d92ce4e8c05d7dceaea637"
  },
  {
@@ -11192,9 +10930,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "b6eb7119f22a8c93957ee1bcfb7a3cf960a516f663bf8878dce8144d8f64548a"
  },
  {
@@ -11232,8 +10969,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b743c5a0666a4394b9188be18b6f6f696dfd8691603ddc53ed47a3964ba6d9c3"
  },
  {
@@ -11271,8 +11007,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b955169fd2ec0c582e5ba7e6ffeb5f1c8b26e8c196bc0762717bbd9eb4a9d94b"
  },
  {
@@ -11310,8 +11045,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "bf632e9e733ef31031251babd049b80f70189b39eb4bc3b77175ddbaf766442c"
  },
  {
@@ -11349,8 +11083,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "cca517ae8d33307b4c4390c641ce9f4c72f1bb31a48060e9cf6e2ef71e2eca17"
  },
  {
@@ -11388,8 +11121,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "d08644fede06f2077b081db0299d53af26e92aa590da62949e49acefb8e10419"
  },
  {
@@ -11443,9 +11175,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "d0c50e68338ccc5ab929e3dfbed36e260e5a18e5d2a7119f9efc2d99c9ab88f6"
  },
  {
@@ -11483,8 +11214,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "d53256bbb147d621dd970a73d3a2b83035f3db27e721b596693b90535cd3d478"
  },
  {
@@ -11522,8 +11252,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "dbd67cebe4eadcf07f78cc0efe0dabe12afe1fd48d71b6fb9862f34b8c693c54"
  },
  {
@@ -11561,8 +11290,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "dbfeb1e0dbf33f7230558bd524f33b0e782ac7a1484fb17954bd7d60cc9a406d"
  },
  {
@@ -11610,9 +11338,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "e02fd5dd0c8721058218540ad24aa674c2a52775d87501cd1ae2aab5c39e72b0"
  },
  {
@@ -11650,8 +11377,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e1efa5805bde0f7c7aa32c5feaec5b78b87e5f2dd1428606600d75d6c7dc23e0"
  },
  {
@@ -11689,8 +11415,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e348fe62639c2e0abb42141502b4a4866051070ce871e1da7c58b22a9e497496"
  },
  {
@@ -11728,8 +11453,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "ea19fee4ba6ca452aecdf4577e978e68d712eb23ff84c1dd2a400efe6f739c2c"
  },
  {
@@ -11767,8 +11491,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "ee656ac880c4ed79cb6e9ff7700b95bb1e05b687454b846704cec7591288bfac"
  },
  {
@@ -11806,8 +11529,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f0ef51f88ddc42645dfa538d82cf9d1bb59affb53513f599ef34837ffd8836bc"
  },
  {
@@ -11845,8 +11567,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f4dcc879840d1fe419063ad300f9876f4cc2961f658c8cb69ba6c3c026dee245"
  },
  {
@@ -11884,8 +11605,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "fa4a6b10d5a3d23ac55eb8257ce9cdadd6bd4ed277d64b28c76544f2cac01fca"
  },
  {
@@ -11923,8 +11643,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "03c1d68ab3845000fafceb0b9d8630499de81648b33485a1cf8fcdd6e95207a7"
  },
  {
@@ -11962,8 +11681,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "040a28f93b0dfab0aacdb2aca2f751930320bf84947deeb3a1969ec5d6f1de46"
  },
  {
@@ -12017,9 +11735,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "08ab8af0e2303fbf6df0c8cf2566a85af8db9f9206ae38e3c350940c93d4b1e2"
  },
  {
@@ -12067,9 +11784,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "0caca2da5855f9ca2a116acb6f5c63b2027421ca9562b8d6d33566d87fc21c56"
  },
  {
@@ -12123,9 +11839,8 @@
    "C"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "0e251b7dad4b76e4cf2788eedc14a939783f9bfdce487d4e3b4311ea949e4497"
  },
  {
@@ -12179,8 +11894,7 @@
    "E"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "185208df84c00bfe6f89f84ac519077af9389b502b6182db9e6629085def1908"
  },
  {
@@ -12218,8 +11932,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "19754eaec2d274a5307806875feffa80ec82947d7ee9dc29197812a7686603ba"
  },
  {
@@ -12257,8 +11970,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "1a0ae80cf2b168b20f2b25498dea9b65a62f076b63e9cdd8a98760df53b637d5"
  },
  {
@@ -12312,9 +12024,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "229ed1e35eecdb242838b54b4e560e127f60a2ea175f1261f5c949f76586f36c"
  },
  {
@@ -12352,8 +12063,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "26839d40c552a8f38b4bba06ed808aa3e78f81b65851dc396ab2451501c4311c"
  },
  {
@@ -12391,8 +12101,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2b47cce59b47b0ca579f78aa5918fe8385d93d70aa2cc15eb64b0fa440836117"
  },
  {
@@ -12430,8 +12139,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2f1fdfcea6183d3693f1d000ecb3810c913aef17ee3010e775855872b8d4980e"
  },
  {
@@ -12469,8 +12177,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "30042534d449b01863bb77bdf4bc9230a8b3d4e8747b84e86307f8017b391f42"
  },
  {
@@ -12508,8 +12215,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "3727adfdc761caead452ff4468e504adff72c0dc822fa2fb45ec90832d6cb6cd"
  },
  {
@@ -12547,8 +12253,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "396b55bf65e5c0edc47e2b1966310bcff5502efc9d90b3fd5a30167d56f23842"
  },
  {
@@ -12586,8 +12291,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "39b7a2fbd5426996a84300c799d41b44d0f0be4e1030c9c540aab3f6bfa20d8b"
  },
  {
@@ -12641,9 +12345,8 @@
    "C"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "3a9329d0344553f60a32def97661f79e1b16a38836c464434c08aeb77eedd987"
  },
  {
@@ -12697,9 +12400,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "42fb6639db632a28669deb1ef672fbf6d3ab1cc2213af41b242555c2bc222b39"
  },
  {
@@ -12737,8 +12439,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "4331ce7481843cf81d3f3c14846e87f62eb1f6396fde5a80641492d07c1961b6"
  },
  {
@@ -12776,8 +12477,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "467e00c75100f809280b84bf7c0ec9e852519295957916894ab151b5a894d8c3"
  },
  {
@@ -12815,8 +12515,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "477baee3e75534bcac1746d0f078128bc380e1a475fb4da87dcc0ed854462ef0"
  },
  {
@@ -12854,8 +12553,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "4a8058ef55cf898f9523dd1d51d27981652e482209926e359088b13c9a16f1b1"
  },
  {
@@ -12893,8 +12591,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "55043dd35eec6faa0064ebe9c19d7c372adb0224173e2ef9eec228b2dc8a39ba"
  },
  {
@@ -12932,8 +12629,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "5f400ee0f64daee37e671b6ddd1117b4845029aa496ac4bd4fc610661a3d5c0b"
  },
  {
@@ -12971,8 +12667,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "653453403c79891c6d8fa09df6ff1bfc5784859adab31f098db26b527c1a30ce"
  },
  {
@@ -13010,8 +12705,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "700c5a3ffc378e24f3bfb843f26bedf1539b0b7ab018f664ea87d98ca5194b8d"
  },
  {
@@ -13049,8 +12743,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7093dba7fc76791d76ad2124145ff5bfc765f3938dd53d8423993d874f931a05"
  },
  {
@@ -13088,8 +12781,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "735dbb228445b043b0ead4dad8f2d40d55efe12904b9f2a84942d5c576338e71"
  },
  {
@@ -13127,8 +12819,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7670f268844d48954b2308e017bb433791aaa375556ef2125bb7d0bf7a9aec3c"
  },
  {
@@ -13166,8 +12857,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "77afc17ad9bbcd5a1deafaa6d74a601d8c1ae4720bd56748b30ec39556af6672"
  },
  {
@@ -13205,8 +12895,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7ac7e8d14be67b5b0ab785611564b8bce90b243f4d3bac030a890baa03fdfa31"
  },
  {
@@ -13244,8 +12933,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7b0b1c01c8b79f09b07841fc04c6d5aeb031ba21b0916a12e4890800d58521c7"
  },
  {
@@ -13283,8 +12971,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7ef6c6ee6ec4213bc7cad4a7d34090e5acd2df1bde0f9cdcd844f45986686884"
  },
  {
@@ -13322,8 +13009,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "87b6b1fb225a5b3d03a150db64a839662dbbc4419b125d829fbc9efcf010f525"
  },
  {
@@ -13377,9 +13063,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "88c2ffb8b6e91342d0d6575d2abd142d5a50998ed8b68eba3cca4dc45357cc06"
  },
  {
@@ -13433,8 +13118,7 @@
    "F"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "89dcb567c387fe1a7e44e56780d90be536e2c94334afbf22118b4aa0a9daa500"
  },
  {
@@ -13472,8 +13156,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "8c044175a781631d198320252865366af54aea22edff557d7ff8aa56d69bb346"
  },
  {
@@ -13511,8 +13194,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "9091286250c14bb25d57f55f30b91ad7f56b705e6cb0676744b961cbd099ef22"
  },
  {
@@ -13550,8 +13232,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "9256c615253b562cfa5dd8b18b41a295af7266d4e27aa2aaebb9c6f485937b69"
  },
  {
@@ -13599,9 +13280,8 @@
    "C"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "999c0a3addedaa8b5dffe9ae13d68d754889ae4dbd121b5623783f12253d5d69"
  },
  {
@@ -13639,8 +13319,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "ac1a2f340a6964b46255f7333f9c51da92ab81d5dea782eb62fc65207b2e3520"
  },
  {
@@ -13678,8 +13357,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b760147d537147f0a9dbf7d41e4a80f641c9917e33e98665154a2f9a2ebdc43b"
  },
  {
@@ -13717,8 +13395,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "be11a37ad2d2bb0fcf03d7b10b4e90352cbbf7b1728c403752cc87b5348953f0"
  },
  {
@@ -13756,8 +13433,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c1ebcc3e59da61965acdfeb29f48a91dd9876f917ba33ce762cc1b31c20cc538"
  },
  {
@@ -13811,8 +13487,7 @@
    "F"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c79356d7a7e55ab9f0fbd03bc24d146177422d59abb11414a4c2dacf342027e2"
  },
  {
@@ -13859,8 +13534,7 @@
    "E"
   ],
   "select": 2,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c82d0887bf61ed1f34cc7353d75bb80e964d617e7be2de58a2cc1cd85a97c16a"
  },
  {
@@ -13898,8 +13572,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "cd2df3bbeb038b3cc743fcbd4ff4f53271be2d04ddeba3f15adeccd0ba35dd91"
  },
  {
@@ -13937,8 +13610,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "d5a5d149484774db162b526a340f29b0424ba00c6fab8d24debb82f18639e3df"
  },
  {
@@ -13976,8 +13648,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e7bc789ef2348f8eda4128ff08c4a6b7d2ec7e8be6986358eb20a2c22be6cf23"
  },
  {
@@ -14024,8 +13695,7 @@
    "E"
   ],
   "select": 2,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f0054d5e8ccd95612aa7f71bdf7e56cc1eca03bebf22df7ae28c4466c3174ab3"
  },
  {
@@ -14079,9 +13749,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "f08b49ca8212047524a3cd8fe8635f922b7d2bd8af3d909c43ae066417e55212"
  },
  {
@@ -14119,8 +13788,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f13870e6c2fce21cf8188fdb6fef1a1963a391a404fa6cde2753b97340030d34"
  },
  {
@@ -14158,8 +13826,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f16a63e3774bde2804df1f5c7f612c001fe08774110558d2750dd6d2301e4e22"
  },
  {
@@ -14197,8 +13864,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f6336cf0b86b0d017d7e5680f497b39b64f77afd5fbf378e8f7b8dae7e85ad8c"
  },
  {
@@ -14236,8 +13902,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f85e34cf267182c9589b07f0765935812b78607b0ba77cd1fc7d7570e075798c"
  },
  {
@@ -14275,8 +13940,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f95b1ce45587dd71d3d9b2a05b0956e2c77210ae6a10a5f36298c44ecb1062ab"
  },
  {
@@ -14314,8 +13978,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "07d149ed078f3694632fb2f39af1db20ec7b330d275d60e41bf54a0cec60a7d1"
  },
  {
@@ -14353,8 +14016,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "080102400900be84aae7b1ffec2d47697ca029aec0b8a6cb0f97a514fc2225d9"
  },
  {
@@ -14408,9 +14070,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "1ccf2a7dec881b337329cbc79d791e4fe1e65246f491e6c5b2cccaf83c4181f9"
  },
  {
@@ -14448,8 +14109,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "1dd6f52964a568f39bd50fbbd818751a8fbf760c23e2d8ac3d4173ef138f08a9"
  },
  {
@@ -14487,8 +14147,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "21758406597b7c948e42922a4722d50fd9015569c0eac700edb5d50b8e449452"
  },
  {
@@ -14526,8 +14185,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2ba5b44bb71f4fb7436a5849de8e837f0ba500863a8dca561597d7c9d6cb5765"
  },
  {
@@ -14581,9 +14239,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "2e09388c564d97bf8add41c1ed84731e4be1b9846941b6aad3803f4c89476981"
  },
  {
@@ -14621,8 +14278,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "3244de008fd7c5547a85875ab806449ff4411a3185c08e5ad19cc3d9bc4dea1d"
  },
  {
@@ -14669,8 +14325,7 @@
    "E"
   ],
   "select": 2,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "34af8486bad612f2783159cc8b161c4d61b095a6af55d2385613217fa44c1655"
  },
  {
@@ -14708,8 +14363,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "380a4092ae34c2a63312d1a13217383f159f7fb618ebefc3511913db21e785fa"
  },
  {
@@ -14763,9 +14417,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "394a8d4f80d6395331ac6d4839aef83a05b7c6ca3d142c2f3b7b12f33d41e50a"
  },
  {
@@ -14803,8 +14456,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "4618e47096d843189552fdf3bdcd23fb0c4a0036d8c3bcb3050a19a2cc74c37f"
  },
  {
@@ -14842,8 +14494,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "46f7242b7990aa2e0b8d567f4cc45afe8198b2cf5e036637ecf26ccd1bf1ed50"
  },
  {
@@ -14881,8 +14532,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "4dcd8f8b2d8ccfe219a9e64620fd6cfd926f4810a5e03d4b03118c61908ee567"
  },
  {
@@ -14920,8 +14570,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "53ea2125dbeed584fca054572d5624e888a12aba52152d8c53b3798259a071a7"
  },
  {
@@ -14959,8 +14608,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "582b3dab006c935444ab3a6f3e46322058dc23f175030f2a822bb19a6059b97e"
  },
  {
@@ -15014,9 +14662,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "5881956e7833fc021538067f8266b6cfdf482667d5ba0b8e7ef4ca070a30b176"
  },
  {
@@ -15054,8 +14701,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "5d1fb8cd9f7bc55e723ed995f9bdcf4f5d1e4fa9b3c476da9a802984446b70e3"
  },
  {
@@ -15093,8 +14739,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "5ecccf047a907a8592251cab1a8da5e92fe6beb5e482238373bb8edbbe6c1266"
  },
  {
@@ -15132,8 +14777,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "60b294f747b47d2860f15cda04ac5c7082fc8f5896a8a2469af7bb805c10f1a2"
  },
  {
@@ -15171,8 +14815,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "60f1751529484ec09ab95e880ee89f9412a56a08450d12d860c8b60860933963"
  },
  {
@@ -15210,8 +14853,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "61843029f062b5754d4b75f803e5bfc2004e0e8ec9f1149ef041209078f539fa"
  },
  {
@@ -15249,8 +14891,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "651b70367fcb0070b30c1e5657f5378ce1bcf51403f63b3d691445c64054f1d0"
  },
  {
@@ -15304,8 +14945,7 @@
    "F"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "68459377b4877b07ab0a5012daa487969b3a9dc56acae5348f9b9130bd0c74fe"
  },
  {
@@ -15353,9 +14993,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "68db81249426dcd1a4315ed69d44e8bff192c8cf71a727c47f8322979d7a3883"
  },
  {
@@ -15393,8 +15032,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "70600ee06c7d7c2b8e7a72a72406ae72ebe289124d182117f0e25814f390847b"
  },
  {
@@ -15432,8 +15070,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7300be08101ba00ebcd56fe92c050059016ad1ff86fb03503bcfdd75ccdd71cc"
  },
  {
@@ -15481,9 +15118,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "74fd782558e5f93ef8b2a9e60310fcdac9c66a9556f22713ebaa036bfd6c907f"
  },
  {
@@ -15521,8 +15157,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "8605453594b42abbd04e4eb157fe6acb7899d24e3dc27c0422f2f358812a03ca"
  },
  {
@@ -15560,8 +15195,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "8b76be5979405f4cb76b335f539380f279938c15848428bf9ba7cd8a0d32b6ff"
  },
  {
@@ -15599,8 +15233,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "8dd47f259d08812868f2156e50cc22019d98c115c5e687224d03842b330ee315"
  },
  {
@@ -15638,8 +15271,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "975553f302a0ba067cdcaea8309339b402509c7e0f02926c09a620d622b0b730"
  },
  {
@@ -15677,8 +15309,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "9c4f777594c4439717fa1a606b09ccc9eaf8db3ad39878a5cff9d41d98615933"
  },
  {
@@ -15716,8 +15347,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "9cdc9dd20b69b355af81d0abffa7d6555f50a747f18b06508244c9bda3364759"
  },
  {
@@ -15771,9 +15401,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "9efe41f37456b295e6c6f51b32e9851687c8a9f8507b475b42a8a37efd29fc80"
  },
  {
@@ -15821,9 +15450,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "a2134a964cdb69828ad14a61218f110bec59007d197f3819632d36b0712ed58b"
  },
  {
@@ -15861,8 +15489,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a4a227f7c8dcad8ec995d63c378e040664e1282e66306d51c2716fa1d76961a3"
  },
  {
@@ -15900,8 +15527,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a4c40e3988f5b6d7c87b14dc9cea319f5260ec96fa702414b89d4e915b419cac"
  },
  {
@@ -15949,9 +15575,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "a78b84c699cdee9139ee083e03fa354a6c82b54eadfc4799034bdb29c992c522"
  },
  {
@@ -15989,8 +15614,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a88dd8e3212ec2442c283f796b9d2bc43b8bca2087c15dab69d45bf9c803c9ba"
  },
  {
@@ -16034,8 +15658,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "ae348331e631c7e1a6a2e6ba8b555f974a2a32710f7162d587505b142cd61bcc"
  },
  {
@@ -16073,8 +15696,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "af95dbb09d74b4d5137d16c7626aa62150eceba3accdeb4558aa22b34a9bdbe5"
  },
  {
@@ -16112,8 +15734,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b5ea817619c2bdd3620d523cf9252a64313dd181dc43df43e014be0904c36fd4"
  },
  {
@@ -16151,8 +15772,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c4717be9ea52427e278cf963e93667e1bf9e297c3c9fc58dd0998a2fd1158c8e"
  },
  {
@@ -16190,8 +15810,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c6b8e5861593085b42a125a6958b71e291ea1d2732a1015a0eeefa9928f6e3e3"
  },
  {
@@ -16229,8 +15848,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "d21891b508466e1e59c8a34c8a59b063fb331ad5fb0e70df66de6656e5526115"
  },
  {
@@ -16268,8 +15886,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "d9042f1fe361bcdcbee091851c953c9de31a195144476353f994a9a53db2db6a"
  },
  {
@@ -16307,8 +15924,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "de8210c0e6f3b92809733ddb7709ecb8e718d156872feeb9d1ee0a25eabe259c"
  },
  {
@@ -16346,8 +15962,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e35d343fa61850620b5c1aae1d4bcb6847674b9357c354086476d3eb8103f9c8"
  },
  {
@@ -16401,9 +16016,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "e552406adf8692a39b322117394b5b3816d0c4fce99cf0c703b75a3c6da0b88d"
  },
  {
@@ -16441,8 +16055,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e8b38cc9cdacccef977a3c1851f86499c6b15f96af3937f358a0d05d8edb78bf"
  },
  {
@@ -16480,8 +16093,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f14b3baa2495f87f1956e29547f8910fbcef7ac4211ae7eb942c5be07c36e6d2"
  },
  {
@@ -16528,9 +16140,8 @@
    "E"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "f631fb32f61b946ef6299b11e3da2e1126121d35f9e85b1e303129bd96337761"
  },
  {
@@ -16584,8 +16195,7 @@
    "F"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f702a349719bb91854324e7355a80ab90b5a52a5fb2bffc964422c5102a52e70"
  },
  {
@@ -16623,8 +16233,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "000e1af16dd5210c3340a5f8996e5c05363a62c70b8f79c03d2056bad82ea4eb"
  },
  {
@@ -16662,8 +16271,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "0e7ade3f08848a5d13049a885d7bd9bd31fdd242786eecc5ce8db52b5fc6a891"
  },
  {
@@ -16717,9 +16325,8 @@
    "F"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "17304449b0786bf8dd5ea060e62a6d8a2195feba3b1adc9bac731adcf4c752ed"
  },
  {
@@ -16773,8 +16380,7 @@
    "F"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "1d79dea58cb1fb59b8cbf0c9ebc5dc5c6d6db5484c872a71a33ea8619917c031"
  },
  {
@@ -16812,8 +16418,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "1fc337fcb873a6fdced8fa836771bdd1c2c290a3fb7f4d68fd6e5421353f395e"
  },
  {
@@ -16851,8 +16456,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "216628a6c2a2e277eb73650e519f2e86a02b386899bc356ba062520ab4877e38"
  },
  {
@@ -16890,8 +16494,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "28e85f6422f9297cb1a7719eda1b8febd3c9231b4066cfea931667bdac081918"
  },
  {
@@ -16929,8 +16532,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "2dd02e05c77ed1a06c056bb6e358e08dc02e85e94b9d720d3814f5a91d763cf7"
  },
  {
@@ -16968,8 +16570,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "30603ec49be812efe7416edf7e4e4b40aa9471d5c3c329e8e74a99dce7f39f50"
  },
  {
@@ -17007,8 +16608,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "3cc982529d6b6b2f419a4fb69fcdf19dc90c31e67aeb0af93e3cd4be11f5fca7"
  },
  {
@@ -17046,8 +16646,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "63ea0fbb28d65e0406c8f28a098569d4e0194866444dfed16ecbc2ef91084317"
  },
  {
@@ -17085,8 +16684,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "69eb2fa719bde200527e8f5d08427b044916bb715be2f25b65658d7c85ff35b0"
  },
  {
@@ -17124,8 +16722,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "6d395683e94958fe47e4664ee5f436a0058cfa26bdb5f9a7cc1036c5e9301b46"
  },
  {
@@ -17163,8 +16760,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7ac35bd85e5c4a0b1dc061a20c354c355ba02e2e0adee19b84525594b2d32d30"
  },
  {
@@ -17202,8 +16798,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "7c16cc5fb7cc7f226f1d31dee032ad97bf54b0750f331158d1d9843d9bd54838"
  },
  {
@@ -17257,9 +16852,8 @@
    "E"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "7d8c0183cabcb20f2dcc11b261b8a59bcd67cf9a3ff680342082fa6800f43afb"
  },
  {
@@ -17297,8 +16891,7 @@
   ],
   "correct": "C",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "8a9bfa1bcb6f5b159d1b68c65bbb9f81d8449caa6c76ac19134d16dec806cc9a"
  },
  {
@@ -17336,8 +16929,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a78d8e6e8b358aecc8962e09ad543d281ec5d3b1f214d5de48a6e11c8999d7bd"
  },
  {
@@ -17391,8 +16983,7 @@
    "D"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "a7dc3f2b7fa0ccf7088033a12d5abc6556d1a032c4c595adbb002305572816a3"
  },
  {
@@ -17430,8 +17021,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "ad7dd060fbff8abb42ef280a1222a0e05340b5ba32016d6aa46cd2d6de93587b"
  },
  {
@@ -17469,8 +17059,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b152a89ae1612539044478488cd1b78bc8128182addaed7d5bed201d82a8c71a"
  },
  {
@@ -17524,8 +17113,7 @@
    "F"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b24a91a710dffe72126bd592879bc2900b6d4b330ead2664e88d0d0d1b6157db"
  },
  {
@@ -17563,8 +17151,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "b50a814db4ca0cd763f358c59354630935a66c2a41194dff649d3c790acc7144"
  },
  {
@@ -17602,8 +17189,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "c7b537e0e6a4d608b21df323406a2f1c9b634204e44c015051436ecea337f9fb"
  },
  {
@@ -17657,8 +17243,7 @@
    "E"
   ],
   "select": 3,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "cd745aee4fdbc5039a75e5247720b28f84ebc6fc954dac7fc11e20169974259c"
  },
  {
@@ -17696,8 +17281,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "d3d7740f1d918e0ad8f189f5ad6a9844e492ea31435f2ae2ac15721fc0ceb681"
  },
  {
@@ -17750,9 +17334,8 @@
    "E"
   ],
   "select": 2,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 2.)' was appended to match the 2-answer key.",
+  "source": "practice-bank",
   "fingerprint": "e3439a5e09c8999f4dd2fa3baf4dc8200463041454964e6ba33747100d86dde7"
  },
  {
@@ -17790,8 +17373,7 @@
   ],
   "correct": "B",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "e6886475d5cbf8e17157cbbfa4e18acb201278f88b8b836e2743373fef107cfb"
  },
  {
@@ -17845,9 +17427,8 @@
    "D"
   ],
   "select": 3,
-  "stem_note": "CertSafari's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "stem_note": "The practice bank's stem did not state a count; '(Select 3.)' was appended to match the 3-answer key.",
+  "source": "practice-bank",
   "fingerprint": "ee24cc31c5ca9e1aeb67c08e453519550f1f3f6ddf77184990a8da944e7d72e4"
  },
  {
@@ -17885,8 +17466,7 @@
   ],
   "correct": "D",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f048448660196e108619409278e15099a5242761cbeca22d38df236454b9d85d"
  },
  {
@@ -17924,8 +17504,7 @@
   ],
   "correct": "A",
   "select": 1,
-  "source": "certsafari",
-  "source_url": "https://www.certsafari.com/anthropic/quiz/claude-architect-professional",
+  "source": "practice-bank",
   "fingerprint": "f9037c8dcefd2d1cc44628da5f03280994bced4119254a9e403ee857ae5da5bf"
  }
 ]

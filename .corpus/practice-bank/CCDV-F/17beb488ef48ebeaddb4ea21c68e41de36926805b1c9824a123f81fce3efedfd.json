@@ -1,0 +1,22 @@
+{
+  "exam": "CCDV-F",
+  "question": "A team is building an autonomous coding agent expected to run for well over 30 minutes, making repeated tool calls and exploring a large codebase, with a token budget in the millions. Which effort level should they start with?",
+  "options": [
+    "A) low",
+    "B) medium",
+    "C) xhigh",
+    "D) high"
+  ],
+  "correct_answers": [
+    "C) xhigh"
+  ],
+  "explanations": [
+    "Low effort is the most conservative setting and is intended for simple, short-scoped tasks, not extended multi-tool agentic exploration.",
+    "Medium effort offers moderate token savings for balanced workloads but is not tailored to long-horizon agentic work spanning many tool calls.",
+    "Xhigh is described as extended capability for long-horizon agentic and coding tasks over 30 minutes with token budgets in the millions, matching this scenario exactly.",
+    "High is the API default and suits complex reasoning and coding, but it is not the level specifically designed for long-running agentic work exceeding 30 minutes."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: the practice bank — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Developer – Foundations (CCDV-F)\n- button \"1 / 4 correct (25%) View by domain\":\n  - generic: 1 / 4 correct (25%)\n  - generic: View by domain\n- progressbar\n- generic: Question 5 of 60\n- generic: \"Subdomain 5.1: LLM Fundamentals\"\n- heading \"A team is building an autonomous coding agent expected to run for well over 30 minutes, making repeated tool calls and exploring a large codebase, with a token budget in the millions. Which effort level should they start with?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) low\" [checked] [disabled]:\n  - generic: A) low\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Low effort is the most conservative setting and is intended for simple, short-scoped tasks, not extended multi-tool agentic exploration.\n  - radio \"B) medium\" [disabled]\n  - generic: B) medium\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Medium effort offers moderate token savings for balanced workloads but is not tailored to long-horizon agentic work spanning many tool calls.\n  - radio \"C) xhigh\" [disabled]\n  - generic: C) xhigh\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Xhigh is described as extended capability for long-horizon agentic and coding tasks over 30 minutes with token budgets in the millions, matching this scenario exactly.\n  - radio \"D) high\" [disabled]\n  - generic: D) high\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: High is the API default and suits complex reasoning and coding, but it is not the level specifically designed for long-running agentic work exceeding 30 minutes.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:19:09.149Z",
+  "fingerprint": "17beb488ef48ebeaddb4ea21c68e41de36926805b1c9824a123f81fce3efedfd"
+}

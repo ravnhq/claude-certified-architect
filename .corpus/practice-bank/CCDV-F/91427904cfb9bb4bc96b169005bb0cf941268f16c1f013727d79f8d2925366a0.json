@@ -1,0 +1,25 @@
+{
+  "exam": "CCDV-F",
+  "question": "A coding assistant must retain project context and learned preferences across many separate sessions spanning weeks, and must also directly create and edit text files in a workspace the customer hosts, using a built-in file-editing interface. Which two client-side tools fit these requirements?",
+  "options": [
+    "A) Computer use tool",
+    "B) Web fetch tool",
+    "C) Code execution tool",
+    "D) Memory tool",
+    "E) Text editor tool"
+  ],
+  "correct_answers": [
+    "D) Memory tool",
+    "E) Text editor tool"
+  ],
+  "explanations": [
+    "The computer use tool controls a graphical interface via screenshots and input events; it is not the built-in file-editing interface described, nor does it persist memory across sessions.",
+    "The web fetch tool is a server-side tool for retrieving external web page and PDF content; it does not persist project memory or edit local workspace files.",
+    "The code execution tool is a server-side tool for running code in a sandboxed environment; it neither persists memory across sessions nor edits files in the customer's own workspace.",
+    "The memory tool enables Claude to store and retrieve information across conversations, building knowledge and maintaining project context over many separate sessions.",
+    "The text editor tool is Anthropic's client-side tool for viewing and modifying text files, giving the model a built-in interface to directly create and edit text files in the customer's own workspace, matching this requirement."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: the practice bank — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Developer – Foundations (CCDV-F)\n- button \"14 / 46 correct (30%) View by domain\":\n  - generic: 14 / 46 correct (30%)\n  - generic: View by domain\n- progressbar\n- generic: Question 47 of 60\n- generic: \"Subdomain 2.1: Understanding Requirements\"\n- heading \"A coding assistant must retain project context and learned preferences across many separate sessions spanning weeks, and must also directly create and edit text files in a workspace the customer hosts, using a built-in file-editing interface. Which two client-side tools fit these requirements?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- checkbox \"A) Computer use tool\" [checked] [disabled]:\n- generic: A) Computer use tool\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: The computer use tool controls a graphical interface via screenshots and input events; it is not the built-in file-editing interface described, nor does it persist memory across sessions.\n- checkbox \"B) Web fetch tool\" [checked] [disabled]:\n- generic: B) Web fetch tool\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: The web fetch tool is a server-side tool for retrieving external web page and PDF content; it does not persist project memory or edit local workspace files.\n- checkbox \"C) Code execution tool\" [disabled]\n- generic: C) Code execution tool\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: The code execution tool is a server-side tool for running code in a sandboxed environment; it neither persists memory across sessions nor edits files in the customer's own workspace.\n- checkbox \"D) Memory tool\" [disabled]\n- generic: D) Memory tool\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: The memory tool enables Claude to store and retrieve information across conversations, building knowledge and maintaining project context over many separate sessions.\n- checkbox \"E) Text editor tool\" [disabled]\n- generic: E) Text editor tool\n- heading \"Explanation\" [level=3]:\n  - button \"Explanation\" [expanded] [active]:\n    - generic: Explanation\n- region \"Explanation\":\n  - generic: The text editor tool is Anthropic's client-side tool for viewing and modifying text files, giving the model a built-in interface to directly create and edit text files in the customer's own workspace, matching this requirement.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:39:19.151Z",
+  "fingerprint": "91427904cfb9bb4bc96b169005bb0cf941268f16c1f013727d79f8d2925366a0"
+}

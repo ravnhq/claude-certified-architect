@@ -69,7 +69,7 @@ and do not sync.
   translation during proctoring; ES/PT would train against wording the exam never
   uses.
 - The Foundations bank is Ravn-authored and hand-edited. The CCAR-P and CCDV-F
-  banks are generated from the CertSafari corpus by `utils/import_certsafari.py`;
+  banks are generated from the practice-bank corpus by `utils/import_practice_bank.py`;
   direct edits to them are lost on the next import.
 - Exam and cheatsheet HTML is generated. Edit sources, never `dist/`, and
   regenerate every exam, bank, and cheatsheet after a style change.
@@ -91,7 +91,7 @@ prices, and policy dates outright and marks what is subject to change.
 - Official exam guides for all three tracks under `ccaf/sources/`, `ccap/sources/`,
   `ccdf/sources/`; the certification FAQ for delivery and policy facts.
 - Real question banks: 607 English Foundations items, plus the imported CCAR-P and
-  CCDV-F banks under `.corpus/certsafari/`.
+  CCDV-F banks under `.corpus/practice-bank/`.
 - Firecrawl captures of ravn.com in `.firecrawl/`, with scrape IDs, behind `DESIGN.md`.
 
 Absences future work must not paper over: there are no pass-rate statistics, no

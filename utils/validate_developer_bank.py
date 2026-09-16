@@ -4,7 +4,7 @@
 Fails loudly on anything that would produce a wrong or unusable practice item:
 schema drift, an answer key that disagrees with the option flags, an objective
 string that is not in the official exam guide, or a stem whose stated number of
-answers disagrees with its key. Shape drift the imported CertSafari corpus does
+answers disagrees with its key. Shape drift the imported practice-bank corpus does
 not control — an uncovered objective, an unusual multiple-response share — is
 reported as a warning instead.
 
@@ -24,7 +24,7 @@ from collections import Counter
 # cost spike".
 #
 # A reference to a letter the item does not have is broken today and fails. One
-# that resolves is only a hazard: utils/import_certsafari.py keeps CertSafari's
+# that resolves is only a hazard: utils/import_practice_bank.py keeps the practice bank's
 # option order, and the exam engine never shuffles options, so the reference is
 # still accurate — it warns instead, because a handful of imported explanations
 # use it and rewriting third-party rationale to satisfy a style rule would be a
@@ -68,7 +68,7 @@ from developer_blueprint import check_draw, draw_by_int_domain  # noqa: E402
 # an attempt.
 DRAW = draw_by_int_domain()
 
-# Eight is what the CertSafari corpus needs; two imported items run to H.
+# Eight is what the practice-bank corpus needs; two imported items run to H.
 LETTERS = "ABCDEFGH"
 
 
@@ -175,7 +175,7 @@ def main():
             errors.append(f"domain {dom}: bank ({by_domain[dom]}) smaller than the draw ({DRAW[dom]})")
 
     # Coverage is a warning, not a gate: the imported corpus is whatever
-    # CertSafari publishes, and an objective nobody asked about is a study gap
+    # the practice bank publishes, and an objective nobody asked about is a study gap
     # to fill, not a reason to refuse to build the page.
     covered = Counter((q.get("domain"), q.get("objective")) for q in items)
     for dom, objs in sorted(official.items()):

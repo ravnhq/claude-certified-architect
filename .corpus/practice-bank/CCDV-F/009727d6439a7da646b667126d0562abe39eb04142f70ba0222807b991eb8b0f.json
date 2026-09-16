@@ -1,0 +1,22 @@
+{
+  "exam": "CCDV-F",
+  "question": "A document-heavy workflow repeatedly references the same set of reference PDFs across many separate API requests over several weeks, and the team wants to avoid re-uploading the full file content with every call. Which feature should the architecture use?",
+  "options": [
+    "A) Files API",
+    "B) Context editing",
+    "C) Prompt caching",
+    "D) Compaction"
+  ],
+  "correct_answers": [
+    "A) Files API"
+  ],
+  "explanations": [
+    "The Files API lets the team upload and manage files once, then reference them across many subsequent requests without re-uploading the full content each time.",
+    "Context editing manages in-conversation context, such as clearing stale tool results, and does not provide persistent file storage for reuse across separate requests.",
+    "Prompt caching reduces cost for reused prompt content within a shorter cache window; it is not designed for reusing uploaded files across requests spanning weeks.",
+    "Compaction summarizes long conversation history server-side; it does not provide a mechanism for storing and reusing uploaded files across requests."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: the practice bank — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Developer – Foundations (CCDV-F)\n- button \"10 / 42 correct (24%) View by domain\":\n  - generic: 10 / 42 correct (24%)\n  - generic: View by domain\n- progressbar\n- generic: Question 43 of 60\n- generic: \"Subdomain 2.1: Understanding Requirements\"\n- heading \"A document-heavy workflow repeatedly references the same set of reference PDFs across many separate API requests over several weeks, and the team wants to avoid re-uploading the full file content with every call. Which feature should the architecture use?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Files API\" [checked] [disabled]:\n  - generic: A) Files API\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The Files API lets the team upload and manage files once, then reference them across many subsequent requests without re-uploading the full content each time.\n  - radio \"B) Context editing\" [disabled]\n  - generic: B) Context editing\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Context editing manages in-conversation context, such as clearing stale tool results, and does not provide persistent file storage for reuse across separate requests.\n  - radio \"C) Prompt caching\" [disabled]\n  - generic: C) Prompt caching\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Prompt caching reduces cost for reused prompt content within a shorter cache window; it is not designed for reusing uploaded files across requests spanning weeks.\n  - radio \"D) Compaction\" [disabled]\n  - generic: D) Compaction\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Compaction summarizes long conversation history server-side; it does not provide a mechanism for storing and reusing uploaded files across requests.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-09-14T16:44:49.518Z",
+  "fingerprint": "009727d6439a7da646b667126d0562abe39eb04142f70ba0222807b991eb8b0f"
+}
