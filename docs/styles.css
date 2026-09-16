@@ -280,23 +280,12 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 
 /* ---------- track chooser ---------- */
 .track-chooser { margin-bottom: 72px; }
-.chooser-group { display: grid; gap: 16px; margin-top: 20px; }
-.chooser-group + .chooser-group { margin-top: 36px; }
-.chooser-role {
-  margin: 0;
-  display: inline-flex; align-items: center; gap: 12px;
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.167em;
-  text-transform: uppercase;
-  color: var(--subtle);
+/* align-items: start keeps an opened disclosure from stretching its siblings. */
+.chooser-cards {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: start;
+  margin-top: 20px;
 }
-.chooser-role::before {
-  content: "";
-  width: 32px; height: 2px;
-  background: var(--border-strong);
-}
-.chooser-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .chooser-card { gap: 14px; }
 .card.chooser-card h2 {
   margin: 0;
@@ -307,24 +296,21 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   text-transform: none;
   color: var(--fg);
 }
-.chooser-code {
-  margin: 0;
-  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.167em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
+/* Fixed two-column grid, not flex-wrap: a tri-language track and a
+   single-language track then align row for row across the three cards. */
 .chooser-facts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 28px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
   margin: 4px 0 0;
 }
 .chooser-fact { display: grid; gap: 3px; }
+/* "EN · ES · PT" needs the full card width; giving it its own row keeps the
+   facts block the same height on every card. */
+.chooser-fact:last-child { grid-column: 1 / -1; }
 .chooser-fact-k {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--subtle);
@@ -740,6 +726,12 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
   .report-objective-field { grid-column: 1 / -1; }
   .report-plan-heading { display: block; }
   .plan-count { display: block; margin-top: 12px; }
+  /* Language chips are the phone-drill entry point; give them a real target. */
+  .chooser-card .chooser-res li a {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 44px; min-height: 44px; padding: 3px 9px;
+  }
+  .chooser-card .chooser-res li { padding: 4px 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -752,7 +744,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 /* Track cards: one resource per row, with the languages it exists in. Keeps a
    tri-language track and a single-language track on the same card template.
    These override .card li a, which lays links out as full-width rows. */
-.chooser-res { list-style: none; margin: 18px 0 20px; padding: 0; display: block; }
+.chooser-res { list-style: none; margin: 14px 0 0; padding: 0; display: block; }
 .chooser-card .chooser-res li { display: flex; align-items: center;
   justify-content: space-between; gap: 12px; margin: 0; padding: 9px 0;
   border-bottom: 1px solid var(--border); }
@@ -776,7 +768,62 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .chooser-name .chooser-primary::after { content: ""; position: absolute; inset: 0; z-index: 0; }
 .chooser-card:hover .chooser-name .chooser-primary { color: var(--accent); }
 .chooser-card .chooser-res,
+.chooser-card .chooser-more,
+.chooser-card .chooser-reg,
 .chooser-card .chooser-link { position: relative; z-index: 1; }
+
+/* Materials disclosure. Collapsed by default so a four-material track and a
+   six-material track present the same height in the grid. */
+.chooser-more { margin-top: 2px; }
+.chooser-more-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  cursor: pointer;
+  list-style: none;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  transition: color .15s var(--ease);
+}
+.chooser-more-summary::-webkit-details-marker { display: none; }
+.chooser-more-summary::after {
+  content: "+";
+  font-size: 0.95rem;
+  line-height: 1;
+  transition: color .15s var(--ease);
+}
+.chooser-more[open] .chooser-more-summary::after { content: "\2212"; }
+.chooser-more-summary:hover,
+.chooser-more[open] .chooser-more-summary { color: var(--fg); }
+.chooser-more-summary:hover::after { color: var(--accent); }
+.chooser-more-summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Cards size to their own content (align-items: start), so the summary — the
+   only block whose length varies — is reserved four lines above the single-
+   column breakpoint. Without it the shortest summary lifts one card's facts,
+   CTA, and disclosure a line above its neighbours'. */
+@media (min-width: 721px) {
+  .chooser-card .card-summary { min-height: 6.2em; }
+}
+
+/* Register leaves the site and costs money; it stays reachable but quiet,
+   under the free material this site actually ships. */
+.chooser-reg {
+  justify-self: start;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border-strong);
+}
+.chooser-reg:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
 .hero .eyebrow, .track-label, .card h2, .guide .eyebrow { font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 500; letter-spacing: .06em; }
 .hero { background: radial-gradient(ellipse at 65% 35%, rgba(148,163,184,.09), transparent 70%); }

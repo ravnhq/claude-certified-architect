@@ -150,7 +150,11 @@ Do not apply pill geometry to every control.
 - **Header:** white Ravn wordmark, restrained site label, simple search/theme controls.
 - **Primary action:** white background, dark label, 8px radius, visible focus state.
 - **Secondary action:** transparent or subtly elevated surface with a neutral border.
-- **Track chooser:** clear role and exam names with grouped resource links.
+- **Track chooser:** all three exams as equal-width peers in one grid, each card
+  carrying the exam name, who it is for, exam code / item count / languages, and a
+  single primary action. The per-language resource matrix sits behind a collapsed
+  disclosure so tracks with four materials and six materials keep the same height;
+  registration is a quiet tertiary link, below the free material this site ships.
 - **Question bank:** stable question numbers, readable stems, compact metadata,
   expandable answers, and text search. Preserve exact-number search such as `#42`.
 - **Quiz:** selection and correctness remain visually distinct; feedback includes text.

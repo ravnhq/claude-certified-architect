@@ -181,18 +181,16 @@ function landing() {
     </article>`).join('');
 
   // Track chooser — a one-glance self-selection grid placed above the
-  // per-track sections. The two Architect exams are grouped as a progression
-  // (Foundations then Professional); Developer is set apart as a separate
-  // role. Each card carries the credential, exam code, audience, the hard
-  // facts that differentiate the tracks (item count + available languages),
-  // what Ravn ships for it, and a single link into that track's section.
+  // per-track sections. All three render as peers in one grid; the section
+  // heading carries the Architect progression and Developer's separate-role
+  // status in prose, which the old two-group layout could only say by making
+  // the lone Developer card twice the width of its siblings.
   // One card shape for all three tracks. Each resource row names the resource
   // once and lists the languages it exists in, so a tri-language track and a
   // single-language track render from the same template without a separate
   // "pick your language" section repeating the same links.
   const TRACKS = [
     {
-      role: 'Architect',
       code: 'CCAR-F',
       name: 'Architect — Foundations',
       summary: 'For practitioners building with Claude Code, the Agent SDK, the Claude API, and MCP.',
@@ -209,7 +207,6 @@ function landing() {
       register: 'https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification',
     },
     {
-      role: 'Architect',
       code: 'CCAR-P',
       name: 'Architect — Professional',
       summary: 'For architects owning production architecture, evaluation, governance, and lifecycle.',
@@ -224,7 +221,6 @@ function landing() {
       register: 'https://anthropic-partners.skilljar.com/claude-certified-architect-professional-certification',
     },
     {
-      role: 'Developer',
       code: 'CCDV-F',
       name: 'Developer — Foundations',
       summary: 'For engineers building and shipping production applications, agents, and workflows.',
@@ -240,24 +236,29 @@ function landing() {
     },
   ];
 
+  // The card answers "which track am I?" above the fold and keeps the full
+  // resource matrix one disclosure away, so tracks with four materials and
+  // tracks with six stay the same height in the grid.
   const trackCard = tr => `
     <article class="card chooser-card">
-      <p class="chooser-code">${tr.code}</p>
       <h2 class="chooser-name"><a class="chooser-primary" href="${tr.resources[0].langs[0][1]}">${tr.name}</a></h2>
       <p class="card-summary">${tr.summary}</p>
       <dl class="chooser-facts">
+        <div class="chooser-fact"><dt class="chooser-fact-k">Exam</dt><dd class="chooser-fact-v">${tr.code}</dd></div>
         <div class="chooser-fact"><dt class="chooser-fact-k">Items</dt><dd class="chooser-fact-v">${tr.items}</dd></div>
         <div class="chooser-fact"><dt class="chooser-fact-k">Languages</dt><dd class="chooser-fact-v">${tr.langs}</dd></div>
       </dl>
-      <ul class="chooser-res">${tr.resources.map(r => `
+      <a class="chooser-link" href="${tr.resources[0].langs[0][1]}">Read the study guide</a>
+      <details class="chooser-more">
+        <summary class="chooser-more-summary">All ${tr.resources.length} materials</summary>
+        <ul class="chooser-res">${tr.resources.map(r => `
         <li><span class="cr-label">${r.label}</span><span class="cr-langs">${
           r.langs.map(([code, href]) => `<a href="${href}">${code}</a>`).join('')
         }</span></li>`).join('')}
-      </ul>
-      <a class="chooser-link" href="${tr.register}">Register with Anthropic</a>
+        </ul>
+      </details>
+      <a class="chooser-reg" href="${tr.register}">Register with Anthropic</a>
     </article>`;
-
-  const cardsFor = role => TRACKS.filter(x => x.role === role).map(trackCard).join('');
 
   return `<main class="landing">
   <section class="hero">
@@ -271,14 +272,7 @@ function landing() {
       <h2 id="chooser-title">Three exams, two roles</h2>
       <p>Architect runs Foundations then Professional, so the second builds on the first. Developer Foundations sits alongside them — a different job, not a further level.</p>
     </div>
-    <div class="chooser-group">
-      <p class="chooser-role">Architect</p>
-      <div class="cards chooser-cards">${cardsFor('Architect')}</div>
-    </div>
-    <div class="chooser-group">
-      <p class="chooser-role">Developer</p>
-      <div class="cards chooser-cards">${cardsFor('Developer')}</div>
-    </div>
+    <div class="cards chooser-cards">${TRACKS.map(trackCard).join('')}</div>
   </section>
   <section class="report-entry" aria-labelledby="report-entry-title">
     <div>

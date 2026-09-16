@@ -31,3 +31,10 @@ __pycache__/
 .agents/
 
 .firecrawl/
+
+# Impeccable live mode: keep the project config, drop the per-run state
+# (helper token and pid, absolute local paths, session journals).
+.impeccable/live/server.json
+.impeccable/live/roots.json
+.impeccable/live/inject-journal.json
+.impeccable/live/sessions/
