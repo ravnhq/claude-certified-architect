@@ -600,10 +600,12 @@ html, body { overscroll-behavior-y: none; }
 }
 .guide pre code { background: transparent; padding: 0; border: 0; color: inherit; }
 .guide blockquote {
-  margin: 1.5em 0;
-  padding: 0.6em 0 0.6em 1.25em;
-  border-left: 2px solid var(--accent);
-  color: var(--muted);
+  margin: 1.75em 0;
+  padding: 1.1em 1.4em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-elev);
+  color: var(--secondary);
 }
 .guide blockquote p { margin: 0.4em 0; }
 .guide table {
@@ -614,9 +616,13 @@ html, body { overscroll-behavior-y: none; }
 }
 .guide th, .guide td {
   border-bottom: 1px solid var(--border);
-  padding: 10px 14px;
+  padding: 12px 16px;
   text-align: left;
+  vertical-align: top;
 }
+.guide tbody tr:last-child td { border-bottom: 0; }
+.guide table { border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+.guide thead th { background: var(--bg-elev); border-bottom-color: var(--border-strong); }
 /* Bare URLs in the documentation tables set the table's minimum width (630px
    on a 320px phone). Let link text break anywhere; ordinary cell text keeps
    whole words, and a dense table still falls back to the scroller below. */
@@ -651,34 +657,84 @@ html, body { overscroll-behavior-y: none; }
   border-radius: var(--radius-md);
   background: var(--bg-elev);
 }
-.guide-toc summary { padding: 14px 18px; cursor: pointer; font-weight: 600; }
-.guide-toc summary::marker { color: var(--accent); }
-.guide-toc nav { max-height: min(60vh, 520px); overflow-y: auto; padding: 2px 18px 16px; }
+.guide-toc summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 18px; cursor: pointer; list-style: none;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--subtle); transition: color .15s var(--ease);
+}
+.guide-toc summary::-webkit-details-marker { display: none; }
+.guide-toc summary::after { content: "+"; font-size: 0.95rem; line-height: 1; }
+.guide-toc[open] summary::after { content: "\2212"; }
+.guide-toc summary:hover, .guide-toc[open] summary { color: var(--fg); }
+.guide-toc summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.guide-toc nav {
+  max-height: min(60vh, 520px); overflow-y: auto; padding: 2px 18px 16px;
+  scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent;
+}
+.guide-toc nav::-webkit-scrollbar { width: 6px; }
+.guide-toc nav::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+.guide-toc nav::-webkit-scrollbar-track { background: transparent; }
 .guide .guide-toc ol { list-style: none; margin: 0; padding-left: 0; }
-.guide .guide-toc ol ol { padding-left: 1.1em; }
-.guide-toc li { margin: 0.35em 0; }
-.guide .guide-toc a { color: var(--fg); border-bottom: none; }
-.guide .guide-toc a:hover { color: var(--accent); }
-.guide-toc ol ol a { font-size: 0.93em; }
-.guide .guide-toc ol ol a { color: var(--muted); }
-.guide .guide-toc ol ol a:hover { color: var(--accent); }
+.guide .guide-toc ol ol { padding-left: 0; }
+.guide-toc li { margin: 0; }
+/* The active marker is a nav indicator, so every row reserves its width and the
+   list never shifts sideways as you read. */
+.guide .guide-toc a {
+  display: block; position: relative;
+  padding: 6px 0 6px 14px;
+  color: var(--secondary); border-bottom: none; line-height: 1.45;
+  transition: color .15s var(--ease);
+}
+.guide .guide-toc ol ol a { padding-left: 28px; color: var(--muted); font-size: 0.93em; }
+.guide .guide-toc a::before {
+  content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px;
+  border-radius: 1px; background: transparent;
+  transition: background .15s var(--ease);
+}
+.guide .guide-toc ol ol a::before { left: 14px; }
+.guide .guide-toc a:hover { color: var(--fg); }
+.guide .guide-toc a:hover::before { background: var(--border-strong); }
 .guide .guide-toc a.active { color: var(--accent); }
+.guide .guide-toc a.active::before { background: var(--accent); }
 
-/* On wide viewports the TOC floats beside the prose column so it stays
-   reachable while reading. Width budget: 70ch prose + 2×(sidebar + gutters). */
-@media (min-width: 1240px) {
-  .guide-toc {
-    position: fixed;
-    top: calc(var(--topbar-h, 64px) + 32px);
-    left: max(24px, calc((100vw - var(--max-prose)) / 2 - 300px));
-    width: 260px;
-    margin: 0;
-    font-size: 0.9rem;
+/* Wide viewports lay the guide out as two real columns — a sticky contents rail
+   and the reading column — centred as one composition, instead of a narrow
+   centred measure with the contents floating loose in the left margin. The
+   reading column runs wider than the prose measure so tables and code blocks,
+   which genuinely want the room, can use it while paragraphs stay at 70ch. */
+@media (min-width: 1160px) {
+  .guide {
+    display: grid;
+    grid-template-columns: 252px minmax(0, 1fr);
+    column-gap: clamp(64px, 6.5vw, 120px);
+    align-items: start;
+    max-width: calc(252px + 120px + 880px);
+    padding: 72px 40px 140px;
   }
-  .guide-toc summary { padding: 12px 16px; }
-  /* 64px = top offset + bottom margin; 46px = the summary row. Chrome wraps the
-     details body in ::details-content, so size the nav directly instead of flexing. */
-  .guide-toc nav { max-height: calc(100vh - var(--topbar-h, 64px) - 64px - 46px); padding: 0 16px 14px; scrollbar-width: thin; }
+  .guide > * { grid-column: 2; min-width: 0; }
+  .guide > p, .guide > ul, .guide > ol, .guide > blockquote,
+  .guide > h1, .guide > h2, .guide > h3, .guide > h4 { max-width: var(--max-prose); }
+  .guide > table, .guide > pre { max-width: 100%; }
+
+  .guide-toc {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    position: sticky;
+    top: calc(var(--topbar-h, 64px) + 40px);
+    align-self: start;
+    margin: 0;
+    border: 0;
+    background: none;
+    font-size: 0.875rem;
+  }
+  .guide-toc summary { padding: 0 0 14px; }
+  /* 40px top offset + 40px breathing room at the bottom + the summary row. */
+  .guide-toc nav {
+    max-height: calc(100vh - var(--topbar-h, 64px) - 80px - 34px);
+    padding: 0 8px 4px 0;
+  }
 }
 
 .guide img { max-width: 100%; }

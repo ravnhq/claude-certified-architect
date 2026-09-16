@@ -128,6 +128,10 @@ their typography. Font licenses accompany it in `docs/assets/`.
 
 Keep the existing three-track chooser and navigation. Use a 980px study content
 container, a 70ch prose measure, generous section spacing, and compact quiz controls.
+Above 1160px the guide lays out as two columns — a 252px sticky contents rail and
+the reading column, separated by a 64–120px gutter and centred as one composition.
+Paragraphs hold the 70ch measure inside that column; tables and code blocks take
+its full width, which is the only content that benefits from the extra room.
 On phones, stack navigation as needed and allow prose containers to shrink. Preserve
 the incoming mobile fixes: wrapping fenced code and URLs, zero-minimum grid tracks,
 and a wrapping Previous / Next / Finish row.
