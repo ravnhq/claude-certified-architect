@@ -26,6 +26,17 @@ function check(name, cond, detail = '') {
   else { console.log(`  FAIL ${name}${detail ? ' — ' + detail : ''}`); failures++; }
 }
 
+// The bank is no longer inline: the page fetches it, and the manifest beside
+// the page names the file. There is no fetch in the vm, so the harness reads
+// that same JSON and installs it the way the boot path does.
+function bankFor(file) {
+  const dir = path.dirname(path.join(ROOT, file));
+  const manifest = JSON.parse(fs.readFileSync(path.join(dir, 'banks.json'), 'utf8'));
+  const rel = manifest[path.basename(file)];
+  if (!rel) throw new Error(`${file}: missing from banks.json`);
+  return JSON.parse(fs.readFileSync(path.join(dir, rel), 'utf8'));
+}
+
 // Load the engine's DOM-free prefix from a built page.
 function loadEngine(file) {
   const html = fs.readFileSync(path.join(ROOT, file), 'utf8');
@@ -52,7 +63,8 @@ function loadEngine(file) {
     updateMissesUI() {},
   };
   vm.createContext(ctx);
-  vm.runInContext(src + '\n' + answerFn +
+  ctx.__bank = bankFor(file);
+  vm.runInContext(src + '\n' + answerFn + '\ninstallBank(this.__bank);' +
     '\nthis.__api = { QUESTIONS, PER_DOMAIN, DOMAINS, STORE_KEY, STORE_VERSION, state, answer, drawCount, drawPerDomain, examSize, isMulti, selectCount, hasAnswer, isCorrect, isChosenLetter, letterLabel, shuffleOrder, qById, classify, tallyAttempt, esc, md, save, load, localStorage, MISS_KEY, loadMisses, saveMisses, missedIds, noteResult };', ctx);
   return ctx.__api;
 }

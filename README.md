@@ -229,21 +229,24 @@ score prediction.
 ## Design
 
 [DESIGN.md](./DESIGN.md) documents the current Ravn identity, extracted with Firecrawl
-and checked against the live site. Shared embedded fonts live in `docs/assets/fonts.css`;
-edit generator styles and regenerate every exam, bank, and cheatsheet after design changes.
+and checked against the live site. The shared fonts live in `docs/assets/` and every page
+links `docs/assets/fonts.css`; edit generator styles and regenerate every exam, bank, and
+cheatsheet after design changes.
 
 ## Build and test
 
 ```bash
-npm install --no-save marked@13.0.3 minisearch@7.2.0 pdfjs-dist@4.10.38 md-to-pdf   # pinned build dependencies
+npm install --no-save marked@13.0.3 minisearch@7.2.0 pdfjs-dist@4.10.38 md-to-pdf html-minifier-terser@7.2.0   # pinned build dependencies
 
-python3 utils/build_exam_html.py               # → ccaf/dist/exam_{en,es,pt}.html
+python3 utils/build_exam_html.py               # → ccaf/dist/exam_{en,es,pt}.html + data/*.json
 python3 utils/build_exam_html.py en es         # specific languages
 python3 utils/import_certsafari.py             # corpus + tags → ccap,ccdf data/questions.json
 python3 utils/build_professional_exam.py       # → ccap/dist/exam_en.html
 python3 utils/build_developer_exam.py          # → ccdf/dist/exam_en.html
 python3 utils/build_cheatsheet.py              # → ccaf/dist/cheatsheet_{en,es,pt}.html
 node scripts/build-pages.mjs                   # → docs/ site
+node scripts/minify-docs.mjs                   # minify docs/ in place — always last
+node scripts/serve-docs.mjs                    # serve docs/ gzipped, under its <base href>
 
 python3 utils/validate_professional_bank.py    # CCAR-P bank vs. official blueprint
 python3 utils/validate_developer_bank.py       # CCDV-F bank vs. official blueprint
@@ -255,6 +258,12 @@ Each validator fails on a bad answer key, an objective absent from the official 
 that states a different number of answers than its key, or a domain whose bank is smaller than
 its draw. An objective no item covers is reported as a warning, since the CCAR-P and CCDV-F
 banks are imported rather than commissioned.
+
+An exam page does not carry its questions: `render_page` writes them to
+`<track>/dist/data/<store-key>-<hash>.json` and the page fetches that at boot, so a practice
+page and its `bank-` twin — which share a hash — download one copy between them instead of
+475 KB each. `<track>/dist/banks.json` records which file each page uses; `build-pages.mjs`
+and `build_cheatsheet.py` read the questions from there rather than from the generated markup.
 
 The Foundations and Professional exams and the site regenerate on every deploy. The Developer
 exam and the cheatsheet ship their committed HTML — re-run their generators only when editing

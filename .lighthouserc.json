@@ -1,0 +1,73 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "node scripts/serve-docs.mjs 8099",
+      "startServerReadyPattern": "Serving docs",
+      "url": [
+        "http://localhost:8099/claude-certified-architect/practical/en.html",
+        "http://localhost:8099/claude-certified-architect/guides/en.html",
+        "http://localhost:8099/claude-certified-architect/index.html"
+      ],
+      "numberOfRuns": 3,
+      "settings": {
+        "preset": "perf",
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate"
+      }
+    },
+    "assert": {
+      "assertMatrix": [
+        {
+          "matchingUrlPattern": "practical/en\\.html$",
+          "assertions": {
+            "resource-summary:document:size": [
+              "warn",
+              {
+                "maxNumericValue": 61440
+              }
+            ],
+            "largest-contentful-paint": [
+              "warn",
+              {
+                "maxNumericValue": 1200
+              }
+            ],
+            "total-blocking-time": [
+              "warn",
+              {
+                "maxNumericValue": 150
+              }
+            ],
+            "cumulative-layout-shift": [
+              "warn",
+              {
+                "maxNumericValue": 0.1
+              }
+            ]
+          }
+        },
+        {
+          "matchingUrlPattern": "(guides/en|index)\\.html$",
+          "assertions": {
+            "largest-contentful-paint": [
+              "warn",
+              {
+                "maxNumericValue": 1200
+              }
+            ],
+            "total-blocking-time": [
+              "warn",
+              {
+                "maxNumericValue": 150
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": ".lighthouseci"
+    }
+  }
+}

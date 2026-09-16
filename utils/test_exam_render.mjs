@@ -44,6 +44,17 @@ function makeEl(id) {
   return el;
 }
 
+// The page fetches its bank at boot from the file banks.json names. The vm has
+// no fetch, so the harness installs the bank and runs init() the same way the
+// resolved fetch does.
+function bankFor(file) {
+  const dir = path.dirname(path.join(ROOT, file));
+  const manifest = JSON.parse(fs.readFileSync(path.join(dir, 'banks.json'), 'utf8'));
+  const rel = manifest[path.basename(file)];
+  if (!rel) throw new Error(`${file}: missing from banks.json`);
+  return JSON.parse(fs.readFileSync(path.join(dir, rel), 'utf8'));
+}
+
 function loadPage(file) {
   const html = fs.readFileSync(path.join(ROOT, file), 'utf8');
   const script = html.slice(html.lastIndexOf('<script>') + 8, html.lastIndexOf('</script>'));
@@ -66,7 +77,8 @@ function loadPage(file) {
     clearTimeout() {},
   };
   vm.createContext(ctx);
-  vm.runInContext(script +
+  ctx.__bank = bankFor(file);
+  vm.runInContext(script + '\ninstallBank(this.__bank); init();' +
     '\nthis.__api = { state, showSummary, renderQuestion, answer, orderedQuestions,' +
     ' selectCount, isMulti, T, DOMAINS, QUESTIONS, shuffleOrder, qById, restart, setFocus,' +
     ' examSize, GROUPS, gotoSub, gotoGroup, toggleBrowse, renderBrowse, filteredBank, browseBody, setBrowseDomain,' +

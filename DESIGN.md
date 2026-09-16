@@ -119,10 +119,11 @@ question headings, and 12px utility labels. Keep paragraphs at approximately
 65–70 characters and line height around 1.6. Balance headings and wrap long paths,
 URLs, and identifiers without widening mobile pages.
 
-`docs/assets/fonts.css` embeds the source website's Latin variable-font subsets,
-including Spanish and Portuguese characters. The site links this local stylesheet;
-standalone exam and cheatsheet generators inline it so downloaded pages retain
-their typography. Font licenses accompany it in `docs/assets/`.
+`docs/assets/fonts.css` declares the source website's Latin variable-font subsets,
+including Spanish and Portuguese characters, against the `.woff2` files beside it.
+Every page links that one stylesheet and preloads both fonts, so the bytes are
+fetched once and cached across the guides, the exams, and the cheatsheets rather
+than re-inlined per page. Font licenses accompany them in `docs/assets/`.
 
 ## Layout
 

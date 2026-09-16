@@ -20,7 +20,7 @@ This module also hosts the quiz engine itself: render_page() below is shared wit
 build_professional_exam.py, so a change here affects both tracks. Check both with
 `node utils/test_exam_engine.mjs`.
 """
-import base64, json, os, sys
+import base64, glob, hashlib, json, os, sys
 
 UTILS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(UTILS_DIR)
@@ -119,6 +119,8 @@ UI = {
         "browse_count": "{n} of {bank} questions",
         "browse_none": "No question matches this filter.",
         "cluster_note": "{i} of {n} variants of this scenario",
+        "loading": "Loading questions\u2026",
+        "load_failed": "The question bank could not be loaded. Check your connection and reload the page.",
     },
     "es": {
         "questions": "Preguntas", "answered": "Respondidas", "mode_study": "Estudio",
@@ -197,6 +199,8 @@ UI = {
         "browse_count": "{n} de {bank} preguntas",
         "browse_none": "Ninguna pregunta coincide con este filtro.",
         "cluster_note": "{i} de {n} variantes de este escenario",
+        "loading": "Cargando preguntas\u2026",
+        "load_failed": "No se pudo cargar el banco de preguntas. Revisa tu conexi\u00f3n y recarga la p\u00e1gina.",
     },
     "pt": {
         "questions": "Perguntas", "answered": "Respondidas", "mode_study": "Estudo",
@@ -276,6 +280,8 @@ UI = {
         "browse_count": "{n} de {bank} perguntas",
         "browse_none": "Nenhuma pergunta corresponde a este filtro.",
         "cluster_note": "{i} de {n} variantes deste cenário",
+        "loading": "Carregando quest\u00f5es\u2026",
+        "load_failed": "N\u00e3o foi poss\u00edvel carregar o banco de quest\u00f5es. Verifique sua conex\u00e3o e recarregue a p\u00e1gina.",
     },
 }
 
@@ -296,8 +302,6 @@ RAVN_LOGO_SVG = (
     '<path d="M28.8517 22.5101C33.8779 21.1825 37.5735 16.7376 37.5735 11.4583C37.5735 5.23989 32.4481 0.178564 26.0589 0.00605301V0H7.64995H0L6.34956 7.63688H7.64995V7.6389H25.7781C27.9333 7.66916 29.671 9.36703 29.671 11.4573C29.671 13.5668 27.902 15.2768 25.7197 15.2768H22.8382H12.7002L27.4355 33H37.5724L28.8517 22.5101Z"/>'
     '<path d="M8.53644 32.9974C11.4172 32.9974 13.7526 30.7402 13.7526 27.9557C13.7526 25.1713 11.4172 22.9141 8.53644 22.9141C5.65565 22.9141 3.32031 25.1713 3.32031 27.9557C3.32031 30.7402 5.65565 32.9974 8.53644 32.9974Z"/></svg>'
 )
-
-FONT_CSS = open(os.path.join(os.path.dirname(UTILS_DIR), "docs/assets/fonts.css"), encoding="utf-8").read()
 
 CSS = """
 /* Study controls use the current Ravn palette; feedback colors remain semantic. */
@@ -712,21 +716,49 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
   .br-tag { font-size: 0.6rem; }
 }
 
+/* Boot skeleton: the shape of a question card, held until the bank fetch
+   resolves and the first render replaces it. The option blocks are sized to a
+   phone-width option (where a question runs to about 1100px), so the swap costs
+   the difference between this outline and that question rather than its height. */
+.skeleton { max-width: 820px; }
+.sk-status { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+.sk-bar { background: var(--surface-2); border-radius: var(--r-sm); height: 14px;
+  margin-bottom: 12px; animation: sk-pulse 1.4s ease-in-out infinite; }
+.sk-bar.tall { height: 22px; margin-bottom: 20px; }
+.sk-bar.w80 { width: 80%; }
+.sk-bar.w60 { width: 60%; }
+.sk-opt { height: 96px; border: 1px solid var(--border); border-radius: var(--r-md);
+  margin-bottom: 10px; animation: sk-pulse 1.4s ease-in-out infinite; }
+@keyframes sk-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+.bank-error { max-width: 820px; color: var(--bad); font-size: 15px; line-height: 1.6; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; }
+  .sk-bar, .sk-opt { animation: none; }
 }
 """
 
 JS = r"""
-const QUESTIONS = __DATA__;
+// The bank ships as a sibling JSON file fetched at boot, not as 1.3 MB of
+// inline object literal the parser must chew through before first paint. A
+// practice page and its bank twin name the same content-hashed URL, so the
+// second page of a session reuses the first one's download.
+const BANK_URL = "__BANK_URL__";
+// Filled in place by installBank rather than reassigned: every function below
+// closes over this array, and so does the test harnesses' exported view of it.
+const QUESTIONS = [];
 // Option letters come from the bank, but an imported item may ship without
 // them. Filling them in here — A..H, in the order the options are written —
 // is what lets everything downstream (the answer key, the review pane, browse
 // mode) key on a letter regardless of how many options an item carries.
 const LETTERS = "ABCDEFGH";
-QUESTIONS.forEach(q => (q.options || []).forEach((o, i) => {
-  if (!o.letter) o.letter = LETTERS.charAt(i) || String(i + 1);
-}));
+function installBank(items) {
+  QUESTIONS.length = 0;
+  for (const q of items) QUESTIONS.push(q);
+  QUESTIONS.forEach(q => (q.options || []).forEach((o, i) => {
+    if (!o.letter) o.letter = LETTERS.charAt(i) || String(i + 1);
+  }));
+}
 const DOMAINS = __DOMAINS__;
 // Bank pages group rows by GROUPS when a track supplies them (Foundations:
 // score-report themes, which cut across domains); otherwise by domain.
@@ -2171,7 +2203,7 @@ function restart() {
 }
 
 // ---- init ----------------------------------------------------------------
-(function init() {
+function init() {
   if (typeof window !== "undefined" && window.addEventListener) {
     window.addEventListener("storage", onReportStorageChange);
   }
@@ -2213,7 +2245,35 @@ function restart() {
   buildSidebar();
   renderQuestion(state.current);
   updateSidebar();
-})();
+}
+
+// ---- boot ----------------------------------------------------------------
+// The shell paints its skeleton from markup, then the bank arrives on its own
+// request and init() replaces the skeleton with the first question. The skeleton
+// sits inside the node that first render overwrites, so a successful boot needs
+// no teardown; a failed one has to say so rather than leave the page waiting.
+function bankFailed() {
+  const target = document.getElementById(BANK_ONLY ? "browseList" : "qCard");
+  if (target) target.innerHTML = '<p class="bank-error" role="status">' + esc(T.load_failed) + "</p>";
+}
+
+// No fetch means no browser: the test harnesses install the bank themselves and
+// call init() directly, which is also what a page does once the fetch resolves.
+if (typeof fetch === "function") {
+  fetch(BANK_URL)
+    .then(res => {
+      if (!res.ok) throw new Error("bank request failed: " + res.status);
+      return res.text();
+    })
+    .then(text => {
+      installBank(JSON.parse(text));
+      init();
+    })
+    .catch(err => {
+      console.error(err);
+      bankFailed();
+    });
+}
 """
 
 
@@ -2244,7 +2304,11 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
                 store_key, lang_attr, title, page_title, out_path,
                 view="exam", bank_href=None, exam_href=None, groups_js=None,
                 report_map=None, exam_code="CCAR-F"):
-    """Render one self-contained quiz page.
+    """Render one quiz page plus the JSON bank it fetches at boot.
+
+    Returns the emitted paths; scripts/build-pages.mjs and
+    utils/build_cheatsheet.py read the bank from that file rather than from the
+    generated markup.
 
     Shared by the Foundations builder below and by build_professional_exam.py,
     so both tracks stay on one engine. `per_domain` is either an int (same draw
@@ -2259,6 +2323,23 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
     maps an item `group` key to a heading, replacing domains as the bank's
     top-level grouping.
     """
+    # The bank goes to its own file, named by content hash, so the practice page
+    # and its bank twin name the same URL and download it once between them. The
+    # escaping _payload() applies is for inline <script> only; a standalone .json
+    # is fetched and parsed, never parsed as JavaScript.
+    bank_json = json.dumps([_public(q) for q in questions], ensure_ascii=False)
+    digest = hashlib.sha256(bank_json.encode("utf-8")).hexdigest()[:12]
+    bank_name = f"{store_key}-{digest}.json"
+    bank_path = os.path.join(os.path.dirname(out_path), "data", bank_name)
+    os.makedirs(os.path.dirname(bank_path), exist_ok=True)
+    with open(bank_path, "w", encoding="utf-8") as f:
+        f.write(bank_json)
+    # Drop this page's earlier hashes, or every edit to the bank would leave
+    # another copy behind for the site build to publish.
+    for stale in glob.glob(os.path.join(os.path.dirname(bank_path), f"{store_key}-*.json")):
+        if os.path.basename(stale) != bank_name:
+            os.remove(stale)
+
     # The data-driven payloads go in last: question and objective text can hold
     # anything, and an earlier injection would let it be rewritten by a later
     # replace.
@@ -2273,7 +2354,7 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
             .replace("__EXAM_MINUTES__", str(exam_minutes))
             .replace("__EXAM_CODE__", exam_code)
             .replace("__BANK_ONLY__", "true" if view == "bank" else "false")
-            .replace("__DATA__", _payload([_public(q) for q in questions])))
+            .replace("__BANK_URL__", f"data/{bank_name}"))
 
     favicon_tag = (f'<link rel="icon" type="image/png" href="{_FAVICON_DATA_URI}">'
                    if _FAVICON_DATA_URI else "")
@@ -2289,17 +2370,17 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
         f'<button type="button" id="modeExam" aria-pressed="false" onclick="setMode(\'exam\')">{ui["mode_exam"]}</button>'
         '</div>'
         f'<div class="mode-toggle length-toggle" role="group" aria-label="{ui["length_aria"]}">'
-        '<button type="button" id="lengthFull" aria-pressed="false" onclick="setLength(\'full\')"></button>'
-        '<button type="button" id="lengthQuick" aria-pressed="false" onclick="setLength(\'quick\')"></button>'
+        '<button type="button" id="lengthFull" aria-pressed="false" onclick="setLength(\'full\')">{length_full_label}</button>'
+        '<button type="button" id="lengthQuick" aria-pressed="false" onclick="setLength(\'quick\')">{length_quick_label}</button>'
         '</div>'
-        f'<select class="focus-select" id="focusSelect" aria-label="{ui["focus_label"]}" onchange="setFocus(this.value)"></select>'
+        f'<select class="focus-select" id="focusSelect" aria-label="{ui["focus_label"]}" onchange="setFocus(this.value)"><option value="all">{ui["focus_all"]}</option></select>'
         '<button type="button" class="nav-btn new-draw-btn" id="newDrawBtn" onclick="newDraw()">'
         f'<span class="dn-icon">&#10227;</span>{ui["new_set"]}</button>'
         f'<button type="button" class="nav-btn misses-btn" id="missesBtn" '
         f'aria-pressed="false" aria-label="{ui["misses_label"]}" '
-        f'title="{ui["misses_label"]}" onclick="toggleMisses()" disabled></button>'
+        f'title="{ui["misses_label"]}" onclick="toggleMisses()" disabled>{ui["misses_empty"]}</button>'
         + (f'<a class="nav-btn browse-btn" href="{bank_href}">{ui["bank_link"]}</a>' if bank_href else "")
-        + '<span class="mode-hint" id="modeHint"></span>'
+        + '<span class="mode-hint" id="modeHint">{ui["mode_hint_study"]}</span>'
         '</div></header>'
     )
     bank_topbar = (
@@ -2310,6 +2391,44 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
         + (f'<a class="nav-btn" href="{exam_href}">{ui["exam_link"]}</a>' if exam_href else "")
         + '</div></header>'
     )
+    # Every label the engine writes on boot is rendered here as well. They sit in
+    # a wrapping header above the scrolling shell, so text arriving late rewraps
+    # the row and shifts the whole page down — on a phone that was most of the
+    # page's layout shift. The values below are what a fresh visitor always
+    # gets: the full draw over all domains, in study mode, nothing missed yet.
+    bank_by_domain = {}
+    for q in questions:
+        key = str(q.get("domain"))
+        bank_by_domain[key] = bank_by_domain.get(key, 0) + 1
+
+    def _draw(length):
+        """The engine's drawPerDomain(length, "all"), evaluated here."""
+        total = 0
+        for key, have in bank_by_domain.items():
+            full = per_domain[key] if isinstance(per_domain, dict) else per_domain
+            full = full or 0
+            # Math.round, not Python's banker's rounding, so a .5 split matches.
+            want = max(1, int(full / 3 + 0.5)) if length == "quick" and full > 0 else full
+            total += min(have, want)
+        return total
+
+    full_draw = _draw("full")
+    quick_draw = _draw("quick")
+    draw_note = (ui["draw_note_full"].replace("{n}", str(full_draw))
+                 .replace("{bank}", str(len(questions))))
+    length_full_label = ui["length_full"].replace("{n}", str(full_draw))
+    length_quick_label = ui["length_quick"].replace("{n}", str(quick_draw))
+
+    # Rendered inside the node the engine's first paint overwrites, so the
+    # skeleton needs no teardown of its own.
+    skeleton = (f'<div class="skeleton">'
+                f'<p class="sk-status" role="status">{ui["loading"]}</p>'
+                '<div class="sk-bar w60"></div>'
+                '<div class="sk-bar tall"></div>'
+                '<div class="sk-bar w80"></div>'
+                '<div class="sk-opt"></div><div class="sk-opt"></div>'
+                '<div class="sk-opt"></div><div class="sk-opt"></div>'
+                '</div>')
     browse_screen = f"""<div class="screen" id="browseScreen">
         <div class="browse-head">
           <h1>{ui['browse_title']}</h1>
@@ -2317,7 +2436,7 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
           <input type="search" class="browse-search" id="browseSearch" placeholder="{ui['browse_search']}" aria-label="{ui['browse_search']}" oninput="onBrowseSearch(this.value)">
           <span class="browse-count" id="browseCount"></span>
         </div>
-        <div class="browse-list" id="browseList"></div>
+        <div class="browse-list" id="browseList">{skeleton}</div>
       </div>"""
     if view == "bank":
         body = f"""{bank_topbar}
@@ -2335,18 +2454,18 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
     else:
         body = f"""<a class="skip-link" href="#qCard">{ui['skip_to_question']}</a>
 {ravn_topbar}
-<div class="draw-note" id="drawNote"></div>
+<div class="draw-note" id="drawNote"><span class="dn-icon">&#10227;</span>{draw_note}</div>
 <div class="shell">
   <nav class="sidebar" aria-label="{ui['questions']}">
     <h2 class="sidebar-header">{ui['questions']}</h2>
-    <div class="sidebar-progress">{ui['answered']}: <span id="answeredCount">0</span> / <span id="totalCount">0</span></div>
+    <div class="sidebar-progress">{ui['answered']}: <span id="answeredCount">0</span> / <span id="totalCount">{full_draw}</span></div>
     <div class="sidebar-scroll" id="sidebarList"></div>
   </nav>
   <main class="main">
     <div class="topbar">
       <h1 class="topbar-title">{title}</h1>
       <div class="topbar-nav">
-        <span class="q-counter" id="qCounter"></span>
+        <span class="q-counter" id="qCounter">1 / {full_draw}</span>
         <span class="exam-timer" id="examTimer" hidden></span>
         <button type="button" class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>{ui['prev']}</button>
         <button type="button" class="nav-btn primary" id="nextBtn" onclick="navigate(1)">{ui['next']}</button>
@@ -2354,7 +2473,7 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
       </div>
     </div>
     <div class="content">
-      <div class="screen active" id="questionScreen"><div class="q-card" id="qCard"></div></div>
+      <div class="screen active" id="questionScreen"><div class="q-card" id="qCard">{skeleton}</div></div>
       <div class="screen" id="summaryScreen"><div class="summary show" id="summaryContent"></div></div>
     </div>
     <p class="visually-hidden" id="liveStatus" role="status" aria-live="polite"></p>
@@ -2368,8 +2487,10 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{page_title}</title>
 {favicon_tag}
-<style>{FONT_CSS}
-{CSS}</style>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/Inter-variable.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/JetBrainsMono-variable.woff2">
+<link rel="stylesheet" href="../assets/fonts.css">
+<style>{CSS}</style>
 </head>
 <body>
 {body}
@@ -2381,7 +2502,21 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(HTML)
     name = os.path.basename(out_path)
-    print(f"Written: {name}  ({len(HTML):,} bytes, {len(questions)} questions)")
+    # A manifest, so the downstream consumers (scripts/build-pages.mjs and
+    # utils/build_cheatsheet.py) can find a page's bank without parsing the
+    # generated markup for it.
+    manifest_path = os.path.join(os.path.dirname(out_path), "banks.json")
+    manifest = {}
+    if os.path.exists(manifest_path):
+        with open(manifest_path, encoding="utf-8") as f:
+            manifest = json.load(f)
+    manifest[name] = f"data/{bank_name}"
+    with open(manifest_path, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2, sort_keys=True)
+        f.write("\n")
+    print(f"Written: {name}  ({len(HTML):,} bytes shell + {len(bank_json):,} bytes "
+          f"bank, {len(questions)} questions) -> data/{bank_name}")
+    return {"html": out_path, "bank": bank_path, "bank_url": f"data/{bank_name}"}
 
 
 def build(lang):

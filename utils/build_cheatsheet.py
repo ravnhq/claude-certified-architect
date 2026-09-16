@@ -19,10 +19,14 @@ exam = open(os.path.join(REPO, "ccaf", "dist", "exam_en.html"), encoding="utf-8"
 favicon = re.search(r'href="(data:image/png;base64,[A-Za-z0-9+/=]+)"', exam).group(1)
 
 # --- exam questions per language (for the per-principle dropdowns) ---
+# The bank is a sibling JSON file the exam page fetches at boot; ccaf/dist/banks.json
+# names the one each page uses, so this reads the data rather than the markup.
+BANKS = json.load(open(os.path.join(REPO, "ccaf", "dist", "banks.json"), encoding="utf-8"))
+
+
 def _load_exam(lang):
-    s = open(os.path.join(REPO, "ccaf", "dist", f"exam_{lang}.html"), encoding="utf-8").read()
-    i = s.find("const QUESTIONS = ")
-    arr = json.JSONDecoder().raw_decode(s[s.find("[", i):])[0]
+    bank = os.path.join(REPO, "ccaf", "dist", BANKS[f"exam_{lang}.html"])
+    arr = json.load(open(bank, encoding="utf-8"))
     d, order = {}, []
     for x in arr:
         corr = next((o for o in x["options"] if o.get("correct")), None)
@@ -528,6 +532,9 @@ def build(lang):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
 <link rel="icon" type="image/png" href="{favicon}">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/Inter-variable.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/JetBrainsMono-variable.woff2">
+<link rel="stylesheet" href="../assets/fonts.css">
 <style>{css}</style>
 </head>
 <body>
@@ -591,7 +598,7 @@ def build(lang):
 </body>
 </html>
 """.format(
-        lang=lang, title=u["title"], favicon=favicon, css=open(os.path.join(REPO, "docs/assets/fonts.css"), encoding="utf-8").read() + CSS,
+        lang=lang, title=u["title"], favicon=favicon, css=CSS,
         topbar=TOPBAR.format(kicker=u["eyebrow"].split("·")[-1].strip()),
         eyebrow=u["eyebrow"], h1=u["h1"], lede=u["lede"],
         s_q=u["s_q"], s_d=u["s_d"], s_p=u["s_p"],

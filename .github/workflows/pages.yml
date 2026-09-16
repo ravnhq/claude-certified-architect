@@ -28,7 +28,7 @@ jobs:
       # enough for the PDFs. Add `fonts-noto-cjk` back if a JA/ZH/KO guide lands.
 
       - name: Install build deps
-        run: npm install --no-save marked@13.0.3 minisearch@7.2.0 pdfjs-dist@4.10.38 md-to-pdf
+        run: npm install --no-save marked@13.0.3 minisearch@7.2.0 pdfjs-dist@4.10.38 md-to-pdf html-minifier-terser@7.2.0
 
       - name: Regenerate guide PDFs from current markdown
         run: |
@@ -65,6 +65,23 @@ jobs:
       # and falls back to a "not generated yet" placeholder if it is missing.
       - name: Build static site
         run: node scripts/build-pages.mjs
+
+      # Last build step by construction: it rewrites docs/ in place, so anything
+      # reading the generated markup afterwards would read minified output.
+      - name: Minify the published HTML
+        run: node scripts/minify-docs.mjs
+
+      # Budget: <=60 KB transferred for the exam shell, LCP < 1.2 s, TBT < 150 ms,
+      # CLS < 0.1, on the mobile preset. Today the shell is ~20 KB and TBT is 0;
+      # LCP and CLS still miss, because the question text only exists once the
+      # bank fetch lands.
+      # Warning-only for now: every assertion in .lighthouserc.json is at "warn",
+      # so a miss is reported and the deploy continues. Flip them to "error" once
+      # this has passed twice and a slow page blocks the deploy instead.
+      # scripts/serve-docs.mjs gzips and mounts the site under its <base href>,
+      # so the numbers here are the numbers GitHub Pages will serve.
+      - name: Check the performance budget
+        run: npx --yes @lhci/cli@0.14.x autorun
 
       - uses: actions/configure-pages@v5
 

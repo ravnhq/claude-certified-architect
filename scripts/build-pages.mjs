@@ -38,6 +38,13 @@ const DEVELOPER_GUIDES = [
   },
 ];
 
+// Every track whose exam pages ship a fetched question bank.
+const EXAM_TRACKS = ['ccaf', 'ccap', 'ccdf'];
+
+// Published exam page -> the bank JSON it fetches. Every page shell carries it,
+// so a link into an exam can warm that fetch before the click (app.js).
+let bankHrefs = {};
+
 const RAVN_BASE_HREF = process.env.RAVN_BASE_HREF || '/claude-certified-architect/';
 const MINISEARCH_BROWSER = path.resolve(
   path.dirname(fileURLToPath(import.meta.resolve('minisearch'))),
@@ -85,7 +92,22 @@ async function exists(p) {
 
 async function ensureDir(p) { await fs.mkdir(p, { recursive: true }); }
 
-function pageShell({ title, lang, body, baseHref, extraScripts = '' }) {
+// The exam pages fetch their question bank from a sibling JSON file instead of
+// inlining it; <track>/dist/banks.json records which file each page uses.
+async function bankManifest(track) {
+  const file = path.join(ROOT, track, 'dist', 'banks.json');
+  if (!(await exists(file))) throw new Error(`${track}: exam data was not generated before the site build`);
+  return JSON.parse(await fs.readFile(file, 'utf8'));
+}
+
+async function readExamBank(track, page) {
+  const manifest = await bankManifest(track);
+  const rel = manifest[page];
+  if (!rel) throw new Error(`${track}: ${page} is missing from banks.json`);
+  return JSON.parse(await fs.readFile(path.join(ROOT, track, 'dist', rel), 'utf8'));
+}
+
+function pageShell({ title, lang, body, baseHref, extraScripts = '', extraHead = '' }) {
   return `<!doctype html>
 <html lang="${lang}" data-theme="dark">
 <head>
@@ -93,9 +115,12 @@ function pageShell({ title, lang, body, baseHref, extraScripts = '' }) {
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title}</title>
 <base href="${baseHref}">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/Inter-variable.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/JetBrainsMono-variable.woff2">
 <link rel="stylesheet" href="assets/fonts.css">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" type="image/png" href="assets/favicon.png">
+${extraHead}<script type="application/json" id="bank-map">${JSON.stringify(bankHrefs)}</script>
 <script>
   // theme bootstrap (no FOUC) — defaults to dark, matches Ravn's identity
   (() => {
@@ -363,10 +388,7 @@ async function buildFoundationsReportData() {
     if (match) headings.set(match[1], { title: match[2], href: `guides/en.html#${guideHeadingSlug(`${match[1]} ${match[2]}`)}` });
   });
 
-  const exam = await fs.readFile(path.join(ROOT, 'ccaf', 'dist', 'exam_en.html'), 'utf8');
-  const questionMatch = exam.match(/const QUESTIONS = (.+);\n\/\/ Option letters/);
-  if (!questionMatch) throw new Error('CCAF exam data was not generated before the site build');
-  const questions = JSON.parse(questionMatch[1]);
+  const questions = await readExamBank('ccaf', 'exam_en.html');
   const questionCounts = {};
   Object.entries(meta.objective_subdomains).forEach(([id, subdomain]) => {
     questionCounts[id] = questions.filter(question => String(question.task_id || '') === String(subdomain)).length;
@@ -1251,10 +1273,16 @@ async function buildGuides() {
     const html = marked.parse(md);
     const out = path.join(DOCS, 'guides', `${l.output}.html`);
     await ensureDir(path.dirname(out));
+    // A guide reader has exactly one matching practice exam, so its bank is
+    // worth fetching at idle priority: by the time they click through, the
+    // exam page has nothing left to download and never shows its skeleton.
+    const ownBank = bankHrefs[`practical/${l.output}.html`];
     await fs.writeFile(out, pageShell({
       title: `${l.title || l.label} — Claude Certified Architect · Ravn`,
       lang: l.code,
       baseHref: RAVN_BASE_HREF,
+      extraHead: ownBank ? `<link rel="prefetch" as="fetch" href="${ownBank}">
+` : '',
       body: `${header(l.code)}<main class="guide">${renderToc(tocEntries, ui.contents, pageHref)}<div class="guide-body">${html}</div></main>`,
     }));
   }
@@ -1339,6 +1367,46 @@ async function copyScoreReport() {
     extraScripts: '<script type="module" src="score-report.js"></script>',
   }));
   console.log(`Score report reader built with PDF.js ${PDFJS_VERSION} (${Object.keys(data.exams).length} exams, ${Object.values(data.exams).reduce((n, exam) => n + Object.keys(exam.objectives).length, 0)} objectives)`);
+}
+
+// One JSON per bank, shared by a practice page and its bank twin and named by
+// content hash, so a browser that has one page's bank already has the other's.
+async function copyExamBanks() {
+  const out = path.join(DOCS, 'practical', 'data');
+  await ensureDir(out);
+  const kept = new Set();
+  for (const track of EXAM_TRACKS) {
+    const manifest = await bankManifest(track);
+    for (const rel of new Set(Object.values(manifest))) {
+      const name = path.basename(rel);
+      await fs.copyFile(path.join(ROOT, track, 'dist', rel), path.join(out, name));
+      kept.add(name);
+    }
+  }
+  // An edit to a bank changes its hash, so the previous file would otherwise
+  // stay published forever.
+  for (const f of await fs.readdir(out)) {
+    if (f.endsWith('.json') && !kept.has(f)) await fs.rm(path.join(out, f));
+  }
+  console.log(`Question banks: ${kept.size} files in practical/data`);
+}
+
+async function collectBankHrefs() {
+  const pages = [
+    ...LANGS.map(l => ({ ...l, output: l.code })),
+    ...PROFESSIONAL_GUIDES,
+    ...DEVELOPER_GUIDES,
+  ];
+  const map = {};
+  for (const l of pages) {
+    const track = l.test.split('/')[0];
+    const manifest = await bankManifest(track);
+    const exam = manifest[path.basename(l.test)];
+    const bank = l.bank && manifest[path.basename(l.bank)];
+    if (exam) map[`practical/${l.output}.html`] = `practical/data/${path.basename(exam)}`;
+    if (bank) map[`practical/bank-${l.output}.html`] = `practical/data/${path.basename(bank)}`;
+  }
+  bankHrefs = map;
 }
 
 async function copyPracticalTests() {
@@ -1446,12 +1514,14 @@ async function writeIndex() {
 
 async function main() {
   await ensureDir(DOCS);
+  await collectBankHrefs();
   await copyBrowserDependencies();
   await writeIndex();
   await buildGuides();
   await copyScoreReport();
   await copyPracticalTests();
   await copyProfessionalExams();
+  await copyExamBanks();
   await copyCheatsheets();
   await buildPreflight();
   await copyPdfs();
