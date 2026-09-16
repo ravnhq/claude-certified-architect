@@ -11,7 +11,8 @@
         "Apply Agent SDK hooks for tool call interception and data normalization",
         "Design task decomposition strategies for complex workflows",
         "Manage session state, resumption, and forking"
-      ]
+      ],
+      "weight": 27
     },
     "2": {
       "name": "Tool Design and MCP Integration",
@@ -21,7 +22,8 @@
         "Distribute tools appropriately across agents and configure tool choice",
         "Integrate MCP servers into Claude Code and agent workflows",
         "Select and apply built-in tools (Read, Write, Edit, Bash, Grep, Glob) effectively"
-      ]
+      ],
+      "weight": 18
     },
     "3": {
       "name": "Claude Code Configuration and Workflows",
@@ -32,7 +34,8 @@
         "Determine when to use plan mode vs direct execution",
         "Apply iterative refinement techniques for progressive improvement",
         "Integrate Claude Code into CI/CD pipelines"
-      ]
+      ],
+      "weight": 20
     },
     "4": {
       "name": "Prompt Engineering and Structured Output",
@@ -43,7 +46,8 @@
         "Implement validation, retry, and feedback loops for extraction quality",
         "Design efficient batch processing strategies",
         "Design multi-instance and multi-pass review architectures"
-      ]
+      ],
+      "weight": 20
     },
     "5": {
       "name": "Context Management and Reliability",
@@ -54,7 +58,9 @@
         "Manage context effectively in large codebase exploration",
         "Design human review workflows and confidence calibration",
         "Preserve information provenance and handle uncertainty in multi-source synthesis"
-      ]
+      ],
+      "weight": 15
     }
-  }
+  },
+  "_weights_note": "Official CCAR-F domain weights, the same values utils/exam_data.py DOMAINS carries for the exam generators. Keep the two in sync."
 }

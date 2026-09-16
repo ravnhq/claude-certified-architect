@@ -403,7 +403,7 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .report-row-copy { min-width: 0; }
 .report-row-copy p { margin: 5px 0 0; line-height: 1.45; }
 .report-row-copy small { display: block; margin-top: 8px; color: var(--subtle); font-size: 0.78rem; line-height: 1.4; }
-.report-row-meta, .study-theme, .study-rank { color: var(--accent); font: 600 0.7rem/1.4 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+.report-row-meta, .study-theme { color: var(--accent); font: 600 0.7rem/1.4 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
 .report-unknown { color: var(--report-focus) !important; }
 .report-score-field, .report-objective-field { display: grid; gap: 6px; color: var(--subtle); font: 600 0.7rem/1.4 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.06em; text-transform: uppercase; }
 .report-score-field input, .report-objective-field select { width: 100%; min-height: 42px; padding: 8px 10px; border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--bg-elev); color: var(--fg); font: 500 0.9rem/1.3 "JetBrains Mono", ui-monospace, monospace; }
@@ -422,12 +422,49 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .report-plan-heading > div { max-width: 760px; }
 .plan-count { flex: 0 0 auto; color: var(--muted); font: 600 0.72rem/1.5 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
 .study-list { display: grid; gap: 12px; }
+
+/* The plan groups by exam domain, ordered by how much of the score sits in
+   each, so reading top to bottom is the study order. */
+.plan-lede { margin: 0 0 28px; max-width: 62ch; color: var(--muted); line-height: 1.6; }
+.plan-lede strong { color: var(--fg); }
+.plan-domain { display: grid; gap: 12px; }
+.plan-domain + .plan-domain { margin-top: 40px; }
+.plan-domain-name {
+  margin: 0; font-size: clamp(1.15rem, 2.2vw, 1.5rem); line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.plan-domain-meta {
+  margin: -4px 0 4px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--subtle);
+}
+.plan-strong { margin-top: 40px; }
+.plan-strong > summary {
+  min-height: 44px; display: flex; align-items: center; cursor: pointer;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--subtle);
+}
+.plan-strong > summary:hover { color: var(--fg); }
+/* The score is what happened; the points are what studying is worth. The
+   second is the one the candidate acts on, so it carries the weight. */
+.study-score { color: var(--subtle); font-size: 0.82rem; }
+.study-gain {
+  margin-left: auto;
+  font: 600 1rem/1 "JetBrains Mono", ui-monospace, monospace;
+  color: var(--fg); font-variant-numeric: tabular-nums;
+}
+.plan-estimate-note {
+  margin: 28px 0 0; max-width: 62ch; color: var(--subtle);
+  font-size: 0.82rem; line-height: 1.55;
+}
 .study-card { padding: 22px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-elev); }
 .study-card.focus .study-priority { color: var(--report-focus); }
 .study-card.next .study-priority { color: var(--report-next); }
 .study-card.maintain .study-priority { color: var(--report-maintain); }
 .study-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-variant-numeric: tabular-nums; }
-.study-card-head strong { margin-left: auto; font: 600 1.35rem/1 "JetBrains Mono", ui-monospace, monospace; }
+.study-card-head { flex-wrap: wrap; }
 .study-priority { color: var(--muted); font: 600 0.7rem/1.4 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.1em; text-transform: uppercase; }
 .study-card h3 { margin: 7px 0 16px; max-width: 70ch; font-size: 1.1rem; line-height: 1.4; }
 .study-card p { margin: 8px 0; color: var(--muted); line-height: 1.5; }

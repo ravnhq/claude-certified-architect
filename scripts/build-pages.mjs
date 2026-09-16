@@ -346,6 +346,10 @@ function guideHeadingSlug(value) {
 // objective ids are the blueprint task ids themselves.
 async function buildFoundationsReportData() {
   const meta = JSON.parse(await fs.readFile(path.join(ROOT, 'ccaf', 'data', 'objectives.json'), 'utf8'));
+  // Domain weights decide how much of the exam a weak objective actually costs,
+  // which is what orders the study plan. Foundations keeps them in its blueprint;
+  // utils/exam_data.py carries the same numbers for the exam generators.
+  const blueprint = JSON.parse(await fs.readFile(path.join(ROOT, 'ccaf', 'data', 'blueprint.json'), 'utf8'));
   const guidance = JSON.parse(await fs.readFile(path.join(ROOT, 'ccaf', 'data', 'objective_guidance.json'), 'utf8'));
   for (const id of Object.keys(meta.objectives)) {
     if (!['explanation', 'example', 'guidance'].every(field => typeof guidance[id]?.[field] === 'string' && guidance[id][field].trim())) {
@@ -374,11 +378,23 @@ async function buildFoundationsReportData() {
     if (heading) readings[id] = { label: `${subdomain} · ${heading.title.replace(/`/g, '')}`, href: heading.href };
   });
 
+  // A report objective sits under the official task statement it was folded
+  // into ("1.4"), so its domain is that id's first segment.
+  const domains = Object.fromEntries(Object.entries(blueprint.domains)
+    .map(([key, value]) => [key, { name: value.name, weight: value.weight }]));
+  const objectiveDomains = {};
+  Object.entries(meta.objective_subdomains).forEach(([id, subdomain]) => {
+    const domain = String(subdomain).split('.')[0];
+    if (domains[domain]) objectiveDomains[id] = domain;
+  });
+
   return {
     code: 'CCAR-F',
     name: 'Claude Certified Architect Foundations',
     practice: { href: 'practical/en.html', questions: 60, bank: { href: 'practical/bank-en.html' } },
     themes: meta.themes,
+    domains,
+    objectiveDomains,
     objectives: meta.objectives,
     objectiveThemes: Object.fromEntries(Object.keys(meta.objectives).map(id => [id, id.slice(0, 1)])),
     objectiveSubdomains: meta.objective_subdomains,
@@ -413,13 +429,17 @@ async function buildBlueprintExamData({ code, name, objectivesFile, guidanceFile
   const bank = JSON.parse(bankRaw);
 
   const themes = {};
+  const domains = {};
   const objectives = {};
   const objectiveThemes = {};
+  const objectiveDomains = {};
   Object.keys(meta.domains).sort((a, b) => Number(a) - Number(b)).forEach(d => {
     themes[d] = meta.domains[d].name;
+    domains[d] = { name: meta.domains[d].name, weight: meta.domains[d].weight };
     meta.domains[d].objectives.forEach((text, i) => {
       objectives[`${d}.${i + 1}`] = text;
       objectiveThemes[`${d}.${i + 1}`] = d;
+      objectiveDomains[`${d}.${i + 1}`] = d;
     });
   });
 
@@ -468,6 +488,8 @@ async function buildBlueprintExamData({ code, name, objectivesFile, guidanceFile
     themes,
     objectives,
     objectiveThemes,
+    domains,
+    objectiveDomains,
     objectiveSubdomains,
     aliases: {},
     readings: {},
