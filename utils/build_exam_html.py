@@ -46,6 +46,14 @@ UI = {
         "mode_exam": "Exam", "mode_hint_study": "Answers reveal as you go",
         "mode_hint_exam": "Answers reveal at the end",
         "prev": "← Prev", "next": "Next →", "finish": "Finish &amp; Review",
+        "finish_confirm": ("{n} question(s) are still unanswered and will be "
+                           "scored as incorrect. Finish and see your score?"),
+        "back_to_answers": "← Back to my answers",
+        "study_switch_confirm": ("Switching to Study reveals the correct answer "
+                                 "for every question you have already answered. "
+                                 "Continue?"),
+        "time_label": "Time", "skip_to_question": "Skip to the question",
+        "answer_recorded": "Answer recorded.",
         "question": "Question", "your_answer": "Your answer", "correct": "Correct",
         "why": "Why", "complete": "Exam Complete", "answered_of":
         "You answered {a} of {t} questions.", "unanswered":
@@ -117,6 +125,13 @@ UI = {
         "mode_exam": "Examen", "mode_hint_study": "Las respuestas se revelan al instante",
         "mode_hint_exam": "Las respuestas se revelan al final",
         "prev": "← Anterior", "next": "Siguiente →", "finish": "Finalizar y revisar",
+        "finish_confirm": ("Quedan {n} pregunta(s) sin responder y contarán como "
+                           "incorrectas. ¿Finalizar y ver tu puntuación?"),
+        "back_to_answers": "← Volver a mis respuestas",
+        "study_switch_confirm": ("Cambiar a Estudio revela la respuesta correcta "
+                                 "de cada pregunta que ya respondiste. ¿Continuar?"),
+        "time_label": "Tiempo", "skip_to_question": "Ir a la pregunta",
+        "answer_recorded": "Respuesta registrada.",
         "question": "Pregunta", "your_answer": "Tu respuesta", "correct": "Correcta",
         "why": "Por qué", "complete": "Examen completado", "answered_of":
         "Respondiste {a} de {t} preguntas.", "unanswered":
@@ -188,6 +203,13 @@ UI = {
         "mode_exam": "Exame", "mode_hint_study": "As respostas aparecem na hora",
         "mode_hint_exam": "As respostas aparecem no final",
         "prev": "← Anterior", "next": "Próxima →", "finish": "Finalizar e revisar",
+        "finish_confirm": ("Restam {n} pergunta(s) sem resposta, que contarão como "
+                           "incorretas. Finalizar e ver sua pontuação?"),
+        "back_to_answers": "← Voltar às minhas respostas",
+        "study_switch_confirm": ("Mudar para Estudo revela a resposta correta de "
+                                 "cada pergunta que você já respondeu. Continuar?"),
+        "time_label": "Tempo", "skip_to_question": "Ir para a pergunta",
+        "answer_recorded": "Resposta registrada.",
         "question": "Pergunta", "your_answer": "Sua resposta", "correct": "Correta",
         "why": "Por que", "complete": "Exame concluído", "answered_of":
         "Você respondeu {a} de {t} perguntas.", "unanswered":
@@ -366,7 +388,7 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 .sidebar { width: 272px; min-width: 272px; background: var(--surface); color: var(--muted);
   display: flex; flex-direction: column; overflow: hidden; min-height: 0;
   border-right: 1px solid var(--border); }
-.sidebar-header { padding: 18px 16px 12px; font-size: 11.5px; font-weight: 600;
+.sidebar-header { margin: 0; padding: 18px 16px 12px; font-size: 11.5px; font-weight: 600;
   letter-spacing: .167em; text-transform: uppercase; color: var(--accent);
   border-bottom: 1px solid var(--border); flex-shrink: 0; }
 .sidebar-progress { padding: 10px 16px; font-size: 12px; color: var(--muted);
@@ -377,7 +399,7 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 .sidebar-scroll::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
 
 .domain-group { margin-bottom: 6px; }
-.domain-label { padding: 8px 16px 5px; font-size: 10px; font-weight: 600;
+.domain-label { padding: 8px 16px 5px; font-size: 11px; font-weight: 600;
   letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
   display: flex; justify-content: space-between; gap: 8px; }
 .domain-label .dl-weight { color: var(--subtle); font-weight: 600; }
@@ -398,15 +420,48 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-height: 0; min-width: 0; }
 .topbar { background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 32px;
   display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-.topbar-title { font-size: 15px; font-weight: 600; color: var(--fg); }
+.topbar-title { margin: 0; font-size: 15px; font-weight: 600; color: var(--fg); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px;
+  padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .topbar-nav { display: flex; gap: 10px; align-items: center; }
 .nav-btn { padding: 8px 18px; border-radius: var(--r-md); border: 1px solid var(--border-strong);
   background: transparent; font-family: inherit; font-size: 12px; cursor: pointer; color: var(--muted);
   font-weight: 600; text-transform: uppercase; letter-spacing: .1em; transition: all .15s; }
 .nav-btn:hover { color: var(--fg); border-color: var(--accent); }
 .nav-btn:disabled { opacity: .35; cursor: default; }
-.nav-btn.finish { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-.nav-btn.finish:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+/* The white fill marks the action the candidate takes 59 times, not the one
+   that ends the attempt. Finish inherits the ghost treatment until Next runs
+   out, at which point primary moves to it. */
+.nav-btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); font-weight: 600; }
+.nav-btn.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.nav-btn:focus-visible, .mode-toggle button:focus-visible, .q-btn:focus-visible,
+.focus-select:focus-visible, .restart-btn:focus-visible, .new-draw-btn:focus-visible,
+.summary-back:focus-visible, .skip-link:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+/* Touch pointers get the full target; a mouse keeps the denser layout. */
+@media (pointer: coarse) {
+  .nav-btn, .mode-toggle button, .q-btn, .focus-select, .restart-btn,
+  .new-draw-btn, .summary-back { min-height: 44px; }
+  .q-btn { min-width: 44px; }
+}
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  padding: 10px 16px; background: var(--fg); color: var(--bg);
+  border-radius: var(--r-md); font-weight: 600;
+}
+.skip-link:focus { left: 8px; top: 8px; }
+.summary-back {
+  display: inline-flex; align-items: center; padding: 8px 16px; margin-bottom: 18px;
+  border-radius: var(--r-md); border: 1px solid var(--border-strong);
+  background: transparent; color: var(--fg); cursor: pointer; font-size: 14px;
+}
+.summary-back:hover { border-color: var(--accent); color: var(--accent); }
+.exam-timer {
+  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px;
+  color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: .04em;
+}
+.exam-timer.over { color: var(--bad); }
 .q-counter { font-size: 13px; color: var(--muted); font-weight: 500; }
 
 .content { flex: 1; overflow-y: auto; padding: 36px 48px; }
@@ -511,7 +566,7 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
   padding: 18px 20px; margin-bottom: 16px; }
 .group-title { font-size: 15px; font-weight: 700; color: var(--fg); margin-bottom: 12px;
   display: flex; align-items: center; gap: 10px; }
-.group-badge { font-size: 10px; padding: 3px 10px; border-radius: var(--r-sm); font-weight: 600;
+.group-badge { font-size: 11px; padding: 3px 10px; border-radius: var(--r-sm); font-weight: 600;
   letter-spacing: .1em; text-transform: uppercase; background: var(--bad-soft); color: var(--bad); }
 .wrong-item { display: flex; gap: 10px; align-items: flex-start; padding: 12px 0;
   border-bottom: 1px solid var(--border); font-size: 14px; color: var(--muted); }
@@ -591,6 +646,11 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 .br-opt-expl { margin-top: 4px; font-size: 12.5px; line-height: 1.55; color: var(--muted); }
 
 @media (max-width: 760px) {
+  /* Narrow viewports are phones in practice, and pointer:coarse misses a
+     touch laptop resized narrow, so the target floor is set here too. */
+  .nav-btn, .mode-toggle button, .q-btn, .focus-select, .restart-btn,
+  .new-draw-btn, .summary-back { min-height: 44px; }
+  .q-btn { min-width: 44px; }
   html, body { height: auto; }
   body { min-height: 100vh; height: auto; overflow: auto; display: block; }
   .ravn-topbar { position: static; padding: 10px 16px; gap: 10px; flex-wrap: wrap; }
@@ -642,7 +702,7 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
   .mode-toggle button { padding: 5px 7px; font-size: 0.66rem; letter-spacing: 0.04em; }
   .length-toggle, .new-draw-btn { margin-left: 4px; }
   .focus-select { margin-left: 4px; max-width: 140px; }
-  .new-draw-btn { padding: 5px 8px; font-size: 0.66rem; }
+  .new-draw-btn { padding: 5px 8px; font-size: 0.7rem; }
   .new-draw-btn .dn-icon { margin-right: 3px; }
   .draw-note { font-size: 0.78rem; line-height: 1.45; padding: 8px 16px; }
   .q-counter { width: 100%; }
@@ -686,6 +746,7 @@ const PASS_SCORE = __PASS_SCORE__;  // overall cut score on the 100–1000 scale
 // every domain (Foundations: 12 across 5 domains) or a { domain: count } map
 // when the draw is weighted (Professional: 11/8/12/10/9/9/4 across 7 domains).
 const PER_DOMAIN = __PER_DOMAIN__;
+const EXAM_MINUTES = __EXAM_MINUTES__;  // the sitting the draw note promises
 // A quick drill draws about a third of the full attempt: per domain, the full
 // count over QUICK_DIVISOR, rounded, floored at one item so every domain the
 // full draw covers stays present. Deriving it from PER_DOMAIN keeps the full
@@ -1052,7 +1113,8 @@ function tallyAttempt(active, answers) {
 // so answering in study mode and then finishing cannot count one item twice.
 // `browse` is the bank-browser filter; it is view state, so it is not saved.
 const state = { current: 0, answers: {}, order: [], mode: "study", length: "full",
-                focus: "all", reportSignature: null, graded: {}, browse: { domain: "all", q: "", sub: null } };
+                focus: "all", reportSignature: null, graded: {}, elapsed: 0,
+                browse: { domain: "all", q: "", sub: null } };
 
 // ---- persistence ---------------------------------------------------------
 function save() {
@@ -1063,7 +1125,7 @@ function save() {
   const raw = JSON.stringify(
     { v: STORE_VERSION, answers: state.answers, order: state.order,
       mode: state.mode, length: state.length, focus: state.focus,
-      graded: state.graded, current: state.current,
+      graded: state.graded, current: state.current, elapsed: state.elapsed,
       reportSignature: state.focus === "report" ? state.reportSignature : null });
   if (!writeStored("local", STORE_KEY, raw)) {
     persistenceUnavailable = true;
@@ -1094,6 +1156,7 @@ function load() {
     // from before the quick drill existed carries no length: it is a full
     // attempt, the only length that engine could draw.
     const length = d.length === "quick" ? "quick" : "full";
+    const elapsed = Number.isFinite(d.elapsed) && d.elapsed >= 0 ? d.elapsed : 0;
     // Same for the focus: a drill of one domain must be checked against that
     // domain's bank, never against the full draw. A payload from before the
     // domain drill existed carries no focus: it drew across every domain.
@@ -1132,6 +1195,7 @@ function load() {
     }
     d.length = length;
     d.focus = focus;
+    d.elapsed = elapsed;
     d.reportSignature = focus === "report" ? d.reportSignature : null;
     return d;
   } catch (e) { return null; }
@@ -1276,8 +1340,14 @@ function renderQuestion(idx) {
   const reveal = hasAnswer(q, chosen) && state.mode === "study";
 
   document.getElementById("qCounter").textContent = (idx + 1) + " / " + qs.length;
-  document.getElementById("prevBtn").disabled = idx === 0;
-  document.getElementById("nextBtn").disabled = idx === qs.length - 1;
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const finishBtn = document.getElementById("finishBtn");
+  const onLast = idx === qs.length - 1;
+  prevBtn.disabled = idx === 0;
+  nextBtn.disabled = onLast;
+  nextBtn.classList.toggle("primary", !onLast);
+  finishBtn.classList.toggle("primary", onLast);
 
   const dm = DOMAINS[q.domain];
   const scenarioTag = q.scenario ? "<span class='q-scenario'>" + esc(q.scenario) + "</span>" : "";
@@ -1341,6 +1411,7 @@ function answer(id, letter) {
   const n = selectCount(q);
   const locked = state.mode === "study" && hasAnswer(q, state.answers[id]);
   if (locked) return;
+  if (typeof announce === "function") announce(T.answer_recorded);
 
   if (n === 1) {
     state.answers[id] = letter;
@@ -1389,9 +1460,33 @@ function goto(idx) {
   save();
   renderQuestion(idx);
   updateSidebar();
+  if (typeof scrollQuestionIntoView === "function") scrollQuestionIntoView();
 }
 
-function setMode(mode) {
+// The question pane scrolls on desktop and the document scrolls on a phone, so
+// reset whichever one actually moved. Honors the page's reduced-motion rule.
+function scrollQuestionIntoView() {
+  if (typeof document === "undefined") return;
+  const reduce = typeof matchMedia === "function" &&
+    matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const behavior = reduce ? "auto" : "smooth";
+  if (typeof document.querySelector !== "function") return;
+  const content = document.querySelector(".content");
+  if (content && content.scrollHeight > content.clientHeight + 4) {
+    content.scrollTo({ top: 0, behavior });
+    return;
+  }
+  const card = document.querySelector("#questionScreen .q-card") ||
+               document.getElementById("questionScreen");
+  if (card && card.scrollIntoView) card.scrollIntoView({ block: "start", behavior });
+}
+
+function setMode(mode, restoring) {
+  if (!restoring && mode === "study" && state.mode !== "study" &&
+      Object.keys(state.answers).length > 0 &&
+      typeof confirm === "function" && !confirm(T.study_switch_confirm)) {
+    return;
+  }
   state.mode = mode;
   document.getElementById("modeStudy").classList.toggle("active", mode === "study");
   document.getElementById("modeExam").classList.toggle("active", mode === "exam");
@@ -1401,6 +1496,7 @@ function setMode(mode) {
   save();
   renderQuestion(state.current);
   updateSidebar();
+  if (typeof syncTimer === "function") syncTimer();
 }
 
 function updateModeHint() {
@@ -1826,8 +1922,20 @@ function toggleBrowse() {
 }
 
 // ---- summary -------------------------------------------------------------
-function showSummary() {
+function showSummary(skipConfirm) {
+  // Finishing is irreversible: it scores every blank as incorrect and writes
+  // the misses to the weak-spot record. Name that cost before doing it.
+  if (!skipConfirm) {
+    const qs = orderedQuestions();
+    const blank = qs.filter(q => !state.answers[q.id]).length;
+    if (blank > 0 && typeof confirm === "function" &&
+        !confirm(T.finish_confirm.replace("{n}", blank))) return;
+  }
   showScreen("summaryScreen");
+  if (timerHandle !== null) { clearInterval(timerHandle); timerHandle = null; }
+  timerAnchor = null;
+  const finishBtn = document.getElementById("finishBtn");
+  if (finishBtn) finishBtn.hidden = true;
 
   // Only the questions in this attempt (PER_DOMAIN per domain) count. The
   // review pane lists every item that did not score, including the ones left
@@ -1953,6 +2061,8 @@ function showSummary() {
   const drillUnanswered = (drilling && unanswered > 0) ? unansweredNote : "";
 
   document.getElementById("summaryContent").innerHTML =
+    "<button type='button' class='summary-back' onclick='backToAnswers()'>" +
+      T.back_to_answers + "</button>" +
     "<h1>" + T.complete + "</h1>" +
     "<p class='summary-subtitle'>" + T.answered_of.replace("{a}", answered).replace("{t}", total) + "</p>" +
     headHtml + drillUnanswered +
@@ -1965,10 +2075,84 @@ function showSummary() {
       (drilling ? scopeNote
                 : T.summary_rotate.replace("{n}", total).replace("{bank}", QUESTIONS.length)) + "</div>" +
     "<button type='button' class='restart-btn' onclick='restart()'>" + T.restart + "</button>";
+  // The summary replaces the screen without moving focus, so the verdict has
+  // to be spoken and the heading has to be reachable.
+  if (typeof announce === "function") {
+    announce(T.complete + " " + T.answered_of.replace("{a}", answered).replace("{t}", total));
+  }
+  // The render harness stubs document with getElementById only, so feature-test
+  // the method rather than the object.
+  const heading = typeof document !== "undefined" &&
+    typeof document.querySelector === "function" &&
+    document.querySelector("#summaryContent h1");
+  if (heading) { heading.tabIndex = -1; heading.focus({ preventScroll: true }); }
+}
+
+// ---- exam timer ----------------------------------------------------------
+// The draw note promises a 120-minute full-length run, so exam mode shows the
+// clock that claim implies. It counts elapsed time rather than down: the goal
+// is pacing awareness, and a study tool has no business locking anyone out.
+// Elapsed seconds ride along in the saved attempt, so a reload resumes it.
+let timerHandle = null;
+let timerAnchor = null;
+
+function formatElapsed(totalSeconds) {
+  const m = Math.floor(totalSeconds / 60), sec = totalSeconds % 60;
+  return m + ":" + String(sec).padStart(2, "0");
+}
+
+function renderTimer() {
+  if (typeof document === "undefined") return;
+  const el = document.getElementById("examTimer");
+  if (!el) return;
+  const running = state.mode === "exam" && state.length === "full";
+  el.hidden = !running;
+  if (!running) return;
+  el.textContent = T.time_label + " " + formatElapsed(state.elapsed) + " / " +
+    EXAM_MINUTES + ":00";
+  el.classList.toggle("over", state.elapsed >= EXAM_MINUTES * 60);
+}
+
+function tickTimer() {
+  const now = Date.now();
+  if (timerAnchor !== null) {
+    state.elapsed += Math.round((now - timerAnchor) / 1000);
+    save();
+  }
+  timerAnchor = now;
+  renderTimer();
+}
+
+function syncTimer() {
+  if (typeof setInterval !== "function") return;
+  if (timerHandle !== null) { clearInterval(timerHandle); timerHandle = null; }
+  timerAnchor = null;
+  if (state.mode === "exam" && state.length === "full") {
+    timerAnchor = Date.now();
+    timerHandle = setInterval(tickTimer, 1000);
+  }
+  renderTimer();
+}
+
+// The attempt changes state without moving focus or navigating, so assistive
+// tech had no way to learn that an answer registered or that a score existed.
+function announce(message) {
+  if (typeof document === "undefined") return;
+  const el = document.getElementById("liveStatus");
+  if (!el) return;
+  el.textContent = "";
+  setTimeout(() => { el.textContent = message; }, 40);
+}
+
+function backToAnswers() {
+  const finishBtn = document.getElementById("finishBtn");
+  if (finishBtn) finishBtn.hidden = false;
+  goto(state.current);
 }
 
 function restart() {
   state.answers = {};
+  state.elapsed = 0;
   // A fresh attempt has graded nothing yet, so every item in it can record a
   // miss again — that is what makes a repeated mistake count twice.
   state.graded = {};
@@ -2014,6 +2198,7 @@ function restart() {
     state.focus = saved.focus;
     state.reportSignature = saved.reportSignature || null;
     state.graded = saved.graded || {};
+    state.elapsed = saved.elapsed || 0;
     state.current = Math.min(saved.current || 0, state.order.length - 1);
   } else {
     if (reportScores()) {
@@ -2022,7 +2207,8 @@ function restart() {
     }
     state.order = shuffleOrder();
   }
-  setMode(state.mode);
+  setMode(state.mode, true);
+  syncTimer();
   updateLengthUI();
   buildSidebar();
   renderQuestion(state.current);
@@ -2054,6 +2240,7 @@ def _payload(obj):
 
 
 def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
+                exam_minutes=120,
                 store_key, lang_attr, title, page_title, out_path,
                 view="exam", bank_href=None, exam_href=None, groups_js=None,
                 report_map=None, exam_code="CCAR-F"):
@@ -2083,6 +2270,7 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
             .replace("__DOMAINS__", _payload(domains_js))
             .replace("__GROUPS__", _payload(groups_js))
             .replace("__REPORT_SUBDOMAINS__", _payload(report_map or {}))
+            .replace("__EXAM_MINUTES__", str(exam_minutes))
             .replace("__EXAM_CODE__", exam_code)
             .replace("__BANK_ONLY__", "true" if view == "bank" else "false")
             .replace("__DATA__", _payload([_public(q) for q in questions])))
@@ -2145,21 +2333,23 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
   </main>
 </div>"""
     else:
-        body = f"""{ravn_topbar}
+        body = f"""<a class="skip-link" href="#qCard">{ui['skip_to_question']}</a>
+{ravn_topbar}
 <div class="draw-note" id="drawNote"></div>
 <div class="shell">
   <nav class="sidebar" aria-label="{ui['questions']}">
-    <div class="sidebar-header">{ui['questions']}</div>
+    <h2 class="sidebar-header">{ui['questions']}</h2>
     <div class="sidebar-progress">{ui['answered']}: <span id="answeredCount">0</span> / <span id="totalCount">0</span></div>
     <div class="sidebar-scroll" id="sidebarList"></div>
   </nav>
   <main class="main">
     <div class="topbar">
-      <div class="topbar-title">{title}</div>
+      <h1 class="topbar-title">{title}</h1>
       <div class="topbar-nav">
         <span class="q-counter" id="qCounter"></span>
+        <span class="exam-timer" id="examTimer" hidden></span>
         <button type="button" class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>{ui['prev']}</button>
-        <button type="button" class="nav-btn" id="nextBtn" onclick="navigate(1)">{ui['next']}</button>
+        <button type="button" class="nav-btn primary" id="nextBtn" onclick="navigate(1)">{ui['next']}</button>
         <button type="button" class="nav-btn finish" id="finishBtn" onclick="showSummary()">{ui['finish']}</button>
       </div>
     </div>
@@ -2167,6 +2357,7 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
       <div class="screen active" id="questionScreen"><div class="q-card" id="qCard"></div></div>
       <div class="screen" id="summaryScreen"><div class="summary show" id="summaryContent"></div></div>
     </div>
+    <p class="visually-hidden" id="liveStatus" role="status" aria-live="polite"></p>
   </main>
 </div>"""
 
