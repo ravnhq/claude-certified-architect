@@ -449,12 +449,12 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 .plan-strong > summary:hover { color: var(--fg); }
 /* The score is what happened; the points are what studying is worth. The
    second is the one the candidate acts on, so it carries the weight. */
-.study-score { color: var(--subtle); font-size: 0.82rem; }
-.study-gain {
+.study-score {
   margin-left: auto;
   font: 600 1rem/1 "JetBrains Mono", ui-monospace, monospace;
   color: var(--fg); font-variant-numeric: tabular-nums;
 }
+.study-score-note { color: var(--subtle); font-size: 0.78rem; }
 .plan-estimate-note {
   margin: 28px 0 0; max-width: 62ch; color: var(--subtle);
   font-size: 0.82rem; line-height: 1.55;

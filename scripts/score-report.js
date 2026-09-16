@@ -780,10 +780,10 @@
 
   function orderedPlanRows() {
     const rows = state.rows.filter(row => row.objectiveId && validScore(row.score));
-    const weighted = rows.length > 0 && rows.every(row => recoverable(row) !== null);
+    const weighted = rows.length > 0 && rows.every(row => domainWeight(row.objectiveId) !== null);
     return rows.sort(weighted
-      ? (a, b) => recoverable(b) - recoverable(a) || a.score - b.score ||
-                  a.objectiveId.localeCompare(b.objectiveId)
+      ? (a, b) => domainWeight(b.objectiveId) - domainWeight(a.objectiveId) ||
+                  a.score - b.score || a.objectiveId.localeCompare(b.objectiveId)
       : (a, b) => a.score - b.score || a.objectiveId.localeCompare(b.objectiveId));
   }
 
@@ -791,9 +791,9 @@
     const rows = orderedPlanRows();
     const exam = state.examIdentity ? `${state.examIdentity.code} · ${state.examIdentity.name}` : "";
     const date = new Date().toISOString().slice(0, 10);
-    const weighted = rows.length > 0 && rows.every(row => recoverable(row) !== null);
+    const weighted = rows.length > 0 && rows.every(row => domainWeight(row.objectiveId) !== null);
     const orderNote = weighted
-      ? "Ordered by how much of the exam each objective still has available, not by raw score."
+      ? "Grouped by exam domain, heaviest domain first, weakest topic first inside each."
       : "Ordered weakest first.";
     const lines = [`# Personalized study guide — ${exam}`, ``,
                    `Exported ${date}. Scores are percent correct per objective. ${orderNote}`, ``];
@@ -807,9 +807,7 @@
       group.rows.forEach(row => {
       const id = row.objectiveId;
       const guidance = state.data.guidance[id] || {};
-      const gain = recoverable(row);
-      const gainNote = gain === null ? "" : `, up to ${formatPoints(gain)} of the exam`;
-      lines.push(`## ${String(++index).padStart(2, "0")} · ${id} — ${row.score}% (${priorityLabel(row.score)})${gainNote}`);
+      lines.push(`## ${String(++index).padStart(2, "0")} · ${id} — ${row.score}% (${priorityLabel(row.score)})`);
       lines.push(``);
       lines.push(`${state.data.objectives[id]}`);
       lines.push(``);
@@ -857,35 +855,22 @@
     });
   }
 
-  // How much of the exam one objective is worth: its domain's published weight
-  // split evenly across that domain's objectives. The report scores objectives,
-  // not domains, and nothing published says how the weight divides inside a
-  // domain, so an even split is the honest assumption rather than a guess
-  // dressed up as precision.
-  function objectiveShare(objectiveId) {
+  // Every figure shown about a topic is either published by Anthropic (the
+  // domain weight) or printed on the candidate's own report (the score). How a
+  // domain's weight divides among its objectives is not published, so the plan
+  // does not estimate per-topic value — it orders domains by the weight that is
+  // published and topics by the score the report states.
+  function domainWeight(objectiveId) {
     const data = state.data;
     if (!data || !data.domains || !data.objectiveDomains) return null;
     const domain = data.objectiveDomains[objectiveId];
     const meta = domain ? data.domains[domain] : null;
-    if (!meta || typeof meta.weight !== "number") return null;
-    const siblings = Object.values(data.objectiveDomains).filter(d => d === domain).length;
-    return siblings ? meta.weight / siblings : null;
+    return meta && typeof meta.weight === "number" ? meta.weight : null;
   }
 
-  // Percentage points of the whole exam still on the table for this objective.
-  // Ordering by this rather than by raw score is the difference between "your
-  // worst score" and "where studying actually moves the number".
-  function recoverable(row) {
-    const share = objectiveShare(row.objectiveId);
-    if (share === null) return null;
-    return share * (100 - row.score) / 100;
-  }
-
-  function formatPoints(value) {
-    return (value >= 10 ? Math.round(value) : Math.round(value * 10) / 10) + " pts";
-  }
-
-  // Groups rows by exam domain, heaviest recoverable total first. Rows whose
+  // Groups rows by exam domain, heaviest published weight first. Rows whose
+  // domain cannot be resolved stay in one trailing group with no heading.
+  // Groups rows by exam domain, heaviest published weight first. Rows whose
   // domain cannot be resolved stay in one trailing group with no heading.
   function planGroups(rows, weighted) {
     if (!weighted) return [{ meta: null, rows }];
@@ -896,17 +881,16 @@
       if (!buckets.has(key)) buckets.set(key, []);
       buckets.get(key).push(row);
     });
-    const total = list => list.reduce((sum, row) => sum + (recoverable(row) || 0), 0);
     return [...buckets.entries()]
-      .sort((a, b) => total(b[1]) - total(a[1]))
-      .map(([key, list]) => ({ meta: key ? state.data.domains[key] : null, rows: list, total: total(list) }));
+      .map(([key, list]) => ({ meta: key ? state.data.domains[key] : null, rows: list }))
+      .sort((a, b) => (b.meta ? b.meta.weight : -1) - (a.meta ? a.meta.weight : -1));
   }
 
   function renderPlan() {
     const matched = orderedPlanRows();
     // Weighted ordering needs every row to resolve a domain weight; without it
     // the plan falls back to weakest-first and the domain grouping is skipped.
-    const weighted = matched.length > 0 && matched.every(row => recoverable(row) !== null);
+    const weighted = matched.length > 0 && matched.every(row => domainWeight(row.objectiveId) !== null);
     const weak = matched.filter(row => row.score < 80);
     const other = matched.filter(row => row.score >= 80);
     const planCount = el("plan-count");
@@ -920,11 +904,8 @@
       const id = row.objectiveId;
       const guidance = state.data.guidance[id];
       const level = priority(row.score);
-      const gain = recoverable(row);
-      const gainHtml = gain === null ? "" :
-        `<strong class="study-gain" title="Estimated share of the exam still available on this objective">${formatPoints(gain)}</strong>`;
       return `<article class="study-card ${level}" data-objective="${escapeHtml(id)}">
-        <div class="study-card-head"><span class="study-priority">${escapeHtml(priorityLabel(row.score))}</span><span class="study-score">scored ${row.score}%</span>${gainHtml}</div>
+        <div class="study-card-head"><span class="study-priority">${escapeHtml(priorityLabel(row.score))}</span><strong class="study-score">${row.score}%</strong><span class="study-score-note">on your report</span></div>
         <h3>${escapeHtml(state.data.objectives[id])}</h3>
         <details class="study-guidance">
           <summary>Explanation, example &amp; guidance</summary>
@@ -949,22 +930,22 @@
     if (weak.length && weighted && ordered.length && ordered[0].meta) {
       const topMeta = ordered[0].meta, topRows = ordered[0].rows;
       sections.push(
-        `<p class="plan-lede">Your biggest gain is in <strong>${escapeHtml(topMeta.name)}</strong> — ` +
-        `${topMeta.weight}% of the exam, with ${topRows.length} topic${topRows.length === 1 ? "" : "s"} ` +
-        `to fix. Topics below are ordered by how much of the score each one puts back.</p>`);
+        `<p class="plan-lede">The heaviest part of the exam you have gaps in is ` +
+        `<strong>${escapeHtml(topMeta.name)}</strong> — ${topMeta.weight}% of the exam, with ` +
+        `${topRows.length} topic${topRows.length === 1 ? "" : "s"} below 80%. Domains below run ` +
+        `heaviest first, and your weakest topic leads each one.</p>`);
     }
 
     let index = 0;
     ordered.forEach(group => {
-      const meta = group.meta, rows = group.rows, total = group.total || 0;
+      const meta = group.meta, rows = group.rows;
       const cards = rows.map(row => renderCard(row, index++)).join("");
       if (!meta) { sections.push(cards); return; }
       sections.push(
         `<section class="plan-domain">` +
           `<h2 class="plan-domain-name">${escapeHtml(meta.name)}</h2>` +
           `<p class="plan-domain-meta">${meta.weight}% of the exam · ` +
-            `${rows.length} topic${rows.length === 1 ? "" : "s"} to fix` +
-            (total > 0 ? ` · up to ${formatPoints(total)} back` : "") + `</p>` +
+            `${rows.length} of your topics below 80%</p>` +
           cards +
         `</section>`);
     });
@@ -972,9 +953,9 @@
       sections.push(`<details class="plan-strong"><summary>Topics you already have (${other.length})</summary>${other.map((row, i) => renderCard(row, weak.length + i)).join("")}</details>`);
     }
     if (weak.length && weighted) {
-      sections.push('<p class="plan-estimate-note">Points are an estimate: each domain\u2019s published ' +
-        'weight split evenly across its objectives, times the share you missed. Nothing published says how ' +
-        'the weight divides inside a domain, so treat the order as guidance rather than arithmetic.</p>');
+      sections.push('<p class="plan-estimate-note">Domain weights are the official exam blueprint; ' +
+        'percentages are the scores on your report. Anthropic does not publish how a domain\u2019s weight ' +
+        'splits across its objectives, so this plan does not estimate what any single topic is worth.</p>');
     }
     const planList = el("plan-list");
     if (planList) planList.innerHTML = sections.join("");
