@@ -159,3 +159,19 @@ does not exist at either end of the attempt.
   site-wide concern from the earlier audit does not apply to this page.
 - The page loads no `app.js`, so the site's search and theme toggle are inert chrome on this surface.
 - Cognitive load fails 4 of 8 checks; the header cluster is 8 controls and the domain select is 6 options.
+
+---
+
+## Correction (appended after the run)
+
+The payload issue above states that a phone drill downloads 1.34 MB. That figure is
+the on-disk size. GitHub Pages serves this page gzipped — verified against the live
+response headers: `content-encoding: gzip`, `content-length: 481733`. The real wire
+cost is ~470 KB, roughly a third of what the issue claims.
+
+Decision: not splitting the bank. The `dist/` exams are deliberately standalone files
+that run offline with inlined fonts, so a fetched-shard build would need two output
+variants from one generator. The remaining honest concern is parse cost on a low-end
+phone, not transfer size.
+
+Every other priority issue in this snapshot was fixed in commit 7413a85.
