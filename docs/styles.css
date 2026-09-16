@@ -89,6 +89,9 @@ a:focus-visible {
 /* offset anchor scrolling so headings clear the sticky topbar.
    --topbar-h is set from JS to match the live topbar height (it can wrap on narrow screens). */
 html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
+/* Without this, a trackpad flick past the top rubber-bands the document and the
+   sticky header rides down with it, detaching from the top of the window. */
+html, body { overscroll-behavior-y: none; }
 
 /* ---------- topbar ---------- */
 .topbar {
@@ -772,7 +775,9 @@ html { scroll-padding-top: calc(var(--topbar-h, 64px) + 16px); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 720px) {
-  .topbar { padding: 12px 18px; flex-wrap: wrap; gap: 10px; }
+  /* Phones give the screen back to the content, matching the exam pages, which
+     already release their header below 760px. */
+  .topbar { position: static; padding: 12px 18px; flex-wrap: wrap; gap: 10px; }
   .brand span { display: none; }
   .landing { padding: 48px 20px 64px; }
   .hero { padding-bottom: 48px; margin-bottom: 40px; }
