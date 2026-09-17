@@ -308,10 +308,13 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 .browse-head { max-width: 980px; margin: 0 auto 16px; display: flex; flex-wrap: wrap;
   align-items: center; gap: 10px; }
 .browse-head h1 { flex: 1 1 100%; font-size: 22px; font-weight: 600; color: var(--fg); }
-.browse-head .focus-select { margin-left: 0; }
-.browse-search { flex: 1 1 240px; min-width: 0; background: var(--surface); color: var(--fg);
+/* The select carries the exam header's chip metrics, which are two sizes
+   smaller than the search box beside it. Both controls state one height here
+   so the filter row reads as a single field, not a chip next to an input. */
+.browse-head .focus-select { margin-left: 0; height: 36px; padding: 0 10px; }
+.browse-search { flex: 1 1 240px; min-width: 0; height: 36px; background: var(--surface); color: var(--fg);
   border: 1px solid var(--border-strong); border-radius: var(--r-md);
-  font-family: inherit; font-size: 14px; padding: 8px 12px; }
+  font-family: inherit; font-size: 14px; padding: 0 12px; }
 .browse-search:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .browse-count { flex: 0 0 auto; font-size: 12.5px; color: var(--subtle); }
 .browse-list, .br-empty { max-width: 980px; margin: 0 auto; }

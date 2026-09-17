@@ -513,18 +513,11 @@ html, body { overscroll-behavior-y: none; }
 .report-share-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 .report-file-label { cursor: pointer; }
 .report-file-label input { display: none; }
-.report-objective-field input[type="search"] {
-  width: 100%;
-  min-height: 42px;
-  padding: 8px 10px;
-  margin-bottom: 8px;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-md);
-  background: var(--bg-elev);
-  color: var(--fg);
-  font: 500 0.9rem/1.3 "JetBrains Mono", ui-monospace, monospace;
-}
-.report-objective-field input[type="search"]:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* The dialog button shares the label's line rather than sitting under the
+   select: that keeps the objective column the same two rows as the score
+   column beside it, so the two inputs land on one line. */
+.report-objective-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.report-objective-head .report-text-button { padding: 0 0 2px; font-size: 0.7rem; }
 .report-row-copy .report-text-button { margin-top: 8px; text-align: left; white-space: normal; }
 .report-text-button { padding: 6px 0; border: 0; border-bottom: 1px solid var(--border-strong); background: transparent; color: var(--muted); font: inherit; cursor: pointer; white-space: nowrap; }
 .report-text-button:hover { color: var(--fg); }

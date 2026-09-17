@@ -610,33 +610,21 @@
           <input type="number" min="0" max="100" step="1" value="${row.score ?? ""}" data-score="${index}">
         </label>
         <div class="report-objective-field">
-          <label for="objective-search-${index}">Objective</label>
-          <input id="objective-search-${index}" type="search" placeholder="Search objectives…" autocomplete="off" data-objective-search="${index}" value="">
-          <select data-objective="${index}">${objectiveOptions(row.objectiveId)}</select>
-          <button type="button" class="report-text-button" data-browse-objectives="${index}">Browse all</button>
+          <div class="report-objective-head">
+            <label for="objective-select-${index}">Objective</label>
+            <button type="button" class="report-text-button" data-browse-objectives="${index}">Search objectives</button>
+          </div>
+          <select id="objective-select-${index}" data-objective="${index}">${objectiveOptions(row.objectiveId)}</select>
         </div>
       </article>`;
     }).join("");
     renderReviewSummary();
   }
 
-  function filterObjectiveSelect(index, query) {
-    const reviewList = el("review-list");
-    if (!reviewList) return;
-    const select = reviewList.querySelector(`select[data-objective="${index}"]`);
-    if (!select) return;
-    const needle = normalizeObjectiveText(query);
-    Array.from(select.options).forEach(option => {
-      if (!option.value) {
-        option.hidden = false;
-        return;
-      }
-      const haystack = normalizeObjectiveText(`${option.value} ${option.textContent}`);
-      option.hidden = Boolean(needle) && !needle.split(/[^a-z0-9]+/).filter(Boolean).every(token => haystack.includes(token));
-    });
-  }
-
   let pickerRowIndex = null;
+  // Long result lists stop being scannable, so the dialog shows a window onto
+  // the matches and the status line reports how many it is hiding.
+  const PICKER_LIMIT = 30;
 
   function pickerEntries(query) {
     const needle = normalizeObjectiveText(query);
@@ -646,8 +634,7 @@
         if (!tokens.length) return true;
         const haystack = normalizeObjectiveText(`${id} ${text} ${state.data.themes[state.data.objectiveThemes[id]] || ""}`);
         return tokens.every(token => haystack.includes(token));
-      })
-      .slice(0, 30);
+      });
   }
 
   function renderPickerResults(query) {
@@ -655,10 +642,14 @@
     const status = el("objective-picker-status");
     if (!results) return;
     const entries = state.data ? pickerEntries(query) : [];
-    results.innerHTML = entries.map(([id, text]) => (
+    const shown = entries.slice(0, PICKER_LIMIT);
+    results.innerHTML = shown.map(([id, text]) => (
       `<li><button type="button" data-pick-objective="${escapeHtml(id)}"><strong>${escapeHtml(id)}</strong> · ${escapeHtml(text)}</button></li>`
     )).join("");
-    if (status) status.textContent = entries.length ? `${entries.length} objective${entries.length === 1 ? "" : "s"}` : "No objectives match that search.";
+    if (!status) return;
+    if (!entries.length) status.textContent = "No objectives match that search.";
+    else if (entries.length > shown.length) status.textContent = `Showing ${shown.length} of ${entries.length} objectives. Keep typing to narrow them.`;
+    else status.textContent = `${entries.length} objective${entries.length === 1 ? "" : "s"}`;
   }
 
   function openObjectivePicker(index) {
@@ -1033,13 +1024,6 @@
     }
   }
 
-  function handleReviewSearch(event) {
-    const target = event.target;
-    if (target.dataset && target.dataset.objectiveSearch !== undefined) {
-      filterObjectiveSelect(Number(target.dataset.objectiveSearch), target.value);
-    }
-  }
-
   function handleReviewClick(event) {
     const suggestion = event.target.closest("[data-apply-suggestion]");
     if (suggestion) {
@@ -1304,7 +1288,6 @@
       const pdfjs = await import("./vendor/pdfjs/pdf.min.mjs");
       window.pdfjsLib = pdfjs;
       el("report-file").addEventListener("change", event => handleFile(event.target.files[0]));
-      el("review-list").addEventListener("input", handleReviewSearch);
       el("review-list").addEventListener("input", handleReviewChange);
       el("review-list").addEventListener("change", handleReviewChange);
       el("review-list").addEventListener("click", handleReviewClick);
