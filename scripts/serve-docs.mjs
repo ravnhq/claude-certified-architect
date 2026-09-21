@@ -17,8 +17,8 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DOCS = path.join(ROOT, 'docs');
-const PORT = Number(process.argv[2] || process.env.PORT || 8099);
-const BASE = process.env.RAVN_BASE_HREF || '/claude-certified-architect/';
+const PORT = Number(process.argv[2] || 8099);
+const BASE = '/claude-certified-architect/';
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',

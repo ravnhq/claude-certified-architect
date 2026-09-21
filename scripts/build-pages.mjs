@@ -45,7 +45,7 @@ const EXAM_TRACKS = ['ccaf', 'ccap', 'ccdf'];
 // so a link into an exam can warm that fetch before the click (app.js).
 let bankHrefs = {};
 
-const RAVN_BASE_HREF = process.env.RAVN_BASE_HREF || '/claude-certified-architect/';
+const RAVN_BASE_HREF = '/claude-certified-architect/';
 const MINISEARCH_BROWSER = path.resolve(
   path.dirname(fileURLToPath(import.meta.resolve('minisearch'))),
   '../umd/index.js',
