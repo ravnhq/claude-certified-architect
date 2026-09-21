@@ -298,9 +298,8 @@ the captured page snapshot and checked against `objectives.json` before it is tr
 
 A few files are not what they look like: `ccaf/sources/mock-exam.txt` is the source for the
 60-question mock bank, and the preflight checklist has no markdown source — its content
-lives in `scripts/build-pages.mjs` (`PREFLIGHT_ITEMS`, `PREFLIGHT_FACTS`,
-`PREFLIGHT_DOMAINS`, `PREFLIGHT_RESOURCES`) and `docs/preflight/` is overwritten on every
-build.
+lives in `scripts/build-pages.mjs` (`PREFLIGHT_TRACKS`, one entry per exam) and
+`docs/preflight/` is overwritten on every build.
 
 ## Contributing
 

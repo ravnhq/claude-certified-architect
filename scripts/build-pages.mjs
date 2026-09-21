@@ -672,8 +672,8 @@ const PREFLIGHT_TRACKS = [
       },
       {
         n: '05',
-        label: 'Worked the official sample questions',
-        detail: `The self-service practice exam is retired. What remains: the guide&rsquo;s samples, plus a graded quiz ending every prep course that reveals its answer key once you pass. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Get the guide')}`,
+        label: 'Drilled the question bank by domain',
+        detail: `Work the <a href="practical/bank-en.html">question bank</a> a domain at a time and read the explanation on every miss. Anthropic&rsquo;s self-service practice exam is retired; what is left officially is the guide&rsquo;s own samples and the graded quiz ending each prep course. ${extLink('https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification', 'Get the guide')}`,
       },
       {
         n: '06',
@@ -705,8 +705,9 @@ const PREFLIGHT_TRACKS = [
       {
         group: 'Ravn materials',
         items: [
-          { name: 'Study guide', href: 'guides/en.html', note: 'The full Foundations guide, about a 2-hour read. Also in <a href="guides/es.html">Spanish</a> and <a href="guides/pt.html">Portuguese</a>.', internal: true },
-          { name: 'Practice exam', href: 'practical/en.html', note: '60 questions drawn <strong>fresh from a bank of 600+ on every attempt</strong>, scored per domain to 1000 — full length on purpose, because the real exam is 60 questions in 120 minutes. A domain selector drills a single domain&rsquo;s whole bank instead. Also in <a href="practical/es.html">Spanish</a> and <a href="practical/pt.html">Portuguese</a>.', internal: true },
+          { name: 'Study guide', href: 'guides/en.html', note: 'The full Foundations guide, about a 2-hour read. Also in <a href="guides/es.html">Spanish</a> and <a href="guides/pt.html">Portuguese</a>, and as a print-ready PDF in <a href="pdf/guide_en.pdf">EN</a>, <a href="pdf/guide_es.pdf">ES</a> and <a href="pdf/guide_pt.pdf">PT</a>.', internal: true },
+          { name: 'Practice exam', href: 'practical/en.html', note: '60 questions drawn <strong>fresh on every attempt</strong> from a bank of 600+ in English, scored per domain to 1000 — full length on purpose, because the real exam is 60 questions in 120 minutes. A domain selector drills a single domain&rsquo;s whole bank instead. Also in <a href="practical/es.html">Spanish</a> and <a href="practical/pt.html">Portuguese</a>, which draw from 136 questions each.', internal: true },
+          { name: 'Question bank', href: 'practical/bank-en.html', note: 'The same 600+ questions as a browsable list, filtered by domain and searched by text, with the explanation on every item. Also in <a href="practical/bank-es.html">Spanish</a> and <a href="practical/bank-pt.html">Portuguese</a>.', internal: true },
           { name: 'Cheatsheet', href: 'cheatsheet/en.html', note: 'One-page recap of the five domains. Also in <a href="cheatsheet/es.html">Spanish</a> and <a href="cheatsheet/pt.html">Portuguese</a>.', internal: true },
         ],
       },
@@ -798,7 +799,7 @@ const PREFLIGHT_TRACKS = [
       {
         n: '04',
         label: 'Worked the Ravn practice exam',
-        detail: 'Under the 120-minute limit, then reviewed by failure type rather than topic. The community mocks listed for Foundations target CCAR-F, so they do not calibrate this exam. <a href="practical/professional-en.html">Practice exam</a>',
+        detail: 'Under the 120-minute limit, then reviewed by failure type rather than topic, repairing weak domains in the <a href="practical/bank-professional-en.html">question bank</a>. The community mocks listed for Foundations target CCAR-F, so they do not calibrate this exam. <a href="practical/professional-en.html">Practice exam</a>',
       },
       {
         n: '05',
@@ -836,7 +837,8 @@ const PREFLIGHT_TRACKS = [
         group: 'Ravn materials',
         items: [
           { name: 'Study guide', href: 'guides/professional-en.html', note: 'The full Professional guide, English only.', internal: true },
-          { name: 'Practice exam', href: 'practical/professional-en.html', note: '63 questions drawn fresh on every attempt from a much larger bank, scored to 1000.', internal: true },
+          { name: 'Practice exam', href: 'practical/professional-en.html', note: '63 questions drawn fresh on every attempt from a bank of 421, scored to 1000.', internal: true },
+          { name: 'Question bank', href: 'practical/bank-professional-en.html', note: 'All 421 questions as a browsable list, filtered by domain and searched by text, with the explanation on every item.', internal: true },
         ],
       },
       {
@@ -914,8 +916,8 @@ const PREFLIGHT_TRACKS = [
       },
       {
         n: '04',
-        label: 'Worked the official sample questions',
-        detail: 'Three items with full rationale in Section 8 of the exam guide. Read them in the source: the answer key is the clearest signal available about how items are built.',
+        label: 'Drilled the question bank by domain',
+        detail: 'Work the <a href="practical/bank-developer-en.html">question bank</a> a domain at a time and read the explanation on every miss. Officially there are three sample items with full rationale in Section 8 of the exam guide — read those in the source, since the answer key is the clearest signal available about how items are built.',
       },
       {
         n: '05',
@@ -953,7 +955,8 @@ const PREFLIGHT_TRACKS = [
         group: 'Ravn materials',
         items: [
           { name: 'Study guide', href: 'guides/developer-en.html', note: 'The full Developer guide, English only.', internal: true },
-        { name: 'Practice exam', href: 'practical/developer-en.html', note: '53 questions drawn fresh on every attempt from a much larger bank, weighted to the eight domains and scored to 1000.', internal: true },
+          { name: 'Practice exam', href: 'practical/developer-en.html', note: '53 questions drawn fresh on every attempt from a bank of 475, weighted to the eight domains and scored to 1000.', internal: true },
+          { name: 'Question bank', href: 'practical/bank-developer-en.html', note: 'All 475 questions as a browsable list, filtered by domain and searched by text, with the explanation on every item.', internal: true },
         ],
       },
       {
