@@ -1,0 +1,22 @@
+scripts/build-pages.mjs
+  s_9ae532b05c378b::t_34093fa31462fd 675-676,708-710,802,840-841,919-920,958
+  s_9ae532b05c378b::t_a4c1abdde7b28a 959
+README.md
+  s_9ae532b05c378b::t_2723a826cefe41 301-302
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "406b364df5a17596ed59c3c92c34420338654863",
+  "prompts": {},
+  "sessions": {
+    "s_9ae532b05c378b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4460797b-56ce-4a2b-9e4d-2a8f25393c16",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Pedro Guimarães <21346846+0x7067@users.noreply.github.com>"
+    }
+  }
+}
