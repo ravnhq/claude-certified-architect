@@ -55,11 +55,13 @@ function bankFor(file) {
   return JSON.parse(fs.readFileSync(path.join(dir, rel), 'utf8'));
 }
 
-function loadPage(file) {
+// `boot: false` stops short of init(), which is the page between its first
+// paint and the bank's arrival. `store` seeds localStorage; `globals` adds to
+// the vm, for the timer and fetch stubs.
+function loadPage(file, { boot = true, store = new Map(), globals = {} } = {}) {
   const html = fs.readFileSync(path.join(ROOT, file), 'utf8');
   const script = html.slice(html.lastIndexOf('<script>') + 8, html.lastIndexOf('</script>'));
   const els = new Map();
-  const store = new Map();
   const ctx = {
     console,
     document: {
@@ -75,15 +77,17 @@ function loadPage(file) {
     // synchronous without letting the engine skip the debounce path.
     setTimeout: fn => { fn(); return 0; },
     clearTimeout() {},
+    ...globals,
   };
   vm.createContext(ctx);
   ctx.__bank = bankFor(file);
-  vm.runInContext(script + '\ninstallBank(this.__bank); init();' +
+  vm.runInContext(script + (boot ? '\ninstallBank(this.__bank); init();' : '') +
     '\nthis.__api = { state, showSummary, renderQuestion, answer, orderedQuestions,' +
     ' selectCount, isMulti, T, DOMAINS, QUESTIONS, shuffleOrder, qById, restart, setFocus,' +
     ' examSize, GROUPS, gotoSub, gotoGroup, toggleBrowse, renderBrowse, filteredBank, browseBody, setBrowseDomain,' +
-    ' onBrowseSearch, toggleMisses, updateMissesUI, missedIds, saveMisses, MISS_KEY };', ctx);
-  return { api: ctx.__api, el: id => ctx.document.getElementById(id) };
+    ' onBrowseSearch, toggleMisses, updateMissesUI, missedIds, saveMisses, MISS_KEY,' +
+    ' setMode, newDraw, setLength, backToAnswers };', ctx);
+  return { api: ctx.__api, el: id => ctx.document.getElementById(id), store, ctx };
 }
 
 function checkPage(file) {
@@ -472,6 +476,108 @@ function checkMissesUI(file) {
     api.orderedQuestions().length === api.examSize('full', 'all'));
 }
 
+// The header is rendered by the Python builder, not by the engine. A missing
+// f-prefix there shipped `{length_full_label}` as the button's literal text,
+// which the engine then hid by overwriting it on boot.
+function checkShell(file) {
+  console.log(`\nServer-rendered header (${file})`);
+  const { api } = loadPage(file);
+  const rawHtml = fs.readFileSync(path.join(ROOT, file), 'utf8');
+  check('no unfilled template placeholder ships in the page',
+    !/\{length_(full|quick)_label\}|\{ui\[/.test(rawHtml),
+    (rawHtml.match(/\{length_(full|quick)_label\}|\{ui\[[^}]*\}/) || [''])[0]);
+  const shipped = id => (rawHtml.match(new RegExp(`id="${id}"[^>]*>([^<]*)<`)) || [])[1];
+  for (const [id, len, label] of [['lengthFull', 'full', api.T.length_full],
+                                  ['lengthQuick', 'quick', api.T.length_quick]]) {
+    const want = label.replace('{n}', api.examSize(len, 'all'));
+    check(`the ${len}-length button ships the label boot would write ("${want}")`,
+      shipped(id) === want, `shipped "${shipped(id)}"`);
+  }
+  check('the mode hint ships the study-mode text',
+    shipped('modeHint') === api.T.mode_hint_study, `shipped "${shipped('modeHint')}"`);
+}
+
+// The summary stops the exam clock. Both ways off the summary screen used to
+// leave it stopped, so the next attempt ran untimed.
+function checkTimer(file) {
+  console.log(`\nExam timer (${file})`);
+  const live = new Set();
+  let next = 0;
+  const globals = {
+    setInterval: () => { live.add(++next); return next; },
+    clearInterval: h => { live.delete(h); },
+  };
+  const { api } = loadPage(file, { globals });
+  api.setMode('exam');
+  check('a full-length exam attempt runs the clock', live.size === 1, `${live.size} running`);
+  api.showSummary();
+  check('the summary stops the clock', live.size === 0, `${live.size} running`);
+  api.backToAnswers();
+  check('going back to the answers restarts the clock', live.size === 1, `${live.size} running`);
+  api.showSummary();
+  api.restart();
+  check('a new attempt from the summary restarts the clock', live.size === 1,
+    `${live.size} running`);
+}
+
+// The header controls are clickable before the bank arrives. setMode() saved
+// an empty order over the stored attempt, and every control then threw.
+function checkPreBoot(file) {
+  console.log(`\nControls before the bank loads (${file})`);
+  const { store } = loadPage(file);   // a booted page saves a real attempt
+  const saved = new Map(store);
+  check('a booted page leaves a saved attempt to protect', saved.size > 0);
+  const { api } = loadPage(file, { boot: false, store });
+  let threw = null;
+  try {
+    api.setMode('exam');
+    api.newDraw();
+    api.setLength('quick');
+  } catch (err) { threw = err; }
+  check('the header controls do nothing before boot', threw === null, String(threw));
+  check('the saved attempt survives clicks before boot',
+    [...saved].every(([k, v]) => store.get(k) === v) && store.size === saved.size);
+}
+
+// Only a failed download is a load failure. An exception inside init() was
+// caught by the same handler and shown as "failed to load", hiding the bug.
+async function checkBootChain(file) {
+  console.log(`\nBoot chain (${file})`);
+  const bankText = JSON.stringify(bankFor(file));
+  const settle = async () => { for (let i = 0; i < 10; i++) await new Promise(r => setImmediate(r)); };
+  const failedShown = el => el('qCard').innerHTML.includes('bank-error');
+
+  // The bank arrives, then init() throws: the mode toggle is the first header
+  // node it touches. The fetch has fired by the time loadPage returns but has
+  // not resolved, so breaking the node here is still ahead of init().
+  const rejections = [];
+  const onRejection = err => { rejections.push(err); };
+  process.on('unhandledRejection', onRejection);
+  const ok = { ok: true, status: 200, text: () => Promise.resolve(bankText) };
+  const broken = loadPage(file, { boot: false, globals: { fetch: () => Promise.resolve(ok) } });
+  const getById = broken.ctx.document.getElementById;
+  broken.ctx.document.getElementById = id => {
+    if (id === 'modeStudy') throw new Error('stub: init failed');
+    return getById(id);
+  };
+  await settle();
+  process.off('unhandledRejection', onRejection);
+  check('an error inside init() is not reported as a failed download',
+    !failedShown(broken.el));
+  check('an error inside init() surfaces as an uncaught error',
+    rejections.some(e => String(e && e.message).includes('stub: init failed')),
+    `${rejections.length} rejection(s)`);
+
+  // The counterpart: a real download failure still says so.
+  const bad = { ok: false, status: 404, text: () => Promise.resolve('') };
+  const quiet = console.error;
+  console.error = () => {};
+  const failed = loadPage(file, { boot: false, globals: { fetch: () => Promise.resolve(bad) } });
+  await settle();
+  console.error = quiet;
+  check('a failed download still shows the load-failed message', failedShown(failed.el));
+}
+
 // Every shipped page, so a UI string missing from one language cannot pass.
 checkPage('ccaf/dist/exam_en.html');
 checkPage('ccaf/dist/exam_es.html');
@@ -492,6 +598,16 @@ checkBrowse('ccdf/dist/bank_en.html');
 checkMissesUI('ccaf/dist/exam_es.html');
 checkMissesUI('ccap/dist/exam_en.html');
 checkMissesUI('ccdf/dist/exam_en.html');
+for (const file of ['ccaf/dist/exam_en.html', 'ccaf/dist/exam_es.html',
+                    'ccaf/dist/exam_pt.html', 'ccap/dist/exam_en.html',
+                    'ccdf/dist/exam_en.html']) {
+  checkShell(file);
+}
+checkTimer('ccaf/dist/exam_en.html');
+checkTimer('ccap/dist/exam_en.html');
+checkPreBoot('ccaf/dist/exam_en.html');
+checkPreBoot('ccap/dist/exam_en.html');
+await checkBootChain('ccaf/dist/exam_en.html');
 
 console.log(failures === 0 ? '\nAll render checks passed.' : `\n${failures} check(s) FAILED.`);
 process.exit(failures === 0 ? 0 : 1);

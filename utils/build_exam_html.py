@@ -1150,6 +1150,10 @@ function tallyAttempt(active, answers) {
 const state = { current: 0, answers: {}, order: [], mode: "study", length: "full",
                 focus: "all", reportSignature: null, graded: {}, elapsed: 0,
                 browse: { domain: "all", q: "", sub: null } };
+// The header controls are live in the markup before the bank arrives. Until
+// init() has restored or drawn an attempt there is nothing for them to act on,
+// and acting anyway would overwrite the saved attempt with an empty one.
+let booted = false;
 
 // ---- persistence ---------------------------------------------------------
 function save() {
@@ -1517,6 +1521,7 @@ function scrollQuestionIntoView() {
 }
 
 function setMode(mode, restoring) {
+  if (!booted) return;
   if (!restoring && mode === "study" && state.mode !== "study" &&
       Object.keys(state.answers).length > 0 &&
       typeof confirm === "function" && !confirm(T.study_switch_confirm)) {
@@ -1553,6 +1558,7 @@ function confirmDiscard() {
 }
 
 function newDraw() {
+  if (!booted) return;
   if (confirmDiscard()) restart();
 }
 
@@ -1562,6 +1568,7 @@ function newDraw() {
 // Length is meaningless while a domain is focused (the drill holds the whole
 // domain bank), so the toggle is disabled there and this is unreachable.
 function setLength(length) {
+  if (!booted) return;
   if (state.focus !== "all") return;
   if (length === state.length) return;
   if (!confirmDiscard()) return;
@@ -1605,6 +1612,7 @@ function updateLengthUI() {
 // the domain, shuffled. Switching scope redraws, so a started attempt asks
 // first, through the same guard a new draw uses.
 function setFocus(focus) {
+  if (!booted) return;
   if (String(focus) === String(state.focus)) return;
   if (focus === "misses" && missedIds().length === 0) return;
   if (focus === "report" && !reportScores()) return;
@@ -2183,6 +2191,8 @@ function backToAnswers() {
   const finishBtn = document.getElementById("finishBtn");
   if (finishBtn) finishBtn.hidden = false;
   goto(state.current);
+  // The summary stopped the clock; going back resumes it.
+  syncTimer();
 }
 
 function restart() {
@@ -2203,6 +2213,8 @@ function restart() {
   showScreen("questionScreen");
   renderQuestion(0);
   updateSidebar();
+  // From the summary the clock is stopped; a fresh attempt starts it again.
+  syncTimer();
 }
 
 // ---- init ----------------------------------------------------------------
@@ -2242,6 +2254,7 @@ function init() {
     }
     state.order = shuffleOrder();
   }
+  booted = true;
   setMode(state.mode, true);
   syncTimer();
   updateLengthUI();
@@ -2268,11 +2281,10 @@ if (typeof fetch === "function") {
       if (!res.ok) throw new Error("bank request failed: " + res.status);
       return res.text();
     })
-    .then(text => {
-      installBank(JSON.parse(text));
-      init();
-    })
-    .catch(err => {
+    .then(text => installBank(JSON.parse(text)))
+    // Only a failed download or a malformed bank is a load failure. An error
+    // inside init() is a bug, so it surfaces as one instead of as "failed to load".
+    .then(init, err => {
       console.error(err);
       bankFailed();
     });
@@ -2363,37 +2375,6 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
                    if _FAVICON_DATA_URI else "")
     lang = lang_attr
 
-    ravn_topbar = (
-        '<header class="ravn-topbar">'
-        '<a class="ravn-brand" href="../index.html" aria-label="Ravn — Claude Certified Architect">'
-        f'{RAVN_LOGO_SVG}<span class="ravn-brand-tagline">Claude Certified Architect</span></a>'
-        '<div class="mode-controls">'
-        '<div class="mode-toggle">'
-        f'<button type="button" id="modeStudy" aria-pressed="false" onclick="setMode(\'study\')">{ui["mode_study"]}</button>'
-        f'<button type="button" id="modeExam" aria-pressed="false" onclick="setMode(\'exam\')">{ui["mode_exam"]}</button>'
-        '</div>'
-        f'<div class="mode-toggle length-toggle" role="group" aria-label="{ui["length_aria"]}">'
-        '<button type="button" id="lengthFull" aria-pressed="false" onclick="setLength(\'full\')">{length_full_label}</button>'
-        '<button type="button" id="lengthQuick" aria-pressed="false" onclick="setLength(\'quick\')">{length_quick_label}</button>'
-        '</div>'
-        f'<select class="focus-select" id="focusSelect" aria-label="{ui["focus_label"]}" onchange="setFocus(this.value)"><option value="all">{ui["focus_all"]}</option></select>'
-        '<button type="button" class="nav-btn new-draw-btn" id="newDrawBtn" onclick="newDraw()">'
-        f'<span class="dn-icon">&#10227;</span>{ui["new_set"]}</button>'
-        f'<button type="button" class="nav-btn misses-btn" id="missesBtn" '
-        f'aria-pressed="false" aria-label="{ui["misses_label"]}" '
-        f'title="{ui["misses_label"]}" onclick="toggleMisses()" disabled>{ui["misses_empty"]}</button>'
-        + (f'<a class="nav-btn browse-btn" href="{bank_href}">{ui["bank_link"]}</a>' if bank_href else "")
-        + '<span class="mode-hint" id="modeHint">{ui["mode_hint_study"]}</span>'
-        '</div></header>'
-    )
-    bank_topbar = (
-        '<header class="ravn-topbar">'
-        '<a class="ravn-brand" href="../index.html" aria-label="Ravn — Claude Certified Architect">'
-        f'{RAVN_LOGO_SVG}<span class="ravn-brand-tagline">Claude Certified Architect</span></a>'
-        '<div class="mode-controls">'
-        + (f'<a class="nav-btn" href="{exam_href}">{ui["exam_link"]}</a>' if exam_href else "")
-        + '</div></header>'
-    )
     # Every label the engine writes on boot is rendered here as well. They sit in
     # a wrapping header above the scrolling shell, so text arriving late rewraps
     # the row and shifts the whole page down — on a phone that was most of the
@@ -2421,6 +2402,38 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
                  .replace("{bank}", str(len(questions))))
     length_full_label = ui["length_full"].replace("{n}", str(full_draw))
     length_quick_label = ui["length_quick"].replace("{n}", str(quick_draw))
+
+    ravn_topbar = (
+        '<header class="ravn-topbar">'
+        '<a class="ravn-brand" href="../index.html" aria-label="Ravn — Claude Certified Architect">'
+        f'{RAVN_LOGO_SVG}<span class="ravn-brand-tagline">Claude Certified Architect</span></a>'
+        '<div class="mode-controls">'
+        '<div class="mode-toggle">'
+        f'<button type="button" id="modeStudy" aria-pressed="false" onclick="setMode(\'study\')">{ui["mode_study"]}</button>'
+        f'<button type="button" id="modeExam" aria-pressed="false" onclick="setMode(\'exam\')">{ui["mode_exam"]}</button>'
+        '</div>'
+        f'<div class="mode-toggle length-toggle" role="group" aria-label="{ui["length_aria"]}">'
+        f'<button type="button" id="lengthFull" aria-pressed="false" onclick="setLength(\'full\')">{length_full_label}</button>'
+        f'<button type="button" id="lengthQuick" aria-pressed="false" onclick="setLength(\'quick\')">{length_quick_label}</button>'
+        '</div>'
+        f'<select class="focus-select" id="focusSelect" aria-label="{ui["focus_label"]}" onchange="setFocus(this.value)"><option value="all">{ui["focus_all"]}</option></select>'
+        '<button type="button" class="nav-btn new-draw-btn" id="newDrawBtn" onclick="newDraw()">'
+        f'<span class="dn-icon">&#10227;</span>{ui["new_set"]}</button>'
+        f'<button type="button" class="nav-btn misses-btn" id="missesBtn" '
+        f'aria-pressed="false" aria-label="{ui["misses_label"]}" '
+        f'title="{ui["misses_label"]}" onclick="toggleMisses()" disabled>{ui["misses_empty"]}</button>'
+        + (f'<a class="nav-btn browse-btn" href="{bank_href}">{ui["bank_link"]}</a>' if bank_href else "")
+        + f'<span class="mode-hint" id="modeHint">{ui["mode_hint_study"]}</span>'
+        '</div></header>'
+    )
+    bank_topbar = (
+        '<header class="ravn-topbar">'
+        '<a class="ravn-brand" href="../index.html" aria-label="Ravn — Claude Certified Architect">'
+        f'{RAVN_LOGO_SVG}<span class="ravn-brand-tagline">Claude Certified Architect</span></a>'
+        '<div class="mode-controls">'
+        + (f'<a class="nav-btn" href="{exam_href}">{ui["exam_link"]}</a>' if exam_href else "")
+        + '</div></header>'
+    )
 
     # Rendered inside the node the engine's first paint overwrites, so the
     # skeleton needs no teardown of its own.

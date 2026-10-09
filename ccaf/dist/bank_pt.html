@@ -876,6 +876,10 @@ function tallyAttempt(active, answers) {
 const state = { current: 0, answers: {}, order: [], mode: "study", length: "full",
                 focus: "all", reportSignature: null, graded: {}, elapsed: 0,
                 browse: { domain: "all", q: "", sub: null } };
+// The header controls are live in the markup before the bank arrives. Until
+// init() has restored or drawn an attempt there is nothing for them to act on,
+// and acting anyway would overwrite the saved attempt with an empty one.
+let booted = false;
 
 // ---- persistence ---------------------------------------------------------
 function save() {
@@ -1243,6 +1247,7 @@ function scrollQuestionIntoView() {
 }
 
 function setMode(mode, restoring) {
+  if (!booted) return;
   if (!restoring && mode === "study" && state.mode !== "study" &&
       Object.keys(state.answers).length > 0 &&
       typeof confirm === "function" && !confirm(T.study_switch_confirm)) {
@@ -1279,6 +1284,7 @@ function confirmDiscard() {
 }
 
 function newDraw() {
+  if (!booted) return;
   if (confirmDiscard()) restart();
 }
 
@@ -1288,6 +1294,7 @@ function newDraw() {
 // Length is meaningless while a domain is focused (the drill holds the whole
 // domain bank), so the toggle is disabled there and this is unreachable.
 function setLength(length) {
+  if (!booted) return;
   if (state.focus !== "all") return;
   if (length === state.length) return;
   if (!confirmDiscard()) return;
@@ -1331,6 +1338,7 @@ function updateLengthUI() {
 // the domain, shuffled. Switching scope redraws, so a started attempt asks
 // first, through the same guard a new draw uses.
 function setFocus(focus) {
+  if (!booted) return;
   if (String(focus) === String(state.focus)) return;
   if (focus === "misses" && missedIds().length === 0) return;
   if (focus === "report" && !reportScores()) return;
@@ -1909,6 +1917,8 @@ function backToAnswers() {
   const finishBtn = document.getElementById("finishBtn");
   if (finishBtn) finishBtn.hidden = false;
   goto(state.current);
+  // The summary stopped the clock; going back resumes it.
+  syncTimer();
 }
 
 function restart() {
@@ -1929,6 +1939,8 @@ function restart() {
   showScreen("questionScreen");
   renderQuestion(0);
   updateSidebar();
+  // From the summary the clock is stopped; a fresh attempt starts it again.
+  syncTimer();
 }
 
 // ---- init ----------------------------------------------------------------
@@ -1968,6 +1980,7 @@ function init() {
     }
     state.order = shuffleOrder();
   }
+  booted = true;
   setMode(state.mode, true);
   syncTimer();
   updateLengthUI();
@@ -1994,11 +2007,10 @@ if (typeof fetch === "function") {
       if (!res.ok) throw new Error("bank request failed: " + res.status);
       return res.text();
     })
-    .then(text => {
-      installBank(JSON.parse(text));
-      init();
-    })
-    .catch(err => {
+    .then(text => installBank(JSON.parse(text)))
+    // Only a failed download or a malformed bank is a load failure. An error
+    // inside init() is a bug, so it surfaces as one instead of as "failed to load".
+    .then(init, err => {
       console.error(err);
       bankFailed();
     });
