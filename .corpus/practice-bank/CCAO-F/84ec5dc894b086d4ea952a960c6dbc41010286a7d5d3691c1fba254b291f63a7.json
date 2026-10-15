@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A team adds Claude to the middle of a workflow that already produces frequent rework, without changing anything else about it. What is the greatest risk?",
+  "options": [
+    "A) Claude will refuse to take part in a workflow that has not first been documented",
+    "B) The team will need a different plan tier before Claude can join an existing flow",
+    "C) Colleagues downstream will receive their work later than the old workflow gave it",
+    "D) The same faults now appear faster and in greater volume than they did before"
+  ],
+  "correct_answers": [
+    "D) The same faults now appear faster and in greater volume than they did before"
+  ],
+  "explanations": [
+    "Claude does not require a workflow to be documented before it will contribute to a step.",
+    "Plan tier is not what determines whether an existing process can be augmented, and it would not cause rework.",
+    "The likely effect is faster delivery, not slower; the problem is what is being delivered, not when.",
+    "Correct. Speeding up a broken process scales its defects. The rework was caused by the workflow's design, and inserting Claude without addressing that simply produces more of it, sooner."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"6 / 14 correct (43%) View by domain\":\n  - generic: 6 / 14 correct (43%)\n  - generic: View by domain\n- progressbar\n- generic: Question 15 of 20\n- generic: \"Subdomain 4.4: Integrate Claude into existing workflows to augment or redesign them\"\n- heading \"A team adds Claude to the middle of a workflow that already produces frequent rework, without changing anything else about it. What is the greatest risk?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Claude will refuse to take part in a workflow that has not first been documented\" [checked] [disabled]:\n  - generic: A) Claude will refuse to take part in a workflow that has not first been documented\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Claude does not require a workflow to be documented before it will contribute to a step.\n  - radio \"B) The team will need a different plan tier before Claude can join an existing flow\" [disabled]\n  - generic: B) The team will need a different plan tier before Claude can join an existing flow\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Plan tier is not what determines whether an existing process can be augmented, and it would not cause rework.\n  - radio \"C) Colleagues downstream will receive their work later than the old workflow gave it\" [disabled]\n  - generic: C) Colleagues downstream will receive their work later than the old workflow gave it\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The likely effect is faster delivery, not slower; the problem is what is being delivered, not when.\n  - radio \"D) The same faults now appear faster and in greater volume than they did before\" [disabled]\n  - generic: D) The same faults now appear faster and in greater volume than they did before\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Speeding up a broken process scales its defects. The rework was caused by the workflow's design, and inserting Claude without addressing that simply produces more of it, sooner.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:02:01.323Z",
+  "fingerprint": "84ec5dc894b086d4ea952a960c6dbc41010286a7d5d3691c1fba254b291f63a7"
+}

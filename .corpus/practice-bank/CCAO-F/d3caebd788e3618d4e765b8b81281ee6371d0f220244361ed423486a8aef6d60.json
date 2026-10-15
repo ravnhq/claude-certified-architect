@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.942Z",
+  "correct_answers": [
+    "D) Use the thumbs-down control on the response that contained the incorrect statement, in addition to fixing her own draft."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "A note in the chat helps her own record of what happened, but it stays inside her conversation. It does nothing to report the response as problematic beyond her own session.",
+    "A fresh conversation may or may not produce a better answer, and starting over is a workaround for her immediate task rather than a way of recording that the response was wrong.",
+    "Emphatic rewording is a weak remedy and addresses only her future prompts. It neither reports the faulty response nor makes the problem visible to anyone else.",
+    "Correct. The thumbs-down feedback control on the response is the mechanism provided for flagging an incorrect or misleading answer, and it complements, rather than replaces, correcting the draft she is working on."
+  ],
+  "options": [
+    "A) Add a line to the conversation noting that the earlier statement was wrong, so the correction sits in the chat history.",
+    "B) Start the same task again in a new conversation, on the basis that a clean chat is less likely to repeat the mistake.",
+    "C) Rephrase her original prompt in more forceful language so that the incorrect statement is less likely to recur next time.",
+    "D) Use the thumbs-down control on the response that contained the incorrect statement, in addition to fixing her own draft."
+  ],
+  "question": "A communications assistant receives an answer containing a clearly incorrect statement about her organisation. She corrects her own draft in a follow-up message, and also wants the problem itself recorded rather than just worked around. What should she do?",
+  "snapshot": "Subdomain 2.2: IDENTIFY HALLUCINATIONS, INCONSISTENCIES, AND BIASES IN RESPONSES",
+  "fingerprint": "d3caebd788e3618d4e765b8b81281ee6371d0f220244361ed423486a8aef6d60"
+}

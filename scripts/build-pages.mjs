@@ -38,8 +38,20 @@ const DEVELOPER_GUIDES = [
   },
 ];
 
+const ASSOCIATE_GUIDES = [
+  {
+    code: 'en',
+    label: 'English',
+    title: 'Associate - English',
+    guide: 'ccaof/guide_en.md',
+    output: 'associate-en',
+    test: 'ccaof/dist/exam_en.html',
+    bank: 'ccaof/dist/bank_en.html',
+  },
+];
+
 // Every track whose exam pages ship a fetched question bank.
-const EXAM_TRACKS = ['ccaf', 'ccap', 'ccdf'];
+const EXAM_TRACKS = ['ccaf', 'ccap', 'ccdf', 'ccaof'];
 
 // Published exam page -> the bank JSON it fetches. Every page shell carries it,
 // so a link into an exam can warm that fetch before the click (app.js).
@@ -213,7 +225,7 @@ function landing() {
   // heading carries the Architect progression and Developer's separate-role
   // status in prose, which the old two-group layout could only say by making
   // the lone Developer card twice the width of its siblings.
-  // One card shape for all three tracks. Each resource row names the resource
+  // One card shape for all tracks. Each resource row names the resource
   // once and lists the languages it exists in, so a tri-language track and a
   // single-language track render from the same template without a separate
   // "pick your language" section repeating the same links.
@@ -261,6 +273,19 @@ function landing() {
         { label: 'Preflight checklist', langs: [['EN', 'preflight/developer-foundations.html']] },
       ],
       register: 'https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification',
+    },
+    {
+      code: 'CCAO-F',
+      name: 'Associate — Foundations',
+      summary: 'For professionals using Claude for research, analysis, drafting, planning, and workflow improvement.',
+      items: '60',
+      langs: 'EN',
+      resources: [
+        { label: 'Study guide', langs: [['EN', 'guides/associate-en.html']] },
+        { label: 'Practice exam', langs: [['EN', 'practical/associate-en.html']] },
+        { label: 'Question bank', langs: [['EN', 'practical/bank-associate-en.html']] },
+      ],
+      register: 'https://anthropic-partners.skilljar.com/',
     },
   ];
 
@@ -365,7 +390,7 @@ function guideHeadingSlug(value) {
   return slug(String(value).replace(/`/g, ''));
 }
 
-// The report reader serves all three exams. Foundations keeps its own shape
+// The report reader serves every exam. Foundations keeps its own shape
 // (report objectives keyed A1–J5 mapped to official subdomains); the two
 // blueprint exams share buildBlueprintExamData below, where the report
 // objective ids are the blueprint task ids themselves.
@@ -435,6 +460,8 @@ function guideDomainHeadings(markdown) {
   markdown.split(/\r?\n/).forEach(line => {
     const match = line.match(/^### (\d+)\. (.+ [—–-] \d+(?:\.\d+)?%)$/);
     if (match && !headings.has(match[1])) headings.set(match[1], `${match[1]}. ${match[2]}`);
+    const named = line.match(/^# Domain (\d+) [—–-] .+ \(\d+(?:\.\d+)?%\)$/);
+    if (named && !headings.has(named[1])) headings.set(named[1], line.replace(/^# /, ''));
   });
   return headings;
 }
@@ -546,6 +573,17 @@ async function buildScoreReportData() {
     practiceHref: 'practical/developer-en.html',
     bankHref: 'practical/bank-developer-en.html',
   });
+  exams['CCAO-F'] = await buildBlueprintExamData({
+    code: 'CCAO-F',
+    name: 'Claude Certified Associate Foundations',
+    objectivesFile: path.join('ccaof', 'data', 'objectives.json'),
+    guidanceFile: path.join('ccaof', 'data', 'objective_guidance.json'),
+    bankFile: path.join('ccaof', 'data', 'questions.json'),
+    guideFile: path.join('ccaof', 'guide_en.md'),
+    guideHref: 'guides/associate-en.html',
+    practiceHref: 'practical/associate-en.html',
+    bankHref: 'practical/bank-associate-en.html',
+  });
   return { version: 2, exams };
 }
 
@@ -572,6 +610,7 @@ function scoreReportPage() {
         <option value="CCAR-F">Architect Foundations (CCAR-F)</option>
         <option value="CCAR-P">Architect Professional (CCAR-P)</option>
         <option value="CCDV-F">Developer Foundations (CCDV-F)</option>
+        <option value="CCAO-F">Associate Foundations (CCAO-F)</option>
       </select>
     </label>
     <div class="report-actions"><button id="confirm-exam" class="report-primary" type="button" disabled>Continue</button></div>
@@ -1219,6 +1258,7 @@ async function buildGuides() {
     ...LANGS.map(l => ({ ...l, output: l.code })),
     ...PROFESSIONAL_GUIDES,
     ...DEVELOPER_GUIDES,
+    ...ASSOCIATE_GUIDES,
   ];
   for (const l of guides) {
     const src = path.join(ROOT, l.guide);
@@ -1348,7 +1388,11 @@ async function copyScoreReport() {
   const data = await buildScoreReportData();
   // The theme readings deep-link into the generated guide pages; a slug
   // drift would silently produce dead links, so verify them post-build.
-  const guidePages = { 'CCAR-P': 'guides/professional-en.html', 'CCDV-F': 'guides/developer-en.html' };
+  const guidePages = {
+    'CCAR-P': 'guides/professional-en.html',
+    'CCDV-F': 'guides/developer-en.html',
+    'CCAO-F': 'guides/associate-en.html',
+  };
   for (const [code, page] of Object.entries(guidePages)) {
     const html = await fs.readFile(path.join(DOCS, page), 'utf8');
     Object.values(data.exams[code].themeReadings).flat().forEach(reading => {
@@ -1394,6 +1438,7 @@ async function collectBankHrefs() {
     ...LANGS.map(l => ({ ...l, output: l.code })),
     ...PROFESSIONAL_GUIDES,
     ...DEVELOPER_GUIDES,
+    ...ASSOCIATE_GUIDES,
   ];
   const map = {};
   for (const l of pages) {
@@ -1434,14 +1479,14 @@ async function copyPracticalTests() {
   }
 }
 
-// Professional and Developer exams are keyed on `output`
-// (professional-en.html, developer-en.html), never on `code` — both entries
+// Single-language exams are keyed on `output`
+// (professional-en.html, developer-en.html, associate-en.html), never on `code` — their entries
 // use code 'en', which would overwrite the Foundations English exam that
 // copyPracticalTests() just wrote.
 async function copyProfessionalExams() {
   const out = path.join(DOCS, 'practical');
   await ensureDir(out);
-  for (const l of [...PROFESSIONAL_GUIDES, ...DEVELOPER_GUIDES]) {
+  for (const l of [...PROFESSIONAL_GUIDES, ...DEVELOPER_GUIDES, ...ASSOCIATE_GUIDES]) {
     if (!l.test) continue;
     const src = path.join(ROOT, l.test);
     if (l.bank && await exists(path.join(ROOT, l.bank))) {

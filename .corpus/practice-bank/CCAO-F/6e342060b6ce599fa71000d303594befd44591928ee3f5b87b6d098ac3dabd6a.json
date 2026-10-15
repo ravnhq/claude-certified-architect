@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "An events team has redesigned its exhibitor-liaison workflow so that Claude carries a request from first enquiry through to a confirmed booking slot. Where does an approval checkpoint most clearly belong?",
+  "options": [
+    "A) Only if an exhibitor complains about the slot they were allocated",
+    "B) After the exhibitor has replied to the confirmation that was sent",
+    "C) At the end of each month, when all bookings are reviewed together",
+    "D) Before anything is sent to the exhibitor on the team's behalf"
+  ],
+  "correct_answers": [
+    "D) Before anything is sent to the exhibitor on the team's behalf"
+  ],
+  "explanations": [
+    "Waiting for a complaint makes the exhibitor the quality control, which is precisely what a checkpoint is meant to avoid.",
+    "A check after the exhibitor has replied comes after the commitment, so it can only manage the consequences.",
+    "A monthly review catches patterns but arrives long after individual bookings have gone out.",
+    "Correct. The checkpoint belongs at the last moment where a person can still prevent an external, hard-to-retract action. Once the exhibitor has been contacted, the commitment has been made."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"6 / 12 correct (50%) View by domain\":\n  - generic: 6 / 12 correct (50%)\n  - generic: View by domain\n- progressbar\n- generic: Question 13 of 20\n- generic: \"Subdomain 4.4: Integrate Claude into existing workflows to augment or redesign them\"\n- heading \"An events team has redesigned its exhibitor-liaison workflow so that Claude carries a request from first enquiry through to a confirmed booking slot. Where does an approval checkpoint most clearly belong?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Only if an exhibitor complains about the slot they were allocated\" [checked] [disabled]:\n  - generic: A) Only if an exhibitor complains about the slot they were allocated\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Waiting for a complaint makes the exhibitor the quality control, which is precisely what a checkpoint is meant to avoid.\n  - radio \"B) After the exhibitor has replied to the confirmation that was sent\" [disabled]\n  - generic: B) After the exhibitor has replied to the confirmation that was sent\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A check after the exhibitor has replied comes after the commitment, so it can only manage the consequences.\n  - radio \"C) At the end of each month, when all bookings are reviewed together\" [disabled]\n  - generic: C) At the end of each month, when all bookings are reviewed together\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A monthly review catches patterns but arrives long after individual bookings have gone out.\n  - radio \"D) Before anything is sent to the exhibitor on the team's behalf\" [disabled]\n  - generic: D) Before anything is sent to the exhibitor on the team's behalf\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. The checkpoint belongs at the last moment where a person can still prevent an external, hard-to-retract action. Once the exhibitor has been contacted, the commitment has been made.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:01:50.926Z",
+  "fingerprint": "6e342060b6ce599fa71000d303594befd44591928ee3f5b87b6d098ac3dabd6a"
+}

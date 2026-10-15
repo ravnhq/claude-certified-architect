@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A Team account with fifteen members has just had the Gmail connector enabled by the Primary Owner. How does each member gain access through the connector?",
+  "options": [
+    "A) One member authenticates once, granting Gmail access to the whole team.",
+    "B) The Primary Owner authenticates for everyone through a single shared service account.",
+    "C) Members share one OAuth token that IT distributes to the whole team.",
+    "D) Each member individually authenticates via OAuth with their own Google credentials."
+  ],
+  "correct_answers": [
+    "D) Each member individually authenticates via OAuth with their own Google credentials."
+  ],
+  "explanations": [
+    "Incorrect. Authentication is per-user; one member's OAuth grant does not extend to teammates' inboxes.",
+    "Incorrect. There is no shared service account model; each user connects their own Google account individually.",
+    "Incorrect. Shared or distributed tokens are not how the connector works; per-user authentication keeps data separate.",
+    "Correct. Even after org-level enablement, each user authenticates through standard OAuth with their own credentials, keeping access per-person."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"5 / 18 correct (28%) View by domain\":\n  - generic: 5 / 18 correct (28%)\n  - generic: View by domain\n- progressbar\n- generic: Question 19 of 20\n- generic: \"Subdomain 5.2: Manage uploaded knowledge and connectors (e.g., Google Drive, Gmail)\"\n- heading \"A Team account with fifteen members has just had the Gmail connector enabled by the Primary Owner. How does each member gain access through the connector?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) One member authenticates once, granting Gmail access to the whole team.\" [checked] [disabled]:\n  - generic: A) One member authenticates once, granting Gmail access to the whole team.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Authentication is per-user; one member's OAuth grant does not extend to teammates' inboxes.\n  - radio \"B) The Primary Owner authenticates for everyone through a single shared service account.\" [disabled]\n  - generic: B) The Primary Owner authenticates for everyone through a single shared service account.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. There is no shared service account model; each user connects their own Google account individually.\n  - radio \"C) Members share one OAuth token that IT distributes to the whole team.\" [disabled]\n  - generic: C) Members share one OAuth token that IT distributes to the whole team.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Shared or distributed tokens are not how the connector works; per-user authentication keeps data separate.\n  - radio \"D) Each member individually authenticates via OAuth with their own Google credentials.\" [disabled]\n  - generic: D) Each member individually authenticates via OAuth with their own Google credentials.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Even after org-level enablement, each user authenticates through standard OAuth with their own credentials, keeping access per-person.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:13:39.132Z",
+  "fingerprint": "b74a1e2cd0068d4ea352549dc0433f7f0a6130739e319856adb44adda6e4e5cd"
+}

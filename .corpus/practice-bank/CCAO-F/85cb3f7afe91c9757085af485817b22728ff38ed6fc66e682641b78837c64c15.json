@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "C) Decide what she needs before starting; put the request and the relevant material in the opening message; work through follow-ups that refer back to it; open a new chat for the next unrelated task."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Everything here is done before she has decided what she needs, so the opening message is assembled blind.",
+    "Opening a chat for the next task before the current one has been started puts the last step first.",
+    "Correct. Planning before starting, front-loading the material in one well-specified message, then building on it, is what keeps the exchange short; unrelated work starts fresh rather than dragging old context along.",
+    "Following up before the request has even been made, and deciding what is needed last, inverts the whole habit."
+  ],
+  "options": [
+    "A) Put the request and the relevant material in the opening message; work through follow-ups that refer back to it; open a new chat for the next unrelated task; decide what she needs before starting.",
+    "B) Open a new chat for the next unrelated task; decide what she needs before starting; work through follow-ups that refer back to it; put the request and the relevant material in the opening message.",
+    "C) Decide what she needs before starting; put the request and the relevant material in the opening message; work through follow-ups that refer back to it; open a new chat for the next unrelated task.",
+    "D) Work through follow-ups that refer back to it; open a new chat for the next unrelated task; decide what she needs before starting; put the request and the relevant material in the opening message."
+  ],
+  "question": "An analyst wants to get more done inside her weekly allowance without the quality of her work dropping. Which sequence of working habits is correct?",
+  "snapshot": "Subdomain 7.3: OPTIMIZE WORKFLOWS FOR EFFICIENCY AND EFFECTIVENESS",
+  "fingerprint": "85cb3f7afe91c9757085af485817b22728ff38ed6fc66e682641b78837c64c15"
+}

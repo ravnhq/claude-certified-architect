@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A charity's donation-thank-you process works well overall but is slow only at the drafting step. Which integration approach is most appropriate?",
+  "options": [
+    "A) Augment the process by having Claude draft, with the same person signing off",
+    "B) Redesign the process so donors receive whatever Claude drafts straight away",
+    "C) Keep the process as it is and offer Claude as a tool people may use or ignore",
+    "D) Redesign the process around Claude and drop the sign-off step that slows it"
+  ],
+  "correct_answers": [
+    "A) Augment the process by having Claude draft, with the same person signing off"
+  ],
+  "explanations": [
+    "Correct. When one step is the constraint and the rest of the process is sound, augment that step and leave the controls in place. The sign-off is not what was slow.",
+    "Sending unreviewed drafts to donors is an outward-facing, effectively irreversible step and should not be delegated unchecked.",
+    "Optional, unstructured use leaves the bottleneck exactly where it was and produces inconsistent letters to donors.",
+    "Removing the sign-off removes the check that makes the process safe, in exchange for time that was not being lost there."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"4 / 8 correct (50%) View by domain\":\n  - generic: 4 / 8 correct (50%)\n  - generic: View by domain\n- progressbar\n- generic: Question 9 of 20\n- generic: \"Subdomain 4.4: Integrate Claude into existing workflows to augment or redesign them\"\n- heading \"A charity's donation-thank-you process works well overall but is slow only at the drafting step. Which integration approach is most appropriate?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Augment the process by having Claude draft, with the same person signing off\" [checked] [disabled]:\n  - generic: A) Augment the process by having Claude draft, with the same person signing off\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. When one step is the constraint and the rest of the process is sound, augment that step and leave the controls in place. The sign-off is not what was slow.\n  - radio \"B) Redesign the process so donors receive whatever Claude drafts straight away\" [disabled]\n  - generic: B) Redesign the process so donors receive whatever Claude drafts straight away\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Sending unreviewed drafts to donors is an outward-facing, effectively irreversible step and should not be delegated unchecked.\n  - radio \"C) Keep the process as it is and offer Claude as a tool people may use or ignore\" [disabled]\n  - generic: C) Keep the process as it is and offer Claude as a tool people may use or ignore\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Optional, unstructured use leaves the bottleneck exactly where it was and produces inconsistent letters to donors.\n  - radio \"D) Redesign the process around Claude and drop the sign-off step that slows it\" [disabled]\n  - generic: D) Redesign the process around Claude and drop the sign-off step that slows it\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Removing the sign-off removes the check that makes the process safe, in exchange for time that was not being lost there.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:01:29.822Z",
+  "fingerprint": "fb708d575f8003e0284a0c2b578cd59b8df717e9f3f6bb83fd5e2c66f9678c9f"
+}

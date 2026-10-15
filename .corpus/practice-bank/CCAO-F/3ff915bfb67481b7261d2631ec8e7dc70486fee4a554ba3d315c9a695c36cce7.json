@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A manager wants to know whether Claude's summary of a report she uploaded is faithful to it. What is the most reliable check?",
+  "options": [
+    "A) Check that the summary's length is proportionate to the length of the original report.",
+    "B) Ask Claude to summarise the report again and see whether the two versions agree.",
+    "C) Read the summary's main claims against the relevant sections of the report itself.",
+    "D) Ask Claude to rate how faithful its own summary is to the report on a numerical scale."
+  ],
+  "correct_answers": [
+    "C) Read the summary's main claims against the relevant sections of the report itself."
+  ],
+  "explanations": [
+    "Incorrect. Proportion is unrelated to accuracy; a well-sized summary can still distort what the report says.",
+    "Incorrect. Two summaries can agree and both misrepresent the report, so agreement is not evidence of faithfulness.",
+    "Correct. The uploaded report is the standard the summary is meant to represent, so a direct comparison is the only check that can settle faithfulness.",
+    "Incorrect. A self-assigned score is generated in the same way as the summary and carries no independent weight."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"4 / 15 correct (27%) View by domain\":\n  - generic: 4 / 15 correct (27%)\n  - generic: View by domain\n- progressbar\n- generic: Question 16 of 20\n- generic: \"Subdomain 2.3: Apply fact-checking and validation techniques\"\n- heading \"A manager wants to know whether Claude's summary of a report she uploaded is faithful to it. What is the most reliable check?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Check that the summary's length is proportionate to the length of the original report.\" [checked] [disabled]:\n  - generic: A) Check that the summary's length is proportionate to the length of the original report.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Proportion is unrelated to accuracy; a well-sized summary can still distort what the report says.\n  - radio \"B) Ask Claude to summarise the report again and see whether the two versions agree.\" [disabled]\n  - generic: B) Ask Claude to summarise the report again and see whether the two versions agree.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Two summaries can agree and both misrepresent the report, so agreement is not evidence of faithfulness.\n  - radio \"C) Read the summary's main claims against the relevant sections of the report itself.\" [disabled]\n  - generic: C) Read the summary's main claims against the relevant sections of the report itself.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. The uploaded report is the standard the summary is meant to represent, so a direct comparison is the only check that can settle faithfulness.\n  - radio \"D) Ask Claude to rate how faithful its own summary is to the report on a numerical scale.\" [disabled]\n  - generic: D) Ask Claude to rate how faithful its own summary is to the report on a numerical scale.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. A self-assigned score is generated in the same way as the summary and carries no independent weight.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:40:21.711Z",
+  "fingerprint": "3ff915bfb67481b7261d2631ec8e7dc70486fee4a554ba3d315c9a695c36cce7"
+}

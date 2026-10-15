@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.943Z",
+  "correct_answers": [
+    "D) Upload the reference to project knowledge and put the rule about unapproved abbreviations in the instructions."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Two pages of reference text in the instructions field buries the rule that is meant to stand out.",
+    "A behaviour rule stored as background material is far weaker than one stated as project direction.",
+    "This puts the reference out of reach and turns a standing rule back into manual repetition.",
+    "Correct. Reference material belongs in knowledge; the standing behaviour rule belongs in the instructions."
+  ],
+  "options": [
+    "A) Put both the reference list and the rule into the project instructions so that the two are always read together.",
+    "B) Upload both the reference list and the rule as documents in the project knowledge base, for consistency.",
+    "C) Keep the reference list on the team wiki and paste the rule at the start of each chat that needs it.",
+    "D) Upload the reference to project knowledge and put the rule about unapproved abbreviations in the instructions."
+  ],
+  "question": "An operations manager has two things to add to a project: the team's two-page approved abbreviation list, and the rule that answers must never use abbreviations outside that list. What is the best placement?",
+  "snapshot": "Subdomain 5.3: CREATE EFFECTIVE SYSTEM-LEVEL INSTRUCTIONS",
+  "fingerprint": "cd4463dddc643c2331b7cf2d217b453abaf9c0158a1719fde4fd738c06d5d0f6"
+}

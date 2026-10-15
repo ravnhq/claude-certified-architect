@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A department head asks for a one-page summary of what Claude will and will not do in a redesigned review workflow. What is the most important thing for that summary to include?",
+  "options": [
+    "A) A technical comparison of the model options so the department can judge the quality of the choice.",
+    "B) A ranked list of every Claude feature the department could adopt over the next financial year.",
+    "C) A statement that the outputs are reliable enough for review to be dropped once staff are trained.",
+    "D) Where Claude drafts and where a named person reviews, with the checks that stay in human hands."
+  ],
+  "correct_answers": [
+    "D) Where Claude drafts and where a named person reviews, with the checks that stay in human hands."
+  ],
+  "explanations": [
+    "A model comparison is not what a department head needs to understand value and limits.",
+    "A feature roadmap does not tell the department what the workflow will and will not do.",
+    "Promising that review disappears oversells the tool and removes the accountability step.",
+    "Correct. Stakeholders need the boundary between assisted work and human accountability stated plainly."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"4 / 15 correct (27%) View by domain\":\n  - generic: 4 / 15 correct (27%)\n  - generic: View by domain\n- progressbar\n- generic: Question 16 of 20\n- generic: \"Subdomain 4.5: Communicate Claude's value and limitations to stakeholders\"\n- heading \"A department head asks for a one-page summary of what Claude will and will not do in a redesigned review workflow. What is the most important thing for that summary to include?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) A technical comparison of the model options so the department can judge the quality of the choice.\" [checked] [disabled]:\n  - generic: A) A technical comparison of the model options so the department can judge the quality of the choice.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A model comparison is not what a department head needs to understand value and limits.\n  - radio \"B) A ranked list of every Claude feature the department could adopt over the next financial year.\" [disabled]\n  - generic: B) A ranked list of every Claude feature the department could adopt over the next financial year.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A feature roadmap does not tell the department what the workflow will and will not do.\n  - radio \"C) A statement that the outputs are reliable enough for review to be dropped once staff are trained.\" [disabled]\n  - generic: C) A statement that the outputs are reliable enough for review to be dropped once staff are trained.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Promising that review disappears oversells the tool and removes the accountability step.\n  - radio \"D) Where Claude drafts and where a named person reviews, with the checks that stay in human hands.\" [disabled]\n  - generic: D) Where Claude drafts and where a named person reviews, with the checks that stay in human hands.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Stakeholders need the boundary between assisted work and human accountability stated plainly.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:05:34.986Z",
+  "fingerprint": "f31fcc2b8f925dd26c3949e05dc89b3774e16bc8efcac5072f6de3f34a3e9a6e"
+}

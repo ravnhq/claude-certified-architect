@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A project shared across a department has no named owner. Several people hold edit access and each has added documents over the past year. What is the greatest risk?",
+  "options": [
+    "A) Edit access is revoked automatically after a long period of inactivity, so the project becomes read-only.",
+    "B) Shared projects reset their instructions whenever a second person saves a change to the knowledge.",
+    "C) Each new document replaces the previous one, so the project only ever holds the most recent upload.",
+    "D) Nobody is accountable for removing outdated material, so contradictory documents accumulate unchecked."
+  ],
+  "correct_answers": [
+    "D) Nobody is accountable for removing outdated material, so contradictory documents accumulate unchecked."
+  ],
+  "explanations": [
+    "Access is not withdrawn on its own because a project has been quiet.",
+    "Editing knowledge does not clear the project's instructions.",
+    "Uploads accumulate; they do not overwrite one another.",
+    "Correct. Shared editing without ownership is precisely how a knowledge base fills with conflicting versions."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"16 / 48 correct (33%) View by domain\":\n  - generic: 16 / 48 correct (33%)\n  - generic: View by domain\n- progressbar\n- generic: Question 49 of 60\n- generic: \"Subdomain 5.4: Inform, maintain, and update Claude configurations, knowledge sources, and instructions\"\n- heading \"A project shared across a department has no named owner. Several people hold edit access and each has added documents over the past year. What is the greatest risk?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Edit access is revoked automatically after a long period of inactivity, so the project becomes read-only.\" [checked] [disabled]:\n  - generic: A) Edit access is revoked automatically after a long period of inactivity, so the project becomes read-only.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Access is not withdrawn on its own because a project has been quiet.\n  - radio \"B) Shared projects reset their instructions whenever a second person saves a change to the knowledge.\" [disabled]\n  - generic: B) Shared projects reset their instructions whenever a second person saves a change to the knowledge.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Editing knowledge does not clear the project's instructions.\n  - radio \"C) Each new document replaces the previous one, so the project only ever holds the most recent upload.\" [disabled]\n  - generic: C) Each new document replaces the previous one, so the project only ever holds the most recent upload.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Uploads accumulate; they do not overwrite one another.\n  - radio \"D) Nobody is accountable for removing outdated material, so contradictory documents accumulate unchecked.\" [disabled]\n  - generic: D) Nobody is accountable for removing outdated material, so contradictory documents accumulate unchecked.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Shared editing without ownership is precisely how a knowledge base fills with conflicting versions.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:23:30.321Z",
+  "fingerprint": "03f3b1075fd67f8c797df6a0fd85fbb4f4cac9abadf886169ce5b4fa9badf89f"
+}

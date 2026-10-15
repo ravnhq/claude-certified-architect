@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.943Z",
+  "correct_answers": [
+    "C) How much a downstream human check would catch, since the unchecked workload has to carry its own quality with no safety net."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Shared subject matter makes the two workloads look alike, but it is not what determines the risk. Consistency for its own sake ignores the fact that only one of them has anyone checking the result.",
+    "Equal volume does mean similar throughput demands, and that matters. It is still secondary to the fact that one workload reaches the outside world without any person having read it.",
+    "Correct. The strength of the downstream check changes how much the output has to get right on its own, so the unchecked workload justifies more reasoning depth while the edited one can lean towards speed and allowance.",
+    "Ownership determines who answers for a problem, not how likely a problem is. Seniority is an accountability question and does not tell the team where errors would actually escape unnoticed."
+  ],
+  "options": [
+    "A) The subject matter the two workloads share, since comparable material should be handled the same way for consistency of output.",
+    "B) The volume of the two workloads, since equal volumes imply equal throughput needs and therefore the same balance of speed and cost.",
+    "C) How much a downstream human check would catch, since the unchecked workload has to carry its own quality with no safety net.",
+    "D) The seniority of the people who own each workload, since the more senior owner is accountable for the more visible of the two."
+  ],
+  "question": "A team runs two workloads that are alike in volume and subject matter. One is edited line by line by a specialist before use; the other is published automatically with no human reading it. Which consideration should weigh most heavily when choosing a tier for each?",
+  "snapshot": "Subdomain 3.3: ALIGN MODEL SELECTION WITH TASK REQUIREMENTS (COST, SPEED, QUALITY)",
+  "fingerprint": "765c546c2a0ac68aa1cc8802d7977ca7db965974cfcb74fe90d7d60480e69e66"
+}

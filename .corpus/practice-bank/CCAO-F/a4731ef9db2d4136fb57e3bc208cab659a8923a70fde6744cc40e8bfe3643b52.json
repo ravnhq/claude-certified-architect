@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-15T19:17:11.943Z",
+  "correct_answers": [
+    "B) Where a human still reviews the output, and why that review step has been kept in place.",
+    "D) A specific, measured example of what the workflow improved during the pilot it ran on."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Incorrect. Benchmark scores are not what a business audience needs, and they say nothing about this workflow's value.",
+    "Correct. Naming where human review remains, and why, is honest limitation-setting and is what makes the value claim credible.",
+    "Incorrect. Good instructions reduce error but do not eliminate it, so this claim is false and will damage trust later.",
+    "Correct. A measured pilot result is concrete evidence of value rather than an assertion stakeholders are asked to take on trust.",
+    "Incorrect. Promising that checking is no longer needed oversells the tool and sets the expectation that will break first."
+  ],
+  "options": [
+    "A) A comparison of technical benchmark scores across each of the underlying model tiers.",
+    "B) Where a human still reviews the output, and why that review step has been kept in place.",
+    "C) A claim that Claude will not make any factual errors once all its instructions are written well.",
+    "D) A specific, measured example of what the workflow improved during the pilot it ran on.",
+    "E) A promise that the workflow removes any need to check the output from this point onward."
+  ],
+  "question": "An analyst is presenting a Claude-assisted workflow to sceptical senior stakeholders next week. Which two things should the presentation include? Select two.(Select 2)",
+  "snapshot": "Subdomain 4.5: COMMUNICATE CLAUDE'S VALUE AND LIMITATIONS TO STAKEHOLDERS",
+  "fingerprint": "a4731ef9db2d4136fb57e3bc208cab659a8923a70fde6744cc40e8bfe3643b52"
+}

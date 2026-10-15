@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.942Z",
+  "correct_answers": [
+    "B) Open the cited sources and confirm that each figure in the draft does appear in the page it points to."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "A disclosure line may well be required, but it does nothing about accuracy. Adding it and publishing would put unverified figures in front of an external audience.",
+    "Correct. Where web search was used, the help centre's recommendation is to review Claude's cited sources, because reading the original content reveals anything that was misread or taken out of context. With citations present, checking them is faster and stronger than any other available check.",
+    "A self-reported confidence rating is not evidence. It can sound reassuring about a figure that the cited page does not actually support.",
+    "Two runs can repeat the same error, so agreement between them is not confirmation. The sources are already cited and can be checked directly."
+  ],
+  "options": [
+    "A) Add a line at the foot of the briefing noting that it was prepared with the help of an AI assistant.",
+    "B) Open the cited sources and confirm that each figure in the draft does appear in the page it points to.",
+    "C) Ask Claude how confident it is in each figure, and revise the ones it rates as least confident.",
+    "D) Regenerate the briefing in a fresh conversation, and publish if the two drafts report the same figures."
+  ],
+  "question": "A communications officer must publish a Claude-drafted market briefing on the company blog within the hour. Claude used web search to produce it, and every figure in the draft carries a citation. What is the appropriate first step before she publishes?",
+  "snapshot": "Subdomain 2.4: DETERMINE WHEN HUMAN REVIEW OR ADDITIONAL VERIFICATION IS REQUIRED",
+  "fingerprint": "e1fa37c8b872f4a0abe03f1b4d3d85d3de5767840918b48646fd01be7c4eb554"
+}

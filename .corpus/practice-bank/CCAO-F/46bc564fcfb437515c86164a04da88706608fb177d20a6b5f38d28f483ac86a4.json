@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A team is writing the instructions for a shared project that will be used for all of its customer communications. Which direction belongs in the project instructions rather than in an individual chat?",
+  "options": [
+    "A) Summarise the complaint from the Ashworth account that came in during yesterday afternoon.",
+    "B) Write at a reading level suited to customers, and never quote internal ticket references.",
+    "C) Draft this week's outage notice, keeping it to one paragraph for the status page.",
+    "D) Compare the two apology drafts below and say which reads better for this customer."
+  ],
+  "correct_answers": [
+    "B) Write at a reading level suited to customers, and never quote internal ticket references."
+  ],
+  "explanations": [
+    "This is a one-off task tied to a single conversation, not standing direction for the project.",
+    "Correct. Project instructions carry durable, project-wide direction such as tone, audience and house rules, so they apply consistently to every chat in the project.",
+    "A specific deliverable for this week belongs in the chat where it is being produced.",
+    "A request about material pasted into one conversation cannot serve as project-wide direction."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"12 / 13 correct (92%) View by domain\":\n  - generic: 12 / 13 correct (92%)\n  - generic: View by domain\n- progressbar\n- generic: Question 14 of 20\n- generic: \"Subdomain 5.1: Configure Claude Projects with instructions and knowledge sources\"\n- heading \"A team is writing the instructions for a shared project that will be used for all of its customer communications. Which direction belongs in the project instructions rather than in an individual chat?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Summarise the complaint from the Ashworth account that came in during yesterday afternoon.\" [checked] [disabled]:\n  - generic: A) Summarise the complaint from the Ashworth account that came in during yesterday afternoon.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: This is a one-off task tied to a single conversation, not standing direction for the project.\n  - radio \"B) Write at a reading level suited to customers, and never quote internal ticket references.\" [disabled]\n  - generic: B) Write at a reading level suited to customers, and never quote internal ticket references.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Project instructions carry durable, project-wide direction such as tone, audience and house rules, so they apply consistently to every chat in the project.\n  - radio \"C) Draft this week's outage notice, keeping it to one paragraph for the status page.\" [disabled]\n  - generic: C) Draft this week's outage notice, keeping it to one paragraph for the status page.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A specific deliverable for this week belongs in the chat where it is being produced.\n  - radio \"D) Compare the two apology drafts below and say which reads better for this customer.\" [disabled]\n  - generic: D) Compare the two apology drafts below and say which reads better for this customer.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A request about material pasted into one conversation cannot serve as project-wide direction.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:09:55.713Z",
+  "fingerprint": "46bc564fcfb437515c86164a04da88706608fb177d20a6b5f38d28f483ac86a4"
+}

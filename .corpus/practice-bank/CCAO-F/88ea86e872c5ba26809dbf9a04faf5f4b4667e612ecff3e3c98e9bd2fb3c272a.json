@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.942Z",
+  "correct_answers": [
+    "B) Agree which suppliers and which criteria belong in the comparison before asking for any output."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Incorrect. Combining unreconciled answers produces a long document that still contains whatever gaps and conflicts the originals had.",
+    "Correct. A comparison is only as good as its frame. Fixing the rows and columns first is what stops the result being shaped by whatever happened to come up in earlier chats.",
+    "Incorrect. Format is a downstream decision; choosing it before the content is defined locks in a shape that may not fit.",
+    "Incorrect. A ranking produced before the criteria are agreed reflects unstated assumptions she cannot inspect or defend."
+  ],
+  "options": [
+    "A) Ask Claude to combine all of the earlier answers into one long document she can read through.",
+    "B) Agree which suppliers and which criteria belong in the comparison before asking for any output.",
+    "C) Choose the output format now, so that every further answer can be produced in that same shape.",
+    "D) Ask Claude to rank the six suppliers straight away and work backwards from the ranking it gives."
+  ],
+  "question": "A manager needs a comparison of six suppliers across five criteria. The information is currently spread across several separate Claude answers. What should she do first?",
+  "snapshot": "Subdomain 2.6: ORGANIZE AND CURATE INFORMATION AND SELECT APPROPRIATE OUTPUT FORMATS (ARTIFACTS, INLINE, STRUCTURED DATA)",
+  "fingerprint": "88ea86e872c5ba26809dbf9a04faf5f4b4667e612ecff3e3c98e9bd2fb3c272a"
+}

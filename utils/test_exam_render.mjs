@@ -339,8 +339,10 @@ function checkBrowse(file) {
   // A term drawn from one item's own explanation must find that item, and the
   // domain filter must still apply on top of it.
   const target = api.QUESTIONS.find(q => gk(q) === d &&
-    q.options.some(o => o.explanation));
-  const word = target.question.split(/\s+/).find(w => w.length > 7).replace(/[^\w]/g, '');
+    q.options.some(o => o.explanation) &&
+    q.question.split(/\s+/).some(w => w.replace(/[^\w]/g, '').length > 7));
+  const word = target.question.split(/\s+/).map(w => w.replace(/[^\w]/g, ''))
+    .find(w => w.length > 7);
   api.onBrowseSearch(word);
   const hits = api.filteredBank();
   check(`a search term narrows the list ("${word}": ${hits.length} of ${inD})`,
@@ -584,23 +586,28 @@ checkPage('ccaf/dist/exam_es.html');
 checkPage('ccaf/dist/exam_pt.html');
 checkPage('ccap/dist/exam_en.html');
 checkPage('ccdf/dist/exam_en.html');
+checkPage('ccaof/dist/exam_en.html');
 checkDrill('ccaf/dist/exam_en.html');
 checkDrill('ccaf/dist/exam_es.html');
 checkDrill('ccaf/dist/exam_pt.html');
 checkDrill('ccap/dist/exam_en.html');
 checkDrill('ccdf/dist/exam_en.html');
+checkDrill('ccaof/dist/exam_en.html');
 checkWideItems('ccap/dist/exam_en.html');
 checkWideItems('ccdf/dist/exam_en.html');
+checkWideItems('ccaof/dist/exam_en.html');
 checkBrowse('ccaf/dist/bank_en.html');
 checkBrowse('ccaf/dist/bank_pt.html');
 checkBrowse('ccap/dist/bank_en.html');
 checkBrowse('ccdf/dist/bank_en.html');
+checkBrowse('ccaof/dist/bank_en.html');
 checkMissesUI('ccaf/dist/exam_es.html');
 checkMissesUI('ccap/dist/exam_en.html');
 checkMissesUI('ccdf/dist/exam_en.html');
+checkMissesUI('ccaof/dist/exam_en.html');
 for (const file of ['ccaf/dist/exam_en.html', 'ccaf/dist/exam_es.html',
                     'ccaf/dist/exam_pt.html', 'ccap/dist/exam_en.html',
-                    'ccdf/dist/exam_en.html']) {
+                    'ccdf/dist/exam_en.html', 'ccaof/dist/exam_en.html']) {
   checkShell(file);
 }
 checkTimer('ccaf/dist/exam_en.html');

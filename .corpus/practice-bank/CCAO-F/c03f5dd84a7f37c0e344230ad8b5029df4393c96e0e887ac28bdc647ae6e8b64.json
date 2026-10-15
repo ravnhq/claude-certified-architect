@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "A) Tell the members who use the project what changed, so they know earlier answers may no longer hold."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Correct. Maintaining shared configuration includes informing the people whose past work relied on the old source.",
+    "Copies multiply the maintenance problem and guarantee that some members keep using the old matrix.",
+    "Old conversations do not override project knowledge, and deleting them destroys a useful record.",
+    "A title is not a change log, and members are not prompted to read it before chatting."
+  ],
+  "options": [
+    "A) Tell the members who use the project what changed, so they know earlier answers may no longer hold.",
+    "B) Ask each member to create their own copy of the project so everyone controls their own knowledge base.",
+    "C) Delete the project's chat history, because past conversations would otherwise override the new material.",
+    "D) Leave a note in the project title, since members are prompted to read the title before each new chat."
+  ],
+  "question": "A project shared with a Team plan workspace has just had its escalation matrix replaced with a new version. What else should the project owner do?",
+  "snapshot": "Subdomain 5.4: INFORM, MAINTAIN, AND UPDATE CLAUDE CONFIGURATIONS, KNOWLEDGE SOURCES, AND INSTRUCTIONS",
+  "fingerprint": "c03f5dd84a7f37c0e344230ad8b5029df4393c96e0e887ac28bdc647ae6e8b64"
+}

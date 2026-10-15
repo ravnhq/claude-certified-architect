@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "An operations manager wants to confirm a claim Claude made about her own organisation's escalation process. Where should she check?",
+  "options": [
+    "A) In the organisation's current published procedure, or with the person who owns it.",
+    "B) Against a second Claude answer produced from the same question in a new conversation.",
+    "C) Against the recollection of a colleague who followed the process a few years ago.",
+    "D) Against a web search, since published sources are more independent than internal ones."
+  ],
+  "correct_answers": [
+    "A) In the organisation's current published procedure, or with the person who owns it."
+  ],
+  "explanations": [
+    "Correct. The authoritative source for an internal process is the organisation's own current documentation or its owner, not anything outside it.",
+    "Incorrect. Another generated answer is not an authority on how her organisation actually works.",
+    "Incorrect. Memory of an older version of a process is a weak authority when a current written procedure exists.",
+    "Incorrect. Independence is not the criterion here. An internal process is defined internally, and no public source describes it."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"6 / 19 correct (32%) View by domain\":\n  - generic: 6 / 19 correct (32%)\n  - generic: View by domain\n- progressbar\n- generic: Question 20 of 20\n- generic: \"Subdomain 2.3: Apply fact-checking and validation techniques\"\n- heading \"An operations manager wants to confirm a claim Claude made about her own organisation's escalation process. Where should she check?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) In the organisation's current published procedure, or with the person who owns it.\" [checked] [disabled]:\n  - generic: A) In the organisation's current published procedure, or with the person who owns it.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. The authoritative source for an internal process is the organisation's own current documentation or its owner, not anything outside it.\n  - radio \"B) Against a second Claude answer produced from the same question in a new conversation.\" [disabled]\n  - generic: B) Against a second Claude answer produced from the same question in a new conversation.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Another generated answer is not an authority on how her organisation actually works.\n  - radio \"C) Against the recollection of a colleague who followed the process a few years ago.\" [disabled]\n  - generic: C) Against the recollection of a colleague who followed the process a few years ago.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Memory of an older version of a process is a weak authority when a current written procedure exists.\n  - radio \"D) Against a web search, since published sources are more independent than internal ones.\" [disabled]\n  - generic: D) Against a web search, since published sources are more independent than internal ones.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Independence is not the criterion here. An internal process is defined internally, and no public source describes it.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Finish Quiz\":\n  - text: Finish Quiz",
+  "captured_at": "2026-10-15T19:40:30.772Z",
+  "fingerprint": "3fed2dd8cfe93b869b7357ad729b35d0fd06157b1f8454c3b8e1ecdc9318fde2"
+}

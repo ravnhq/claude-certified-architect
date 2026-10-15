@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "At an Enterprise organization, no one has enabled connectors yet, and an employee tries to connect Google Drive. What must happen before the employee can authenticate?",
+  "options": [
+    "A) The employee must switch to a personal, non-organizational Claude account first.",
+    "B) An Owner or Primary Owner must first enable the connector organization-wide.",
+    "C) The employee must install a separate Workspace marketplace add-on before this.",
+    "D) The employee must contact Anthropic support to whitelist their Google account first."
+  ],
+  "correct_answers": [
+    "B) An Owner or Primary Owner must first enable the connector organization-wide."
+  ],
+  "explanations": [
+    "Incorrect. Switching account types is irrelevant; the organization admin simply needs to enable the connector.",
+    "Correct. On Team and Enterprise plans, an Owner or Primary Owner must enable connectors org-wide before members can authenticate their own accounts.",
+    "Incorrect. No separate marketplace add-on installation is a prerequisite for the Drive connector.",
+    "Incorrect. There is no support-ticket whitelisting process; the control point is an org-level toggle set by an Owner or Primary Owner."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"4 / 27 correct (15%) View by domain\":\n  - generic: 4 / 27 correct (15%)\n  - generic: View by domain\n- progressbar\n- generic: Question 28 of 60\n- generic: \"Subdomain 5.2: Manage uploaded knowledge and connectors (e.g., Google Drive, Gmail)\"\n- heading \"At an Enterprise organization, no one has enabled connectors yet, and an employee tries to connect Google Drive. What must happen before the employee can authenticate?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) The employee must switch to a personal, non-organizational Claude account first.\" [checked] [disabled]:\n  - generic: A) The employee must switch to a personal, non-organizational Claude account first.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Switching account types is irrelevant; the organization admin simply needs to enable the connector.\n  - radio \"B) An Owner or Primary Owner must first enable the connector organization-wide.\" [disabled]\n  - generic: B) An Owner or Primary Owner must first enable the connector organization-wide.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. On Team and Enterprise plans, an Owner or Primary Owner must enable connectors org-wide before members can authenticate their own accounts.\n  - radio \"C) The employee must install a separate Workspace marketplace add-on before this.\" [disabled]\n  - generic: C) The employee must install a separate Workspace marketplace add-on before this.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. No separate marketplace add-on installation is a prerequisite for the Drive connector.\n  - radio \"D) The employee must contact Anthropic support to whitelist their Google account first.\" [disabled]\n  - generic: D) The employee must contact Anthropic support to whitelist their Google account first.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. There is no support-ticket whitelisting process; the control point is an org-level toggle set by an Owner or Primary Owner.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:19:21.031Z",
+  "fingerprint": "a157b1aef339a9570720ef6aac1e5832155d32261904e7df88215631ed70ef79"
+}

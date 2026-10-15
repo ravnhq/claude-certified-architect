@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "An analyst appends a reference list that Claude produced to her report without opening any of the items on it. What is the greatest risk?",
+  "options": [
+    "A) The list will be longer than the report itself requires, which readers are likely to find distracting.",
+    "B) The references will be formatted in a style that her organisation's template does not permit.",
+    "C) A reference may not exist at all, or may exist but not support the claim attached to it.",
+    "D) Readers will follow the references instead of reading the analysis that she has written herself."
+  ],
+  "correct_answers": [
+    "C) A reference may not exist at all, or may exist but not support the claim attached to it."
+  ],
+  "explanations": [
+    "Incorrect. Length is a presentation issue and says nothing about whether the sources back the claims.",
+    "Incorrect. Formatting is easily corrected and does not affect whether the report's claims are supported.",
+    "Correct. An unopened reference list gives the report the appearance of grounding while providing none, and readers will treat it as though the checking was done.",
+    "Incorrect. Readers consulting sources is a good outcome; the danger is that the sources will not hold up."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"12 / 34 correct (35%) View by domain\":\n  - generic: 12 / 34 correct (35%)\n  - generic: View by domain\n- progressbar\n- generic: Question 35 of 60\n- generic: \"Subdomain 2.3: Apply fact-checking and validation techniques\"\n- heading \"An analyst appends a reference list that Claude produced to her report without opening any of the items on it. What is the greatest risk?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) The list will be longer than the report itself requires, which readers are likely to find distracting.\" [checked] [disabled]:\n  - generic: A) The list will be longer than the report itself requires, which readers are likely to find distracting.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Length is a presentation issue and says nothing about whether the sources back the claims.\n  - radio \"B) The references will be formatted in a style that her organisation's template does not permit.\" [disabled]\n  - generic: B) The references will be formatted in a style that her organisation's template does not permit.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Formatting is easily corrected and does not affect whether the report's claims are supported.\n  - radio \"C) A reference may not exist at all, or may exist but not support the claim attached to it.\" [disabled]\n  - generic: C) A reference may not exist at all, or may exist but not support the claim attached to it.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. An unopened reference list gives the report the appearance of grounding while providing none, and readers will treat it as though the checking was done.\n  - radio \"D) Readers will follow the references instead of reading the analysis that she has written herself.\" [disabled]\n  - generic: D) Readers will follow the references instead of reading the analysis that she has written herself.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Readers consulting sources is a good outcome; the danger is that the sources will not hold up.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:22:51.148Z",
+  "fingerprint": "ed50a2bad05f39c4a3db6ed43eece29985d262118e0acacbaf7ffc869acbad65"
+}

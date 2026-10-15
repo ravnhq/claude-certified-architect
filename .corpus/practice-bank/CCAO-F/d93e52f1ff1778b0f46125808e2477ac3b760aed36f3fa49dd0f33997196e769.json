@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A marketing associate's project instructions say \"keep it short\", yet the drafts Claude produces are still far longer than the team wants. What should the associate do first?",
+  "options": [
+    "A) Replace the vague rule with a specific limit, such as a stated word count and a section structure.",
+    "B) Switch to a more capable model, since shorter writing needs stronger reasoning about relevance.",
+    "C) Add capital letters and the word \"must\" to the existing rule so the instruction carries more weight.",
+    "D) Move the rule into the project knowledge base, where longer background material is normally stored."
+  ],
+  "correct_answers": [
+    "A) Replace the vague rule with a specific limit, such as a stated word count and a section structure."
+  ],
+  "explanations": [
+    "Correct. Vague direction is the root cause; the fix is to make the requirement concrete enough to follow.",
+    "A stronger model does not repair an under-specified instruction.",
+    "Emphasis does not add the missing information about how short is short enough.",
+    "Moving a behaviour rule into reference material makes it less likely to shape every answer, not more."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"3 / 15 correct (20%) View by domain\":\n  - generic: 3 / 15 correct (20%)\n  - generic: View by domain\n- progressbar\n- generic: Question 16 of 20\n- generic: \"Subdomain 5.3: Create effective system-level instructions\"\n- heading \"A marketing associate's project instructions say \\\"keep it short\\\", yet the drafts Claude produces are still far longer than the team wants. What should the associate do first?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Replace the vague rule with a specific limit, such as a stated word count and a section structure.\" [checked] [disabled]:\n  - generic: A) Replace the vague rule with a specific limit, such as a stated word count and a section structure.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Vague direction is the root cause; the fix is to make the requirement concrete enough to follow.\n  - radio \"B) Switch to a more capable model, since shorter writing needs stronger reasoning about relevance.\" [disabled]\n  - generic: B) Switch to a more capable model, since shorter writing needs stronger reasoning about relevance.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A stronger model does not repair an under-specified instruction.\n  - radio \"C) Add capital letters and the word \\\"must\\\" to the existing rule so the instruction carries more weight.\" [disabled]\n  - generic: C) Add capital letters and the word \"must\" to the existing rule so the instruction carries more weight.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Emphasis does not add the missing information about how short is short enough.\n  - radio \"D) Move the rule into the project knowledge base, where longer background material is normally stored.\" [disabled]\n  - generic: D) Move the rule into the project knowledge base, where longer background material is normally stored.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Moving a behaviour rule into reference material makes it less likely to shape every answer, not more.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:16:08.940Z",
+  "fingerprint": "d93e52f1ff1778b0f46125808e2477ac3b760aed36f3fa49dd0f33997196e769"
+}

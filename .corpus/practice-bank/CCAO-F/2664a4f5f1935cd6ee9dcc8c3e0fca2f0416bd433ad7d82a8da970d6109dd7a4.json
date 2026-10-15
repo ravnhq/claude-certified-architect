@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "A) Ask for two digests where an open risk was missed, with the missing risk actually named.",
+    "C) Compare those digests against the shift logs to see exactly what was left out of them."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Correct. Vague feedback cannot be acted on; specific failing examples turn an impression into something diagnosable.",
+    "Changing shared instructions before the cause is known risks fixing the wrong thing for everyone at once.",
+    "Correct on separate grounds: only the source shows whether the risk was absent from the log, buried, or genuinely dropped.",
+    "A score captures sentiment but still never says which risks went missing, or why they went missing.",
+    "A format change may help presentation, but it cannot add a risk the digest never captured."
+  ],
+  "options": [
+    "A) Ask for two digests where an open risk was missed, with the missing risk actually named.",
+    "B) Rewrite the shared project instructions straight away to stress that open risks matter most of all.",
+    "C) Compare those digests against the shift logs to see exactly what was left out of them.",
+    "D) Ask everyone to score every future digest out of ten so that a trend can be tracked over time.",
+    "E) Switch the digests into a table format, since open risks may then be easier to spot in a table."
+  ],
+  "question": "Several engineers tell a site coordinator that Claude's shift-handover digests 'skip the open risks', but nobody says which risks or which shifts. Which two steps should the coordinator take first? Select two.(Select 2)",
+  "snapshot": "Subdomain 7.2: ADJUST APPROACH BASED ON FEEDBACK AND RESULTS",
+  "fingerprint": "2664a4f5f1935cd6ee9dcc8c3e0fca2f0416bd433ad7d82a8da970d6109dd7a4"
+}

@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-15T19:17:11.942Z",
+  "correct_answers": [
+    "C) Use Research mode, so the briefing is built by multi-step searching and returns citations.",
+    "D) Ask for the briefing as an artifact, so the team can edit and reuse it outside the chat."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Incorrect. Re-pasting an inline answer for every edit is precisely the friction artifacts exist to remove, and versions drift apart quickly.",
+    "Incorrect. An internal mailbox is not the source of public competitor information, and connecting one does not answer the sourcing need here.",
+    "Correct. Research mode runs an agentic, multi-step search and returns citations, which is exactly what a sourced competitor briefing needs.",
+    "Correct. An artifact is the durable, editable deliverable format, so weeks of later editing happen on one object rather than in chat replies.",
+    "Incorrect. Splitting by competitor fragments the briefing and does nothing about sourcing or about the editing the team has ahead of it."
+  ],
+  "options": [
+    "A) Keep the briefing inline in the chat and re-paste the newest version whenever an edit lands.",
+    "B) Turn on a mail connector first so that the competitor facts are drawn from the team inbox.",
+    "C) Use Research mode, so the briefing is built by multi-step searching and returns citations.",
+    "D) Ask for the briefing as an artifact, so the team can edit and reuse it outside the chat.",
+    "E) Open a separate chat for each competitor so that no single conversation ever grows long."
+  ],
+  "question": "A market analyst must produce a competitor briefing drawn from many public sources, and the team will keep editing that briefing for weeks afterwards. Which two Claude features fit this job? Select two.(Select 2)",
+  "snapshot": "Subdomain 3.1: SELECT APPROPRIATE CLAUDE PRODUCT FEATURES (PROJECTS, RESEARCH MODE, CHAT, ARTIFACTS)",
+  "fingerprint": "0af61e111b5a04e5c81166348d129afefe004eb28c77705cd44807536b2675fb"
+}

@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "Using the Calendar connector, a user asks Claude to set up a team sync that repeats every Monday. What can Claude do here?",
+  "options": [
+    "A) Claude can draft the details, but an admin must go configure the recurrence separately.",
+    "B) Claude can create the event directly, since the connector supports recurring events.",
+    "C) Claude can view existing recurring events but cannot create new ones itself.",
+    "D) Claude can only create a single event with no way to set up recurrence."
+  ],
+  "correct_answers": [
+    "B) Claude can create the event directly, since the connector supports recurring events."
+  ],
+  "explanations": [
+    "Incorrect. No admin intervention is needed; the connector lets Claude set up recurrence directly.",
+    "Correct. The Calendar connector explicitly supports establishing recurring meetings, so a weekly Monday sync can be created directly.",
+    "Incorrect. The connector supports both viewing and creating events, including recurring ones.",
+    "Incorrect. Recurrence configuration is a documented capability, not a missing feature requiring a workaround."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"4 / 12 correct (33%) View by domain\":\n  - generic: 4 / 12 correct (33%)\n  - generic: View by domain\n- progressbar\n- generic: Question 13 of 20\n- generic: \"Subdomain 5.2: Manage uploaded knowledge and connectors (e.g., Google Drive, Gmail)\"\n- heading \"Using the Calendar connector, a user asks Claude to set up a team sync that repeats every Monday. What can Claude do here?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Claude can draft the details, but an admin must go configure the recurrence separately.\" [checked] [disabled]:\n  - generic: A) Claude can draft the details, but an admin must go configure the recurrence separately.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. No admin intervention is needed; the connector lets Claude set up recurrence directly.\n  - radio \"B) Claude can create the event directly, since the connector supports recurring events.\" [disabled]\n  - generic: B) Claude can create the event directly, since the connector supports recurring events.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. The Calendar connector explicitly supports establishing recurring meetings, so a weekly Monday sync can be created directly.\n  - radio \"C) Claude can view existing recurring events but cannot create new ones itself.\" [disabled]\n  - generic: C) Claude can view existing recurring events but cannot create new ones itself.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. The connector supports both viewing and creating events, including recurring ones.\n  - radio \"D) Claude can only create a single event with no way to set up recurrence.\" [disabled]\n  - generic: D) Claude can only create a single event with no way to set up recurrence.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Recurrence configuration is a documented capability, not a missing feature requiring a workaround.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:12:53.558Z",
+  "fingerprint": "7cdd6ce4f7c81a14b2e521147235c5fa07b341bdb160f5c903eab7f602553b83"
+}

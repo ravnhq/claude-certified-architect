@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A manager asks Claude, connected via the Calendar connector, to find a time when five attendees are all free next week. What can Claude do?",
+  "options": [
+    "A) Claude can identify mutual availability across attendees using the connector directly.",
+    "B) Claude can list each attendee's events but cannot compute their overlapping free time.",
+    "C) Claude can only check the manager's own calendar, not the attendees' ones.",
+    "D) Claude cannot access calendar data for anyone besides the account owner."
+  ],
+  "correct_answers": [
+    "A) Claude can identify mutual availability across attendees using the connector directly."
+  ],
+  "explanations": [
+    "Correct. The Calendar connector explicitly supports identifying mutual availability across attendees, finding a shared open slot for all five.",
+    "Incorrect. Computing mutual availability, not just listing separate events, is specifically supported.",
+    "Incorrect. The connector is designed to view shared calendars and attendee availability, not just the manager's events.",
+    "Incorrect. Access to shared calendars for availability checks is a core connector feature."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"3 / 25 correct (12%) View by domain\":\n  - generic: 3 / 25 correct (12%)\n  - generic: View by domain\n- progressbar\n- generic: Question 26 of 60\n- generic: \"Subdomain 5.2: Manage uploaded knowledge and connectors (e.g., Google Drive, Gmail)\"\n- heading \"A manager asks Claude, connected via the Calendar connector, to find a time when five attendees are all free next week. What can Claude do?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Claude can identify mutual availability across attendees using the connector directly.\" [checked] [disabled]:\n  - generic: A) Claude can identify mutual availability across attendees using the connector directly.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. The Calendar connector explicitly supports identifying mutual availability across attendees, finding a shared open slot for all five.\n  - radio \"B) Claude can list each attendee's events but cannot compute their overlapping free time.\" [disabled]\n  - generic: B) Claude can list each attendee's events but cannot compute their overlapping free time.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Computing mutual availability, not just listing separate events, is specifically supported.\n  - radio \"C) Claude can only check the manager's own calendar, not the attendees' ones.\" [disabled]\n  - generic: C) Claude can only check the manager's own calendar, not the attendees' ones.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. The connector is designed to view shared calendars and attendee availability, not just the manager's events.\n  - radio \"D) Claude cannot access calendar data for anyone besides the account owner.\" [disabled]\n  - generic: D) Claude cannot access calendar data for anyone besides the account owner.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Access to shared calendars for availability checks is a core connector feature.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:19:16.504Z",
+  "fingerprint": "3214dae37b367783150ee1e56f573c8a1636c80b584c6155476ba328232a40de"
+}

@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A user wants Claude to find a spreadsheet they opened yesterday in Google Drive but does not remember its exact URL. What can the Drive connector do?",
+  "options": [
+    "A) Only retrieve a file when the exact URL is provided by the user first.",
+    "B) List every file in the Drive account without offering any search tool.",
+    "C) Only access files explicitly shared with a separate Claude service account first.",
+    "D) Search through recently accessed documents in Drive to help find the file."
+  ],
+  "correct_answers": [
+    "D) Search through recently accessed documents in Drive to help find the file."
+  ],
+  "explanations": [
+    "Incorrect. A URL is one option, not a requirement; recent-document search is also supported.",
+    "Incorrect. Search capability is part of the connector, not just a flat unsearchable file list.",
+    "Incorrect. There is no separate service account requirement; the connector uses the user's own authenticated Drive access.",
+    "Correct. The Drive connector lets users search recently accessed documents, or paste a URL, so the file can be found without the exact link."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"1 / 2 correct (50%) View by domain\":\n  - generic: 1 / 2 correct (50%)\n  - generic: View by domain\n- progressbar\n- generic: Question 3 of 20\n- generic: \"Subdomain 5.2: Manage uploaded knowledge and connectors (e.g., Google Drive, Gmail)\"\n- heading \"A user wants Claude to find a spreadsheet they opened yesterday in Google Drive but does not remember its exact URL. What can the Drive connector do?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Only retrieve a file when the exact URL is provided by the user first.\" [checked] [disabled]:\n  - generic: A) Only retrieve a file when the exact URL is provided by the user first.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. A URL is one option, not a requirement; recent-document search is also supported.\n  - radio \"B) List every file in the Drive account without offering any search tool.\" [disabled]\n  - generic: B) List every file in the Drive account without offering any search tool.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Search capability is part of the connector, not just a flat unsearchable file list.\n  - radio \"C) Only access files explicitly shared with a separate Claude service account first.\" [disabled]\n  - generic: C) Only access files explicitly shared with a separate Claude service account first.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. There is no separate service account requirement; the connector uses the user's own authenticated Drive access.\n  - radio \"D) Search through recently accessed documents in Drive to help find the file.\" [disabled]\n  - generic: D) Search through recently accessed documents in Drive to help find the file.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. The Drive connector lets users search recently accessed documents, or paste a URL, so the file can be found without the exact link.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:11:43.658Z",
+  "fingerprint": "ed88def7b141c5b7239d2e758666c8958025c948f21e8440c4d7f1c711563fca"
+}

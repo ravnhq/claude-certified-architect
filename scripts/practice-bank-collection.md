@@ -13,9 +13,9 @@ python3 scripts/practice_bank_receiver.py
 ```
 
 Initialize the bundled browser through `cua_repl`, then open the practice bank's
-CCAR-F, CCAR-P and CCDV-F exam pages, one tab each.
+CCAR-F, CCAR-P, CCDV-F, and CCAO-F exam pages, one tab each.
 
-Start a Review quiz with 60 questions on each page. Open a fourth tab at
+Start a Review quiz with 60 questions on each page. Open a fifth tab at
 http://127.0.0.1:8768/ as the local save form. Read the current browser tool
 documentation and page state before interacting. Load the contents of
 `practice-bank-browser.js` into the persistent `cua_repl` context, then create:
@@ -25,6 +25,7 @@ let collector = createPracticeBankCollector([
   { tab: foundationsTab, exam: 'CCAR-F', end: false },
   { tab: professionalTab, exam: 'CCAR-P', end: false },
   { tab: developerTab, exam: 'CCDV-F', end: false },
+  { tab: associateTab, exam: 'CCAO-F', end: false },
 ], saveTab);
 await collector.loadKnown();
 nodeRepl.write(await collector.run(15));
@@ -51,17 +52,18 @@ batch before collecting more. `loadKnown()` restores only records already saved.
 
 Output is checkpointed under `.corpus/practice-bank/`. The requested practice-bank
 snapshot is tracked explicitly; other `.corpus` material remains ignored. The
-CCAR-P and CCDV-F exports are the source of the two practice-exam banks:
-`utils/import_practice_bank.py` folds them into `ccap/data/questions.json` and
-`ccdf/data/questions.json`, keying each item to a blueprint objective through the
+CCAR-P, CCDV-F, and CCAO-F exports are the source of their practice-exam banks:
+`utils/import_practice_bank.py` folds them into each track's `data/questions.json`,
+keying each item to a blueprint objective through the
 `Subdomain X.Y` label the practice bank puts on the question, which the collector keeps
 in each record's `snapshot`. Re-run that importer after refreshing a snapshot.
-When committing a refreshed snapshot, stage only the three exam directories,
-the six combined JSON/Markdown exports, `README.md`, and `status.json`.
+When committing a refreshed snapshot, stage only the four exam directories,
+the eight combined JSON/Markdown exports, `README.md`, and `status.json`.
 Do not include `resume.json`, `duplicates/`, or generated ZIP archives.
 New checkpoint files under the ignored parent need a targeted `git add -f`.
 `status.json` reports unique counts against the published totals observed on
-September 14, 2026: 480 CCAR-F, 456 CCAR-P, and 524 CCDV-F. Check the live totals
+October 15, 2026: 480 CCAR-F, 456 CCAR-P, 524 CCDV-F, and 757 advertised CCAO-F
+(770 unique exported records after public sample variants). Check the live totals
 when resuming another day. Random selection means a fixed number of quizzes
 does not guarantee coverage. Check each live Coverage count before claiming
 the whole bank is collected.

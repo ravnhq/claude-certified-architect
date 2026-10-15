@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "C) Separate deciding who gets a place from writing the letters, and keep the decision with staff."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Confirming that Claude can repeat the criteria says nothing about whether it should be the thing applying them. A correct restatement would make the team more comfortable handing over a decision it should not hand over.",
+    "Using one school as the trial means real families receive decisions from an untested arrangement, and complaints are a late and unreliable signal of whether the allocation was right.",
+    "Correct. A school place materially affects a child's life and the decision is hard to reverse once families have been told, so it belongs with accountable staff. Drafting the letters afterwards is a text task where an error is recoverable, and splitting the two makes the appropriate part safe to delegate.",
+    "A firmer instruction addresses how faithfully the criteria are applied, not whether an allocation affecting children's schooling should be made this way at all."
+  ],
+  "options": [
+    "A) Ask Claude to restate the district's admissions criteria so the team can confirm it has them right.",
+    "B) Run the letters for one school first and see whether any family complains about the wording.",
+    "C) Separate deciding who gets a place from writing the letters, and keep the decision with staff.",
+    "D) Add an instruction telling Claude to apply the admissions criteria exactly as they are written."
+  ],
+  "question": "A school district's operations team wants Claude to work through the admissions criteria and produce the letters telling families whether their child has a place at an oversubscribed school. What should the team do first?",
+  "snapshot": "Subdomain 6.1: IDENTIFY APPROPRIATE AND INAPPROPRIATE USE CASES",
+  "fingerprint": "fcd054b19124bd0e931e92b0ce2bcacde5b24237e8d042bb01ef8ed270f6cb2b"
+}

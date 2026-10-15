@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-15T19:17:11.942Z",
+  "correct_answers": [
+    "B) Use the deepest-reasoning tier for the contract dispute, accepting the larger quota it uses.",
+    "C) Use the fastest, cheapest tier for the high-volume classification, where throughput matters."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Incorrect. Tier choice changes depth, speed and quota use, so treating it as incidental is how both of these jobs go wrong.",
+    "Correct. A tangled one-off analysis is the case where deeper reasoning is worth the meaningfully larger quota it consumes.",
+    "Correct. High-volume, low-complexity classification is exactly where the fastest and cheapest tier earns its place.",
+    "Incorrect. The tiers differ in reasoning depth as well as speed, so the lightest tier is a poor fit for a tangled dispute.",
+    "Incorrect. Using the deepest tier for routine classification spends quota on work that does not need the extra reasoning depth."
+  ],
+  "options": [
+    "A) Use whichever tier the team already has open, since the tier rarely changes what comes back.",
+    "B) Use the deepest-reasoning tier for the contract dispute, accepting the larger quota it uses.",
+    "C) Use the fastest, cheapest tier for the high-volume classification, where throughput matters.",
+    "D) Use the fastest, cheapest tier for both jobs, since the tiers differ mainly in reply speed.",
+    "E) Use the deepest-reasoning tier for both of the jobs, since the strongest option is never bad."
+  ],
+  "question": "A support operations lead must classify a large daily backlog of short inbound messages, and separately needs one deep analysis of a tangled contract dispute. Which two choices fit? Select two.(Select 2)",
+  "snapshot": "Subdomain 3.2: DIFFERENTIATE BETWEEN CLAUDE MODEL TYPES (HAIKU, SONNET, OPUS)",
+  "fingerprint": "b228f474557fa09ebd753e58c3865184995bfe2a17f644acf625c4d6e10df5e6"
+}

@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A team member is worried that connecting Google Drive will let colleagues read files they are not allowed to open. What is accurate?",
+  "options": [
+    "A) A connector requires every file to be made public in Drive before Claude is able to read any of them.",
+    "B) A connector gives everyone in the workspace the same view, so the file permissions no longer apply inside Claude.",
+    "C) A connector follows each person's existing permissions, so files they cannot open in Drive stay out of reach.",
+    "D) A connector copies the files into a shared store, so anyone in the organisation can search them later."
+  ],
+  "correct_answers": [
+    "C) A connector follows each person's existing permissions, so files they cannot open in Drive stay out of reach."
+  ],
+  "explanations": [
+    "No change to a file's sharing settings is required to use a connector.",
+    "Connectors do not flatten or override the permissions of the connected service.",
+    "Correct. If someone cannot reach a file in the source system, the connector cannot reach it for them either.",
+    "Connectors read from the source system rather than duplicating files into a shared pool."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"2 / 8 correct (25%) View by domain\":\n  - generic: 2 / 8 correct (25%)\n  - generic: View by domain\n- progressbar\n- generic: Question 9 of 20\n- generic: \"Subdomain 5.2: Manage uploaded knowledge and connectors (e.g., Google Drive, Gmail)\"\n- heading \"A team member is worried that connecting Google Drive will let colleagues read files they are not allowed to open. What is accurate?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) A connector requires every file to be made public in Drive before Claude is able to read any of them.\" [checked] [disabled]:\n  - generic: A) A connector requires every file to be made public in Drive before Claude is able to read any of them.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: No change to a file's sharing settings is required to use a connector.\n  - radio \"B) A connector gives everyone in the workspace the same view, so the file permissions no longer apply inside Claude.\" [disabled]\n  - generic: B) A connector gives everyone in the workspace the same view, so the file permissions no longer apply inside Claude.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Connectors do not flatten or override the permissions of the connected service.\n  - radio \"C) A connector follows each person's existing permissions, so files they cannot open in Drive stay out of reach.\" [disabled]\n  - generic: C) A connector follows each person's existing permissions, so files they cannot open in Drive stay out of reach.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. If someone cannot reach a file in the source system, the connector cannot reach it for them either.\n  - radio \"D) A connector copies the files into a shared store, so anyone in the organisation can search them later.\" [disabled]\n  - generic: D) A connector copies the files into a shared store, so anyone in the organisation can search them later.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Connectors read from the source system rather than duplicating files into a shared pool.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:12:25.613Z",
+  "fingerprint": "69e44ddf9e663f5652ebfeb583741fc912c6203d1c46e225104465d45dd02034"
+}

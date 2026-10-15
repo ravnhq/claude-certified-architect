@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rebuild the CCAR-P / CCDV-F question banks, and the imported half of the
+"""Rebuild the CCAR-P / CCDV-F / CCAO-F question banks, and the imported half of the
 CCAR-F bank, from the collected practice-bank corpus.
 
 Those two banks are no longer hand-written. Their items come from
@@ -39,7 +39,7 @@ The import does not need them and does not wait for them.
 
 Answers are as the practice bank marked them and have not been independently verified.
 
-Usage: python3 utils/import_practice_bank.py [ccaf|ccap|ccdf|all] [--tags-dir DIR]
+Usage: python3 utils/import_practice_bank.py [ccaf|ccap|ccdf|ccaof|all] [--tags-dir DIR]
 
 Foundations differs in two ways: its objectives file is blueprint.json (the
 official task statements; objectives.json there holds the score-report list the
@@ -67,6 +67,8 @@ TRACKS = {
              "objectives": "objectives.json", "out": "questions.json"},
     "ccdf": {"code": "CCDV-F", "prefix": "d", "validator": "validate_developer_bank",
              "objectives": "objectives.json", "out": "questions.json"},
+    "ccaof": {"code": "CCAO-F", "prefix": "a", "validator": "validate_associate_bank",
+              "objectives": "objectives.json", "out": "questions.json"},
 }
 
 # The practice bank's own label for the item, read out of the captured page snapshot.
@@ -336,7 +338,8 @@ def import_track(track_key: str, tags_dir: str) -> int:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("track", nargs="*", default=["all"], choices=["ccaf", "ccap", "ccdf", "all"])
+    parser.add_argument("track", nargs="*", default=["all"],
+                        choices=["ccaf", "ccap", "ccdf", "ccaof", "all"])
     parser.add_argument("--tags-dir", default=TAGS_DIR,
                         help="optional <CODE>.*.json tag files to cross-check the "
                              "snapshot labels against")

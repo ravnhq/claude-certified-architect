@@ -1,7 +1,6 @@
 # Claude Certified Architect · Ravn Edition
 
-Ravn-curated study materials for the Claude Certified Architect certifications, in English,
-Spanish, and Portuguese.
+Ravn-curated study materials for Claude certifications, in English, Spanish, and Portuguese.
 
 **Read online: <https://ravnhq.github.io/claude-certified-architect/>**
 
@@ -19,12 +18,13 @@ the browser.
 | **Architect – Foundations** | CCAR-F | Practitioners building with Claude Code, the Claude Agent SDK, the Claude API, and MCP | Study guide, practice exam, and cheatsheet in EN / ES / PT, plus the preflight checklist |
 | **Architect – Professional** | CCAR-P | Architects responsible for production AI architecture, evaluation, governance, and lifecycle decisions | English study guide and a 63-question practice exam |
 | **Developer – Foundations** | CCDV-F | Engineers building and shipping production applications, agents, and workflows on the Claude platform | English study guide and a 53-question practice exam |
+| **Associate – Foundations** | CCAO-F | Professionals using Claude for research, analysis, drafting, planning, and workflow improvement | English study guide, 60-question practice exam, and 770-question bank |
 
-The three exams use different blueprints. Foundations has five domains, Developer eight,
-Professional seven. Foundations material does not represent Professional coverage, and the
+The four exams use different blueprints. Architect Foundations has five domains, Developer eight,
+Professional seven, and Associate seven. Foundations material does not represent Professional coverage, and the
 reverse is equally true; the same holds between every pair of tracks.
 
-> **Professional and Developer material is English only.** Anthropic delivers those exams and
+> **Professional, Developer, and Associate material is English only.** Anthropic delivers those exams and
 > their prep content in English and prohibits browser translation during proctored testing, so
 > ES/PT tracks would train against wording the exams never use. The Foundations material stays
 > tri-language.
@@ -36,16 +36,16 @@ source and which Anthropic marks subject to change. Delivery and language rules 
 English only) come from the official [certification FAQ](https://anthropic-partners.skilljar.com/page/faq-certifications),
 not the guides.
 
-| | Architect – Foundations | Architect – Professional | Developer – Foundations |
-|---|---|---|---|
-| Exam code | CCAR-F | CCAR-P | CCDV-F |
-| Items | 60 | 63 | 53 |
-| Time | 120 minutes | 120 minutes | 120 minutes |
-| Passing score | 720 on a 100–1,000 scale | 720 on a 100–1,000 scale | 720 on a 100–1,000 scale |
-| List fee | $125 USD | $175 USD | $125 USD |
-| Validity | 12 months | 12 months | 12 months |
-| Prerequisites | None | None | None |
-| Delivery | Proctored by Pearson VUE, English only | Proctored by Pearson VUE, English only | Proctored by Pearson VUE, English only |
+| | Architect – Foundations | Architect – Professional | Developer – Foundations | Associate – Foundations |
+|---|---|---|---|---|
+| Exam code | CCAR-F | CCAR-P | CCDV-F | CCAO-F |
+| Items | 60 | 63 | 53 | 60 |
+| Time | 120 minutes | 120 minutes | 120 minutes | 120 minutes |
+| Passing score | 720 on a 100–1,000 scale | 720 on a 100–1,000 scale | 720 on a 100–1,000 scale | 720 on a 100–1,000 scale |
+| List fee | $125 USD | $175 USD | $125 USD | $99 USD |
+| Validity | 12 months | 12 months | 12 months | 12 months |
+| Prerequisites | None | None | None | None |
+| Delivery | Proctored by Pearson VUE, English only | Proctored by Pearson VUE, English only | Proctored by Pearson VUE, English only | Proctored online or at a test center |
 
 **No course is required to sit any of the exams.** The credential is awarded on exam performance
 alone. Anthropic publishes free prep courses, and they help, but they are not a gate.
@@ -69,14 +69,15 @@ price rose to $125 on June 30, 2026; registrations before that date paid the low
 
 - Certification is restricted to members of the Anthropic Partner Network and requires
   registration with a verified partner-company email. See [Claude Partner Network](https://claude.com/partners).
-- The FAQ also lists a fourth certification, **Claude Certified Associate – Foundations** ($99).
-  This repo does not cover it; it does not count toward Partner Network eligibility.
+- **Claude Certified Associate – Foundations** costs $99 and is aimed at productivity-tool users;
+  unlike the architect and developer tracks, it does not expect API development knowledge.
 - Register through the [Anthropic Partner Academy](https://anthropic-partners.skilljar.com/page/partner-certifications),
   then schedule with Pearson VUE using the credentials they email you.
 - Official guides, all marked subject to change:
   [Foundations](https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification) ·
   [Professional](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf) ·
-  [Developer](https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification)
+  [Developer](https://anthropic-partners.skilljar.com/claude-certified-developer-foundations-certification) ·
+  [Associate](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542847%2FClaude+Certified+Associate+%E2%80%93+Foundations+Exam+Guide.pdf)
 - See also the [certification FAQ](https://anthropic-partners.skilljar.com/page/faq-certifications).
 
 ### Prep courses
@@ -125,6 +126,28 @@ approach and the trap to avoid — **5 questions to ask when two answers look eq
 breakdown of the 136 hand-authored questions by domain, with weights and answer-letter distribution.
 
 - [`ccaf/dist/cheatsheet_en.html`](./ccaf/dist/cheatsheet_en.html) · [`ccaf/dist/cheatsheet_es.html`](./ccaf/dist/cheatsheet_es.html) · [`ccaf/dist/cheatsheet_pt.html`](./ccaf/dist/cheatsheet_pt.html)
+
+## Associate study guide and practice exam
+
+[`ccaof/guide_en.md`](./ccaof/guide_en.md) · [read online](https://ravnhq.github.io/claude-certified-architect/guides/associate-en.html)
+
+The guide covers all **30 official objectives** across prompting, output validation, product and
+model selection, workflow integration, configuration and knowledge management, governance, and
+troubleshooting. It includes the official exam facts and policies, sample-question lessons, a
+four-week plan, and current official Anthropic product references.
+
+Each practice attempt draws **60 questions** in the official proportions: **8 / 13 / 7 / 10 /
+7 / 9 / 6** by domain. The local bank contains **770 unique public practice records**, covering
+all 30 objectives. CertSafari advertises 757 questions; the export is larger because its public
+sample pool includes additional distinct variants. Multiple-response items are scored
+all-or-nothing.
+
+- [`ccaof/dist/exam_en.html`](./ccaof/dist/exam_en.html)
+- [`ccaof/dist/bank_en.html`](./ccaof/dist/bank_en.html)
+
+> **Third-party practice content, not live exam content.** The questions and answer keys were
+> collected from CertSafari's public browser experience and have not been independently verified
+> by Anthropic or Ravn. Use the official guide and primary sources when they conflict.
 
 ## Developer study guide
 
@@ -207,6 +230,8 @@ raw with no pass/fail verdict.
 4. **Professional** — read the official guide first, map your experience against the 38
    objectives, build one end-to-end reference system, then rehearse trade-offs under time
    pressure. Use exam mode for the timed run and study mode to read the rationale on every miss.
+5. **Associate** — work through the 30 objective sections, practice output verification and
+   governance decisions, then alternate timed 60-question attempts with objective-level drills.
 
 ### Review a score report
 
@@ -214,8 +239,9 @@ Upload a score-report PDF to get a personalized study guide and practice exam au
 The report stays on your device. If the exam cannot be identified, choose it; if any scores
 need correction, the page asks only for those corrections. Report details remain available
 below the guide. Each topic card expands into an objective-specific explanation, example,
-and practical guidance. All three exams are supported: Architect Foundations (CCAR-F),
-Architect Professional (CCAR-P), and Developer Foundations (CCDV-F).
+and practical guidance. All four exams are supported: Architect Foundations (CCAR-F),
+Architect Professional (CCAR-P), Developer Foundations (CCDV-F), and Associate Foundations
+(CCAO-F).
 
 Objective scores and personalized exam progress are saved in this browser on this device,
 so the guide and attempt can be resumed after closing the tab. The PDF and candidate details
@@ -223,7 +249,7 @@ are not saved. Use **Report details → Delete saved study data** to clear the p
 guide and attempt. Clearing browser data also removes them; they do not sync across devices.
 
 The practice exam draws from the existing bank, favors weaker topics, and retains coverage
-across all five domains. Results show practice accuracy and explanations, not an official
+across every domain in the selected blueprint. Results show practice accuracy and explanations, not an official
 score prediction.
 
 ## Design
@@ -240,9 +266,10 @@ npm install --no-save marked@13.0.3 minisearch@7.2.0 pdfjs-dist@4.10.38 md-to-pd
 
 python3 utils/build_exam_html.py               # → ccaf/dist/exam_{en,es,pt}.html + data/*.json
 python3 utils/build_exam_html.py en es         # specific languages
-python3 utils/import_practice_bank.py          # corpus + tags → ccap,ccdf data/questions.json
+python3 utils/import_practice_bank.py          # corpus + tags → ccap,ccdf,ccaof data/questions.json
 python3 utils/build_professional_exam.py       # → ccap/dist/exam_en.html
 python3 utils/build_developer_exam.py          # → ccdf/dist/exam_en.html
+python3 utils/build_associate_exam.py          # → ccaof/dist/exam_en.html
 python3 utils/build_cheatsheet.py              # → ccaf/dist/cheatsheet_{en,es,pt}.html
 node scripts/build-pages.mjs                   # → docs/ site
 node scripts/minify-docs.mjs                   # minify docs/ in place — always last
@@ -250,13 +277,14 @@ node scripts/serve-docs.mjs                    # serve docs/ gzipped, under its 
 
 python3 utils/validate_professional_bank.py    # CCAR-P bank vs. official blueprint
 python3 utils/validate_developer_bank.py       # CCDV-F bank vs. official blueprint
+python3 utils/validate_associate_bank.py       # CCAO-F bank vs. official blueprint
 node utils/test_exam_engine.mjs                # engine checks (Foundations + Professional pages)
 node utils/test_exam_render.mjs                # render checks
 ```
 
 Each validator fails on a bad answer key, an objective absent from the official guide, a stem
 that states a different number of answers than its key, or a domain whose bank is smaller than
-its draw. An objective no item covers is reported as a warning, since the CCAR-P and CCDV-F
+its draw. An objective no item covers is reported as a warning, since the CCAR-P, CCDV-F, and CCAO-F
 banks are imported rather than commissioned.
 
 An exam page does not carry its questions: `render_page` writes them to
@@ -265,7 +293,7 @@ page and its `bank-` twin — which share a hash — download one copy between t
 475 KB each. `<track>/dist/banks.json` records which file each page uses; `build-pages.mjs`
 and `build_cheatsheet.py` read the questions from there rather than from the generated markup.
 
-The Foundations and Professional exams and the site regenerate on every deploy. The Developer
+The Foundations, Professional, and Associate exams and the site regenerate on every deploy. The Developer
 exam and the cheatsheet ship their committed HTML — re-run their generators only when editing
 their content, and keep the cheatsheet stats in sync with `ccaf/data/domains.json` and
 `utils/exam_data.py` (`DOMAIN_NAMES`).
@@ -274,13 +302,13 @@ their content, and keep the cheatsheet stats in sync with `ccaf/data/domains.jso
 
 Each exam owns a top-level directory with the same internal shape:
 
-| | CCAF (CCAR-F) | CCAP (CCAR-P) | CCDF (CCDV-F) |
-|---|---|---|---|
-| Study guide | `ccaf/guide_{en,es,pt}.md` | `ccap/guide_en.md` | `ccdf/guide_en.md` |
-| Question data | `ccaf/data/` | `ccap/data/` | `ccdf/data/` |
-| Source material | `ccaf/sources/` | `.corpus/practice-bank/` | `ccdf/sources/`, `.corpus/practice-bank/` |
-| Exercises | `ccaf/exercises/` | — | — |
-| Generated HTML | `ccaf/dist/` | `ccap/dist/` | `ccdf/dist/` |
+| | CCAF (CCAR-F) | CCAP (CCAR-P) | CCDF (CCDV-F) | CCAOF (CCAO-F) |
+|---|---|---|---|---|
+| Study guide | `ccaf/guide_{en,es,pt}.md` | `ccap/guide_en.md` | `ccdf/guide_en.md` | `ccaof/guide_en.md` |
+| Question data | `ccaf/data/` | `ccap/data/` | `ccdf/data/` | `ccaof/data/` |
+| Source material | `ccaf/sources/` | `.corpus/practice-bank/` | `ccdf/sources/`, `.corpus/practice-bank/` | `ccaof/sources/`, `.corpus/practice-bank/` |
+| Exercises | `ccaf/exercises/` | — | — | — |
+| Generated HTML | `ccaf/dist/` | `ccap/dist/` | `ccdf/dist/` | `ccaof/dist/` |
 
 `data/` holds the question banks and blueprint transcriptions; `sources/` holds third-party
 inputs like the official exam-guide PDFs; `dist/` holds generated exam and cheatsheet HTML —
@@ -288,7 +316,7 @@ edit sources, not `dist/`. Shared tooling stays in `utils/` (importer, builders,
 engine tests) and `scripts/` (site build and the practice-bank collector).
 
 The Foundations bank in `ccaf/data/questions.json` is Ravn-authored and edited by hand. The
-CCAR-P and CCDV-F banks are not: `ccap/data/questions.json` and `ccdf/data/questions.json` are
+CCAR-P, CCDV-F, and CCAO-F banks are not: their `data/questions.json` files are
 generated by `utils/import_practice_bank.py` from the practice-bank corpus under `.corpus/practice-bank/`,
 so an edit made directly to either file is lost on the next import. The same script writes
 `ccaf/data/imported_en.json`, the imported half of the English Foundations bank, placed by
@@ -309,7 +337,7 @@ lives in `scripts/build-pages.mjs` (`PREFLIGHT_TRACKS`, one entry per exam) and
 - **Do not commit material from the Partner Academy courses.** That content is partner-gated.
   Guide prose and the Foundations practice items are Ravn-authored; keep it that way. The
   practice-bank archive under `.corpus/practice-bank/` is the tracked third-party exception — see
-  `scripts/practice-bank-collection.md` — and it is the source of the CCAR-P and CCDV-F banks,
+  `scripts/practice-bank-collection.md` — and it is the source of the CCAR-P, CCDV-F, and CCAO-F banks,
   which are regenerated from it by `utils/import_practice_bank.py` rather than edited by hand.
 - PDFs regenerate automatically on merge to `main` as part of the Pages deploy.
 

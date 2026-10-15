@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A quality lead wants Claude to stop producing figures that do not appear anywhere in the reports uploaded to a project. Which addition to the project instructions best supports this?",
+  "options": [
+    "A) Tell Claude to add a disclaimer to every answer noting that figures may not have been verified.",
+    "B) Tell Claude to answer only from the uploaded reports and to say plainly when a figure is not in them.",
+    "C) Tell Claude to always give a numeric answer, choosing the closest available figure when none matches.",
+    "D) Tell Claude that accuracy is extremely important and that mistakes are unacceptable in this project."
+  ],
+  "correct_answers": [
+    "B) Tell Claude to answer only from the uploaded reports and to say plainly when a figure is not in them."
+  ],
+  "explanations": [
+    "A blanket disclaimer shifts responsibility to the reader instead of preventing the problem.",
+    "Correct. This scopes the source and gives an explicit alternative to inventing a number.",
+    "This actively instructs the behaviour the quality lead is trying to prevent.",
+    "Emphasis without a rule gives no actionable behaviour to follow when a figure is missing."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"3 / 9 correct (33%) View by domain\":\n  - generic: 3 / 9 correct (33%)\n  - generic: View by domain\n- progressbar\n- generic: Question 10 of 20\n- generic: \"Subdomain 5.3: Create effective system-level instructions\"\n- heading \"A quality lead wants Claude to stop producing figures that do not appear anywhere in the reports uploaded to a project. Which addition to the project instructions best supports this?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Tell Claude to add a disclaimer to every answer noting that figures may not have been verified.\" [checked] [disabled]:\n  - generic: A) Tell Claude to add a disclaimer to every answer noting that figures may not have been verified.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A blanket disclaimer shifts responsibility to the reader instead of preventing the problem.\n  - radio \"B) Tell Claude to answer only from the uploaded reports and to say plainly when a figure is not in them.\" [disabled]\n  - generic: B) Tell Claude to answer only from the uploaded reports and to say plainly when a figure is not in them.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. This scopes the source and gives an explicit alternative to inventing a number.\n  - radio \"C) Tell Claude to always give a numeric answer, choosing the closest available figure when none matches.\" [disabled]\n  - generic: C) Tell Claude to always give a numeric answer, choosing the closest available figure when none matches.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: This actively instructs the behaviour the quality lead is trying to prevent.\n  - radio \"D) Tell Claude that accuracy is extremely important and that mistakes are unacceptable in this project.\" [disabled]\n  - generic: D) Tell Claude that accuracy is extremely important and that mistakes are unacceptable in this project.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Emphasis without a rule gives no actionable behaviour to follow when a figure is missing.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:15:15.705Z",
+  "fingerprint": "713df38601a78239d8319ea27013af236b46ec5dd7c5b4de6794917c9dd52dec"
+}

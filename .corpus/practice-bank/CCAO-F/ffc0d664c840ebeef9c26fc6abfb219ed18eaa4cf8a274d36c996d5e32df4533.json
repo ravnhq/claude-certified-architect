@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A team plans to bring Claude into a workflow that three other departments feed into. Which step is most important before the change goes live?",
+  "options": [
+    "A) Wait until the other departments adopt the same arrangement themselves",
+    "B) Tell the feeding departments what changes for them and what does not",
+    "C) Give each department its own version of the new written instructions",
+    "D) Ask the departments to stop sending work until the change is settled"
+  ],
+  "correct_answers": [
+    "B) Tell the feeding departments what changes for them and what does not"
+  ],
+  "explanations": [
+    "Making the change conditional on three other departments adopting it first blocks a workflow improvement that is entirely within this team's control.",
+    "Correct. Integration touches everyone who feeds the workflow. Being explicit about what changes for them, and what stays the same, is what stops the redesign breaking at its handovers.",
+    "Separate instruction versions per department guarantee that the workflow behaves differently depending on who fed it.",
+    "Halting incoming work to make an internal change imposes the cost on other departments unnecessarily."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"7 / 17 correct (41%) View by domain\":\n  - generic: 7 / 17 correct (41%)\n  - generic: View by domain\n- progressbar\n- generic: Question 18 of 20\n- generic: \"Subdomain 4.4: Integrate Claude into existing workflows to augment or redesign them\"\n- heading \"A team plans to bring Claude into a workflow that three other departments feed into. Which step is most important before the change goes live?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Wait until the other departments adopt the same arrangement themselves\" [checked] [disabled]:\n  - generic: A) Wait until the other departments adopt the same arrangement themselves\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Making the change conditional on three other departments adopting it first blocks a workflow improvement that is entirely within this team's control.\n  - radio \"B) Tell the feeding departments what changes for them and what does not\" [disabled]\n  - generic: B) Tell the feeding departments what changes for them and what does not\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Integration touches everyone who feeds the workflow. Being explicit about what changes for them, and what stays the same, is what stops the redesign breaking at its handovers.\n  - radio \"C) Give each department its own version of the new written instructions\" [disabled]\n  - generic: C) Give each department its own version of the new written instructions\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Separate instruction versions per department guarantee that the workflow behaves differently depending on who fed it.\n  - radio \"D) Ask the departments to stop sending work until the change is settled\" [disabled]\n  - generic: D) Ask the departments to stop sending work until the change is settled\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Halting incoming work to make an internal change imposes the cost on other departments unnecessarily.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:02:19.015Z",
+  "fingerprint": "ffc0d664c840ebeef9c26fc6abfb219ed18eaa4cf8a274d36c996d5e32df4533"
+}

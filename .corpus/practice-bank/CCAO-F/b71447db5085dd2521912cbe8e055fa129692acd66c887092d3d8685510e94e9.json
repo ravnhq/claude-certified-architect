@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A freelancer on a Pro plan has built a project with detailed instructions and reference documents, and now wants two collaborators to work inside the same project. What should they expect?",
+  "options": [
+    "A) Sharing becomes available once the project contains uploaded documents rather than instructions alone.",
+    "B) Sharing works on every plan, so the collaborators can simply be invited with view or edit access.",
+    "C) Sharing works only after the project has been archived, which makes it visible to other accounts.",
+    "D) Project sharing is a Team and Enterprise capability, so on a Pro plan the project stays personal."
+  ],
+  "correct_answers": [
+    "D) Project sharing is a Team and Enterprise capability, so on a Pro plan the project stays personal."
+  ],
+  "explanations": [
+    "What a project contains has no bearing on whether it can be shared.",
+    "Personal plans do not offer project sharing with other people.",
+    "Archiving tidies a project away; it does not publish it to anyone.",
+    "Correct. Sharing projects with named colleagues is available on Team and Enterprise plans only."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"3 / 8 correct (38%) View by domain\":\n  - generic: 3 / 8 correct (38%)\n  - generic: View by domain\n- progressbar\n- generic: Question 9 of 20\n- generic: \"Subdomain 5.1: Configure Claude Projects with instructions and knowledge sources\"\n- heading \"A freelancer on a Pro plan has built a project with detailed instructions and reference documents, and now wants two collaborators to work inside the same project. What should they expect?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Sharing becomes available once the project contains uploaded documents rather than instructions alone.\" [checked] [disabled]:\n  - generic: A) Sharing becomes available once the project contains uploaded documents rather than instructions alone.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: What a project contains has no bearing on whether it can be shared.\n  - radio \"B) Sharing works on every plan, so the collaborators can simply be invited with view or edit access.\" [disabled]\n  - generic: B) Sharing works on every plan, so the collaborators can simply be invited with view or edit access.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Personal plans do not offer project sharing with other people.\n  - radio \"C) Sharing works only after the project has been archived, which makes it visible to other accounts.\" [disabled]\n  - generic: C) Sharing works only after the project has been archived, which makes it visible to other accounts.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Archiving tidies a project away; it does not publish it to anyone.\n  - radio \"D) Project sharing is a Team and Enterprise capability, so on a Pro plan the project stays personal.\" [disabled]\n  - generic: D) Project sharing is a Team and Enterprise capability, so on a Pro plan the project stays personal.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Sharing projects with named colleagues is available on Team and Enterprise plans only.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:07:27.131Z",
+  "fingerprint": "b71447db5085dd2521912cbe8e055fa129692acd66c887092d3d8685510e94e9"
+}

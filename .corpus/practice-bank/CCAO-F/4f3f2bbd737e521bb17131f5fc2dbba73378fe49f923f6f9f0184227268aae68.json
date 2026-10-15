@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A small firm currently works on individual Pro accounts and wants to standardise how client data is handled. What is the most relevant advantage of moving onto a business plan?",
+  "options": [
+    "A) Members would no longer be able to upload any documents at all, which removes the risk of client data entering the tool.",
+    "B) Conversations become encrypted, which is not possible on any of the individually managed accounts.",
+    "C) The organisation gains owner-level control over connectors, retention and settings that individual accounts lack.",
+    "D) Individual accounts gain unlimited project storage, which removes any need to manage documents at all."
+  ],
+  "correct_answers": [
+    "C) The organisation gains owner-level control over connectors, retention and settings that individual accounts lack."
+  ],
+  "explanations": [
+    "Business plans do not remove the ability to upload documents.",
+    "This is not the distinction between personal and business plans.",
+    "Correct. Business plans put configuration and data controls in the hands of accountable owners rather than each person.",
+    "Storage is not the governance problem, and documents still need managing."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"3 / 23 correct (13%) View by domain\":\n  - generic: 3 / 23 correct (13%)\n  - generic: View by domain\n- progressbar\n- generic: Question 24 of 60\n- generic: \"Subdomain 6.2: Apply data sensitivity, regulatory, and privacy considerations\"\n- heading \"A small firm currently works on individual Pro accounts and wants to standardise how client data is handled. What is the most relevant advantage of moving onto a business plan?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Members would no longer be able to upload any documents at all, which removes the risk of client data entering the tool.\" [checked] [disabled]:\n  - generic: A) Members would no longer be able to upload any documents at all, which removes the risk of client data entering the tool.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Business plans do not remove the ability to upload documents.\n  - radio \"B) Conversations become encrypted, which is not possible on any of the individually managed accounts.\" [disabled]\n  - generic: B) Conversations become encrypted, which is not possible on any of the individually managed accounts.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: This is not the distinction between personal and business plans.\n  - radio \"C) The organisation gains owner-level control over connectors, retention and settings that individual accounts lack.\" [disabled]\n  - generic: C) The organisation gains owner-level control over connectors, retention and settings that individual accounts lack.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Business plans put configuration and data controls in the hands of accountable owners rather than each person.\n  - radio \"D) Individual accounts gain unlimited project storage, which removes any need to manage documents at all.\" [disabled]\n  - generic: D) Individual accounts gain unlimited project storage, which removes any need to manage documents at all.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Storage is not the governance problem, and documents still need managing.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:19:12.127Z",
+  "fingerprint": "4f3f2bbd737e521bb17131f5fc2dbba73378fe49f923f6f9f0184227268aae68"
+}

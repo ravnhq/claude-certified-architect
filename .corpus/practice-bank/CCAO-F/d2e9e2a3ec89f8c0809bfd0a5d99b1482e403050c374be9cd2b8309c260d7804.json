@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A benefits team proposes letting Claude decide which employee insurance claims are denied, with staff spot-checking only a sample each month. What is the greatest concern?",
+  "options": [
+    "A) Claims processing is too repetitive a task for Claude, so the team would see no real time saving.",
+    "B) Insurance wording changes often, so the team would need to rewrite all of their prompts every single month.",
+    "C) A decision affecting people's benefits would be made with nobody accountable for each individual outcome.",
+    "D) Spot-checking a sample each month costs more staff time than reviewing every single claim would."
+  ],
+  "correct_answers": [
+    "C) A decision affecting people's benefits would be made with nobody accountable for each individual outcome."
+  ],
+  "explanations": [
+    "Repetitive, well-specified work is well suited to assistance; the problem is who owns the decision.",
+    "Keeping guidance current is routine maintenance, not the greatest risk in this proposal.",
+    "Correct. Decisions about entitlements need a person answerable for every case, not a sampled review afterwards.",
+    "Sampling is cheaper than full review; the concern is accountability, not cost."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"2 / 8 correct (25%) View by domain\":\n  - generic: 2 / 8 correct (25%)\n  - generic: View by domain\n- progressbar\n- generic: Question 9 of 20\n- generic: \"Subdomain 6.1: Identify appropriate and inappropriate use cases\"\n- heading \"A benefits team proposes letting Claude decide which employee insurance claims are denied, with staff spot-checking only a sample each month. What is the greatest concern?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Claims processing is too repetitive a task for Claude, so the team would see no real time saving.\" [checked] [disabled]:\n  - generic: A) Claims processing is too repetitive a task for Claude, so the team would see no real time saving.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Repetitive, well-specified work is well suited to assistance; the problem is who owns the decision.\n  - radio \"B) Insurance wording changes often, so the team would need to rewrite all of their prompts every single month.\" [disabled]\n  - generic: B) Insurance wording changes often, so the team would need to rewrite all of their prompts every single month.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Keeping guidance current is routine maintenance, not the greatest risk in this proposal.\n  - radio \"C) A decision affecting people's benefits would be made with nobody accountable for each individual outcome.\" [disabled]\n  - generic: C) A decision affecting people's benefits would be made with nobody accountable for each individual outcome.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Decisions about entitlements need a person answerable for every case, not a sampled review afterwards.\n  - radio \"D) Spot-checking a sample each month costs more staff time than reviewing every single claim would.\" [disabled]\n  - generic: D) Spot-checking a sample each month costs more staff time than reviewing every single claim would.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Sampling is cheaper than full review; the concern is accountability, not cost.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:23:38.544Z",
+  "fingerprint": "d2e9e2a3ec89f8c0809bfd0a5d99b1482e403050c374be9cd2b8309c260d7804"
+}

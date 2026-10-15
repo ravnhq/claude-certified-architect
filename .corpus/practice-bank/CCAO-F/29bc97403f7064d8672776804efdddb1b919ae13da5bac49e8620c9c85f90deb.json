@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-15T19:17:11.942Z",
+  "correct_answers": [
+    "A) It bundles several distinct deliverables that are meant for different audiences and uses.",
+    "E) Later parts are only worth producing if the earlier factual work is correct."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Correct. Multiple deliverables with different readers pull the output in different directions, and one response has to compromise. Splitting lets each part be specified properly.",
+    "Unfamiliarity affects how carefully the analyst must review the result, but it says nothing about whether the request itself is structurally overloaded.",
+    "A long prompt is not the same as an overloaded one. Pasting rich source material is good practice and often makes a single-step request work better.",
+    "Output format is a presentation choice. A table can be produced in one step just as easily as prose, so it is not a reason to break the work up.",
+    "Correct. Dependency is a separate signal from bundling: when step two builds on step one, a single pass propagates any early error into everything downstream unchecked."
+  ],
+  "options": [
+    "A) It bundles several distinct deliverables that are meant for different audiences and uses.",
+    "B) It concerns a subject area the analyst has not personally worked in for several years.",
+    "C) It runs to a long prompt because a good deal of background has been pasted in with it.",
+    "D) It asks for the final answer to be presented as a table rather than as flowing paragraphs.",
+    "E) Later parts are only worth producing if the earlier factual work is correct."
+  ],
+  "question": "A business analyst is deciding whether to send one large request or break it into stages. Which two features of a request are the strongest signals that it should be decomposed? Select two.(Select 2)",
+  "snapshot": "Subdomain 1.2: APPLY TASK DECOMPOSITION TECHNIQUES TO STRUCTURE COMPLEX REQUESTS",
+  "fingerprint": "29bc97403f7064d8672776804efdddb1b919ae13da5bac49e8620c9c85f90deb"
+}

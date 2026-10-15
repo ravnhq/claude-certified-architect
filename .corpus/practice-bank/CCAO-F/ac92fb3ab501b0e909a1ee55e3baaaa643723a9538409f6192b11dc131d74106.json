@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A European team wants to use Claude to analyse a customer database that includes personal data about EU residents. What is the most appropriate action?",
+  "options": [
+    "A) Involve the people responsible for data protection to confirm the lawful basis and required safeguards.",
+    "B) Proceed, because analysing data the company already holds does not raise any new privacy questions.",
+    "C) Move the analysis onto a personal account so that it falls outside the organisation's compliance scope.",
+    "D) Ask Claude to summarise the relevant regulation and treat that summary as the compliance decision."
+  ],
+  "correct_answers": [
+    "A) Involve the people responsible for data protection to confirm the lawful basis and required safeguards."
+  ],
+  "explanations": [
+    "Correct. Regulated personal data requires a decision from the accountable data-protection function, not an individual.",
+    "Introducing a new processing tool is itself a change that has to be assessed.",
+    "Using a personal account does not remove the obligation and removes the oversight as well.",
+    "A summary of a regulation is not a compliance decision and carries no accountability."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"7 / 13 correct (54%) View by domain\":\n  - generic: 7 / 13 correct (54%)\n  - generic: View by domain\n- progressbar\n- generic: Question 14 of 20\n- generic: \"Subdomain 6.2: Apply data sensitivity, regulatory, and privacy considerations\"\n- heading \"A European team wants to use Claude to analyse a customer database that includes personal data about EU residents. What is the most appropriate action?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Involve the people responsible for data protection to confirm the lawful basis and required safeguards.\" [checked] [disabled]:\n  - generic: A) Involve the people responsible for data protection to confirm the lawful basis and required safeguards.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Regulated personal data requires a decision from the accountable data-protection function, not an individual.\n  - radio \"B) Proceed, because analysing data the company already holds does not raise any new privacy questions.\" [disabled]\n  - generic: B) Proceed, because analysing data the company already holds does not raise any new privacy questions.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Introducing a new processing tool is itself a change that has to be assessed.\n  - radio \"C) Move the analysis onto a personal account so that it falls outside the organisation's compliance scope.\" [disabled]\n  - generic: C) Move the analysis onto a personal account so that it falls outside the organisation's compliance scope.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Using a personal account does not remove the obligation and removes the oversight as well.\n  - radio \"D) Ask Claude to summarise the relevant regulation and treat that summary as the compliance decision.\" [disabled]\n  - generic: D) Ask Claude to summarise the relevant regulation and treat that summary as the compliance decision.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A summary of a regulation is not a compliance decision and carries no accountability.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:30:37.387Z",
+  "fingerprint": "ac92fb3ab501b0e909a1ee55e3baaaa643723a9538409f6192b11dc131d74106"
+}

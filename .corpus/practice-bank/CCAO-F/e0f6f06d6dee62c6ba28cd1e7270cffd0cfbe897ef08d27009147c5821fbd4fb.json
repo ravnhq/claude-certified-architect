@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A finance shared-service team already has a working month-end checklist and wants to bring Claude into it without disrupting the close. What should they do first?",
+  "options": [
+    "A) Pick one checklist step that is text-heavy and repetitive and try Claude there",
+    "B) Ask Claude to rewrite the whole checklist before the next month-end close runs",
+    "C) Replace the checklist with an arrangement built around what Claude can do now",
+    "D) Have every preparer use Claude however they prefer during the next close cycle"
+  ],
+  "correct_answers": [
+    "A) Pick one checklist step that is text-heavy and repetitive and try Claude there"
+  ],
+  "explanations": [
+    "Correct. Augmenting a process that already works means starting with the smallest, most suitable slice, where a failure is contained and the rest of the close carries on unchanged.",
+    "Rewriting the checklist before anyone has tried a single step changes the whole close on an untested assumption.",
+    "Redesigning around the tool is the wrong move when the existing process works; it puts a hard deadline at risk for no demonstrated gain.",
+    "Uncoordinated individual use during a deadline-driven close produces inconsistent output and no learning the team can reuse."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"5 / 10 correct (50%) View by domain\":\n  - generic: 5 / 10 correct (50%)\n  - generic: View by domain\n- progressbar\n- generic: Question 11 of 20\n- generic: \"Subdomain 4.4: Integrate Claude into existing workflows to augment or redesign them\"\n- heading \"A finance shared-service team already has a working month-end checklist and wants to bring Claude into it without disrupting the close. What should they do first?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Pick one checklist step that is text-heavy and repetitive and try Claude there\" [checked] [disabled]:\n  - generic: A) Pick one checklist step that is text-heavy and repetitive and try Claude there\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Augmenting a process that already works means starting with the smallest, most suitable slice, where a failure is contained and the rest of the close carries on unchanged.\n  - radio \"B) Ask Claude to rewrite the whole checklist before the next month-end close runs\" [disabled]\n  - generic: B) Ask Claude to rewrite the whole checklist before the next month-end close runs\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Rewriting the checklist before anyone has tried a single step changes the whole close on an untested assumption.\n  - radio \"C) Replace the checklist with an arrangement built around what Claude can do now\" [disabled]\n  - generic: C) Replace the checklist with an arrangement built around what Claude can do now\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Redesigning around the tool is the wrong move when the existing process works; it puts a hard deadline at risk for no demonstrated gain.\n  - radio \"D) Have every preparer use Claude however they prefer during the next close cycle\" [disabled]\n  - generic: D) Have every preparer use Claude however they prefer during the next close cycle\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Uncoordinated individual use during a deadline-driven close produces inconsistent output and no learning the team can reuse.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:01:40.640Z",
+  "fingerprint": "e0f6f06d6dee62c6ba28cd1e7270cffd0cfbe897ef08d27009147c5821fbd4fb"
+}

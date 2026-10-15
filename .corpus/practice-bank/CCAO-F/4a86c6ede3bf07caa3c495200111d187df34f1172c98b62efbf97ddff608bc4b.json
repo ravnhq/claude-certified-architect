@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "An employee connects their entire work Google Drive so that Claude can help with the files in one project folder. What is the greatest risk?",
+  "options": [
+    "A) The files are copied into training data, because connected sources bypass the account's privacy settings.",
+    "B) The connection makes the files editable by anyone in the organisation who opens the same project.",
+    "C) Colleagues who cannot open those files in Drive will now be able to read them through the connector.",
+    "D) Everything they can already open in Drive becomes reachable in Claude, far beyond the folder they need."
+  ],
+  "correct_answers": [
+    "D) Everything they can already open in Drive becomes reachable in Claude, far beyond the folder they need."
+  ],
+  "explanations": [
+    "Connecting a source does not place its files into model training.",
+    "A connection does not change who may edit files in the underlying service.",
+    "Connectors respect the source system's permissions, so they cannot widen access for other people.",
+    "Correct. A connector inherits the person's own access, so an unscoped connection exposes far more than intended."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"8 / 14 correct (57%) View by domain\":\n  - generic: 8 / 14 correct (57%)\n  - generic: View by domain\n- progressbar\n- generic: Question 15 of 20\n- generic: \"Subdomain 6.2: Apply data sensitivity, regulatory, and privacy considerations\"\n- heading \"An employee connects their entire work Google Drive so that Claude can help with the files in one project folder. What is the greatest risk?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) The files are copied into training data, because connected sources bypass the account's privacy settings.\" [checked] [disabled]:\n  - generic: A) The files are copied into training data, because connected sources bypass the account's privacy settings.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Connecting a source does not place its files into model training.\n  - radio \"B) The connection makes the files editable by anyone in the organisation who opens the same project.\" [disabled]\n  - generic: B) The connection makes the files editable by anyone in the organisation who opens the same project.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A connection does not change who may edit files in the underlying service.\n  - radio \"C) Colleagues who cannot open those files in Drive will now be able to read them through the connector.\" [disabled]\n  - generic: C) Colleagues who cannot open those files in Drive will now be able to read them through the connector.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Connectors respect the source system's permissions, so they cannot widen access for other people.\n  - radio \"D) Everything they can already open in Drive becomes reachable in Claude, far beyond the folder they need.\" [disabled]\n  - generic: D) Everything they can already open in Drive becomes reachable in Claude, far beyond the folder they need.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. A connector inherits the person's own access, so an unscoped connection exposes far more than intended.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:30:48.430Z",
+  "fingerprint": "4a86c6ede3bf07caa3c495200111d187df34f1172c98b62efbf97ddff608bc4b"
+}

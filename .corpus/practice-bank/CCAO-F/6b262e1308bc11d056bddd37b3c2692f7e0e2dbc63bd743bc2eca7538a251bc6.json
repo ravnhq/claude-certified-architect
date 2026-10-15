@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.940Z",
+  "correct_answers": [
+    "A) Provide the instructions as a numbered list of steps in the exact order they must run"
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Correct. Providing instructions as sequential steps using numbered lists or bullet points is recommended specifically when the order or completeness of the steps matters, removing ambiguity about sequence.",
+    "A single comma-separated sentence obscures step boundaries and order even more than a plain paragraph would, making the sequence less clear rather than more.",
+    "Describing steps out of order and relying on inference is the opposite of making the required sequence unambiguous.",
+    "Relying only on paragraph breaks without numbering removes the explicit ordering cue that numbered lists provide for steps where sequence matters."
+  ],
+  "options": [
+    "A) Provide the instructions as a numbered list of steps in the exact order they must run",
+    "B) Combine all of the steps into a single long sentence separated only by commas",
+    "C) Describe the steps in a random order and let Claude infer the correct sequence",
+    "D) Remove the step numbers and rely only on paragraph breaks to imply the correct order"
+  ],
+  "question": "A prompt describes a multi-step setup process, such as configuring an environment and then running a script, but Claude sometimes performs the steps out of order. What change would make the required order unambiguous?",
+  "snapshot": "Subdomain 1.1: CREATE EFFECTIVE PROMPTS FOR BUSINESS AND TECHNICAL TASKS",
+  "fingerprint": "6b262e1308bc11d056bddd37b3c2692f7e0e2dbc63bd743bc2eca7538a251bc6"
+}

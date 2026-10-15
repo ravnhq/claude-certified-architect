@@ -11,7 +11,7 @@ from urllib.parse import parse_qs
 
 ROOT = Path(__file__).resolve().parents[1] / '.corpus' / 'practice-bank'
 ORIGIN = 'http://127.0.0.1:8768'
-EXAMS = {'CCAR-F': 480, 'CCAR-P': 456, 'CCDV-F': 524}
+EXAMS = {'CCAR-F': 480, 'CCAR-P': 456, 'CCDV-F': 524, 'CCAO-F': 757}
 FORM = b'''<!doctype html><title>Practice-bank local collector</title>
 <h1>Practice-bank local collector</h1>
 <form method="post" action="/capture">
@@ -56,8 +56,11 @@ def save_batch(batch):
         temporary = target.with_suffix('.tmp')
         temporary.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n')
         temporary.replace(target)
-    summary = {exam: {'collected': len(list((ROOT / exam).glob('*.json'))),
-                      'published_total': total} for exam, total in EXAMS.items()}
+    summary = {}
+    for exam, total in EXAMS.items():
+        collected = len(list((ROOT / exam).glob('*.json')))
+        summary[exam] = {'collected': collected, 'published_total': total,
+                         'remaining': max(total - collected, 0)}
     target = ROOT / 'status.json'
     temporary = target.with_suffix('.tmp')
     temporary.write_text(json.dumps(summary, indent=2) + '\n')
@@ -98,7 +101,7 @@ class Receiver(BaseHTTPRequestHandler):
             self.reply(200, FORM)
         elif self.path == '/known':
             records = [json.loads(path.read_text()) for exam in EXAMS for path in (ROOT / exam).glob('*.json')]
-            payload = [{key: record[key] for key in ('exam', 'question', 'options', 'correct_answers')}
+            payload = [{key: record[key] for key in ('exam', 'question', 'options', 'correct_answers', 'snapshot')}
                        for record in records]
             self.reply(200, ('<title>Collected questions</title><pre>' + html.escape(json.dumps(payload)) + '</pre>').encode())
         else:

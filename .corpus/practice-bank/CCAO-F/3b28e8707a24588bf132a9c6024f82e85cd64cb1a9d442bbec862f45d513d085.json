@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.942Z",
+  "correct_answers": [
+    "A) As accurate but off target, because it explains the topic instead of addressing the rise she asked about."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Correct. Everything present may be correct while the question remains unanswered. Accuracy and relevance are separate tests, and this output passes the first and fails the second.",
+    "Accepting background as progress leaves the actual question open, and the material she now has does not move her any closer to a cause.",
+    "A general answer indicates that the request was read broadly, not that the specific question is unanswerable given her own data.",
+    "Shortening reduces the volume of material that does not address her question, leaving a briefer answer to the wrong question."
+  ],
+  "options": [
+    "A) As accurate but off target, because it explains the topic instead of addressing the rise she asked about.",
+    "B) As adequate for now, because background on how the measure works is a reasonable place to begin the analysis.",
+    "C) As evidence that the question cannot be answered, since the reply avoided the specific rise she was asking about.",
+    "D) As a sound answer that simply needs shortening, since the explanation contains more detail than she required here."
+  ],
+  "question": "A retention lead asked why cancellations rose sharply in the last quarter. The answer explains at length what cancellation rates are and how they are generally measured. How should she judge this output?",
+  "snapshot": "Subdomain 2.1: EVALUATE CLAUDE-GENERATED OUTPUTS FOR ACCURACY AND COMPLETENESS",
+  "fingerprint": "3b28e8707a24588bf132a9c6024f82e85cd64cb1a9d442bbec862f45d513d085"
+}

@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "C) Turn off the connectors and tools this task does not need, and switch them back on later."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "An instruction in every message is a per-message reminder rather than a change to the setup.",
+    "An empty project addresses knowledge documents, not the tools and connections that stay enabled.",
+    "Correct. Turning off tools and connectors that a task does not need is a recognised way to keep routine work efficient, and they can be re-enabled when the next task needs them.",
+    "Removing them permanently costs her the reconnection work every time the other tasks come round."
+  ],
+  "options": [
+    "A) Ask Claude in each message to avoid using any connector while she works on the drafting.",
+    "B) Do the drafting inside a separate project that has no documents in its knowledge at all.",
+    "C) Turn off the connectors and tools this task does not need, and switch them back on later.",
+    "D) Remove the connectors from her account permanently, so nothing can call on them by mistake."
+  ],
+  "question": "A researcher is doing straightforward drafting work while several connectors and tools she does not need for it remain switched on. What is a reasonable step to make routine work leaner?",
+  "snapshot": "Subdomain 7.3: OPTIMIZE WORKFLOWS FOR EFFICIENCY AND EFFECTIVENESS",
+  "fingerprint": "f208e66c4a7fc10d3817681658def5751dbfddb85f41b3730bee13b144ecd6f6"
+}

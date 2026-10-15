@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A manager wants Claude to help draft a weekly customer newsletter, always drawing on the brand guide, the past issues and a fixed tone. What should the manager do first?",
+  "options": [
+    "A) Paste the brand guide into a single long chat and keep returning to that same conversation each week.",
+    "B) Ask Claude for a first newsletter and add the brand guide only if the draft misses the intended tone.",
+    "C) Put the brand guide into the account-wide instructions so that it shapes every conversation they ever have.",
+    "D) Create a project for the newsletter work so the guide, the past issues and the tone rules sit together."
+  ],
+  "correct_answers": [
+    "D) Create a project for the newsletter work so the guide, the past issues and the tone rules sit together."
+  ],
+  "explanations": [
+    "One growing conversation is fragile and does not carry the direction into any new chat.",
+    "This defers the setup and produces a first draft with none of the context that matters.",
+    "Newsletter-specific material would then influence unrelated work across the whole account.",
+    "Correct. Recurring work with shared context and standing rules is exactly what a project is for."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"4 / 4 correct (100%) View by domain\":\n  - generic: 4 / 4 correct (100%)\n  - generic: View by domain\n- progressbar\n- generic: Question 5 of 20\n- generic: \"Subdomain 5.1: Configure Claude Projects with instructions and knowledge sources\"\n- heading \"A manager wants Claude to help draft a weekly customer newsletter, always drawing on the brand guide, the past issues and a fixed tone. What should the manager do first?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Paste the brand guide into a single long chat and keep returning to that same conversation each week.\" [checked] [disabled]:\n  - generic: A) Paste the brand guide into a single long chat and keep returning to that same conversation each week.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: One growing conversation is fragile and does not carry the direction into any new chat.\n  - radio \"B) Ask Claude for a first newsletter and add the brand guide only if the draft misses the intended tone.\" [disabled]\n  - generic: B) Ask Claude for a first newsletter and add the brand guide only if the draft misses the intended tone.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: This defers the setup and produces a first draft with none of the context that matters.\n  - radio \"C) Put the brand guide into the account-wide instructions so that it shapes every conversation they ever have.\" [disabled]\n  - generic: C) Put the brand guide into the account-wide instructions so that it shapes every conversation they ever have.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Newsletter-specific material would then influence unrelated work across the whole account.\n  - radio \"D) Create a project for the newsletter work so the guide, the past issues and the tone rules sit together.\" [disabled]\n  - generic: D) Create a project for the newsletter work so the guide, the past issues and the tone rules sit together.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Recurring work with shared context and standing rules is exactly what a project is for.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:09:23.003Z",
+  "fingerprint": "12a614c64c96e4c98bacc1ae9c9e05850b7a34c9830dacfcb56f46cd1b64adc4"
+}

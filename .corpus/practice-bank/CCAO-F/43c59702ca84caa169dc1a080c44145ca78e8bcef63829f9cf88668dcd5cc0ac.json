@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A project's knowledge base has grown to dozens of overlapping documents added by different people over time, and answer quality has fallen. What is the best way to improve it?",
+  "options": [
+    "A) Add an instruction telling Claude to prefer whichever of the documents happens to be the longest.",
+    "B) Consolidate the material into a smaller set of current documents and remove the duplicates.",
+    "C) Add more documents covering the same topics so that the majority of the sources agree with one another.",
+    "D) Split the documents across several new projects so that each workspace holds only a handful of files."
+  ],
+  "correct_answers": [
+    "B) Consolidate the material into a smaller set of current documents and remove the duplicates."
+  ],
+  "explanations": [
+    "Length is no indicator of currency or correctness.",
+    "Correct. Curating down to current, non-overlapping sources removes the conflicts that degrade answers.",
+    "Adding more overlapping material makes the conflict worse, not better.",
+    "Scattering stale duplicates across workspaces spreads the problem instead of resolving it."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"6 / 7 correct (86%) View by domain\":\n  - generic: 6 / 7 correct (86%)\n  - generic: View by domain\n- progressbar\n- generic: Question 8 of 20\n- generic: \"Subdomain 5.4: Inform, maintain, and update Claude configurations, knowledge sources, and instructions\"\n- heading \"A project's knowledge base has grown to dozens of overlapping documents added by different people over time, and answer quality has fallen. What is the best way to improve it?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Add an instruction telling Claude to prefer whichever of the documents happens to be the longest.\" [checked] [disabled]:\n  - generic: A) Add an instruction telling Claude to prefer whichever of the documents happens to be the longest.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Length is no indicator of currency or correctness.\n  - radio \"B) Consolidate the material into a smaller set of current documents and remove the duplicates.\" [disabled]\n  - generic: B) Consolidate the material into a smaller set of current documents and remove the duplicates.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Curating down to current, non-overlapping sources removes the conflicts that degrade answers.\n  - radio \"C) Add more documents covering the same topics so that the majority of the sources agree with one another.\" [disabled]\n  - generic: C) Add more documents covering the same topics so that the majority of the sources agree with one another.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Adding more overlapping material makes the conflict worse, not better.\n  - radio \"D) Split the documents across several new projects so that each workspace holds only a handful of files.\" [disabled]\n  - generic: D) Split the documents across several new projects so that each workspace holds only a handful of files.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Scattering stale duplicates across workspaces spreads the problem instead of resolving it.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:19:48.645Z",
+  "fingerprint": "43c59702ca84caa169dc1a080c44145ca78e8bcef63829f9cf88668dcd5cc0ac"
+}

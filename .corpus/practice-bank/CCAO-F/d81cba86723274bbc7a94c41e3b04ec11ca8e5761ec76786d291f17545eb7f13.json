@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A team lead is setting up a new project that will be used for recurring quarterly business reviews. Which sequence of steps is correct?",
+  "options": [
+    "A) Write the instructions; run a typical request; upload the reference documents; create the project and name its purpose.",
+    "B) Create the project and name its purpose; write the instructions; upload the reference documents; run a typical request.",
+    "C) Upload the reference documents; run a typical request; create the project and name its purpose; write the instructions.",
+    "D) Run a typical request; upload the reference documents; write the instructions; create the project and name its purpose."
+  ],
+  "correct_answers": [
+    "B) Create the project and name its purpose; write the instructions; upload the reference documents; run a typical request."
+  ],
+  "explanations": [
+    "The instructions and the test both precede the project they belong to.",
+    "Correct. Establish the workspace and its purpose, give it durable direction and background, then check it on real work.",
+    "Documents cannot be uploaded into a project that has not been created yet.",
+    "The setup is tested before any part of it exists."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"1 / 2 correct (50%) View by domain\":\n  - generic: 1 / 2 correct (50%)\n  - generic: View by domain\n- progressbar\n- generic: Question 3 of 20\n- generic: \"Subdomain 5.1: Configure Claude Projects with instructions and knowledge sources\"\n- heading \"A team lead is setting up a new project that will be used for recurring quarterly business reviews. Which sequence of steps is correct?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Write the instructions; run a typical request; upload the reference documents; create the project and name its purpose.\" [checked] [disabled]:\n  - generic: A) Write the instructions; run a typical request; upload the reference documents; create the project and name its purpose.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The instructions and the test both precede the project they belong to.\n  - radio \"B) Create the project and name its purpose; write the instructions; upload the reference documents; run a typical request.\" [disabled]\n  - generic: B) Create the project and name its purpose; write the instructions; upload the reference documents; run a typical request.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Establish the workspace and its purpose, give it durable direction and background, then check it on real work.\n  - radio \"C) Upload the reference documents; run a typical request; create the project and name its purpose; write the instructions.\" [disabled]\n  - generic: C) Upload the reference documents; run a typical request; create the project and name its purpose; write the instructions.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Documents cannot be uploaded into a project that has not been created yet.\n  - radio \"D) Run a typical request; upload the reference documents; write the instructions; create the project and name its purpose.\" [disabled]\n  - generic: D) Run a typical request; upload the reference documents; write the instructions; create the project and name its purpose.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The setup is tested before any part of it exists.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:06:48.863Z",
+  "fingerprint": "d81cba86723274bbc7a94c41e3b04ec11ca8e5761ec76786d291f17545eb7f13"
+}

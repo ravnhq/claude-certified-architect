@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A Team-plan owner shares a project organisation-wide so that more colleagues can benefit from the documents it contains. What is the greatest concern?",
+  "options": [
+    "A) Everyone in the organisation gains access to knowledge that may include restricted or confidential material.",
+    "B) Organisation-wide sharing converts the project's documents into training data for future Claude models.",
+    "C) The original owner loses the ability to edit the project once it is visible to the whole organisation.",
+    "D) Sharing removes the project's instructions, so the shared version behaves differently for everyone who opens it."
+  ],
+  "correct_answers": [
+    "A) Everyone in the organisation gains access to knowledge that may include restricted or confidential material."
+  ],
+  "explanations": [
+    "Correct. Broadening a project's audience broadens access to every document already uploaded into it.",
+    "How a project is shared has no bearing on model training.",
+    "The owner keeps their access when a project is shared more widely.",
+    "Sharing does not strip a project's instructions."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"0 / 2 correct (0%) View by domain\":\n  - generic: 0 / 2 correct (0%)\n  - generic: View by domain\n- progressbar\n- generic: Question 3 of 20\n- generic: \"Subdomain 6.2: Apply data sensitivity, regulatory, and privacy considerations\"\n- heading \"A Team-plan owner shares a project organisation-wide so that more colleagues can benefit from the documents it contains. What is the greatest concern?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Everyone in the organisation gains access to knowledge that may include restricted or confidential material.\" [checked] [disabled]:\n  - generic: A) Everyone in the organisation gains access to knowledge that may include restricted or confidential material.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Broadening a project's audience broadens access to every document already uploaded into it.\n  - radio \"B) Organisation-wide sharing converts the project's documents into training data for future Claude models.\" [disabled]\n  - generic: B) Organisation-wide sharing converts the project's documents into training data for future Claude models.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: How a project is shared has no bearing on model training.\n  - radio \"C) The original owner loses the ability to edit the project once it is visible to the whole organisation.\" [disabled]\n  - generic: C) The original owner loses the ability to edit the project once it is visible to the whole organisation.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The owner keeps their access when a project is shared more widely.\n  - radio \"D) Sharing removes the project's instructions, so the shared version behaves differently for everyone who opens it.\" [disabled]\n  - generic: D) Sharing removes the project's instructions, so the shared version behaves differently for everyone who opens it.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Sharing does not strip a project's instructions.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:28:45.794Z",
+  "fingerprint": "e078ee99d4e9ecfa94313215a16ad660427e08bf3ca600d6de9398fb6902eea2"
+}

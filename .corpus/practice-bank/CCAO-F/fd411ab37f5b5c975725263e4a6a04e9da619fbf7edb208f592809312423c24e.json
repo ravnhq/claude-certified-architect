@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A Max-plan user turns off the setting that allows their chats to be used to improve Claude's models. What is the effect?",
+  "options": [
+    "A) Chats are still used for training, but the account is excluded from the de-identification process.",
+    "B) Every past conversation is erased from Anthropic's systems immediately once the setting is switched off.",
+    "C) Nothing changes until the account is upgraded, since the setting applies only on Team and Enterprise plans.",
+    "D) New chats will not be used for future training, and previously stored chats also stop being used."
+  ],
+  "correct_answers": [
+    "D) New chats will not be used for future training, and previously stored chats also stop being used."
+  ],
+  "explanations": [
+    "Switching the setting off stops the training use; it does not change how data is de-identified.",
+    "Turning off a training setting is not the same as deleting stored data.",
+    "This is a consumer-plan setting; business plans work differently.",
+    "Correct. Switching it off applies to new conversations and stops previously stored ones feeding future training runs."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"3 / 6 correct (50%) View by domain\":\n  - generic: 3 / 6 correct (50%)\n  - generic: View by domain\n- progressbar\n- generic: Question 7 of 20\n- generic: \"Subdomain 6.2: Apply data sensitivity, regulatory, and privacy considerations\"\n- heading \"A Max-plan user turns off the setting that allows their chats to be used to improve Claude's models. What is the effect?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Chats are still used for training, but the account is excluded from the de-identification process.\" [checked] [disabled]:\n  - generic: A) Chats are still used for training, but the account is excluded from the de-identification process.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Switching the setting off stops the training use; it does not change how data is de-identified.\n  - radio \"B) Every past conversation is erased from Anthropic's systems immediately once the setting is switched off.\" [disabled]\n  - generic: B) Every past conversation is erased from Anthropic's systems immediately once the setting is switched off.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Turning off a training setting is not the same as deleting stored data.\n  - radio \"C) Nothing changes until the account is upgraded, since the setting applies only on Team and Enterprise plans.\" [disabled]\n  - generic: C) Nothing changes until the account is upgraded, since the setting applies only on Team and Enterprise plans.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: This is a consumer-plan setting; business plans work differently.\n  - radio \"D) New chats will not be used for future training, and previously stored chats also stop being used.\" [disabled]\n  - generic: D) New chats will not be used for future training, and previously stored chats also stop being used.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Switching it off applies to new conversations and stops previously stored ones feeding future training runs.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:29:24.358Z",
+  "fingerprint": "fd411ab37f5b5c975725263e4a6a04e9da619fbf7edb208f592809312423c24e"
+}

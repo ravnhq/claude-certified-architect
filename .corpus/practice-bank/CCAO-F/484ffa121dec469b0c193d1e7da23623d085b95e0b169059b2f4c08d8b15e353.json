@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A project's instructions state that refunds are approved within five working days, while an uploaded policy document says ten. What should the project owner do first?",
+  "options": [
+    "A) Establish which of the two figures is current, then correct whichever of the sources is wrong.",
+    "B) Add a line telling Claude to average the two figures whenever it answers questions about refunds.",
+    "C) Ask Claude which of the two figures it prefers, and then keep whichever source it says it uses.",
+    "D) Delete the project instructions and rely on the uploaded policy document from now on instead."
+  ],
+  "correct_answers": [
+    "A) Establish which of the two figures is current, then correct whichever of the sources is wrong."
+  ],
+  "explanations": [
+    "Correct. You cannot fix a contradiction without first determining which statement reflects the real process.",
+    "Averaging two conflicting policy statements produces a figure that is in neither source.",
+    "Claude has no way to know which figure reflects the organisation's current process.",
+    "This assumes the document is right, which is exactly what has not been established."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"1 / 1 correct (100%) View by domain\":\n  - generic: 1 / 1 correct (100%)\n  - generic: View by domain\n- progressbar\n- generic: Question 2 of 20\n- generic: \"Subdomain 5.4: Inform, maintain, and update Claude configurations, knowledge sources, and instructions\"\n- heading \"A project's instructions state that refunds are approved within five working days, while an uploaded policy document says ten. What should the project owner do first?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Establish which of the two figures is current, then correct whichever of the sources is wrong.\" [checked] [disabled]:\n  - generic: A) Establish which of the two figures is current, then correct whichever of the sources is wrong.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. You cannot fix a contradiction without first determining which statement reflects the real process.\n  - radio \"B) Add a line telling Claude to average the two figures whenever it answers questions about refunds.\" [disabled]\n  - generic: B) Add a line telling Claude to average the two figures whenever it answers questions about refunds.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Averaging two conflicting policy statements produces a figure that is in neither source.\n  - radio \"C) Ask Claude which of the two figures it prefers, and then keep whichever source it says it uses.\" [disabled]\n  - generic: C) Ask Claude which of the two figures it prefers, and then keep whichever source it says it uses.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Claude has no way to know which figure reflects the organisation's current process.\n  - radio \"D) Delete the project instructions and rely on the uploaded policy document from now on instead.\" [disabled]\n  - generic: D) Delete the project instructions and rely on the uploaded policy document from now on instead.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: This assumes the document is right, which is exactly what has not been established.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:19:04.294Z",
+  "fingerprint": "484ffa121dec469b0c193d1e7da23623d085b95e0b169059b2f4c08d8b15e353"
+}

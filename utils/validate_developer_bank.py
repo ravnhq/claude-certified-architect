@@ -67,6 +67,7 @@ from developer_blueprint import check_draw, draw_by_int_domain  # noqa: E402
 # also the bank's floor: a domain holding fewer items than its draw cannot fill
 # an attempt.
 DRAW = draw_by_int_domain()
+ID_PREFIX = "d"
 
 # Eight is what the practice-bank corpus needs; two imported items run to H.
 LETTERS = "ABCDEFGH"
@@ -97,8 +98,8 @@ def main():
         if dom not in official:
             err(qid, f"domain {dom!r} is not 1-8")
             continue
-        if not qid.startswith(f"d{dom}-"):
-            err(qid, f"id does not carry its domain prefix d{dom}-")
+        if not qid.startswith(f"{ID_PREFIX}{dom}-"):
+            err(qid, f"id does not carry its domain prefix {ID_PREFIX}{dom}-")
         if q.get("objective") not in official[dom]:
             err(qid, f"objective is not an official domain-{dom} objective: {q.get('objective')!r}")
 

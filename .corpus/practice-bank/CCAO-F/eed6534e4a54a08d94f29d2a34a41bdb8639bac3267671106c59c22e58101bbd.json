@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.943Z",
+  "correct_answers": [
+    "B) What changes, what stays with each person, and where their review is still required."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "A projected annual saving is the business case rather than the operating instruction. It tells the team why the change is happening but leaves them unsure what they are now responsible for.",
+    "Correct. People need to know exactly where the boundary now sits: which part Claude drafts, which judgments remain theirs, and that their review is still a required step. Without that, reports are either double-handled or sent out with nobody checking them.",
+    "Naming other departments builds confidence in the decision but says nothing about how this team should work. It is reassurance, not direction.",
+    "Describing the testing is good practice and supports trust in the change. It still leaves the team without a clear statement of their own remaining responsibilities."
+  ],
+  "options": [
+    "A) How much time the change is expected to save the team over the course of a full year.",
+    "B) What changes, what stays with each person, and where their review is still required.",
+    "C) Which other departments have already adopted the same approach to their own reports.",
+    "D) How the manager tested the new arrangement before deciding to introduce it to the team."
+  ],
+  "question": "A manager is about to tell her team that Claude will now produce the first draft of every incident report. What should the announcement make clear above all?",
+  "snapshot": "Subdomain 4.4: INTEGRATE CLAUDE INTO EXISTING WORKFLOWS TO AUGMENT OR REDESIGN THEM",
+  "fingerprint": "eed6534e4a54a08d94f29d2a34a41bdb8639bac3267671106c59c22e58101bbd"
+}

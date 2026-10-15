@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A user asks Claude, connected via the Drive connector, to save a report Claude just generated into a specific Drive folder. What can Claude do?",
+  "options": [
+    "A) Claude can save files to Drive only when code execution is separately turned on first.",
+    "B) Claude can only save generated files to the root of Drive, not a folder.",
+    "C) Claude can create folders and save Claude-generated files directly into Drive itself.",
+    "D) Claude cannot save any files to Drive, only read files already there."
+  ],
+  "correct_answers": [
+    "C) Claude can create folders and save Claude-generated files directly into Drive itself."
+  ],
+  "explanations": [
+    "Incorrect. Code execution is required for XLSX chat uploads, not for the Drive connector's save and folder features.",
+    "Incorrect. Folder creation and organized saving are supported, not just root-level file placement.",
+    "Correct. The Drive connector supports creating folders and saving Claude-generated files, so the report can go into the requested folder.",
+    "Incorrect. Saving generated files to Drive is an explicit connector capability beyond just reading existing files."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"4 / 16 correct (25%) View by domain\":\n  - generic: 4 / 16 correct (25%)\n  - generic: View by domain\n- progressbar\n- generic: Question 17 of 20\n- generic: \"Subdomain 5.2: Manage uploaded knowledge and connectors (e.g., Google Drive, Gmail)\"\n- heading \"A user asks Claude, connected via the Drive connector, to save a report Claude just generated into a specific Drive folder. What can Claude do?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Claude can save files to Drive only when code execution is separately turned on first.\" [checked] [disabled]:\n  - generic: A) Claude can save files to Drive only when code execution is separately turned on first.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Code execution is required for XLSX chat uploads, not for the Drive connector's save and folder features.\n  - radio \"B) Claude can only save generated files to the root of Drive, not a folder.\" [disabled]\n  - generic: B) Claude can only save generated files to the root of Drive, not a folder.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Folder creation and organized saving are supported, not just root-level file placement.\n  - radio \"C) Claude can create folders and save Claude-generated files directly into Drive itself.\" [disabled]\n  - generic: C) Claude can create folders and save Claude-generated files directly into Drive itself.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. The Drive connector supports creating folders and saving Claude-generated files, so the report can go into the requested folder.\n  - radio \"D) Claude cannot save any files to Drive, only read files already there.\" [disabled]\n  - generic: D) Claude cannot save any files to Drive, only read files already there.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Saving generated files to Drive is an explicit connector capability beyond just reading existing files.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:13:27.682Z",
+  "fingerprint": "2a018c1c1f2d8ad5650f46b468eb60aa2929dd5fbad144907fb26f9025ba3b4d"
+}

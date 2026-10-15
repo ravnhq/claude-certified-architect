@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "Which of the following is the strongest candidate for delegating to Claude within a marketing team?",
+  "options": [
+    "A) Drafting first-pass social copy from an approved brief, with an editor reviewing it before anything is posted.",
+    "B) Sending the price change notices straight to customers as soon as they are generated, without any review at all.",
+    "C) Choosing which employees are promoted, based on the performance notes gathered from their managers.",
+    "D) Deciding which customers are refused credit, using the payment histories held in the finance system."
+  ],
+  "correct_answers": [
+    "A) Drafting first-pass social copy from an approved brief, with an editor reviewing it before anything is posted."
+  ],
+  "explanations": [
+    "Correct. Reversible, well-specified drafting with a human reviewing before release is the ideal delegation shape.",
+    "This is irreversible and externally visible, so it needs review before it goes out.",
+    "Employment decisions affect people's livelihoods and must remain a human judgment.",
+    "Credit decisions affect people's rights and finances and cannot be delegated outright."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"5 / 19 correct (26%) View by domain\":\n  - generic: 5 / 19 correct (26%)\n  - generic: View by domain\n- progressbar\n- generic: Question 20 of 20\n- generic: \"Subdomain 6.1: Identify appropriate and inappropriate use cases\"\n- heading \"Which of the following is the strongest candidate for delegating to Claude within a marketing team?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Drafting first-pass social copy from an approved brief, with an editor reviewing it before anything is posted.\" [checked] [disabled]:\n  - generic: A) Drafting first-pass social copy from an approved brief, with an editor reviewing it before anything is posted.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Reversible, well-specified drafting with a human reviewing before release is the ideal delegation shape.\n  - radio \"B) Sending the price change notices straight to customers as soon as they are generated, without any review at all.\" [disabled]\n  - generic: B) Sending the price change notices straight to customers as soon as they are generated, without any review at all.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: This is irreversible and externally visible, so it needs review before it goes out.\n  - radio \"C) Choosing which employees are promoted, based on the performance notes gathered from their managers.\" [disabled]\n  - generic: C) Choosing which employees are promoted, based on the performance notes gathered from their managers.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Employment decisions affect people's livelihoods and must remain a human judgment.\n  - radio \"D) Deciding which customers are refused credit, using the payment histories held in the finance system.\" [disabled]\n  - generic: D) Deciding which customers are refused credit, using the payment histories held in the finance system.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Credit decisions affect people's rights and finances and cannot be delegated outright.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Finish Quiz\":\n  - text: Finish Quiz",
+  "captured_at": "2026-10-15T20:25:21.778Z",
+  "fingerprint": "4dd7655863e963fe2ce7f01da80c1c7fd2c778eb09c6e14ea3a707070e1697d9"
+}

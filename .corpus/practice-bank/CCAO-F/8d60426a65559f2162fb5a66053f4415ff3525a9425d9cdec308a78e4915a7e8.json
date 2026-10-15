@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.942Z",
+  "correct_answers": [
+    "A) Rewrite the article with shorter sentences and everyday words, keeping every step accurate"
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Correct. Simplifying sentence structure and vocabulary while preserving the accurate steps directly targets the readability problem without losing correctness.",
+    "Incorrect. Removing steps changes the article's completeness and could omit cases some customers need, which does not fix a reading-level problem.",
+    "Incorrect. Adding more technical detail moves the article further from, not closer to, the audience's reading level.",
+    "Incorrect. A formal specification format is written for engineers and would make the article harder for typical customers to follow."
+  ],
+  "options": [
+    "A) Rewrite the article with shorter sentences and everyday words, keeping every step accurate",
+    "B) Remove the least common troubleshooting steps so the article reads a bit shorter",
+    "C) Add more technical detail so customers understand the underlying cause in full",
+    "D) Convert the article into a formal specification format used by the engineering team"
+  ],
+  "question": "A support lead finds a Claude-drafted troubleshooting article accurate but written at a reading level too advanced for the average customer. Which follow-up instruction best refines the draft without sacrificing accuracy?",
+  "snapshot": "Subdomain 2.5: EDIT, ADAPT, REFINE, AND COMPARE OUTPUTS FOR THE INTENDED AUDIENCE",
+  "fingerprint": "8d60426a65559f2162fb5a66053f4415ff3525a9425d9cdec308a78e4915a7e8"
+}

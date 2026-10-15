@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A conference organiser wants Claude to help plan the run-up to a 400-delegate event. Which input will make the resulting plan most useful?",
+  "options": [
+    "A) The actual dates, the team's availability and the tasks that went wrong last year",
+    "B) The delegate list and the venue's promotional brochure for this year's conference",
+    "C) A request to produce the most thorough conference plan that Claude is able to write",
+    "D) A note that the event is important and that the plan must not miss anything at all"
+  ],
+  "correct_answers": [
+    "A) The actual dates, the team's availability and the tasks that went wrong last year"
+  ],
+  "explanations": [
+    "Correct. Real dates, real capacity and the known failure points from last year are the material that makes a plan specific to this event rather than a template anyone could have written.",
+    "A delegate list and a brochure describe who attends and how the venue markets itself, neither of which shapes the run-up schedule.",
+    "Asking for thoroughness without supplying facts produces length, not fit; the plan still has to guess the constraints.",
+    "Emphasis is not information. Telling Claude the event matters gives it nothing new to plan around."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"3 / 5 correct (60%) View by domain\":\n  - generic: 3 / 5 correct (60%)\n  - generic: View by domain\n- progressbar\n- generic: Question 6 of 20\n- generic: \"Subdomain 4.2: Leverage Claude for research, planning, and process optimization\"\n- heading \"A conference organiser wants Claude to help plan the run-up to a 400-delegate event. Which input will make the resulting plan most useful?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) The actual dates, the team's availability and the tasks that went wrong last year\" [checked] [disabled]:\n  - generic: A) The actual dates, the team's availability and the tasks that went wrong last year\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Real dates, real capacity and the known failure points from last year are the material that makes a plan specific to this event rather than a template anyone could have written.\n  - radio \"B) The delegate list and the venue's promotional brochure for this year's conference\" [disabled]\n  - generic: B) The delegate list and the venue's promotional brochure for this year's conference\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A delegate list and a brochure describe who attends and how the venue markets itself, neither of which shapes the run-up schedule.\n  - radio \"C) A request to produce the most thorough conference plan that Claude is able to write\" [disabled]\n  - generic: C) A request to produce the most thorough conference plan that Claude is able to write\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Asking for thoroughness without supplying facts produces length, not fit; the plan still has to guess the constraints.\n  - radio \"D) A note that the event is important and that the plan must not miss anything at all\" [disabled]\n  - generic: D) A note that the event is important and that the plan must not miss anything at all\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Emphasis is not information. Telling Claude the event matters gives it nothing new to plan around.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:55:07.027Z",
+  "fingerprint": "22cee7a93049b7978a95750e110ef89c4017879e7cad079e2d5a81c04a87f011"
+}

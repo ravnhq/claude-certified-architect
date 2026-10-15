@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.943Z",
+  "correct_answers": [
+    "B) Ask the three testers for specific examples, with what the output said and what it should have said."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Rewriting on a hunch changes the arrangement without knowing what is wrong. If the guess misses, the pilot now has two versions and still no diagnosis, and the testers' original complaint remains unexplained.",
+    "Correct. \"Not quite right\" is not actionable, and the cheapest way to make it actionable is to ask for cases. A concrete pair of what was produced and what was wanted turns vague dissatisfaction into a specific gap the instructions can address.",
+    "Learning from the satisfied testers may eventually help, but it assumes the difference lies in how the tool was used rather than in the briefings themselves. It also leaves the three unresolved complaints uninvestigated.",
+    "Direct observation is thorough but slow, and pausing the pilot stops the flow of evidence just when it is needed. Asking for examples costs an email and usually locates the problem immediately."
+  ],
+  "options": [
+    "A) Rewrite the instructions to cover the areas the owner believes are most likely to be causing the trouble.",
+    "B) Ask the three testers for specific examples, with what the output said and what it should have said.",
+    "C) Ask the five satisfied testers what they did differently and circulate that as guidance to everyone.",
+    "D) Pause the pilot until the owner can sit with each tester and watch a full briefing being produced."
+  ],
+  "question": "In a pilot of a new Claude-assisted briefing arrangement, three of eight testers report that the output is \"not quite right\" but say nothing more specific. What should the pilot's owner do first?",
+  "snapshot": "Subdomain 4.3: USE CLAUDE TO SUPPORT SOLUTION DESIGN, DEVELOPMENT, AND ITERATION",
+  "fingerprint": "1a9ffbb40f6919451660fee694a72cfcd7b0e28e4734aea8c9b379fb48a8a5ff"
+}

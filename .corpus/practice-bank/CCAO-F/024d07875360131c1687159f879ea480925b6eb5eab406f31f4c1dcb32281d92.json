@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "While designing a Claude-assisted tender-summary arrangement, an analyst finds that every draft needs the same three corrections. Which response is most appropriate?",
+  "options": [
+    "A) Keep making the three corrections by hand, since they take only a minute",
+    "B) Move to a more capable model, which should stop the corrections recurring",
+    "C) Fold those three corrections into the written instructions and try again",
+    "D) Ask for three separate drafts each time and pick whichever needs least work"
+  ],
+  "correct_answers": [
+    "C) Fold those three corrections into the written instructions and try again"
+  ],
+  "explanations": [
+    "Hand-correcting works while one person runs it, but the fix vanishes the moment anyone else uses the arrangement.",
+    "A stronger model cannot infer three unstated requirements, so the same three corrections will keep appearing.",
+    "Correct. A repeated correction is a specification the instruction is missing. Writing it in makes the fix part of the design instead of something the analyst re-applies every time.",
+    "Generating extra drafts increases the work of choosing without addressing why every draft has the same gap."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"1 / 2 correct (50%) View by domain\":\n  - generic: 1 / 2 correct (50%)\n  - generic: View by domain\n- progressbar\n- generic: Question 3 of 20\n- generic: \"Subdomain 4.3: Use Claude to support solution design, development, and iteration\"\n- heading \"While designing a Claude-assisted tender-summary arrangement, an analyst finds that every draft needs the same three corrections. Which response is most appropriate?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Keep making the three corrections by hand, since they take only a minute\" [checked] [disabled]:\n  - generic: A) Keep making the three corrections by hand, since they take only a minute\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Hand-correcting works while one person runs it, but the fix vanishes the moment anyone else uses the arrangement.\n  - radio \"B) Move to a more capable model, which should stop the corrections recurring\" [disabled]\n  - generic: B) Move to a more capable model, which should stop the corrections recurring\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A stronger model cannot infer three unstated requirements, so the same three corrections will keep appearing.\n  - radio \"C) Fold those three corrections into the written instructions and try again\" [disabled]\n  - generic: C) Fold those three corrections into the written instructions and try again\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. A repeated correction is a specification the instruction is missing. Writing it in makes the fix part of the design instead of something the analyst re-applies every time.\n  - radio \"D) Ask for three separate drafts each time and pick whichever needs least work\" [disabled]\n  - generic: D) Ask for three separate drafts each time and pick whichever needs least work\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Generating extra drafts increases the work of choosing without addressing why every draft has the same gap.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:57:34.940Z",
+  "fingerprint": "024d07875360131c1687159f879ea480925b6eb5eab406f31f4c1dcb32281d92"
+}

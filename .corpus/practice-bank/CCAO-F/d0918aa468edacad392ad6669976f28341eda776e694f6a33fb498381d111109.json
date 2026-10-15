@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "An internal FAQ drafted with help from a project is about to be published to all staff. Which maintenance step matters most before it goes out?",
+  "options": [
+    "A) Confirm the FAQ is long enough to cover every question the team has ever received from staff.",
+    "B) Check each answer against the current source documents and confirm none rely on superseded material.",
+    "C) Ask Claude to review its own FAQ and to confirm that all of the answers it has written are accurate.",
+    "D) Republish the FAQ every month so that errors in the current version are eventually replaced."
+  ],
+  "correct_answers": [
+    "B) Check each answer against the current source documents and confirm none rely on superseded material."
+  ],
+  "explanations": [
+    "Coverage is not the risk here; answers drawn from outdated sources are.",
+    "Correct. Publication is the point at which a stale source turns into a broadly circulated wrong answer.",
+    "A self-review cannot detect that the underlying uploaded source was out of date.",
+    "Scheduled republication does not stop the first version going out with wrong answers."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"6 / 8 correct (75%) View by domain\":\n  - generic: 6 / 8 correct (75%)\n  - generic: View by domain\n- progressbar\n- generic: Question 9 of 20\n- generic: \"Subdomain 5.4: Inform, maintain, and update Claude configurations, knowledge sources, and instructions\"\n- heading \"An internal FAQ drafted with help from a project is about to be published to all staff. Which maintenance step matters most before it goes out?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Confirm the FAQ is long enough to cover every question the team has ever received from staff.\" [checked] [disabled]:\n  - generic: A) Confirm the FAQ is long enough to cover every question the team has ever received from staff.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Coverage is not the risk here; answers drawn from outdated sources are.\n  - radio \"B) Check each answer against the current source documents and confirm none rely on superseded material.\" [disabled]\n  - generic: B) Check each answer against the current source documents and confirm none rely on superseded material.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Publication is the point at which a stale source turns into a broadly circulated wrong answer.\n  - radio \"C) Ask Claude to review its own FAQ and to confirm that all of the answers it has written are accurate.\" [disabled]\n  - generic: C) Ask Claude to review its own FAQ and to confirm that all of the answers it has written are accurate.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A self-review cannot detect that the underlying uploaded source was out of date.\n  - radio \"D) Republish the FAQ every month so that errors in the current version are eventually replaced.\" [disabled]\n  - generic: D) Republish the FAQ every month so that errors in the current version are eventually replaced.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Scheduled republication does not stop the first version going out with wrong answers.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:19:57.968Z",
+  "fingerprint": "d0918aa468edacad392ad6669976f28341eda776e694f6a33fb498381d111109"
+}

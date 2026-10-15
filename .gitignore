@@ -26,6 +26,14 @@ __pycache__/
 # local corpus — Skilljar course material is partner-gated, never published;
 # practice-bank/ is a tracked exception (see scripts/practice-bank-collection.md)
 .corpus/
+!.corpus/
+.corpus/*
+!.corpus/practice-bank/
+.corpus/practice-bank/*
+!.corpus/practice-bank/CCAO-F.json
+!.corpus/practice-bank/CCAO-F.md
+!.corpus/practice-bank/CCAO-F/
+!.corpus/practice-bank/CCAO-F/*.json
 
 # vendored agent tooling — reinstall from skills-lock.json, do not commit
 .agents/

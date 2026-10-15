@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A user tries to upload an XLSX spreadsheet into a chat and the upload is rejected. What must be enabled first for the upload to succeed?",
+  "options": [
+    "A) The Google Drive connector must be connected before spreadsheets can be uploaded.",
+    "B) Code execution must be turned on in account settings before XLSX files upload.",
+    "C) The account must be upgraded from Free to Pro before spreadsheets can upload.",
+    "D) The project knowledge base feature must be turned on for the account first."
+  ],
+  "correct_answers": [
+    "B) Code execution must be turned on in account settings before XLSX files upload."
+  ],
+  "explanations": [
+    "Incorrect. The Drive connector is a separate feature and is not required to upload a local XLSX file in chat.",
+    "Correct. XLSX uploads require code execution to be enabled in account settings; without it, spreadsheets cannot be processed.",
+    "Incorrect. Plan tier is not the blocker here; the specific requirement is enabling code execution.",
+    "Incorrect. Project knowledge being enabled is unrelated; XLSX support is gated by the code execution setting specifically."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"4 / 14 correct (29%) View by domain\":\n  - generic: 4 / 14 correct (29%)\n  - generic: View by domain\n- progressbar\n- generic: Question 15 of 20\n- generic: \"Subdomain 5.2: Manage uploaded knowledge and connectors (e.g., Google Drive, Gmail)\"\n- heading \"A user tries to upload an XLSX spreadsheet into a chat and the upload is rejected. What must be enabled first for the upload to succeed?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) The Google Drive connector must be connected before spreadsheets can be uploaded.\" [checked] [disabled]:\n  - generic: A) The Google Drive connector must be connected before spreadsheets can be uploaded.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. The Drive connector is a separate feature and is not required to upload a local XLSX file in chat.\n  - radio \"B) Code execution must be turned on in account settings before XLSX files upload.\" [disabled]\n  - generic: B) Code execution must be turned on in account settings before XLSX files upload.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. XLSX uploads require code execution to be enabled in account settings; without it, spreadsheets cannot be processed.\n  - radio \"C) The account must be upgraded from Free to Pro before spreadsheets can upload.\" [disabled]\n  - generic: C) The account must be upgraded from Free to Pro before spreadsheets can upload.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Plan tier is not the blocker here; the specific requirement is enabling code execution.\n  - radio \"D) The project knowledge base feature must be turned on for the account first.\" [disabled]\n  - generic: D) The project knowledge base feature must be turned on for the account first.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Project knowledge being enabled is unrelated; XLSX support is gated by the code execution setting specifically.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:13:09.079Z",
+  "fingerprint": "44f2b3843eab1c07aa3cb900ccadf437be315e58937eb0f328b465d8db72ccd8"
+}

@@ -4,7 +4,7 @@
 // Run at most 15 questions per lane per call, then report the saved counts.
 function createPracticeBankCollector(lanes, sink) {
   const collector = { lanes, sink, batch: [], known: new Map(), repeated: 0 };
-  collector.expected = { 'CCAR-F': 480, 'CCAR-P': 456, 'CCDV-F': 524 };
+  collector.expected = { 'CCAR-F': 480, 'CCAR-P': 456, 'CCDV-F': 524, 'CCAO-F': 757 };
   const submit = /^Submit/;
   collector.normalize = text => text.replace(/^[A-Z]\)\s*/, '').replace(/\s+/g, ' ').trim();
   collector.key = record => JSON.stringify([

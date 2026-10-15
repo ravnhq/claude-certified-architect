@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "An employee's organisation has no written policy on AI tools, and they want to use Claude with supplier contracts. What should they do first?",
+  "options": [
+    "A) Write their own policy for the team and begin using the tool under the rules that they drafted.",
+    "B) Assume it is permitted, since the absence of a written policy means that nothing has been prohibited yet.",
+    "C) Ask their manager or legal contact for a decision before putting any supplier material into the tool.",
+    "D) Use the tool but avoid saving anything, so that no record of the contracts is kept anywhere at all."
+  ],
+  "correct_answers": [
+    "C) Ask their manager or legal contact for a decision before putting any supplier material into the tool."
+  ],
+  "explanations": [
+    "An individual cannot grant the organisation's permission to themselves.",
+    "Silence in a policy is not permission for third-party contractual material.",
+    "Correct. Where no policy exists, the accountable route is to obtain a decision rather than to assume one.",
+    "Not saving output does not change whether the contracts could be entered in the first place."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"0 / 0 correct (0%) View by domain\":\n  - generic: 0 / 0 correct (0%)\n  - generic: View by domain\n- progressbar\n- generic: Question 1 of 20\n- generic: \"Subdomain 6.2: Apply data sensitivity, regulatory, and privacy considerations\"\n- heading \"An employee's organisation has no written policy on AI tools, and they want to use Claude with supplier contracts. What should they do first?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Write their own policy for the team and begin using the tool under the rules that they drafted.\" [checked] [disabled]:\n  - generic: A) Write their own policy for the team and begin using the tool under the rules that they drafted.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: An individual cannot grant the organisation's permission to themselves.\n  - radio \"B) Assume it is permitted, since the absence of a written policy means that nothing has been prohibited yet.\" [disabled]\n  - generic: B) Assume it is permitted, since the absence of a written policy means that nothing has been prohibited yet.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Silence in a policy is not permission for third-party contractual material.\n  - radio \"C) Ask their manager or legal contact for a decision before putting any supplier material into the tool.\" [disabled]\n  - generic: C) Ask their manager or legal contact for a decision before putting any supplier material into the tool.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Where no policy exists, the accountable route is to obtain a decision rather than to assume one.\n  - radio \"D) Use the tool but avoid saving anything, so that no record of the contracts is kept anywhere at all.\" [disabled]\n  - generic: D) Use the tool but avoid saving anything, so that no record of the contracts is kept anywhere at all.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Not saving output does not change whether the contracts could be entered in the first place.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:32:18.084Z",
+  "fingerprint": "ae1b4849baec2068f9e20b9cdf62adbbdd71a72161bfe44f5824df596e6c8636"
+}

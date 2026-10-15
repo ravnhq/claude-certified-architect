@@ -625,5 +625,27 @@ console.log('Developer Foundations engine (ccdf/dist/exam_en.html)');
   checkSharedEngine(e, 'ccdf/dist/exam_en.html');
 }
 
+console.log('Associate Foundations engine (ccaof/dist/exam_en.html)');
+{
+  const e = loadEngine('ccaof/dist/exam_en.html');
+  check('Associate page embeds all 770 collected records', (() => {
+    const bank = JSON.parse(fs.readFileSync(path.join(ROOT, 'ccaof/data/questions.json'), 'utf8'));
+    return e.QUESTIONS.length === bank.length && bank.length === 770;
+  })(), `page holds ${e.QUESTIONS.length}`);
+  check('Associate store key is track-scoped', e.STORE_KEY === 'ccaof-exam-en', e.STORE_KEY);
+  check('Associate draw has 60 questions', e.examSize() === 60, `got ${e.examSize()}`);
+  check('Associate draw matches the seven-domain blueprint', (() => {
+    const want = { 1: 8, 2: 13, 3: 7, 4: 10, 5: 7, 6: 9, 7: 6 };
+    const order = e.shuffleOrder();
+    const got = {};
+    order.forEach(id => { const d = e.qById(id).domain; got[d] = (got[d] || 0) + 1; });
+    return order.length === 60 && Object.keys(want).every(d => got[d] === want[d]);
+  })());
+  checkWideItems(e, 'ccaof/dist/exam_en.html');
+  checkFocusDrill(e, 'ccaof/dist/exam_en.html');
+  checkMisses(e, 'ccaof/dist/exam_en.html');
+  checkSharedEngine(e, 'ccaof/dist/exam_en.html');
+}
+
 console.log(failures === 0 ? '\nAll engine checks passed.' : `\n${failures} check(s) FAILED.`);
 process.exit(failures === 0 ? 0 : 1);

@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "B) Incognito chats are never used to improve Claude, but the policy's rules for regulated data still apply."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "A personal plan in incognito mode is not the managed workspace and carries none of its contractual or administrative controls.",
+    "Correct. Incognito chats are not used to improve Claude, but the policy question is whether regulated data may be processed in that environment at all, and a privacy toggle does not answer it.",
+    "Overstating what incognito does is the trap here; the policy governs where regulated data may go, not only whether it trains a model.",
+    "Pseudonymising fields does not make regulated records unregulated, and the approval question remains open."
+  ],
+  "options": [
+    "A) Incognito chats are equivalent to the company's managed workspace, so no separate approval would be required.",
+    "B) Incognito chats are never used to improve Claude, but the policy's rules for regulated data still apply.",
+    "C) Incognito chats satisfy the policy, because nothing from the conversation is retained anywhere after it ends.",
+    "D) Incognito chats are acceptable for regulated data provided customer names are replaced with reference codes."
+  ],
+  "question": "A team lead asks whether using incognito chats on his personal plan makes it acceptable to paste regulated customer records into Claude. What is the best response?",
+  "snapshot": "Subdomain 6.3: FOLLOW ORGANIZATIONAL AI POLICIES AND GOVERNANCE STANDARDS",
+  "fingerprint": "1ac41e2219ca43a8f523ea263e5c49cbce6b4835de682ab568b7422ae90545f8"
+}

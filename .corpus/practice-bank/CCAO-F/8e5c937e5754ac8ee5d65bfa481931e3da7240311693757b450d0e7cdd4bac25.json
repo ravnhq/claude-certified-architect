@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A team lead grants \"Can edit\" access on a shared project to everyone who might ever open it, rather than giving most people \"Can view\". What is the greatest risk?",
+  "options": [
+    "A) The project's chat history becomes visible to the whole organisation regardless of the access levels granted.",
+    "B) Only one editor can open the project at a time, so members are blocked whenever a colleague is in it.",
+    "C) Editors are billed separately for the project, so the department's costs rise with each person added.",
+    "D) Anyone can change the instructions and the knowledge, so the shared setup can drift without anyone noticing."
+  ],
+  "correct_answers": [
+    "D) Anyone can change the instructions and the knowledge, so the shared setup can drift without anyone noticing."
+  ],
+  "explanations": [
+    "Granting edit access to named people does not publish the project organisation-wide.",
+    "There is no single-editor lock on a shared project.",
+    "Access levels within a project are not billed individually.",
+    "Correct. Broad edit rights let the agreed direction and sources be altered silently by any of the members."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"2 / 6 correct (33%) View by domain\":\n  - generic: 2 / 6 correct (33%)\n  - generic: View by domain\n- progressbar\n- generic: Question 7 of 20\n- generic: \"Subdomain 5.1: Configure Claude Projects with instructions and knowledge sources\"\n- heading \"A team lead grants \\\"Can edit\\\" access on a shared project to everyone who might ever open it, rather than giving most people \\\"Can view\\\". What is the greatest risk?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) The project's chat history becomes visible to the whole organisation regardless of the access levels granted.\" [checked] [disabled]:\n  - generic: A) The project's chat history becomes visible to the whole organisation regardless of the access levels granted.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Granting edit access to named people does not publish the project organisation-wide.\n  - radio \"B) Only one editor can open the project at a time, so members are blocked whenever a colleague is in it.\" [disabled]\n  - generic: B) Only one editor can open the project at a time, so members are blocked whenever a colleague is in it.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: There is no single-editor lock on a shared project.\n  - radio \"C) Editors are billed separately for the project, so the department's costs rise with each person added.\" [disabled]\n  - generic: C) Editors are billed separately for the project, so the department's costs rise with each person added.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Access levels within a project are not billed individually.\n  - radio \"D) Anyone can change the instructions and the knowledge, so the shared setup can drift without anyone noticing.\" [disabled]\n  - generic: D) Anyone can change the instructions and the knowledge, so the shared setup can drift without anyone noticing.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Broad edit rights let the agreed direction and sources be altered silently by any of the members.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:07:14.462Z",
+  "fingerprint": "8e5c937e5754ac8ee5d65bfa481931e3da7240311693757b450d0e7cdd4bac25"
+}

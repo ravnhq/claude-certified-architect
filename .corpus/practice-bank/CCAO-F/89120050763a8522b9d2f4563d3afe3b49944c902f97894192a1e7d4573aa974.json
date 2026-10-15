@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A legal operations manager writes project instructions containing forty numbered rules intended to cover every request the team might ever make. What is the most likely consequence?",
+  "options": [
+    "A) Each numbered rule creates a separate chat history, so the project's conversations are split across rules.",
+    "B) Numbered lists are not accepted in the instructions field, so only the first several rules are stored at all.",
+    "C) Long instructions force the project into retrieval mode, which removes uploaded documents from answers.",
+    "D) Rules that rarely apply crowd out the few that always matter, so the key ones are followed less reliably."
+  ],
+  "correct_answers": [
+    "D) Rules that rarely apply crowd out the few that always matter, so the key ones are followed less reliably."
+  ],
+  "explanations": [
+    "Instructions do not create or partition chat histories in any way.",
+    "There is no restriction on numbered lists in project instructions.",
+    "Retrieval behaviour relates to the size of project knowledge, and it does not remove documents from answers.",
+    "Correct. Long, undifferentiated rule lists dilute the direction that actually matters for most requests."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"3 / 13 correct (23%) View by domain\":\n  - generic: 3 / 13 correct (23%)\n  - generic: View by domain\n- progressbar\n- generic: Question 14 of 20\n- generic: \"Subdomain 5.3: Create effective system-level instructions\"\n- heading \"A legal operations manager writes project instructions containing forty numbered rules intended to cover every request the team might ever make. What is the most likely consequence?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Each numbered rule creates a separate chat history, so the project's conversations are split across rules.\" [checked] [disabled]:\n  - generic: A) Each numbered rule creates a separate chat history, so the project's conversations are split across rules.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Instructions do not create or partition chat histories in any way.\n  - radio \"B) Numbered lists are not accepted in the instructions field, so only the first several rules are stored at all.\" [disabled]\n  - generic: B) Numbered lists are not accepted in the instructions field, so only the first several rules are stored at all.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: There is no restriction on numbered lists in project instructions.\n  - radio \"C) Long instructions force the project into retrieval mode, which removes uploaded documents from answers.\" [disabled]\n  - generic: C) Long instructions force the project into retrieval mode, which removes uploaded documents from answers.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Retrieval behaviour relates to the size of project knowledge, and it does not remove documents from answers.\n  - radio \"D) Rules that rarely apply crowd out the few that always matter, so the key ones are followed less reliably.\" [disabled]\n  - generic: D) Rules that rarely apply crowd out the few that always matter, so the key ones are followed less reliably.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Long, undifferentiated rule lists dilute the direction that actually matters for most requests.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:15:52.272Z",
+  "fingerprint": "89120050763a8522b9d2f4563d3afe3b49944c902f97894192a1e7d4573aa974"
+}

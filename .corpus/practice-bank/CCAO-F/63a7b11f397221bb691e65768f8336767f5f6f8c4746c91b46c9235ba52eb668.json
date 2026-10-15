@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A teacher wants students to be able to check the claims in a Claude-drafted study guide for themselves. What should she build into the guide?",
+  "options": [
+    "A) A confidence rating beside each claim showing how certain Claude was when it wrote it.",
+    "B) A note at the front explaining that parts of the guide were drafted with Claude's help.",
+    "C) Each claim paired with the specific source and page on which a student can find it.",
+    "D) A list at the back of every source that was consulted while the guide was being written."
+  ],
+  "correct_answers": [
+    "C) Each claim paired with the specific source and page on which a student can find it."
+  ],
+  "explanations": [
+    "Incorrect. A self-reported confidence score is not something a student can check against anything.",
+    "Incorrect. Disclosure is honest and worth doing, but it gives a student no way to check any particular statement.",
+    "Correct. Claim-level sourcing is what makes verification possible for a reader, because it tells them exactly where to look for each statement.",
+    "Incorrect. A bibliography shows what was read overall but leaves students unable to tell which source supports which claim."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"11 / 13 correct (85%) View by domain\":\n  - generic: 11 / 13 correct (85%)\n  - generic: View by domain\n- progressbar\n- generic: Question 14 of 20\n- generic: \"Subdomain 2.3: Apply fact-checking and validation techniques\"\n- heading \"A teacher wants students to be able to check the claims in a Claude-drafted study guide for themselves. What should she build into the guide?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) A confidence rating beside each claim showing how certain Claude was when it wrote it.\" [checked] [disabled]:\n  - generic: A) A confidence rating beside each claim showing how certain Claude was when it wrote it.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. A self-reported confidence score is not something a student can check against anything.\n  - radio \"B) A note at the front explaining that parts of the guide were drafted with Claude's help.\" [disabled]\n  - generic: B) A note at the front explaining that parts of the guide were drafted with Claude's help.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Disclosure is honest and worth doing, but it gives a student no way to check any particular statement.\n  - radio \"C) Each claim paired with the specific source and page on which a student can find it.\" [disabled]\n  - generic: C) Each claim paired with the specific source and page on which a student can find it.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Claim-level sourcing is what makes verification possible for a reader, because it tells them exactly where to look for each statement.\n  - radio \"D) A list at the back of every source that was consulted while the guide was being written.\" [disabled]\n  - generic: D) A list at the back of every source that was consulted while the guide was being written.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. A bibliography shows what was read overall but leaves students unable to tell which source supports which claim.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:41:06.177Z",
+  "fingerprint": "63a7b11f397221bb691e65768f8336767f5f6f8c4746c91b46c9235ba52eb668"
+}

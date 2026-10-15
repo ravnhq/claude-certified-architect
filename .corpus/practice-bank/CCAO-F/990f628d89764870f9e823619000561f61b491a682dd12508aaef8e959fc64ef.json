@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-15T19:17:11.943Z",
+  "correct_answers": [
+    "B) Use Research mode and check the citations it returns back against the original sources.",
+    "E) Ask Claude to draft the research plan and its open questions, then have the team refine it."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Incorrect. Confident phrasing is not evidence, and market figures used for a real decision need checking against sources.",
+    "Correct. Research mode returns citations, and checking them against the originals is how a claim is actually verified.",
+    "Incorrect. Collapsing a study into one prompt and publishing the result removes every point where a human could catch an error.",
+    "Incorrect. Stating the decision the study supports is what makes the research useful; withholding it produces unfocused output.",
+    "Correct. Drafting the plan and the open questions is planning work Claude does well, and the team refining it keeps ownership where it belongs."
+  ],
+  "options": [
+    "A) Accept the market figures Claude gives as final, since the answer reads confident and full.",
+    "B) Use Research mode and check the citations it returns back against the original sources.",
+    "C) Ask for the finished conclusion in a single prompt and publish it with no intermediate step.",
+    "D) Leave out the decision the study must support, so Claude is not steered toward an answer.",
+    "E) Ask Claude to draft the research plan and its open questions, then have the team refine it."
+  ],
+  "question": "A strategy lead is planning a market-entry study and wants Claude to help with the research phase of it. Which two approaches are sound? Select two.(Select 2)",
+  "snapshot": "Subdomain 4.2: LEVERAGE CLAUDE FOR RESEARCH, PLANNING, AND PROCESS OPTIMIZATION",
+  "fingerprint": "990f628d89764870f9e823619000561f61b491a682dd12508aaef8e959fc64ef"
+}

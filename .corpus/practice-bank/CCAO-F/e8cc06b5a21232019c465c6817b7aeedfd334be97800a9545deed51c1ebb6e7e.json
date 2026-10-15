@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.940Z",
+  "correct_answers": [
+    "C) Guide Claude to create a marketing email: first, write an attention-grabbing subject line; then, open with a hook; next, present three key benefits with persuasive language; and finally, include a clear call to action linked to the product page."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Incorrect. This approach provides no guidance on audience, tone, or key benefits, leaving the output too open-ended. Without clear direction, the email may lack persuasive elements and fail to meet marketing goals.",
+    "Incorrect. This instruction results in a formal internal report, not a marketing email. It emphasizes technical specifications rather than attention-grabbing copy, benefits, and a call to action.",
+    "Correct. This prompt gives step-by-step guidance tailored to marketing email creation, ensuring inclusion of a subject line, hook, benefits, and call to action. It's a structured approach that yields a persuasive, complete email.",
+    "Incorrect. While producing multiple drafts can be useful for exploration, it is less efficient for a single drafting task. Option C provides a more direct and structured method to get a well-crafted email in one go."
+  ],
+  "options": [
+    "A) Prompt Claude to draft an email announcing the new product, leaving the structure and content entirely to the model's discretion without providing any specific guidelines on audience, tone, or key product benefits to highlight.",
+    "B) Instruct Claude to write a thorough product description report covering all features, specifications, technical details, and pricing info, formatted as a formal document that is suitable for internal stakeholders rather than a marketing audience.",
+    "C) Guide Claude to create a marketing email: first, write an attention-grabbing subject line; then, open with a hook; next, present three key benefits with persuasive language; and finally, include a clear call to action linked to the product page.",
+    "D) Ask Claude to produce several email drafts with distinct tones (formal, casual, urgent), then assess each draft's persuasiveness, clarity, and brand alignment, and choose the best one for final edits, and then iterate if needed."
+  ],
+  "question": "A marketing manager needs to draft a persuasive email campaign to launch a new product. The email should capture attention, highlight benefits, and include a call to action. Which prompting approach is best?",
+  "snapshot": "Subdomain 1.4: ADAPT PROMPTING STRATEGIES BASED ON TASK TYPE (ANALYSIS, RESEARCH, DRAFTING, BRAINSTORMING)",
+  "fingerprint": "e8cc06b5a21232019c465c6817b7aeedfd334be97800a9545deed51c1ebb6e7e"
+}

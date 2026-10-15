@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "C) Rewrite the prompt to list the exact categories, the desired output format, and the criteria for choosing between them."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Incorrect. Temperature affects sampling randomness, not whether the model understands what categories exist or how to choose between them; it does not address an underspecified prompt.",
+    "Incorrect. Swapping models does not resolve ambiguity in the instructions themselves; an underspecified prompt will still under perform on a larger model.",
+    "Correct. Claude responds well to clear, explicit instructions; a vague one-line prompt lacking the category list, output format, and selection criteria is the classic underperformance pattern, and the documented fix is to be specific about desired output and constraints.",
+    "Incorrect. Manual relabeling is a workaround applied after generation, not a fix to the prompt causing the inconsistency."
+  ],
+  "options": [
+    "A) Lower the temperature parameter to zero so sampling becomes deterministic and the same ticket always returns the same category.",
+    "B) Route every ticket to a larger model on the assumption that added model capacity will infer the missing category definitions.",
+    "C) Rewrite the prompt to list the exact categories, the desired output format, and the criteria for choosing between them.",
+    "D) Have a reviewer manually relabel any ticket that looks miscategorized before the ticket reaches a customer-facing queue."
+  ],
+  "question": "A support-ticket triage prompt gives Claude a single sentence: \"Categorize this ticket.\" Categories come back inconsistent between runs, and the team wants a fix that addresses the root cause rather than adding post-processing. What should they change first?",
+  "snapshot": "Subdomain 7.1: IDENTIFY, DIAGNOSE, AND RESOLVE ISSUES WITH UNDERPERFORMING PROMPTS OR POOR OUTPUTS",
+  "fingerprint": "3bd1abd385031024f897100a8d2195f83127075b68b6df1d9e79a229437867b1"
+}

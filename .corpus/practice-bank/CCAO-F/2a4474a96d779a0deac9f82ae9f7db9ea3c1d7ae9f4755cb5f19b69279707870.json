@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.943Z",
+  "correct_answers": [
+    "D) Write down what good output means, then run a real sample on the default tier, then compare that sample against the definition, then change tier only where it falls short."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Choosing on instinct and defining quality a month later means there is no standard to judge the intervening results against, and a month of work has already been committed to an unexamined choice.",
+    "Committing several tiers to the task before any standard exists means the trial is designed without knowing what it is testing for, and it duplicates the work and the allowance draw on every run.",
+    "Comparing results before the task has been run is out of order, and benchmarking against manual work is not the same as agreeing what this task's output has to achieve.",
+    "Correct. Define the quality bar, test the default tier on real work, check that sample against the bar, and change tier only where the evidence shows the default falls short or is more than the task needs."
+  ],
+  "options": [
+    "A) Pick a tier by how important the task feels, then run it for a month, then write down what good output means, then compare the month's results against that.",
+    "B) Run the task on several tiers at once, then write down what good output means, then compare the results against that definition, then keep the tier that did best.",
+    "C) Compare a sample of results with what colleagues produce by hand, then write down what good output means, then pick a tier on that basis, then run the task each week from then on.",
+    "D) Write down what good output means, then run a real sample on the default tier, then compare that sample against the definition, then change tier only where it falls short."
+  ],
+  "question": "A team is setting up a new recurring weekly task and has to decide how much reasoning depth it needs. Which sequence is correct?",
+  "snapshot": "Subdomain 3.3: ALIGN MODEL SELECTION WITH TASK REQUIREMENTS (COST, SPEED, QUALITY)",
+  "fingerprint": "2a4474a96d779a0deac9f82ae9f7db9ea3c1d7ae9f4755cb5f19b69279707870"
+}

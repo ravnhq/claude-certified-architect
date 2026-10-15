@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.942Z",
+  "correct_answers": [
+    "A) Open the report and find that exact sentence, since a close paraphrase may not appear in it."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Correct. A quotation asserts that specific words appear in a specific document, so only locating those words in the report validates it.",
+    "Incorrect. A page number can be generated as readily as the quotation, so it adds no independent confirmation.",
+    "Incorrect. Similar wording elsewhere does not establish that this report contains this sentence.",
+    "Incorrect. The report existing says nothing about whether the quoted sentence is in it."
+  ],
+  "options": [
+    "A) Open the report and find that exact sentence, since a close paraphrase may not appear in it.",
+    "B) Ask Claude for the page number, and accept the quotation once a number has been supplied to her.",
+    "C) Search for the sentence's key phrase and accept it if similar wording appears anywhere.",
+    "D) Confirm that the report exists and was published, which establishes the quotation's origin."
+  ],
+  "question": "A Claude draft attributes a sentence to a named industry report as a direct quotation. What is the appropriate validation step?",
+  "snapshot": "Subdomain 2.3: APPLY FACT-CHECKING AND VALIDATION TECHNIQUES",
+  "fingerprint": "f7e88c430f46a3bba07ae055e1e9a82388f0e7dc4f583c0ae986771236606611"
+}

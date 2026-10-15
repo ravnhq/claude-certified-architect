@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "An education lead is choosing a model tier to help draft feedback that will contribute to students' marks. What should she do first?",
+  "options": [
+    "A) Choose the deepest tier, since anything involving students should use the strongest option.",
+    "B) Establish how the feedback will be used and what an error in it would cost a student.",
+    "C) Compare the tiers on a sample and pick whichever produces the longest and most detailed drafts.",
+    "D) Choose the fastest tier, since drafting feedback for a class is a high-volume repetitive task."
+  ],
+  "correct_answers": [
+    "B) Establish how the feedback will be used and what an error in it would cost a student."
+  ],
+  "explanations": [
+    "Incorrect. It may well be right, but choosing it before the quality bar is stated is a guess rather than a judgment.",
+    "Correct. The quality bar comes from the consequence of the output. Once she knows an error affects a mark, the tier decision follows from that bar rather than from cost alone.",
+    "Incorrect. Length is not the standard, and choosing on it rewards verbosity rather than accuracy.",
+    "Incorrect. Volume is only half the picture, and choosing on throughput ignores what an error here would cost."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"1 / 6 correct (17%) View by domain\":\n  - generic: 1 / 6 correct (17%)\n  - generic: View by domain\n- progressbar\n- generic: Question 7 of 20\n- generic: \"Subdomain 3.3: Align model selection with task requirements (cost, speed, quality)\"\n- heading \"An education lead is choosing a model tier to help draft feedback that will contribute to students' marks. What should she do first?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Choose the deepest tier, since anything involving students should use the strongest option.\" [checked] [disabled]:\n  - generic: A) Choose the deepest tier, since anything involving students should use the strongest option.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. It may well be right, but choosing it before the quality bar is stated is a guess rather than a judgment.\n  - radio \"B) Establish how the feedback will be used and what an error in it would cost a student.\" [disabled]\n  - generic: B) Establish how the feedback will be used and what an error in it would cost a student.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. The quality bar comes from the consequence of the output. Once she knows an error affects a mark, the tier decision follows from that bar rather than from cost alone.\n  - radio \"C) Compare the tiers on a sample and pick whichever produces the longest and most detailed drafts.\" [disabled]\n  - generic: C) Compare the tiers on a sample and pick whichever produces the longest and most detailed drafts.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Length is not the standard, and choosing on it rewards verbosity rather than accuracy.\n  - radio \"D) Choose the fastest tier, since drafting feedback for a class is a high-volume repetitive task.\" [disabled]\n  - generic: D) Choose the fastest tier, since drafting feedback for a class is a high-volume repetitive task.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Volume is only half the picture, and choosing on throughput ignores what an error here would cost.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:48:57.452Z",
+  "fingerprint": "f0e988cdab13d1dcba71aa8f28f2c4598daf39f7bee2a7fe0b1fd4f562a47396"
+}

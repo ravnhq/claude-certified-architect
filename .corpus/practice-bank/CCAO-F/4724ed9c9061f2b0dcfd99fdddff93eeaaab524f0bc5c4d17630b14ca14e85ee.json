@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A team is designing a Claude-assisted arrangement for handling supplier complaints. Which step should most clearly stay with a person?",
+  "options": [
+    "A) Pulling the supplier's complaint history together into a single summary",
+    "B) Grouping the month's complaints by the type of issue that they describe",
+    "C) Deciding whether a goodwill credit is offered and how large it should be",
+    "D) Drafting the acknowledgement telling the supplier that work has now begun"
+  ],
+  "correct_answers": [
+    "C) Deciding whether a goodwill credit is offered and how large it should be"
+  ],
+  "explanations": [
+    "Assembling history into a summary is repetitive, text-heavy work whose output is reviewed before anyone relies on it.",
+    "Grouping complaints by issue type is classification work that is easy to check and carries no external commitment.",
+    "Correct. Committing the organisation's money to a supplier is a decision with external consequences that someone must be accountable for, so it stays with a person even when everything around it is delegated.",
+    "An acknowledgement is a routine, low-stakes draft that a person can check quickly before it goes out."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"1 / 3 correct (33%) View by domain\":\n  - generic: 1 / 3 correct (33%)\n  - generic: View by domain\n- progressbar\n- generic: Question 4 of 20\n- generic: \"Subdomain 4.3: Use Claude to support solution design, development, and iteration\"\n- heading \"A team is designing a Claude-assisted arrangement for handling supplier complaints. Which step should most clearly stay with a person?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Pulling the supplier's complaint history together into a single summary\" [checked] [disabled]:\n  - generic: A) Pulling the supplier's complaint history together into a single summary\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Assembling history into a summary is repetitive, text-heavy work whose output is reviewed before anyone relies on it.\n  - radio \"B) Grouping the month's complaints by the type of issue that they describe\" [disabled]\n  - generic: B) Grouping the month's complaints by the type of issue that they describe\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Grouping complaints by issue type is classification work that is easy to check and carries no external commitment.\n  - radio \"C) Deciding whether a goodwill credit is offered and how large it should be\" [disabled]\n  - generic: C) Deciding whether a goodwill credit is offered and how large it should be\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Committing the organisation's money to a supplier is a decision with external consequences that someone must be accountable for, so it stays with a person even when everything around it is delegated.\n  - radio \"D) Drafting the acknowledgement telling the supplier that work has now begun\" [disabled]\n  - generic: D) Drafting the acknowledgement telling the supplier that work has now begun\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: An acknowledgement is a routine, low-stakes draft that a person can check quickly before it goes out.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:57:39.576Z",
+  "fingerprint": "4724ed9c9061f2b0dcfd99fdddff93eeaaab524f0bc5c4d17630b14ca14e85ee"
+}

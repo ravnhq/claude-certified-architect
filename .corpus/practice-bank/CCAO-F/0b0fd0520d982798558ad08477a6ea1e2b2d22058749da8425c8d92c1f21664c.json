@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A shared project supports a process that changes every quarter. Which practice best keeps the project trustworthy over time?",
+  "options": [
+    "A) Name an owner and a review date so the instructions and the documents are checked each quarter.",
+    "B) Re-upload every document once a week so that the knowledge base is refreshed whether or not it changed.",
+    "C) Ask anyone who spots an error to correct the knowledge base themselves whenever they happen to notice.",
+    "D) Rely on members to say in their prompts which parts of the documents are now out of date."
+  ],
+  "correct_answers": [
+    "A) Name an owner and a review date so the instructions and the documents are checked each quarter."
+  ],
+  "explanations": [
+    "Correct. Accountability plus a scheduled review is what keeps configuration aligned with a changing process.",
+    "Re-uploading unchanged files costs effort without detecting anything that actually changed.",
+    "Ad hoc fixes by whoever notices leave gaps and produce inconsistent, unrecorded changes.",
+    "This assumes every member already knows what changed, which is rarely true."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"7 / 12 correct (58%) View by domain\":\n  - generic: 7 / 12 correct (58%)\n  - generic: View by domain\n- progressbar\n- generic: Question 13 of 20\n- generic: \"Subdomain 5.4: Inform, maintain, and update Claude configurations, knowledge sources, and instructions\"\n- heading \"A shared project supports a process that changes every quarter. Which practice best keeps the project trustworthy over time?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Name an owner and a review date so the instructions and the documents are checked each quarter.\" [checked] [disabled]:\n  - generic: A) Name an owner and a review date so the instructions and the documents are checked each quarter.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Accountability plus a scheduled review is what keeps configuration aligned with a changing process.\n  - radio \"B) Re-upload every document once a week so that the knowledge base is refreshed whether or not it changed.\" [disabled]\n  - generic: B) Re-upload every document once a week so that the knowledge base is refreshed whether or not it changed.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Re-uploading unchanged files costs effort without detecting anything that actually changed.\n  - radio \"C) Ask anyone who spots an error to correct the knowledge base themselves whenever they happen to notice.\" [disabled]\n  - generic: C) Ask anyone who spots an error to correct the knowledge base themselves whenever they happen to notice.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Ad hoc fixes by whoever notices leave gaps and produce inconsistent, unrecorded changes.\n  - radio \"D) Rely on members to say in their prompts which parts of the documents are now out of date.\" [disabled]\n  - generic: D) Rely on members to say in their prompts which parts of the documents are now out of date.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: This assumes every member already knows what changed, which is rarely true.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:20:38.091Z",
+  "fingerprint": "0b0fd0520d982798558ad08477a6ea1e2b2d22058749da8425c8d92c1f21664c"
+}

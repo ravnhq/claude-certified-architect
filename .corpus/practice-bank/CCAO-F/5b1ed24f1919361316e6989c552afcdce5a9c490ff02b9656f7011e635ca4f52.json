@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "An Enterprise organisation wants a shorter data retention window applied to its chats and projects. Who is able to make that change?",
+  "options": [
+    "A) Someone holding the Primary Owner or the Owner role, in the organisation's settings.",
+    "B) Any member of the organisation, from the privacy settings page of their own account.",
+    "C) Only Anthropic support staff, acting on a written request from the organisation's legal team.",
+    "D) The person who created each individual project, applied to that one project only."
+  ],
+  "correct_answers": [
+    "A) Someone holding the Primary Owner or the Owner role, in the organisation's settings."
+  ],
+  "explanations": [
+    "Correct. Custom retention controls are restricted to the Primary Owner or an Owner.",
+    "Individual members cannot set organisation-level retention.",
+    "The control is self-service for the appropriate owner roles.",
+    "Retention is an organisation-level control, not a per-project setting."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"10 / 19 correct (53%) View by domain\":\n  - generic: 10 / 19 correct (53%)\n  - generic: View by domain\n- progressbar\n- generic: Question 20 of 20\n- generic: \"Subdomain 6.2: Apply data sensitivity, regulatory, and privacy considerations\"\n- heading \"An Enterprise organisation wants a shorter data retention window applied to its chats and projects. Who is able to make that change?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Someone holding the Primary Owner or the Owner role, in the organisation's settings.\" [checked] [disabled]:\n  - generic: A) Someone holding the Primary Owner or the Owner role, in the organisation's settings.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Custom retention controls are restricted to the Primary Owner or an Owner.\n  - radio \"B) Any member of the organisation, from the privacy settings page of their own account.\" [disabled]\n  - generic: B) Any member of the organisation, from the privacy settings page of their own account.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Individual members cannot set organisation-level retention.\n  - radio \"C) Only Anthropic support staff, acting on a written request from the organisation's legal team.\" [disabled]\n  - generic: C) Only Anthropic support staff, acting on a written request from the organisation's legal team.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The control is self-service for the appropriate owner roles.\n  - radio \"D) The person who created each individual project, applied to that one project only.\" [disabled]\n  - generic: D) The person who created each individual project, applied to that one project only.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Retention is an organisation-level control, not a per-project setting.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Finish Quiz\":\n  - text: Finish Quiz",
+  "captured_at": "2026-10-15T20:31:47.158Z",
+  "fingerprint": "5b1ed24f1919361316e6989c552afcdce5a9c490ff02b9656f7011e635ca4f52"
+}

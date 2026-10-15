@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A team uploads the new travel policy to a project but leaves the previous year's version in the knowledge base as well. What is the greatest risk?",
+  "options": [
+    "A) The older document is archived automatically, so the team loses the record of what the old rules were.",
+    "B) The project immediately rejects the newer file, because two documents cannot cover the same subject area at once.",
+    "C) Both versions are available, so Claude may cite the superseded rules without anyone noticing the conflict.",
+    "D) The project switches to retrieval mode, which stops Claude from quoting either policy document directly."
+  ],
+  "correct_answers": [
+    "C) Both versions are available, so Claude may cite the superseded rules without anyone noticing the conflict."
+  ],
+  "explanations": [
+    "Nothing removes or archives an uploaded file on its own; that is the maintainer's job.",
+    "There is no restriction preventing two documents on the same topic.",
+    "Correct. Two live versions of the same policy make wrong answers look exactly as authoritative as right ones.",
+    "Retrieval relates to the size of project knowledge and still allows documents to be quoted."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"5 / 15 correct (33%) View by domain\":\n  - generic: 5 / 15 correct (33%)\n  - generic: View by domain\n- progressbar\n- generic: Question 16 of 60\n- generic: \"Subdomain 5.4: Inform, maintain, and update Claude configurations, knowledge sources, and instructions\"\n- heading \"A team uploads the new travel policy to a project but leaves the previous year's version in the knowledge base as well. What is the greatest risk?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) The older document is archived automatically, so the team loses the record of what the old rules were.\" [checked] [disabled]:\n  - generic: A) The older document is archived automatically, so the team loses the record of what the old rules were.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Nothing removes or archives an uploaded file on its own; that is the maintainer's job.\n  - radio \"B) The project immediately rejects the newer file, because two documents cannot cover the same subject area at once.\" [disabled]\n  - generic: B) The project immediately rejects the newer file, because two documents cannot cover the same subject area at once.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: There is no restriction preventing two documents on the same topic.\n  - radio \"C) Both versions are available, so Claude may cite the superseded rules without anyone noticing the conflict.\" [disabled]\n  - generic: C) Both versions are available, so Claude may cite the superseded rules without anyone noticing the conflict.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Two live versions of the same policy make wrong answers look exactly as authoritative as right ones.\n  - radio \"D) The project switches to retrieval mode, which stops Claude from quoting either policy document directly.\" [disabled]\n  - generic: D) The project switches to retrieval mode, which stops Claude from quoting either policy document directly.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Retrieval relates to the size of project knowledge and still allows documents to be quoted.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:22:07.542Z",
+  "fingerprint": "5fd34614c0f04311aeaceb0d62c690952bd802cf964edec3e3add449601d2ec2"
+}

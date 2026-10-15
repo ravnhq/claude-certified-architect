@@ -1,0 +1,87 @@
+{
+  "_source": "Claude Certified Associate – Foundations Exam Guide, Version 1.0, effective July 2026, exam code CCAO-F, Section 6 'Exam Content Outline (Blueprint)'. Objective text is transcribed from the official detailed objectives. Anthropic marks the guide as subject to change without notice.",
+  "_source_file": "sources/associate-foundations-exam-guide.pdf",
+  "_exam": {
+    "code": "CCAO-F",
+    "items": 60,
+    "minutes": 120,
+    "pass_score": 720,
+    "scale": [100, 1000],
+    "fee_usd": 99,
+    "validity_months": 12
+  },
+  "domains": {
+    "1": {
+      "name": "Prompting and Task Execution",
+      "weight": 14,
+      "objectives": [
+        "Create effective prompts for business and technical tasks",
+        "Apply task decomposition techniques to structure complex requests",
+        "Iterate prompts to improve output quality",
+        "Adapt prompting strategies based on task type (analysis, research, drafting, brainstorming)"
+      ]
+    },
+    "2": {
+      "name": "Output Evaluation and Validation",
+      "weight": 21,
+      "objectives": [
+        "Evaluate Claude-generated outputs for accuracy and completeness",
+        "Identify hallucinations, inconsistencies, and biases in responses",
+        "Apply fact-checking and validation techniques",
+        "Determine when human review or additional verification is required",
+        "Edit, adapt, refine, and compare outputs for the intended audience",
+        "Organize and curate information and select appropriate output formats (artifacts, inline, structured data)"
+      ]
+    },
+    "3": {
+      "name": "Product and Model Selection",
+      "weight": 12,
+      "objectives": [
+        "Select appropriate Claude product features (Projects, research mode, chat, artifacts)",
+        "Differentiate between Claude model types (Haiku, Sonnet, Opus)",
+        "Align model selection with task requirements (cost, speed, quality)",
+        "Understand and manage context limitations and memory considerations (when to restart, summarize, or persist)"
+      ]
+    },
+    "4": {
+      "name": "Workflow Integration and Solution Design",
+      "weight": 16,
+      "objectives": [
+        "Apply Claude to analyze requirements and use cases",
+        "Leverage Claude for research, planning, and process optimization",
+        "Use Claude to support solution design, development, and iteration",
+        "Integrate Claude into existing workflows to augment or redesign them",
+        "Communicate Claude's value and limitations to stakeholders"
+      ]
+    },
+    "5": {
+      "name": "Configuration and Knowledge Management",
+      "weight": 12,
+      "objectives": [
+        "Configure Claude Projects with instructions and knowledge sources",
+        "Manage uploaded knowledge and connectors (e.g., Google Drive, Gmail)",
+        "Create effective system-level instructions",
+        "Inform, maintain, and update Claude configurations, knowledge sources, and instructions"
+      ]
+    },
+    "6": {
+      "name": "Governance, Risk, and Responsible Use",
+      "weight": 15,
+      "objectives": [
+        "Identify appropriate and inappropriate use cases",
+        "Apply data sensitivity, regulatory, and privacy considerations",
+        "Follow organizational AI policies and governance standards",
+        "Understand the ethical implications of AI usage"
+      ]
+    },
+    "7": {
+      "name": "Troubleshooting and Optimization",
+      "weight": 10,
+      "objectives": [
+        "Identify, diagnose, and resolve issues with underperforming prompts or poor outputs",
+        "Adjust approach based on feedback and results",
+        "Optimize workflows for efficiency and effectiveness"
+      ]
+    }
+  }
+}

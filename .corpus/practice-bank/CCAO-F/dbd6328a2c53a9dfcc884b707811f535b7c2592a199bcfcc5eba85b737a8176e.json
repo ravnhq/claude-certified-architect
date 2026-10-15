@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A user edits a Google Doc directly in Drive after Claude referenced it earlier in a conversation, then asks a follow-up question about the same document. What should the user expect?",
+  "options": [
+    "A) The user must re-upload the document as a new file for changes to appear.",
+    "B) Claude uses a cached snapshot from the first access and misses the new edits entirely.",
+    "C) Claude's view of the document reflects the latest Drive version, since it auto-syncs.",
+    "D) Claude only sees updates when the document is re-shared through a new link."
+  ],
+  "correct_answers": [
+    "C) Claude's view of the document reflects the latest Drive version, since it auto-syncs."
+  ],
+  "explanations": [
+    "Incorrect. Re-uploading is unnecessary because the connector already reads the live document from Drive.",
+    "Incorrect. There is no static cached snapshot behavior; the connector reflects the current Drive version instead.",
+    "Correct. Documents accessed through the Drive connector sync automatically with their Drive versions, so the follow-up reflects the latest edits.",
+    "Incorrect. Generating a new share link is not required, since syncing happens automatically for the existing reference."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"4 / 13 correct (31%) View by domain\":\n  - generic: 4 / 13 correct (31%)\n  - generic: View by domain\n- progressbar\n- generic: Question 14 of 20\n- generic: \"Subdomain 5.2: Manage uploaded knowledge and connectors (e.g., Google Drive, Gmail)\"\n- heading \"A user edits a Google Doc directly in Drive after Claude referenced it earlier in a conversation, then asks a follow-up question about the same document. What should the user expect?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) The user must re-upload the document as a new file for changes to appear.\" [checked] [disabled]:\n  - generic: A) The user must re-upload the document as a new file for changes to appear.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Re-uploading is unnecessary because the connector already reads the live document from Drive.\n  - radio \"B) Claude uses a cached snapshot from the first access and misses the new edits entirely.\" [disabled]\n  - generic: B) Claude uses a cached snapshot from the first access and misses the new edits entirely.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. There is no static cached snapshot behavior; the connector reflects the current Drive version instead.\n  - radio \"C) Claude's view of the document reflects the latest Drive version, since it auto-syncs.\" [disabled]\n  - generic: C) Claude's view of the document reflects the latest Drive version, since it auto-syncs.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Documents accessed through the Drive connector sync automatically with their Drive versions, so the follow-up reflects the latest edits.\n  - radio \"D) Claude only sees updates when the document is re-shared through a new link.\" [disabled]\n  - generic: D) Claude only sees updates when the document is re-shared through a new link.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Generating a new share link is not required, since syncing happens automatically for the existing reference.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:13:01.426Z",
+  "fingerprint": "dbd6328a2c53a9dfcc884b707811f535b7c2592a199bcfcc5eba85b737a8176e"
+}

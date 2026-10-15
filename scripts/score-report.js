@@ -13,6 +13,7 @@
     "ccaf-exam-pt:targeted",
     "ccarp-exam-en:targeted",
     "ccdvf-exam-en:targeted",
+    "ccaof-exam-en:targeted",
   ]);
   const MAX_FILE_BYTES = 20 * 1024 * 1024;
   const LINE_TOLERANCE = 4;
@@ -20,6 +21,7 @@
     "CCAR-F": Object.freeze({ code: "CCAR-F", name: "Claude Certified Architect Foundations" }),
     "CCAR-P": Object.freeze({ code: "CCAR-P", name: "Claude Certified Architect Professional" }),
     "CCDV-F": Object.freeze({ code: "CCDV-F", name: "Claude Certified Developer Foundations" }),
+    "CCAO-F": Object.freeze({ code: "CCAO-F", name: "Claude Certified Associate Foundations" }),
   });
 
   const state = {

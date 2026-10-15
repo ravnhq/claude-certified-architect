@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "C) Owners can switch off the chat rating feature for the whole organisation in its settings."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Ratings are feedback to Anthropic; they are not retained locally instead.",
+    "No automatic redaction step is applied to submitted feedback.",
+    "Correct. Team and Enterprise owners can disable rating so that conversations are not submitted with feedback.",
+    "There is no approval workflow layered on top of ratings."
+  ],
+  "options": [
+    "A) Owners can set ratings to be stored only inside the organisation's own private workspace.",
+    "B) Owners can have conversations redacted automatically before any rating is submitted.",
+    "C) Owners can switch off the chat rating feature for the whole organisation in its settings.",
+    "D) Owners can require that every rating is approved by a manager before it is finally sent."
+  ],
+  "question": "A Team-plan owner is uneasy about conversation content leaving the organisation when members rate Claude's answers. What control is available to them?",
+  "snapshot": "Subdomain 6.2: APPLY DATA SENSITIVITY, REGULATORY, AND PRIVACY CONSIDERATIONS",
+  "fingerprint": "70f6eb4cacbf7f9a0463dae0fbef76d6f4cecb8995614556489bbe9776b95c9e"
+}

@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A finance team's project instructions state: \"never give a figure without naming the report it came from\". Which addition would most improve this instruction?",
+  "options": [
+    "A) Adding the rule a second time at the end of the instructions, so it is less likely to be overlooked.",
+    "B) Adding why the rule exists, so Claude can apply the same care to cases the rule did not anticipate.",
+    "C) Adding an instruction to repeat the rule at the top of every answer, so readers can see it was followed.",
+    "D) Adding the names of the three people who approved the rule, so Claude knows the rule is authoritative."
+  ],
+  "correct_answers": [
+    "B) Adding why the rule exists, so Claude can apply the same care to cases the rule did not anticipate."
+  ],
+  "explanations": [
+    "Duplication does not clarify the rule and lengthens the instructions for no benefit.",
+    "Correct. Stating the reason lets the intent generalise to situations the literal wording never covered.",
+    "Restating the rule in the output adds noise without improving whether it is actually followed.",
+    "Approval provenance changes nothing about how the rule is applied to an answer."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"0 / 1 correct (0%) View by domain\":\n  - generic: 0 / 1 correct (0%)\n  - generic: View by domain\n- progressbar\n- generic: Question 2 of 20\n- generic: \"Subdomain 5.3: Create effective system-level instructions\"\n- 'heading \"A finance team''s project instructions state: \\\"never give a figure without naming the report it came from\\\". Which addition would most improve this instruction?\" [level=3]'\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Adding the rule a second time at the end of the instructions, so it is less likely to be overlooked.\" [checked] [disabled]:\n  - generic: A) Adding the rule a second time at the end of the instructions, so it is less likely to be overlooked.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Duplication does not clarify the rule and lengthens the instructions for no benefit.\n  - radio \"B) Adding why the rule exists, so Claude can apply the same care to cases the rule did not anticipate.\" [disabled]\n  - generic: B) Adding why the rule exists, so Claude can apply the same care to cases the rule did not anticipate.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Stating the reason lets the intent generalise to situations the literal wording never covered.\n  - radio \"C) Adding an instruction to repeat the rule at the top of every answer, so readers can see it was followed.\" [disabled]\n  - generic: C) Adding an instruction to repeat the rule at the top of every answer, so readers can see it was followed.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Restating the rule in the output adds noise without improving whether it is actually followed.\n  - radio \"D) Adding the names of the three people who approved the rule, so Claude knows the rule is authoritative.\" [disabled]\n  - generic: D) Adding the names of the three people who approved the rule, so Claude knows the rule is authoritative.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Approval provenance changes nothing about how the rule is applied to an answer.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:14:25.144Z",
+  "fingerprint": "ccd4a8b8fe7abeaf5be7f497b15f69a8aa011480374806e3cc21504a2603045f"
+}

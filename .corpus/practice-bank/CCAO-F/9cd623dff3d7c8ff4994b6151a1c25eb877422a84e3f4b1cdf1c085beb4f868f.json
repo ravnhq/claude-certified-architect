@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A marketer asks Claude to add citations to a draft that Claude had already written from general knowledge. What is the main concern?",
+  "options": [
+    "A) Claude is unable to add citations to text it has already produced earlier in a conversation.",
+    "B) Citations added afterwards cannot be formatted in the style that the publication requires.",
+    "C) Adding citations later makes the draft longer, which the publication's word limit forbids.",
+    "D) Sources found to fit finished text may not actually support the claims attached to them."
+  ],
+  "correct_answers": [
+    "D) Sources found to fit finished text may not actually support the claims attached to them."
+  ],
+  "explanations": [
+    "Incorrect. It will readily do so, which is precisely what makes the practice risky rather than impossible.",
+    "Incorrect. Formatting is adjustable and is not what makes retrofitted citations unreliable.",
+    "Incorrect. Length is a practical constraint and is unrelated to whether the citations support the text.",
+    "Correct. When the text comes first, the sources are selected to match wording that was never derived from them, so the citation can look right while supporting nothing."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"1 / 4 correct (25%) View by domain\":\n  - generic: 1 / 4 correct (25%)\n  - generic: View by domain\n- progressbar\n- generic: Question 5 of 20\n- generic: \"Subdomain 2.3: Apply fact-checking and validation techniques\"\n- heading \"A marketer asks Claude to add citations to a draft that Claude had already written from general knowledge. What is the main concern?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Claude is unable to add citations to text it has already produced earlier in a conversation.\" [checked] [disabled]:\n  - generic: A) Claude is unable to add citations to text it has already produced earlier in a conversation.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. It will readily do so, which is precisely what makes the practice risky rather than impossible.\n  - radio \"B) Citations added afterwards cannot be formatted in the style that the publication requires.\" [disabled]\n  - generic: B) Citations added afterwards cannot be formatted in the style that the publication requires.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Formatting is adjustable and is not what makes retrofitted citations unreliable.\n  - radio \"C) Adding citations later makes the draft longer, which the publication's word limit forbids.\" [disabled]\n  - generic: C) Adding citations later makes the draft longer, which the publication's word limit forbids.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Length is a practical constraint and is unrelated to whether the citations support the text.\n  - radio \"D) Sources found to fit finished text may not actually support the claims attached to them.\" [disabled]\n  - generic: D) Sources found to fit finished text may not actually support the claims attached to them.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. When the text comes first, the sources are selected to match wording that was never derived from them, so the citation can look right while supporting nothing.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:39:59.092Z",
+  "fingerprint": "9cd623dff3d7c8ff4994b6151a1c25eb877422a84e3f4b1cdf1c085beb4f868f"
+}

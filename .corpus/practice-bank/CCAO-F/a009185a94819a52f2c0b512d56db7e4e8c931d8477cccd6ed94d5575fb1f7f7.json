@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "A) Anyone who opens the shared project can draw the salary details out through ordinary questions."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Correct. Project knowledge is background for every chat in the project, so sharing the project shares everything uploaded to it with everyone who can open it.",
+    "A larger knowledge base is a performance and tidiness concern, not the serious exposure here.",
+    "Documents can be removed from project knowledge at any time; the exposure is the real problem.",
+    "Claude does not refuse to work in a project because a sensitive file has been uploaded to it."
+  ],
+  "options": [
+    "A) Anyone who opens the shared project can draw the salary details out through ordinary questions.",
+    "B) The extra documents will slow down every answer in the project until the folder has been trimmed back.",
+    "C) The salary spreadsheet can no longer be removed once other members have opened the project.",
+    "D) Claude will decline every request in the project while a salary document remains uploaded."
+  ],
+  "question": "An operations lead creates a project on an Enterprise plan and shares it with the whole organisation. To save time she uploads a complete team folder into the project knowledge, and that folder includes a spreadsheet of individual salary bands. What is the greatest risk?",
+  "snapshot": "Subdomain 5.1: CONFIGURE CLAUDE PROJECTS WITH INSTRUCTIONS AND KNOWLEDGE SOURCES",
+  "fingerprint": "a009185a94819a52f2c0b512d56db7e4e8c931d8477cccd6ed94d5575fb1f7f7"
+}

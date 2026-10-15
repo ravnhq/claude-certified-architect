@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "An analyst runs a research task that draws on connected internal mail and documents, then pastes large parts of the result into a public blog post. What is the greatest risk?",
+  "options": [
+    "A) Publishing the output automatically grants the blog's readers access to the connected data sources.",
+    "B) Research output is watermarked, so publishing any part of it identifies the analyst to everyone who reads the post.",
+    "C) Internal material reached through the connected sources can be carried straight into text meant for the public.",
+    "D) Research cannot draw on connected internal sources at all, so the analyst's result will be empty."
+  ],
+  "correct_answers": [
+    "C) Internal material reached through the connected sources can be carried straight into text meant for the public."
+  ],
+  "explanations": [
+    "Publishing text does not grant anyone access to the underlying systems.",
+    "There is no such identifying watermark on output.",
+    "Correct. Output built from internal sources may quote or paraphrase material that was never meant to leave the company.",
+    "Research can use connected sources, which is precisely why the output needs checking."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"0 / 0 correct (0%) View by domain\":\n  - generic: 0 / 0 correct (0%)\n  - generic: View by domain\n- progressbar\n- generic: Question 1 of 20\n- generic: \"Subdomain 6.2: Apply data sensitivity, regulatory, and privacy considerations\"\n- heading \"An analyst runs a research task that draws on connected internal mail and documents, then pastes large parts of the result into a public blog post. What is the greatest risk?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Publishing the output automatically grants the blog's readers access to the connected data sources.\" [checked] [disabled]:\n  - generic: A) Publishing the output automatically grants the blog's readers access to the connected data sources.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Publishing text does not grant anyone access to the underlying systems.\n  - radio \"B) Research output is watermarked, so publishing any part of it identifies the analyst to everyone who reads the post.\" [disabled]\n  - generic: B) Research output is watermarked, so publishing any part of it identifies the analyst to everyone who reads the post.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: There is no such identifying watermark on output.\n  - radio \"C) Internal material reached through the connected sources can be carried straight into text meant for the public.\" [disabled]\n  - generic: C) Internal material reached through the connected sources can be carried straight into text meant for the public.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Output built from internal sources may quote or paraphrase material that was never meant to leave the company.\n  - radio \"D) Research cannot draw on connected internal sources at all, so the analyst's result will be empty.\" [disabled]\n  - generic: D) Research cannot draw on connected internal sources at all, so the analyst's result will be empty.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Research can use connected sources, which is precisely why the output needs checking.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:28:23.092Z",
+  "fingerprint": "5597db0476803641363d3665513cf4ad6719410dcd2d079786c03a01828721b1"
+}

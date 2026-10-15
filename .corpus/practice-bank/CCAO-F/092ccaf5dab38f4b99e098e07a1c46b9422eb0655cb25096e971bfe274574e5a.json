@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A department sets the deepest-reasoning model as the default for all of its work, including short routine replies. What is the greatest risk?",
+  "options": [
+    "A) Short replies will be written at greater length than the person asking the question wanted.",
+    "B) Routine work consumes far more allowance, so it runs out during the work that actually needs it.",
+    "C) Short replies will come back noticeably slower, which colleagues will find frustrating to work with.",
+    "D) The department will be unable to switch to a lighter model once a default has been set for it."
+  ],
+  "correct_answers": [
+    "B) Routine work consumes far more allowance, so it runs out during the work that actually needs it."
+  ],
+  "explanations": [
+    "Incorrect. Response length is controlled by the request, not by the tier, and it is easy to correct.",
+    "Correct. The deepest tier uses meaningfully more of the usage allowance per message, so spending it on trivial work leaves less available for the genuinely hard problems.",
+    "Incorrect. Slower replies are an annoyance rather than the substantive cost of this policy.",
+    "Incorrect. The model can be changed at any time, so nothing about the choice is locked in."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"3 / 13 correct (23%) View by domain\":\n  - generic: 3 / 13 correct (23%)\n  - generic: View by domain\n- progressbar\n- generic: Question 14 of 20\n- generic: \"Subdomain 3.2: Differentiate between Claude model types (Haiku, Sonnet, Opus)\"\n- heading \"A department sets the deepest-reasoning model as the default for all of its work, including short routine replies. What is the greatest risk?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Short replies will be written at greater length than the person asking the question wanted.\" [checked] [disabled]:\n  - generic: A) Short replies will be written at greater length than the person asking the question wanted.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Response length is controlled by the request, not by the tier, and it is easy to correct.\n  - radio \"B) Routine work consumes far more allowance, so it runs out during the work that actually needs it.\" [disabled]\n  - generic: B) Routine work consumes far more allowance, so it runs out during the work that actually needs it.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. The deepest tier uses meaningfully more of the usage allowance per message, so spending it on trivial work leaves less available for the genuinely hard problems.\n  - radio \"C) Short replies will come back noticeably slower, which colleagues will find frustrating to work with.\" [disabled]\n  - generic: C) Short replies will come back noticeably slower, which colleagues will find frustrating to work with.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Slower replies are an annoyance rather than the substantive cost of this policy.\n  - radio \"D) The department will be unable to switch to a lighter model once a default has been set for it.\" [disabled]\n  - generic: D) The department will be unable to switch to a lighter model once a default has been set for it.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. The model can be changed at any time, so nothing about the choice is locked in.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:48:09.779Z",
+  "fingerprint": "092ccaf5dab38f4b99e098e07a1c46b9422eb0655cb25096e971bfe274574e5a"
+}

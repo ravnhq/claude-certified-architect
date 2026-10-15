@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "After replacing three documents in a project's knowledge base, what is the most reliable way to confirm the refresh has worked?",
+  "options": [
+    "A) Compare the total size of the knowledge base before and after the three files were replaced.",
+    "B) Confirm that the file names of the three new documents appear correctly in the project's knowledge list.",
+    "C) Ask questions whose correct answers changed, and check the responses against the new documents.",
+    "D) Ask Claude to confirm that it has read all of the newly uploaded documents in the project."
+  ],
+  "correct_answers": [
+    "C) Ask questions whose correct answers changed, and check the responses against the new documents."
+  ],
+  "explanations": [
+    "Size tells you nothing about which figures the answers now come from.",
+    "A file being listed does not prove the old content has stopped shaping answers.",
+    "Correct. Only a question with a changed answer distinguishes the new source from the old one.",
+    "A self-report about reading files is not evidence that answers now reflect them."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"7 / 36 correct (19%) View by domain\":\n  - generic: 7 / 36 correct (19%)\n  - generic: View by domain\n- progressbar\n- generic: Question 37 of 60\n- generic: \"Subdomain 5.4: Inform, maintain, and update Claude configurations, knowledge sources, and instructions\"\n- heading \"After replacing three documents in a project's knowledge base, what is the most reliable way to confirm the refresh has worked?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Compare the total size of the knowledge base before and after the three files were replaced.\" [checked] [disabled]:\n  - generic: A) Compare the total size of the knowledge base before and after the three files were replaced.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Size tells you nothing about which figures the answers now come from.\n  - radio \"B) Confirm that the file names of the three new documents appear correctly in the project's knowledge list.\" [disabled]\n  - generic: B) Confirm that the file names of the three new documents appear correctly in the project's knowledge list.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A file being listed does not prove the old content has stopped shaping answers.\n  - radio \"C) Ask questions whose correct answers changed, and check the responses against the new documents.\" [disabled]\n  - generic: C) Ask questions whose correct answers changed, and check the responses against the new documents.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Only a question with a changed answer distinguishes the new source from the old one.\n  - radio \"D) Ask Claude to confirm that it has read all of the newly uploaded documents in the project.\" [disabled]\n  - generic: D) Ask Claude to confirm that it has read all of the newly uploaded documents in the project.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: A self-report about reading files is not evidence that answers now reflect them.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:19:49.159Z",
+  "fingerprint": "718b780f8249302ccfa9dd6a66951bf0acf5b1735602a5c39491fd74d3c418c7"
+}

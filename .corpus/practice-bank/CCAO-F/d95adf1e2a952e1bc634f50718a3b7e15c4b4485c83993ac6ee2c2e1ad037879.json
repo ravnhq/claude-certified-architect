@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.943Z",
+  "correct_answers": [
+    "D) Ask Claude to restate each entry as the outcome sought, then flag entries where that outcome is unclear."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Designing what was asked for skips the analysis entirely. If the submitter needed a weekly exception alert rather than a dashboard, building the dashboard confirms only that both parties misread the need together.",
+    "Pushing the work back onto submitters is slow and often futile, since people describe needs in terms of solutions naturally. It also discards information the analyst already has in the entries.",
+    "Counting entries by department produces a useful management view but leaves every entry still expressed as a solution. The backlog would be tidier and no better understood.",
+    "Correct. The analytical move is to convert stated solutions back into the outcomes behind them, which is language work Claude does well at volume. Flagging the entries where no outcome can be recovered tells the analyst exactly which submitters to go back to."
+  ],
+  "options": [
+    "A) Ask Claude to design the dashboard described in each entry so submitters can confirm what they wanted.",
+    "B) Ask Claude to reject entries that name a tool and ask the submitters to resubmit them in the right form.",
+    "C) Ask Claude to group the entries by the department that submitted them and report the totals to sponsors.",
+    "D) Ask Claude to restate each entry as the outcome sought, then flag entries where that outcome is unclear."
+  ],
+  "question": "Reviewing a backlog of intake forms, an analyst notices that most entries name a solution rather than a need, for example \"we need a dashboard.\" How can Claude best help with this backlog?",
+  "snapshot": "Subdomain 4.1: APPLY CLAUDE TO ANALYZE REQUIREMENTS AND USE CASES",
+  "fingerprint": "d95adf1e2a952e1bc634f50718a3b7e15c4b4485c83993ac6ee2c2e1ad037879"
+}

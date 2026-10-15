@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.942Z",
+  "correct_answers": [
+    "A) Let the conversation continue and condense itself, since nothing in it needs to outlive this session."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Correct. When the output is disposable, allowing automatic context management to make room is the lowest-effort choice; there is no durable knowledge worth persisting.",
+    "Incorrect. A project is for context that recurs. Setting one up for work that will never be revisited is unnecessary overhead.",
+    "Incorrect. Restarting discards the ideas generated so far and forces her to regenerate them at further cost.",
+    "Incorrect. Fragmenting the session means no chat holds the full set of ideas, which undermines the brainstorm itself."
+  ],
+  "options": [
+    "A) Let the conversation continue and condense itself, since nothing in it needs to outlive this session.",
+    "B) Build a Project and move the whole brainstorm into project knowledge before writing anything more.",
+    "C) Stop the brainstorm now and restart it in a new chat so the ideas come from a completely clean window.",
+    "D) Split the brainstorm across four separate chats so that no single conversation ever nears its limit."
+  ],
+  "question": "A marketer is midway through a one-off brainstorm that will not be revisited, and the conversation is approaching its limit. What is the most appropriate action?",
+  "snapshot": "Subdomain 3.4: UNDERSTAND AND MANAGE CONTEXT LIMITATIONS AND MEMORY CONSIDERATIONS (WHEN TO RESTART, SUMMARIZE, OR PERSIST)",
+  "fingerprint": "bcc5b9a1ec08ce0fb4e26dd8b522197274e19e66515a0d8fb4f93e650deae7c1"
+}

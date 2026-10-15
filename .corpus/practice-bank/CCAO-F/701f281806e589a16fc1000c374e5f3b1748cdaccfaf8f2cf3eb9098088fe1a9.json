@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A campaign project has finished, but the team may want to look back at its material later in the year. What is the most appropriate action?",
+  "options": [
+    "A) Archive the project so it stays available for reference without sitting among the active workspaces.",
+    "B) Share the project with the whole organisation so that anyone can look back at the campaign material.",
+    "C) Strip out the instructions but keep the documents, so the project cannot produce any new answers.",
+    "D) Delete the project, since finished work should not be left in the account under any circumstances."
+  ],
+  "correct_answers": [
+    "A) Archive the project so it stays available for reference without sitting among the active workspaces."
+  ],
+  "explanations": [
+    "Correct. Archiving preserves the material and its context while keeping the active list clean.",
+    "Broad sharing is not a substitute for tidying up, and it widens access without a reason.",
+    "Removing the direction leaves a half-configured workspace that will mislead whoever opens it.",
+    "Deletion destroys material the team has said it may still need."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"4 / 28 correct (14%) View by domain\":\n  - generic: 4 / 28 correct (14%)\n  - generic: View by domain\n- progressbar\n- generic: Question 29 of 60\n- generic: \"Subdomain 5.4: Inform, maintain, and update Claude configurations, knowledge sources, and instructions\"\n- heading \"A campaign project has finished, but the team may want to look back at its material later in the year. What is the most appropriate action?\" [level=3]\n- paragraph: Correct!\n- paragraph: Great job! Review the explanations below.\n- radiogroup:\n  - radio \"A) Archive the project so it stays available for reference without sitting among the active workspaces.\" [checked] [disabled]:\n  - generic: A) Archive the project so it stays available for reference without sitting among the active workspaces.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Archiving preserves the material and its context while keeping the active list clean.\n  - radio \"B) Share the project with the whole organisation so that anyone can look back at the campaign material.\" [disabled]\n  - generic: B) Share the project with the whole organisation so that anyone can look back at the campaign material.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Broad sharing is not a substitute for tidying up, and it widens access without a reason.\n  - radio \"C) Strip out the instructions but keep the documents, so the project cannot produce any new answers.\" [disabled]\n  - generic: C) Strip out the instructions but keep the documents, so the project cannot produce any new answers.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Removing the direction leaves a half-configured workspace that will mislead whoever opens it.\n  - radio \"D) Delete the project, since finished work should not be left in the account under any circumstances.\" [disabled]\n  - generic: D) Delete the project, since finished work should not be left in the account under any circumstances.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Deletion destroys material the team has said it may still need.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:19:23.304Z",
+  "fingerprint": "701f281806e589a16fc1000c374e5f3b1748cdaccfaf8f2cf3eb9098088fe1a9"
+}

@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "C) Check what the participant consent and company policy allow; remove the names and employers that the summary does not need; run the summary and review it before it is circulated; note what was removed so the result can be interpreted properly."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Data is edited before anyone has established what participants agreed to, so the amount of personal detail removed is guesswork and may be either too little or more than the analysis can afford.",
+    "The personal data is processed and the output reviewed before either the consent position or the minimisation step, which is the sequence that causes the exposure rather than preventing it.",
+    "Correct. Consent and policy set the boundary for what may be used at all; that boundary determines which identifiers can be stripped before anything is uploaded; the summary is then produced and reviewed within those limits; and recording what was removed lets colleagues read the findings knowing what the data no longer contains.",
+    "The consent check happens first, but the full identifiable transcripts are still put into the tool before the names and employers are removed, so the minimisation step comes too late to protect anyone."
+  ],
+  "options": [
+    "A) Remove the names and employers that the summary does not need; check what the participant consent and company policy allow; run the summary and review it before it is circulated; note what was removed so the result can be interpreted properly.",
+    "B) Run the summary and review it before it is circulated; check what the participant consent and company policy allow; remove the names and employers that the summary does not need; note what was removed so the result can be interpreted properly.",
+    "C) Check what the participant consent and company policy allow; remove the names and employers that the summary does not need; run the summary and review it before it is circulated; note what was removed so the result can be interpreted properly.",
+    "D) Check what the participant consent and company policy allow; run the summary and review it before it is circulated; remove the names and employers that the summary does not need; note what was removed so the result can be interpreted properly."
+  ],
+  "question": "A market research manager has been asked to summarise survey free-text responses that include respondents' names and employers, using the company's Claude for Work plan. In which order should these steps be taken?",
+  "snapshot": "Subdomain 6.2: APPLY DATA SENSITIVITY, REGULATORY, AND PRIVACY CONSIDERATIONS",
+  "fingerprint": "6a8de03d6cf86e2a6b6945c6c1167a5383deaf52fd98498a90ce362e5a6e9754"
+}

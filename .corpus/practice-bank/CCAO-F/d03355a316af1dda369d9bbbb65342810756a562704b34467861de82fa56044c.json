@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-15T19:17:11.943Z",
+  "correct_answers": [
+    "A) The deepest tier suits genuinely hard problems, and it consumes meaningfully more allowance.",
+    "D) The mid tier is the fast, capable default, and it is the right pick for most everyday work."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Correct. The deepest tier buys reasoning depth for harder problems and costs meaningfully more of the usage allowance.",
+    "Incorrect. The difference is reasoning depth, speed and cost, not writing style, and the tiers are not interchangeable.",
+    "Incorrect. The lightest tier is the fastest of the three, and it trades some reasoning depth for that speed and low cost.",
+    "Correct. The middle tier is positioned as the fast, capable default that handles most knowledge work well.",
+    "Incorrect. A vague answer usually signals an under-specified prompt, and a deeper tier cannot supply context that was never given."
+  ],
+  "options": [
+    "A) The deepest tier suits genuinely hard problems, and it consumes meaningfully more allowance.",
+    "B) The tiers differ only in writing style, so any of them may be used for any task at any time.",
+    "C) The lightest tier gives answers of the very same depth, only more slowly than the other two.",
+    "D) The mid tier is the fast, capable default, and it is the right pick for most everyday work.",
+    "E) Moving up one tier is the standard fix whenever a prompt comes back with a vague or shallow answer."
+  ],
+  "question": "A new team member asks how the Claude model tiers actually differ from one another in everyday use. Which two statements are accurate? Select two.(Select 2)",
+  "snapshot": "Subdomain 3.2: DIFFERENTIATE BETWEEN CLAUDE MODEL TYPES (HAIKU, SONNET, OPUS)",
+  "fingerprint": "d03355a316af1dda369d9bbbb65342810756a562704b34467861de82fa56044c"
+}

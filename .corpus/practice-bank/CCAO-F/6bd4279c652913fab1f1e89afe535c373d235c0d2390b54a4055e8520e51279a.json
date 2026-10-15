@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "An Enterprise owner decides to shorten the organisation's data retention period substantially. What is the greatest concern before saving the change?",
+  "options": [
+    "A) Shortening retention disables project sharing, because shared projects require indefinite retention.",
+    "B) Data falling outside the new window is deleted immediately, so work still in progress can be lost.",
+    "C) The change applies only to new chats, so nothing older is affected and the setting has no real effect.",
+    "D) Every connector must be re-authenticated by each member before the shorter window can take effect."
+  ],
+  "correct_answers": [
+    "B) Data falling outside the new window is deleted immediately, so work still in progress can be lost."
+  ],
+  "explanations": [
+    "Retention settings and project sharing are unrelated.",
+    "Correct. Shortening retention deletes anything already older than the new window as soon as it is saved.",
+    "The setting is not limited to new conversations; existing data is in scope.",
+    "Retention changes do not require connectors to be reconnected."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"10 / 17 correct (59%) View by domain\":\n  - generic: 10 / 17 correct (59%)\n  - generic: View by domain\n- progressbar\n- generic: Question 18 of 20\n- generic: \"Subdomain 6.2: Apply data sensitivity, regulatory, and privacy considerations\"\n- heading \"An Enterprise owner decides to shorten the organisation's data retention period substantially. What is the greatest concern before saving the change?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Shortening retention disables project sharing, because shared projects require indefinite retention.\" [checked] [disabled]:\n  - generic: A) Shortening retention disables project sharing, because shared projects require indefinite retention.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Retention settings and project sharing are unrelated.\n  - radio \"B) Data falling outside the new window is deleted immediately, so work still in progress can be lost.\" [disabled]\n  - generic: B) Data falling outside the new window is deleted immediately, so work still in progress can be lost.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Shortening retention deletes anything already older than the new window as soon as it is saved.\n  - radio \"C) The change applies only to new chats, so nothing older is affected and the setting has no real effect.\" [disabled]\n  - generic: C) The change applies only to new chats, so nothing older is affected and the setting has no real effect.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: The setting is not limited to new conversations; existing data is in scope.\n  - radio \"D) Every connector must be re-authenticated by each member before the shorter window can take effect.\" [disabled]\n  - generic: D) Every connector must be re-authenticated by each member before the shorter window can take effect.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Retention changes do not require connectors to be reconnected.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:31:23.061Z",
+  "fingerprint": "6bd4279c652913fab1f1e89afe535c373d235c0d2390b54a4055e8520e51279a"
+}

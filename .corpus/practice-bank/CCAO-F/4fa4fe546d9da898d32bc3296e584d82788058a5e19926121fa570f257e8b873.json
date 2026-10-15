@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A consultant wants to paste a client's confidential strategy deck into Claude in order to build a summary. What matters most before doing so?",
+  "options": [
+    "A) Whether the deck is short enough to fit into a single conversation without needing to be split.",
+    "B) Whether Claude's summary will be accurate enough to send to the client without any further editing.",
+    "C) Whether the client's contract permits their material to be processed in a third-party tool at all.",
+    "D) Whether the consultant's colleagues will be able to see the summary in a shared project workspace."
+  ],
+  "correct_answers": [
+    "C) Whether the client's contract permits their material to be processed in a third-party tool at all."
+  ],
+  "explanations": [
+    "Length is a practical detail and says nothing about whether the material may be used.",
+    "Output quality is a separate question from whether the input was allowed to be shared.",
+    "Correct. Contractual confidentiality terms decide whether the material may be entered anywhere in the first place.",
+    "Internal visibility matters later; permission to process the client's material comes first."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"14 / 43 correct (33%) View by domain\":\n  - generic: 14 / 43 correct (33%)\n  - generic: View by domain\n- progressbar\n- generic: Question 44 of 60\n- generic: \"Subdomain 6.2: Apply data sensitivity, regulatory, and privacy considerations\"\n- heading \"A consultant wants to paste a client's confidential strategy deck into Claude in order to build a summary. What matters most before doing so?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Whether the deck is short enough to fit into a single conversation without needing to be split.\" [checked] [disabled]:\n  - generic: A) Whether the deck is short enough to fit into a single conversation without needing to be split.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Length is a practical detail and says nothing about whether the material may be used.\n  - radio \"B) Whether Claude's summary will be accurate enough to send to the client without any further editing.\" [disabled]\n  - generic: B) Whether Claude's summary will be accurate enough to send to the client without any further editing.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Output quality is a separate question from whether the input was allowed to be shared.\n  - radio \"C) Whether the client's contract permits their material to be processed in a third-party tool at all.\" [disabled]\n  - generic: C) Whether the client's contract permits their material to be processed in a third-party tool at all.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Contractual confidentiality terms decide whether the material may be entered anywhere in the first place.\n  - radio \"D) Whether the consultant's colleagues will be able to see the summary in a shared project workspace.\" [disabled]\n  - generic: D) Whether the consultant's colleagues will be able to see the summary in a shared project workspace.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Internal visibility matters later; permission to process the client's material comes first.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T19:23:11.648Z",
+  "fingerprint": "4fa4fe546d9da898d32bc3296e584d82788058a5e19926121fa570f257e8b873"
+}

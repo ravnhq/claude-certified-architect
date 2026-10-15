@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "D) Establish what the policy requires for a deliverable of this kind, before the report goes out."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "The client's comfort does not replace the firm's own requirements. Asking them cannot tell her what her firm obliges her to do, and their agreement would not excuse skipping it.",
+    "This guesses at one requirement and treats it as the whole of the policy. Disclosure may be needed, but so may review, sign-off or restrictions on the client data involved.",
+    "A sign-off may well be one of the requirements, but choosing it because it shifts responsibility is not following the policy. She still does not know what the policy asks for.",
+    "Correct. The firm has a written standard covering exactly this situation, so the first step is to read it and identify which requirements apply to this deliverable. Everything else she might do is a guess at what the policy says."
+  ],
+  "options": [
+    "A) Ask the client whether they have any objection to AI assistance having been used on the report.",
+    "B) Add a short line stating the report was drafted with AI assistance, and send it to the client.",
+    "C) Ask her engagement manager to sign the report off, so responsibility for it rests with him instead.",
+    "D) Establish what the policy requires for a deliverable of this kind, before the report goes out."
+  ],
+  "question": "A consultant is about to send a client a report she drafted with Claude. Her firm's AI policy sets out several requirements for client-facing work produced with AI, and she is unsure which of them apply to a report of this kind. What should she do first?",
+  "snapshot": "Subdomain 6.3: FOLLOW ORGANIZATIONAL AI POLICIES AND GOVERNANCE STANDARDS",
+  "fingerprint": "7390489abb19adefbd1306bdc0b530fb88a5f7b54b258e6f2d1ade342b41b1a2"
+}

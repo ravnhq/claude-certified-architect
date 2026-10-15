@@ -52,6 +52,12 @@ jobs:
       - name: Regenerate the Professional practice exam
         run: python3 utils/build_professional_exam.py
 
+      - name: Validate the Associate question bank against the blueprint
+        run: python3 utils/validate_associate_bank.py
+
+      - name: Regenerate the Associate practice exam
+        run: python3 utils/build_associate_exam.py
+
       - name: Check the quiz engine
         run: node utils/test_exam_engine.mjs
 

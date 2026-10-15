@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A team lead must brief a sceptical director on a new Claude-assisted reporting arrangement. Which framing is most appropriate?",
+  "options": [
+    "A) Say that results will improve automatically as newer models become available",
+    "B) Say that the pilot's best output shows what every report will look like now",
+    "C) Say that the arrangement removes the need for the team's current review step",
+    "D) Say what it does reliably, what needs checking, and who does the checking"
+  ],
+  "correct_answers": [
+    "D) Say what it does reliably, what needs checking, and who does the checking"
+  ],
+  "explanations": [
+    "Promising automatic future improvement asks the director to accept an outcome nobody can commit to.",
+    "Presenting the best single output as typical sets an expectation the arrangement will not meet in ordinary use.",
+    "Claiming the review step is unnecessary oversells the arrangement and removes the safeguard the director is most likely to ask about.",
+    "Correct. Honest communication pairs capability with limitation and names where human review stays in the loop. That is what lets a sceptical stakeholder judge the arrangement rather than the pitch."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"1 / 6 correct (17%) View by domain\":\n  - generic: 1 / 6 correct (17%)\n  - generic: View by domain\n- progressbar\n- generic: Question 7 of 20\n- generic: \"Subdomain 4.5: Communicate Claude's value and limitations to stakeholders\"\n- heading \"A team lead must brief a sceptical director on a new Claude-assisted reporting arrangement. Which framing is most appropriate?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Say that results will improve automatically as newer models become available\" [checked] [disabled]:\n  - generic: A) Say that results will improve automatically as newer models become available\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Promising automatic future improvement asks the director to accept an outcome nobody can commit to.\n  - radio \"B) Say that the pilot's best output shows what every report will look like now\" [disabled]\n  - generic: B) Say that the pilot's best output shows what every report will look like now\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Presenting the best single output as typical sets an expectation the arrangement will not meet in ordinary use.\n  - radio \"C) Say that the arrangement removes the need for the team's current review step\" [disabled]\n  - generic: C) Say that the arrangement removes the need for the team's current review step\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Claiming the review step is unnecessary oversells the arrangement and removes the safeguard the director is most likely to ask about.\n  - radio \"D) Say what it does reliably, what needs checking, and who does the checking\" [disabled]\n  - generic: D) Say what it does reliably, what needs checking, and who does the checking\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Honest communication pairs capability with limitation and names where human review stays in the loop. That is what lets a sceptical stakeholder judge the arrangement rather than the pitch.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:04:44.033Z",
+  "fingerprint": "6e2140eb75a04103bf8b5394a532a195275d3c81ef110f10abd072fdefb84736"
+}

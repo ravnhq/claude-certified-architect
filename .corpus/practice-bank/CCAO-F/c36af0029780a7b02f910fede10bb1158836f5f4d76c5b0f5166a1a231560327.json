@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A user pastes a Google Doc URL into a chat with the Drive connector enabled and asks about the document's contents. What does Claude do?",
+  "options": [
+    "A) Claude downloads the document as a PDF and stores a copy in project knowledge.",
+    "B) Claude ignores the URL and asks the user to paste the document's text instead.",
+    "C) Claude requires the document to be shared publicly before it can read the link.",
+    "D) Claude accesses and processes the referenced document once the message is sent."
+  ],
+  "correct_answers": [
+    "D) Claude accesses and processes the referenced document once the message is sent."
+  ],
+  "explanations": [
+    "Incorrect. Accessing a document via the connector does not create a permanent copy in project knowledge.",
+    "Incorrect. The connector is designed to retrieve the document automatically, so manual pasting is not required.",
+    "Incorrect. Public sharing is not required, since the connector authenticates to the user's own private Google account.",
+    "Correct. With the Drive connector, a pasted URL is accessed and processed when the message is sent, informing the response."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"1 / 1 correct (100%) View by domain\":\n  - generic: 1 / 1 correct (100%)\n  - generic: View by domain\n- progressbar\n- generic: Question 2 of 20\n- generic: \"Subdomain 5.2: Manage uploaded knowledge and connectors (e.g., Google Drive, Gmail)\"\n- heading \"A user pastes a Google Doc URL into a chat with the Drive connector enabled and asks about the document's contents. What does Claude do?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Claude downloads the document as a PDF and stores a copy in project knowledge.\" [checked] [disabled]:\n  - generic: A) Claude downloads the document as a PDF and stores a copy in project knowledge.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Accessing a document via the connector does not create a permanent copy in project knowledge.\n  - radio \"B) Claude ignores the URL and asks the user to paste the document's text instead.\" [disabled]\n  - generic: B) Claude ignores the URL and asks the user to paste the document's text instead.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. The connector is designed to retrieve the document automatically, so manual pasting is not required.\n  - radio \"C) Claude requires the document to be shared publicly before it can read the link.\" [disabled]\n  - generic: C) Claude requires the document to be shared publicly before it can read the link.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Incorrect. Public sharing is not required, since the connector authenticates to the user's own private Google account.\n  - radio \"D) Claude accesses and processes the referenced document once the message is sent.\" [disabled]\n  - generic: D) Claude accesses and processes the referenced document once the message is sent.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. With the Drive connector, a pasted URL is accessed and processed when the message is sent, informing the response.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:11:36.021Z",
+  "fingerprint": "c36af0029780a7b02f910fede10bb1158836f5f4d76c5b0f5166a1a231560327"
+}

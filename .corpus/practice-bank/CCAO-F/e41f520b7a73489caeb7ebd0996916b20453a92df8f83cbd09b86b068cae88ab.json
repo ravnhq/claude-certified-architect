@@ -1,0 +1,22 @@
+{
+  "exam": "CCAO-F",
+  "question": "A team lead on a Team plan wants a shared project whose instructions the whole team relies on. Which sequence of steps is correct?",
+  "options": [
+    "A) Save them as project instructions; share the project; agree the rules with the team; collect colleague feedback.",
+    "B) Agree the rules with the team; save them as project instructions; share the project; collect colleague feedback.",
+    "C) Collect colleague feedback; agree the rules with the team; share the project; save them as project instructions.",
+    "D) Share the project; collect colleague feedback; agree the rules with the team; save them as project instructions."
+  ],
+  "correct_answers": [
+    "B) Agree the rules with the team; save them as project instructions; share the project; collect colleague feedback."
+  ],
+  "explanations": [
+    "Writing the rules before the team has agreed them means the shared setup encodes one person's view.",
+    "Correct. Agree, encode, distribute, then learn from real use by the people who now depend on it.",
+    "Feedback is gathered before anything exists, and the instructions are saved only after sharing.",
+    "Colleagues are asked to review a project that has no agreed direction in it yet."
+  ],
+  "snapshot": "- region \"Notifications (F8)\":\n  - list\n- region \"Notifications alt+T\"\n- alert: CertSafari — Free Cloud, Data & AI Certification Practice Questions\n- button \"Exit Quiz\":\n  - text: Exit Quiz\n- button \"Toggle theme\":\n  - generic: Toggle theme\n- generic: Anthropic Claude Certified Associate – Foundations (CCAO-F)\n- button \"0 / 3 correct (0%) View by domain\":\n  - generic: 0 / 3 correct (0%)\n  - generic: View by domain\n- progressbar\n- generic: Question 4 of 20\n- generic: \"Subdomain 5.3: Create effective system-level instructions\"\n- heading \"A team lead on a Team plan wants a shared project whose instructions the whole team relies on. Which sequence of steps is correct?\" [level=3]\n- paragraph: Incorrect\n- paragraph: Review the explanations to understand the correct answer.\n- radiogroup:\n  - radio \"A) Save them as project instructions; share the project; agree the rules with the team; collect colleague feedback.\" [checked] [disabled]:\n  - generic: A) Save them as project instructions; share the project; agree the rules with the team; collect colleague feedback.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Writing the rules before the team has agreed them means the shared setup encodes one person's view.\n  - radio \"B) Agree the rules with the team; save them as project instructions; share the project; collect colleague feedback.\" [disabled]\n  - generic: B) Agree the rules with the team; save them as project instructions; share the project; collect colleague feedback.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Correct. Agree, encode, distribute, then learn from real use by the people who now depend on it.\n  - radio \"C) Collect colleague feedback; agree the rules with the team; share the project; save them as project instructions.\" [disabled]\n  - generic: C) Collect colleague feedback; agree the rules with the team; share the project; save them as project instructions.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Feedback is gathered before anything exists, and the instructions are saved only after sharing.\n  - radio \"D) Share the project; collect colleague feedback; agree the rules with the team; save them as project instructions.\" [disabled]\n  - generic: D) Share the project; collect colleague feedback; agree the rules with the team; save them as project instructions.\n  - heading \"Explanation\" [level=3]:\n    - button \"Explanation\" [expanded] [active]:\n      - generic: Explanation\n  - region \"Explanation\":\n    - generic: Colleagues are asked to review a project that has no agreed direction in it yet.\n- button \"Save question for later\":\n  - generic: Save\n- button \"Add my note\":\n  - generic: Note\n- button \"Report\":\n  - generic: Report\n- button \"Copy study prompt\":\n- button \"Next Question\"",
+  "captured_at": "2026-10-15T20:14:40.599Z",
+  "fingerprint": "e41f520b7a73489caeb7ebd0996916b20453a92df8f83cbd09b86b068cae88ab"
+}

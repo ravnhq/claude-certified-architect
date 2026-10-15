@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "C) It removes human oversight from hard-to-reverse actions, risking harm before anyone can intervene"
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Incorrect. The oversight concern applies regardless of whether the integration uses the API or consumer product; both are subject to the same responsible-use principles.",
+    "Incorrect. The choice of framework does not change the underlying risk of removing human oversight from consequential actions.",
+    "Correct. Granting an agent unsupervised authority over irreversible, high-impact actions removes the human oversight needed to catch and correct model errors before they cause real harm.",
+    "Incorrect. Agentic use must still comply with the full Usage Policy, and unsupervised high-stakes actions are not exempted from oversight expectations."
+  ],
+  "options": [
+    "A) None, as long as the agent uses the Claude API rather than the consumer chat product",
+    "B) None, unless the agent is built using a third-party framework instead of Anthropic's own official tools",
+    "C) It removes human oversight from hard-to-reverse actions, risking harm before anyone can intervene",
+    "D) It is acceptable because agentic use is encouraged without oversight requirements in the policy"
+  ],
+  "question": "A developer integrating Claude into an internal analytics agent wants to give it broad, unsupervised authority to automatically send emails and modify production database records without any human approval step. What ethical concern does this design most directly raise?",
+  "snapshot": "Subdomain 6.4: UNDERSTAND THE ETHICAL IMPLICATIONS OF AI USAGE",
+  "fingerprint": "632b2cde6ea74fd51a36b413e04f7a81bcaba5d4f5a9119bb5f4ced306a7fc02"
+}

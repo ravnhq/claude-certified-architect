@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-15T19:17:11.944Z",
+  "correct_answers": [
+    "A) Connect the Drive folder, so the weekly handbook changes are picked up from the source.",
+    "E) Upload the fixed annual report into Project knowledge, since its content will not change."
+  ],
+  "exam": "CCAO-F",
+  "explanations": [
+    "Correct. A connector reaches the live source, which is what a document that changes every week needs.",
+    "Incorrect. Deleting the original to leave a single copy destroys the source of truth for no benefit.",
+    "Incorrect. A one-time copy of a weekly-changing handbook goes stale fast and produces confidently outdated answers.",
+    "Incorrect. Re-pasting a whole handbook per chat is the manual work Project knowledge and connectors exist to remove.",
+    "Correct. A stable document is well suited to a one-time upload into Project knowledge, where it stays available to every chat."
+  ],
+  "options": [
+    "A) Connect the Drive folder, so the weekly handbook changes are picked up from the source.",
+    "B) Connect the annual report and delete it from Drive, so that only one copy ever exists.",
+    "C) Upload a copy of the handbook just once and then rely on that copy for the rest of this year.",
+    "D) Paste the whole handbook into every new chat, so the newest version is always present.",
+    "E) Upload the fixed annual report into Project knowledge, since its content will not change."
+  ],
+  "question": "A policy team keeps a handbook in a Drive folder that changes weekly, and also has one annual report that never changes. Which two set-ups fit best? Select two.(Select 2)",
+  "snapshot": "Subdomain 5.2: MANAGE UPLOADED KNOWLEDGE AND CONNECTORS (E.G., GOOGLE DRIVE, GMAIL)",
+  "fingerprint": "9a16ab65c70205edbe1cf43e38cc30e98aa7040e0e49d4fb27974bc2b92f3975"
+}
