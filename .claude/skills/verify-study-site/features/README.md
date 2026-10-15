@@ -12,7 +12,9 @@ This directory is the maintained source for verifying what a candidate sees on t
 ## Driving conventions
 
 - Page paths are relative to the site root under `/claude-certified-architect/`: `b open practical/en.html`.
-- Prefer roles and accessible names for actions. Button labels render in uppercase (`FINISH & REVIEW`, `RESET CHECKLIST`); `--name` matching follows the rendered text.
+- Prefer roles and accessible names for actions. Button labels render in uppercase (`FINISH & REVIEW`, `RESET CHECKLIST`). `--name` is a case-insensitive substring match unless you add `--exact`, so `"EN"` can hit any name containing those letters; add `--exact` when a short name is ambiguous.
+- `b get text` returns rendered text, uppercase included. `b eval` reads the DOM, where the same label may be mixed case.
+- `b eval` runs in the page's global scope, so a top-level `const` fails on the next call with `Identifier … has already been declared`. Wrap multi-statement probes in `(()=>{ … })()`.
 - Read state through stable ids and the visible text: `#answeredCount`, `#totalCount`, `#browseCount`, `#search-status`.
 - Answer native `confirm()` prompts explicitly with `b dialog accept` or `b dialog dismiss`.
 - Local state is per page family. Each feature file names its `localStorage` keys so a second view can read them without writing.
@@ -38,9 +40,9 @@ Keep implementation detail out of the map. Name user paths, stable handles, requ
 ## Features
 
 - [Practice exam](./practice-exam.md): draw, study and exam modes, answering, finishing, scoring, persistence, domain drills, all five exam pages.
-- [Score report](./score-report.md): PDF upload, exam detection and choice, personalized plan, targeted practice, saved data and deletion.
+- [Score report](./score-report.md): PDF upload, exam detection and choice, personalized plan, targeted practice, saved data and deletion, download and share link.
 - [Question bank](./question-bank.md): browsing a track's whole bank by topic, objective, and search.
 - [Preflight checklist](./preflight.md): readiness ticks per track, persistence, reset.
 - [Study guides and site chrome](./study-guides.md): guide pages, contents rail, cross-language search, theme toggle, home track chooser.
 
-Unmapped: the cheatsheet pages (`cheatsheet/{en,es,pt}.html`, static) and the guide PDFs (not built locally).
+Unmapped: the cheatsheet pages (`cheatsheet/{en,es,pt}.html`, static), the guide PDFs (not built locally), and the `(pending)` placeholder pages `build-pages.mjs` writes when a generated exam or cheatsheet is missing.

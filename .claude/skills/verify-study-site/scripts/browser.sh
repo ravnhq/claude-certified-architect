@@ -15,6 +15,7 @@ BASE=$(cd "$BASE" 2>/dev/null && pwd -P || echo "$BASE")
 RUN_ID="${1:?usage: browser.sh <run-id> <command> [args]}"; shift
 # shellcheck disable=SC1090
 . "$BASE/runs/$RUN_ID/run.env"
+command -v agent-browser > /dev/null || { echo "agent-browser is not on PATH; doctor.sh <run-id> checks it" >&2; exit 127; }
 ab() { agent-browser --session "$SESSION" --engine chrome "$@"; }
 
 case "${1:-}" in

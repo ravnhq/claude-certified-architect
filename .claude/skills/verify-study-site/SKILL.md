@@ -23,7 +23,7 @@ RUN_ID=$(.claude/skills/verify-study-site/scripts/launch.sh)
 
 - Snapshots tracked and untracked-not-ignored files as they are on disk, so uncommitted edits are what gets built. `.corpus/` is left out; only `import_practice_bank.py` reads it.
 - Installs the pinned deps from `pages.yml` into `deps/` on first use (~20 s).
-- Builds in CI order: `build_exam_html.py`, `build_professional_exam.py`, `build-pages.mjs`, `minify-docs.mjs`. About 80 s.
+- Builds in CI order: `build_exam_html.py`, `build_professional_exam.py`, `build-pages.mjs`, `minify-docs.mjs`. About 80 s. Like CI, it does not run `build_developer_exam.py` or `build_cheatsheet.py`; the Developer exam and the cheatsheets come from their committed output, so regenerate those yourself before a launch that should show changes to them.
 - Starts `node scripts/serve-docs.mjs <free-port>` (gzip + base path, as Pages serves).
 - **Ready** when the server log says `Serving docs` and `GET index.html` returns 200. Then it prints the run id as its only stdout line. A non-zero exit prints the tail of `build.log` or `server.log`; run cleanup on that id anyway.
 
@@ -35,7 +35,7 @@ The guide PDFs are not built (CI makes them with `md-to-pdf` and Puppeteer), so 
 .claude/skills/verify-study-site/scripts/doctor.sh "$RUN_ID"
 ```
 
-Read-only. Passes only when the recorded pid is `serve-docs.mjs` on the recorded port with its cwd in this run's snapshot, `lsof` shows that pid owning the port, the served `index.html` is byte-identical to this run's build, `build.log` ends in `docs/ built`, and the main pages answer 200. It prints `URL`, `SESSION`, and `EVIDENCE`, and records the source commit and uncommitted-file count. Run it before driving, and again whenever a result looks like it came from a different build.
+Read-only. Passes only when `agent-browser --version` runs, the recorded pid is `serve-docs.mjs` on the recorded port with its cwd in this run's snapshot, `lsof` shows that pid owning the port, the served `index.html` is byte-identical to this run's build, `build.log` holds both `docs/ built` and minify's closing `Minified N pages`, and the main pages answer 200. It prints `URL`, `SESSION`, and `EVIDENCE`, and records the source commit and uncommitted-file count. Run it before driving, and again whenever a result looks like it came from a different build.
 
 ## Drive
 
@@ -52,7 +52,8 @@ b get text '#answeredCount'
 - Define `b` as a function. In zsh a command held in a variable is not word-split, so `$B open …` fails.
 - Read [`features/README.md`](features/README.md) first, then follow the feature file for the behaviour under test. It lists the user entry points, handles, and expected results.
 - Prefer accessible names (`find role … --name`) for controls. Element ids (`#qCard`, `#browseCount`, `#report-file`) are fine for reading state.
-- Native `confirm()` dialogs block every other command until you run `b dialog accept` or `b dialog dismiss`.
+- Native `confirm()` dialogs block every other command until you run `b dialog accept` or `b dialog dismiss`. The click that raised one returns at once; `b dialog status` shows whether one is open.
+- If doctor reports `agent-browser is not runnable`, the `agent-browser` on PATH is missing or a dangling symlink. Put a working binary first on PATH (for example `PATH=<dir-with-agent-browser>:$PATH`) for every script call, and rerun doctor.
 - Changing generator code means relaunching: a run serves the snapshot it was built from.
 
 ## Evidence

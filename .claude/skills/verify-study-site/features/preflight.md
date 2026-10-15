@@ -11,8 +11,9 @@ The preflight checklist gives each track ten readiness checks, the exam blueprin
 
 ## How to get to it (user POV)
 
-- README and track pages link the Foundations checklist at `preflight/en.html`.
-- From a checklist, the `Architect — Professional` and `Developer — Foundations` links.
+- Home page track card → its `N MORE` disclosure → `Preflight checklist EN` (`preflight/architect-foundations.html` and the other two tracks' pages).
+- The README links the Foundations checklist at `preflight/en.html`, the same checklist as `architect-foundations.html` with the same storage key.
+- From a checklist, the links to the other two tracks (`Architect — Professional` and `Developer — Foundations` on Foundations).
 - Direct pages: `preflight/en.html`, `preflight/architect-foundations.html`, `preflight/architect-professional.html`, `preflight/developer-foundations.html`.
 
 ## Driving it with agent-browser
@@ -25,10 +26,10 @@ Preconditions:
 - **Tick.** `b find role checkbox click --name "04 Can name and explain all 5 domains"`. That checkbox reports `checked=true`. `b proof preflight ticked`.
 - **Persistence.** `b reload`. `b eval '[...document.querySelectorAll("input[type=checkbox]")].map(c=>c.checked?1:0).join("")'` reads `0001000000`, and `b eval 'localStorage["ccaf-preflight:state"]'` reads `{"checked":["04"]}`. `b proof preflight reloaded`.
 - **Reset.** `b find role button click --name "RESET CHECKLIST"`. All ten read `0` and `ccaf-preflight:state` is gone. No confirm appears.
-- **Other tracks.** `b find role link click --name "Architect — Professional"` opens `preflight/architect-professional.html` with its own ten checks.
+- **Other tracks.** `b find role link click --name "Architect — Professional"` opens `preflight/architect-professional.html` with its own ten checks. Ticking one there writes `ccarp-preflight:state`, not `ccaf-preflight:state`.
 
 ## Gotchas
 
-- A checkbox's accessible name is its whole label text, including the description and link text. Match on the leading number and title with a prefix, or use the checkbox index.
+- A checkbox's accessible name is its whole label text, including the description and link text. `--name` matches a substring by default, so the leading number and title are enough; add `--exact` only with the full label.
 - Reset clears immediately, without a confirm; there is no undo.
-- Each track keeps its own storage key. Read the key on the page you ticked.
+- Each track keeps its own storage key: `ccaf-preflight:state` (Foundations, both pages), `ccarp-preflight:state` (Professional), `ccdvf-preflight:state` (Developer). Read the key on the page you ticked.

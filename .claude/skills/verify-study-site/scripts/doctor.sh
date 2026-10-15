@@ -16,6 +16,10 @@ ENV_FILE="$BASE/runs/$RUN_ID/run.env"
 fail() { echo "FAIL $*"; exit 1; }
 ok() { echo "ok   $*"; }
 
+# The recipes drive Chrome through agent-browser; a stale or dangling install fails every step.
+AB_VERSION=$(agent-browser --version 2>/dev/null) || fail "agent-browser is not runnable from PATH ($(command -v agent-browser || echo 'not found'))"
+ok "$AB_VERSION"
+
 kill -0 "$PID" 2>/dev/null || fail "server pid $PID is not running"
 CMD=$(ps -o command= -p "$PID")
 case "$CMD" in *"scripts/serve-docs.mjs $PORT"*) ok "pid $PID is serve-docs on $PORT";; *) fail "pid $PID is not this run's server: $CMD";; esac
@@ -30,7 +34,9 @@ SERVED=$(curl -fsS "${URL}index.html" | shasum | cut -d' ' -f1) || fail "GET ${U
 BUILT=$(shasum < "$SITE/index.html" | cut -d' ' -f1)
 [ "$SERVED" = "$BUILT" ] && ok "served index.html matches $SITE/index.html" || fail "served index.html differs from this run's build"
 
-grep -q 'docs/ built' "$RUN_DIR/build.log" && ok "build completed (source $SOURCE_REV, $SOURCE_DIRTY_FILES uncommitted files)" || fail "build.log has no 'docs/ built'"
+grep -q 'docs/ built' "$RUN_DIR/build.log" || fail "build.log has no 'docs/ built' from build-pages.mjs"
+# minify-docs.mjs runs last and rewrites docs/ in place; its line proves the build finished.
+grep -q '^Minified ' "$RUN_DIR/build.log" && ok "build completed (source $SOURCE_REV, $SOURCE_DIRTY_FILES uncommitted files)" || fail "build.log has no 'Minified' line from minify-docs.mjs"
 for page in practical/en.html guides/en.html preflight/en.html score-report.html practical/bank-en.html; do
   code=$(curl -s -o /dev/null -w '%{http_code}' "${URL}$page")
   [ "$code" = 200 ] && ok "GET $page → 200" || fail "GET $page → $code"
