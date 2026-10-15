@@ -39,7 +39,7 @@ Keep implementation detail out of the map. Name user paths, stable handles, requ
 
 ## Features
 
-- [Practice exam](./practice-exam.md): draw, study and exam modes, answering, finishing, scoring, persistence, domain drills, all five exam pages.
+- [Practice exam](./practice-exam.md): draw, study and exam modes, answering, finishing, scoring, persistence, domain drills, all six exam pages.
 - [Score report](./score-report.md): PDF upload, exam detection and choice, personalized plan, targeted practice, saved data and deletion, download and share link.
 - [Question bank](./question-bank.md): browsing a track's whole bank by topic, objective, and search.
 - [Preflight checklist](./preflight.md): readiness ticks per track, persistence, reset.

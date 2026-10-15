@@ -285,7 +285,7 @@ function landing() {
         { label: 'Practice exam', langs: [['EN', 'practical/associate-en.html']] },
         { label: 'Question bank', langs: [['EN', 'practical/bank-associate-en.html']] },
       ],
-      register: 'https://anthropic-partners.skilljar.com/',
+      register: 'https://anthropic-partners.skilljar.com/claude-certified-associate-foundations-certification',
     },
   ];
 
@@ -334,8 +334,8 @@ function landing() {
   return `<main class="landing">
   <section class="hero">
     <p class="eyebrow">Ravn study materials</p>
-    <h1>Claude Certified Architect <span class="accent">— choose your track.</span></h1>
-    <p class="lede">Free, open study material for the Anthropic Partner Network certifications — guides, practice exams, and cheatsheets, in English, Spanish, and Portuguese for the Foundations track.</p>
+    <h1>Claude certifications <span class="accent">— choose your track.</span></h1>
+    <p class="lede">Free, open study material for the Anthropic Partner Network certifications — guides, practice exams, and cheatsheets, in English, Spanish, and Portuguese for Architect Foundations.</p>
   </section>
   <section class="track-chooser" aria-labelledby="chooser-title">
     <div class="track-heading">

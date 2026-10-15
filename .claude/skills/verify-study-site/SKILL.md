@@ -82,7 +82,7 @@ Closes the run's browser sessions, stops the server only if the pid is still thi
 | `launch.sh` | `launch.sh` | snapshot, build, serve; prints `<run-id>` |
 | `doctor.sh` | `doctor.sh <run-id>` | read-only identity and health checks |
 | `browser.sh` | `browser.sh <run-id> open <page>` / `proof <feature> <name>` / any `agent-browser` command | drives the run's Chrome session |
-| `make-score-report.sh` | `make-score-report.sh <run-id> [CCAR-F\|CCAR-P\|CCDV-F] [rows] [--no-code]` | prints a synthetic score-report PDF into `evidence/<run-id>/fixtures/` and prints its path |
+| `make-score-report.sh` | `make-score-report.sh <run-id> [CCAR-F\|CCAR-P\|CCDV-F\|CCAO-F] [rows] [--no-code]` | prints a synthetic score-report PDF into `evidence/<run-id>/fixtures/` and prints its path |
 | `cleanup.sh` | `cleanup.sh <run-id>` | stops owned processes, removes scratch, keeps evidence |
 
 ## Upkeep

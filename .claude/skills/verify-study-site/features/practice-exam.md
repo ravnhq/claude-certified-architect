@@ -4,7 +4,7 @@ The practice exam draws a fresh attempt from a track's bank, lets the candidate 
 
 ## Sub-features
 
-- `exam-draw` builds an attempt: Foundations 60 (12 per domain), Professional 63, Developer 53. `QUICK` draws about a third: 20, 21 and 19.
+- `exam-draw` builds an attempt: Foundations 60 (12 per domain), Professional 63, Developer 53, Associate 60. `QUICK` draws about a third: 20, 21, 19 and 19.
 - `exam-answer` records a choice; study mode locks the item and shows the rationale for the chosen option and the correct one.
 - `exam-timer` counts up `Time m:ss / 120:00` in exam mode on a full-length draw only.
 - `exam-persist` restores the attempt, answers, position, mode, length and drill after a reload.
@@ -15,7 +15,7 @@ The practice exam draws a fresh attempt from a track's bank, lets the candidate 
 ## How to get to it (user POV)
 
 - Home page track card → `Practice exam EN` (Professional, Developer) or the Foundations `EN` / `ES` / `PT` practice links.
-- Direct pages: `practical/en.html`, `practical/es.html`, `practical/pt.html`, `practical/professional-en.html`, `practical/developer-en.html`.
+- Direct pages: `practical/en.html`, `practical/es.html`, `practical/pt.html`, `practical/professional-en.html`, `practical/developer-en.html`, `practical/associate-en.html`.
 - The question bank's `PRACTICE EXAM` link, and the preflight checklist's `Ravn practice exam` link.
 - From the score report, `Start practice exam` opens the track's page with `?targeted=1` (see [score-report.md](./score-report.md)).
 
@@ -36,7 +36,7 @@ Preconditions:
 - **Misses drill.** After a finished attempt with a wrong answer, `b find role button click --name "Drill my misses"`. `#totalCount` is the number of items answered wrong (unanswered ones do not count) and `#drawNote` starts `⟳Weak-spot drill`. The misses live in `ccaf-exam-en:misses`. Click the same button again to leave the drill.
 - **Exam mode and timer.** On a full-length draw with no answers, `b find role button click --name "EXAM"`. `#modeHint` reads `Answers reveal at the end` and `b get text '#examTimer'` reads `Time 0:00 / 120:00`. Answer one item, then click `STUDY`: a confirm reads `Switching to Study reveals the correct answer for every question you have already answered. Continue?`.
 - **Quick length.** `b find role button click --name "QUICK · 20"` (accept the confirm over a started attempt). `#totalCount` reads `20`.
-- **Other tracks.** Repeat Open on `practical/professional-en.html` (expect `63`, quick `21`, seven domain rows `x/11 … x/4`) and `practical/developer-en.html` (expect `53`, quick `19`, eight domain rows).
+- **Other tracks.** Repeat Open on `practical/professional-en.html` (expect `63`, quick `21`, seven domain rows `x/11 … x/4`) `practical/developer-en.html` (expect `53`, quick `19`, eight domain rows) and `practical/associate-en.html` (expect `60`, quick `19`, seven domain rows `x/8 … x/6`).
 
 ## Gotchas
 

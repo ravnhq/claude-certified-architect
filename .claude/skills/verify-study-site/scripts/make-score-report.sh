@@ -8,7 +8,7 @@
 # "Configure" into "Con fi gure" and the row no longer matches its objective.
 #
 # Usage: make-score-report.sh <run-id> [exam-code] [rows] [--no-code]
-#   exam-code  CCAR-F (default), CCAR-P or CCDV-F
+#   exam-code  CCAR-F (default), CCAR-P, CCDV-F or CCAO-F
 #   rows       objectives to include (default 8); scores cycle 35..95%
 #   --no-code  omit the code and exam name, to drive the "choose the exam" path
 # Prints the PDF path. Fixtures live in the evidence dir so the input survives cleanup.

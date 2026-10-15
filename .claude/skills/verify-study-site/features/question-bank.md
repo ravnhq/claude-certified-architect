@@ -13,7 +13,7 @@ The question bank shows a track's whole item bank in one page, grouped by topic 
 
 - Home page track card → `Question bank EN`, or a Foundations `EN` / `ES` / `PT` bank link.
 - The practice exam's `QUESTION BANK` link and the preflight checklist's `question bank` link.
-- Direct pages: `practical/bank-en.html`, `bank-es.html`, `bank-pt.html`, `bank-professional-en.html`, `bank-developer-en.html`.
+- Direct pages: `practical/bank-en.html`, `bank-es.html`, `bank-pt.html`, `bank-professional-en.html`, `bank-developer-en.html`, `bank-associate-en.html`.
 
 ## Driving it with agent-browser
 
@@ -28,7 +28,7 @@ Preconditions:
 - **Clear.** `b fill 'input[type=search]' ''` and `b select 'select' 'All topics'`. `#browseCount` returns to `607 of 607 questions`.
 - **Objective jump.** `b find role link click --name "4.6 Design multi-instance"`. The URL ends `#4.6` and the heading `#s-4.6` sits near the top of the `.content` pane. `b proof question-bank nav-objective`.
 - **Topic jump.** `b find role button click --name "HOOKS"`. The URL ends `#E` and `#browseCount` reads that topic's total (`19 of 607` when this map was written). `b proof question-bank nav-hooks`.
-- **Other banks.** `#browseCount` reads `136 de 136 preguntas` on `bank-es.html`, `136 de 136 perguntas` on `bank-pt.html`, `421 of 421 questions` on `bank-professional-en.html` and `475 of 475 questions` on `bank-developer-en.html`.
+- **Other banks.** `#browseCount` reads `136 de 136 preguntas` on `bank-es.html`, `136 de 136 perguntas` on `bank-pt.html`, `421 of 421 questions` on `bank-professional-en.html`, `475 of 475 questions` on `bank-developer-en.html` and `770 of 770 questions` on `bank-associate-en.html`.
 
 ## Gotchas
 

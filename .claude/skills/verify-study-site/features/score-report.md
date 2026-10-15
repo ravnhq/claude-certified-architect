@@ -8,7 +8,7 @@ The score report reader takes a candidate's score-report PDF, identifies the exa
 - `report-choose` asks for the exam when the report names none, an unknown one, or two that conflict.
 - `report-review` opens `Report details` on its own only when a row is unmatched, has an invalid percentage, or repeats an objective.
 - `report-plan` shows priority topics (below 80%) grouped by domain, heaviest domain first, with explanation, example, and guidance per topic.
-- `report-practice` hands off to the track's targeted practice exam: `practical/en.html?targeted=1`, `professional-en.html?targeted=1` or `developer-en.html?targeted=1`.
+- `report-practice` hands off to the track's targeted practice exam: `practical/en.html?targeted=1`, `professional-en.html?targeted=1`, `developer-en.html?targeted=1` or `associate-en.html?targeted=1`.
 - `report-persist` restores the plan on return; `Report details → Delete saved study data` removes it.
 - `report-share` sits under `Share or export`: download the plan as `.md`, copy a `#r=` link that rebuilds the plan on another device, and copy, save or load a custom exam.
 
