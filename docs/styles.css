@@ -966,6 +966,7 @@ html, body { overscroll-behavior-y: none; }
   border-bottom: 1px solid var(--border-strong);
 }
 .chooser-reg:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.chooser-reg-note { margin: 0; font-size: 0.85rem; line-height: 1.5; color: var(--muted); }
 
 .hero .eyebrow, .track-label, .card h2, .guide .eyebrow { font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 500; letter-spacing: .06em; }
 .hero { background: radial-gradient(ellipse at 65% 35%, rgba(148,163,184,.09), transparent 70%); }

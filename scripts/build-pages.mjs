@@ -286,6 +286,9 @@ function landing() {
         { label: 'Question bank', langs: [['EN', 'practical/bank-associate-en.html']] },
       ],
       register: 'https://anthropic-partners.skilljar.com/claude-certified-associate-foundations-certification',
+      // The certification FAQ lists Associate as the one exam that does not
+      // count towards Partner Network eligibility; say so before the fee.
+      registerNote: 'Does not count towards Claude Partner Network eligibility.',
     },
   ];
 
@@ -326,7 +329,8 @@ function landing() {
         <summary class="chooser-more-summary">${rest.length} more</summary>
         <ul class="chooser-res">${resourceRows(rest)}
         </ul>
-      </details>` : ''}
+      </details>` : ''}${tr.registerNote ? `
+      <p class="chooser-reg-note">${tr.registerNote}</p>` : ''}
       <a class="chooser-reg" href="${tr.register}">Register with Anthropic</a>
     </article>`;
   };

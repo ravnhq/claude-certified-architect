@@ -7,7 +7,7 @@ The study guides render each track's markdown guide as a page with a contents ra
 - `guide-read` renders a guide with its `Contents` navigation and heading anchors.
 - `guide-search` opens `Search the study guides`, searches all guides, filters by `ALL` / `EN` / `ES` / `PT`, and links each hit to its section.
 - `site-theme` toggles dark and light and keeps the choice across pages and reloads.
-- `site-home` offers four track cards with links to each track's guide, practice exam, question bank, and registration. Each card's `N MORE` disclosure holds the preflight checklist, and on Foundations the cheatsheets and guide PDFs.
+- `site-home` offers four track cards with links to each track's guide, practice exam, question bank, and registration. Each card's `N MORE` disclosure holds the preflight checklist, and on Foundations the cheatsheets and guide PDFs. The Associate card alone carries `Does not count towards Claude Partner Network eligibility.` above its register link.
 
 ## How to get to it (user POV)
 

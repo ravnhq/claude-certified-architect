@@ -71,6 +71,8 @@ price rose to $125 on June 30, 2026; registrations before that date paid the low
   registration with a verified partner-company email. See [Claude Partner Network](https://claude.com/partners).
 - **Claude Certified Associate – Foundations** costs $99 and is aimed at productivity-tool users;
   unlike the architect and developer tracks, it does not expect API development knowledge.
+  It is the one certification that does **not** count toward Claude Partner Network eligibility;
+  the other three do.
 - Register through the [Anthropic Partner Academy](https://anthropic-partners.skilljar.com/page/partner-certifications),
   then schedule with Pearson VUE using the credentials they email you.
 - Official guides, all marked subject to change:
