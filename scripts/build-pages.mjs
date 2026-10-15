@@ -221,10 +221,10 @@ function landing() {
     </article>`).join('');
 
   // Track chooser — a one-glance self-selection grid placed above the
-  // per-track sections. All three render as peers in one grid; the section
-  // heading carries the Architect progression and Developer's separate-role
-  // status in prose, which the old two-group layout could only say by making
-  // the lone Developer card twice the width of its siblings.
+  // per-track sections. All four render as peers in one grid; the section
+  // heading carries the Architect progression and the separate roles of
+  // Developer and Associate in prose, which the old two-group layout could only
+  // say by making the lone Developer card twice the width of its siblings.
   // One card shape for all tracks. Each resource row names the resource
   // once and lists the languages it exists in, so a tri-language track and a
   // single-language track render from the same template without a separate
@@ -340,8 +340,8 @@ function landing() {
   <section class="track-chooser" aria-labelledby="chooser-title">
     <div class="track-heading">
       <p class="track-label">Choose your track</p>
-      <h2 id="chooser-title">Three exams, two roles</h2>
-      <p>Architect runs Foundations then Professional, so the second builds on the first. Developer Foundations sits alongside them — a different job, not a further level.</p>
+      <h2 id="chooser-title">Four exams, three roles</h2>
+      <p>Architect runs Foundations then Professional, so the second builds on the first. Developer and Associate Foundations sit alongside them — different jobs, not further levels: Developer builds on the Claude platform, Associate uses Claude for everyday work without writing code against the API.</p>
     </div>
     <div class="cards chooser-cards">${TRACKS.map(trackCard).join('')}</div>
   </section>

@@ -127,7 +127,7 @@ than re-inlined per page. Font licenses accompany them in `docs/assets/`.
 
 ## Layout
 
-Keep the existing three-track chooser and navigation. Use a 980px study content
+Keep the existing four-track chooser and navigation. Use a 980px study content
 container, a 70ch prose measure, generous section spacing, and compact quiz controls.
 Above 1160px the guide lays out as two columns — a 252px sticky contents rail and
 the reading column, separated by a 64–120px gutter and centred as one composition.
@@ -155,7 +155,7 @@ Do not apply pill geometry to every control.
 - **Header:** white Ravn wordmark, restrained site label, simple search/theme controls.
 - **Primary action:** white background, dark label, 8px radius, visible focus state.
 - **Secondary action:** transparent or subtly elevated surface with a neutral border.
-- **Track chooser:** all three exams as equal-width peers in one grid, each card
+- **Track chooser:** all four exams as equal-width peers in one 2 × 2 grid, each card
   carrying the exam name, who it is for, and exam code / item count / languages.
   Study guide, practice exam, and question bank are always visible with a language
   chip per row; remaining materials sit behind a collapsed disclosure so tracks

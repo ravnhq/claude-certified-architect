@@ -283,9 +283,11 @@ html, body { overscroll-behavior-y: none; }
 
 /* ---------- track chooser ---------- */
 .track-chooser { margin-bottom: 72px; }
-/* align-items: start keeps an opened disclosure from stretching its siblings. */
+/* align-items: start keeps an opened disclosure from stretching its siblings.
+   The 340px floor fits two cards in the content column, so four tracks sit
+   2 × 2 instead of three plus one stranded on its own row. */
 .chooser-cards {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
   align-items: start;
   margin-top: 20px;
 }
