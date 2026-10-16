@@ -165,6 +165,15 @@ Do not apply pill geometry to every control.
 - **Question bank:** stable question numbers, readable stems, compact metadata,
   expandable answers, and text search. Preserve exact-number search such as `#42`.
 - **Quiz:** selection and correctness remain visually distinct; feedback includes text.
+- **Quiz on phones (≤760px):** the question comes first, under a header holding only the
+  wordmark and an Options button. Options, the question navigator, and the bank's
+  contents open as bottom sheets: 18px top corners, a grabber, a dimmed backdrop, and
+  dismissal by backdrop, close button, or Escape. A sticky thumb bar holds Prev, the
+  position (`3 / 60`, which opens the navigator), and Next. Finish takes Next's slot on the
+  last question and sits at the foot of the navigator. The navigator is a grid of numbered
+  tiles marked ✓ / ✕ as well as coloured. A horizontal swipe moves between questions.
+  Hover styles apply only where a pointer can hover, and fields stay at 16px so iOS does
+  not zoom.
 - **Guide:** readable prose, a responsive contents panel, wrapping code, and localized navigation.
 
 ## Do's and Don'ts

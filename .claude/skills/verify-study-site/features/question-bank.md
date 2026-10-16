@@ -30,6 +30,8 @@ Preconditions:
 - **Topic jump.** `b find role button click --name "HOOKS"`. The URL ends `#E` and `#browseCount` reads that topic's total (`19 of 607` when this map was written). `b proof question-bank nav-hooks`.
 - **Other banks.** `#browseCount` reads `136 de 136 preguntas` on `bank-es.html`, `136 de 136 perguntas` on `bank-pt.html`, `421 of 421 questions` on `bank-professional-en.html`, `475 of 475 questions` on `bank-developer-en.html` and `770 of 770 questions` on `bank-associate-en.html`.
 
+- **Phone layout.** `b set device "iPhone 14"`. The contents rail is hidden; a floating `TOPICS` button (`.toc-fab`) opens it as `#tocSheet`. Clicking a subdomain closes the sheet, scopes the list, sets the hash (`#1.3`) and scrolls the document so `#s-1.3` sits just under the sticky group heading.
+
 ## Gotchas
 
 - The bank arrives with a fetch after load; read counts after `b wait`.

@@ -38,7 +38,11 @@ Preconditions:
 - **Quick length.** `b find role button click --name "QUICK · 20"` (accept the confirm over a started attempt). `#totalCount` reads `20`.
 - **Other tracks.** Repeat Open on `practical/professional-en.html` (expect `63`, quick `21`, seven domain rows `x/11 … x/4`) `practical/developer-en.html` (expect `53`, quick `19`, eight domain rows) and `practical/associate-en.html` (expect `60`, quick `19`, seven domain rows `x/8 … x/6`).
 
+- **Phone layout.** `b set device "iPhone 14"`, then open the page. The header shows only an `OPTIONS` button (`.options-btn`); clicking it opens `#optionsSheet` (class `open`, `body.sheet-open`) with the mode, length, domain, new-set, misses and bank controls. The thumb bar shows `#prevBtn`, `#navToggle` (text `1 / 60`, mirrored in `#qCounterM`) and `#nextBtn`. `#navToggle` opens `#qNavSheet`, a tile grid whose `#sb-<i>` buttons jump and close the sheet; `#finishBtnSheet` finishes from there. On the last question `#qNav` gets `on-last` and `FINISH & REVIEW` replaces Next. `b press Escape` closes a sheet and returns focus to its trigger. Swipe is touch-only: dispatch `TouchEvent`s on `.content` from `b eval` (≥60px horizontal, under 600ms) to check it.
+
 ## Gotchas
+
+- A sheet slides for 260ms. Wait about 400ms after opening or closing one before the next click, or the click lands on the sheet that is still moving. Clicking `#navToggle` straight after `NEXT` can also miss while the page is smooth-scrolling.
 
 - The question text arrives with a bank fetch after load. Reading `#qCard` before `b wait` finishes shows a `Loading questions…` skeleton.
 - Every attempt is a random draw. Assert counts, ids, and structure, not a particular stem or correct letter, across runs.

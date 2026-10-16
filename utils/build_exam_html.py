@@ -120,6 +120,8 @@ UI = {
         "browse_none": "No question matches this filter.",
         "cluster_note": "{i} of {n} variants of this scenario",
         "loading": "Loading questions\u2026",
+        "options": "Options", "close": "Close", "jump_to": "Jump to question",
+        "topics": "Topics",
         "load_failed": "The question bank could not be loaded. Check your connection and reload the page.",
     },
     "es": {
@@ -200,6 +202,8 @@ UI = {
         "browse_none": "Ninguna pregunta coincide con este filtro.",
         "cluster_note": "{i} de {n} variantes de este escenario",
         "loading": "Cargando preguntas\u2026",
+        "options": "Opciones", "close": "Cerrar", "jump_to": "Ir a la pregunta",
+        "topics": "Temas",
         "load_failed": "No se pudo cargar el banco de preguntas. Revisa tu conexi\u00f3n y recarga la p\u00e1gina.",
     },
     "pt": {
@@ -281,6 +285,8 @@ UI = {
         "browse_none": "Nenhuma pergunta corresponde a este filtro.",
         "cluster_note": "{i} de {n} variantes deste cenário",
         "loading": "Carregando quest\u00f5es\u2026",
+        "options": "Op\u00e7\u00f5es", "close": "Fechar", "jump_to": "Ir para a pergunta",
+        "topics": "Temas",
         "load_failed": "N\u00e3o foi poss\u00edvel carregar o banco de quest\u00f5es. Verifique sua conex\u00e3o e recarregue a p\u00e1gina.",
     },
 }
@@ -303,6 +309,13 @@ RAVN_LOGO_SVG = (
     '<path d="M8.53644 32.9974C11.4172 32.9974 13.7526 30.7402 13.7526 27.9557C13.7526 25.1713 11.4172 22.9141 8.53644 22.9141C5.65565 22.9141 3.32031 25.1713 3.32031 27.9557C3.32031 30.7402 5.65565 32.9974 8.53644 32.9974Z"/></svg>'
 )
 
+SLIDERS_SVG = (
+    '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" '
+    'stroke-width="2" stroke-linecap="round" aria-hidden="true">'
+    '<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/>'
+    '<circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>'
+)
+
 CSS = """
 /* Study controls use the current Ravn palette; feedback colors remain semantic. */
 :root {
@@ -318,7 +331,7 @@ CSS = """
 html, body { height: 100%; }
 body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 16px; line-height: 1.6; background: var(--bg); color: var(--fg);
-  height: 100vh; overflow: hidden; display: flex; flex-direction: column;
+  height: 100vh; height: 100dvh; overflow: hidden; display: flex; flex-direction: column;
   -webkit-font-smoothing: antialiased; }
 
 .ravn-topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center;
@@ -378,7 +391,6 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 .toc-sub { display: flex; align-items: baseline; gap: 8px; width: 100%; padding: 5px 16px 5px 18px;
   color: var(--muted); text-decoration: none; font-size: 12.5px; line-height: 1.4;
   border-left: 2px solid transparent; }
-.toc-sub:hover { background: var(--surface-2); color: var(--fg); }
 .toc-sub.active { background: var(--accent-soft); color: var(--accent); border-left-color: var(--accent); }
 .toc-sub .toc-id { flex: 0 0 auto; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
   font-size: 11px; font-weight: 600; color: var(--accent); }
@@ -411,7 +423,6 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
   background: none; border: none; cursor: pointer; font-size: 13.5px; color: var(--muted);
   font-family: inherit; text-align: left; transition: background .15s, color .15s;
   border-left: 3px solid transparent; }
-.q-btn:hover { background: var(--surface-2); color: var(--fg); }
 .q-btn.active { background: var(--accent-soft); color: var(--accent); border-left-color: var(--accent); }
 .q-btn.answered .q-dot { background: var(--accent); }
 .q-btn.answered-correct { color: var(--good); }
@@ -431,13 +442,11 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 .nav-btn { padding: 8px 18px; border-radius: var(--r-md); border: 1px solid var(--border-strong);
   background: transparent; font-family: inherit; font-size: 12px; cursor: pointer; color: var(--muted);
   font-weight: 600; text-transform: uppercase; letter-spacing: .1em; transition: all .15s; }
-.nav-btn:hover { color: var(--fg); border-color: var(--accent); }
 .nav-btn:disabled { opacity: .35; cursor: default; }
 /* The white fill marks the action the candidate takes 59 times, not the one
    that ends the attempt. Finish inherits the ghost treatment until Next runs
    out, at which point primary moves to it. */
 .nav-btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); font-weight: 600; }
-.nav-btn.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
 .nav-btn:focus-visible, .mode-toggle button:focus-visible, .q-btn:focus-visible,
 .focus-select:focus-visible, .restart-btn:focus-visible, .new-draw-btn:focus-visible,
 .summary-back:focus-visible, .skip-link:focus-visible {
@@ -506,8 +515,6 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 .option-head { display: flex; align-items: flex-start; gap: 14px; width: 100%; padding: 14px 18px;
   border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .option-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
-.option:hover:not(.locked):not(.dimmed) .option-head { background: var(--surface-2); }
-.option:hover:not(.locked):not(.dimmed) { border-color: var(--accent); }
 .option.locked .option-head, .option-head[aria-disabled="true"] { cursor: default; }
 .option.locked .option-head:disabled { opacity: 1; }
 .option.selected { border-color: var(--accent); }
@@ -588,7 +595,6 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 .restart-btn { margin-top: 28px; padding: 12px 32px; background: var(--fg); color: var(--bg);
   border: none; border-radius: var(--r-md); font-family: inherit; font-size: 12px; font-weight: 600;
   text-transform: uppercase; letter-spacing: .1em; cursor: pointer; transition: background .15s, color .15s; }
-.restart-btn:hover { background: var(--accent); color: var(--accent-fg); }
 .screen { display: none; }
 .screen.active { display: block; }
 
@@ -620,7 +626,6 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 .br-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px;
   padding: 12px 16px; cursor: pointer; list-style: none; }
 .br-head::-webkit-details-marker { display: none; }
-.br-head:hover { background: var(--surface-2); }
 .br-id { flex: 0 0 auto; font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
   font-size: 11.5px; font-weight: 600; color: var(--accent); }
 .br-stem { flex: 1 1 260px; font-size: 14.5px; line-height: 1.5; color: var(--fg-soft); }
@@ -652,67 +657,186 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 .br-opt.is-correct .br-opt-text { color: var(--fg); font-weight: 600; }
 .br-opt-expl { margin-top: 4px; font-size: 12.5px; line-height: 1.55; color: var(--muted); }
 
+/* Hover styles only where a pointer hovers. A touch screen keeps :hover on
+   whatever was tapped last, so Next stayed gold and the next question's option
+   under the thumb looked selected. */
+@media (hover: hover) {
+  .nav-btn:not(.active):hover { color: var(--fg); border-color: var(--accent); }
+  .nav-btn.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+  .option:hover:not(.locked):not(.dimmed) .option-head { background: var(--surface-2); }
+  .option:hover:not(.locked):not(.dimmed) { border-color: var(--accent); }
+  .q-btn:not(.active):hover { background: var(--surface-2); color: var(--fg); }
+  .restart-btn:hover { background: var(--accent); color: var(--accent-fg); }
+  .toc-sub:not(.active):hover { background: var(--surface-2); color: var(--fg); }
+  .br-head:hover { background: var(--surface-2); }
+}
+
+/* Phone-only chrome: the options trigger, the navigator toggle, the sheets'
+   close buttons, titles and footers, the bank's Topics button and the answered
+   hairline. Desktop shows the same controls in place, so these stay hidden. */
+.options-btn, .nav-toggle, .sheet-close, .sheet-title, .sheet-note, .sheet-foot,
+.toc-fab, .q-progress, .sheet-backdrop { display: none; }
+
 @media (max-width: 760px) {
   /* Narrow viewports are phones in practice, and pointer:coarse misses a
      touch laptop resized narrow, so the target floor is set here too. */
   .nav-btn, .mode-toggle button, .q-btn, .focus-select, .restart-btn,
-  .new-draw-btn, .summary-back { min-height: 44px; }
-  .q-btn { min-width: 44px; }
+  .new-draw-btn, .summary-back, .options-btn, .nav-toggle { min-height: 44px; }
   html, body { height: auto; }
-  body { min-height: 100vh; height: auto; overflow: auto; display: block; }
-  .ravn-topbar { position: static; padding: 10px 16px; gap: 10px; flex-wrap: wrap; }
-  .draw-note { padding: 8px 16px; }
-  .shell.bank .sidebar { display: none; }
+  body { min-height: 100vh; min-height: 100dvh; height: auto; overflow: auto; display: block; }
+  body.sheet-open { overflow: hidden; }
+  /* No 300ms double-tap wait and no grey flash; :active below is the feedback. */
+  button, a, select, summary, input { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  .option:not(.locked):not(.dimmed) .option-head:active,
+  .q-btn:active, .br-head:active, .toc-sub:active { background: var(--surface-2); }
+  .nav-btn:active, .nav-toggle:active { opacity: .7; }
+  /* iOS zooms the page into any field set under 16px. */
+  .focus-select, .browse-search { font-size: 16px; }
+
+  .ravn-topbar { position: static; flex-wrap: nowrap; gap: 12px;
+    padding: calc(10px + env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+             10px max(16px, env(safe-area-inset-left)); }
   .ravn-brand-tagline { display: none; }
-  .mode-controls { max-width: 100%; justify-content: flex-start; }
-  .mode-hint { margin-left: 8px; }
-  /* Phone order: question first. The navigator and the page title used to
-     push the question ~590px down an 844px screen. */
-  .shell { display: flex; flex-direction: column; overflow: visible; }
-  .main { order: 1; display: flex; flex-direction: column; overflow: visible; }
-  .sidebar { order: 2; width: 100%; min-width: 0; height: auto; max-height: 260px;
-    min-height: 0; border-right: 0; border-top: 1px solid var(--border);
-    border-bottom: 0; }
-  .content { order: 1; overflow: visible; padding: 20px 16px 16px; }
-  .topbar { order: 2; padding: 12px 16px; gap: 10px; flex-wrap: wrap;
-    border-top: 1px solid var(--border); border-bottom: 0;
-    position: sticky; bottom: 0; background: var(--surface); z-index: 5; }
-  .topbar-title { display: none; }
-  .topbar-nav { width: 100%; flex-wrap: nowrap; gap: 8px; }
-  .topbar-nav .nav-btn { flex: 1; text-align: center; }
+  .options-btn { display: inline-flex; align-items: center; gap: 8px; margin-left: auto;
+    padding: 0 14px; background: transparent; color: var(--fg); cursor: pointer;
+    border: 1px solid var(--border-strong); border-radius: var(--r-md);
+    font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; }
+  .options-btn[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
+  /* The rotation note is reference text. It stays inside the options sheet and
+     only takes a row on the page when the attempt is a drill, where it names
+     the scope and carries the clear-misses action. */
+  .draw-note { padding: 8px max(16px, env(safe-area-inset-right)) 8px max(16px, env(safe-area-inset-left)); }
+  .draw-note:not(.scoped) { display: none; }
+
+  /* ---- bottom sheets ---- */
+  .sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; width: auto;
+    max-height: 85vh; max-height: 85dvh; overflow-y: auto; overscroll-behavior: contain;
+    background: var(--surface); border: 1px solid var(--border-strong); border-bottom: 0;
+    border-radius: 18px 18px 0 0; padding-bottom: env(safe-area-inset-bottom);
+    transform: translateY(100%); visibility: hidden;
+    transition: transform .26s cubic-bezier(.2, .8, .2, 1), visibility 0s linear .26s; }
+  .sheet.open { transform: none; visibility: visible;
+    transition: transform .26s cubic-bezier(.2, .8, .2, 1); }
+  /* Grabber: the platform cue that this surface slides and dismisses. */
+  .sheet::before { content: ""; display: block; flex-shrink: 0; width: 36px; height: 4px;
+    margin: 8px auto 0; border-radius: 2px; background: var(--border-strong); }
+  .sheet-backdrop { display: block; position: fixed; inset: 0; z-index: 55;
+    background: rgba(0, 0, 0, .6); }
+  .sheet-backdrop[hidden] { display: none; }
+  .sheet-close { display: inline-flex; align-items: center; justify-content: center;
+    position: absolute; top: 10px; right: 8px; width: 44px; height: 44px;
+    background: none; border: 0; border-radius: var(--r-md); color: var(--muted);
+    font-size: 18px; cursor: pointer; }
+  .sheet-close:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .sheet-title { display: block; margin: 0; padding: 16px 52px 2px 0; font-size: 11.5px;
+    font-weight: 600; letter-spacing: .167em; text-transform: uppercase; color: var(--accent); }
+
+  /* Options sheet: the header's control row, stacked full width. */
+  .mode-controls.sheet { display: flex; flex-direction: column; flex-wrap: nowrap;
+    align-items: stretch; gap: 12px; max-width: none;
+    padding: 0 max(16px, env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom))
+             max(16px, env(safe-area-inset-left)); }
+  .mode-controls.sheet > * { order: 3; }
+  .mode-controls.sheet::before { order: -1; }
+  .mode-controls.sheet .sheet-title { order: 0; }
+  .mode-controls.sheet .mode-toggle:not(.length-toggle) { order: 1; }
+  .mode-controls.sheet .mode-hint { order: 2; margin: -6px 0 4px; }
+  .mode-controls.sheet .sheet-note { order: 9; }
+  .mode-controls.sheet .mode-toggle { display: flex; width: 100%; margin-left: 0; }
+  .mode-controls.sheet .mode-toggle button { flex: 1 1 0; padding: 10px 8px; font-size: 12px; }
+  .mode-controls.sheet .focus-select { margin-left: 0; max-width: none; width: 100%;
+    height: 48px; padding: 0 12px; text-transform: none; letter-spacing: normal; font-weight: 500; }
+  .mode-controls.sheet .nav-btn { display: flex; align-items: center; justify-content: center;
+    width: 100%; margin-left: 0; min-height: 48px; text-align: center; text-decoration: none; }
+  .sheet-note { display: block; margin-top: 4px; padding-top: 14px; border-top: 1px solid var(--border);
+    font-size: 13px; line-height: 1.55; color: var(--muted); }
+
+  /* Navigator sheet: one numbered tile per question, coloured by state. */
+  .sidebar.sheet { display: flex; flex-direction: column; overflow: hidden; min-width: 0;
+    height: auto; max-height: 80vh; max-height: 80dvh; border-right: 0; padding-bottom: 0; }
+  .sidebar.sheet .sidebar-header { border-bottom: 0; padding: 16px 60px 4px 16px; }
+  .sidebar-scroll { padding: 4px max(16px, env(safe-area-inset-right)) 16px max(16px, env(safe-area-inset-left));
+    overscroll-behavior: contain; }
+  .domain-group { display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+    gap: 8px; margin-bottom: 4px; }
+  .domain-label { grid-column: 1 / -1; padding: 12px 0 2px; }
+  .q-btn { justify-content: center; padding: 0; border: 1px solid var(--border-strong);
+    border-radius: var(--r-md); color: var(--fg-soft); font-weight: 600;
+    font-variant-numeric: tabular-nums; }
+  .q-btn .q-dot { display: none; }
+  .q-btn.answered { background: var(--surface-2); color: var(--accent); }
+  .q-btn.answered-correct { background: var(--good-soft); border-color: var(--good); }
+  .q-btn.answered-wrong { background: var(--bad-soft); border-color: var(--bad); }
+  /* Colour alone does not tell right from wrong. */
+  .q-btn.answered-correct::after { content: "\\2713"; margin-left: 3px; font-size: 11px; }
+  .q-btn.answered-wrong::after { content: "\\2715"; margin-left: 3px; font-size: 10px; }
+  .q-btn.active { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .sheet-foot { display: block; flex-shrink: 0; border-top: 1px solid var(--border);
+    padding: 12px max(16px, env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom))
+             max(16px, env(safe-area-inset-left)); }
+  .sheet-foot .nav-btn { width: 100%; min-height: 48px; }
+  .sheet-foot .nav-btn[hidden] { display: none; }
+
+  /* ---- question page ---- */
+  .shell { display: block; overflow: visible; }
+  .main { display: flex; flex-direction: column; overflow: visible; }
+  .content { order: 1; overflow: visible;
+    padding: 20px max(16px, env(safe-area-inset-right)) 24px max(16px, env(safe-area-inset-left)); }
+  /* Thumb bar: Prev · position (opens the navigator) · Next. Finish takes
+     Next's slot on the last question and lives in the navigator otherwise. */
+  .topbar { order: 2; display: block; position: sticky; bottom: 0; z-index: 5;
+    padding: 10px max(12px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom))
+             max(12px, env(safe-area-inset-left));
+    background: var(--surface); border-top: 1px solid var(--border); border-bottom: 0; }
+  .q-progress { display: block; position: absolute; left: 0; right: 0; top: -1px; height: 2px; }
+  .q-progress > div { width: 0; height: 100%; background: var(--accent); transition: width .2s; }
+  .topbar-title, .q-counter { display: none; }
+  .topbar-nav { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    column-gap: 8px; row-gap: 4px; align-items: stretch; width: 100%; }
+  .exam-timer { grid-column: 1 / -1; order: -1; text-align: center; font-size: 12px; }
+  #prevBtn { order: 1; }
+  .nav-toggle { display: inline-flex; order: 2; align-items: center; justify-content: center;
+    gap: 6px; min-width: 88px; padding: 0 10px; background: none; color: var(--fg);
+    border: 1px solid transparent; border-radius: var(--r-md); cursor: pointer;
+    font-family: inherit; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .nav-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .nav-toggle-caret { font-size: 9px; color: var(--muted); }
+  #nextBtn, .topbar-nav .finish { order: 3; }
+  .topbar-nav:not(.on-last) .finish, .topbar-nav.on-last #nextBtn { display: none; }
+  .topbar-nav .nav-btn { padding: 8px 6px; text-align: center; line-height: 1.2;
+    letter-spacing: .06em; }
   .q-scenario { display: block; width: fit-content; margin-left: 0; }
-  .score-grid { grid-template-columns: 1fr; }
+  /* The summary's three counts: score across, correct and incorrect beneath. */
+  .score-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .score-card.total { grid-column: 1 / -1; }
+  .score-card { padding: 16px 10px; }
   .ds-row { flex-wrap: wrap; }
   .ds-name { flex-basis: 100%; }
   .ds-bar { flex: 1; min-width: 140px; }
+
+  /* ---- question bank ---- */
+  .shell.bank .content { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  .toc-fab { display: inline-flex; align-items: center; position: fixed; z-index: 30;
+    right: max(16px, env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom));
+    min-height: 48px; padding: 0 20px; background: var(--fg); color: var(--bg); border: 0;
+    border-radius: var(--r-md); box-shadow: 0 6px 20px rgba(0, 0, 0, .45); cursor: pointer;
+    font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; }
+  .toc-fab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .toc-group, .toc-sub { min-height: 44px; align-items: center; }
   .browse-head, .browse-list, .br-empty { max-width: none; }
+  .browse-head .focus-select { height: 44px; text-transform: none; letter-spacing: normal; font-weight: 500; }
+  .browse-search { height: 44px; }
   .br-head { padding: 10px 12px; gap: 8px; }
   .br-stem { flex-basis: 100%; }
 }
 
 @media (max-width: 420px) {
-  .mode-hint { width: 100%; margin-left: 0; order: 99; }
-  .nav-btn { padding: 8px 10px; }
-  /* Prev / Next / Finish share one row and cannot shrink below their longest
-     word. At 320px the Spanish and Portuguese labels ("Finalizar y revisar")
-     overran the viewport by ~22px, so drop the tracking and padding on that
-     row only, and give the three-word Finish label twice the room of Prev /
-     Next so it does not stack one word per line. */
-  .topbar-nav .nav-btn { padding: 8px 6px; letter-spacing: -0.025em; font-size: 11px; }
-  .topbar-nav .nav-btn.finish { flex: 2; }
-  /* The counter sits inside the nav row; with nowrap it shared the row with
-     the buttons and its `width: 100%` below never took effect. */
-  .topbar-nav { flex-wrap: wrap; }
-  /* Fit all three controls on one row at 390px instead of orphaning New set
-     onto its own line: trim padding, tracking and the gaps between groups. */
-  .mode-controls { gap: 6px; justify-content: flex-start; }
-  .mode-toggle button { padding: 5px 7px; font-size: 0.66rem; letter-spacing: 0.04em; }
-  .length-toggle, .new-draw-btn { margin-left: 4px; }
-  .focus-select { margin-left: 4px; max-width: 140px; }
-  .new-draw-btn { padding: 5px 8px; font-size: 0.7rem; }
-  .new-draw-btn .dn-icon { margin-right: 3px; }
-  .draw-note { font-size: 0.78rem; line-height: 1.45; padding: 8px 16px; }
-  .q-counter { width: 100%; }
+  /* At 320px the Spanish and Portuguese labels ("Finalizar y revisar") are the
+     widest in the thumb bar; tighter tracking keeps them to two lines. */
+  .topbar-nav .nav-btn { letter-spacing: 0; font-size: 11px; }
+  .nav-toggle { min-width: 76px; }
   .wrong-item { display: block; }
   .wrong-item .wi-n { margin-bottom: 4px; }
   .browse-head h1 { font-size: 1.15rem; }
@@ -1345,7 +1469,7 @@ function buildSidebar() {
     btn.type = "button";
     btn.className = "q-btn";
     btn.id = "sb-" + idx;
-    btn.onclick = () => goto(idx);
+    btn.onclick = () => { closeSheet(); goto(idx); };
     btn.innerHTML = "<span class='q-dot'></span> " + (idx + 1);
     groupEl.appendChild(btn);
   });
@@ -1367,6 +1491,8 @@ function updateSidebar() {
     }
   });
   document.getElementById("answeredCount").textContent = answeredCount;
+  const fill = document.getElementById("qProgress");
+  if (fill && fill.style) fill.style.width = (qs.length ? answeredCount / qs.length * 100 : 0) + "%";
 }
 
 // ---- question render -----------------------------------------------------
@@ -1379,6 +1505,7 @@ function renderQuestion(idx) {
   const reveal = hasAnswer(q, chosen) && state.mode === "study";
 
   document.getElementById("qCounter").textContent = (idx + 1) + " / " + qs.length;
+  document.getElementById("qCounterM").textContent = (idx + 1) + " / " + qs.length;
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
   const finishBtn = document.getElementById("finishBtn");
@@ -1387,6 +1514,7 @@ function renderQuestion(idx) {
   nextBtn.disabled = onLast;
   nextBtn.classList.toggle("primary", !onLast);
   finishBtn.classList.toggle("primary", onLast);
+  document.getElementById("qNav").classList.toggle("on-last", onLast);
 
   const dm = DOMAINS[q.domain];
   const scenarioTag = q.scenario ? "<span class='q-scenario'>" + esc(q.scenario) + "</span>" : "";
@@ -1478,7 +1606,24 @@ function answer(id, letter) {
   updateSidebar();
 }
 
-function navigate(dir) { goto(state.current + dir); }
+function navigate(dir) {
+  const from = state.current;
+  goto(state.current + dir);
+  if (state.current !== from) slideCard(dir);
+}
+
+// A short slide in the direction of travel, so a swipe or a Next tap reads as
+// moving through a deck rather than the page blinking. Phone only, and never
+// under reduced motion.
+function slideCard(dir) {
+  if (!isPhone() || typeof document.querySelector !== "function") return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const card = document.getElementById("qCard");
+  if (!card || typeof card.animate !== "function") return;
+  card.animate([{ transform: "translateX(" + (dir > 0 ? 28 : -28) + "px)", opacity: 0 },
+                { transform: "none", opacity: 1 }],
+               { duration: 180, easing: "cubic-bezier(.2, .8, .2, 1)" });
+}
 
 // Three screens now share the content pane, so showing one always hides the
 // other two: a half-hidden browse list under a summary was the failure mode.
@@ -1598,6 +1743,9 @@ function updateLengthUI() {
             : (state.length === "quick" ? T.draw_note_quick : T.draw_note_full)
                 .replace("{n}", examSize())
                 .replace("{bank}", QUESTIONS.length)));
+  document.getElementById("drawNoteSheet").innerHTML = note;
+  // On a phone the strip shows only for a drill, where it names the scope.
+  document.getElementById("drawNote").classList.toggle("scoped", state.focus !== "all");
   document.getElementById("drawNote").innerHTML =
     "<span class='dn-icon'>&#10227;</span>" + note +
     (state.focus === "misses"
@@ -1851,11 +1999,11 @@ function renderToc() {
   const cur = state.browse;
   toc.innerHTML = tocEntries().map(g =>
     "<button type='button' class='toc-group" + (String(cur.domain) === g.key ? " active" : "") +
-      "' onclick=\"gotoGroup('" + esc(g.key) + "')\">" + esc(groupLabel(g.key)) + "</button>" +
+      "' onclick=\"closeSheet(); gotoGroup('" + esc(g.key) + "')\">" + esc(groupLabel(g.key)) + "</button>" +
     Object.keys(g.subs).sort((a, b) => a.localeCompare(b, undefined, { numeric: true })).map(id => {
       const s = g.subs[id];
       return "<a class='toc-sub" + (cur.sub === id ? " active" : "") + "' id='toc-" + esc(id) + "' href='#" + esc(id) +
-        "' onclick=\"gotoSub('" + esc(id) + "'); return false;\" title='" + esc(s.name) + "'>" +
+        "' onclick=\"closeSheet(); gotoSub('" + esc(id) + "'); return false;\" title='" + esc(s.name) + "'>" +
         "<span class='toc-id'>" + esc(id) + "</span><span>" + esc(s.name) + "</span>" +
         "<span class='toc-n'>" + s.n + "</span></a>";
     }).join("")).join("");
@@ -1873,7 +2021,18 @@ function gotoGroup(key) {
   state.browse.sub = null;
   setBrowseDomain(key);
   setHash(key === "all" ? "" : key);
+  // The list was rebuilt under the reader; start them at its head.
+  const list = document.getElementById("browseList");
+  const pane = list && list.closest ? list.closest(".content") : null;
+  if (pane && list.getBoundingClientRect) {
+    if (paneScrolls(pane)) pane.scrollTop = 0;
+    else if (list.getBoundingClientRect().top < 0) {
+      window.scrollTo(0, list.getBoundingClientRect().top + window.scrollY - 16);
+    }
+  }
 }
+
+function paneScrolls(pane) { return pane.scrollHeight > pane.clientHeight + 4; }
 
 function gotoSub(id) {
   const owner = browseIndex().find(r => r.q.task_id === id);
@@ -1886,8 +2045,13 @@ function gotoSub(id) {
   const h = document.getElementById("s-" + id);
   const pane = h && h.closest ? h.closest(".content") : null;
   if (h && pane && h.getBoundingClientRect) {
-    const top = h.getBoundingClientRect().top - pane.getBoundingClientRect().top + pane.scrollTop;
-    pane.scrollTop = Math.max(0, top - 88);
+    if (paneScrolls(pane)) {
+      const top = h.getBoundingClientRect().top - pane.getBoundingClientRect().top + pane.scrollTop;
+      pane.scrollTop = Math.max(0, top - 88);
+    } else {
+      // Phone layout: the document scrolls. Clear the sticky group heading.
+      window.scrollTo(0, Math.max(0, h.getBoundingClientRect().top + window.scrollY - 56));
+    }
   }
   const active = document.getElementById("toc-" + id);
   if (active && typeof active.scrollIntoView === "function") active.scrollIntoView({ block: "nearest" });
@@ -1977,8 +2141,7 @@ function showSummary(skipConfirm) {
   showScreen("summaryScreen");
   if (timerHandle !== null) { clearInterval(timerHandle); timerHandle = null; }
   timerAnchor = null;
-  const finishBtn = document.getElementById("finishBtn");
-  if (finishBtn) finishBtn.hidden = true;
+  setFinishHidden(true);
 
   // Only the questions in this attempt (PER_DOMAIN per domain) count. The
   // review pane lists every item that did not score, including the ones left
@@ -2187,9 +2350,15 @@ function announce(message) {
   setTimeout(() => { el.textContent = message; }, 40);
 }
 
+function setFinishHidden(hidden) {
+  ["finishBtn", "finishBtnSheet"].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.hidden = hidden;
+  });
+}
+
 function backToAnswers() {
-  const finishBtn = document.getElementById("finishBtn");
-  if (finishBtn) finishBtn.hidden = false;
+  setFinishHidden(false);
   goto(state.current);
   // The summary stopped the clock; going back resumes it.
   syncTimer();
@@ -2217,10 +2386,117 @@ function restart() {
   syncTimer();
 }
 
+// ---- phone sheets ----------------------------------------------------------
+// Below 760px the options row, the question navigator and the bank's table of
+// contents each become a bottom sheet: modal, dismissed by the backdrop, the
+// close button or Escape, and handing focus back to the control that opened it.
+const PHONE_QUERY = "(max-width: 760px)";
+let openSheetEl = null, sheetTrigger = null, sheetInerted = [];
+
+function isPhone() {
+  return typeof matchMedia === "function" && matchMedia(PHONE_QUERY).matches;
+}
+
+function openSheet(id, trigger) {
+  const sheet = document.getElementById(id);
+  if (!sheet || !isPhone()) return;
+  closeSheet(true);
+  openSheetEl = sheet;
+  sheetTrigger = trigger || null;
+  sheet.setAttribute("role", "dialog");
+  sheet.setAttribute("aria-modal", "true");
+  sheet.classList.add("open");
+  document.body.classList.add("sheet-open");
+  document.getElementById("sheetBackdrop").hidden = false;
+  if (sheetTrigger) sheetTrigger.setAttribute("aria-expanded", "true");
+  // Everything outside the sheet's own ancestry goes inert, so neither touch
+  // nor a screen reader's swipe can wander behind the backdrop.
+  sheetInerted = [];
+  for (let node = sheet; node && node !== document.body; node = node.parentElement) {
+    Array.from(node.parentElement.children).forEach(sib => {
+      if (sib === node || sib.id === "sheetBackdrop" || sib.inert || sib.tagName === "SCRIPT") return;
+      sib.inert = true;
+      sheetInerted.push(sib);
+    });
+  }
+  // The navigator lands on the current question, centred in its grid.
+  const target = sheet.querySelector(".q-btn.active") ||
+                 sheet.querySelector(".toc-sub.active, .toc-group.active") ||
+                 sheet.querySelector(".sheet-close");
+  if (target) {
+    target.focus({ preventScroll: true });
+    // Scroll only the sheet's own list: scrollIntoView would also move the
+    // page behind the backdrop.
+    const box = target.closest(".sidebar-scroll");
+    if (box) box.scrollTop = target.offsetTop - box.offsetTop - (box.clientHeight - target.offsetHeight) / 2;
+  }
+}
+
+function closeSheet(silent) {
+  if (!openSheetEl) return;
+  const sheet = openSheetEl;
+  openSheetEl = null;
+  sheet.classList.remove("open");
+  sheet.removeAttribute("role");
+  sheet.removeAttribute("aria-modal");
+  document.body.classList.remove("sheet-open");
+  document.getElementById("sheetBackdrop").hidden = true;
+  sheetInerted.forEach(el => { el.inert = false; });
+  sheetInerted = [];
+  if (sheetTrigger) {
+    sheetTrigger.setAttribute("aria-expanded", "false");
+    if (!silent) sheetTrigger.focus({ preventScroll: true });
+  }
+  sheetTrigger = null;
+}
+
+function wireSheets() {
+  if (typeof document.addEventListener !== "function") return;
+  document.addEventListener("keydown", ev => {
+    if (ev.key === "Escape" && openSheetEl) { ev.preventDefault(); closeSheet(); }
+  });
+  // Rotating to a wide layout puts the sheet's contents back in place.
+  const mq = matchMedia(PHONE_QUERY);
+  const onChange = () => { if (!mq.matches) closeSheet(true); };
+  if (mq.addEventListener) mq.addEventListener("change", onChange);
+}
+
+// Swipe left for the next question, right for the previous one. A swipe must
+// be quick, clearly horizontal and start away from the screen edges, which
+// belong to the browser's own back and forward gestures. Selecting text is
+// never a swipe.
+function wireSwipe() {
+  const pane = document.querySelector(".content");
+  if (!pane) return;
+  let sx = 0, sy = 0, st = 0, tracking = false;
+  pane.addEventListener("touchstart", ev => {
+    tracking = false;
+    if (ev.touches.length !== 1 || openSheetEl) return;
+    if (!document.getElementById("questionScreen").classList.contains("active")) return;
+    const t = ev.touches[0];
+    if (t.clientX < 24 || t.clientX > window.innerWidth - 24) return;
+    sx = t.clientX; sy = t.clientY; st = Date.now(); tracking = true;
+  }, { passive: true });
+  pane.addEventListener("touchend", ev => {
+    if (!tracking) return;
+    tracking = false;
+    const t = ev.changedTouches[0];
+    const dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Date.now() - st > 600 || Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 2) return;
+    if (window.getSelection && String(window.getSelection())) return;
+    navigate(dx < 0 ? 1 : -1);
+  }, { passive: true });
+}
+
 // ---- init ----------------------------------------------------------------
 function init() {
   if (typeof window !== "undefined" && window.addEventListener) {
     window.addEventListener("storage", onReportStorageChange);
+  }
+  // The test harnesses' stub document has no querySelector; a browser does.
+  if (typeof document.querySelector === "function") {
+    wireSheets();
+    if (!BANK_ONLY) wireSwipe();
   }
   if (BANK_ONLY) {
     fillBrowseOptions(document.getElementById("browseDomain"));
@@ -2403,11 +2679,16 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
     length_full_label = ui["length_full"].replace("{n}", str(full_draw))
     length_quick_label = ui["length_quick"].replace("{n}", str(quick_draw))
 
+    # Phone sheets carry their own close button; desktop never shows it.
+    sheet_close = (f'<button type="button" class="sheet-close" aria-label="{ui["close"]}" '
+                   'onclick="closeSheet()">&#10005;</button>')
     ravn_topbar = (
         '<header class="ravn-topbar">'
         '<a class="ravn-brand" href="../index.html" aria-label="Ravn — Claude Certified Architect">'
         f'{RAVN_LOGO_SVG}<span class="ravn-brand-tagline">Claude Certified Architect</span></a>'
-        '<div class="mode-controls">'
+        '<div class="mode-controls sheet" id="optionsSheet" aria-labelledby="optionsTitle">'
+        f'{sheet_close}'
+        f'<h2 class="sheet-title" id="optionsTitle">{ui["options"]}</h2>'
         '<div class="mode-toggle">'
         f'<button type="button" id="modeStudy" aria-pressed="false" onclick="setMode(\'study\')">{ui["mode_study"]}</button>'
         f'<button type="button" id="modeExam" aria-pressed="false" onclick="setMode(\'exam\')">{ui["mode_exam"]}</button>'
@@ -2424,7 +2705,11 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
         f'title="{ui["misses_label"]}" onclick="toggleMisses()" disabled>{ui["misses_empty"]}</button>'
         + (f'<a class="nav-btn browse-btn" href="{bank_href}">{ui["bank_link"]}</a>' if bank_href else "")
         + f'<span class="mode-hint" id="modeHint">{ui["mode_hint_study"]}</span>'
-        '</div></header>'
+        f'<p class="sheet-note" id="drawNoteSheet">{draw_note}</p>'
+        '</div>'
+        '<button type="button" class="options-btn" aria-controls="optionsSheet" aria-expanded="false" '
+        f'onclick="openSheet(\'optionsSheet\', this)">{SLIDERS_SVG}{ui["options"]}</button>'
+        '</header>'
     )
     bank_topbar = (
         '<header class="ravn-topbar">'
@@ -2457,8 +2742,9 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
     if view == "bank":
         body = f"""{bank_topbar}
 <div class="shell bank">
-  <nav class="sidebar" aria-label="{ui['browse_title']}">
-    <div class="sidebar-header">{ui['browse_title']}</div>
+  <nav class="sidebar sheet" id="tocSheet" aria-label="{ui['browse_title']}">
+    {sheet_close}
+    <div class="sidebar-header">{ui['topics']}</div>
     <div class="sidebar-scroll" id="bankToc"></div>
   </nav>
   <main class="main">
@@ -2466,24 +2752,30 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
       {browse_screen}
     </div>
   </main>
-</div>"""
+</div>
+<button type="button" class="toc-fab" aria-controls="tocSheet" aria-expanded="false" onclick="openSheet('tocSheet', this)">{ui['topics']}</button>
+<div class="sheet-backdrop" id="sheetBackdrop" hidden onclick="closeSheet()"></div>"""
     else:
         body = f"""<a class="skip-link" href="#qCard">{ui['skip_to_question']}</a>
 {ravn_topbar}
 <div class="draw-note" id="drawNote"><span class="dn-icon">&#10227;</span>{draw_note}</div>
 <div class="shell">
-  <nav class="sidebar" aria-label="{ui['questions']}">
+  <nav class="sidebar sheet" id="qNavSheet" aria-label="{ui['questions']}">
+    {sheet_close}
     <h2 class="sidebar-header">{ui['questions']}</h2>
     <div class="sidebar-progress">{ui['answered']}: <span id="answeredCount">0</span> / <span id="totalCount">{full_draw}</span></div>
     <div class="sidebar-scroll" id="sidebarList"></div>
+    <div class="sheet-foot"><button type="button" class="nav-btn" id="finishBtnSheet" onclick="closeSheet(); showSummary()">{ui['finish']}</button></div>
   </nav>
   <main class="main">
     <div class="topbar">
+      <div class="q-progress" aria-hidden="true"><div id="qProgress"></div></div>
       <h1 class="topbar-title">{title}</h1>
-      <div class="topbar-nav">
+      <div class="topbar-nav" id="qNav">
         <span class="q-counter" id="qCounter">1 / {full_draw}</span>
         <span class="exam-timer" id="examTimer" hidden></span>
         <button type="button" class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>{ui['prev']}</button>
+        <button type="button" class="nav-toggle" id="navToggle" aria-controls="qNavSheet" aria-expanded="false" onclick="openSheet('qNavSheet', this)"><span class="visually-hidden">{ui['jump_to']}: </span><span id="qCounterM">1 / {full_draw}</span><span class="nav-toggle-caret" aria-hidden="true">&#9650;</span></button>
         <button type="button" class="nav-btn primary" id="nextBtn" onclick="navigate(1)">{ui['next']}</button>
         <button type="button" class="nav-btn finish" id="finishBtn" onclick="showSummary()">{ui['finish']}</button>
       </div>
@@ -2494,13 +2786,15 @@ def render_page(*, questions, domains_js, ui, per_domain, pass_score, pass_pct,
     </div>
     <p class="visually-hidden" id="liveStatus" role="status" aria-live="polite"></p>
   </main>
-</div>"""
+</div>
+<div class="sheet-backdrop" id="sheetBackdrop" hidden onclick="closeSheet()"></div>"""
 
     HTML = f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0E0E0E">
 <title>{page_title}</title>
 {favicon_tag}
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/Inter-variable.woff2">
