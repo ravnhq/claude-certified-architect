@@ -352,7 +352,7 @@ Confirm current rules in the official guide before registration.
 
 # Practice bank and sources
 
-The local bank contains **770 unique public practice records** collected through the [CertSafari Associate browser interface](https://www.certsafari.com/anthropic/claude-certified-associate-foundations): all 30 objective quizzes plus the public sample pool and its variants. The source site advertised 757 questions; the export is larger because public sample variants add distinct records. All 30 official objectives are represented.
+The local bank contains **758 unique public practice records** collected through the [CertSafari Associate browser interface](https://www.certsafari.com/anthropic/claude-certified-associate-foundations): all 30 objective quizzes plus the public sample pool. The source site advertises 757 questions; the export also contains one distinct public sample variant. All 30 official objectives are represented.
 
 Use the bank to rehearse reasoning and locate weak objectives. Do not treat a third-party answer key as authority; when an answer conflicts with the official guide, Anthropic documentation, or a primary source, follow the authoritative source and report the discrepancy.
 

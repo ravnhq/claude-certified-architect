@@ -12,6 +12,7 @@ from urllib.parse import parse_qs
 ROOT = Path(__file__).resolve().parents[1] / '.corpus' / 'practice-bank'
 ORIGIN = 'http://127.0.0.1:8768'
 EXAMS = {'CCAR-F': 480, 'CCAR-P': 456, 'CCDV-F': 524, 'CCAO-F': 757}
+GENERIC_HEADING = re.compile(r'^Explanation(?:\s*\([^)]*\))?$', re.IGNORECASE)
 FORM = b'''<!doctype html><title>Practice-bank local collector</title>
 <h1>Practice-bank local collector</h1>
 <form method="post" action="/capture">
@@ -25,6 +26,8 @@ def validate_record(record):
     for key in ('question', 'snapshot'):
         if not isinstance(record.get(key), str) or not record[key].strip():
             raise ValueError(f'Missing {key}')
+    if GENERIC_HEADING.fullmatch(record['question'].strip()):
+        raise ValueError('Question contains a generic explanation heading instead of the stem')
     options = record.get('options')
     if not isinstance(options, list) or len(options) < 2:
         raise ValueError('Missing options')

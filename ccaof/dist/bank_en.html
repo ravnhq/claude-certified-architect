@@ -587,7 +587,7 @@ body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Robo
 // inline object literal the parser must chew through before first paint. A
 // practice page and its bank twin name the same content-hashed URL, so the
 // second page of a session reuses the first one's download.
-const BANK_URL = "data/ccaof-exam-en-564ec1a82eae.json";
+const BANK_URL = "data/ccaof-exam-en-e3f92a1d4bd6.json";
 // Filled in place by installBank rather than reassigned: every function below
 // closes over this array, and so does the test harnesses' exported view of it.
 const QUESTIONS = [];
@@ -609,7 +609,7 @@ const DOMAINS = {"1": {"name": "Prompting and Task Execution", "weight": 14}, "2
 const GROUPS = null;
 // CCAF score-report objective IDs map to the official subdomains carried by
 // each question. The report drill uses this bridge without copying a report.
-const REPORT_SUBDOMAINS = {"1.3": "1.3", "1.2": "1.2", "1.4": "1.4", "1.1": "1.1", "2.5": "2.5", "2.1": "2.1", "2.4": "2.4", "2.6": "2.6", "2.3": "2.3", "2.2": "2.2", "3.3": "3.3", "3.1": "3.1", "3.2": "3.2", "3.4": "3.4", "4.3": "4.3", "4.5": "4.5", "4.4": "4.4", "4.1": "4.1", "4.2": "4.2", "5.3": "5.3", "5.4": "5.4", "5.1": "5.1", "5.2": "5.2", "6.1": "6.1", "6.4": "6.4", "6.2": "6.2", "6.3": "6.3", "7.2": "7.2", "7.3": "7.3", "7.1": "7.1"};
+const REPORT_SUBDOMAINS = {"1.3": "1.3", "1.2": "1.2", "1.4": "1.4", "1.1": "1.1", "2.5": "2.5", "2.1": "2.1", "2.4": "2.4", "2.6": "2.6", "2.3": "2.3", "2.2": "2.2", "3.3": "3.3", "3.1": "3.1", "3.2": "3.2", "3.4": "3.4", "4.3": "4.3", "4.5": "4.5", "4.4": "4.4", "4.1": "4.1", "4.2": "4.2", "5.3": "5.3", "5.4": "5.4", "5.1": "5.1", "5.2": "5.2", "6.1": "6.1", "6.4": "6.4", "6.2": "6.2", "6.3": "6.3", "7.2": "7.2", "7.1": "7.1", "7.3": "7.3"};
 // The exam this page drills. A saved report record carries the exam it was
 // read from, and a page adopts only records for its own exam, so a
 // Foundations report can never drive a Professional targeted draw.

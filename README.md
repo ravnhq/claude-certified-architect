@@ -18,7 +18,7 @@ the browser.
 | **Architect – Foundations** | CCAR-F | Practitioners building with Claude Code, the Claude Agent SDK, the Claude API, and MCP | Study guide, practice exam, and cheatsheet in EN / ES / PT, plus the preflight checklist |
 | **Architect – Professional** | CCAR-P | Architects responsible for production AI architecture, evaluation, governance, and lifecycle decisions | English study guide and a 63-question practice exam |
 | **Developer – Foundations** | CCDV-F | Engineers building and shipping production applications, agents, and workflows on the Claude platform | English study guide and a 53-question practice exam |
-| **Associate – Foundations** | CCAO-F | Professionals using Claude for research, analysis, drafting, planning, and workflow improvement | English study guide, 60-question practice exam, and 770-question bank |
+| **Associate – Foundations** | CCAO-F | Professionals using Claude for research, analysis, drafting, planning, and workflow improvement | English study guide, 60-question practice exam, and 758-question bank |
 
 The four exams use different blueprints. Architect Foundations has five domains, Developer eight,
 Professional seven, and Associate seven. Foundations material does not represent Professional coverage, and the
@@ -139,9 +139,9 @@ troubleshooting. It includes the official exam facts and policies, sample-questi
 four-week plan, and current official Anthropic product references.
 
 Each practice attempt draws **60 questions** in the official proportions: **8 / 13 / 7 / 10 /
-7 / 9 / 6** by domain. The local bank contains **770 unique public practice records**, covering
-all 30 objectives. CertSafari advertises 757 questions; the export is larger because its public
-sample pool includes additional distinct variants. Multiple-response items are scored
+7 / 9 / 6** by domain. The local bank contains **758 unique public practice records**, covering
+all 30 objectives. CertSafari advertises 757 questions; the export also contains one distinct
+public sample variant. Multiple-response items are scored
 all-or-nothing.
 
 - [`ccaof/dist/exam_en.html`](./ccaof/dist/exam_en.html)

@@ -63,7 +63,7 @@ Do not include `resume.json`, `duplicates/`, or generated ZIP archives.
 New checkpoint files under the ignored parent need a targeted `git add -f`.
 `status.json` reports unique counts against the published totals observed on
 October 15, 2026: 480 CCAR-F, 456 CCAR-P, 524 CCDV-F, and 757 advertised CCAO-F
-(770 unique exported records after public sample variants). Check the live totals
+(758 unique exported records including one public sample variant). Check the live totals
 when resuming another day. Random selection means a fixed number of quizzes
 does not guarantee coverage. Check each live Coverage count before claiming
 the whole bank is collected.

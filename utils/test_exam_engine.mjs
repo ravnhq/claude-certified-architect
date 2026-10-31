@@ -628,9 +628,9 @@ console.log('Developer Foundations engine (ccdf/dist/exam_en.html)');
 console.log('Associate Foundations engine (ccaof/dist/exam_en.html)');
 {
   const e = loadEngine('ccaof/dist/exam_en.html');
-  check('Associate page embeds all 770 collected records', (() => {
+  check('Associate page embeds all 758 collected records', (() => {
     const bank = JSON.parse(fs.readFileSync(path.join(ROOT, 'ccaof/data/questions.json'), 'utf8'));
-    return e.QUESTIONS.length === bank.length && bank.length === 770;
+    return e.QUESTIONS.length === bank.length && bank.length === 758;
   })(), `page holds ${e.QUESTIONS.length}`);
   check('Associate store key is track-scoped', e.STORE_KEY === 'ccaof-exam-en', e.STORE_KEY);
   check('Associate draw has 60 questions', e.examSize() === 60, `got ${e.examSize()}`);

@@ -10,6 +10,16 @@ function createPracticeBankCollector(lanes, sink) {
   collector.key = record => JSON.stringify([
     record.exam, record.question.replace(/\s+/g, ' ').trim(), record.options.map(collector.normalize).sort(),
   ]);
+  collector.questionText = async function (tab, state) {
+    // Completed quizzes expose the reviewed question inside a dialog. Asking for
+    // the page's first heading there can return an answer accordion's generic
+    // "Explanation" heading instead of the stem, corrupting otherwise complete
+    // records. Scope the lookup to the review dialog when one is open.
+    if (state.includes('dialog "Review question')) {
+      return tab.playwright.getByRole('dialog').getByRole('heading', { level: 3 }).first().innerText();
+    }
+    return tab.playwright.getByRole('heading').first().innerText();
+  };
   collector.loadKnown = async function () {
     await sink.goto('http://127.0.0.1:8768/known');
     await sink.playwright.domSnapshot();
@@ -22,7 +32,7 @@ function createPracticeBankCollector(lanes, sink) {
     const tab = lane.tab;
     const state = await tab.playwright.domSnapshot();
     const role = await tab.playwright.getByRole('radio').count() ? 'radio' : 'checkbox';
-    const question = await tab.playwright.getByRole('heading').first().innerText();
+    const question = await collector.questionText(tab, state);
     const options = await tab.playwright.getByRole(role).evaluateAll(elements => elements.map(element => element.parentElement.innerText.trim()));
     const key = collector.key({ exam: lane.exam, question, options });
     const known = collector.known.get(key);

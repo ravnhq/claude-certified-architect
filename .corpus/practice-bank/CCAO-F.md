@@ -1,6 +1,6 @@
 # CCAO-F — collected practice-bank questions
 
-770 unique questions collected; published bank: 757.
+758 unique questions collected; published bank: 757.
 
 Source content is preserved as supplied by the practice bank; answers are not independently verified.
 
@@ -22,7 +22,25 @@ Incorrect. Preference drift is speculative and is not the reason this move can f
 
 Incorrect. No tier refuses work for being simple; that is not a behaviour a user encounters.
 
-## 2. A consultant needs Claude to both draft a client proposal referencing the consultant's past proposal templates and also look up the client company's most recent press releases before finalizing the draft. Which approach best fits both needs?
+## 2. Results show that Claude handles four of the five steps in a reporting task well but consistently mishandles the fifth. What is the best adjustment?
+
+### A) Rewrite the whole request from scratch so all five steps are described in a consistent new style.
+
+A full rewrite puts four working steps at risk to fix one, and makes the cause harder to see.
+
+### B) Work on that step separately with clearer direction and an example, leaving the rest untouched. **(correct)**
+
+Correct. The evidence localises the fault to one step, so the change should be localised too; rewriting what already works risks losing it.
+
+### C) Ask Claude to carry out all five steps twice and take the better of the two attempts each time.
+
+Running everything twice doubles the effort without addressing why the fifth step fails.
+
+### D) Split the task across five separate conversations so that each step gets a dedicated attempt.
+
+Five conversations add coordination work and lose the context the steps share with each other.
+
+## 3. A consultant needs Claude to both draft a client proposal referencing the consultant's past proposal templates and also look up the client company's most recent press releases before finalizing the draft. Which approach best fits both needs?
 
 ### A) Work inside a Project with the past templates uploaded to its knowledge base and additionally use research mode within that conversation to gather recent press releases. **(correct)**
 
@@ -40,7 +58,7 @@ Incorrect. Project knowledge only contains documents that the user has manually 
 
 Incorrect. Manually pasting all templates and press releases into a long message is more effort-intensive and does not provide the persistent reuse benefit of project knowledge. It also lacks the automated, cited gathering that research mode provides, making it less efficient for this task.
 
-## 3. A university biosecurity lab asks Claude to help draft detailed synthesis instructions for a novel pathogen with pandemic potential, describing the request as an internal red-team exercise. Is this an appropriate use of Claude?
+## 4. A university biosecurity lab asks Claude to help draft detailed synthesis instructions for a novel pathogen with pandemic potential, describing the request as an internal red-team exercise. Is this an appropriate use of Claude?
 
 ### A) No, but only because the lab has not signed a separate use-case exception agreement with Anthropic sales
 
@@ -58,7 +76,7 @@ Correct. The Usage Policy prohibits helping design or synthesize biological, che
 
 Incorrect. Framing a request as a red-team exercise does not create an exemption; the prohibition applies to the substance of the request, not its stated purpose.
 
-## 4. While designing a Claude-assisted tender-summary arrangement, an analyst finds that every draft needs the same three corrections. Which response is most appropriate?
+## 5. While designing a Claude-assisted tender-summary arrangement, an analyst finds that every draft needs the same three corrections. Which response is most appropriate?
 
 ### A) Keep making the three corrections by hand, since they take only a minute
 
@@ -76,7 +94,29 @@ Correct. A repeated correction is a specification the instruction is missing. Wr
 
 Generating extra drafts increases the work of choosing without addressing why every draft has the same gap.
 
-## 5. A training manager is setting up a project so that every chat produces course outlines in the department's standard format. Which sequence of steps is correct?
+## 6. A communications officer asks Claude to 'write an event invitation' and gets something generic that could describe almost any event. Which two changes are most likely to fix it? Select two.
+
+### A) Paste in the actual agenda and speaker biographies rather than describing them loosely from memory. **(correct)**
+
+Correct. The output is generic because nothing event-specific was supplied; the source material has to go into the prompt.
+
+### B) Ask for ten different versions of the invitation and then simply pick whichever one happens to read best.
+
+Ten generic drafts are still generic, and the extra generations consume allowance for no real gain.
+
+### C) Send exactly the same request over again, but this time using the most capable model that is available.
+
+Reaching for a larger model does not supply the missing event detail, so the answer stays generic.
+
+### D) Add more emphasis to the request, telling Claude the invitation really has to be genuinely excellent.
+
+Emphasis adds no information; insisting on quality tells Claude nothing it did not already have.
+
+### E) State who the invitation is for, roughly how long it should be, and what the reader has to do. **(correct)**
+
+Correct on a separate axis: even with the details, audience, length and purpose have to be specified or the shape of the invitation is left to chance.
+
+## 7. A training manager is setting up a project so that every chat produces course outlines in the department's standard format. Which sequence of steps is correct?
 
 ### A) Write the project instructions; refine the wording; define the audience and format; test with a real request.
 
@@ -94,7 +134,7 @@ Nothing exists to refine at the start, and the format is agreed only after every
 
 Testing before any instructions exist tells you nothing about whether the instructions work.
 
-## 6. A consultant asks Claude to turn a dense technical whitepaper into a one-page executive brief, but the first attempt still restates most sentences from the whitepaper nearly verbatim. What refinement would best address this?
+## 8. A consultant asks Claude to turn a dense technical whitepaper into a one-page executive brief, but the first attempt still restates most sentences from the whitepaper nearly verbatim. What refinement would best address this?
 
 ### A) Ask Claude to identify decisions that matter most to executives and write fresh prose around them. **(correct)**
 
@@ -112,7 +152,7 @@ Incorrect. Expanding to two pages avoids the need for synthesis and decision-mak
 
 Incorrect. Adjusting font size is a cosmetic change that does not address the underlying problem of undigested, sentence-by-sentence repetition. The content remains dense and unsuitable for an executive summary.
 
-## 7. A project shared across a department has no named owner. Several people hold edit access and each has added documents over the past year. What is the greatest risk?
+## 9. A project shared across a department has no named owner. Several people hold edit access and each has added documents over the past year. What is the greatest risk?
 
 ### A) Edit access is revoked automatically after a long period of inactivity, so the project becomes read-only.
 
@@ -130,7 +170,7 @@ Uploads accumulate; they do not overwrite one another.
 
 Correct. Shared editing without ownership is precisely how a knowledge base fills with conflicting versions.
 
-## 8. You asked Claude two different prompts to generate a summary of a research article. Output A is factually correct but misses the study's limitations. Output B mentions the limitations but misstates one key statistic. You need to provide the most accurate summary to a peer-reviewed journal. What should you do?
+## 10. You asked Claude two different prompts to generate a summary of a research article. Output A is factually correct but misses the study's limitations. Output B mentions the limitations but misstates one key statistic. You need to provide the most accurate summary to a peer-reviewed journal. What should you do?
 
 ### A) Select Output A and manually incorporate the missing limitations into the summary.
 
@@ -148,7 +188,7 @@ Incorrect. Output B includes limitations but contains a misstated statistic, whi
 
 Correct. Merging the accurate statistics from Output A with the limitations from Output B, then validating the combined content against the original article, ensures both factual correctness and completeness. This efficient approach meets the precision standards of peer-reviewed submissions.
 
-## 9. A user asks Claude about a company earnings announcement that happened yesterday, and Claude responds confidently with financial figures. Given that Claude's knowledge comes from training data with a fixed cutoff date, what should the user do before trusting this answer?
+## 11. A user asks Claude about a company earnings announcement that happened yesterday, and Claude responds confidently with financial figures. Given that Claude's knowledge comes from training data with a fixed cutoff date, what should the user do before trusting this answer?
 
 ### A) Verify the figures against a current source, since recent events fall outside Claude's training cutoff **(correct)**
 
@@ -166,7 +206,7 @@ Claude's training data has a fixed cutoff and is not updated in real time betwee
 
 Ignoring the response entirely overstates the limitation; the concern is specifically about information beyond the training cutoff, not a blanket inability to discuss financial topics.
 
-## 10. A product manager tells the team, "Once we roll out Claude for contract drafting, we won't need any legal review at all." How should a solutions architect best respond to this claim?
+## 12. A product manager tells the team, "Once we roll out Claude for contract drafting, we won't need any legal review at all." How should a solutions architect best respond to this claim?
 
 ### A) Confirm that Claude has passed legal certification for autonomous contracts, so review is unnecessary after the pilot.
 
@@ -184,7 +224,7 @@ Correct. Claude can accelerate drafting, but it can still produce plausible-soun
 
 Incorrect. Claude is genuinely useful for accelerating contract drafting; the correct guidance is to pair it with review, not abandon the use case.
 
-## 11. A marketing coordinator's first attempt at a campaign brief comes back disappointing. She wants to improve the result on her next attempt. What should she do first?
+## 13. A marketing coordinator's first attempt at a campaign brief comes back disappointing. She wants to improve the result on her next attempt. What should she do first?
 
 ### A) Rewrite her request at much greater length, since more description generally produces a more considered answer.
 
@@ -202,7 +242,7 @@ Correct. The causes call for opposite responses: a vague ask needs a tighter spe
 
 Splitting up helps when a request is genuinely doing too much, but applied blindly it produces four requests carrying the same original flaw.
 
-## 12. An events officer changed four things about her request at once and the result improved. She now wants to keep improving it over the coming weeks. What is the drawback of working this way?
+## 14. An events officer changed four things about her request at once and the result improved. She now wants to keep improving it over the coming weeks. What is the drawback of working this way?
 
 ### A) She cannot tell which of the four changes helped, so she has learned nothing she can rely on next time. **(correct)**
 
@@ -220,7 +260,61 @@ Changing several things at once is quicker in the moment, so effort is not what 
 
 Some variation between attempts is normal, but that is a reason to check a change more than once rather than an argument against improving the request.
 
-## 13. A marketing analyst asks Claude for a sales summary for executives who want only key trends and decisions, not methodology, but the first draft includes several paragraphs on data cleaning. How should the analyst refine the prompt for this audience?
+## 15. A marketing writer asks Claude to 'write a launch email' and receives something generic that could describe almost any product. What should she do first?
+
+### A) Add a line asking Claude to be more creative and to write with noticeably more energy and detail.
+
+Adjectives such as 'creative' add emphasis but no information about what the email should say.
+
+### B) Move to the most capable model available, since generic writing suggests limited reasoning depth.
+
+Reaching for a larger model does not tell it anything about the product or the audience.
+
+### C) Produce the email several more times and choose whichever version reads best for the audience.
+
+Regenerating merely samples different wordings of the same under-specified request.
+
+### D) Restate the request with the audience, offer and length, and paste the actual product brief. **(correct)**
+
+Correct. A generic answer to a generic request is a description problem: the audience, the offer and the source material were never supplied, and no other change substitutes for supplying them.
+
+## 16. A marketing writer's prompt asks Claude to "write engaging product descriptions." The outputs are technically correct but read as flat and generic compared to what the writer had in mind. Which change is most likely to close that gap?
+
+### A) Explicitly describe the desired tone, voice, and level of creative flourish rather than relying on Claude to infer "engaging" from one adjective. **(correct)**
+
+Correct. Anthropic's guidance is that if you want "above and beyond" behavior, you should explicitly request it rather than relying on the model to infer this from vague prompts; naming the specific tone and style closes the gap between what was asked and what was wanted.
+
+### B) Append the word "please" along with several exclamation points so Claude treats the entire request with a substantially higher degree of enthusiasm.
+
+Incorrect. Politeness markers or punctuation do not change how specifically the task is defined and are not a documented technique for shaping tone.
+
+### C) Reduce the max_tokens limit noticeably so Claude is forced into far terser, punchier phrasing within every product description it writes overall.
+
+Incorrect. Shortening the token budget constrains length, not voice or creative quality, and does not address the underlying vagueness of "engaging."
+
+### D) Generate ten separate variations of each description and randomly select one, assuming sheer variety alone will surface a livelier result.
+
+Incorrect. Randomly sampling from multiple generic outputs does not add the missing specificity about desired tone and is not a reliable improvement technique.
+
+## 17. A university instructor plans to use Claude to help generate and score final exam questions that determine students' course grades, without any faculty review of the generated content or scores. Which requirement of the Usage Policy is this instructor at risk of violating?
+
+### A) The requirement that a qualified professional review AI-assisted academic content before it affects grades **(correct)**
+
+Correct. Academic testing is listed as a high-risk category, so a qualified professional must review AI-generated or AI-scored content before it is used to affect real student outcomes.
+
+### B) The requirement that exam questions be limited to multiple-choice format whenever AI is involved
+
+Incorrect. There is no format restriction limiting AI-assisted exams to multiple-choice questions.
+
+### C) The requirement that all exam content be generated exclusively by Claude Opus rather than Claude Sonnet models
+
+Incorrect. The Usage Policy does not mandate a specific Claude model for academic use cases.
+
+### D) The requirement that students be offered an opt-out from any form of AI-assisted grading
+
+Incorrect. The policy's safeguard is human review before dissemination, not a student opt-out mechanism.
+
+## 18. A marketing analyst asks Claude for a sales summary for executives who want only key trends and decisions, not methodology, but the first draft includes several paragraphs on data cleaning. How should the analyst refine the prompt for this audience?
 
 ### A) Ask Claude to keep the structure but shorten every paragraph by a similar amount
 
@@ -238,7 +332,7 @@ Incorrect. Expanding the methodology section moves the summary further from what
 
 Correct. Executives want trends and decisions, so restructuring the summary to foreground that content and dropping methodology detail matches the stated audience need.
 
-## 14. An operations analyst has a Claude-generated list of two thousand customer accounts that supposedly meet the company's dormancy rule and are due to be closed. Closing an account cannot be reversed. What should the analyst do first?
+## 19. An operations analyst has a Claude-generated list of two thousand customer accounts that supposedly meet the company's dormancy rule and are due to be closed. Closing an account cannot be reversed. What should the analyst do first?
 
 ### A) Proceed with the closures, because the dormancy rule the list was built from is the company's own written rule.
 
@@ -256,7 +350,7 @@ Sequencing by account value does not verify anything; it only rations the damage
 
 Correct. The action is irreversible and affects real customers, so verification has to happen before anything is executed. Sampling the list against the underlying records tests whether the rule was actually applied as intended, which is the one thing that cannot be fixed afterwards.
 
-## 15. A project administrator's summary of a status report keeps omitting the risks section. Her third attempt reads: 'IMPORTANT: you MUST include the risks. This is CRITICAL.' The risks are still thin. What is a better next change?
+## 20. A project administrator's summary of a status report keeps omitting the risks section. Her third attempt reads: 'IMPORTANT: you MUST include the risks. This is CRITICAL.' The risks are still thin. What is a better next change?
 
 ### A) Ask for the summary and then ask, in a follow-up, whether anything important was left out of the first answer.
 
@@ -274,43 +368,7 @@ Correct. Emphasis conveys that something matters, not what it should contain. Na
 
 Repeating an instruction verbatim adds volume rather than information, and the second copy is as vague as the first.
 
-## 16. Explanation
-
-### A) Ask Claude to propose ratings from the evidence and change only the ones that look wrong to her.
-
-Reviewing proposed ratings anchors her to Claude's judgment on decisions she must own herself.
-
-### B) Decide each rating herself from the evidence, then use Claude to help word the reasoning behind it. **(correct)**
-
-Correct. The judgment about a person's performance is hers to make and defend; Claude can help express a conclusion she has already reached and can justify herself.
-
-### C) Let Claude set the ratings so that every member of the team is judged against one neutral standard.
-
-Consistency does not make the output fair, and it hands a decision about people to a tool.
-
-### D) Have Claude write the justifications, and tell each person afterwards that the wording was assisted.
-
-Disclosing afterwards is welcome, but it does not put a person behind the judgment being made.
-
-## 17. Explanation
-
-### A) Correct the tone by hand in each reply, since tone is a matter of taste that varies with the customer.
-
-Hand-editing every reply re-solves the same problem daily and leaves the default unchanged.
-
-### B) Add the audience and wanted tone to the project instructions, with one approved reply as an example. **(correct)**
-
-Correct. The fault is consistent, so it belongs in the durable configuration, and one approved example conveys the register far more precisely than an adjective would.
-
-### C) Change to a faster model, which tends to produce shorter and less formal customer-facing writing.
-
-Speed and tone are unrelated, and model choice is not how register is specified.
-
-### D) Ask Claude to rewrite each reply less formally as a second step after the first version is produced.
-
-A second rewriting step doubles the work for a fault that could be prevented at the outset.
-
-## 18. After five rounds of corrections a policy draft keeps regaining problems that were already fixed, and the chat has become hard to follow. Which two steps should the author take? Select two.
+## 21. After five rounds of corrections a policy draft keeps regaining problems that were already fixed, and the chat has become hard to follow. Which two steps should the author take? Select two.
 
 ### A) State plainly which parts of the current draft are settled and must be left untouched. **(correct)**
 
@@ -332,7 +390,7 @@ Fixing one thing per round while breaking another is not progress. Continuing th
 
 A change of subject does not reset anything about the draft. It adds more material to an already cluttered conversation without addressing the cause.
 
-## 19. A press officer receives a draft article containing a striking quotation attributed by name to a named industry figure. The quotation is exactly what the article needs. What should she do first?
+## 22. A press officer receives a draft article containing a striking quotation attributed by name to a named industry figure. The quotation is exactly what the article needs. What should she do first?
 
 ### A) Find the quotation in a source that carries it, since authoritative-sounding quotations can be invented. **(correct)**
 
@@ -350,25 +408,7 @@ Requesting more surrounding detail can produce more invented detail. Nothing her
 
 Paraphrasing still asserts that the person expressed this view, so it attributes an unverified statement while making it harder for readers to check.
 
-## 20. Explanation
-
-### A) Re-running one report will consume more of the team's allowance than usual
-
-The cost of re-running one report is trivial and unrelated to whether the change was sound.
-
-### B) The changed instruction cannot be reversed once other people begin using it
-
-Instructions can be changed back at any time, so reversibility is not the exposure here.
-
-### C) The person who complained will not be told the change was made for them
-
-Failing to close the loop with the complainant is a courtesy issue, not the reason the rollout is unsafe.
-
-### D) The change may fix that one report and quietly damage every other kind **(correct)**
-
-Correct. Testing a fix only on the case that failed shows that the case now passes; it says nothing about the reports that were already fine. Trying it on a few different real cases is what would reveal the damage.
-
-## 21. A department sets the deepest-reasoning model as the default for all of its work, including short routine replies. What is the greatest risk?
+## 23. A department sets the deepest-reasoning model as the default for all of its work, including short routine replies. What is the greatest risk?
 
 ### A) Short replies will be written at greater length than the person asking the question wanted.
 
@@ -386,7 +426,7 @@ Incorrect. Slower replies are an annoyance rather than the substantive cost of t
 
 Incorrect. The model can be changed at any time, so nothing about the choice is locked in.
 
-## 22. A support team wants to build a comprehensive FAQ from a large set of historical customer tickets. Which decomposition technique is most suitable?
+## 24. A support team wants to build a comprehensive FAQ from a large set of historical customer tickets. Which decomposition technique is most suitable?
 
 ### A) Employ a third-party FAQ generator instead of using Claude.
 
@@ -404,7 +444,7 @@ Incorrect. While summarizing each ticket is a useful preprocessing step, it does
 
 Incorrect. Concatenating all tickets and asking Claude to produce the FAQ risks exceeding context limits and lacks structured input, making it difficult to identify recurring themes and organize answers coherently.
 
-## 23. An analyst has a specific quarterly business review deck outline that they need occasionally, in several different projects and sometimes in plain chats. Where does this routine best belong?
+## 25. An analyst has a specific quarterly business review deck outline that they need occasionally, in several different projects and sometimes in plain chats. Where does this routine best belong?
 
 ### A) Put it into every project's instructions, so the deck outline is imposed on all of the chats in each one.
 
@@ -422,7 +462,7 @@ An occasional deck format would then influence unrelated work in every conversat
 
 Correct. Skills are reusable procedures that load when relevant, rather than always-on direction tied to one workspace.
 
-## 24. An operations lead runs a project whose instructions describe the team's standard weekly status report. This week only, a board member has asked for a one-page version. What is the best way to handle the request?
+## 26. An operations lead runs a project whose instructions describe the team's standard weekly status report. This week only, a board member has asked for a one-page version. What is the best way to handle the request?
 
 ### A) Create a second project duplicating the same knowledge base but with one-page reports as its house rule.
 
@@ -440,7 +480,7 @@ Correct. A one-off need belongs in the individual request; durable instructions 
 
 Knowledge is background material, not direction, and this still makes a temporary need permanent.
 
-## 25. A business strategist needs to compare three competing products on features, pricing, and market positioning. Which prompt will yield the most useful structured comparison?
+## 27. A business strategist needs to compare three competing products on features, pricing, and market positioning. Which prompt will yield the most useful structured comparison?
 
 ### A) Prompt Claude to compare the three given products, letting the model decide which attributes to cover and how to structure the output, without indicating a preferred format such as a table, bullet points, or paragraph text.
 
@@ -458,7 +498,7 @@ Correct. This prompt explicitly defines the key attributes (features, pricing, m
 
 Incorrect. An essay format emphasizes narrative over clear, attribute-by-attribute analysis and focuses on development history, market approach, and competitive evolution rather than the requested features, pricing, and positioning. This makes it less suitable for deriving structured business insights.
 
-## 26. A back-office team plans to remove three handoffs between reviewers by having Claude carry each case straight through. Those handoffs are also where colleagues currently catch one another's mistakes. What is the greatest risk?
+## 28. A back-office team plans to remove three handoffs between reviewers by having Claude carry each case straight through. Those handoffs are also where colleagues currently catch one another's mistakes. What is the greatest risk?
 
 ### A) Reviewers may resist a change that removes part of what they currently do each day.
 
@@ -476,7 +516,7 @@ Explaining a new process to auditors takes documentation effort and is a normal 
 
 A smaller saving than hoped would make the change less worthwhile, which is disappointing but recoverable. The team would still be able to see the shortfall and adjust.
 
-## 27. Which of the following best describes the core difference between using Claude's research feature and using a standard chat conversation for a question?
+## 29. Which of the following best describes the core difference between using Claude's research feature and using a standard chat conversation for a question?
 
 ### A) Research mode conducts multiple agentic, interconnected searches to build a thorough, cited answer, while standard chat usually responds from existing knowledge or a single lookup. **(correct)**
 
@@ -494,7 +534,7 @@ Incorrect. Research mode does generate citations, producing thorough answers wit
 
 Incorrect. Research mode is specifically designed to perform external searches, not rely solely on pre-existing training data. Standard chat’s ability to analyze project files is a separate capability and not what distinguishes these modes.
 
-## 28. A team records every decision it makes only inside chat messages, spread across many separate conversations. What is the greatest risk?
+## 30. A team records every decision it makes only inside chat messages, spread across many separate conversations. What is the greatest risk?
 
 ### A) The decisions will be phrased inconsistently, which makes the team's writing style vary a lot.
 
@@ -512,7 +552,7 @@ Correct. Decisions scattered across conversations have no canonical home, so col
 
 Incorrect. Rereading a conversation is cheap, and cost is not what makes scattered decisions dangerous.
 
-## 29. A market analyst must produce a competitor briefing drawn from many public sources, and the team will keep editing that briefing for weeks afterwards. Which two Claude features fit this job? Select two.(Select 2)
+## 31. A market analyst must produce a competitor briefing drawn from many public sources, and the team will keep editing that briefing for weeks afterwards. Which two Claude features fit this job? Select two.(Select 2)
 
 ### A) Keep the briefing inline in the chat and re-paste the newest version whenever an edit lands.
 
@@ -534,7 +574,7 @@ Correct. An artifact is the durable, editable deliverable format, so weeks of la
 
 Incorrect. Splitting by competitor fragments the briefing and does nothing about sourcing or about the editing the team has ahead of it.
 
-## 30. A shared project supports a process that changes every quarter. Which practice best keeps the project trustworthy over time?
+## 32. A shared project supports a process that changes every quarter. Which practice best keeps the project trustworthy over time?
 
 ### A) Name an owner and a review date so the instructions and the documents are checked each quarter. **(correct)**
 
@@ -552,7 +592,7 @@ Ad hoc fixes by whoever notices leave gaps and produce inconsistent, unrecorded 
 
 This assumes every member already knows what changed, which is rarely true.
 
-## 31. A logistics coordinator depends on a carrier rate sheet that the finance team edits every week. Which maintenance approach is better?
+## 33. A logistics coordinator depends on a carrier rate sheet that the finance team edits every week. Which maintenance approach is better?
 
 ### A) Upload one copy of the rate sheet, since an uploaded copy follows the original whenever it changes.
 
@@ -570,7 +610,7 @@ Detail mentioned in one conversation is not carried into other chats as project 
 
 Figures that change weekly are the worst possible content for durable instructions.
 
-## 32. A finance assistant's variance commentary reads well, but several of the figures quoted in it are wrong. She is about to start rewording her request. What should she do first?
+## 34. A finance assistant's variance commentary reads well, but several of the figures quoted in it are wrong. She is about to start rewording her request. What should she do first?
 
 ### A) Check the figures she supplied, since a commentary can only be as accurate as the numbers it was given. **(correct)**
 
@@ -588,7 +628,7 @@ A separate list makes checking easier, but it is a step she should take after es
 
 Instructions about priorities do not correct an underlying number, and they invite more careful presentation of the same wrong values.
 
-## 33. A training manager has split a course redesign into four pieces: rewriting the learning objectives, updating the slide deck, refreshing the exercises, and drafting the end-of-course quiz. Which observation should shape the order?
+## 35. A training manager has split a course redesign into four pieces: rewriting the learning objectives, updating the slide deck, refreshing the exercises, and drafting the end-of-course quiz. Which observation should shape the order?
 
 ### A) The quiz is what learners remember most clearly, so drafting it first would set the standard for the rest of the course.
 
@@ -606,7 +646,7 @@ Correct. Only one real dependency exists here: slides, exercises and quiz all se
 
 Review time is a scheduling consideration, and exercises built against objectives that later change will need reworking anyway.
 
-## 34. A marketing analyst pastes six months of customer survey comments and asks Claude to summarise the main complaints. She intends to present the result to her director as the complete picture. What is the greatest risk?
+## 36. A marketing analyst pastes six months of customer survey comments and asks Claude to summarise the main complaints. She intends to present the result to her director as the complete picture. What is the greatest risk?
 
 ### A) The summary will be organised by month rather than by theme, making the leading complaints harder to compare.
 
@@ -624,7 +664,7 @@ Correct. She asked for the main complaints, not for complete coverage, and she p
 
 A clarifying question costs a moment and is easily answered, so it is an inconvenience rather than the risk that matters here.
 
-## 35. An analyst is presenting a Claude-assisted workflow to sceptical senior stakeholders next week. Which two things should the presentation include? Select two.
+## 37. An analyst is presenting a Claude-assisted workflow to sceptical senior stakeholders next week. Which two things should the presentation include? Select two.
 
 ### A) A comparison of technical benchmark scores across each of the underlying model tiers.
 
@@ -646,7 +686,43 @@ Correct. Naming where human review remains, and why, is honest limitation-settin
 
 Incorrect. Promising that checking is no longer needed oversells the tool and sets the expectation that will break first.
 
-## 36. Claude has generated a project proposal as a Markdown document artifact. The user wants to tighten the wording of just the second paragraph without regenerating the whole document or losing the original version. What should the user do?
+## 38. Every week, four members of an operations team each re-explain the same reporting conventions to Claude before asking for their report. Each of them has found wording that works. What is the greatest risk of leaving this as it is?
+
+### A) Claude will begin to apply one member's conventions to everyone else's reports once it has seen them often enough
+
+Conversations are separate; one person's wording does not carry over into a colleague's chats.
+
+### B) Four private versions of the conventions will drift apart, so the reports stop matching one another over time **(correct)**
+
+Correct. The waste is minor next to the drift: four separately maintained versions of the same conventions will diverge, and the reports will quietly stop matching. Moving the conventions into shared project instructions makes the fix persistent and consistent.
+
+### C) Re-explaining the conventions each week will gradually train Claude on them, which the team's policy does not permit
+
+Typing instructions into a conversation does not train the model on them.
+
+### D) The repeated explanations will be stored and counted against the team's shared project knowledge capacity every week
+
+Chat messages are not written into project knowledge, so they do not consume its capacity.
+
+## 39. An HR team wants to use Claude to help draft candidate rejection emails after final hiring decisions have already been made by human recruiters. Why does this still count as a high-risk use case under Anthropic's Usage Policy?
+
+### A) Because rejection emails are legally binding contracts that require notarization before being sent
+
+Incorrect. Rejection emails are not legally binding contracts, and notarization is not part of the Usage Policy's requirements.
+
+### B) Because the emails are stored for more than 30 days, which automatically triggers high-risk status
+
+Incorrect. Storage duration is not the factor that determines high-risk status; the use case category itself is what triggers the requirement.
+
+### C) Because Claude cannot generate any employment-related text under the Usage Policy in any circumstance
+
+Incorrect. Claude can be used for employment-related text; the policy requires safeguards like review and disclosure, not an outright ban.
+
+### D) Because employment is a designated high-risk category, so review and disclosure still apply here **(correct)**
+
+Correct. Employment is one of the categories the Usage Policy designates as high-risk due to public welfare implications, so human review and disclosure requirements apply even when a human made the underlying decision.
+
+## 40. Claude has generated a project proposal as a Markdown document artifact. The user wants to tighten the wording of just the second paragraph without regenerating the whole document or losing the original version. What should the user do?
 
 ### A) Ask Claude to generate a second, separate artifact containing only the revised paragraph, as artifacts are static after creation and lack any editing interface.
 
@@ -664,7 +740,7 @@ Incorrect. Artifacts are not locked once created; they support inline editing. D
 
 Incorrect. The artifact does not need to be copied out and manually retyped. Users can edit artifacts directly within the interface, so partial edits are possible without leaving the artifact.
 
-## 37. An HR analyst plans to use Claude to analyse requirements for a new grievance-handling process. The best source material is a folder of named employee case files. What should the analyst do first?
+## 41. An HR analyst plans to use Claude to analyse requirements for a new grievance-handling process. The best source material is a folder of named employee case files. What should the analyst do first?
 
 ### A) Check the organisation's policy for this category of data and mask identifiers before anything is uploaded. **(correct)**
 
@@ -682,25 +758,7 @@ Claude cannot assess files it has not been given, so this either does nothing or
 
 Restricting who can see the resulting chats does not address whether the material should have been uploaded in the first place. Access control inside the tool is not a substitute for the organisation's rule about this class of data.
 
-## 38. Explanation
-
-### A) The requirement that a qualified professional review AI-assisted academic content before it affects grades **(correct)**
-
-Correct. Academic testing is listed as a high-risk category, so a qualified professional must review AI-generated or AI-scored content before it is used to affect real student outcomes.
-
-### B) The requirement that exam questions be limited to multiple-choice format whenever AI is involved
-
-Incorrect. There is no format restriction limiting AI-assisted exams to multiple-choice questions.
-
-### C) The requirement that all exam content be generated exclusively by Claude Opus rather than Claude Sonnet models
-
-Incorrect. The Usage Policy does not mandate a specific Claude model for academic use cases.
-
-### D) The requirement that students be offered an opt-out from any form of AI-assisted grading
-
-Incorrect. The policy's safeguard is human review before dissemination, not a student opt-out mechanism.
-
-## 39. A charity's volunteering team is deciding whether to hand its volunteer reference-checking process over to Claude. In which order should these steps be taken?
+## 42. A charity's volunteering team is deciding whether to hand its volunteer reference-checking process over to Claude. In which order should these steps be taken?
 
 ### A) Work out which parts of the process a mistake would make hard to undo; run the resulting arrangement on a small batch of references; keep those parts with staff and give Claude only the rest; widen it to the full caseload once that batch holds up.
 
@@ -718,7 +776,7 @@ Correct. Reversibility is what decides which steps may be delegated, so it is as
 
 The pilot runs before the process has been divided at all, which means the batch tests an undefined arrangement and real volunteer references are handled with no safeguard in place.
 
-## 40. An IT service desk is updating the onboarding slide it uses to explain how staff conversations relate to model training. Which two statements are accurate to put on the slide? Select two.
+## 43. An IT service desk is updating the onboarding slide it uses to explain how staff conversations relate to model training. Which two statements are accurate to put on the slide? Select two.
 
 ### A) Switching model improvement on applies it to every conversation already in the user's account.
 
@@ -740,7 +798,7 @@ Deletion is not instantaneous everywhere, and some material is retained for safe
 
 Correct, and for a separate reason: the incognito exclusion is absolute and does not depend on how the model improvement setting is configured.
 
-## 41. A project manager asks Claude for a delivery plan and receives a confident schedule that quietly assumes full-time availability the team does not have. What is the most effective response?
+## 44. A project manager asks Claude for a delivery plan and receives a confident schedule that quietly assumes full-time availability the team does not have. What is the most effective response?
 
 ### A) Ask Claude to compress the proposed schedule so that it still lands on the original date promised to the sponsor.
 
@@ -758,7 +816,25 @@ Correct. The schedule is wrong because the planning inputs were missing, so the 
 
 Understanding the reasoning is a reasonable check and may reveal the flawed assumption, but it stops short of fixing anything. The manager already knows the availability is wrong; what is missing is the correct input.
 
-## 42. A facilities manager used Claude with web search on and received an answer citing a national standard for emergency lighting inspection intervals. She plans to rewrite the depot inspection schedule around that interval. What should she do first?
+## 45. Several colleagues tell a project coordinator that Claude's meeting summaries 'miss the decisions'. Nobody has said which decisions or which meetings. What should she do first?
+
+### A) Read a few criticised summaries beside their transcripts to see what kind of item is missed. **(correct)**
+
+Correct. 'Misses the decisions' could mean several different faults, and the fix differs for each, so the first move is to see the failures against the source before changing anything.
+
+### B) Move the summaries to a more capable model, since missing content suggests shallow reasoning.
+
+Model choice is being changed before anyone knows whether the summaries were even asked for the decisions.
+
+### C) Rewrite the instructions to say that decisions must always be listed at the top of every summary.
+
+A specific rule written before the fault is understood may address something that was never the problem.
+
+### D) Ask colleagues to flag any summary that is wrong, and return to the question again in a month.
+
+Collecting more of the same vague feedback delays the diagnosis that a few examples would already allow.
+
+## 46. A facilities manager used Claude with web search on and received an answer citing a national standard for emergency lighting inspection intervals. She plans to rewrite the depot inspection schedule around that interval. What should she do first?
 
 ### A) Open the source that Claude cited and read what the standard itself says about intervals. **(correct)**
 
@@ -776,7 +852,7 @@ Piloting a safety interval treats real depots as the test, and a lengthened inte
 
 Claude confirming its own claim adds confidence without adding evidence. Self-confirmation is not verification, and the citation offers a much stronger check that costs no more effort.
 
-## 43. A team is setting up a Claude-assisted way of producing meeting notes. Nothing has been agreed or written down, people on the team hold different views about what the notes should contain, and the notes will be circulated to everyone who attended, so the team needs something it can depend on before this goes into regular use. Which sequence of steps is correct?
+## 47. A team is setting up a Claude-assisted way of producing meeting notes. Nothing has been agreed or written down, people on the team hold different views about what the notes should contain, and the notes will be circulated to everyone who attended, so the team needs something it can depend on before this goes into regular use. Which sequence of steps is correct?
 
 ### A) Run it over one week of real work; collect specific examples of where it fell short; draft the new way of working with the people who do the job; revise the written instructions and run it again.
 
@@ -794,7 +870,7 @@ Nothing has been written down, so there are no instructions to revise first, and
 
 Correct. Drafting with the people who do the job settles the goal and how the work is split between them and Claude before anything is delegated, a week of real use then produces honest evidence against that agreed intent, specific failure examples say what to change, and revising the written instructions and running it again closes the evaluate-and-refine loop for another pass.
 
-## 44. A grants manager must choose between eleven internal funding applications and plans to work through them in stages with Claude. What should she do first?
+## 48. A grants manager must choose between eleven internal funding applications and plans to work through them in stages with Claude. What should she do first?
 
 ### A) Sort the applications by the amount requested, so the largest commitments receive the closest attention first.
 
@@ -812,7 +888,7 @@ Correct. The funding standard defines what every later stage looks for, so summa
 
 Summaries produced before the standard is set capture whatever each application emphasised about itself, which is not a comparable basis for choosing.
 
-## 45. Over three weeks a team refined the instructions for a Claude-drafted internal newsletter until the editor was consistently happy with every draft. Nobody asked the readers. What is the greatest risk?
+## 49. Over three weeks a team refined the instructions for a Claude-drafted internal newsletter until the editor was consistently happy with every draft. Nobody asked the readers. What is the greatest risk?
 
 ### A) The three weeks of refinement consumed effort that could have gone into writing newsletters.
 
@@ -830,7 +906,43 @@ Correct. Iteration improves whatever it is measured against, and here the only m
 
 Concentrating judgment in one person is a genuine weakness in the design, and it follows from the same root cause. It is a consequence of tuning to one taste rather than the primary danger, which is that readers were never consulted.
 
-## 46. A team wants to generate innovative safety features for autonomous vehicles by first brainstorming ways the vehicle could fail or cause accidents, then inverting those to create safety solutions. Which prompt best implements this 'reverse brainstorming' technique?
+## 50. A manager is close to her weekly usage limit, is inside a very long conversation, and still has an unrelated task to finish. What is the most sensible step?
+
+### A) Carry on in the long conversation, since keeping the history avoids explaining things twice.
+
+The unrelated task gains nothing from the history, while the length keeps adding to what each message costs.
+
+### B) Start a new conversation for the unrelated task with only the material that task needs. **(correct)**
+
+Correct. Long conversations consume more of the allowance as they grow, and the new task shares none of that history, so a fresh conversation with just the relevant material is both cheaper and clearer.
+
+### C) Wait until the weekly limit resets before beginning the unrelated task in any conversation.
+
+Waiting stops the work altogether when a new conversation would let it continue now.
+
+### D) Ask Claude to summarise the long conversation and then continue working beneath that summary.
+
+Summarising to keep going still carries the old thread into work that has no use for it.
+
+## 51. A team has made three successive changes to a shared instruction. The output is now clearly worse than before the changes, and nobody is sure which change did it. What is the most appropriate response?
+
+### A) Ask Claude which of the three changes it thinks damaged the output the most
+
+Claude cannot know which edit degraded results for this team's work; the answer would be speculation.
+
+### B) Return to the last version that worked and reintroduce changes one at a time **(correct)**
+
+Correct. Rolling back to a known-good version restores quality immediately, and reintroducing changes singly is the only way to find out which one was responsible.
+
+### C) Add a fourth change intended to counteract whatever the other three caused
+
+A compensating fourth change adds another variable to a situation that is already impossible to attribute.
+
+### D) Keep the current version and ask the reviewers to correct the output by hand
+
+Manual correction absorbs the damage indefinitely and leaves the faulty instruction in place for everyone.
+
+## 52. A team wants to generate innovative safety features for autonomous vehicles by first brainstorming ways the vehicle could fail or cause accidents, then inverting those to create safety solutions. Which prompt best implements this 'reverse brainstorming' technique?
 
 ### A) Instruct Claude to create a comprehensive list of safety features for autonomous vehicles, drawing from common industry practices, without first systematically identifying specific failure modes or accident scenarios that could be inverted into solutions.
 
@@ -848,7 +960,7 @@ Incorrect. This prompt relies on existing accident data and targets only the mos
 
 Correct. This prompt follows the reverse brainstorming technique by first identifying failure modes and accident scenarios, then for each, designing a safety feature that directly addresses that risk. It ensures each solution is traceable to a specific problem, fostering targeted innovation.
 
-## 47. A researcher asks Claude to answer a factual question that could be verified from several independent sources before being treated as reliable. Which instruction best supports getting a trustworthy research answer?
+## 53. A researcher asks Claude to answer a factual question that could be verified from several independent sources before being treated as reliable. Which instruction best supports getting a trustworthy research answer?
 
 ### A) Ask Claude to leave out which sources it consulted so the answer stays concise
 
@@ -866,7 +978,7 @@ Correct. Encouraging source verification, checking a claim across multiple sourc
 
 Incorrect. Confident phrasing unrelated to actual verification can misrepresent how well-supported the claim really is.
 
-## 48. A project owner has been sent the replacement version of a document that is already in the project's knowledge base. Which sequence of steps is correct?
+## 54. A project owner has been sent the replacement version of a document that is already in the project's knowledge base. Which sequence of steps is correct?
 
 ### A) Test a question whose answer changed; remove the superseded file; upload the replacement; identify the outdated document.
 
@@ -884,7 +996,7 @@ Correct. Find it, replace it, remove the old copy so both cannot be cited, then 
 
 The file is deleted before it has been identified, and the project has no current source during the test.
 
-## 49. A press officer is unhappy with a draft announcement and types back: 'This isn't working, make it better.' The next draft is different but no closer to what she wants. What would make her feedback more effective?
+## 55. A press officer is unhappy with a draft announcement and types back: 'This isn't working, make it better.' The next draft is different but no closer to what she wants. What would make her feedback more effective?
 
 ### A) Describing the reaction she wants readers to have, and letting the wording follow from that intended reaction.
 
@@ -902,7 +1014,7 @@ Generating variety substitutes volume for direction, and she still has to articu
 
 Stated preferences help across many drafts, but they do not say what this draft got wrong, so the same mistake can recur inside a warm, short-sentenced version.
 
-## 50. A manager takes one Claude-drafted announcement about a service change and, in three separate conversations, has it reworked for staff, for customers and for the regulator. She sends all three without ever reading them side by side. What is the greatest risk?
+## 56. A manager takes one Claude-drafted announcement about a service change and, in three separate conversations, has it reworked for staff, for customers and for the regulator. She sends all three without ever reading them side by side. What is the greatest risk?
 
 ### A) The three versions adopt slightly different tones of voice, so the organisation sounds less consistent than its style guide requires.
 
@@ -920,7 +1032,7 @@ Correct. Adapting independently lets the facts, dates and commitments diverge, a
 
 Three conversations use somewhat more allowance than one, but that is a modest efficiency cost. It is far outweighed by the possibility of telling a regulator something different from what customers were told.
 
-## 51. A user wants Claude to plan a multi-day team offsite by checking the team's shared Google Calendar for open dates, reviewing relevant emails about budget constraints, and cross-referencing venue reviews found on the web. Which combination of feature and prerequisite is needed?
+## 57. A user wants Claude to plan a multi-day team offsite by checking the team's shared Google Calendar for open dates, reviewing relevant emails about budget constraints, and cross-referencing venue reviews found on the web. Which combination of feature and prerequisite is needed?
 
 ### A) Enable Research mode with web search and connect Google services as data sources. **(correct)**
 
@@ -938,7 +1050,7 @@ Incorrect. An artifact displaying a static calendar for the offsite avoids web s
 
 Incorrect. A Project containing a quarterly calendar PDF only captures static snapshots that can quickly become outdated. It lacks the ability to check live calendar availability, review emails about budget constraints, or search the web for venue reviews.
 
-## 52. With no internal documents to hand, an analyst asks Claude to list the standard requirements for a customer complaints process and pastes the reply straight into the project brief. What is the greatest risk?
+## 58. With no internal documents to hand, an analyst asks Claude to list the standard requirements for a customer complaints process and pastes the reply straight into the project brief. What is the greatest risk?
 
 ### A) The analyst will have to repeat the request if the conversation is closed before the reply is saved.
 
@@ -956,7 +1068,7 @@ Correct. Asked for standard requirements with no material to work from, Claude p
 
 Vocabulary mismatch is a readability problem that a rewrite fixes. It may slow the team down slightly, but the brief would still be built on requirements that were never traced to anything real.
 
-## 53. A daily customer-insight digest that used to be quick now takes far longer and uses much more of the team's allowance than it did six months ago, although the tier it runs on has never changed. What should the team do first?
+## 59. A daily customer-insight digest that used to be quick now takes far longer and uses much more of the team's allowance than it did six months ago, although the tier it runs on has never changed. What should the team do first?
 
 ### A) Move the digest up to the deepest-reasoning tier, on the basis that stronger answers should need fewer re-runs each morning.
 
@@ -974,7 +1086,7 @@ Changing tier is a plausible eventual answer, but doing it first treats a sympto
 
 Correct. Nothing about the tier has changed, so the growth is in the task. Understanding how much longer the inputs are and how often the digest is being re-run identifies the real cause before any tier decision is made.
 
-## 54. A manager wants Claude to help draft a weekly customer newsletter, always drawing on the brand guide, the past issues and a fixed tone. What should the manager do first?
+## 60. A manager wants Claude to help draft a weekly customer newsletter, always drawing on the brand guide, the past issues and a fixed tone. What should the manager do first?
 
 ### A) Paste the brand guide into a single long chat and keep returning to that same conversation each week.
 
@@ -992,7 +1104,7 @@ Newsletter-specific material would then influence unrelated work across the whol
 
 Correct. Recurring work with shared context and standing rules is exactly what a project is for.
 
-## 55. An analyst must decide which of four Claude tasks to check most carefully for invented content. Web search is switched off in all four. Which task carries the highest risk of fabricated specifics?
+## 61. An analyst must decide which of four Claude tasks to check most carefully for invented content. Web search is switched off in all four. Which task carries the highest risk of fabricated specifics?
 
 ### A) Summarising a long report she has uploaded, keeping strictly to the points the report makes.
 
@@ -1010,7 +1122,7 @@ Correct. Recent, specific events sit outside what the model reliably knows and n
 
 Incorrect. Suggestions are meant to be invented, and she evaluates them directly, so there is no factual claim to be wrong about.
 
-## 56. A communications officer reviews a well-written briefing produced from documents she has not read closely herself. It is confident, tidy and reads exactly like the briefings her team normally circulates. What is the greatest risk?
+## 62. A communications officer reviews a well-written briefing produced from documents she has not read closely herself. It is confident, tidy and reads exactly like the briefings her team normally circulates. What is the greatest risk?
 
 ### A) How well the briefing reads is taken as evidence that its contents are right, so wrong details go unchallenged. **(correct)**
 
@@ -1028,7 +1140,7 @@ Length affects how much gets read, but a shorter briefing built on the same unch
 
 Tone that misses the house style is noticeable on a first read and easily adjusted, and it does not put anything untrue in front of readers.
 
-## 57. A market research team has Claude summarise findings from six regional reports and now wants a final recommendation. Which two things should they do before asking for that recommendation? Select two.
+## 63. A market research team has Claude summarise findings from six regional reports and now wants a final recommendation. Which two things should they do before asking for that recommendation? Select two.
 
 ### A) Agree the criteria the recommendation will be judged on, such as cost, risk and timing. **(correct)**
 
@@ -1050,7 +1162,7 @@ Choosing on how a draft reads substitutes fluency for judgment, and none of the 
 
 The final step is the judgment-heavy one, so speed is the wrong thing to optimise for here, and it does nothing about unverified inputs.
 
-## 58. An operations director wants Claude added to a customer onboarding process that the team agrees is slow, full of rework, and poorly understood. What should the team do first?
+## 64. An operations director wants Claude added to a customer onboarding process that the team agrees is slow, full of rework, and poorly understood. What should the team do first?
 
 ### A) Ask Claude to redesign the whole onboarding process from scratch and compare it with what happens now.
 
@@ -1068,7 +1180,7 @@ Correct. Integrating Claude into a process nobody understands simply performs th
 
 Document volume marks where effort is spent, not where the process breaks. If the rework is caused by incomplete information arriving at step one, accelerating the busiest step produces more flawed documents rather than fewer.
 
-## 59. A researcher's chat approaches its context limit, and Claude begins condensing the earlier messages in that conversation. Which two statements about this are accurate? Select two.
+## 65. A researcher's chat approaches its context limit, and Claude begins condensing the earlier messages in that conversation. Which two statements about this are accurate? Select two.
 
 ### A) Condensing raises the context window of that single chat right up to the next size that is available.
 
@@ -1090,25 +1202,7 @@ Correct. Condensing changes what is held in working memory; the full history of 
 
 Incorrect. This confuses length limits with usage limits; nearing a context limit says nothing about the period's allowance.
 
-## 60. Explanation
-
-### A) It raises no concern at all, since the ballot measure itself is a matter of legitimate public interest
-
-Incorrect. Public interest in the topic does not exempt content that relies on fabricated authorship and deception to manipulate opinion.
-
-### B) It becomes a violation only if the articles name a specific candidate rather than a ballot measure
-
-Incorrect. The prohibition covers deceptive election-related content broadly, including ballot measures, not only candidate-specific content.
-
-### C) It is acceptable in this case because marketing teams are exempt from Usage Policy content rules
-
-Incorrect. The Usage Policy applies to all users and use cases; there is no blanket exemption for marketing teams.
-
-### D) It violates the policy's ban on deceptive content and fake personas used to manipulate civic discourse **(correct)**
-
-Correct. Creating fake personas and deceptive political content to manipulate civic processes is explicitly prohibited under the Usage Policy's misinformation and election-integrity provisions.
-
-## 61. A prompt for an AI physician's assistant includes patient symptom notes, medical records, and appointment history, and Claude's diagnostic summaries sometimes reference irrelevant details buried in the documents. What technique reduces this noise?
+## 66. A prompt for an AI physician's assistant includes patient symptom notes, medical records, and appointment history, and Claude's diagnostic summaries sometimes reference irrelevant details buried in the documents. What technique reduces this noise?
 
 ### A) Ask Claude to first quote the relevant passages in a dedicated tag before writing its summary **(correct)**
 
@@ -1126,7 +1220,7 @@ Ignoring the patient records removes the exact source information needed for an 
 
 A one-word summary would discard nearly all of the clinically relevant detail rather than helping Claude focus only on what matters.
 
-## 62. A trade association's events team submits a use-case request stating that Claude should "take over the speaker selection" for next year's conference. The business analyst who reviews intake requests must assess it. What should she do first?
+## 67. A trade association's events team submits a use-case request stating that Claude should "take over the speaker selection" for next year's conference. The business analyst who reviews intake requests must assess it. What should she do first?
 
 ### A) Check whether the events team's plan fits inside the association's current allowance
 
@@ -1144,7 +1238,7 @@ Drafting criteria assumes the use case is sound and that past selections are a f
 
 A comparison trial is a reasonable later step, but running it before anyone has defined what the selection is for gives no basis for judging the result.
 
-## 63. An analyst asks Claude to redesign a claims workflow using a process map stored in the team's project, unaware that the map has not been updated for two years. What is the greatest risk?
+## 68. An analyst asks Claude to redesign a claims workflow using a process map stored in the team's project, unaware that the map has not been updated for two years. What is the greatest risk?
 
 ### A) The redesign may optimise a process the team no longer follows, and nothing in the output flags it. **(correct)**
 
@@ -1162,7 +1256,7 @@ Rerunning the request once the map is refreshed is the remedy, not the risk. The
 
 Outdated terminology is a visible symptom that would prompt someone to question the output. It is a useful warning sign rather than the underlying danger.
 
-## 64. A senior analyst now has Claude draft her weekly market commentary and forwards it after only a quick skim. Colleagues read the commentary as her expert judgment and make purchasing decisions on it. What is the greatest ethical concern?
+## 69. A senior analyst now has Claude draft her weekly market commentary and forwards it after only a quick skim. Colleagues read the commentary as her expert judgment and make purchasing decisions on it. What is the greatest ethical concern?
 
 ### A) The commentary may read in a slightly different tone from the weekly notes she wrote herself.
 
@@ -1180,25 +1274,7 @@ Correct. The expertise colleagues believe they are relying on has quietly been w
 
 Allowance consumption is a cost question, not an ethical one, and does not affect who is accountable.
 
-## 65. Explanation
-
-### A) Because rejection emails are legally binding contracts that require notarization before being sent
-
-Incorrect. Rejection emails are not legally binding contracts, and notarization is not part of the Usage Policy's requirements.
-
-### B) Because the emails are stored for more than 30 days, which automatically triggers high-risk status
-
-Incorrect. Storage duration is not the factor that determines high-risk status; the use case category itself is what triggers the requirement.
-
-### C) Because Claude cannot generate any employment-related text under the Usage Policy in any circumstance
-
-Incorrect. Claude can be used for employment-related text; the policy requires safeguards like review and disclosure, not an outright ban.
-
-### D) Because employment is a designated high-risk category, so review and disclosure still apply here **(correct)**
-
-Correct. Employment is one of the categories the Usage Policy designates as high-risk due to public welfare implications, so human review and disclosure requirements apply even when a human made the underlying decision.
-
-## 66. A technical writer's system prompt says "NEVER use ellipses", but Claude occasionally still uses them in unusual contexts. The real reason for the rule is that Claude's responses are read aloud by a text-to-speech engine, and the writer has not told Claude that. The writer wants Claude to generalize the rule reliably. What should they add to the instruction?
+## 70. A technical writer's system prompt says "NEVER use ellipses", but Claude occasionally still uses them in unusual contexts. The real reason for the rule is that Claude's responses are read aloud by a text-to-speech engine, and the writer has not told Claude that. The writer wants Claude to generalize the rule reliably. What should they add to the instruction?
 
 ### A) Explain that the text-to-speech engine reading the responses aloud cannot pronounce ellipses **(correct)**
 
@@ -1216,7 +1292,7 @@ Listing more banned punctuation marks addresses symptoms rather than the underly
 
 A separate post-generation check adds an extra step but does not address why Claude keeps producing ellipses in the first place, because Claude still does not know the purpose of the rule.
 
-## 67. A team designed its Claude-assisted case-note arrangement around one unusually clean example case, and it worked perfectly. They now plan to put all case types through it. What is the greatest risk?
+## 71. A team designed its Claude-assisted case-note arrangement around one unusually clean example case, and it worked perfectly. They now plan to put all case types through it. What is the greatest risk?
 
 ### A) Claude will produce case notes that are noticeably longer than the previous ones
 
@@ -1234,7 +1310,7 @@ Instruction length is a usability nuisance that is easy to notice and easy to sh
 
 Allowance pressure is a manageable operational cost, and it would show up plainly rather than producing quietly wrong case notes.
 
-## 68. A journalist uses Claude to help draft portions of an article that will be published under the news outlet's byline. Under Anthropic's Usage Policy guidance for high-risk journalistic content, what is required?
+## 72. A journalist uses Claude to help draft portions of an article that will be published under the news outlet's byline. Under Anthropic's Usage Policy guidance for high-risk journalistic content, what is required?
 
 ### A) The journalist must obtain a signed release from Anthropic for each article that includes any AI-assisted content.
 
@@ -1252,7 +1328,7 @@ Incorrect. The policy requires editorial review and disclosure, not a blanket ba
 
 Incorrect. Journalistic content generated for publication is treated as a high-risk use case, not an exempt category.
 
-## 69. An AI-generated history lesson states that a famous battle occurred in 1067, but established sources say 1066. What should the content creator do?
+## 73. An AI-generated history lesson states that a famous battle occurred in 1067, but established sources say 1066. What should the content creator do?
 
 ### A) Publish the lesson without changes, as the AI may have accessed newer research that supersedes traditional accounts.
 
@@ -1270,43 +1346,7 @@ Correct. The creator should verify the fact using multiple trusted historical so
 
 Incorrect. Removing the date avoids the specific error but does not address the need to verify and correct factual information. The better practice is to confirm the accurate date and update the lesson accordingly, not to omit the detail.
 
-## 70. Explanation
-
-### A) Confirm it is a standing requirement rather than a one-off; add it to the project instructions; check the next output honours it unprompted; tell colleagues working in the project. **(correct)**
-
-Correct. Establish that the correction is genuinely standing, make it durable in the instructions, verify it now works without the reminder, and only then tell the people who share the project.
-
-### B) Tell colleagues working in the project; check the next output honours it unprompted; confirm it is a standing requirement rather than a one-off; add it to the project instructions.
-
-Announcing the change before it has been made or verified leaves colleagues relying on something that is not there.
-
-### C) Check the next output honours it unprompted; tell colleagues working in the project; add it to the project instructions; confirm it is a standing requirement rather than a one-off.
-
-Checking that the output honours a rule that has not yet been written cannot tell anyone anything.
-
-### D) Add it to the project instructions; confirm it is a standing requirement rather than a one-off; tell colleagues working in the project; check the next output honours it unprompted.
-
-Writing it into shared instructions before checking it is a standing rule can impose a one-off preference on everyone.
-
-## 71. Explanation
-
-### A) Run the steps on a second case to confirm they generalise; capture them as a reusable skill; write down the steps that worked on a real case; have a colleague run it unaided and fix what confused them.
-
-The steps cannot be run on a second case before they have been written down at all.
-
-### B) Capture the steps as a reusable skill; have a colleague run it unaided and fix what confused them; write down the steps that worked on a real case; run the same steps on a second case to confirm they generalise.
-
-Packaging the procedure before it has been written down or tested captures whatever the author happened to remember.
-
-### C) Have a colleague run the procedure unaided and fix what confused them; write down the steps that worked on a real case; capture them as a reusable skill; run it on a second case to confirm it generalises.
-
-Handing an uncaptured procedure to a colleague first asks them to reconstruct it from nothing.
-
-### D) Write down the steps that worked on a real case; run the same steps on a second case to confirm they generalise; capture them as a reusable skill; have a colleague run it unaided and fix what confused them. **(correct)**
-
-Correct. Capture what worked, prove it generalises beyond the first case, make it reusable, then let a colleague test it without help, which is the only way to find the assumptions the author left out.
-
-## 72. A compliance officer must validate a Claude summary of a contract that was uploaded to the conversation. Which sequence of steps is correct?
+## 74. A compliance officer must validate a Claude summary of a contract that was uploaded to the conversation. Which sequence of steps is correct?
 
 ### A) List the claims that carry weight; find the passage behind each one; mark the claims with no passage; decide what to do about those. **(correct)**
 
@@ -1324,7 +1364,7 @@ Incorrect. Nothing can be marked as unsupported until the search for supporting 
 
 Incorrect. Passages cannot be traced before the claims have been listed, and decisions are taken before the untraceable claims are identified.
 
-## 73. A support team lead creates a Claude Project and wants Claude to always answer in a formal tone and respond as a senior support engineer for every conversation in that workspace, without repeating those directions in each chat. What should the lead configure?
+## 75. A support team lead creates a Claude Project and wants Claude to always answer in a formal tone and respond as a senior support engineer for every conversation in that workspace, without repeating those directions in each chat. What should the lead configure?
 
 ### A) Upload a text file describing the tone to the knowledge base and name the file 'instructions.txt'
 
@@ -1342,7 +1382,7 @@ Incorrect. Repeating guidance in every chat defeats the purpose of project instr
 
 Correct. Project instructions are built specifically to establish behavioral guidelines, such as tone and role, that Claude applies to all chats within that project.
 
-## 74. During a conversation about database design, a user asks Claude, "What does the acronym ACID stand for?" What is the most appropriate way for Claude to answer?
+## 76. During a conversation about database design, a user asks Claude, "What does the acronym ACID stand for?" What is the most appropriate way for Claude to answer?
 
 ### A) Create an artifact with a Mermaid diagram illustrating each property, since diagrams are always preferred for technical terminology
 
@@ -1360,7 +1400,7 @@ Incorrect. Artifacts are reserved for substantial, self-contained content; a sho
 
 Incorrect. Claude selects the output format automatically based on content characteristics; it does not need to ask permission for a short factual reply.
 
-## 75. A communications manager needs a twelve-page annual review written. She wants to catch problems early rather than after a full draft exists. What should she ask for as the first stage?
+## 77. A communications manager needs a twelve-page annual review written. She wants to catch problems early rather than after a full draft exists. What should she ask for as the first stage?
 
 ### A) A section-by-section outline naming what each section covers, which she can correct before any prose is written. **(correct)**
 
@@ -1378,7 +1418,7 @@ Finished opening pages test tone but not structure, and the review's real risk i
 
 Marking up a complete draft is precisely the expensive rework she is trying to avoid, since structural changes at that point mean rewriting whole sections.
 
-## 76. A teacher has written end-of-year report comments for every pupil in her class. The school's rule is that no comment may be pasted into Claude until the school office has confirmed that it is cleared for sharing with parents. She wants Claude to turn the cleared comments into short parent-friendly summaries, one pupil at a time, and the office wants every summary written at the same reading level and length. Which sequence should she follow when putting the request together?
+## 78. A teacher has written end-of-year report comments for every pupil in her class. The school's rule is that no comment may be pasted into Claude until the school office has confirmed that it is cleared for sharing with parents. She wants Claude to turn the cleared comments into short parent-friendly summaries, one pupil at a time, and the office wants every summary written at the same reading level and length. Which sequence should she follow when putting the request together?
 
 ### A) Confirm which comments are cleared for sharing; paste the cleared comments, by pupil; ask for one summary per pupil, leaving the reading level and length for Claude to choose.
 
@@ -1396,7 +1436,7 @@ Every comment, including any the office has not cleared, is pasted before the cl
 
 Correct. The school's rule says nothing is pasted until the office has confirmed it is cleared, so the check comes first and only the cleared comments go in. They are organized by pupil so each summary can be tied to one pupil, and the request asks for one summary per pupil while stating the reading level and length, which gives Claude the specific output constraints the office wants. Each step follows from the rule or the task in the scenario.
 
-## 77. A policy analyst asked for an assessment of a proposed change and received four short paragraphs where she expected several pages of reasoning. What should she do first?
+## 79. A policy analyst asked for an assessment of a proposed change and received four short paragraphs where she expected several pages of reasoning. What should she do first?
 
 ### A) Ask for the same assessment again and request that this time it should be considerably more detailed.
 
@@ -1414,7 +1454,7 @@ Expanding each paragraph inflates the existing structure, which cannot introduce
 
 Correct. Shallow output is usually an unstated expectation about depth. Naming the reader, the approximate length and the questions that must be settled converts a vague wish for more into a specification that can be met.
 
-## 78. A policy officer must work through a 180-page regulatory guidance document that is too long to handle usefully in one request. How should she divide it up?
+## 80. A policy officer must work through a 180-page regulatory guidance document that is too long to handle usefully in one request. How should she divide it up?
 
 ### A) Into the first fifty pages and the last fifty pages, on the basis that the middle is likely to be mostly detail.
 
@@ -1432,7 +1472,7 @@ Fixed page blocks cut through the middle of arguments and definitions, so a part
 
 Correct. The document's own structure marks where topics begin and end, so each part arrives complete, carries its own definitions, and can be summarised without depending on material that was cut away.
 
-## 79. An HR officer has spent forty minutes rewording a request for a summary of her organisation's absence policy. Each version comes back generic. She has never pasted the policy itself into the chat. What is the greatest risk?
+## 81. An HR officer has spent forty minutes rewording a request for a summary of her organisation's absence policy. Each version comes back generic. She has never pasted the policy itself into the chat. What is the greatest risk?
 
 ### A) The successive versions will drift in tone, so the summary reads differently from her earlier internal notes.
 
@@ -1450,7 +1490,7 @@ Correct. No phrasing can summarise a document that was never supplied. The forty
 
 Accumulated wording is a real hazard in long iteration, but a shorter request without the policy attached returns exactly the same generic answer.
 
-## 80. In a pilot of a new Claude-assisted briefing arrangement, three of eight testers report that the output is "not quite right" but say nothing more specific. What should the pilot's owner do first?
+## 82. In a pilot of a new Claude-assisted briefing arrangement, three of eight testers report that the output is "not quite right" but say nothing more specific. What should the pilot's owner do first?
 
 ### A) Rewrite the instructions to cover the areas the owner believes are most likely to be causing the trouble.
 
@@ -1468,7 +1508,7 @@ Learning from the satisfied testers may eventually help, but it assumes the diff
 
 Direct observation is thorough but slow, and pausing the pilot stops the flow of evidence just when it is needed. Asking for examples costs an email and usually locates the problem immediately.
 
-## 81. A team lead asks whether using incognito chats on his personal plan makes it acceptable to paste regulated customer records into Claude. What is the best response?
+## 83. A team lead asks whether using incognito chats on his personal plan makes it acceptable to paste regulated customer records into Claude. What is the best response?
 
 ### A) Incognito chats are equivalent to the company's managed workspace, so no separate approval would be required.
 
@@ -1486,7 +1526,7 @@ Overstating what incognito does is the trap here; the policy governs where regul
 
 Pseudonymising fields does not make regulated records unregulated, and the approval question remains open.
 
-## 82. A teacher asks Claude to explain photosynthesis for a group of 8-year-olds and separately for high school biology students. What is the best approach to producing output suited to each group?
+## 84. A teacher asks Claude to explain photosynthesis for a group of 8-year-olds and separately for high school biology students. What is the best approach to producing output suited to each group?
 
 ### A) Request 2 explanations, using simple analogies for the younger group and precise terms for the older group. **(correct)**
 
@@ -1504,7 +1544,7 @@ Incorrect. Using the child-friendly explanation for both groups would oversimpli
 
 Incorrect. A single intermediate-level explanation that balances simple analogies with key terms would likely be too complex for 8-year-olds while lacking the scientific rigor expected by high school biology students.
 
-## 83. An operations team wants to evaluate whether invoice-query triage, currently done by two people, is a sound use case to hand to Claude. Which sequence of steps is correct?
+## 85. An operations team wants to evaluate whether invoice-query triage, currently done by two people, is a sound use case to hand to Claude. Which sequence of steps is correct?
 
 ### A) Compare and fix the guidance; run the small sample; agree what a correct decision looks like; extend to the full queue.
 
@@ -1522,7 +1562,7 @@ Going to the full queue first is the opposite of piloting. Every later step then
 
 Running the sample before agreeing what a correct decision looks like leaves the team with output they cannot grade, and extending to the full queue before the comparison means any weakness is discovered at full volume.
 
-## 84. Claude keeps quoting a superseded pricing sheet that someone uploaded to a shared Project several months ago. Which two actions address the cause? Select two.
+## 86. Claude keeps quoting a superseded pricing sheet that someone uploaded to a shared Project several months ago. Which two actions address the cause? Select two.
 
 ### A) Remove the superseded pricing sheet from the Project's knowledge so it stops being used. **(correct)**
 
@@ -1544,7 +1584,7 @@ Incorrect. Re-prompting cannot fix a wrong source document; Claude has no way to
 
 Incorrect. Discarding the workspace monthly throws away the accumulated context and still does not curate the sources.
 
-## 85. Which statement accurately reflects how a project's chat history relates to that project's workspace?
+## 87. Which statement accurately reflects how a project's chat history relates to that project's workspace?
 
 ### A) Chat history is automatically discarded at the end of every chat session within a project
 
@@ -1562,7 +1602,7 @@ Incorrect. Chat history is scoped per project rather than merged into one identi
 
 Incorrect. Chat history is viewable directly within the project without needing to be uploaded to the knowledge base.
 
-## 86. A facilities coordinator pasted a list of twelve depots and asked for a condition summary of each. The reply is well organised and covers nine of them without saying that three are absent. What check would have caught this?
+## 88. A facilities coordinator pasted a list of twelve depots and asked for a condition summary of each. The reply is well organised and covers nine of them without saying that three are absent. What check would have caught this?
 
 ### A) Comparing the length of this reply against the length of the depot summaries she received in previous months.
 
@@ -1580,7 +1620,7 @@ Thin descriptions signal weak coverage of depots that are present. A depot left 
 
 Correct. Omissions leave no mark in the text, so they are only visible when the output is counted back against the input. A list she supplied gives her an exact expected number to check against.
 
-## 87. A project manager pastes her internal meeting notes into the chat and asks for the weekly client update. The notes include unreleased pricing and a blunt remark about the client's own team. What is the greatest risk?
+## 89. A project manager pastes her internal meeting notes into the chat and asks for the weekly client update. The notes include unreleased pricing and a blunt remark about the client's own team. What is the greatest risk?
 
 ### A) The update may come back shorter than usual, since the notes cover only what was raised in that one meeting.
 
@@ -1598,7 +1638,7 @@ A set of meeting notes sits comfortably within a single message, and omissions f
 
 Tone drift is real but visible on a first read, and it is corrected with one instruction about register.
 
-## 88. A manager lets each colleague pick a model tier per task according to how important the task feels, with nothing written down. What is the greatest concern?
+## 90. A manager lets each colleague pick a model tier per task according to how important the task feels, with nothing written down. What is the greatest concern?
 
 ### A) Colleagues will always choose the deepest tier, which will exhaust the team's allowance quickly.
 
@@ -1616,25 +1656,7 @@ Incorrect. The decision itself is quick; the cost lies in its inconsistency rath
 
 Correct. With no shared standard the same task is handled inconsistently, and because nothing defines adequacy there is no way to learn from any of the choices made.
 
-## 89. Explanation
-
-### A) Add a line asking Claude to be more creative and to write with noticeably more energy and detail.
-
-Adjectives such as 'creative' add emphasis but no information about what the email should say.
-
-### B) Move to the most capable model available, since generic writing suggests limited reasoning depth.
-
-Reaching for a larger model does not tell it anything about the product or the audience.
-
-### C) Produce the email several more times and choose whichever version reads best for the audience.
-
-Regenerating merely samples different wordings of the same under-specified request.
-
-### D) Restate the request with the audience, offer and length, and paste the actual product brief. **(correct)**
-
-Correct. A generic answer to a generic request is a description problem: the audience, the offer and the source material were never supplied, and no other change substitutes for supplying them.
-
-## 90. An operations coordinator will paste Claude's output straight into a tracking spreadsheet her team already maintains. What should her request specify about the output?
+## 91. An operations coordinator will paste Claude's output straight into a tracking spreadsheet her team already maintains. What should her request specify about the output?
 
 ### A) That the result should be as detailed as possible, so she can delete whatever her tracker has no room to hold.
 
@@ -1652,7 +1674,7 @@ Correct. The destination dictates the format, so naming the columns, their order
 
 Prose is the hardest shape to move into a spreadsheet, because each paragraph has to be split into fields manually.
 
-## 91. A colleague suggests running Research for a question with a single settled answer that is already well documented internally. How should this suggestion be assessed?
+## 92. A colleague suggests running Research for a question with a single settled answer that is already well documented internally. How should this suggestion be assessed?
 
 ### A) It is a good fit, because a multi-step search always produces a more reliable answer overall.
 
@@ -1670,7 +1692,7 @@ Correct. Research runs several searches that build on one another, which is valu
 
 Incorrect. It can answer such questions perfectly well. The objection is proportionality, not capability.
 
-## 92. A teacher's project instructions have grown to several pages, and she notices less room for the lesson material she pastes into chats. What is the best adjustment?
+## 93. A teacher's project instructions have grown to several pages, and she notices less room for the lesson material she pastes into chats. What is the best adjustment?
 
 ### A) Duplicate the instructions into project knowledge as well, so that Claude encounters them twice over.
 
@@ -1688,7 +1710,7 @@ Correct. Project instructions are carried into each conversation in the project,
 
 Incorrect. The same words consume the same space wherever they sit, and she also loses the durability of project instructions.
 
-## 93. A claims team is deciding whether to augment its current process with Claude or to redesign the process around what Claude makes possible. Which condition most justifies a redesign rather than augmentation?
+## 94. A claims team is deciding whether to augment its current process with Claude or to redesign the process around what Claude makes possible. Which condition most justifies a redesign rather than augmentation?
 
 ### A) Several steps exist only to work around a limitation that no longer applies to this work. **(correct)**
 
@@ -1706,7 +1728,7 @@ Tedium is a good reason to look for delegation candidates within the process, wh
 
 A step count comparison ignores why the extra steps exist. Another organisation may face different regulation, volumes or systems, so the difference is a prompt to investigate rather than evidence for a redesign.
 
-## 94. A recruiter needs a job posting to sound approachable and conversational for candidates, but the first draft reads like a formal internal policy memo. Which instruction best adapts the tone for this audience?
+## 95. A recruiter needs a job posting to sound approachable and conversational for candidates, but the first draft reads like a formal internal policy memo. Which instruction best adapts the tone for this audience?
 
 ### A) Lengthen the posting with more details about its internal reporting structures.
 
@@ -1724,7 +1746,25 @@ Incorrect. Inserting the mission statement adds new content but leaves the forma
 
 Correct. This instruction directly addresses the tone mismatch by asking for a warm, conversational style tailored to candidates. It transforms the formal memo into an approachable, inviting job posting.
 
-## 95. An analyst has connected her work Google Drive to Claude and asks for last quarter's regional sales file. Claude replies that it cannot find it, although she knows the file exists because a colleague showed it to her. What should she do first?
+## 96. A researcher's request for "an analysis of the survey results" returns a bland restatement of the numbers. Which change is most likely to help?
+
+### A) Split the survey into ten parts and send each one as a separate request
+
+Splitting an under-specified request into ten under-specified requests produces ten bland fragments.
+
+### B) Send the same request again with the word "detailed" added to the front
+
+Adding an emphasis word does not tell Claude what depth means here, so the answer stays shallow.
+
+### C) State the questions the analysis must answer and who will read the result **(correct)**
+
+Correct. "Analyse this" does not say what counts as an insight or for whom. Naming the questions and the audience gives the response something to be deep about.
+
+### D) Ask Claude to say how confident it is in the analysis that it has just given
+
+A statement of confidence describes the existing shallow answer rather than producing a better one.
+
+## 97. An analyst has connected her work Google Drive to Claude and asks for last quarter's regional sales file. Claude replies that it cannot find it, although she knows the file exists because a colleague showed it to her. What should she do first?
 
 ### A) Rephrase the request repeatedly until Claude eventually locates the file on the connected drive.
 
@@ -1742,7 +1782,7 @@ Correct. A connector reaches only what the connecting account can already open, 
 
 This works around the question without establishing whether she is entitled to the file at all.
 
-## 96. A user asks Claude to generate a 40-line Python script that parses log files, then five minutes later asks Claude to fix a bug in that same script. Where does the updated script most likely appear so the user can compare it to the earlier version?
+## 98. A user asks Claude to generate a 40-line Python script that parses log files, then five minutes later asks Claude to fix a bug in that same script. Where does the updated script most likely appear so the user can compare it to the earlier version?
 
 ### A) In the artifact panel, updated as a new version accessible through the version selector **(correct)**
 
@@ -1760,7 +1800,25 @@ Claude can revise previously generated code within the same conversation, and wi
 
 Research mode is for gathering external information via web search, not for revising code that Claude already generated in the conversation.
 
-## 97. A communications specialist has drafted an industry report with Claude's help, to be published under the company's name. The AI policy requires both disclosure of AI assistance and named human sign-off. Which sequence is correct?
+## 99. An analyst assembles one client brief by sending Claude eight short messages, each adding another fragment of the source material. What would make this more efficient?
+
+### A) Ask Claude to hold off responding until all eight fragments have arrived in the conversation.
+
+Waiting still requires eight messages, and it delays the point at which she can correct course.
+
+### B) Put the request and all the material into one well-specified opening message, then refine it. **(correct)**
+
+Correct. Batching the related material into a single, clearly specified request is the efficient pattern: Claude sees the whole picture at once instead of reasoning from a partial one eight times.
+
+### C) Split the eight messages across two conversations so that each holds a manageable amount.
+
+Two conversations split the material so neither one has everything the brief actually needs.
+
+### D) Send the eight messages in a fixed order each time, so the assembly follows a predictable pattern.
+
+A fixed order makes the same inefficient exchange more predictable without making it shorter.
+
+## 100. A communications specialist has drafted an industry report with Claude's help, to be published under the company's name. The AI policy requires both disclosure of AI assistance and named human sign-off. Which sequence is correct?
 
 ### A) Add the disclosure the policy requires; publish the report; verify the facts and figures against the original sources; obtain the named reviewer's sign-off.
 
@@ -1778,7 +1836,7 @@ Sign-off given before any verification asks the reviewer to vouch for figures no
 
 Correct. Verification supports the reviewer's sign-off, the disclosure is attached to what was signed off, and publication comes last because it is the irreversible step.
 
-## 98. A corporate legal team uses Claude to flag unusual clauses in a batch of vendor contracts and draft a risk summary for each. What is the most appropriate way to use these summaries before any contract is signed?
+## 101. A corporate legal team uses Claude to flag unusual clauses in a batch of vendor contracts and draft a risk summary for each. What is the most appropriate way to use these summaries before any contract is signed?
 
 ### A) File the AI-drafted summaries as the official legal record alongside the signed contracts themselves
 
@@ -1796,7 +1854,7 @@ Incorrect. Sending an unreviewed internal risk assessment to the counterparty co
 
 Correct. Contract execution carries binding legal and financial consequences, so a qualified attorney must review the actual clauses and confirm the risk assessment before signing.
 
-## 99. An HR partner suspects that Claude's candidate summaries describe some applicants more warmly than others for reasons unrelated to their experience. Which sequence of steps is correct?
+## 102. An HR partner suspects that Claude's candidate summaries describe some applicants more warmly than others for reasons unrelated to their experience. Which sequence of steps is correct?
 
 ### A) Compare the wording across the results; agree what an even summary should contain; run closely comparable profiles; decide whether the difference is systematic.
 
@@ -1814,7 +1872,7 @@ Incorrect. The comparable profiles are the test itself, so running them last mea
 
 Correct. A standard has to exist before wording can be judged against it, comparable profiles create a fair test, and only then does a difference in wording mean anything.
 
-## 100. A stakeholder is confused that Claude gave two slightly different summaries of the same document on two separate runs, and asks whether the model is broken. What is the best explanation to give?
+## 103. A stakeholder is confused that Claude gave two slightly different summaries of the same document on two separate runs, and asks whether the model is broken. What is the best explanation to give?
 
 ### A) Explain that document summaries always fail after the first request, so each summary attempt requires a new conversation.
 
@@ -1832,7 +1890,7 @@ Incorrect. Treating the second summary as correct and the first as a bug misrepr
 
 Incorrect. Output variation is not caused by document length or exceeding the context window; it stems from Claude's probabilistic generation process. Shortening the document will not eliminate normal, minor wording differences between runs.
 
-## 101. A grants officer asks Claude to draft the "community impact" section of a funding application, using a one-line prompt that names only the section. The funder publishes its assessment criteria for that section, and the application form strictly enforces a 500-word limit on it. Which two additions to that prompt would most improve the draft? Select two.
+## 104. A grants officer asks Claude to draft the "community impact" section of a funding application, using a one-line prompt that names only the section. The funder publishes its assessment criteria for that section, and the application form strictly enforces a 500-word limit on it. Which two additions to that prompt would most improve the draft? Select two.
 
 ### A) Mention that the submission deadline falls on Friday so the request is urgent.
 
@@ -1854,7 +1912,7 @@ Generating four versions from one under-specified brief produces four equally ge
 
 Correct. The funder's criteria are the source material the draft has to satisfy, and pasting the real text beats describing it. Without them Claude writes generically about impact and can only guess what will be scored.
 
-## 102. A conference organiser wants Claude to help plan the run-up to a 400-delegate event. Which input will make the resulting plan most useful?
+## 105. A conference organiser wants Claude to help plan the run-up to a 400-delegate event. Which input will make the resulting plan most useful?
 
 ### A) The actual dates, the team's availability and the tasks that went wrong last year **(correct)**
 
@@ -1872,7 +1930,25 @@ Asking for thoroughness without supplying facts produces length, not fit; the pl
 
 Emphasis is not information. Telling Claude the event matters gives it nothing new to plan around.
 
-## 103. A writer wants Claude to draft technical explanations as flowing prose paragraphs rather than bullet-heavy markdown. Which instruction best achieves this for a drafting task?
+## 106. A reviewer asks for far more background in every Claude-drafted briefing, but the team had already agreed that briefings must fit on one page. What is the most appropriate response?
+
+### A) Take the conflict back to the team and settle which of the two now holds **(correct)**
+
+Correct. The feedback contradicts the agreed definition of good. Adjusting the approach means resolving that contradiction openly, not silently letting the newest voice overwrite an agreed standard.
+
+### B) Follow the reviewer's request, because feedback from a reviewer takes priority
+
+Acting on it immediately lets one reviewer overturn a team decision without the team knowing it has changed.
+
+### C) Produce both a one-page version and a long version for every briefing sent out
+
+Producing two versions of everything doubles the work and leaves the underlying disagreement unresolved.
+
+### D) Ignore the request, because the one-page rule was agreed before the feedback
+
+Dismissing the feedback because it came later ignores the possibility that the one-page rule is now wrong.
+
+## 107. A writer wants Claude to draft technical explanations as flowing prose paragraphs rather than bullet-heavy markdown. Which instruction best achieves this for a drafting task?
 
 ### A) Ask Claude to bullet every key point so the explanation is easy to scan
 
@@ -1890,7 +1966,7 @@ Incorrect. A bare prohibition without describing the desired prose format is a l
 
 Incorrect. Omitting formatting guidance leaves the output style to chance rather than steering it toward the flowing prose the writer wants.
 
-## 104. A reorganisation has changed how a team's workflow runs, and a shared project's instructions no longer describe it. Which sequence of steps is correct?
+## 108. A reorganisation has changed how a team's workflow runs, and a shared project's instructions no longer describe it. Which sequence of steps is correct?
 
 ### A) Revise the project instructions; gather what changed in the process; tell the members; check the outputs against the revised rules.
 
@@ -1908,7 +1984,7 @@ Correct. Understand the change, encode it, confirm it produces the right output,
 
 Members are told about a change that has not been made, and the revision happens last.
 
-## 105. An employee keeps a connector to a shared team drive in place after moving to a completely different department. What is the greatest concern?
+## 109. An employee keeps a connector to a shared team drive in place after moving to a completely different department. What is the greatest concern?
 
 ### A) The drive's files are duplicated into the employee's own personal account and count against their storage.
 
@@ -1926,7 +2002,7 @@ One connection does not prevent others from being enabled.
 
 A department move does not by itself break a connector.
 
-## 106. What is an effective way to use Claude to analyze requirements and use cases early in the development process?
+## 110. What is an effective way to use Claude to analyze requirements and use cases early in the development process?
 
 ### A) Ask Claude to simulate a developer reviewing requirements and ask clarifying questions for ambiguity. **(correct)**
 
@@ -1944,7 +2020,7 @@ Incorrect. Examining completed code for missing logic is a reactive approach tha
 
 Incorrect. Having Claude independently review and finalize requirements without human check eliminates necessary oversight; human validation is critical for context, ethics, and domain nuances, so Claude should augment, not replace, human reviewers.
 
-## 107. A marketing team asks Claude to generate an original jingle and slogan closely inspired by a currently popular ad campaign from a competitor. Before using the output publicly, what should happen?
+## 111. A marketing team asks Claude to generate an original jingle and slogan closely inspired by a currently popular ad campaign from a competitor. Before using the output publicly, what should happen?
 
 ### A) Publish the jingle immediately across all channels since Claude was instructed to make the output original
 
@@ -1962,25 +2038,7 @@ Incorrect. A model's self-declaration about infringement is not a reliable legal
 
 Correct. Content closely inspired by an existing campaign carries intellectual property risk, so legal and creative reviewers should assess similarity before public use.
 
-## 108. Explanation
-
-### A) Ask Claude to compare the two sets of instructions and state which one ought to perform better.
-
-Claude can comment on the wording but cannot know how either version performs on the team's real work.
-
-### B) Ask the team at the end of the month whether things have felt better since the change was made.
-
-A recollection a month later is influenced by everything else that happened in the meantime.
-
-### C) Try the new instructions on one fresh request and adopt them if that single result looks better.
-
-A single new request confounds the change with whatever was distinctive about that request.
-
-### D) Run the old and new instructions on the same recent cases and compare against agreed criteria. **(correct)**
-
-Correct. Holding the cases and the criteria constant is what makes the comparison mean something; only the instructions differ, so any difference in quality is attributable.
-
-## 109. An operations manager is asked to improve her team's onboarding process and wants to work through it with Claude across several stages. What should she do first?
+## 112. An operations manager is asked to improve her team's onboarding process and wants to work through it with Claude across several stages. What should she do first?
 
 ### A) Ask Claude to propose a plan for improving onboarding, and treat that plan as the set of stages to work through.
 
@@ -1998,7 +2056,7 @@ Comparative practice is useful later. Gathered first, it shapes the whole exerci
 
 Equal effort is a scheduling convenience, not a structure. It cuts across the natural dependencies in the work and leaves stages that cannot start until another finishes.
 
-## 110. A team has revised a customer-facing explanation nine times, each round aimed at making it read better, and they are pleased with the current version. What is the greatest risk?
+## 113. A team has revised a customer-facing explanation nine times, each round aimed at making it read better, and they are pleased with the current version. What is the greatest risk?
 
 ### A) Nine rounds of rewriting have changed what the text asserts, and nobody has re-checked those claims since. **(correct)**
 
@@ -2016,7 +2074,7 @@ Familiarity blunting a team's ear is a genuine effect, and it concerns style rat
 
 Successive edits do tend to trim, but a shorter explanation is visible to the team and easily restored.
 
-## 111. An internal communications lead asks Claude to adapt a global announcement for staff at a site that is closing. The draft keeps the upbeat, celebratory framing of the original. What is the most appropriate refinement?
+## 114. An internal communications lead asks Claude to adapt a global announcement for staff at a site that is closing. The draft keeps the upbeat, celebratory framing of the original. What is the most appropriate refinement?
 
 ### A) Rewrite it in a register that fits what this audience is being told, keeping the facts intact. **(correct)**
 
@@ -2034,7 +2092,7 @@ Incorrect. Trimming the upbeat passages leaves the same mismatch in a smaller fo
 
 Incorrect. Consistency applies to the facts of the announcement, not to a tone that misreads what this audience is being told.
 
-## 112. A DevOps team configures Claude with tool access to restart non-critical staging servers and open low-priority tickets automatically, while any action affecting production systems requires explicit human approval before execution. Is this an appropriate use of Claude?
+## 115. A DevOps team configures Claude with tool access to restart non-critical staging servers and open low-priority tickets automatically, while any action affecting production systems requires explicit human approval before execution. Is this an appropriate use of Claude?
 
 ### A) No, because opening tickets automatically counts as a high-risk action needing professional review
 
@@ -2052,7 +2110,7 @@ Incorrect. Removing human approval from production changes would increase risk r
 
 Correct. Allowing autonomous action on low-stakes staging tasks while requiring human approval for production changes reflects an appropriate, risk-proportionate use of agentic tool access.
 
-## 113. A communications team wants to start using a Claude capability on client-facing work, and believes the company's written AI standard may not address it. The standard itself says that anything it does not cover needs the policy owner's position before anyone uses it, even on internal material. In which order should these steps be taken?
+## 116. A communications team wants to start using a Claude capability on client-facing work, and believes the company's written AI standard may not address it. The standard itself says that anything it does not cover needs the policy owner's position before anyone uses it, even on internal material. In which order should these steps be taken?
 
 ### A) Check whether the standard covers the capability at all; ask the policy owner to give a position on the capability; pilot the capability on internal material only; roll it out to client work and record the agreed position in the standard. **(correct)**
 
@@ -2070,7 +2128,7 @@ Use begins before anyone has even opened the standard, and before the policy own
 
 The pilot starts before the policy owner has given a position, but the standard requires that position before anyone uses an uncovered capability, even on internal material. Keeping the pilot on lower-stakes material does not make it sanctioned.
 
-## 114. Several engineers tell a site coordinator that Claude's shift-handover digests 'skip the open risks', but nobody says which risks or which shifts. Which two steps should the coordinator take first? Select two.(Select 2)
+## 117. Several engineers tell a site coordinator that Claude's shift-handover digests 'skip the open risks', but nobody says which risks or which shifts. Which two steps should the coordinator take first? Select two.(Select 2)
 
 ### A) Ask for two digests where an open risk was missed, with the missing risk actually named. **(correct)**
 
@@ -2092,7 +2150,25 @@ A score captures sentiment but still never says which risks went missing, or why
 
 A format change may help presentation, but it cannot add a risk the digest never captured.
 
-## 115. A customer success manager asks Claude to rewrite a churn-risk analysis, originally written for data scientists, so it can be shared with account executives who need to know which accounts to prioritize and what actions to take. What change best reflects an effective refinement here?
+## 118. A pilot shows that Claude's drafts need almost no editing for routine status updates but heavy editing for sensitive client letters. What is the best adjustment to the workflow?
+
+### A) Keep using Claude for both, since the editing effort on the letters will fall as the team practises.
+
+Hoping the editing burden falls ignores what the pilot actually measured about sensitive letters.
+
+### B) Use Claude for the client letters only, as that is where the largest time saving would be found.
+
+Aiming at the task with the heaviest editing burden pursues the saving that the evidence contradicts.
+
+### C) Stop using Claude for both, because uneven quality makes the workflow too unreliable to depend on.
+
+Abandoning both discards a demonstrated benefit because of a separate task that did not work.
+
+### D) Keep Claude on the routine updates and have people write the client letters, revisiting this later. **(correct)**
+
+Correct. The results draw the delegation boundary for them: keep the work where it performs well, keep the judgment-heavy work with people, and revisit as the approach matures.
+
+## 119. A customer success manager asks Claude to rewrite a churn-risk analysis, originally written for data scientists, so it can be shared with account executives who need to know which accounts to prioritize and what actions to take. What change best reflects an effective refinement here?
 
 ### A) Keep the same structure and only replace the word 'churn' with 'account attrition' throughout
 
@@ -2110,7 +2186,7 @@ Incorrect. Removing account names would eliminate the exact information executiv
 
 Correct. Account executives need actionable priorities and next steps up front, so restructuring around that need and demoting methodology detail matches their purpose for reading.
 
-## 116. An estates officer asked for a maintenance summary covering all eight regional depots, plus a cost estimate and a recommended priority order for each. The reply is polished and reads convincingly. What should she do first?
+## 120. An estates officer asked for a maintenance summary covering all eight regional depots, plus a cost estimate and a recommended priority order for each. The reply is polished and reads convincingly. What should she do first?
 
 ### A) Read the summary closely for anything that sounds implausible, since a fluent draft rarely omits requested material.
 
@@ -2128,25 +2204,7 @@ Claude is not a reliable auditor of its own coverage, and treating its self-asse
 
 Correct. Completeness is judged against the original request, not against how good the answer sounds. Checking the reply element by element against what she asked for immediately exposes any depot or required component that was dropped.
 
-## 117. Explanation
-
-### A) Shorter summaries are quicker to produce, which may make the change hard to justify on cost.
-
-Production effort is not the concern; the concern is that other users' needs were never consulted.
-
-### B) The team will have to explain the new instructions to colleagues who joined the project recently.
-
-Explaining the change to new colleagues is routine and unrelated to whether the change was right.
-
-### C) The stakeholder may not notice the change and could raise the same complaint again next month.
-
-Whether the stakeholder notices is secondary to the effect on everyone else's summaries.
-
-### D) One unrepresentative complaint now shapes output that colleagues rely on for other purposes. **(correct)**
-
-Correct. One person's preference has been generalised into a rule for everyone, and the colleagues who needed the detail will only discover the change when their own work suffers.
-
-## 118. A recruiter wants Claude to compare a set of candidate CVs against a job description. What is the most appropriate handling of the data?
+## 121. A recruiter wants Claude to compare a set of candidate CVs against a job description. What is the most appropriate handling of the data?
 
 ### A) Include everything and rely on the plan's privacy settings to protect the candidates' personal data.
 
@@ -2164,7 +2222,7 @@ Correct. Data minimisation keeps the analysis useful while removing identifiers 
 
 The comparison is against skills and experience, which survives removing identifiers.
 
-## 119. An operations planner asks Claude to compress a six-week onboarding schedule into four weeks. The returned plan is detailed and internally consistent, and the planner circulates it as the new schedule. What is the greatest risk?
+## 122. An operations planner asks Claude to compress a six-week onboarding schedule into four weeks. The returned plan is detailed and internally consistent, and the planner circulates it as the new schedule. What is the greatest risk?
 
 ### A) The plan will be written for a reader who is far more senior than the planner is
 
@@ -2182,7 +2240,7 @@ Claude will attempt the compression with whatever it is given; refusing for want
 
 Correct. To fit six weeks into four, something had to give. Because the plan reads as coherent, the compromises it made are invisible, and nobody has confirmed that they are acceptable.
 
-## 120. A market summary states that three customer segments account for 45, 38 and 29 percent of revenue. The analyst notices the three add to more than a hundred. What should she conclude?
+## 123. A market summary states that three customer segments account for 45, 38 and 29 percent of revenue. The analyst notices the three add to more than a hundred. What should she conclude?
 
 ### A) That the largest segment is the one in error, since a figure of 45 percent is the least likely of the three to be right.
 
@@ -2200,25 +2258,7 @@ Overlapping segments are possible, but that is an assumption invented to rescue 
 
 Correct. The inconsistency shows that the figures were not derived from a single reconciled source, which says nothing reassuring about any individual number. One visible contradiction is a reason to re-check the whole set.
 
-## 121. Explanation
-
-### A) Successive versions may differ in length, which makes the final document harder to format well.
-
-Varying length is a formatting nuisance that is easily fixed by asking for a length.
-
-### B) She spends the allowance on one unclear request and chooses by appearance rather than accuracy. **(correct)**
-
-Correct. Regeneration samples the same under-specified request again and again, so the selection is made on how the answer reads rather than on whether it is right, at a cost in allowance each time.
-
-### C) Repeated attempts leave a long conversation that is more difficult to search through afterwards.
-
-A long conversation is harder to search, but that is a side effect rather than the main risk.
-
-### D) She may lose an earlier version that was better than the one she eventually decides to keep.
-
-Losing a good earlier draft is annoying, and it is avoidable by copying versions out as she goes.
-
-## 122. A business analyst is deciding whether to send one large request or break it into stages. Which two features of a request are the strongest signals that it should be decomposed? Select two.(Select 2)
+## 124. A business analyst is deciding whether to send one large request or break it into stages. Which two features of a request are the strongest signals that it should be decomposed? Select two.(Select 2)
 
 ### A) It bundles several distinct deliverables that are meant for different audiences and uses. **(correct)**
 
@@ -2240,7 +2280,7 @@ Output format is a presentation choice. A table can be produced in one step just
 
 Correct. Dependency is a separate signal from bundling: when step two builds on step one, a single pass propagates any early error into everything downstream unchecked.
 
-## 123. A user asks Claude, connected via the Drive connector, to save a report Claude just generated into a specific Drive folder. What can Claude do?
+## 125. A user asks Claude, connected via the Drive connector, to save a report Claude just generated into a specific Drive folder. What can Claude do?
 
 ### A) Claude can save files to Drive only when code execution is separately turned on first.
 
@@ -2258,7 +2298,7 @@ Correct. The Drive connector supports creating folders and saving Claude-generat
 
 Incorrect. Saving generated files to Drive is an explicit connector capability beyond just reading existing files.
 
-## 124. A researcher mentions in a chat that they prefer citations in APA format, but does not add this preference to the project knowledge base or project instructions. In a different chat within the same project, Claude does not apply APA formatting by default. Why does this occur?
+## 126. A researcher mentions in a chat that they prefer citations in APA format, but does not add this preference to the project knowledge base or project instructions. In a different chat within the same project, Claude does not apply APA formatting by default. Why does this occur?
 
 ### A) Claude supports only one citation style per account for the entire lifetime of that account
 
@@ -2276,7 +2316,7 @@ Correct. Context shared in one chat is not shared across chats within a project 
 
 Incorrect. There is no separate account-wide setting for citation style; persistence within a project is controlled through instructions or knowledge base content.
 
-## 125. A user on a free Claude account has already created five projects and wants to start a sixth one for a new personal task. What should they expect?
+## 127. A user on a free Claude account has already created five projects and wants to start a sixth one for a new personal task. What should they expect?
 
 ### A) They can create a sixth project only after deleting the oldest chat from an existing project
 
@@ -2294,7 +2334,7 @@ Incorrect. The limitation described is about the number of projects allowed, not
 
 Correct. Free Claude accounts can create a maximum of five projects, so a sixth would require removing or upgrading rather than simply creating a new one.
 
-## 126. A team is setting up a new recurring weekly task and has to decide how much reasoning depth it needs. Which sequence is correct?
+## 128. A team is setting up a new recurring weekly task and has to decide how much reasoning depth it needs. Which sequence is correct?
 
 ### A) Pick a tier by how important the task feels, then run it for a month, then write down what good output means, then compare the month's results against that.
 
@@ -2312,7 +2352,7 @@ Comparing results before the task has been run is out of order, and benchmarking
 
 Correct. Define the quality bar, test the default tier on real work, check that sample against the bar, and change tier only where the evidence shows the default falls short or is more than the task needs.
 
-## 127. A health-tech startup uses Claude to draft summaries of patient symptoms from intake forms, which are then used to suggest possible next steps to patients. Before any suggestion reaches a patient, what should the team implement to manage this high-stakes use case appropriately?
+## 129. A health-tech startup uses Claude to draft summaries of patient symptoms from intake forms, which are then used to suggest possible next steps to patients. Before any suggestion reaches a patient, what should the team implement to manage this high-stakes use case appropriately?
 
 ### A) Increase the model's thinking budget so it reasons longer before producing the suggestion
 
@@ -2330,25 +2370,7 @@ Incorrect. A second Claude pass can catch internal inconsistencies but cannot su
 
 Incorrect. A disclaimer informs patients about the source of the content but does nothing to catch an unsafe or inaccurate suggestion before it is delivered.
 
-## 128. Explanation
-
-### A) It is acceptable practice as long as the overall message matches mainstream scientific consensus
-
-Incorrect. Alignment with consensus does not excuse fabricating evidence; deceptive sourcing is prohibited on its own terms.
-
-### B) It should be rejected only because the fabricated study belongs to unpublished, unnamed authors
-
-Incorrect. The core problem is fabrication and deception, not a copyright issue involving nonexistent, unpublished authors.
-
-### C) It should be rejected only in jurisdictions that have strict health advertising laws on the books
-
-Incorrect. The prohibition on deceptive health misinformation is not contingent on jurisdiction-specific advertising law.
-
-### D) Fabricated citations are deceptive health misinformation, which the policy prohibits outright **(correct)**
-
-Correct. Fabricating citations to bolster health-related claims is a form of deceptive misinformation, which the Usage Policy prohibits regardless of whether the underlying conclusion happens to be accurate.
-
-## 129. A grants officer on a paid plan needs a one-off overview of the funding landscape, drawn from the published criteria of roughly twenty funders she has not looked at before. Her director will ask where each statement came from. Which approach best fits the job?
+## 130. A grants officer on a paid plan needs a one-off overview of the funding landscape, drawn from the published criteria of roughly twenty funders she has not looked at before. Her director will ask where each statement came from. Which approach best fits the job?
 
 ### A) Ask a separate question about each of the twenty funders in ordinary chats, then merge the twenty replies into an overview herself.
 
@@ -2366,7 +2388,7 @@ A project provides durable shared context for recurring work, but this is a one-
 
 References requested after the overview is written are assembled to fit text that was produced without them, so they are the weakest form of provenance and still leave every claim to be traced by hand.
 
-## 130. A programme coordinator is deciding whether a piece of Claude's output should be produced as an artifact rather than as an ordinary reply in the chat. Which two characteristics point towards an artifact? Select two.
+## 131. A programme coordinator is deciding whether a piece of Claude's output should be produced as an artifact rather than as an ordinary reply in the chat. Which two characteristics point towards an artifact? Select two.
 
 ### A) The reply needs to be read once during the discussion and then not referred to again.
 
@@ -2388,7 +2410,7 @@ A brief clarification belongs inline. Putting two sentences into a separate docu
 
 Correct. Standing alone is a separate criterion from reuse: content that needs the conversation around it to make sense loses meaning once it is lifted out.
 
-## 131. An HR partner finds that a project is producing answers in the wrong tone for its audience. Which sequence of steps is correct?
+## 132. An HR partner finds that a project is producing answers in the wrong tone for its audience. Which sequence of steps is correct?
 
 ### A) Identify the rule that is vague or missing; read what the instructions currently say; rerun a typical request; revise that rule.
 
@@ -2406,7 +2428,7 @@ The rule is revised before it has been identified, and the instructions are read
 
 Correct. Diagnose the existing direction, isolate the weak rule, fix it, then confirm with a real request.
 
-## 132. A supplier manager has an answer that names a specific piece of waste-handling regulation and gives its effective date. Web search was switched off for the whole conversation, so no sources were consulted. What should she do first?
+## 133. A supplier manager has an answer that names a specific piece of waste-handling regulation and gives its effective date. Web search was switched off for the whole conversation, so no sources were consulted. What should she do first?
 
 ### A) Treat the regulation and its date as unverified and look both of them up herself in the official register of legislation. **(correct)**
 
@@ -2424,7 +2446,7 @@ A repeated answer from the same assistant is not independent confirmation, and t
 
 Asking for sources after the fact invites a list assembled to justify a claim that was made without them, so the references themselves would then need checking. It adds a step without adding reliability.
 
-## 133. A team enables extended thinking with a summarized display so they can review Claude's reasoning steps before accepting the answer to a complex multi-step business problem. What is the primary benefit of reviewing this reasoning?
+## 134. A team enables extended thinking with a summarized display so they can review Claude's reasoning steps before accepting the answer to a complex multi-step business problem. What is the primary benefit of reviewing this reasoning?
 
 ### A) It automatically corrects any flawed reasoning it detects before the final answer is ever shown to reviewers
 
@@ -2442,7 +2464,7 @@ Incorrect. Showing the reasoning process is not a mathematical proof of correctn
 
 Correct. Visible reasoning steps let a reviewer spot a flawed assumption or logic error before the final answer is trusted, which is the main verification benefit of extended thinking.
 
-## 134. A team has spent three weeks refining a Claude-assisted weekly digest. The last two rounds of changes produced no difference anyone could notice. What is the most appropriate next step?
+## 135. A team has spent three weeks refining a Claude-assisted weekly digest. The last two rounds of changes produced no difference anyone could notice. What is the most appropriate next step?
 
 ### A) Ask Claude to grade its own digests and continue until the grades stop rising
 
@@ -2460,29 +2482,25 @@ Discarding three weeks of refinement resets the work without any evidence that a
 
 Correct. Iteration has stopped yielding gains, so the remaining information will come from real use. Adopting it with a review date set keeps the loop open without spending more effort on a plateau.
 
-## 135. Explanation
+## 136. A marketing team asks Claude to generate a series of realistic-looking news articles attributed to fictional journalists, intending to distribute them to sway public opinion on an upcoming ballot measure. Which ethical and policy concern does this scenario raise most directly?
 
-### A) Tell the rest of the team about it, so nobody keeps solving the same problem in their own chats. **(correct)**
+### A) It raises no concern at all, since the ballot measure itself is a matter of legitimate public interest
 
-Correct for a different reason: the fix is only really closed when the practice is shared, otherwise colleagues rediscover it.
+Incorrect. Public interest in the topic does not exempt content that relies on fabricated authorship and deception to manipulate opinion.
 
-### B) Keep a personal note of the correction and paste it in whenever the problem happens to come back.
+### B) It becomes a violation only if the articles name a specific candidate rather than a ballot measure
 
-A personal note keeps the fix manual and private, so it is re-applied by hand and helps nobody else.
+Incorrect. The prohibition covers deceptive election-related content broadly, including ballot measures, not only candidate-specific content.
 
-### C) Get faster at spotting it, and paste the correction at the start of each new chat in the project.
+### C) It is acceptable in this case because marketing teams are exempt from Usage Policy content rules
 
-Pasting the correction faster is still re-solving the same problem in every single conversation.
+Incorrect. The Usage Policy applies to all users and use cases; there is no blanket exemption for marketing teams.
 
-### D) Write the correction into the project's instructions so that it applies by default from now on. **(correct)**
+### D) It violates the policy's ban on deceptive content and fake personas used to manipulate civic discourse **(correct)**
 
-Correct. Project instructions are the durable home for a fix, so it stops depending on somebody remembering it.
+Correct. Creating fake personas and deceptive political content to manipulate civic processes is explicitly prohibited under the Usage Policy's misinformation and election-integrity provisions.
 
-### E) Ask the team to flag it in feedback each time, so the pattern can be tracked more precisely.
-
-Tracking the pattern documents the problem more precisely but does not actually change any output.
-
-## 136. An operations team is embedding Claude into a high-volume workflow that must remain low cost while still handling reasoning tasks such as classifying incoming requests with strong accuracy. Which model tier best matches this integration's requirements?
+## 137. An operations team is embedding Claude into a high-volume workflow that must remain low cost while still handling reasoning tasks such as classifying incoming requests with strong accuracy. Which model tier best matches this integration's requirements?
 
 ### A) The most capable, highest-priced model tier, since only it can perform any classification reasoning
 
@@ -2500,7 +2518,25 @@ Incorrect. Context window length is not the stated constraint in this scenario, 
 
 Correct. The fastest, most economical model tier is positioned for high-volume intelligent processing and cost-sensitive deployments that still need strong reasoning, matching this workflow's requirements.
 
-## 137. An HR project built eighteen months ago is still in daily use. Its benefits summary has since been superseded by a newer edition, and one uploaded policy was retired outright in a restructure. Which two actions should the project owner take? Select two.
+## 138. After one weak result, a marketing lead rewrites her prompt, gets a good answer, and immediately tells the team to adopt the new wording as the standard for all campaign briefs. What is the biggest concern with this?
+
+### A) Rewriting a prompt after a weak result is the wrong response, because the first output should always be accepted as given
+
+Iterating after a weak result is exactly the right response; the problem is the size of the evidence, not the act of revising.
+
+### B) Prompt wording cannot be shared between colleagues, so the team will be unable to reuse whatever she found to work well
+
+Prompt wording is ordinary text and is easy to share; nothing prevents the team reusing it.
+
+### C) One good result on one brief is thin evidence, and the wording may suit that example rather than the task **(correct)**
+
+Correct. A single success is not evidence that a change generalises. The improvement may reflect that one brief's specifics, so it needs checking across a few different cases before it becomes the team standard.
+
+### D) A standard prompt will stop the team from supplying their own context, so every brief will come back equally generic
+
+A shared starting prompt does not prevent anyone adding their own context on top of it.
+
+## 139. An HR project built eighteen months ago is still in daily use. Its benefits summary has since been superseded by a newer edition, and one uploaded policy was retired outright in a restructure. Which two actions should the project owner take? Select two.
 
 ### A) Remove the retired policy, because an obsolete document still gets used in answers. **(correct)**
 
@@ -2522,7 +2558,25 @@ Uploaded files do not carry a reliable age Claude can filter on, and the rule wo
 
 Two live editions of the same summary is the situation that causes staff to be quoted last year's benefits. If a historical version is genuinely needed, it belongs outside the project knowledge that answers everyday questions.
 
-## 138. A manager asks Claude, connected via the Calendar connector, to find a time when five attendees are all free next week. What can Claude do?
+## 140. A company deploying Claude in a customer support agent notices that the model occasionally produces confident-sounding but factually incorrect answers about product specifications. From an ethical usage standpoint, what is the most appropriate response?
+
+### A) Ground responses in verified documentation and route uncertain answers to human agents **(correct)**
+
+Correct. Grounding responses in verified sources and escalating uncertain or high-stakes cases to humans directly addresses the risk of confident hallucinations while keeping the tool useful.
+
+### B) Instruct the model through the system prompt to always sound highly confident to build trust
+
+Incorrect. Instructing the model to sound more confident would worsen the ethical problem by making incorrect answers even more convincing.
+
+### C) Accept the current error rate as a normal and unavoidable cost of generative AI in support
+
+Incorrect. Treating hallucination risk as unavoidable ignores practical mitigations like retrieval grounding and human escalation that responsible deployments should use.
+
+### D) Disable the agent's ability to mention any product specifications so it cannot be factually wrong
+
+Incorrect. Disabling all specification discussion removes the tool's core value rather than addressing the accuracy problem responsibly.
+
+## 141. A manager asks Claude, connected via the Calendar connector, to find a time when five attendees are all free next week. What can Claude do?
 
 ### A) Claude can identify mutual availability across attendees using the connector directly. **(correct)**
 
@@ -2540,7 +2594,7 @@ Incorrect. The connector is designed to view shared calendars and attendee avail
 
 Incorrect. Access to shared calendars for availability checks is a core connector feature.
 
-## 139. A team pastes each Claude-written summary into a second Claude conversation and asks it to flag any invented claims. The second conversation is not given the underlying documents. What is the greatest risk?
+## 142. A team pastes each Claude-written summary into a second Claude conversation and asks it to flag any invented claims. The second conversation is not given the underlying documents. What is the greatest risk?
 
 ### A) The second conversation will refuse the request because it cannot see the original documents.
 
@@ -2558,7 +2612,7 @@ Incorrect. The extra cost is real but modest, and it is not what makes this prac
 
 Incorrect. Rewriting is easy to notice and easy to correct. The damaging failure is a confident clearance the team believes.
 
-## 140. A stakeholder asks what a model's "reliable knowledge cutoff" means when the solutions architect recommends verifying any recent-event claims Claude makes. What is the most accurate explanation?
+## 143. A stakeholder asks what a model's "reliable knowledge cutoff" means when the solutions architect recommends verifying any recent-event claims Claude makes. What is the most accurate explanation?
 
 ### A) It is the date up to which the model was trained, so its awareness may be limited after this date. **(correct)**
 
@@ -2576,7 +2630,7 @@ Incorrect. The knowledge cutoff is fixed by the data used during training and is
 
 Incorrect. Responses after the knowledge cutoff are not randomly generated; the model continues to reason based on its training. Its awareness of recent events may be limited, but it does not suddenly produce random output.
 
-## 141. A consultant on a paid plan is checking how much material she can work with inside one chat. Which two statements are correct? Select two.
+## 144. A consultant on a paid plan is checking how much material she can work with inside one chat. Which two statements are correct? Select two.
 
 ### A) The context window grows automatically as soon as she upgrades to a higher paid plan.
 
@@ -2598,7 +2652,7 @@ Correct. A usage limit is a budget for interaction over a time period, while the
 
 Incorrect. This is the classic confusion between usage limits and length limits; the allowance does not set a chat's capacity.
 
-## 142. A data team asks Claude to analyze a dataset and wants extended reasoning reserved for questions that truly need multi-step thought, while simple lookups get a direct answer. How should this guidance best be phrased?
+## 145. A data team asks Claude to analyze a dataset and wants extended reasoning reserved for questions that truly need multi-step thought, while simple lookups get a direct answer. How should this guidance best be phrased?
 
 ### A) Reserve deeper reasoning for cases needing multi-step thought, answering directly otherwise **(correct)**
 
@@ -2616,7 +2670,25 @@ Incorrect. Randomly alternating disconnects the use of reasoning from actual que
 
 Incorrect. Never reasoning would undermine the multi-step analysis the data team wants for harder questions in the dataset.
 
-## 143. A teacher uses Claude to generate suggested scores and feedback for student essays. For essays where the suggested score is borderline between two grade bands, what should the teacher do?
+## 146. A support team keeps a Claude project for drafting customer replies. Which item is best placed in the project's knowledge rather than its instructions?
+
+### A) The rule that every reply should end with the support team's standard closing sentence.
+
+A standard closing sentence is a rule about how replies are written, so it is an instruction.
+
+### B) The direction to write in short paragraphs and to avoid technical language with customers.
+
+Paragraph length and vocabulary are directions about style, which belong in the instructions.
+
+### C) The requirement that any refund offered must be checked by a supervisor before sending.
+
+A supervisor check is a working rule for the team's replies rather than reference material.
+
+### D) The current product manual, which changes rarely and is needed by every chat there. **(correct)**
+
+Correct. Project knowledge holds reference material Claude should be able to draw on; the other three are directions about how to respond, which belong in the instructions.
+
+## 147. A teacher uses Claude to generate suggested scores and feedback for student essays. For essays where the suggested score is borderline between two grade bands, what should the teacher do?
 
 ### A) Automatically assign the higher grade band since the essay's quality is close to that level.
 
@@ -2634,7 +2706,7 @@ Anthropic's terms of service and responsible AI practices emphasize that develop
 
 While prompt engineering can improve outputs, regenerating responses may not resolve fundamental ambiguity and could lead to inconsistent results. The model's output is probabilistic, and borderline cases reflect inherent uncertainty; relying solely on regeneration without human judgment is not a recommended best practice per Anthropic's emphasis on human review for critical applications.
 
-## 144. A user asks Claude to research mode-style investigate an emerging technical standard, but Claude answers immediately from general knowledge without doing multiple searches. What is the most likely reason research mode did not activate?
+## 148. A user asks Claude to research mode-style investigate an emerging technical standard, but Claude answers immediately from general knowledge without doing multiple searches. What is the most likely reason research mode did not activate?
 
 ### A) Web search was not enabled, or the user did not explicitly prompt Claude for research, so it fell back to a normal response. **(correct)**
 
@@ -2652,7 +2724,7 @@ Incorrect. Research mode is still available on Claude.ai and has not been replac
 
 Incorrect. Research mode is supported on certain paid account tiers, so it is not true that no tier supports web-connected search. The scenario does not provide account details, and the feature is not universally unavailable.
 
-## 145. A team lead is told by a colleague that "the client thinks the summaries are off". No example and no further detail came with it. What should she do first?
+## 149. A team lead is told by a colleague that "the client thinks the summaries are off". No example and no further detail came with it. What should she do first?
 
 ### A) Get one specific summary the client objected to and what was wrong with it **(correct)**
 
@@ -2670,7 +2742,7 @@ Changing shared instructions on a paraphrase risks fixing something the client n
 
 Suspending a working arrangement over an unexamined comment is a disproportionate response to feedback nobody has confirmed.
 
-## 146. A user asks Claude to write a two-sentence reply to a coworker's Slack message. Claude responds with the two sentences directly in the conversation rather than opening a side panel. Why did this response not trigger an artifact?
+## 150. A user asks Claude to write a two-sentence reply to a coworker's Slack message. Claude responds with the two sentences directly in the conversation rather than opening a side panel. Why did this response not trigger an artifact?
 
 ### A) Artifacts are disabled by default and must be manually enabled for every conversation, preventing side panel opening for any content.
 
@@ -2688,7 +2760,7 @@ Incorrect. Research mode and artifacts are separate features; activating researc
 
 Incorrect. Two-sentence replies are standard in any chat conversation and are not restricted to Projects' knowledge bases. The content's length and self-contained nature—not the conversation type—determine artifact creation.
 
-## 147. A researcher asks Claude to identify specific misconfigurations in a regional power grid's control software so that substations can be remotely shut down during a labor dispute to pressure the utility. Is this an appropriate use of Claude?
+## 151. A researcher asks Claude to identify specific misconfigurations in a regional power grid's control software so that substations can be remotely shut down during a labor dispute to pressure the utility. Is this an appropriate use of Claude?
 
 ### A) No, because the Usage Policy bans using Claude to help disrupt critical infrastructure like power grids **(correct)**
 
@@ -2706,7 +2778,7 @@ Incorrect. Even with utility authorization, deliberately shutting down substatio
 
 Incorrect. Intent to use disruption as leverage rather than cause permanent damage does not make the request acceptable; disrupting critical infrastructure operations is itself prohibited.
 
-## 148. A user has connected the Gmail connector and asks Claude to reply to a client email. What happens once Claude has drafted the reply?
+## 152. A user has connected the Gmail connector and asks Claude to reply to a client email. What happens once Claude has drafted the reply?
 
 ### A) Claude holds the message for a workspace administrator to approve before anything leaves the account
 
@@ -2724,7 +2796,7 @@ Correct. Sending, replying and forwarding are write actions the mail connector s
 
 Mail connectors are not read-only. Alongside searching and reading, they support sending, replying to and forwarding messages.
 
-## 149. A learning and development lead needs Claude to gather evidence on training approaches used across the sector, which is a research task rather than a drafting task. Which two prompt elements matter most here? Select two.
+## 153. A learning and development lead needs Claude to gather evidence on training approaches used across the sector, which is a research task rather than a drafting task. Which two prompt elements matter most here? Select two.
 
 ### A) The register and tone the finished piece should adopt for the board reading it later.
 
@@ -2746,7 +2818,7 @@ Correct. Research needs a defined scope, otherwise there is no way to say whethe
 
 Correct. Traceability is separate from scope and is what makes a research output checkable, since the lead can confirm each claim against its origin.
 
-## 150. A bid team on a Team plan is setting up a shared project for public-sector tender responses. Two writers will draft in it and four managers will review. Which two set-up choices are appropriate? Select two.
+## 154. A bid team on a Team plan is setting up a shared project for public-sector tender responses. Two writers will draft in it and four managers will review. Which two set-up choices are appropriate? Select two.
 
 ### A) Paste the tender house rules at the top of each new chat instead of storing them.
 
@@ -2768,25 +2840,7 @@ The cap of five projects is a Free-account limit. This team is on a Team plan, w
 
 Correct, and on a separate axis from knowledge: this is the access decision. Project sharing is a Team and Enterprise capability, and the creator grants specific members either "Can view" or "Can edit" — those are the two levels that exist.
 
-## 151. Explanation
-
-### A) Add three to five diverse, relevant examples, including edge cases, wrapped in example tags so Claude can mirror the intended pattern. **(correct)**
-
-Correct. Anthropic's guidance is that a few well-crafted, diverse examples (few-shot/multishot prompting) are one of the most reliable ways to steer output consistency, and including edge cases in examples helps Claude generalize to ambiguous inputs.
-
-### B) Instruct Claude to always pick the first matching category alphabetically whenever a ticket could reasonably fit more than one category.
-
-Incorrect. An arbitrary tie-breaking rule like alphabetical order does not reflect the actual decision criteria and can produce systematically wrong categorizations for ambiguous tickets.
-
-### C) Increase the total number of categories so that ambiguous tickets have a narrower, more specific category to fall into.
-
-Incorrect. Adding more categories increases the classification surface and is likely to increase ambiguity rather than resolve the existing edge cases.
-
-### D) Remove the existing category descriptions entirely and let Claude infer the categories purely from ticket content.
-
-Incorrect. Removing the category descriptions removes information Claude needs and would likely worsen consistency rather than improve it.
-
-## 152. A consultant is setting up a Claude Project for a client engagement she will work on every week for months. Which two things belong in that set-up? Select two.
+## 155. A consultant is setting up a Claude Project for a client engagement she will work on every week for months. Which two things belong in that set-up? Select two.
 
 ### A) Project knowledge holding the client documents that each chat in the Project should draw on. **(correct)**
 
@@ -2808,25 +2862,7 @@ Incorrect. A Project is self-contained, so its context does not spread into othe
 
 Incorrect. A long opening message is a one-off prompt in one chat, not durable configuration for the Project.
 
-## 153. Explanation
-
-### A) Start a fresh chat and restate the constraints that must hold throughout **(correct)**
-
-Correct. The conversation itself has become the problem: it is long enough that early material no longer carries. A fresh chat carrying the constraints forward restores them as live instructions.
-
-### B) Repeat the constraints once more at the end of the current conversation
-
-Adding the constraints again extends the same overloaded conversation, so the next few answers may improve before the drift returns.
-
-### C) Ask Claude to confirm that it still remembers everything said earlier on
-
-A reassurance that it remembers is not evidence, and it does nothing about the length that caused the drift.
-
-### D) Ask for shorter answers so that the conversation grows more slowly now
-
-Shorter answers slow the growth of the conversation but leave the material already lost from view exactly where it is.
-
-## 154. A programme manager connects her Gmail account to a private Claude project so she can draft client status updates using recent correspondence. She writes a draft inside that project and then sends it in an email to an external partner agency the programme works with. What is the greatest risk in this workflow?
+## 156. A programme manager connects her Gmail account to a private Claude project so she can draft client status updates using recent correspondence. She writes a draft inside that project and then sends it in an email to an external partner agency the programme works with. What is the greatest risk in this workflow?
 
 ### A) The partner agency gains the same access to her mailbox the moment she sends the draft, because the connector automatically reaches everyone the email goes to.
 
@@ -2844,7 +2880,7 @@ Wrong. Claude draws on a connected mailbox only when something in it is relevant
 
 Wrong. The connector stays authorised on her account independently of what she does with the content it surfaces; copying text out of a project chat has no effect on the connection itself.
 
-## 155. A weekly digest produced with help from a project turns out to have been based on a source that has since been found unreliable. What should the person who publishes the digest do?
+## 157. A weekly digest produced with help from a project turns out to have been based on a source that has since been found unreliable. What should the person who publishes the digest do?
 
 ### A) Tell the recipients which past digests are affected and correct the source before the next one. **(correct)**
 
@@ -2862,7 +2898,7 @@ One bad source is a maintenance failure, not a reason to abandon a working proce
 
 Recipients keep relying on earlier digests they have no reason to doubt.
 
-## 156. A user asks Claude to write a 400-word case study about a customer's product rollout, noting they plan to revise the wording several times before sharing it with stakeholders. How should Claude format the response?
+## 158. A user asks Claude to write a 400-word case study about a customer's product rollout, noting they plan to revise the wording several times before sharing it with stakeholders. How should Claude format the response?
 
 ### A) As a Markdown artifact, because the case study is long-form, self-contained, and meant for iterative editing before external sharing. **(correct)**
 
@@ -2880,7 +2916,7 @@ Incorrect. Inline responses are embedded in the chat, making them harder to isol
 
 Incorrect. CSV is designed for tabular data, not narrative prose. A case study is a written narrative, and a tabular format is inappropriate for stakeholder distribution of such content.
 
-## 157. A charity communications officer is preparing a Claude-assisted case study about a named service user for the charity's public annual review. In which order should these steps be taken?
+## 159. A charity communications officer is preparing a Claude-assisted case study about a named service user for the charity's public annual review. In which order should these steps be taken?
 
 ### A) Publish it and keep a note of what was checked; confirm that the service user consents to her story being published; confirm that the draft says nothing about her that the case records do not support; state in the piece that Claude helped write it.
 
@@ -2898,7 +2934,7 @@ Correct. Consent from the person whose story it is comes first, because without 
 
 The disclosure is settled first, which is the least urgent of the four, while the two questions that protect the service user are left until later in the sequence.
 
-## 158. A team is about to connect a shared Google Drive to Claude for the first time. Which two considerations matter most before they do it? Select two.
+## 160. A team is about to connect a shared Google Drive to Claude for the first time. Which two considerations matter most before they do it? Select two.
 
 ### A) Whether organisational policy requires an approval before any data source is connected. **(correct)**
 
@@ -2920,7 +2956,7 @@ Incorrect. A connector changes what Claude can reach, not the size of the contex
 
 Incorrect. Material reaching Claude through a connector still needs the same scrutiny as any other source before it is relied on.
 
-## 159. A developer wants Claude to analyze a dataset and provide a reliable root-cause diagnosis. Which prompt structure is most effective for guiding Claude to systematically analyze the data and avoid premature conclusions?
+## 161. A developer wants Claude to analyze a dataset and provide a reliable root-cause diagnosis. Which prompt structure is most effective for guiding Claude to systematically analyze the data and avoid premature conclusions?
 
 ### A) Instruct Claude to examine the provided data and give an immediate answer by selecting the most frequent pattern and assuming it causes the observed outcome, without verifying correlation.
 
@@ -2938,7 +2974,7 @@ Correct: This prompt structure aligns with Anthropic's recommended practices for
 
 Incorrect: This relies on a temporal heuristic—earliest occurrence—which does not establish causality. An early pattern may be unrelated to the outcome. This method skips systematic correlation and hypothesis testing, which are essential for reliable analysis.
 
-## 160. A developer at a company is testing techniques to bypass Claude's safety guidelines so the model will produce restricted content, and shares these prompts internally as "productivity tips." Under Anthropic's Usage Policy, this activity is:
+## 162. A developer at a company is testing techniques to bypass Claude's safety guidelines so the model will produce restricted content, and shares these prompts internally as "productivity tips." Under Anthropic's Usage Policy, this activity is:
 
 ### A) Only a violation of the Usage Policy if the company later publishes the jailbreak techniques externally, as internal use for productivity tips is allowed.
 
@@ -2956,7 +2992,25 @@ Incorrect. Anthropic's Usage Policy applies to all uses of Claude, including int
 
 Correct. The Universal Usage Standards explicitly prohibit jailbreaking and any attempts to bypass Claude's safety mechanisms, regardless of the internal or external context. Labeling the prompts as 'productivity tips' does not exempt this activity from the policy.
 
-## 161. A user has decided they no longer want Claude to be able to reach a connected service. What should they do first?
+## 163. A consumer-facing startup builds a chatbot on Claude for its e-commerce site and wants to follow Anthropic's guidance on transparency. What should the company implement at the start of a customer's chat session?
+
+### A) No disclosure at all, since chatbots are exempt from AI disclosure requirements under the policy
+
+Incorrect. Consumer chatbots are explicitly called out as needing AI disclosure at the start of the session, not exempted from it.
+
+### B) A one-time disclosure buried in the site's general terms of service that customers rarely read
+
+Incorrect. A buried terms-of-service mention does not meet the requirement for clear, session-level disclosure that a customer would actually see.
+
+### C) A clear notice at the start of the session disclosing that the customer is talking to an AI system **(correct)**
+
+Correct. Anthropic's guidance for consumer-facing chatbot applications requires disclosing AI involvement at the start of the session so users know they are talking to an AI.
+
+### D) A hidden instruction telling Claude to claim it is a human agent whenever a customer asks directly
+
+Incorrect. Instructing the model to impersonate a human and deny being AI directly violates the Usage Policy's prohibition on deceptive impersonation.
+
+## 164. A user has decided they no longer want Claude to be able to reach a connected service. What should they do first?
 
 ### A) Change the password on the service, which removes it from the connector list automatically.
 
@@ -2974,7 +3028,7 @@ The connection remains live and reachable from any new conversation.
 
 A per-chat request depends on being remembered every time and leaves the access in place.
 
-## 162. A Claude.ai Pro user's conversation is flagged by automated safety classifiers, which generate safety classification scores in addition to the conversation content. How long may Anthropic retain those safety classification scores compared to the flagged inputs and outputs?
+## 165. A Claude.ai Pro user's conversation is flagged by automated safety classifiers, which generate safety classification scores in addition to the conversation content. How long may Anthropic retain those safety classification scores compared to the flagged inputs and outputs?
 
 ### A) Safety classification scores may be retained for up to 7 years, longer than the 2-year window for flagged inputs and outputs **(correct)**
 
@@ -2992,7 +3046,7 @@ Incorrect. The 5-year figure applies to the optional model improvement and feedb
 
 Incorrect. The 30-day window applies to standard back-end deletion of routine deleted conversations, not to safety classification scores from flagged content.
 
-## 163. A school's exams officer has been asked to plan a new revision-support programme for the summer term and intends to use Claude to help build the plan. What should she do first?
+## 166. A school's exams officer has been asked to plan a new revision-support programme for the summer term and intends to use Claude to help build the plan. What should she do first?
 
 ### A) Have three colleagues each request their own plan and compare the four versions later
 
@@ -3010,7 +3064,7 @@ A generic plan built on unstated constraints has to be unpicked afterwards, and 
 
 Correct. A plan is only useful if it respects the constraints it has to live inside. Stating dates, staffing, rooms and budget up front is what turns a generic outline into something the school can actually run.
 
-## 164. An HR coordinator uploads a policy handbook to Project A's knowledge base, so the document resides only in that project. Later, the coordinator starts a new, unrelated 'Vendor Contracts' Project B without any further action. What is the handbook's availability in Project B?
+## 167. An HR coordinator uploads a policy handbook to Project A's knowledge base, so the document resides only in that project. Later, the coordinator starts a new, unrelated 'Vendor Contracts' Project B without any further action. What is the handbook's availability in Project B?
 
 ### A) The handbook is not available in Project B, since each project's knowledge base is scoped to itself alone **(correct)**
 
@@ -3028,7 +3082,7 @@ Incorrect. Creating a new project has no effect on existing projects or their kn
 
 Incorrect. Knowledge base scoping is determined by the project container, not by billing plan tier. While different plans may offer features like higher file limits or longer context windows, they do not alter the fundamental rule that each project has its own isolated set of reference files.
 
-## 165. A parenting-app startup wants to build a chatbot for teenagers using Claude, marketed as a virtual "friend" that engages in romantic and sexual role-play with users who state they are 15 years old. Is this an appropriate use of Claude?
+## 168. A parenting-app startup wants to build a chatbot for teenagers using Claude, marketed as a virtual "friend" that engages in romantic and sexual role-play with users who state they are 15 years old. Is this an appropriate use of Claude?
 
 ### A) Yes, because these interactions are fictional role-play rather than real human contact or communication
 
@@ -3046,7 +3100,7 @@ Incorrect. Parental consent does not override the Usage Policy's prohibition on 
 
 Incorrect. Adding age verification does not resolve the issue, since the underlying content itself is prohibited regardless of how age is confirmed.
 
-## 166. A shared services team receives a request to use Claude for summarising supplier contracts. Which sequence best analyses the use case before any commitment is made?
+## 169. A shared services team receives a request to use Claude for summarising supplier contracts. Which sequence best analyses the use case before any commitment is made?
 
 ### A) Confirm the decision the summaries support; check the upload policy; try a handful of contracts; compare with trusted summaries. **(correct)**
 
@@ -3064,7 +3118,7 @@ Comparing with trusted summaries before any have been produced is impossible, an
 
 Starting with a comparison there is nothing to compare against, and leaving the policy check until last means the contracts have already been uploaded by the time anyone asks whether they should have been.
 
-## 167. An operations team is agreeing which Claude-assisted outputs must be reviewed by a person before use. Which two situations clearly require that review? Select two.
+## 170. An operations team is agreeing which Claude-assisted outputs must be reviewed by a person before use. Which two situations clearly require that review? Select two.
 
 ### A) A first draft of brainstorming prompts to be discussed at a team workshop later.
 
@@ -3086,7 +3140,7 @@ Correct. External publication under the organisation's name is hard to withdraw 
 
 Correct. This is a different trigger from publication: decisions affecting a person's employment must be made and owned by a human regardless of how good the draft is.
 
-## 168. An operations director presents the results of a two-week Claude pilot to the executive team, showing only the three best outputs the team produced. What is the greatest risk in communicating the results this way?
+## 171. An operations director presents the results of a two-week Claude pilot to the executive team, showing only the three best outputs the team produced. What is the greatest risk in communicating the results this way?
 
 ### A) The pilot's outputs cannot be reused afterwards, because examples shown to executives must be regenerated.
 
@@ -3104,7 +3158,7 @@ A repeat pilot is not the inherent risk; misplaced expectations are.
 
 Correct. Cherry-picked results overstate the typical case, and the gap surfaces later as disappointment or lost trust.
 
-## 169. A retention lead asked why cancellations rose sharply in the last quarter. The answer explains at length what cancellation rates are and how they are generally measured. How should she judge this output?
+## 172. A retention lead asked why cancellations rose sharply in the last quarter. The answer explains at length what cancellation rates are and how they are generally measured. How should she judge this output?
 
 ### A) As accurate but off target, because it explains the topic instead of addressing the rise she asked about. **(correct)**
 
@@ -3122,7 +3176,7 @@ A general answer indicates that the request was read broadly, not that the speci
 
 Shortening reduces the volume of material that does not address her question, leaving a briefer answer to the wrong question.
 
-## 170. A project manager has two hundred pages of stakeholder interview notes and needs to turn them into a requirements draft. Which two uses of Claude fit this task? Select two.
+## 173. A project manager has two hundred pages of stakeholder interview notes and needs to turn them into a requirements draft. Which two uses of Claude fit this task? Select two.
 
 ### A) Have Claude list where the notes contradict one another so a person resolves each conflict. **(correct)**
 
@@ -3144,7 +3198,7 @@ Incorrect. Scope is a decision the team owns, and delegating it removes the acco
 
 Incorrect. Sign-off on behalf of stakeholders is not a task to delegate; it misrepresents people who never agreed to it.
 
-## 171. A product manager asks Claude to explain a new caching feature to both internal engineers and non-technical customers, but the first draft uses the same technical wording for each. What is the most effective way to adapt this output for both audiences?
+## 174. A product manager asks Claude to explain a new caching feature to both internal engineers and non-technical customers, but the first draft uses the same technical wording for each. What is the most effective way to adapt this output for both audiences?
 
 ### A) Keep the one technical draft and let each reader skip the parts that do not apply to them
 
@@ -3162,7 +3216,7 @@ Incorrect. A glossary still requires customers to translate jargon themselves ra
 
 Incorrect. Trimming length without changing vocabulary or explanation depth does not address the mismatch between a technical explanation and a non-technical reader.
 
-## 172. A support-ticket triage prompt gives Claude a single sentence: "Categorize this ticket." Categories come back inconsistent between runs, and the team wants a fix that addresses the root cause rather than adding post-processing. What should they change first?
+## 175. A support-ticket triage prompt gives Claude a single sentence: "Categorize this ticket." Categories come back inconsistent between runs, and the team wants a fix that addresses the root cause rather than adding post-processing. What should they change first?
 
 ### A) Lower the temperature parameter to zero so sampling becomes deterministic and the same ticket always returns the same category.
 
@@ -3180,7 +3234,7 @@ Correct. Claude responds well to clear, explicit instructions; a vague one-line 
 
 Incorrect. Manual relabeling is a workaround applied after generation, not a fix to the prompt causing the inconsistency.
 
-## 173. An analyst asks Claude to compute a set of financial ratios from a spreadsheet and explain the results in prose, without using a code execution tool. What is the safest way to handle the numeric outputs before they are used in a report?
+## 176. An analyst asks Claude to compute a set of financial ratios from a spreadsheet and explain the results in prose, without using a code execution tool. What is the safest way to handle the numeric outputs before they are used in a report?
 
 ### A) Ask Claude to generate a detailed step-by-step explanation of each calculation and include that in the report as justification.
 
@@ -3198,7 +3252,7 @@ Incorrect. While Claude's outputs are often accurate, no AI model is certified t
 
 Incorrect. Running a second, independent Claude session can help catch some inconsistencies, but it does not guarantee correctness because both instances may make the same type of arithmetic mistake. Manual verification against the original data is a more dependable safeguard.
 
-## 174. A regional team keeps the manual for a discontinued product in a project's knowledge base, on the grounds that someone may still ask about it one day. What is the greatest concern?
+## 177. A regional team keeps the manual for a discontinued product in a project's knowledge base, on the grounds that someone may still ask about it one day. What is the greatest concern?
 
 ### A) Older files are read first, so any newer document uploaded after them is skipped in every answer.
 
@@ -3216,7 +3270,7 @@ Correct. Retired material that is still loaded competes with current sources and
 
 There is no restriction on the age or status of an uploaded document.
 
-## 175. A product manager asks Claude to "Create an analytics dashboard" and receives a bare-bones result with only the most basic charts. The manager wants a fully-featured result on the first try. What should they change about the prompt?
+## 178. A product manager asks Claude to "Create an analytics dashboard" and receives a bare-bones result with only the most basic charts. The manager wants a fully-featured result on the first try. What should they change about the prompt?
 
 ### A) Lower the temperature setting so that Claude systematically generates more creative dashboard layouts.
 
@@ -3234,7 +3288,7 @@ Incorrect. Asking Claude to list admired dashboards introduces an unrelated prel
 
 Correct. Explicitly requesting many relevant features and going beyond basic charts directly communicates the desired scope and completeness to Claude. This replaces the vague prompt with clear, detailed instructions, ensuring a fully-featured dashboard on the first attempt.
 
-## 176. A conference programme coordinator uploaded ten breakout-session proposals and asked Claude to summarise each one with a verdict against the published selection criteria. The reply is fluent and well organised. What should she do first?
+## 179. A conference programme coordinator uploaded ten breakout-session proposals and asked Claude to summarise each one with a verdict against the published selection criteria. The reply is fluent and well organised. What should she do first?
 
 ### A) Read each verdict carefully and decide whether it sounds reasonable to her on its own terms.
 
@@ -3252,7 +3306,7 @@ Shortening a summary that may already be missing proposals or criteria makes the
 
 Correct. A fluent reply can still be an incomplete one, and completeness is checked against the original request rather than against how the text reads. Confirming that all ten proposals and all the criteria are actually covered is the cheapest check available and it shapes everything she does next.
 
-## 177. Claude has produced two credible candidate plans for a departmental restructure, and the sponsor asks the planning lead which one is better. What is the most appropriate next step?
+## 180. Claude has produced two credible candidate plans for a departmental restructure, and the sponsor asks the planning lead which one is better. What is the most appropriate next step?
 
 ### A) Ask Claude to rewrite both plans in the same structure so the sponsor can read them side by side more easily.
 
@@ -3270,7 +3324,7 @@ Merging attractive pieces of two plans often breaks the internal logic that made
 
 Correct. Naming the criteria first turns "which is better" into a question that can be answered and defended, and recording the reasoning gives the sponsor something to challenge. Claude can then do the comparison work against a standard the humans set.
 
-## 178. A support operations lead must classify a large daily backlog of short inbound messages, and separately needs one deep analysis of a tangled contract dispute. Which two choices fit? Select two.
+## 181. A support operations lead must classify a large daily backlog of short inbound messages, and separately needs one deep analysis of a tangled contract dispute. Which two choices fit? Select two.
 
 ### A) Use the deepest-reasoning tier for both of the jobs, since the strongest option is never bad.
 
@@ -3292,7 +3346,7 @@ Correct. High-volume, low-complexity classification is exactly where the fastest
 
 Incorrect. Tier choice changes depth, speed and quota use, so treating it as incidental is how both of these jobs go wrong.
 
-## 179. A user asks, 'When was the Eiffel Tower completed?' The model responds, 'The Eiffel Tower was completed in 1887.' The actual completion year is 1889. How could a reviewer most reliably detect this error?
+## 182. A user asks, 'When was the Eiffel Tower completed?' The model responds, 'The Eiffel Tower was completed in 1887.' The actual completion year is 1889. How could a reviewer most reliably detect this error?
 
 ### A) Search for any contradictory dates in the model's previous answers.
 
@@ -3310,7 +3364,7 @@ Incorrect. Verifying grammatical correctness only checks sentence structure, not
 
 Correct. Comparing the response to a trusted encyclopedia entry directly verifies the factual claim against a reliable external source. This method can detect errors regardless of the model's confidence or consistency.
 
-## 180. A marketer says she has 'run out of context', yet she can immediately open a new chat and continue working without waiting. Which statement fits what happened?
+## 183. A marketer says she has 'run out of context', yet she can immediately open a new chat and continue working without waiting. Which statement fits what happened?
 
 ### A) She reached a usage limit for the period; that one chat still had plenty of room left inside it.
 
@@ -3328,7 +3382,7 @@ Correct. Length limits are confined to a single conversation's context window, w
 
 Incorrect. The two limits are independent. Filling one conversation says nothing about the allowance left for the period.
 
-## 181. Two rounds into designing a Claude-assisted induction pack, an education team finds the drafts are accurate but pitched at the wrong level for new teaching assistants. What should they do first?
+## 184. Two rounds into designing a Claude-assisted induction pack, an education team finds the drafts are accurate but pitched at the wrong level for new teaching assistants. What should they do first?
 
 ### A) Ask the teaching assistants to edit each draft themselves as part of their induction
 
@@ -3346,7 +3400,7 @@ A stronger model still has no idea who the reader is; escalating tier does not s
 
 Changing everything at once means that if the next draft is better, nobody will know which change was responsible.
 
-## 182. An edtech company builds a Claude-powered tutoring app aimed at children aged 8 to 12, using the same content settings and data handling as its adult-facing tutoring product, with no additional protections added. Is this an appropriate use of Claude?
+## 185. An edtech company builds a Claude-powered tutoring app aimed at children aged 8 to 12, using the same content settings and data handling as its adult-facing tutoring product, with no additional protections added. Is this an appropriate use of Claude?
 
 ### A) Yes, because educational tutoring content is automatically exempt from minor-protection requirements
 
@@ -3364,7 +3418,7 @@ Correct. The Usage Policy calls for additional protections when a product serves
 
 Incorrect. General parental consent does not substitute for the enhanced, age-appropriate protections the Usage Policy requires for products aimed at minors.
 
-## 183. A customer support director wants to justify a Claude-based ticket triage pilot to executives and asks how to frame its value. What is the best way to present this business case?
+## 186. A customer support director wants to justify a Claude-based ticket triage pilot to executives and asks how to frame its value. What is the best way to present this business case?
 
 ### A) Present only the model's technical architecture details, since executives mainly evaluate proposals on implementation specifics.
 
@@ -3382,7 +3436,7 @@ Incorrect. Skipping evaluation removes the evidence needed to demonstrate value 
 
 Incorrect. Promising complete elimination of the team's workload overstates the technology's impact and sets an unrealistic expectation.
 
-## 184. An operations manager wants to confirm a claim Claude made about her own organisation's escalation process. Where should she check?
+## 187. An operations manager wants to confirm a claim Claude made about her own organisation's escalation process. Where should she check?
 
 ### A) In the organisation's current published procedure, or with the person who owns it. **(correct)**
 
@@ -3400,7 +3454,7 @@ Incorrect. Memory of an older version of a process is a weak authority when a cu
 
 Incorrect. Independence is not the criterion here. An internal process is defined internally, and no public source describes it.
 
-## 185. A manager wants to know whether Claude's summary of a report she uploaded is faithful to it. What is the most reliable check?
+## 188. A manager wants to know whether Claude's summary of a report she uploaded is faithful to it. What is the most reliable check?
 
 ### A) Check that the summary's length is proportionate to the length of the original report.
 
@@ -3418,7 +3472,7 @@ Correct. The uploaded report is the standard the summary is meant to represent, 
 
 Incorrect. A self-assigned score is generated in the same way as the summary and carries no independent weight.
 
-## 186. A project lead has let a project's knowledge base grow to hundreds of documents, including several superseded versions of the same policy. What is the greatest risk?
+## 189. A project lead has let a project's knowledge base grow to hundreds of documents, including several superseded versions of the same policy. What is the greatest risk?
 
 ### A) Retrieval will stop working altogether once the knowledge base grows past the model's context window.
 
@@ -3436,25 +3490,7 @@ Correct. When the wrong source is retrieved, the answer is wrong at the root. Re
 
 Incorrect. No setup or configuration is required; retrieval turns itself on when the knowledge base grows large enough.
 
-## 187. Explanation
-
-### A) Take the conflict back to the team and settle which of the two now holds **(correct)**
-
-Correct. The feedback contradicts the agreed definition of good. Adjusting the approach means resolving that contradiction openly, not silently letting the newest voice overwrite an agreed standard.
-
-### B) Follow the reviewer's request, because feedback from a reviewer takes priority
-
-Acting on it immediately lets one reviewer overturn a team decision without the team knowing it has changed.
-
-### C) Produce both a one-page version and a long version for every briefing sent out
-
-Producing two versions of everything doubles the work and leaves the underlying disagreement unresolved.
-
-### D) Ignore the request, because the one-page rule was agreed before the feedback
-
-Dismissing the feedback because it came later ignores the possibility that the one-page rule is now wrong.
-
-## 188. A shared services director says the invoice-processing team should be "more efficient" and asks an analyst to use Claude to work out how. What should the analyst do first?
+## 190. A shared services director says the invoice-processing team should be "more efficient" and asks an analyst to use Claude to work out how. What should the analyst do first?
 
 ### A) Ask Claude to list the common inefficiencies in invoice processing and check which of them apply here.
 
@@ -3472,7 +3508,7 @@ Correct. Efficiency pulls in different directions: faster processing can raise e
 
 A full redesign produced before the goal is agreed optimises for whatever the tool assumes efficiency means. It also invites the director to react to a finished proposal rather than to state the outcome being sought.
 
-## 189. An analyst finds that a figure in Claude's summary of a spreadsheet she uploaded does not match what she expected. What should she do first?
+## 191. An analyst finds that a figure in Claude's summary of a spreadsheet she uploaded does not match what she expected. What should she do first?
 
 ### A) Correct the figure in the summary to the value she expected, then carry on with the review.
 
@@ -3490,25 +3526,7 @@ Incorrect. Choosing between two generated answers on plausibility never touches 
 
 Correct. The source she supplied is the authority here, and checking it distinguishes a summarisation error from a mistaken assumption before anything is changed.
 
-## 190. Explanation
-
-### A) Ask Claude to disregard everything discussed before yesterday and carry on in the same conversation.
-
-An instruction to ignore earlier content leaves that content in the conversation, still available to be drawn on.
-
-### B) Move to a model with deeper reasoning, so the length of the conversation is handled more reliably.
-
-A different model inherits the same crowded conversation and the same contradictions inside it.
-
-### C) Start a fresh chat with a short recap and the current documents, keeping key material in a project. **(correct)**
-
-Correct. The conversation itself is the problem, so the fix is a clean start carrying only what still matters, with the durable material kept somewhere it does not have to be re-established each time.
-
-### D) Repeat the most recent decisions in every message so the earlier workstream stops shaping the answers.
-
-Restating decisions in every message is laborious and still competes with three days of superseded discussion.
-
-## 191. A legal team needs to compare two lengthy contracts to highlight differences. What is the safest decomposition approach with Claude?
+## 192. A legal team needs to compare two lengthy contracts to highlight differences. What is the safest decomposition approach with Claude?
 
 ### A) Ask Claude to output a comparison table with both contracts in a single request.
 
@@ -3525,24 +3543,6 @@ Correct. Extracting key clauses first reduces complexity, focuses on relevant pa
 ### D) Load both contracts into a single context window and ask for a detailed line-by-line diff.
 
 Incorrect. Loading both lengthy contracts into a single context window to generate a detailed line-by-line diff risks exceeding the token limit, resulting in truncated input or an incomplete diff. This approach is less safe than decomposing the task for thorough comparison.
-
-## 192. Explanation
-
-### A) Drop the summarising step, because nothing downstream depends on its output **(correct)**
-
-Correct. A step whose output nobody uses is pure overhead. Removing work that changes no decision is the cheapest and most durable efficiency gain available.
-
-### B) Keep the step and ask for a shorter summary so it costs the team less time
-
-Shortening a summary that nobody relies on reduces the waste slightly but keeps a step that serves no purpose.
-
-### C) Keep the step and move the summary into the project so it can be reused later
-
-Storing an unused summary preserves it for reuse that is not happening and adds material to maintain.
-
-### D) Keep the step and have a second colleague read the summary as a cross-check
-
-Adding a second reader to an unused output doubles the effort spent on something that changes nothing.
 
 ## 193. A researcher pastes a forty-page methodology handbook into a project's instructions field instead of uploading it as a document. What is the greatest concern with doing this?
 
@@ -3562,25 +3562,7 @@ Correct. Instructions are for concise standing direction; burying a handful of r
 
 Instructions belong to the project, and members with access see the same ones.
 
-## 194. Explanation
-
-### A) Extend the pilot by a month so that more people have the chance to form a settled view of it.
-
-More time produces more opinion without a shared standard to interpret any of it against.
-
-### B) Agree what an acceptable draft looks like, then gather specific examples from both groups. **(correct)**
-
-Correct. The two groups may be applying different standards to different work, so a shared definition of an acceptable draft, plus real examples, turns opinion into something that can be acted on.
-
-### C) Rewrite the shared instructions using the suggestions from the colleagues who were most critical.
-
-Rewriting to satisfy the critics assumes their cases are representative, which nobody has checked.
-
-### D) Adopt the workflow for the group that likes it and withdraw it from the group that does not.
-
-Splitting the group accepts the disagreement without ever discovering what caused it.
-
-## 195. A workflow owner wants feedback from a four-week pilot that will genuinely help her improve the arrangement. Which feedback format is most useful for that purpose?
+## 194. A workflow owner wants feedback from a four-week pilot that will genuinely help her improve the arrangement. Which feedback format is most useful for that purpose?
 
 ### A) Logged cases pairing the input given, the output produced, and what the user needed instead. **(correct)**
 
@@ -3598,7 +3580,7 @@ Usage counts show adoption rather than quality. Heavy use can mean the arrangeme
 
 An end-of-pilot comment box collects thoughts long after the events that prompted them, so the detail has faded. It also mixes design feedback with unrelated grumbles and offers no link to specific outputs.
 
-## 196. A training lead asked for a course overview and got four short paragraphs where a detailed document was needed. Which two prompt revisions best address a response that is too brief? Select two.
+## 195. A training lead asked for a course overview and got four short paragraphs where a detailed document was needed. Which two prompt revisions best address a response that is too brief? Select two.
 
 ### A) Request twice as many overviews so there is more material to choose between later.
 
@@ -3619,6 +3601,24 @@ Correct. A required section list converts "more detail" into a concrete specific
 ### E) Say who will read it and why they need the reasoning as well as the conclusions. **(correct)**
 
 Correct. Audience and purpose set the depth from a different direction: they tell Claude which explanations matter, not merely how many headings to fill.
+
+## 196. A team's Claude-assisted reporting routine includes a step in which Claude summarises a document that a colleague then reads in full anyway. What is the most appropriate optimisation?
+
+### A) Drop the summarising step, because nothing downstream depends on its output **(correct)**
+
+Correct. A step whose output nobody uses is pure overhead. Removing work that changes no decision is the cheapest and most durable efficiency gain available.
+
+### B) Keep the step and ask for a shorter summary so it costs the team less time
+
+Shortening a summary that nobody relies on reduces the waste slightly but keeps a step that serves no purpose.
+
+### C) Keep the step and move the summary into the project so it can be reused later
+
+Storing an unused summary preserves it for reuse that is not happening and adds material to maintain.
+
+### D) Keep the step and have a second colleague read the summary as a cross-check
+
+Adding a second reader to an unused output doubles the effort spent on something that changes nothing.
 
 ## 197. An insurer's manual claims process involves five separate teams handing a claim off through email at each stage. Leadership decides to rebuild the process so a single Claude-driven agent triages, requests documents, and routes each claim end to end. Which term best describes this change?
 
@@ -3696,25 +3696,7 @@ Length is not the problem. Asking for more words on an under-specified brief pro
 
 Style adjectives such as "warm" and "enjoyable" do not supply any of the missing product facts, so the draft stays generic and simply changes register.
 
-## 201. Explanation
-
-### A) Identify the pattern they share; re-check the change on those same examples; collect the specific outputs that went wrong; change the instruction to address that pattern.
-
-A pattern cannot be identified before the failing examples have been collected.
-
-### B) Collect the specific outputs that went wrong; identify the pattern they share; change the instruction to address that pattern; re-check the change on those same examples. **(correct)**
-
-Correct. Evidence first, then the pattern, then a change aimed at that pattern, then a re-check on the same cases so the improvement is measured rather than assumed.
-
-### C) Change the instruction to address the pattern; collect the specific outputs that went wrong; re-check the change on those same examples; identify the pattern they share.
-
-Changing the instruction before gathering the failures means aiming at a pattern nobody has established.
-
-### D) Re-check the change on those same examples; change the instruction to address the pattern; identify the pattern they share; collect the specific outputs that went wrong.
-
-Re-checking a change that has not been made yet inverts the whole loop.
-
-## 202. A research team spends much of each week manually copying findings between four separate documents. Which two responses fit this situation best? Select two.
+## 201. A research team spends much of each week manually copying findings between four separate documents. Which two responses fit this situation best? Select two.
 
 ### A) Treat the copying itself as the thing to redesign, rather than speeding it up as it stands. **(correct)**
 
@@ -3736,7 +3718,7 @@ Incorrect. Automating the copying preserves four diverging documents and simply 
 
 Incorrect. Speeding up a redundant step leaves the structural problem, and four sources still drift apart from each other.
 
-## 203. A communications team has a reliable recipe for drafting: name the audience, set the format and attach examples of accepted work. Applied to a question about why complaint volumes doubled, it returns a weak answer. What is missing?
+## 202. A communications team has a reliable recipe for drafting: name the audience, set the format and attach examples of accepted work. Applied to a question about why complaint volumes doubled, it returns a weak answer. What is missing?
 
 ### A) Examples of complaint analyses that the team has previously accepted, so the shape of a good answer is clear.
 
@@ -3753,6 +3735,24 @@ A sharper audience improves how the answer is pitched, and an answer pitched per
 ### D) The complaint data itself, along with the specific question about it that the answer is expected to settle. **(correct)**
 
 Correct. Drafting is constrained by audience, format and voice; analysis is constrained by evidence and by the question being asked. The recipe supplies all of the first set and none of the second, so it produces well-presented speculation.
+
+## 203. A team is deciding whether to use Claude to fully automate final housing loan approval decisions with no human involvement at any stage, in order to reduce processing time. What is the primary ethical risk of this design choice?
+
+### A) The risk is purely a data storage concern about how long applicant records are retained
+
+Incorrect. Data retention is a separate privacy topic and does not capture the core risk of unreviewed, automated high-stakes decisions.
+
+### B) The only real risk is a minor increase in latency compared to a human-reviewed workflow
+
+Incorrect. The primary concern is harm from unreviewed erroneous decisions, not processing speed, which full automation would actually improve.
+
+### C) There is no meaningful risk, since housing loans are not a high-risk category under the policy
+
+Incorrect. Housing decisions are explicitly treated as high-risk given their public welfare and social equity implications.
+
+### D) Removing review from a high-impact decision like housing risks harming applicants unchecked **(correct)**
+
+Correct. Housing is a high-risk category with significant welfare implications, so removing human review entirely means errors or biased outcomes could directly harm applicants with no safeguard to catch them.
 
 ## 204. A cybersecurity vendor asks Claude to reverse-engineer a competitor's software and write exploit code for a previously undisclosed vulnerability, intending to sell the exploit on a private marketplace. Is this an appropriate use of Claude?
 
@@ -3830,7 +3830,25 @@ Incorrect. Text does not need to be converted to images to be processed; this mi
 
 Correct. Every model has a fixed context window, so inputs that exceed it must be broken into chunks, summarized, or narrowed via retrieval rather than sent in one request.
 
-## 208. Over eight rounds of revision, a team notices that fixing the newest complaint often brings back a problem they had solved three rounds earlier. Nothing about their requirements is written down. What is the greatest risk?
+## 208. A bid writer asks Claude to "check whether our answer meets the requirement" and pastes only the answer, not the requirement. The reply is confident and unhelpful. What should she do first?
+
+### A) Paste the requirement itself, so Claude has the thing it must check against **(correct)**
+
+Correct. The request asked for a comparison while supplying only one side of it. Supplying the missing material is the fix; nothing else can substitute for the requirement text.
+
+### B) Move to a more capable model and send exactly the same message once again
+
+A stronger model still cannot see a requirement that was never provided, so the answer will be confidently unhelpful again.
+
+### C) Ask Claude to recall the requirement from what it knows about bids like this
+
+Asking Claude to reconstruct the requirement invites a plausible invention that the writer would then check her answer against.
+
+### D) Repeat the same request and stress that the check must be thorough this time
+
+Repeating the request with added emphasis changes the tone, not the information, so the same gap remains.
+
+## 209. Over eight rounds of revision, a team notices that fixing the newest complaint often brings back a problem they had solved three rounds earlier. Nothing about their requirements is written down. What is the greatest risk?
 
 ### A) The team will spend more time on revisions than they would have spent writing the document themselves.
 
@@ -3848,7 +3866,7 @@ Prose quality drifting under repeated revision is worth watching, but it is a mi
 
 Correct. Without a written list of everything the document must satisfy, each round is checked only against the latest complaint. Requirements settled earlier are not re-tested, so the work circles instead of converging.
 
-## 209. A membership officer asked Claude for the wording of a renewal reminder that her team will revise repeatedly over the next few weeks before sending it. Claude returned it as an ordinary reply in the chat. What should she do first?
+## 210. A membership officer asked Claude for the wording of a renewal reminder that her team will revise repeatedly over the next few weeks before sending it. Claude returned it as an ordinary reply in the chat. What should she do first?
 
 ### A) Copy the wording into the team's chat channel so that colleagues can suggest changes there.
 
@@ -3866,7 +3884,7 @@ More variants add choice, not durability. The team would still be editing text t
 
 Starting a new conversation for every change loses the context behind earlier edits and produces a trail of near-identical drafts with no authoritative copy.
 
-## 210. A support team lead wants several colleagues to be able to view and use the same set of onboarding documents and a shared system of custom instructions when chatting with Claude, without each person needing to configure their own settings. Which feature addresses this on a Team or Enterprise plan?
+## 211. A support team lead wants several colleagues to be able to view and use the same set of onboarding documents and a shared system of custom instructions when chatting with Claude, without each person needing to configure their own settings. Which feature addresses this on a Team or Enterprise plan?
 
 ### A) An artifact exported as a file and emailed to each team member separately
 
@@ -3884,7 +3902,7 @@ Correct. Team and Enterprise projects can be shared with specific members or the
 
 Research mode searches the web and connected sources on demand; it is not a mechanism for sharing a persistent internal knowledge base and instructions among team members.
 
-## 211. A pilot of a Claude-assisted proposal workflow has produced mixed results across its first month. Which two iteration steps are appropriate now? Select two.
+## 212. A pilot of a Claude-assisted proposal workflow has produced mixed results across its first month. Which two iteration steps are appropriate now? Select two.
 
 ### A) Compare the weak outputs against the strong ones to find what the weak requests were missing. **(correct)**
 
@@ -3906,7 +3924,7 @@ Correct. Making the fix persistent in shared instructions stops the team re-solv
 
 Incorrect. Private tricks leave the shared configuration untouched, so the improvement never reaches anyone else.
 
-## 212. A team is writing the instructions for a shared project that will be used for all of its customer communications. Which direction belongs in the project instructions rather than in an individual chat?
+## 213. A team is writing the instructions for a shared project that will be used for all of its customer communications. Which direction belongs in the project instructions rather than in an individual chat?
 
 ### A) Summarise the complaint from the Ashworth account that came in during yesterday afternoon.
 
@@ -3924,7 +3942,7 @@ A specific deliverable for this week belongs in the chat where it is being produ
 
 A request about material pasted into one conversation cannot serve as project-wide direction.
 
-## 213. A consultancy's policy requires AI assistance to be disclosed on client deliverables and forbids client data on personal accounts. A consultant drafted a client report with Claude on her personal Pro account. Which two things must she now do? Select two.
+## 214. A consultancy's policy requires AI assistance to be disclosed on client deliverables and forbids client data on personal accounts. A consultant drafted a client report with Claude on her personal Pro account. Which two things must she now do? Select two.
 
 ### A) Ask the client to confirm in writing that they are comfortable receiving an AI-assisted written report.
 
@@ -3946,7 +3964,7 @@ Correct on a separate axis: the breach has already happened, and disclosure of t
 
 Deleting the evidence conceals the incident and prevents the firm from assessing what client data was exposed.
 
-## 214. A team is designing a Claude-assisted arrangement for handling supplier complaints. Which step should most clearly stay with a person?
+## 215. A team is designing a Claude-assisted arrangement for handling supplier complaints. Which step should most clearly stay with a person?
 
 ### A) Pulling the supplier's complaint history together into a single summary
 
@@ -3964,7 +3982,7 @@ Correct. Committing the organisation's money to a supplier is a decision with ex
 
 An acknowledgement is a routine, low-stakes draft that a person can check quickly before it goes out.
 
-## 215. A team adds an instruction to their project telling Claude never to state anything untrue, and stops checking outputs as a result. What is the most reasonable expectation of that instruction?
+## 216. A team adds an instruction to their project telling Claude never to state anything untrue, and stops checking outputs as a result. What is the most reasonable expectation of that instruction?
 
 ### A) It makes Claude refuse every question it cannot verify, so the project returns very few answers.
 
@@ -3982,7 +4000,7 @@ Correct. Giving Claude permission to admit uncertainty can sharply cut false sta
 
 Incorrect. Project instructions do shape responses across the project. The error is treating that influence as a guarantee.
 
-## 216. A user is having a quick, one-off conversation with Claude to brainstorm five possible names for a new podcast. The conversation does not need to be revisited later or reference any uploaded files. Which feature is the most appropriate fit for this task?
+## 217. A user is having a quick, one-off conversation with Claude to brainstorm five possible names for a new podcast. The conversation does not need to be revisited later or reference any uploaded files. Which feature is the most appropriate fit for this task?
 
 ### A) A new Project created specifically to store the podcast name brainstorm
 
@@ -4000,7 +4018,7 @@ Enabling research mode to search the web for existing podcast names is unnecessa
 
 Correct. A short, self-contained brainstorming task with no need for persistent knowledge or external research fits naturally into a standard chat conversation without the added structure of a Project, research mode, or an artifact.
 
-## 217. A benefits administrator keeps last year's policy handbook in a project's knowledge base. Claude keeps quoting the old deductible, and the administrator has now rewritten the question five different ways. What is the greatest concern here?
+## 218. A benefits administrator keeps last year's policy handbook in a project's knowledge base. Claude keeps quoting the old deductible, and the administrator has now rewritten the question five different ways. What is the greatest concern here?
 
 ### A) The answers are confidently wrong from an out-of-date source, and no amount of rephrasing will correct them. **(correct)**
 
@@ -4018,7 +4036,7 @@ The wrong figure matches the superseded handbook, which points at the source rat
 
 Length is not the issue; the figure being quoted is present in the document and simply out of date.
 
-## 218. A project's instructions state that refunds are approved within five working days, while an uploaded policy document says ten. What should the project owner do first?
+## 219. A project's instructions state that refunds are approved within five working days, while an uploaded policy document says ten. What should the project owner do first?
 
 ### A) Establish which of the two figures is current, then correct whichever of the sources is wrong. **(correct)**
 
@@ -4036,7 +4054,25 @@ Claude has no way to know which figure reflects the organisation's current proce
 
 This assumes the document is right, which is exactly what has not been established.
 
-## 219. An events manager is about to hand an end-to-end campaign setup task to Claude in Cowork for the first time, working across her own files and connected tools. What should she do first?
+## 220. A project a team has relied on for a year now occasionally produces answers that reflect last year's process. What routine would best prevent this recurring?
+
+### A) A habit of starting a fresh conversation whenever an answer looks as though it may be wrong.
+
+A fresh conversation draws on the same project knowledge, so the same old process reappears.
+
+### B) A scheduled review of the project's instructions and documents, deleting superseded ones. **(correct)**
+
+Correct. Configuration decays as the business changes, so maintenance has to be a scheduled task; removing superseded material is what stops the old process being cited again.
+
+### C) A rule that colleagues read every answer carefully before acting on the information in it.
+
+Careful reading catches some errors after the fact but leaves the outdated source in place.
+
+### D) A note in the instructions asking Claude to flag whenever information may be out of date.
+
+Claude cannot reliably tell that a document it was given has since been superseded.
+
+## 221. An events manager is about to hand an end-to-end campaign setup task to Claude in Cowork for the first time, working across her own files and connected tools. What should she do first?
 
 ### A) Choose the largest campaign of the quarter, so the value of the new arrangement is obvious to all.
 
@@ -4054,7 +4090,25 @@ Correct. A task that spans files and connected tools will take actions with real
 
 A stated plan is a useful reference and worth having, but it is a description rather than a control. The task can still take an action she would not have sanctioned, because nothing stops it to ask.
 
-## 220. A communications lead has twenty minutes to produce a holding statement about a service outage. Details are still arriving from the operations team and some are unconfirmed. What should she do first?
+## 222. An operations lead has corrected the same fault in Claude's output for three weeks running and now wants to deal with it properly. Which sequence is correct?
+
+### A) Identify the pattern they share; re-check the change on those same examples; collect the specific outputs that went wrong; change the instruction to address that pattern.
+
+A pattern cannot be identified before the failing examples have been collected.
+
+### B) Collect the specific outputs that went wrong; identify the pattern they share; change the instruction to address that pattern; re-check the change on those same examples. **(correct)**
+
+Correct. Evidence first, then the pattern, then a change aimed at that pattern, then a re-check on the same cases so the improvement is measured rather than assumed.
+
+### C) Change the instruction to address the pattern; collect the specific outputs that went wrong; re-check the change on those same examples; identify the pattern they share.
+
+Changing the instruction before gathering the failures means aiming at a pattern nobody has established.
+
+### D) Re-check the change on those same examples; change the instruction to address the pattern; identify the pattern they share; collect the specific outputs that went wrong.
+
+Re-checking a change that has not been made yet inverts the whole loop.
+
+## 223. A communications lead has twenty minutes to produce a holding statement about a service outage. Details are still arriving from the operations team and some are unconfirmed. What should she do first?
 
 ### A) Ask what similar organisations usually say during an outage, and adapt the closest example to this situation.
 
@@ -4072,7 +4126,7 @@ Correct. Separating confirmed from unconfirmed is the judgement only she can mak
 
 A generic statement drafted without the confirmed facts has to be rewritten once they arrive, and it invites unconfirmed details to be slotted in under deadline pressure.
 
-## 221. A policy researcher used Research and received an answer with citations attached to each main claim. She needs to be sure of one claim before quoting it in a submission. What should she do with the citation?
+## 224. A policy researcher used Research and received an answer with citations attached to each main claim. She needs to be sure of one claim before quoting it in a submission. What should she do with the citation?
 
 ### A) Ask Claude to restate the claim and see whether the second answer cites the same source as the first one.
 
@@ -4090,7 +4144,7 @@ Several citations can all be attached to a claim none of them quite makes, so co
 
 Correct. A citation shows where a claim is said to come from; only reading the source shows whether it supports the claim as stated. Opening it is the step that turns a citation into verification.
 
-## 222. A project's instructions say "write for our executive committee". The same project is also used to produce customer-facing FAQ answers. What is the greatest risk here?
+## 225. A project's instructions say "write for our executive committee". The same project is also used to produce customer-facing FAQ answers. What is the greatest risk here?
 
 ### A) The project can no longer hold uploaded documents, because an audience rule takes the place of the knowledge base.
 
@@ -4108,7 +4162,7 @@ Nothing creates projects automatically; the workspace is unchanged by what is as
 
 An audience instruction shapes style; it does not reject requests.
 
-## 223. Which approach best leverages Claude for prioritizing customer feedback?
+## 226. Which approach best leverages Claude for prioritizing customer feedback?
 
 ### A) Feed all feedback items to Claude with a broad instruction to prioritize them, such as 'Rank these by urgency,' without providing a scoring rubric, impact categories, or customer segments to guide the prioritization.
 
@@ -4126,7 +4180,7 @@ Incorrect. Fully automating strategic decision-making by having Claude directly 
 
 Correct. Defining clear prioritization criteria (impact, effort, customer segment) and using Claude to categorize each feedback item against that rubric ensures a structured, objective, and repeatable prioritization. This approach produces reliable, scalable outputs that directly inform planning.
 
-## 224. A manager asks the same question about a supplier deadline in two separate chats and receives two different dates. She has given Claude no document containing that deadline. What is the most reasonable conclusion?
+## 227. A manager asks the same question about a supplier deadline in two separate chats and receives two different dates. She has given Claude no document containing that deadline. What is the most reasonable conclusion?
 
 ### A) The dates differ only in wording, so she should reread both looking for a shared meaning.
 
@@ -4144,7 +4198,7 @@ Incorrect. Claude was not consulting the supplier in either chat, so the variati
 
 Correct. The disagreement is evidence that no source is anchoring the answer. Without the underlying document, both dates are guesses however confidently they are stated.
 
-## 225. An employee connects their entire work Google Drive so that Claude can help with the files in one project folder. What is the greatest risk?
+## 228. An employee connects their entire work Google Drive so that Claude can help with the files in one project folder. What is the greatest risk?
 
 ### A) The files are copied into training data, because connected sources bypass the account's privacy settings.
 
@@ -4162,7 +4216,25 @@ Connectors respect the source system's permissions, so they cannot widen access 
 
 Correct. A connector inherits the person's own access, so an unscoped connection exposes far more than intended.
 
-## 226. A user requests deletion of their personal data from conversation logs. Which action best satisfies this request in accordance with data privacy regulations?
+## 229. Feedback on a Claude-drafted grant report is that it reads well but covers the wrong reporting period. Which adjustment addresses the cause?
+
+### A) Ask Claude to check its own report for errors before it hands anything over
+
+Self-checking against an unstated period cannot detect that the wrong period was used.
+
+### B) Say which reporting period the draft must cover, in the request itself **(correct)**
+
+Correct. The fault is an unstated requirement, so the adjustment belongs in the request. Stating the period is what stops the same error recurring on every future report.
+
+### C) Ask for a more formal register so the report reads as more authoritative
+
+Register was never the problem; the report already reads well and would simply be wrong more formally.
+
+### D) Ask for a shorter report so that errors are easier for a reviewer to spot
+
+A shorter report makes the error easier to catch but does nothing to stop it being made.
+
+## 230. A user requests deletion of their personal data from conversation logs. Which action best satisfies this request in accordance with data privacy regulations?
 
 ### A) Anonymize the user’s data so it cannot be linked back to them but keep the logs for analysis.
 
@@ -4180,7 +4252,7 @@ Correct. Deleting all conversation logs containing the user's personal data and 
 
 Incorrect. Disabling the API key prevents future data collection but does not remove existing conversation logs or personal data. This action addresses access control, not data deletion, and therefore fails to satisfy the user's request.
 
-## 227. A project manager has received a draft board paper and has time to review it properly. In what order should she carry out her review?
+## 231. A project manager has received a draft board paper and has time to review it properly. In what order should she carry out her review?
 
 ### A) Confirm every requested topic is covered; check the claims that carry the argument; correct the tone and formatting; approve it. **(correct)**
 
@@ -4198,7 +4270,7 @@ Polishing first means investing effort in wording that may be deleted once a mis
 
 Approving before any review has happened makes the remaining steps a formality, and anything found afterwards has already been signed off.
 
-## 228. An analyst has been asked to summarise a spreadsheet of customer complaints that includes names and account numbers. Which sequence of steps is correct?
+## 232. An analyst has been asked to summarise a spreadsheet of customer complaints that includes names and account numbers. Which sequence of steps is correct?
 
 ### A) Confirm the policy for this data; remove identifiers not needed; run the summary in the approved workspace; store the output under the same rules. **(correct)**
 
@@ -4216,7 +4288,7 @@ An output is stored before it has been produced, which reverses the whole task.
 
 The work is completed before anyone confirms it was permitted.
 
-## 229. In a redesigned client-reporting workflow where Claude pulls the analysis together and produces the draft, which step should most clearly remain with a person?
+## 233. In a redesigned client-reporting workflow where Claude pulls the analysis together and produces the draft, which step should most clearly remain with a person?
 
 ### A) Deciding which chart style is used for the recurring performance section of each report.
 
@@ -4234,7 +4306,7 @@ Section ordering is a presentation preference that can be specified once and app
 
 The issue date is a scheduling rule that someone sets once. It needs to be agreed, but it carries no judgment that a person must exercise each cycle.
 
-## 230. A project manager drafted a board memo with Claude and then edited it heavily. Her company's AI policy requires AI assistance to be disclosed on internal documents. What is the most appropriate action?
+## 234. A project manager drafted a board memo with Claude and then edited it heavily. Her company's AI policy requires AI assistance to be disclosed on internal documents. What is the most appropriate action?
 
 ### A) Add a standing footer to every document she writes, so no individual disclosure decision is ever needed.
 
@@ -4252,7 +4324,7 @@ Editing changes the wording but not the fact that AI assistance was used, which 
 
 Correct. The policy requires disclosure, and naming both the assistance and the human reviewer tells readers what was generated and who stands behind it.
 
-## 231. A Claude.ai Free plan user deletes a conversation from their chat history. According to Anthropic's consumer data retention policy, when is that conversation removed from Anthropic's back-end storage systems?
+## 235. A Claude.ai Free plan user deletes a conversation from their chat history. According to Anthropic's consumer data retention policy, when is that conversation removed from Anthropic's back-end storage systems?
 
 ### A) Immediately at deletion, since consumer chats bypass backend storage entirely
 
@@ -4270,7 +4342,25 @@ Incorrect. The 2-year window applies specifically to inputs and outputs flagged 
 
 Correct. Deleted conversations are removed from chat history immediately, then purged from Anthropic's back-end storage systems within 30 days.
 
-## 232. A communications team's approval chain is slow, but each of its steps is required by regulation. Which two integration choices fit this situation? Select two.
+## 236. Each person on a team works out their own way of fixing the same recurring formatting problem by correcting Claude in the moment, and nobody records the fix anywhere. What is the greatest risk?
+
+### A) Quality depends on who ran the task that day, and the fix is lost whenever that person is away. **(correct)**
+
+Correct. An unrecorded fix is not a fix but a habit, so output varies with the person, and the knowledge leaves the team whenever they do.
+
+### B) Colleagues may word their corrections differently, making conversations harder to search later.
+
+Searchability is a minor inconvenience compared with inconsistent output reaching colleagues.
+
+### C) Correcting Claude in the moment takes a little longer than getting the format right first time.
+
+The extra minutes are real but small next to results that cannot be relied on from one person to the next.
+
+### D) Claude may eventually stop responding to corrections repeated within the same conversation.
+
+Claude does not stop accepting corrections, so this describes a behaviour that will not occur.
+
+## 237. A communications team's approval chain is slow, but each of its steps is required by regulation. Which two integration choices fit this situation? Select two.
 
 ### A) Replace the reviewers with a checklist prompt that Claude runs at the end of every draft.
 
@@ -4292,7 +4382,7 @@ Correct. A legally required step is not a candidate for removal, so the design h
 
 Incorrect. Better drafts do not remove a regulatory requirement, and dropping required approvals creates a compliance failure.
 
-## 233. A project lead is told she cannot send any more messages for several hours, and the block applies even in a brand-new empty chat. Which limit has she reached?
+## 238. A project lead is told she cannot send any more messages for several hours, and the block applies even in a brand-new empty chat. Which limit has she reached?
 
 ### A) A length limit, which governs how much information a single chat can work with at one time.
 
@@ -4310,7 +4400,7 @@ Incorrect. There is no such block on messaging, and artifacts are an output form
 
 Correct. Usage limits control how much you can interact with Claude across a time period, so they follow you into every chat, including a new one.
 
-## 234. A researcher notices that colleagues' very long chats keep running smoothly, while hers stops making room for new content once it fills up. What is the most likely explanation?
+## 239. A researcher notices that colleagues' very long chats keep running smoothly, while hers stops making room for new content once it fills up. What is the most likely explanation?
 
 ### A) Automatic context management is unavailable to her because her plan does not include the Artifacts feature.
 
@@ -4328,7 +4418,7 @@ Incorrect. Web search affects what Claude can look up, not whether earlier messa
 
 Incorrect. The size of a project's knowledge base does not govern whether a conversation can condense itself.
 
-## 235. Which of the following is the strongest candidate for delegating to Claude within a marketing team?
+## 240. Which of the following is the strongest candidate for delegating to Claude within a marketing team?
 
 ### A) Drafting first-pass social copy from an approved brief, with an editor reviewing it before anything is posted. **(correct)**
 
@@ -4346,7 +4436,7 @@ Employment decisions affect people's livelihoods and must remain a human judgmen
 
 Credit decisions affect people's rights and finances and cannot be delegated outright.
 
-## 236. A project manager drafts talking points live during meetings and wants each suggestion back immediately, knowing she will rewrite them afterwards. Which tier fits best?
+## 241. A project manager drafts talking points live during meetings and wants each suggestion back immediately, knowing she will rewrite them afterwards. Which tier fits best?
 
 ### A) The default middle tier, since anything lighter cannot produce usable talking points at all.
 
@@ -4364,7 +4454,7 @@ Correct. Where an immediate reply is what makes the tool usable and the output i
 
 Incorrect. Window size governs how much a conversation can hold, not how quickly a short suggestion arrives.
 
-## 237. A researcher is scanning a Claude-written sector briefing for signs that something in it has been fabricated. Which two features are the strongest warning signs? Select two.
+## 242. A researcher is scanning a Claude-written sector briefing for signs that something in it has been fabricated. Which two features are the strongest warning signs? Select two.
 
 ### A) A named industry report with a specific year that cannot be located anywhere at all. **(correct)**
 
@@ -4386,7 +4476,7 @@ Length reflects how the request was framed. Long answers are not more likely to 
 
 Hedging language signals uncertainty rather than fabrication. If anything, unhedged confidence about a specific unverifiable fact is the more worrying pattern.
 
-## 238. A writer wants one rule to apply everywhere she uses Claude, and a second rule to apply only inside one client Project. Which two placements are correct? Select two.
+## 243. A writer wants one rule to apply everywhere she uses Claude, and a second rule to apply only inside one client Project. Which two placements are correct? Select two.
 
 ### A) Put both of the rules into the client Project's instructions, since those apply account-wide.
 
@@ -4408,7 +4498,7 @@ Incorrect. Durable instruction settings are available to ordinary users, and re-
 
 Incorrect. Account-wide settings apply to all her work, so a client-specific rule placed there would leak into unrelated chats.
 
-## 239. An analyst must validate a Claude-written competitor comparison, produced with web search on, before it informs a pricing meeting tomorrow. Which sequence is correct?
+## 244. An analyst must validate a Claude-written competitor comparison, produced with web search on, before it informs a pricing meeting tomorrow. Which sequence is correct?
 
 ### A) Open the source behind each claim and read it, then look up any unsourced claim independently, then mark whatever is still unconfirmed, then list the claims the decision rests on.
 
@@ -4426,7 +4516,7 @@ Marking unconfirmed material before any checking has happened is meaningless, an
 
 Correct. Scope the check to the decision-critical claims, review the cited sources for those first because the original content shows whether anything was misread, then fill the gaps independently and flag what remains unconfirmed.
 
-## 240. A small firm currently works on individual Pro accounts and wants to standardise how client data is handled. What is the most relevant advantage of moving onto a business plan?
+## 245. A small firm currently works on individual Pro accounts and wants to standardise how client data is handled. What is the most relevant advantage of moving onto a business plan?
 
 ### A) Members would no longer be able to upload any documents at all, which removes the risk of client data entering the tool.
 
@@ -4444,7 +4534,7 @@ Correct. Business plans put configuration and data controls in the hands of acco
 
 Storage is not the governance problem, and documents still need managing.
 
-## 241. A support manager is designing a new way of working in which Claude drafts replies to routine tickets. Which two design decisions are sound? Select two.
+## 246. A support manager is designing a new way of working in which Claude drafts replies to routine tickets. Which two design decisions are sound? Select two.
 
 ### A) Define up front what a good draft looks like, so that drafts can be judged against that bar. **(correct)**
 
@@ -4466,7 +4556,7 @@ Incorrect. Closing tickets is an accountable outcome, and bundling it into draft
 
 Correct. A customer-facing reply is externally published, so keeping a human approval step in the design is the right call.
 
-## 242. A consultant wants to paste a client's confidential strategy deck into Claude in order to build a summary. What matters most before doing so?
+## 247. A consultant wants to paste a client's confidential strategy deck into Claude in order to build a summary. What matters most before doing so?
 
 ### A) Whether the deck is short enough to fit into a single conversation without needing to be split.
 
@@ -4484,7 +4574,7 @@ Correct. Contractual confidentiality terms decide whether the material may be en
 
 Internal visibility matters later; permission to process the client's material comes first.
 
-## 243. A procurement officer pasted a sixty-page supplier contract into Claude and asked for a summary of the commercial terms. Which two evaluation steps should she take before circulating it? Select two.
+## 248. A procurement officer pasted a sixty-page supplier contract into Claude and asked for a summary of the commercial terms. Which two evaluation steps should she take before circulating it? Select two.
 
 ### A) Accept it if it reads coherently from beginning to end without any obvious contradiction.
 
@@ -4506,7 +4596,7 @@ Correct. Spot-checking against the source is the only way to catch a term that h
 
 Correct. Checking for omissions is a different test from checking what is present: a summary can be entirely accurate and still leave out the termination terms.
 
-## 244. An analyst has forty pages of interview notes and has been asked to produce something the team can use in a workshop next week. What should she do first?
+## 249. An analyst has forty pages of interview notes and has been asked to produce something the team can use in a workshop next week. What should she do first?
 
 ### A) Ask Claude to produce the notes as a long document she can then trim down before the workshop.
 
@@ -4524,7 +4614,7 @@ Incorrect. Organising by source is one possible structure, and choosing it now a
 
 Correct. Format follows use. Knowing whether people will read, sort, discuss or annotate the material is what determines whether it should be a document, a table or a diagram.
 
-## 245. A product marketer needs a summary of what three competitors announced during the past quarter. Which addition to the request matters most for this kind of task?
+## 250. A product marketer needs a summary of what three competitors announced during the past quarter. Which addition to the request matters most for this kind of task?
 
 ### A) A request that each announcement carry the source it came from and the date, so recent claims can be checked. **(correct)**
 
@@ -4542,7 +4632,7 @@ Grouping by product area is a useful lens for her team, but it arranges claims t
 
 Matching house style makes the summary comfortable to read, which is a drafting concern rather than a research one.
 
-## 246. A free-tier user wants to organize their conversations about a personal budgeting spreadsheet into a dedicated space, separate from unrelated chats about recipes and travel planning. Is this possible without upgrading to a paid plan?
+## 251. A free-tier user wants to organize their conversations about a personal budgeting spreadsheet into a dedicated space, separate from unrelated chats about recipes and travel planning. Is this possible without upgrading to a paid plan?
 
 ### A) No, because a Pro subscription is required to create a Project, so free accounts cannot have separate spaces.
 
@@ -4560,7 +4650,7 @@ Yes. According to Anthropic's official documentation, Projects are available to 
 
 Incorrect. Free accounts are not limited to one continuous chat. Users on the free plan can create Projects, each with its own chat history, allowing separation by topic such as budgeting, recipes, or travel.
 
-## 247. A logistics firm proposes a workflow in which Claude reads supplier refund disputes and sends the final decision straight to the supplier with no review. Which two features of the proposal make it inappropriate? Select two.
+## 252. A logistics firm proposes a workflow in which Claude reads supplier refund disputes and sends the final decision straight to the supplier with no review. Which two features of the proposal make it inappropriate? Select two.
 
 ### A) Refund thresholds are revised each quarter, so the standing instructions would have to be updated several times a year.
 
@@ -4582,7 +4672,7 @@ Reading and summarising email threads is well within normal capability, so the f
 
 Low volume might weaken the business case, but it is not a governance reason to reject the design.
 
-## 248. An operations team runs one large workload through Claude: several thousand short, repetitive record summaries, plus one difficult reconciliation that decides how the whole set is interpreted. Everything currently runs on the deepest-reasoning tier and the allowance is gone by Wednesday. What should the team do first?
+## 253. An operations team runs one large workload through Claude: several thousand short, repetitive record summaries, plus one difficult reconciliation that decides how the whole set is interpreted. Everything currently runs on the deepest-reasoning tier and the allowance is gone by Wednesday. What should the team do first?
 
 ### A) Ask for a larger allowance before making any change, since the current work is valuable and the shortfall is only a couple of days.
 
@@ -4600,7 +4690,7 @@ Moving everything down applies one answer to two very different tasks, and the r
 
 Correct. The workload is not one thing. Splitting the high-volume routine part from the small part that genuinely needs deep reasoning is what makes any sensible tier decision possible, and it is where nearly all the waste is.
 
-## 249. A student is using Claude to draft a single essay outline and does not plan to reuse any reference material or revisit the conversation after submitting the assignment. A classmate suggests creating a Project first. What is the most reasonable evaluation of that suggestion?
+## 254. A student is using Claude to draft a single essay outline and does not plan to reuse any reference material or revisit the conversation after submitting the assignment. A classmate suggests creating a Project first. What is the most reasonable evaluation of that suggestion?
 
 ### A) Required, since Claude cannot generate an essay outline without an active Project, as the outlining process depends on referencing materials, which is only enabled within a Project.
 
@@ -4618,7 +4708,7 @@ Incorrect. Standard chat conversations already support unlimited back-and-forth 
 
 Correct. A Project’s primary benefit is providing persistent knowledge and context that can be reused across multiple conversations. For a one-time outline task, this persistent structure adds no value and the work can be done in a standard chat.
 
-## 250. A strategy lead must reconcile three conflicting demand forecasts and explain the reasoning to an executive committee. Which tier fits this work best?
+## 255. A strategy lead must reconcile three conflicting demand forecasts and explain the reasoning to an executive committee. Which tier fits this work best?
 
 ### A) Whichever tier her colleagues most recently used, so the team's outputs remain consistent.
 
@@ -4636,7 +4726,7 @@ Incorrect. Reconciling contradictory sources and defending the reasoning is prec
 
 Incorrect. Speed is not the binding constraint when the whole value of the piece lies in the quality of the reasoning.
 
-## 251. An operations analyst wants to use a Claude capability that the company's AI policy does not mention at all. What is the most appropriate action?
+## 256. An operations analyst wants to use a Claude capability that the company's AI policy does not mention at all. What is the most appropriate action?
 
 ### A) Ask Claude whether the capability would be consistent with the company's AI policy wording.
 
@@ -4654,7 +4744,7 @@ Assuming a ban is safe but needlessly forgoes value when a short question would 
 
 Treating silence as permission is how unreviewed data flows start, and it removes the owner's chance to decide.
 
-## 252. A trading desk stakeholder wants Claude to report the current live stock price directly from its own knowledge, without connecting any external data source. How should this limitation be explained?
+## 257. A trading desk stakeholder wants Claude to report the current live stock price directly from its own knowledge, without connecting any external data source. How should this limitation be explained?
 
 ### A) Explain that real-time data requests always trigger a permission error and there is no supported way, such as a webhook, to add live data access.
 
@@ -4672,7 +4762,7 @@ Correct. Claude has no built-in ability to access live, real-time data on its ow
 
 Incorrect. Claude does not continuously stream live market data internally; it has no direct feed from major exchanges. Real-time information requires integration with an external data source or tool.
 
-## 253. A team verified the figures in a Claude-drafted capability statement nine months ago and is about to reissue the document unchanged. What should they do?
+## 258. A team verified the figures in a Claude-drafted capability statement nine months ago and is about to reissue the document unchanged. What should they do?
 
 ### A) Remove the figures entirely, so that the statement will not need to be checked again in future.
 
@@ -4690,7 +4780,7 @@ Incorrect. The check confirmed the figures as they were then; it says nothing ab
 
 Incorrect. Claude has no reliable view of how the organisation's own numbers have moved over the past nine months.
 
-## 254. A finance team frequently asks Claude to build the same type of formatted spreadsheet report from raw data, and wants this repeated task folded into its existing reporting workflow without re-explaining the steps every time. Which capability best supports this?
+## 259. A finance team frequently asks Claude to build the same type of formatted spreadsheet report from raw data, and wants this repeated task folded into its existing reporting workflow without re-explaining the steps every time. Which capability best supports this?
 
 ### A) Computer use lets Claude click through a spreadsheet application's interface for every report.
 
@@ -4708,7 +4798,7 @@ Incorrect. Citations ground responses in source documents for verifiability, but
 
 Incorrect. Prompt caching is meant to reuse prompt prefixes to reduce latency and cost, not to cache raw data; it does not provide a mechanism to store and reuse report-building instructions.
 
-## 255. An operations manager has kept one chat running for three weeks to plan a vendor migration. Claude's latest answers now contradict constraints the team agreed in the first week. What should she do first?
+## 260. An operations manager has kept one chat running for three weeks to plan a vendor migration. Claude's latest answers now contradict constraints the team agreed in the first week. What should she do first?
 
 ### A) Send the same question again with stronger wording so that Claude gives the earlier decisions more weight.
 
@@ -4726,7 +4816,7 @@ Incorrect. A smaller context window reduces how much Claude can hold at once; it
 
 Incorrect. This spends window space and usage allowance restating material that is already the problem, and a recap produced from a strained conversation is not a reliable record.
 
-## 256. Which prompt would best leverage Claude's research, planning, and process optimization capabilities to create a comprehensive biology lesson plan?
+## 261. Which prompt would best leverage Claude's research, planning, and process optimization capabilities to create a comprehensive biology lesson plan?
 
 ### A) Write a biology syllabus that includes a week-by-week topic outline, grading policies with percentages, lab safety rules, and a detailed list of required materials for the semester.
 
@@ -4744,25 +4834,7 @@ This prompt includes the subject (biology) and many components, but it omits ali
 
 This prompt aligns with state standards and covers biology content, but it does not request week-by-week planning, explicit learning objectives, or differentiation suggestions. Comprehensive lesson planning guidance from Anthropic and standard pedagogy includes week-by-week objectives and differentiation, so this prompt is incomplete for fully leveraging Claude's planning capabilities.
 
-## 257. Explanation
-
-### A) The team acts on withdrawn policy because the answers read as authoritative and nothing flags the source as stale **(correct)**
-
-Correct. A stale knowledge source is the hardest failure to spot: the output is fluent and confident, so nothing prompts anyone to check, and no amount of rewording the prompt will fix an answer grounded in a withdrawn document.
-
-### B) The project will refuse to answer any policy question at all until somebody replaces the handbook with its current revision
-
-The project answers from whatever it holds; it does not detect a revision elsewhere and withhold responses.
-
-### C) Claude will notice the handbook is outdated and will say so before answering, which slows the team down on every request
-
-Claude has no way to know a newer revision exists outside the project, so it cannot warn the team about it.
-
-### D) The uploaded handbook will be removed automatically once it passes a year, leaving the project with no source to draw on
-
-Uploaded project knowledge does not expire on a timer; it stays until someone changes it.
-
-## 258. An events team wants a wide field of ideas for a member engagement campaign before narrowing down. Which two prompt choices best suit this brainstorming stage? Select two.
+## 262. An events team wants a wide field of ideas for a member engagement campaign before narrowing down. Which two prompt choices best suit this brainstorming stage? Select two.
 
 ### A) Ask for the single strongest idea straight away so the team can start work sooner.
 
@@ -4784,7 +4856,7 @@ Publication-ready styling belongs to the drafting stage. Applied now it wastes e
 
 Correct. Brainstorming values coverage over polish. Short labelled options let the team scan a wide field cheaply, which polished prose actively discourages.
 
-## 259. An analyst runs a research task that draws on connected internal mail and documents, then pastes large parts of the result into a public blog post. What is the greatest risk?
+## 263. An analyst runs a research task that draws on connected internal mail and documents, then pastes large parts of the result into a public blog post. What is the greatest risk?
 
 ### A) Publishing the output automatically grants the blog's readers access to the connected data sources.
 
@@ -4802,7 +4874,7 @@ Correct. Output built from internal sources may quote or paraphrase material tha
 
 Research can use connected sources, which is precisely why the output needs checking.
 
-## 260. A finance team wants Claude to draw on the company's contract management system while it prepares supplier summaries, which means connecting that system to Claude. The company's AI standard governs how data sources are approved and recorded. Which sequence is correct?
+## 264. A finance team wants Claude to draw on the company's contract management system while it prepares supplier summaries, which means connecting that system to Claude. The company's AI standard governs how data sources are approved and recorded. Which sequence is correct?
 
 ### A) Confirm the AI standard covers the kind of data the contract system holds; obtain the data owner's approval to connect that system to Claude; connect it with the narrowest access the supplier summaries need; record the connection in the team's register of approved data sources. **(correct)**
 
@@ -4820,7 +4892,25 @@ The system is connected before the standard has been checked and before the owne
 
 Approval is sought before anyone has established what the standard permits for this kind of data.
 
-## 261. An operations manager is worried that letting a long negotiation chat condense itself will destroy the record of what was said. Which statement is accurate?
+## 265. A customer-service supervisor has four weeks of mixed comments on Claude-drafted reply templates — some praise, some complaints, several contradicting each other. Which sequence of steps is correct?
+
+### A) Change the instruction for that one fault; group the comments to find the repeated fault; run it on several recent real cases; record why the change was made
+
+Making the change first and analysing afterwards inverts diagnosis and treatment, so the analysis can only justify a decision already taken.
+
+### B) Group the comments to find the repeated fault; change the instruction for that one fault; run it on several recent real cases; record why the change was made **(correct)**
+
+Correct. Find the pattern before acting, change one thing, confirm it on a spread of real cases rather than the one that prompted the complaint, then write down why so nobody undoes it later.
+
+### C) Run it on several recent real cases; group the comments to find the repeated fault; record why the change was made; change the instruction for that one fault
+
+Running cases before knowing what fault is being investigated produces output with nothing to compare it against.
+
+### D) Change the instruction for that one fault; run it on several recent real cases; group the comments to find the repeated fault; record why the change was made
+
+Changing the instruction before the comments are grouped means acting on whichever comment was loudest rather than on the pattern.
+
+## 266. An operations manager is worried that letting a long negotiation chat condense itself will destroy the record of what was said. Which statement is accurate?
 
 ### A) Earlier messages are condensed so the chat can continue, and the full chat history stays readable to her. **(correct)**
 
@@ -4838,7 +4928,7 @@ Incorrect. Nothing is removed from the history. Compression affects working memo
 
 Incorrect. There is no download step; the conversation continues without any manual action from her.
 
-## 262. A robo-advisor platform lets Claude generate personalized investment recommendations that are sent directly to retail customers and executed automatically, with no human financial advisor reviewing any output. Is this an appropriate use of Claude?
+## 267. A robo-advisor platform lets Claude generate personalized investment recommendations that are sent directly to retail customers and executed automatically, with no human financial advisor reviewing any output. Is this an appropriate use of Claude?
 
 ### A) No, but only because automatic trade execution requires a separate brokerage license to operate
 
@@ -4856,25 +4946,7 @@ Incorrect. Financial advice is a high-risk domain subject to the review-and-disc
 
 Incorrect. Choosing to use a robo-advisor does not substitute for the required professional review of AI-generated financial recommendations before they take effect.
 
-## 263. Explanation
-
-### A) Carry on in the long conversation, since keeping the history avoids explaining things twice.
-
-The unrelated task gains nothing from the history, while the length keeps adding to what each message costs.
-
-### B) Start a new conversation for the unrelated task with only the material that task needs. **(correct)**
-
-Correct. Long conversations consume more of the allowance as they grow, and the new task shares none of that history, so a fresh conversation with just the relevant material is both cheaper and clearer.
-
-### C) Wait until the weekly limit resets before beginning the unrelated task in any conversation.
-
-Waiting stops the work altogether when a new conversation would let it continue now.
-
-### D) Ask Claude to summarise the long conversation and then continue working beneath that summary.
-
-Summarising to keep going still carries the old thread into work that has no use for it.
-
-## 264. A communications lead simply starts a new chat whenever the current one begins to feel unwieldy, without saving anything out of it. What is the greatest risk?
+## 268. A communications lead simply starts a new chat whenever the current one begins to feel unwieldy, without saving anything out of it. What is the greatest risk?
 
 ### A) Her earlier conversations are permanently deleted from her account as soon as a new chat is opened.
 
@@ -4892,25 +4964,7 @@ Correct. Restarting clears the window but also discards the durable output. With
 
 Incorrect. The window is per conversation and per model; opening a new chat gives her a full one rather than a reduced one.
 
-## 265. Explanation
-
-### A) No concern applies, since the underlying posts are already publicly available on the social platform
-
-Incorrect. Public availability of source posts does not exempt the aggregation and profiling activity from policy restrictions, especially when used for targeted persuasion.
-
-### B) This restriction applies only when every profiled individual happens to be a minor
-
-Incorrect. The restriction is not limited to minors; it applies broadly to profiling and tracking of individuals for manipulation purposes.
-
-### C) The concern is limited to biometric data and does not extend to behavioral profiling at all
-
-Incorrect. Profiling restrictions extend beyond biometric data to behavioral, psychological, and political profiling used for tracking or targeting.
-
-### D) It falls under the ban on profiling and tracking individuals to enable manipulation or targeting **(correct)**
-
-Correct. Building individualized profiles for targeting and manipulation purposes falls under the Usage Policy's restrictions on profiling and tracking, regardless of the source data being publicly posted.
-
-## 266. A manager tells staff to draft sensitive client material on their own personal Claude accounts rather than on the company's Claude for Work account, because "the Work account trains on our chats". What is the accurate correction?
+## 269. A manager tells staff to draft sensitive client material on their own personal Claude accounts rather than on the company's Claude for Work account, because "the Work account trains on our chats". What is the accurate correction?
 
 ### A) The advice is right, but only for staff who have already switched model improvement off on their own accounts.
 
@@ -4928,7 +4982,25 @@ The consumer and the commercial rules are different, which is precisely what the
 
 Correct. Commercial products do not train on inputs and outputs by default, while consumer accounts carry a personal model improvement choice, so moving the work to a personal account increases exposure.
 
-## 267. A marketing team wants to move its weekly performance report from the deepest-reasoning model to a lighter one to save allowance. What should they do first?
+## 270. Four colleagues on personal Pro accounts want to work from one teammate's well-tuned project setup. What is the accurate advice?
+
+### A) Project sharing needs a Team or Enterprise plan, so on personal plans each recreates the setup. **(correct)**
+
+Correct. Sharing a project with named colleagues or an organisation is a Team and Enterprise capability; on personal plans a project is personal, so the instructions and material have to be recreated by each person.
+
+### B) Personal plans do allow project sharing, but only with colleagues who are also on a paid plan.
+
+There is no personal-plan sharing that depends on the recipient's plan; personal projects are not shareable.
+
+### C) Any Claude user can share a project with named colleagues, so she should grant each of them access.
+
+Sharing is not available on personal plans, so this describes a capability the team does not have.
+
+### D) She should give the colleagues her own account details so they can work in the project directly.
+
+Sharing account credentials breaches normal account rules and creates an untraceable mess of work.
+
+## 271. A marketing team wants to move its weekly performance report from the deepest-reasoning model to a lighter one to save allowance. What should they do first?
 
 ### A) Ask Claude whether a lighter model could produce the same report to the same standard.
 
@@ -4946,25 +5018,7 @@ Incorrect. Cutting scope changes the deliverable rather than testing whether the
 
 Correct. A side-by-side run on their own work, judged against an agreed standard, is the only evidence that tells them whether the cheaper tier is adequate here.
 
-## 268. Explanation
-
-### A) Claude will begin to apply one member's conventions to everyone else's reports once it has seen them often enough
-
-Conversations are separate; one person's wording does not carry over into a colleague's chats.
-
-### B) Four private versions of the conventions will drift apart, so the reports stop matching one another over time **(correct)**
-
-Correct. The waste is minor next to the drift: four separately maintained versions of the same conventions will diverge, and the reports will quietly stop matching. Moving the conventions into shared project instructions makes the fix persistent and consistent.
-
-### C) Re-explaining the conventions each week will gradually train Claude on them, which the team's policy does not permit
-
-Typing instructions into a conversation does not train the model on them.
-
-### D) The repeated explanations will be stored and counted against the team's shared project knowledge capacity every week
-
-Chat messages are not written into project knowledge, so they do not consume its capacity.
-
-## 269. An internal auditor finds that a colleague connected the company's issue-tracking system to Claude a month ago without the approval the AI policy requires. What should the auditor do first?
+## 272. An internal auditor finds that a colleague connected the company's issue-tracking system to Claude a month ago without the approval the AI policy requires. What should the auditor do first?
 
 ### A) Ask the colleague to carry on using it, but only for tickets that contain no customer detail.
 
@@ -4982,7 +5036,7 @@ Quietly removing the connection ends the access but hides the incident, so nobod
 
 Correct. The policy already defines who is told about an unapproved data connection and what happens next, and a month of unreviewed access may need assessment beyond simply switching it off. Following the escalation route puts the decision with the people accountable for it.
 
-## 270. A team's convention is to fact-check only those statements in a Claude output that look surprising. What is the greatest risk?
+## 273. A team's convention is to fact-check only those statements in a Claude output that look surprising. What is the greatest risk?
 
 ### A) Checking only some statements causes Claude to produce more surprising statements over time.
 
@@ -5000,7 +5054,7 @@ Incorrect. Duplicated effort is wasteful but harmless compared with an unchecked
 
 Correct. Fabricated content is generated because it fits expectations, so screening on surprise filters out precisely the errors that are easiest to miss.
 
-## 271. A housing association wants to use Claude to help shorten the time it takes to allocate a repair appointment. Which sequence of steps is correct?
+## 274. A housing association wants to use Claude to help shorten the time it takes to allocate a repair appointment. Which sequence of steps is correct?
 
 ### A) Describe the current steps; agree what better looks like; ask Claude where time is lost; trial one change on one patch **(correct)**
 
@@ -5018,7 +5072,7 @@ Asking where time is lost before describing the process means Claude answers fro
 
 Trialling a change before any analysis means the change is arbitrary, and describing the current steps last makes the description pointless.
 
-## 272. A project lead is setting up a new recurring piece of work and is unsure which Claude model to use for it. What should she do first?
+## 275. A project lead is setting up a new recurring piece of work and is unsure which Claude model to use for it. What should she do first?
 
 ### A) Pick the deepest-reasoning model, since starting with the strongest option is always safest.
 
@@ -5036,7 +5090,7 @@ Incorrect. Defaulting to the lightest tier is the same mistake in the other dire
 
 Incorrect. That answer is generated from a general description rather than from her actual quality bar and constraints.
 
-## 273. A marketing team uses Claude to help draft promotional content that includes important numerical figures (e.g., sales numbers, performance metrics). Before publishing the content, what verification step is essential to ensure accuracy?
+## 276. A marketing team uses Claude to help draft promotional content that includes important numerical figures (e.g., sales numbers, performance metrics). Before publishing the content, what verification step is essential to ensure accuracy?
 
 ### A) Accept the figures as correct because Claude’s explanations sound confident and well-written.
 
@@ -5054,7 +5108,7 @@ Restating the same information does not verify the underlying data’s correctne
 
 Rounding may obscure mistakes but does not correct underlying inaccuracies. The goal is to publish correct data, not simply hide potential errors. Verification should confirm exact values.
 
-## 274. An Enterprise organisation wants a shorter data retention window applied to its chats and projects. Who is able to make that change?
+## 277. An Enterprise organisation wants a shorter data retention window applied to its chats and projects. Who is able to make that change?
 
 ### A) Someone holding the Primary Owner or the Owner role, in the organisation's settings. **(correct)**
 
@@ -5072,7 +5126,7 @@ The control is self-service for the appropriate owner roles.
 
 Retention is an organisation-level control, not a per-project setting.
 
-## 275. A charity is designing a way of working in which Claude drafts its monthly supporter update. Which sequence of steps is correct?
+## 278. A charity is designing a way of working in which Claude drafts its monthly supporter update. Which sequence of steps is correct?
 
 ### A) Draft one past month with Claude; agree what a good update contains; have the editor mark what is wrong; change one thing and try again
 
@@ -5090,7 +5144,7 @@ Correct. Agree the standard, produce a draft on a known month, have it marked ag
 
 Marking what is wrong before anything has been drafted is impossible; there is no draft to mark.
 
-## 276. A consultant reads a Claude-written market overview that is fluent, well organised and contains no hedging at all. What is the greatest risk in reading that as a sign of reliability?
+## 279. A consultant reads a Claude-written market overview that is fluent, well organised and contains no hedging at all. What is the greatest risk in reading that as a sign of reliability?
 
 ### A) Fluent writing takes longer to produce, so the overview is likely to be out of date before delivery.
 
@@ -5108,7 +5162,7 @@ Incorrect. Reformatting effort is a minor practical concern and has nothing to d
 
 Correct. Polish and confidence are properties of the writing, not of the evidence behind it, so a smooth answer gives a reader no way to tell invented content from grounded content.
 
-## 277. A director tells a service manager to "roll Claude out across the department next quarter." The department runs eleven distinct workflows of varying sensitivity. What should the service manager do first?
+## 280. A director tells a service manager to "roll Claude out across the department next quarter." The department runs eleven distinct workflows of varying sensitivity. What should the service manager do first?
 
 ### A) Ask Claude to review all eleven workflows and recommend which of them to change first.
 
@@ -5126,7 +5180,7 @@ Broad access with no chosen target produces scattered experiments across eleven 
 
 Correct. A vague rollout instruction becomes deliverable by narrowing it to one workflow and one measurable outcome. That gives a bounded first integration, a clear basis for judging whether it worked, and evidence to take back to the director before spreading further.
 
-## 278. A user asks Claude for a detailed, confident summary of a major news event that occurred after the model's reliable knowledge cutoff. Claude produces specific dates, names, and outcomes that cannot be verified in any source. What is the most likely underlying cause of this response?
+## 281. A user asks Claude for a detailed, confident summary of a major news event that occurred after the model's reliable knowledge cutoff. Claude produces specific dates, names, and outcomes that cannot be verified in any source. What is the most likely underlying cause of this response?
 
 ### A) Claude hallucinated plausible-sounding details to fill a gap past its knowledge cutoff **(correct)**
 
@@ -5144,7 +5198,7 @@ Incorrect. No tool use or search was described in the scenario, so there are no 
 
 Incorrect. Systematic favoring of certain groups or viewpoints is bias; inventing unverifiable specifics about a recent event is a knowledge-gap hallucination.
 
-## 279. An events lead must recommend a new format for her organisation's annual conference to the board, and plans to work through it with Claude in stages rather than in one request. Which sequence is correct?
+## 282. An events lead must recommend a new format for her organisation's annual conference to the board, and plans to work through it with Claude in stages rather than in one request. Which sequence is correct?
 
 ### A) Assemble last year's delegate feedback and the cost figures for each format; compare the candidate formats against those constraints; agree the decision the board must make and the budget and venue constraints; draft the recommendation the board will read.
 
@@ -5162,7 +5216,7 @@ Comparing the formats before the feedback and costs are assembled leaves the com
 
 Correct. The decision and its constraints come first, because they determine which evidence matters; evidence is then gathered, the formats are compared against the constraints, and only then is the recommendation written.
 
-## 280. A hospital wants to integrate Claude into its clinical documentation workflow to help physicians summarize patient charts, where accuracy is far more important than response speed or cost. Which starting approach best fits this integration?
+## 283. A hospital wants to integrate Claude into its clinical documentation workflow to help physicians summarize patient charts, where accuracy is far more important than response speed or cost. Which starting approach best fits this integration?
 
 ### A) Start with a model selected only for its support of the newest client-side tools
 
@@ -5180,7 +5234,7 @@ Incorrect. Prioritizing speed and low cost does not match a scenario where the s
 
 Incorrect. Optimizing for output token pricing contradicts the scenario's explicit priority of accuracy over cost.
 
-## 281. A data analyst asks Claude to generate a single-page HTML dashboard with an embedded chart that visualizes quarterly revenue, and wants to be able to download the finished HTML file. Which feature is designed to produce and export this kind of standalone content?
+## 284. A data analyst asks Claude to generate a single-page HTML dashboard with an embedded chart that visualizes quarterly revenue, and wants to be able to download the finished HTML file. Which feature is designed to produce and export this kind of standalone content?
 
 ### A) The chat history sidebar, which lists previous conversations by date
 
@@ -5198,7 +5252,43 @@ Correct. Artifacts are built for substantial, self-contained content such as sin
 
 Research mode gathers external web information, but generating and exporting a self-contained HTML dashboard is the artifact feature's role, not a search function.
 
-## 282. A developer uses Claude to generate a database migration script intended for a production system with live customer data. What is the appropriate next step before running the script?
+## 285. A four-person team runs out of its weekly Claude allowance every Thursday and work stalls until the limit resets. What should they do first?
+
+### A) Upgrade the whole team to a higher plan so the weekly ceiling stops interrupting work.
+
+Upgrading may be the right answer eventually, but paying to avoid a diagnosis usually hides the real cause.
+
+### B) Look at which tasks are actually consuming the allowance before changing plans or habits. **(correct)**
+
+Correct. Until the team knows where the allowance is actually going, every remedy is a guess; checking which work is consuming it points at the habit or task to change.
+
+### C) Move all routine work to the fastest model, as it is the cheapest option for daily tasks.
+
+Forcing the fastest model on everything trades quality away without knowing what actually consumed the allowance.
+
+### D) Ask everyone to keep messages short and avoid pasting long documents into conversations.
+
+Short messages can cost more overall if they cause long back-and-forth exchanges to reach the same result.
+
+## 286. One stakeholder complains that a summary was too detailed, so the team immediately rewrites the shared project instructions to make every summary much shorter. What is the biggest concern?
+
+### A) Shorter summaries are quicker to produce, which may make the change hard to justify on cost.
+
+Production effort is not the concern; the concern is that other users' needs were never consulted.
+
+### B) The team will have to explain the new instructions to colleagues who joined the project recently.
+
+Explaining the change to new colleagues is routine and unrelated to whether the change was right.
+
+### C) The stakeholder may not notice the change and could raise the same complaint again next month.
+
+Whether the stakeholder notices is secondary to the effect on everyone else's summaries.
+
+### D) One unrepresentative complaint now shapes output that colleagues rely on for other purposes. **(correct)**
+
+Correct. One person's preference has been generalised into a rule for everyone, and the colleagues who needed the detail will only discover the change when their own work suffers.
+
+## 287. A developer uses Claude to generate a database migration script intended for a production system with live customer data. What is the appropriate next step before running the script?
 
 ### A) Ask Claude to shorten the script so it executes faster during the production maintenance window
 
@@ -5216,25 +5306,7 @@ Correct. A migration against live production data is an irreversible, high-impac
 
 Incorrect. Simply pasting the script for others to glance at is not equivalent to a structured review and staging test before a production change.
 
-## 283. Explanation
-
-### A) A habit of starting a fresh conversation whenever an answer looks as though it may be wrong.
-
-A fresh conversation draws on the same project knowledge, so the same old process reappears.
-
-### B) A scheduled review of the project's instructions and documents, deleting superseded ones. **(correct)**
-
-Correct. Configuration decays as the business changes, so maintenance has to be a scheduled task; removing superseded material is what stops the old process being cited again.
-
-### C) A rule that colleagues read every answer carefully before acting on the information in it.
-
-Careful reading catches some errors after the fact but leaves the outdated source in place.
-
-### D) A note in the instructions asking Claude to flag whenever information may be out of date.
-
-Claude cannot reliably tell that a document it was given has since been superseded.
-
-## 284. A researcher has produced separate findings for each of five regional markets and now wants them combined into one view. What should the combining request specify?
+## 288. A researcher has produced separate findings for each of five regional markets and now wants them combined into one view. What should the combining request specify?
 
 ### A) That the five regions should each appear in the combined view in order of the revenue they contribute to the business.
 
@@ -5252,7 +5324,7 @@ Correct. Merging is where a genuine disagreement between regions can be smoothed
 
 Forcing four regions into the shape of a fifth discards whatever each of them found that does not fit that template.
 
-## 285. In a single multi-turn conversation, Claude tells a user early on that a product ships in 3 business days, then later in the same conversation states the same product ships in 7 business days without any new information being provided. How should a QA reviewer classify this behavior?
+## 289. In a single multi-turn conversation, Claude tells a user early on that a product ships in 3 business days, then later in the same conversation states the same product ships in 7 business days without any new information being provided. How should a QA reviewer classify this behavior?
 
 ### A) An inconsistency, since the two statements about the same fact conflict within one chat **(correct)**
 
@@ -5270,7 +5342,7 @@ Incorrect. Bias refers to skewed treatment of a topic or group, not a reviewer q
 
 Incorrect. A shipping estimate is plausible and was actually stated twice; the problem is that the two values contradict each other, not that one is fabricated from nothing.
 
-## 286. An incident write-up drafted for engineers now has to go to a board audience with no technical background. The draft refers to internal components by their codenames. Which two edits best adapt it for those readers? Select two.
+## 290. An incident write-up drafted for engineers now has to go to a board audience with no technical background. The draft refers to internal components by their codenames. Which two edits best adapt it for those readers? Select two.
 
 ### A) Replace component codenames with a plain account of what customers experienced. **(correct)**
 
@@ -5292,7 +5364,25 @@ A mechanical sentence-length rule chops explanation into fragments and does noth
 
 An accurate chronology is still the wrong structure here. It buries impact and decisions inside a timeline the board has no reason to follow.
 
-## 287. A transformation office asks Claude to score two hundred candidate use cases on effort and value from their one-paragraph descriptions, and plans to fund the top twenty exactly as ranked. What is the greatest concern?
+## 291. When an answer is not right, a coordinator's habit is to ask for another version repeatedly until one looks acceptable. What is the greatest risk?
+
+### A) Successive versions may differ in length, which makes the final document harder to format well.
+
+Varying length is a formatting nuisance that is easily fixed by asking for a length.
+
+### B) She spends the allowance on one unclear request and chooses by appearance rather than accuracy. **(correct)**
+
+Correct. Regeneration samples the same under-specified request again and again, so the selection is made on how the answer reads rather than on whether it is right, at a cost in allowance each time.
+
+### C) Repeated attempts leave a long conversation that is more difficult to search through afterwards.
+
+A long conversation is harder to search, but that is a side effect rather than the main risk.
+
+### D) She may lose an earlier version that was better than the one she eventually decides to keep.
+
+Losing a good earlier draft is annoying, and it is avoidable by copying versions out as she goes.
+
+## 292. A transformation office asks Claude to score two hundred candidate use cases on effort and value from their one-paragraph descriptions, and plans to fund the top twenty exactly as ranked. What is the greatest concern?
 
 ### A) The scored list will need reformatting before it can be presented to the executive funding committee.
 
@@ -5310,7 +5400,7 @@ Correct. A one-paragraph description does not contain the effort and value evide
 
 Uneven familiarity with the tool affects how well individual submissions are phrased, and it is worth correcting, but it is a quality-of-input issue that sits well below the danger of treating an inferred ranking as a funding decision.
 
-## 288. A bank wants Claude to prepare a recommendation for each loan application, but a compliance officer must still approve or reject every decision before it takes effect. Which integration pattern does this describe?
+## 293. A bank wants Claude to prepare a recommendation for each loan application, but a compliance officer must still approve or reject every decision before it takes effect. Which integration pattern does this describe?
 
 ### A) A human-in-the-loop pattern where Claude assists with a recommendation and a person retains final decision authority **(correct)**
 
@@ -5328,7 +5418,7 @@ Incorrect. The scenario explicitly keeps a human approval step, so the decision 
 
 Incorrect. The scenario does not describe a weekly bulk process; it describes ongoing review of individual recommendations.
 
-## 289. A team is deciding which steps of its onboarding process to hand to Claude and which to keep. Which two steps should stay with a person? Select two.
+## 294. A team is deciding which steps of its onboarding process to hand to Claude and which to keep. Which two steps should stay with a person? Select two.
 
 ### A) The final decision on whether a new hire has passed the probation review for this quarter. **(correct)**
 
@@ -5350,7 +5440,7 @@ Incorrect. Condensing an existing handbook is well-specified text work that a pe
 
 Incorrect. Theming survey feedback is high-volume analysis whose output the team can check against the underlying responses.
 
-## 290. A sales rep wants to compare two Claude-drafted pitches, one emphasizing cost savings and one emphasizing reliability, to see which better fits a prospective client's stated priorities. What is the most effective way to make this comparison useful?
+## 295. A sales rep wants to compare two Claude-drafted pitches, one emphasizing cost savings and one emphasizing reliability, to see which better fits a prospective client's stated priorities. What is the most effective way to make this comparison useful?
 
 ### A) Ask Claude which version is generally more persuasive and use that answer regardless of the client's needs.
 
@@ -5368,7 +5458,7 @@ Correct. Generating both pitches with the same factual foundation but different 
 
 Incorrect. Generating only the cost-savings pitch overlooks the client's expressed priorities and assumes price is the sole deciding factor, which may not be true. It skips the comparative analysis needed to determine the best fit for this particular client.
 
-## 291. A team uploads the new travel policy to a project but leaves the previous year's version in the knowledge base as well. What is the greatest risk?
+## 296. A team uploads the new travel policy to a project but leaves the previous year's version in the knowledge base as well. What is the greatest risk?
 
 ### A) The older document is archived automatically, so the team loses the record of what the old rules were.
 
@@ -5386,7 +5476,7 @@ Correct. Two live versions of the same policy make wrong answers look exactly as
 
 Retrieval relates to the size of project knowledge and still allows documents to be quoted.
 
-## 292. An employee is about to submit thumbs-down feedback on an answer that came from a conversation containing confidential figures. What should they understand about doing so?
+## 297. An employee is about to submit thumbs-down feedback on an answer that came from a conversation containing confidential figures. What should they understand about doing so?
 
 ### A) The related conversation goes with the feedback, so confidential content in that chat is submitted too. **(correct)**
 
@@ -5404,7 +5494,7 @@ The submission is not limited to the one message that was rated.
 
 The reply is not regenerated in place of being submitted.
 
-## 293. A knowledge worker needs figures on a market that changed this month, and her manager will ask where each number came from. Which approach best supports that?
+## 298. A knowledge worker needs figures on a market that changed this month, and her manager will ask where each number came from. Which approach best supports that?
 
 ### A) Ask the same question three times over and use whichever figures come back most consistently.
 
@@ -5422,7 +5512,7 @@ Incorrect. Sources attached to an answer that was written from general knowledge
 
 Incorrect. General knowledge will not reliably cover this month's changes, and it gives her manager nothing to inspect.
 
-## 294. A political campaign wants to use Claude to draft policy summaries and speech outlines for a candidate, with campaign staff reviewing and editing every draft before use. Does this use case violate the Usage Policy's provisions on political content?
+## 299. A political campaign wants to use Claude to draft policy summaries and speech outlines for a candidate, with campaign staff reviewing and editing every draft before use. Does this use case violate the Usage Policy's provisions on political content?
 
 ### A) Yes, because staff review does not remove the general prohibition on political content generation
 
@@ -5440,7 +5530,25 @@ Correct. The Usage Policy distinguishes legitimate political discourse and resea
 
 Incorrect. The policy does not ban all campaign-related use; it targets deceptive and manipulative practices specifically.
 
-## 295. A press officer has forty minutes to check a nine-hundred-word Claude-drafted briefing before it goes out. Which two kinds of claim should be verified first? Select two.
+## 300. A nonprofit wants to use Claude to draft outreach messages that quote scientific studies about vaccine safety, but a staff member suggests fabricating a plausible-sounding study citation when Claude cannot find a real one, in order to make the messaging more persuasive. Why should the team reject this suggestion?
+
+### A) It is acceptable practice as long as the overall message matches mainstream scientific consensus
+
+Incorrect. Alignment with consensus does not excuse fabricating evidence; deceptive sourcing is prohibited on its own terms.
+
+### B) It should be rejected only because the fabricated study belongs to unpublished, unnamed authors
+
+Incorrect. The core problem is fabrication and deception, not a copyright issue involving nonexistent, unpublished authors.
+
+### C) It should be rejected only in jurisdictions that have strict health advertising laws on the books
+
+Incorrect. The prohibition on deceptive health misinformation is not contingent on jurisdiction-specific advertising law.
+
+### D) Fabricated citations are deceptive health misinformation, which the policy prohibits outright **(correct)**
+
+Correct. Fabricating citations to bolster health-related claims is a form of deceptive misinformation, which the Usage Policy prohibits regardless of whether the underlying conclusion happens to be accurate.
+
+## 301. A press officer has forty minutes to check a nine-hundred-word Claude-drafted briefing before it goes out. Which two kinds of claim should be verified first? Select two.
 
 ### A) The statements that will be quoted publicly and would be costly to retract. **(correct)**
 
@@ -5462,7 +5570,25 @@ Position in the document has no bearing on risk. A wrong number in the final par
 
 Correct. Load-bearing figures decide whether the recommendation stands at all, so under time pressure they return the most assurance per minute spent.
 
-## 296. A communications lead asks Claude for a section of a report and keeps receiving three-sentence answers where she needs several paragraphs. What is most likely to help?
+## 302. A marketing assistant's Claude drafts have become unreliable and she wants to work out why rather than guess. Which sequence of steps is correct?
+
+### A) Add the detail the request was missing; reproduce the fault in a fresh chat; try the fix on two more real cases; check whether the sources are current
+
+Changing the request first means she is fixing before she knows what is broken, and the source check arrives after she has already concluded.
+
+### B) Reproduce the fault in a fresh chat; check whether the sources are current; add the detail the request was missing; try the fix on two more real cases **(correct)**
+
+Correct. Isolate the fault away from a possibly overloaded conversation, rule out an out-of-date source, then address the request itself, and confirm the fix on other real cases rather than only the one that failed.
+
+### C) Add the detail the request was missing; check whether the sources are current; reproduce the fault in a fresh chat; try the fix on two more real cases
+
+Editing the request before reproducing the fault means she may be solving a problem the fresh chat would not even have shown.
+
+### D) Check whether the sources are current; try the fix on two more real cases; add the detail the request was missing; reproduce the fault in a fresh chat
+
+Testing a fix before any fix has been made is out of order, and reproducing the fault last removes the point of reproducing it.
+
+## 303. A communications lead asks Claude for a section of a report and keeps receiving three-sentence answers where she needs several paragraphs. What is most likely to help?
 
 ### A) Send the same request once more with added emphasis, so Claude treats the task as more important.
 
@@ -5480,43 +5606,7 @@ Claude's account of its own behaviour is speculation and does not tell her what 
 
 Ten fragments produce a stitched-together section with repetition and gaps between the pieces.
 
-## 297. Explanation
-
-### A) Explicitly describe the desired tone, voice, and level of creative flourish rather than relying on Claude to infer "engaging" from one adjective. **(correct)**
-
-Correct. Anthropic's guidance is that if you want "above and beyond" behavior, you should explicitly request it rather than relying on the model to infer this from vague prompts; naming the specific tone and style closes the gap between what was asked and what was wanted.
-
-### B) Append the word "please" along with several exclamation points so Claude treats the entire request with a substantially higher degree of enthusiasm.
-
-Incorrect. Politeness markers or punctuation do not change how specifically the task is defined and are not a documented technique for shaping tone.
-
-### C) Reduce the max_tokens limit noticeably so Claude is forced into far terser, punchier phrasing within every product description it writes overall.
-
-Incorrect. Shortening the token budget constrains length, not voice or creative quality, and does not address the underlying vagueness of "engaging."
-
-### D) Generate ten separate variations of each description and randomly select one, assuming sheer variety alone will surface a livelier result.
-
-Incorrect. Randomly sampling from multiple generic outputs does not add the missing specificity about desired tone and is not a reliable improvement technique.
-
-## 298. Explanation
-
-### A) Ask the team to score the digest out of ten at the end of each week ahead
-
-A weekly score records a mood without saying what to change, and the answer is a month away.
-
-### B) Ask the users what they still change by hand before they use the digest **(correct)**
-
-Correct. What people quietly fix is the most honest signal available. "It's fine" often means "I edit it every week and stopped mentioning it", and the edits show exactly where the gap is.
-
-### C) Ask Claude to produce a longer digest and see whether anyone objects to it
-
-Deliberately degrading the digest to provoke a reaction wastes a month and annoys the users.
-
-### D) Take the absence of complaints as confirmation and extend it to two teams
-
-Silence is not evidence of success, and extending on that basis spreads an unverified arrangement.
-
-## 299. A Claude.ai Pro user wants their conversations excluded from any model training data, but they've enabled the optional "model improvement" setting and use Incognito chats occasionally. What happens to their Incognito chats?
+## 304. A Claude.ai Pro user wants their conversations excluded from any model training data, but they've enabled the optional "model improvement" setting and use Incognito chats occasionally. What happens to their Incognito chats?
 
 ### A) Incognito chats follow the 5-year retention rule instead of the standard 30-day deletion window
 
@@ -5534,7 +5624,29 @@ Incorrect. Trust and safety flagging depends on detected policy violations in co
 
 Incorrect. The model improvement setting applies to a user's regular conversations; Incognito chats carry their own exclusion regardless of that setting.
 
-## 300. A developer integrating Claude into an internal analytics agent wants to give it broad, unsupervised authority to automatically send emails and modify production database records without any human approval step. What ethical concern does this design most directly raise?
+## 305. A grants manager has kept one conversation running for a fortnight across two tender submissions. Claude now blends in details from the earlier tender and contradicts what it said days ago. Which two responses address the actual cause? Select two.
+
+### A) Move the background that stays true across tasks into a project, so it need not be repeated. **(correct)**
+
+Correct for an independent reason: it stops the problem returning, by giving durable context a home outside any single conversation.
+
+### B) Begin a fresh conversation containing only the material that the current piece of work needs. **(correct)**
+
+Correct. A conversation this long has accumulated superseded material, and a clean start removes what is confusing the answers.
+
+### C) Repeat the correction every single time details from the earlier tender reappear in the answers.
+
+Fixing each recurrence by hand treats the symptom and leaves the overloaded conversation exactly as it was.
+
+### D) Ask Claude to read the whole conversation again from the very top before it answers each question.
+
+Re-reading the conversation reinforces the mixed-up history rather than clearing it, and consumes more allowance.
+
+### E) Paste the previous answer back in each morning to remind Claude of what it said before.
+
+Adding the earlier output back in makes the conversation longer still, which is the condition causing the drift.
+
+## 306. A developer integrating Claude into an internal analytics agent wants to give it broad, unsupervised authority to automatically send emails and modify production database records without any human approval step. What ethical concern does this design most directly raise?
 
 ### A) None, as long as the agent uses the Claude API rather than the consumer chat product
 
@@ -5552,7 +5664,7 @@ Correct. Granting an agent unsupervised authority over irreversible, high-impact
 
 Incorrect. Agentic use must still comply with the full Usage Policy, and unsupervised high-stakes actions are not exempted from oversight expectations.
 
-## 301. A teacher wants students to be able to check the claims in a Claude-drafted study guide for themselves. What should she build into the guide?
+## 307. A teacher wants students to be able to check the claims in a Claude-drafted study guide for themselves. What should she build into the guide?
 
 ### A) A confidence rating beside each claim showing how certain Claude was when it wrote it.
 
@@ -5570,7 +5682,7 @@ Correct. Claim-level sourcing is what makes verification possible for a reader, 
 
 Incorrect. A bibliography shows what was read overall but leaves students unable to tell which source supports which claim.
 
-## 302. A supplement company wants Claude to write blog posts claiming its product cures autoimmune disease, citing invented clinical trial results, in order to boost search-engine rankings. Is this an appropriate use of Claude?
+## 308. A supplement company wants Claude to write blog posts claiming its product cures autoimmune disease, citing invented clinical trial results, in order to boost search-engine rankings. Is this an appropriate use of Claude?
 
 ### A) Yes, dietary supplement marketing is not subject to the Usage Policy's health-content rules.
 
@@ -5588,7 +5700,25 @@ Correct. The Usage Policy explicitly prohibits generating false or misleading me
 
 Incorrect. While manipulating search-engine rankings is a secondary issue, the primary reason this use is inappropriate is the fabrication of false medical claims and clinical evidence, which is prohibited by the Usage Policy.
 
-## 303. To win support for a new Claude-assisted proposal-drafting arrangement, a team demonstrates the best output from about twenty attempts and does not mention the other nineteen. What is the greatest risk?
+## 309. Feedback on a customer-reply project shows that Claude's replies are accurate but consistently more formal than the audience expects. What is the most effective adjustment?
+
+### A) Correct the tone by hand in each reply, since tone is a matter of taste that varies with the customer.
+
+Hand-editing every reply re-solves the same problem daily and leaves the default unchanged.
+
+### B) Add the audience and wanted tone to the project instructions, with one approved reply as an example. **(correct)**
+
+Correct. The fault is consistent, so it belongs in the durable configuration, and one approved example conveys the register far more precisely than an adjective would.
+
+### C) Change to a faster model, which tends to produce shorter and less formal customer-facing writing.
+
+Speed and tone are unrelated, and model choice is not how register is specified.
+
+### D) Ask Claude to rewrite each reply less formally as a second step after the first version is produced.
+
+A second rewriting step doubles the work for a fault that could be prevented at the outset.
+
+## 310. To win support for a new Claude-assisted proposal-drafting arrangement, a team demonstrates the best output from about twenty attempts and does not mention the other nineteen. What is the greatest risk?
 
 ### A) The demonstration may run longer than the slot the sponsors set aside in the meeting agenda.
 
@@ -5606,7 +5736,7 @@ Repeating a demonstration costs a little time and is entirely normal when severa
 
 Correct. Showing the best of twenty sets the expected quality at a level the arrangement reaches roughly one time in twenty. Funding, staffing and review effort are then planned against a standard that will not materialise, and the credibility loss lands on the team.
 
-## 304. A department shares one pooled allowance. Several colleagues have got into the habit of running everyday drafting and tidying-up work on the deepest-reasoning tier because it is available to them. What is the greatest risk?
+## 311. A department shares one pooled allowance. Several colleagues have got into the habit of running everyday drafting and tidying-up work on the deepest-reasoning tier because it is available to them. What is the greatest risk?
 
 ### A) The department loses track of which tier produced which document, making it harder to reproduce a particular draft afterwards.
 
@@ -5624,7 +5754,7 @@ Getting used to one tier's phrasing is a mild adjustment, not a risk to the depa
 
 Correct. The deepest tier consumes meaningfully more of a shared allowance, so spending it on work the default tier handles well leaves nothing for the small number of tasks that genuinely need that depth.
 
-## 305. A stakeholder wants Claude to answer questions about their company's internal product catalog, which was updated last week and was never part of Claude's training data. How should this limitation and solution be communicated?
+## 312. A stakeholder wants Claude to answer questions about their company's internal product catalog, which was updated last week and was never part of Claude's training data. How should this limitation and solution be communicated?
 
 ### A) Explain that the catalog only needs to be emailed to Anthropic once so it joins the base model going forward.
 
@@ -5642,7 +5772,7 @@ Incorrect. Claude does not automatically crawl, index, or learn from any company
 
 Correct. Claude lacks built-in knowledge of internal company data, so the updated product catalog must be provided through retrieval mechanisms like RAG or a connected tool for accurate answers.
 
-## 306. A trainer asks Claude for two onboarding guides on the same topic: one for new hires with no industry background and one for experienced hires from a competitor. What distinguishes an effective adaptation between the two versions?
+## 313. A trainer asks Claude for two onboarding guides on the same topic: one for new hires with no industry background and one for experienced hires from a competitor. What distinguishes an effective adaptation between the two versions?
 
 ### A) Both versions include identical content, differing only in the order the sections appear
 
@@ -5660,7 +5790,7 @@ Incorrect. Removing punctuation does not adapt content to audience background an
 
 Correct. Adapting for prior background means adjusting how much foundational context is spelled out, assuming less for readers with no experience and more for those who already know it.
 
-## 307. A policy officer has one hour before a board meeting and a Claude-written briefing containing roughly twenty factual claims. She cannot check them all. What should she do first?
+## 314. A policy officer has one hour before a board meeting and a Claude-written briefing containing roughly twenty factual claims. She cannot check them all. What should she do first?
 
 ### A) Ask Claude which of the claims in the briefing are the ones most likely to be incorrect.
 
@@ -5678,7 +5808,7 @@ Incorrect. Order of appearance has no relationship to importance, so the claims 
 
 Correct. When verification time is scarce it has to be spent where an error would change the decision, so triage by consequence comes before any checking begins.
 
-## 308. A colleague new to Claude at work asks why anyone would use the default tier when a deeper-reasoning one is offered alongside it. Which explanation is accurate?
+## 315. A colleague new to Claude at work asks why anyone would use the default tier when a deeper-reasoning one is offered alongside it. Which explanation is accurate?
 
 ### A) The default tier exists to hold costs down and produces work that is noticeably weaker than the deeper tier on every kind of task attempted.
 
@@ -5696,7 +5826,7 @@ Correct. The default is fast and capable and suits the majority of work, while t
 
 Tier choice tracks the demands of the task, not the experience of the user. An expert doing routine drafting is well served by the default, and a beginner facing a hard analysis may need more depth.
 
-## 309. A marketing analyst needs Claude to compile a report on a competitor's recent product launches by pulling in current news articles, press releases, and blog posts published in the last month. Which feature should the analyst use?
+## 316. A marketing analyst needs Claude to compile a report on a competitor's recent product launches by pulling in current news articles, press releases, and blog posts published in the last month. Which feature should the analyst use?
 
 ### A) Request an artifact so Claude generates a standalone report document with current news and press releases.
 
@@ -5718,7 +5848,7 @@ Incorrect. A Project's stored knowledge consists only of documents manually uplo
 
 Incorrect. Standard chat without research mode typically relies on Claude's internal training data or a single search, which is insufficient for compiling comprehensive, up-to-date information from multiple external sources like news and press releases.
 
-## 310. An analyst has refined the wording she uses for supplier reviews across many rounds, using the same supplier's file throughout. She now wants to adopt it as her team's standard wording. What should she do before that?
+## 317. An analyst has refined the wording she uses for supplier reviews across many rounds, using the same supplier's file throughout. She now wants to adopt it as her team's standard wording. What should she do before that?
 
 ### A) Record the reasoning behind each instruction, so that colleagues understand why the wording is written this way.
 
@@ -5736,7 +5866,7 @@ A readability check confirms colleagues can follow the instructions, not that th
 
 Correct. Wording refined against a single example tends to encode that example's quirks, such as its headings or its level of detail. Trying it on other files is what separates a genuine improvement from one that only fits the case it was built on.
 
-## 311. A team lead asks Claude to review its own draft for errors. It returns a list of three corrections and states that the rest of the draft is accurate. How should she treat that statement?
+## 318. A team lead asks Claude to review its own draft for errors. It returns a list of three corrections and states that the rest of the draft is accurate. How should she treat that statement?
 
 ### A) As grounds for discarding the draft, since a draft needing three corrections is unlikely to be sound elsewhere.
 
@@ -5754,7 +5884,7 @@ Correct. A self-review can surface internal slips such as contradictions and ari
 
 Reviewing only the flagged sections trusts the same judgement that produced the draft to decide where checking is needed.
 
-## 312. A marketing operations specialist has built a workflow that will send Claude-drafted emails automatically to a fifty-thousand-person customer list at six tomorrow morning. Nobody has read any of the drafts yet. What should she do first?
+## 319. A marketing operations specialist has built a workflow that will send Claude-drafted emails automatically to a fifty-thousand-person customer list at six tomorrow morning. Nobody has read any of the drafts yet. What should she do first?
 
 ### A) Read the first and last few drafts as a sample, and let the send run if those ones look fine.
 
@@ -5772,7 +5902,25 @@ This accepts that unreviewed messages will reach customers anyway. Once an email
 
 Leaving the model to check itself keeps the unreviewed send in place. No human has looked at anything, which is precisely the risk here.
 
-## 313. After four rounds, an internal newsletter item is accurate and well structured, but two headings use the wrong department names. The item is due in ten minutes. What should the editor do?
+## 320. An assistant notices that Claude's drafts in a shared project have become weaker since a teammate edited the project instructions last week. What should she do first?
+
+### A) Stop using the project and go back to writing each request from scratch in ordinary conversations.
+
+Abandoning the project discards the shared context instead of fixing an edit that can be reverted.
+
+### B) Ask Claude to review the project instructions and rewrite them so that the drafts improve again.
+
+Claude cannot know which wording produced last month's better drafts, so this is guesswork.
+
+### C) Look at what changed in the instructions and retry a recent task with the old wording restored. **(correct)**
+
+Correct. A change in results that follows a known change in configuration is best tested by reverting that change on a real task, which confirms or rules out the cause in one step.
+
+### D) Add her own extra instructions on top, so the parts she depends on are stated again more firmly.
+
+Layering instructions on top may mask the conflict while leaving the contradictory wording in place.
+
+## 321. After four rounds, an internal newsletter item is accurate and well structured, but two headings use the wrong department names. The item is due in ten minutes. What should the editor do?
 
 ### A) Rewrite her original request to include the department names, and produce a fresh version of the whole item.
 
@@ -5790,7 +5938,7 @@ Publishing known errors and correcting them later costs the team credibility ove
 
 Another round can fix two words, but it returns a whole document that has to be re-read to confirm nothing else moved.
 
-## 314. A support team and a marketing team share one project. Support wants terse troubleshooting answers; marketing wants warm promotional copy. The project owner wants consistent quality for both. What should the owner do first?
+## 322. A support team and a marketing team share one project. Support wants terse troubleshooting answers; marketing wants warm promotional copy. The project owner wants consistent quality for both. What should the owner do first?
 
 ### A) Keep one project and ask each person to restate their preferred tone at the start of every chat.
 
@@ -5808,7 +5956,7 @@ Guessing the requester's team from the wording is unreliable and leaves no expli
 
 This is a conflicting rule set that pushes the choice back into every individual conversation.
 
-## 315. An analyst is unhappy with a Claude output and wants to diagnose the cause properly rather than guess. Which sequence is correct?
+## 323. An analyst is unhappy with a Claude output and wants to diagnose the cause properly rather than guess. Which sequence is correct?
 
 ### A) Compare the output with what the request actually asked for; check whether the source material was ever supplied; rewrite the request with the missing specifics; consider a different model or a fresh chat. **(correct)**
 
@@ -5826,7 +5974,7 @@ Checking the source material first is reasonable, but switching models before re
 
 Rewriting before comparing means guessing at what was missing rather than establishing it.
 
-## 316. Five colleagues each keep re-uploading the same three reference documents into their own chats, and they want one shared place for that context. What should the team do first?
+## 324. Five colleagues each keep re-uploading the same three reference documents into their own chats, and they want one shared place for that context. What should the team do first?
 
 ### A) Check which plan they are on, since sharing one project with colleagues needs Team or Enterprise. **(correct)**
 
@@ -5844,7 +5992,25 @@ Incorrect. Context from one person's conversations does not carry across to coll
 
 Incorrect. Five parallel copies is the duplication they are trying to remove, and the copies will drift apart as documents are updated.
 
-## 317. A team lead worries that linking Google Drive will let Claude read everything the company keeps in Drive. What is the accurate and policy-appropriate response?
+## 325. A team wants to turn a procedure that one colleague performs well into something anyone in the team can run. Which sequence is correct?
+
+### A) Run the steps on a second case to confirm they generalise; capture them as a reusable skill; write down the steps that worked on a real case; have a colleague run it unaided and fix what confused them.
+
+The steps cannot be run on a second case before they have been written down at all.
+
+### B) Capture the steps as a reusable skill; have a colleague run it unaided and fix what confused them; write down the steps that worked on a real case; run the same steps on a second case to confirm they generalise.
+
+Packaging the procedure before it has been written down or tested captures whatever the author happened to remember.
+
+### C) Have a colleague run the procedure unaided and fix what confused them; write down the steps that worked on a real case; capture them as a reusable skill; run it on a second case to confirm it generalises.
+
+Handing an uncaptured procedure to a colleague first asks them to reconstruct it from nothing.
+
+### D) Write down the steps that worked on a real case; run the same steps on a second case to confirm they generalise; capture them as a reusable skill; have a colleague run it unaided and fix what confused them. **(correct)**
+
+Correct. Capture what worked, prove it generalises beyond the first case, make it reusable, then let a colleague test it without help, which is the only way to find the assumptions the author left out.
+
+## 326. A team lead worries that linking Google Drive will let Claude read everything the company keeps in Drive. What is the accurate and policy-appropriate response?
 
 ### A) Claude works within the permissions the person already holds, and administrators can restrict it further. **(correct)**
 
@@ -5862,7 +6028,7 @@ Connecting does not grant access beyond what the person can already open, and we
 
 The project does not override the account's permissions in the connected service.
 
-## 318. A team member is worried that connecting Google Drive will let colleagues read files they are not allowed to open. What is accurate?
+## 327. A team member is worried that connecting Google Drive will let colleagues read files they are not allowed to open. What is accurate?
 
 ### A) A connector requires every file to be made public in Drive before Claude is able to read any of them.
 
@@ -5880,7 +6046,7 @@ Correct. If someone cannot reach a file in the source system, the connector cann
 
 Connectors read from the source system rather than duplicating files into a shared pool.
 
-## 319. A market research manager has been asked to summarise survey free-text responses that include respondents' names and employers, using the company's Claude for Work plan. In which order should these steps be taken?
+## 328. A market research manager has been asked to summarise survey free-text responses that include respondents' names and employers, using the company's Claude for Work plan. In which order should these steps be taken?
 
 ### A) Remove the names and employers that the summary does not need; check what the participant consent and company policy allow; run the summary and review it before it is circulated; note what was removed so the result can be interpreted properly.
 
@@ -5898,7 +6064,25 @@ Correct. Consent and policy set the boundary for what may be used at all; that b
 
 The consent check happens first, but the full identifiable transcripts are still put into the tool before the names and employers are removed, so the minimisation step comes too late to protect anyone.
 
-## 320. A sponsor wants to deploy a new Claude-powered feature to all users in every region simultaneously on day one. What rollout approach should be recommended instead, and why?
+## 329. A team building a classification prompt has zero examples in the prompt, only a description of the categories. Outputs are inconsistent on edge cases, such as tickets that could reasonably fit two categories. What is the most effective next step to reduce this inconsistency?
+
+### A) Add three to five diverse, relevant examples, including edge cases, wrapped in example tags so Claude can mirror the intended pattern. **(correct)**
+
+Correct. Anthropic's guidance is that a few well-crafted, diverse examples (few-shot/multishot prompting) are one of the most reliable ways to steer output consistency, and including edge cases in examples helps Claude generalize to ambiguous inputs.
+
+### B) Instruct Claude to always pick the first matching category alphabetically whenever a ticket could reasonably fit more than one category.
+
+Incorrect. An arbitrary tie-breaking rule like alphabetical order does not reflect the actual decision criteria and can produce systematically wrong categorizations for ambiguous tickets.
+
+### C) Increase the total number of categories so that ambiguous tickets have a narrower, more specific category to fall into.
+
+Incorrect. Adding more categories increases the classification surface and is likely to increase ambiguity rather than resolve the existing edge cases.
+
+### D) Remove the existing category descriptions entirely and let Claude infer the categories purely from ticket content.
+
+Incorrect. Removing the category descriptions removes information Claude needs and would likely worsen consistency rather than improve it.
+
+## 330. A sponsor wants to deploy a new Claude-powered feature to all users in every region simultaneously on day one. What rollout approach should be recommended instead, and why?
 
 ### A) Recommend delaying the launch indefinitely, since no rollout strategy can reduce risk for AI-powered features.
 
@@ -5916,7 +6100,7 @@ Correct. A phased or pilot rollout to a limited audience lets the team observe r
 
 Incorrect. Regional usage patterns and data characteristics can affect performance, so ignoring them is not sound rollout planning.
 
-## 321. A prompt describes a multi-step setup process, such as configuring an environment and then running a script, but Claude sometimes performs the steps out of order. What change would make the required order unambiguous?
+## 331. A prompt describes a multi-step setup process, such as configuring an environment and then running a script, but Claude sometimes performs the steps out of order. What change would make the required order unambiguous?
 
 ### A) Provide the instructions as a numbered list of steps in the exact order they must run **(correct)**
 
@@ -5934,61 +6118,7 @@ Describing steps out of order and relying on inference is the opposite of making
 
 Relying only on paragraph breaks without numbering removes the explicit ordering cue that numbered lists provide for steps where sequence matters.
 
-## 322. Explanation
-
-### A) Ask Claude to hold off responding until all eight fragments have arrived in the conversation.
-
-Waiting still requires eight messages, and it delays the point at which she can correct course.
-
-### B) Put the request and all the material into one well-specified opening message, then refine it. **(correct)**
-
-Correct. Batching the related material into a single, clearly specified request is the efficient pattern: Claude sees the whole picture at once instead of reasoning from a partial one eight times.
-
-### C) Split the eight messages across two conversations so that each holds a manageable amount.
-
-Two conversations split the material so neither one has everything the brief actually needs.
-
-### D) Send the eight messages in a fixed order each time, so the assembly follows a predictable pattern.
-
-A fixed order makes the same inefficient exchange more predictable without making it shorter.
-
-## 323. Explanation
-
-### A) Preferences drift over time, which makes this quarter's ratings hard to compare with last quarter's.
-
-Drift makes comparison harder over time; it does not explain why accuracy goes unmeasured.
-
-### B) Colleagues who read quickly may rate the notes higher than colleagues who read them thoroughly.
-
-Variation between readers adds noise to the measure, but the deeper problem is what it measures at all.
-
-### C) Positive ratings may encourage the team to produce more notes than colleagues have time to read.
-
-Producing more notes is a workload effect rather than a risk to the reliability of the notes.
-
-### D) Fluent, confident notes can be well liked while carrying errors nobody checked against sources. **(correct)**
-
-Correct. Reader satisfaction measures how the notes read, not whether they are right, so a confident and wrong note scores as well as a correct one and the error is adopted.
-
-## 324. Explanation
-
-### A) Yes, because any use of Claude in connection with a political campaign is prohibited outright
-
-Incorrect. The policy does not ban all campaign-related use; it targets deceptive and manipulative practices specifically.
-
-### B) Yes, because staff review does not remove the general prohibition on political content generation
-
-Incorrect. Legitimate drafting assistance with human review is not prohibited; the concern is deception and manipulation, not campaign use itself.
-
-### C) No, because political content restrictions only apply during the final 30 days before an election
-
-Incorrect. There is no time-limited exception tied to a 30-day pre-election window in the policy's political content provisions.
-
-### D) No, because the policy permits legitimate political discourse while banning deceptive tactics **(correct)**
-
-Correct. The Usage Policy distinguishes legitimate political discourse and research, which is allowed, from deceptive or manipulative uses such as fake personas or targeted voter manipulation, which are prohibited.
-
-## 325. An Enterprise owner decides to shorten the organisation's data retention period substantially. What is the greatest concern before saving the change?
+## 332. An Enterprise owner decides to shorten the organisation's data retention period substantially. What is the greatest concern before saving the change?
 
 ### A) Shortening retention disables project sharing, because shared projects require indefinite retention.
 
@@ -6006,25 +6136,7 @@ The setting is not limited to new conversations; existing data is in scope.
 
 Retention changes do not require connectors to be reconnected.
 
-## 326. Explanation
-
-### A) Quality depends on who ran the task that day, and the fix is lost whenever that person is away. **(correct)**
-
-Correct. An unrecorded fix is not a fix but a habit, so output varies with the person, and the knowledge leaves the team whenever they do.
-
-### B) Colleagues may word their corrections differently, making conversations harder to search later.
-
-Searchability is a minor inconvenience compared with inconsistent output reaching colleagues.
-
-### C) Correcting Claude in the moment takes a little longer than getting the format right first time.
-
-The extra minutes are real but small next to results that cannot be relied on from one person to the next.
-
-### D) Claude may eventually stop responding to corrections repeated within the same conversation.
-
-Claude does not stop accepting corrections, so this describes a behaviour that will not occur.
-
-## 327. A manager challenges a claim in a Claude answer, Claude replies that it is confident the claim is correct, and the manager accepts it. What is the greatest risk?
+## 333. A manager challenges a claim in a Claude answer, Claude replies that it is confident the claim is correct, and the manager accepts it. What is the greatest risk?
 
 ### A) The manager's challenge is recorded in the chat, which makes the exchange harder to audit.
 
@@ -6042,7 +6154,7 @@ Incorrect. The cost of one follow-up message is trivial next to acting on a clai
 
 Incorrect. It does not always reverse, and the manager's error is treating either response as evidence about the outside world.
 
-## 328. A researcher has fifteen sets of interview notes and must produce a findings section for a report. Which sequence of stages should she follow?
+## 334. A researcher has fifteen sets of interview notes and must produce a findings section for a report. Which sequence of stages should she follow?
 
 ### A) Check each theme against the notes; pull the relevant extracts from each set of notes; write the findings section; group the extracts into themes.
 
@@ -6060,7 +6172,7 @@ Correct. Extracts come out of the notes first, grouping turns them into themes, 
 
 Findings written before the extracts exist are assertions in search of evidence, and the checking stage arrives after the section is already written.
 
-## 329. A team lead must brief a sceptical director on a new Claude-assisted reporting arrangement. Which framing is most appropriate?
+## 335. A team lead must brief a sceptical director on a new Claude-assisted reporting arrangement. Which framing is most appropriate?
 
 ### A) Say that results will improve automatically as newer models become available
 
@@ -6078,7 +6190,7 @@ Claiming the review step is unnecessary oversells the arrangement and removes th
 
 Correct. Honest communication pairs capability with limitation and names where human review stays in the loop. That is what lets a sceptical stakeholder judge the arrangement rather than the pitch.
 
-## 330. An events team has redesigned its exhibitor-liaison workflow so that Claude carries a request from first enquiry through to a confirmed booking slot. Where does an approval checkpoint most clearly belong?
+## 336. An events team has redesigned its exhibitor-liaison workflow so that Claude carries a request from first enquiry through to a confirmed booking slot. Where does an approval checkpoint most clearly belong?
 
 ### A) Only if an exhibitor complains about the slot they were allocated
 
@@ -6096,7 +6208,7 @@ A monthly review catches patterns but arrives long after individual bookings hav
 
 Correct. The checkpoint belongs at the last moment where a person can still prevent an external, hard-to-retract action. Once the exhibitor has been contacted, the commitment has been made.
 
-## 331. A stakeholder wants Claude to read scanned engineering drawings and return exact millimeter measurements for manufacturing tolerances. How should the solutions architect set expectations about this vision use case?
+## 337. A stakeholder wants Claude to read scanned engineering drawings and return exact millimeter measurements for manufacturing tolerances. How should the solutions architect set expectations about this vision use case?
 
 ### A) Confirm that Claude's vision accuracy is unaffected by image resolution or scan quality, ensuring consistent measurements across all scenarios.
 
@@ -6114,7 +6226,7 @@ Incorrect. Claude does support image input and can reason about visual content, 
 
 Correct. Claude can describe and reason about visual content, but it is not a calibrated measurement tool; precise tolerance values should be verified with dedicated measurement instruments before use in manufacturing.
 
-## 332. A product team is brainstorming new feature ideas and wants Claude to generate a wide range of genuinely different concepts rather than several variations on the same idea. What should the team do when providing example ideas in the prompt?
+## 338. A product team is brainstorming new feature ideas and wants Claude to generate a wide range of genuinely different concepts rather than several variations on the same idea. What should the team do when providing example ideas in the prompt?
 
 ### A) Include no examples at all so nothing biases the range of ideas produced
 
@@ -6132,7 +6244,7 @@ Incorrect. Asking for close variations of one example directly narrows the outpu
 
 Incorrect. Uniform examples that all share the same structure and theme encourage Claude to converge on that single pattern rather than exploring genuinely different concepts.
 
-## 333. A consultancy team on an Enterprise plan wants Claude's research on a client sector to draw on the firm's own past engagement reports, not only on public material. What is the most appropriate approach?
+## 339. A consultancy team on an Enterprise plan wants Claude's research on a client sector to draw on the firm's own past engagement reports, not only on public material. What is the most appropriate approach?
 
 ### A) Paste the single most relevant engagement report into each new chat whenever it seems likely to be needed.
 
@@ -6150,7 +6262,7 @@ Asking Claude what such a firm would probably have learned invites it to invent 
 
 A single summary page discards the detail that makes past engagements useful, and it becomes stale the moment new work is completed. The team would be researching against a snapshot rather than the record.
 
-## 334. A support team must triage several thousand incoming messages a week, of which a small proportion involve genuinely difficult judgment. What is the most sensible arrangement?
+## 340. A support team must triage several thousand incoming messages a week, of which a small proportion involve genuinely difficult judgment. What is the most sensible arrangement?
 
 ### A) Run the bulk on the fastest tier and send the cases it flags as difficult to the deepest tier. **(correct)**
 
@@ -6168,7 +6280,7 @@ Incorrect. The hard cases are usually where the cost of a mistake sits, so treat
 
 Incorrect. Alternating assigns depth at random, which means some hard cases get the lightest treatment.
 
-## 335. A fintech company built a product that uses Claude to automatically approve or deny small business loan applications without human involvement. Under Anthropic's Usage Policy, what must the company do to comply with the high-risk use case requirements for financial services?
+## 341. A fintech company built a product that uses Claude to automatically approve or deny small business loan applications without human involvement. Under Anthropic's Usage Policy, what must the company do to comply with the high-risk use case requirements for financial services?
 
 ### A) The company should route every denial through a separate rules engine so only approvals originate from Claude, removing any human review requirement.
 
@@ -6186,7 +6298,7 @@ Incorrect. Reducing how long records are kept impairs the ability to conduct com
 
 Correct. The Usage Policy classifies automated lending decisions as high-risk. Therefore, the company must disclose Claude's involvement to applicants and ensure a qualified human reviews the output before any adverse lending decision is finalized.
 
-## 336. A campaign project has finished, but the team may want to look back at its material later in the year. What is the most appropriate action?
+## 342. A campaign project has finished, but the team may want to look back at its material later in the year. What is the most appropriate action?
 
 ### A) Archive the project so it stays available for reference without sitting among the active workspaces. **(correct)**
 
@@ -6204,7 +6316,7 @@ Removing the direction leaves a half-configured workspace that will mislead whoe
 
 Deletion destroys material the team has said it may still need.
 
-## 337. An internal communications lead has a month of scattered Claude answers about an office relocation and must turn them into one reference page for staff. In which order should these steps be taken?
+## 343. An internal communications lead has a month of scattered Claude answers about an office relocation and must turn them into one reference page for staff. In which order should these steps be taken?
 
 ### A) Gather the relevant answers and drop the ones that no longer apply; decide what staff need to be able to look up about the move; have Claude organise the surviving material into a single artifact; check that artifact against the questions staff are actually asking.
 
@@ -6222,7 +6334,7 @@ The scope is set correctly but the artifact is built before the outdated answers
 
 Correct. What staff need to look up defines relevance, which is what makes the culling of stale answers meaningful; only then is there a clean set to organise into an artifact; and checking the finished page against real questions confirms it does the job it was scoped to do.
 
-## 338. A legal team wants to fold Claude into its existing contract-review workflow so that an entire multi-hundred-page merger agreement can be analyzed in a single request instead of being split into many smaller calls. Which capability makes this integration possible?
+## 344. A legal team wants to fold Claude into its existing contract-review workflow so that an entire multi-hundred-page merger agreement can be analyzed in a single request instead of being split into many smaller calls. Which capability makes this integration possible?
 
 ### A) Batch processing, which lets many small requests run overnight instead of one large request
 
@@ -6240,7 +6352,7 @@ Incorrect. Adaptive thinking controls how Claude reasons about a request; it doe
 
 Correct. A large context window allows a single request to hold large documents, extensive code bases, or long conversations, which is what lets the entire lengthy merger agreement be analyzed in one request.
 
-## 339. Within a single response, Claude states in the first paragraph that a company was founded in 1998, then states in the closing paragraph that the same company celebrated its 30th anniversary last year, which would imply a different founding year. How should this be classified during output review?
+## 345. Within a single response, Claude states in the first paragraph that a company was founded in 1998, then states in the closing paragraph that the same company celebrated its 30th anniversary last year, which would imply a different founding year. How should this be classified during output review?
 
 ### A) A bias, since Claude favored the more recent-sounding date over the earlier one it gave
 
@@ -6258,7 +6370,7 @@ Incorrect. The scenario does not establish that the founding date is unverifiabl
 
 Correct. When two statements within the same response conflict with each other, this is an internal inconsistency, regardless of whether either individual fact can be verified externally.
 
-## 340. A Team-plan owner is uneasy about conversation content leaving the organisation when members rate Claude's answers. What control is available to them?
+## 346. A Team-plan owner is uneasy about conversation content leaving the organisation when members rate Claude's answers. What control is available to them?
 
 ### A) Owners can set ratings to be stored only inside the organisation's own private workspace.
 
@@ -6276,7 +6388,7 @@ Correct. Team and Enterprise owners can disable rating so that conversations are
 
 There is no approval workflow layered on top of ratings.
 
-## 341. An analyst wants to upload a partner company's forecast data, shared under a non-disclosure agreement, into a Claude project. What should she do first?
+## 347. An analyst wants to upload a partner company's forecast data, shared under a non-disclosure agreement, into a Claude project. What should she do first?
 
 ### A) Rename the partner and its products throughout the file, then upload it as ordinary internal material.
 
@@ -6294,7 +6406,7 @@ Deleting afterwards does not cure a disclosure that the agreement may not have p
 
 Correct. Third-party confidential material is governed by the contract that supplied it, so the agreement's terms, and an approval where they are ambiguous, come before any upload.
 
-## 342. A project manager reviews a risk register that Claude built from incident logs. Every risk attributed to one supplier is rated high and every risk attributed to the other is rated low, although both suppliers had comparable incidents. What should she do first?
+## 348. A project manager reviews a risk register that Claude built from incident logs. Every risk attributed to one supplier is rated high and every risk attributed to the other is rated low, although both suppliers had comparable incidents. What should she do first?
 
 ### A) Ask Claude to redo the register and use the second version if it gives a more balanced split.
 
@@ -6312,7 +6424,7 @@ Incorrect. Forcing an even split assumes the answer. If the second supplier real
 
 Incorrect. Consistency is exactly what a skewed response looks like. A uniform pattern is a reason to check the evidence, not a substitute for checking it.
 
-## 343. A quality lead wants Claude to stop producing figures that do not appear anywhere in the reports uploaded to a project. Which addition to the project instructions best supports this?
+## 349. A quality lead wants Claude to stop producing figures that do not appear anywhere in the reports uploaded to a project. Which addition to the project instructions best supports this?
 
 ### A) Tell Claude to add a disclaimer to every answer noting that figures may not have been verified.
 
@@ -6330,7 +6442,7 @@ This actively instructs the behaviour the quality lead is trying to prevent.
 
 Emphasis without a rule gives no actionable behaviour to follow when a figure is missing.
 
-## 344. A project's instructions tell Claude to "respond as our compliance officer and give final approval on vendor contracts". What is the greatest risk in writing the instructions this way?
+## 350. A project's instructions tell Claude to "respond as our compliance officer and give final approval on vendor contracts". What is the greatest risk in writing the instructions this way?
 
 ### A) It assigns Claude a decision role a person must own, so drafts may be treated as approvals nobody reviewed. **(correct)**
 
@@ -6348,7 +6460,7 @@ Instructions and uploaded knowledge work together; one does not switch the other
 
 Instruction wording has no effect on who the project is shared with.
 
-## 345. After replacing three documents in a project's knowledge base, what is the most reliable way to confirm the refresh has worked?
+## 351. After replacing three documents in a project's knowledge base, what is the most reliable way to confirm the refresh has worked?
 
 ### A) Compare the total size of the knowledge base before and after the three files were replaced.
 
@@ -6366,7 +6478,7 @@ Correct. Only a question with a changed answer distinguishes the new source from
 
 A self-report about reading files is not evidence that answers now reflect them.
 
-## 346. A market analyst must produce a competitor briefing drawn from many public sources, and the team will keep editing that briefing for weeks afterwards. Which two Claude features fit this job? Select two.
+## 352. A market analyst must produce a competitor briefing drawn from many public sources, and the team will keep editing that briefing for weeks afterwards. Which two Claude features fit this job? Select two.
 
 ### A) Open a separate chat for each competitor so that no single conversation ever grows long.
 
@@ -6388,7 +6500,25 @@ Incorrect. An internal mailbox is not the source of public competitor informatio
 
 Incorrect. Re-pasting an inline answer for every edit is precisely the friction artifacts exist to remove, and versions drift apart quickly.
 
-## 347. A logistics company processes a very high volume of straightforward shipment-status classifications per day and has tight per-request latency requirements, but still wants strong reasoning quality for edge cases. Which model tier is the best fit?
+## 353. Colleagues report that Claude-assisted replies to invoice queries are accurate but that the whole process now takes longer than it did before. What is the most appropriate response?
+
+### A) Accept the delay, because accuracy matters more than speed in every case
+
+Accepting the delay without understanding it forfeits most of the benefit the change was meant to deliver.
+
+### B) Ask Claude to reply faster by giving it much shorter written instructions
+
+Shorter instructions are likely to reduce quality, and instruction length was probably not where the time went.
+
+### C) Look at where the extra time goes; the fault may lie in the steps around it **(correct)**
+
+Correct. The result is telling the team that the drafting improved and something else got worse. Finding which step absorbed the time is what turns that feedback into a usable adjustment.
+
+### D) Remove the checking step, since accurate output no longer needs to be reviewed
+
+Dropping the check on the strength of early accuracy removes the safeguard just as volume grows.
+
+## 354. A logistics company processes a very high volume of straightforward shipment-status classifications per day and has tight per-request latency requirements, but still wants strong reasoning quality for edge cases. Which model tier is the best fit?
 
 ### A) Claude Sonnet, since high-volume straightforward tasks are always better served by a mid-tier model
 
@@ -6406,7 +6536,7 @@ Claude Opus is the most capable model, but using it for every request in a high-
 
 Anthropic documentation recommends Claude Haiku for straightforward classification tasks like routing and intent detection, emphasizing its speed and cost-efficiency. It provides near-frontier performance at the most economical price, making it ideal for high-volume, low-latency requirements. For edge cases requiring deeper reasoning, a multi-model architecture can escalate requests to more capable models.
 
-## 348. A records team reclassifies several thousand short archive descriptions overnight, and an archivist spot-checks a sample of the results each morning before anything is published. Which consideration should carry most weight in the team's tier choice?
+## 355. A records team reclassifies several thousand short archive descriptions overnight, and an archivist spot-checks a sample of the results each morning before anything is published. Which consideration should carry most weight in the team's tier choice?
 
 ### A) The preference of the archivist who runs the morning check, since she is the person most familiar with how the descriptions read.
 
@@ -6424,7 +6554,7 @@ Matching what others use ignores the specifics that actually matter here: this i
 
 Correct. High volume, short and repetitive items, and an existing human spot-check together point to speed and allowance as the deciding factors rather than the deepest available reasoning.
 
-## 349. A Project that a department has relied on for a year has never had its uploaded knowledge reviewed. Which two maintenance actions are appropriate? Select two.
+## 356. A Project that a department has relied on for a year has never had its uploaded knowledge reviewed. Which two maintenance actions are appropriate? Select two.
 
 ### A) Schedule a regular review so outdated documents are found before they cause wrong answers. **(correct)**
 
@@ -6446,7 +6576,7 @@ Incorrect. Rebuilding the whole workspace after one bad answer discards good con
 
 Incorrect. Claude cannot tell which uploaded document has been superseded; that judgment depends on knowledge it does not hold.
 
-## 350. Four analysts on an Enterprise plan are running separate chats to analyse requirements for the same programme, and each keeps re-pasting the same brief, glossary and stakeholder map. What is the most appropriate improvement?
+## 357. Four analysts on an Enterprise plan are running separate chats to analyse requirements for the same programme, and each keeps re-pasting the same brief, glossary and stakeholder map. What is the most appropriate improvement?
 
 ### A) Ask each analyst to paste a shortened summary of the documents rather than the full versions each time.
 
@@ -6464,7 +6594,7 @@ One very long shared conversation mixes four unrelated lines of analysis, become
 
 Correct. Recurring work over a stable set of source material is exactly what a project is for: the brief, glossary and stakeholder map become durable background for every chat in that project, so all four analysts work from the same current version instead of from whatever each last pasted.
 
-## 351. A finance team's project instructions include a standing rule that every figure must be reported in euros, plus several directions that were only ever meant for individual past deliverables, and Claude's answers in the project have become inconsistent. Which two revisions would make those instructions work better as standing direction? Select two.
+## 358. A finance team's project instructions include a standing rule that every figure must be reported in euros, plus several directions that were only ever meant for individual past deliverables, and Claude's answers in the project have become inconsistent. Which two revisions would make those instructions work better as standing direction? Select two.
 
 ### A) Rewrite each rule as a longer, more formal paragraph so none of them is overlooked.
 
@@ -6486,7 +6616,7 @@ Correct. Standing instructions should hold for every chat in the project. One-of
 
 Correct, and for an unrelated reason: it improves a rule that stays rather than removing one that should go. Stating why figures must be in euros lets Claude extend the intent sensibly to situations the rule never named.
 
-## 352. A team's breakdown of a supplier review ends with a stage described as 'format the findings and add the recommended supplier to the summary page'. What is the greatest concern with this stage?
+## 359. A team's breakdown of a supplier review ends with a stage described as 'format the findings and add the recommended supplier to the summary page'. What is the greatest concern with this stage?
 
 ### A) Formatting and writing in the same stage makes the stage take longer than the other stages in the breakdown.
 
@@ -6504,7 +6634,7 @@ Inconsistent formatting is a cosmetic defect that a single pass fixes, and it do
 
 Correct. Naming the recommendation is the consequential act of the whole review, and burying it in a formatting step means nobody schedules a review of it. Decisions should sit in stages of their own, where they can be challenged.
 
-## 353. A consultant is about to send a client a report she drafted with Claude. Her firm's AI policy sets out several requirements for client-facing work produced with AI, and she is unsure which of them apply to a report of this kind. What should she do first?
+## 360. A consultant is about to send a client a report she drafted with Claude. Her firm's AI policy sets out several requirements for client-facing work produced with AI, and she is unsure which of them apply to a report of this kind. What should she do first?
 
 ### A) Ask the client whether they have any objection to AI assistance having been used on the report.
 
@@ -6522,25 +6652,7 @@ A sign-off may well be one of the requirements, but choosing it because it shift
 
 Correct. The firm has a written standard covering exactly this situation, so the first step is to read it and identify which requirements apply to this deliverable. Everything else she might do is a guess at what the policy says.
 
-## 354. Explanation
-
-### A) Change the instruction for that one fault; group the comments to find the repeated fault; run it on several recent real cases; record why the change was made
-
-Making the change first and analysing afterwards inverts diagnosis and treatment, so the analysis can only justify a decision already taken.
-
-### B) Group the comments to find the repeated fault; change the instruction for that one fault; run it on several recent real cases; record why the change was made **(correct)**
-
-Correct. Find the pattern before acting, change one thing, confirm it on a spread of real cases rather than the one that prompted the complaint, then write down why so nobody undoes it later.
-
-### C) Run it on several recent real cases; group the comments to find the repeated fault; record why the change was made; change the instruction for that one fault
-
-Running cases before knowing what fault is being investigated produces output with nothing to compare it against.
-
-### D) Change the instruction for that one fault; run it on several recent real cases; group the comments to find the repeated fault; record why the change was made
-
-Changing the instruction before the comments are grouped means acting on whichever comment was loudest rather than on the pattern.
-
-## 355. A grants team is designing a new way of working in which Claude prepares the first draft of each funding decision summary. Nothing has been built yet. What should the team do first?
+## 361. A grants team is designing a new way of working in which Claude prepares the first draft of each funding decision summary. Nothing has been built yet. What should the team do first?
 
 ### A) Agree what an acceptable summary contains, so drafts can be judged against it **(correct)**
 
@@ -6558,7 +6670,7 @@ Instruction length is not the design. A long instruction written before the team
 
 Four private approaches produce four private standards, and a month later there is still no agreed standard to compare them against.
 
-## 356. A business analyst is deciding whether to send one large request or break it into stages. Which two features of a request are the strongest signals that it should be decomposed? Select two.
+## 362. A business analyst is deciding whether to send one large request or break it into stages. Which two features of a request are the strongest signals that it should be decomposed? Select two.
 
 ### A) Later parts are only worth producing if the earlier factual work is correct. **(correct)**
 
@@ -6580,7 +6692,7 @@ Output format is a presentation choice. A table can be produced in one step just
 
 Unfamiliarity affects how carefully the analyst must review the result, but it says nothing about whether the request itself is structurally overloaded.
 
-## 357. A manager asks whether the new Claude-assisted process means the team can cut its review budget. Which two responses are honest and useful? Select two.
+## 363. A manager asks whether the new Claude-assisted process means the team can cut its review budget. Which two responses are honest and useful? Select two.
 
 ### A) Share what the pilot actually changed in the cycle time, and what it did not change at all. **(correct)**
 
@@ -6602,7 +6714,7 @@ Correct. Review remains part of the design, and saying so plainly is the honest 
 
 Incorrect. Withholding limitations to protect support is exactly the communication failure this competency warns against.
 
-## 358. An operations team wants Claude to help find where a twelve-step expense reimbursement process loses time. Which input will produce the most useful analysis?
+## 364. An operations team wants Claude to help find where a twelve-step expense reimbursement process loses time. Which input will produce the most useful analysis?
 
 ### A) The actual step list with who does each step, the handoffs between them, and typical waiting times. **(correct)**
 
@@ -6620,25 +6732,7 @@ An experienced approver's impression is a useful hypothesis but not evidence. Pe
 
 Complaints record where employees felt the pain, which is often the last step before an outcome rather than the step that caused the wait. They are a helpful cross-check but a poor primary input for locating a bottleneck.
 
-## 359. Explanation
-
-### A) Add the detail the request was missing; reproduce the fault in a fresh chat; try the fix on two more real cases; check whether the sources are current
-
-Changing the request first means she is fixing before she knows what is broken, and the source check arrives after she has already concluded.
-
-### B) Reproduce the fault in a fresh chat; check whether the sources are current; add the detail the request was missing; try the fix on two more real cases **(correct)**
-
-Correct. Isolate the fault away from a possibly overloaded conversation, rule out an out-of-date source, then address the request itself, and confirm the fix on other real cases rather than only the one that failed.
-
-### C) Add the detail the request was missing; check whether the sources are current; reproduce the fault in a fresh chat; try the fix on two more real cases
-
-Editing the request before reproducing the fault means she may be solving a problem the fresh chat would not even have shown.
-
-### D) Check whether the sources are current; try the fix on two more real cases; add the detail the request was missing; reproduce the fault in a fresh chat
-
-Testing a fix before any fix has been made is out of order, and reproducing the fault last removes the point of reproducing it.
-
-## 360. A project manager asked for a risk register covering five workstreams and received a neat table of eleven risks. Which two checks best establish that the output is accurate and complete? Select two.
+## 365. A project manager asked for a risk register covering five workstreams and received a neat table of eleven risks. Which two checks best establish that the output is accurate and complete? Select two.
 
 ### A) Check that the table renders properly and that the columns line up as they should.
 
@@ -6660,7 +6754,7 @@ A plausible count is not evidence. Eleven risks can look reasonable while omitti
 
 Correct. This tests accuracy rather than coverage: the entries must match the source plan, and a risk with an invented owner is wrong even if the scope is complete.
 
-## 361. A finance team is designing a way of working in which Claude prepares the monthly variance commentary. Which sequence of steps is correct?
+## 366. A finance team is designing a way of working in which Claude prepares the monthly variance commentary. Which sequence of steps is correct?
 
 ### A) Write the instruction for the rest; try it on last month's figures; decide which parts a person must own; adjust one thing and try again
 
@@ -6678,25 +6772,29 @@ Correct. Delegation boundaries come first: decide what a person must own, write 
 
 Adjusting before the arrangement has been tried at all means the first adjustment is made blind, and the test arrives after the changes.
 
-## 362. Explanation
+## 367. An HR adviser pastes the same forty-page benefits manual into a new chat for every query, then retypes the same house-style preamble. Which two changes give the biggest gain? Select two.
 
-### A) The examples are causing Claude to ignore the instructions entirely and rely solely on memorized training data instead.
+### A) Put the house-style preamble into that project's instructions instead of retyping it. **(correct)**
 
-Incorrect. There's no basis for claiming the examples cause instructions to be ignored in favor of training data; the documented issue with narrow examples is pattern overfitting to the examples themselves.
+Correct for an independent reason: standing direction belongs in instructions, which is a different mechanism from knowledge.
 
-### B) Ten examples is too many; Anthropic caps effective examples at two, and anything beyond that causes overfitting.
+### B) Keep one very long conversation permanently open so that the manual stays within view.
 
-Incorrect. Anthropic recommends 3-5 examples for best results as a general guideline, not a hard cap of two, and the core problem here is lack of diversity, not raw example count.
+One endless conversation eventually loses the thread and mixes unrelated queries together.
 
-### C) The examples are not diverse enough, so Claude picked up the unintended pattern that taglines must always be puns. **(correct)**
+### C) Move the queries to a faster model tier so that each answer takes less time to arrive.
 
-Correct. Anthropic's guidance on using examples effectively specifies they should be diverse, varying enough that Claude doesn't pick up unintended patterns; a set of examples that are uniformly puns teaches the model that puns are required, not just one possible style.
+A faster tier shortens the wait but leaves the repeated pasting and retyping completely untouched.
 
-### D) The issue is unrelated to the examples; it stems from an implicit temperature default that favors humorous phrasing.
+### D) Have Claude condense the manual and then paste that shorter summary in each time instead.
 
-Incorrect. This misattributes a documented examples-diversity issue to an unrelated sampling parameter with no such documented default behavior.
+A condensed manual still gets pasted every time and quietly drops detail some queries will need.
 
-## 363. A retail brand deploys a Claude-powered chatbot on its website. Internal testing shows many users believe they are chatting with a live human agent, and the company decides not to add any disclosure. Is this an appropriate use of Claude?
+### E) Upload the manual once as the knowledge of a project used for all of these queries. **(correct)**
+
+Correct. Uploading the manual once as project knowledge removes the repeated paste entirely, for every chat in that project.
+
+## 368. A retail brand deploys a Claude-powered chatbot on its website. Internal testing shows many users believe they are chatting with a live human agent, and the company decides not to add any disclosure. Is this an appropriate use of Claude?
 
 ### A) Yes, because a personable conversational tone alone does not require any disclosure under the Usage Policy
 
@@ -6714,25 +6812,7 @@ Incorrect. A disclosure buried in an unrelated terms-of-service page does not sa
 
 Correct. The Usage Policy requires consumer-facing chatbots to clearly inform users they are interacting with AI, and this scenario intentionally omits that disclosure.
 
-## 364. Explanation
-
-### A) Keep using Claude for both, since the editing effort on the letters will fall as the team practises.
-
-Hoping the editing burden falls ignores what the pilot actually measured about sensitive letters.
-
-### B) Use Claude for the client letters only, as that is where the largest time saving would be found.
-
-Aiming at the task with the heaviest editing burden pursues the saving that the evidence contradicts.
-
-### C) Stop using Claude for both, because uneven quality makes the workflow too unreliable to depend on.
-
-Abandoning both discards a demonstrated benefit because of a separate task that did not work.
-
-### D) Keep Claude on the routine updates and have people write the client letters, revisiting this later. **(correct)**
-
-Correct. The results draw the delegation boundary for them: keep the work where it performs well, keep the judgment-heavy work with people, and revisit as the approach matures.
-
-## 365. A facilities project still has last year's contractor safety standard uploaded as project knowledge, and Claude keeps quoting its old inspection interval with complete confidence. Which two actions actually resolve this? Select two.
+## 369. A facilities project still has last year's contractor safety standard uploaded as project knowledge, and Claude keeps quoting its old inspection interval with complete confidence. Which two actions actually resolve this? Select two.
 
 ### A) Move the project onto a more capable model tier, which will state the inspection interval more accurately.
 
@@ -6754,7 +6834,7 @@ Rewording or insisting changes nothing when the retrieved document itself contai
 
 Correct for a separate reason: fixing the source does not undo the decisions already taken on bad information, which still need remediation.
 
-## 366. A team runs two workloads that are alike in volume and subject matter. One is edited line by line by a specialist before use; the other is published automatically with no human reading it. Which consideration should weigh most heavily when choosing a tier for each?
+## 370. A team runs two workloads that are alike in volume and subject matter. One is edited line by line by a specialist before use; the other is published automatically with no human reading it. Which consideration should weigh most heavily when choosing a tier for each?
 
 ### A) The subject matter the two workloads share, since comparable material should be handled the same way for consistency of output.
 
@@ -6772,7 +6852,7 @@ Correct. The strength of the downstream check changes how much the output has to
 
 Ownership determines who answers for a problem, not how likely a problem is. Seniority is an accountability question and does not tell the team where errors would actually escape unnoticed.
 
-## 367. A team asks for 'a polished two-page write-up explaining why our regional sales fell'. They receive a confident, elegantly written explanation. What is the greatest risk in how they framed this?
+## 371. A team asks for 'a polished two-page write-up explaining why our regional sales fell'. They receive a confident, elegantly written explanation. What is the greatest risk in how they framed this?
 
 ### A) The write-up may cover several causes at once when the audience would prefer one clear headline reason.
 
@@ -6790,7 +6870,7 @@ Unshared vocabulary is a presentation problem, and it is corrected by naming the
 
 Correct. The request is shaped as a drafting task when the underlying work is analysis. Because polish was what was asked for, polish is what arrives, and a fluent explanation of an unexamined cause is very hard for a reader to tell apart from a real finding.
 
-## 368. A team lead is writing a short internal guide on what to do when Claude returns an answer that looks incorrect or misleading. Which two actions does Claude's own guidance recommend? Select two.
+## 372. A team lead is writing a short internal guide on what to do when Claude returns an answer that looks incorrect or misleading. Which two actions does Claude's own guidance recommend? Select two.
 
 ### A) Turn off web search so that answers come from the model alone and stay consistent.
 
@@ -6812,7 +6892,7 @@ A self-reported confidence score is produced in the same way as the answer, so i
 
 Correct. Reviewing cited sources is a distinct recommendation from giving feedback: checking the original content is what reveals anything that was misinterpreted.
 
-## 369. A marketer discusses a campaign brief with Claude in Chat A inside a project, but Claude does not recall those details when the marketer opens a new Chat B in the same project. What most likely explains this?
+## 373. A marketer discusses a campaign brief with Claude in Chat A inside a project, but Claude does not recall those details when the marketer opens a new Chat B in the same project. What most likely explains this?
 
 ### A) The brief was only discussed in Chat A and was never added to the project's shared knowledge base **(correct)**
 
@@ -6830,7 +6910,7 @@ Incorrect. Re-saving project instructions has no bearing on whether one chat's c
 
 Incorrect. Plans do not restrict a project to a single chat; multiple chats within one project are expected and supported.
 
-## 370. A shared services group wants to take a Claude-assisted purchase-request triage from an idea to everyday use across eight teams. Which sequence of steps is correct?
+## 374. A shared services group wants to take a Claude-assisted purchase-request triage from an idea to everyday use across eight teams. Which sequence of steps is correct?
 
 ### A) Extend to the other teams with the checks that proved necessary; pick one team and a bounded slice of requests; run it alongside the existing process for a month; compare the two sets of results and fix what failed.
 
@@ -6848,7 +6928,7 @@ Correct. A bounded slice on one team keeps early mistakes cheap, running alongsi
 
 There are no results to compare at the start, and the parallel run that would have produced them is left until after the arrangement has already been extended to all eight teams.
 
-## 371. An operations manager has deliberately kept one chat alive for months, letting Claude condense earlier messages rather than ever starting fresh. What is the biggest concern with this habit?
+## 375. An operations manager has deliberately kept one chat alive for months, letting Claude condense earlier messages rather than ever starting fresh. What is the biggest concern with this habit?
 
 ### A) A conversation that has been condensed can no longer be exported or shared, so her team is unable to review the thread once it passes the length limit
 
@@ -6866,25 +6946,7 @@ Automatic context management is not a free-account-only behaviour, and a convers
 
 Correct. Two things go wrong at once: the durable decisions are trapped in a single fragile conversation instead of being persisted somewhere reusable, and once earlier messages are condensed Claude is reasoning from a summary rather than the original wording. Moving what must survive into a Project fixes both.
 
-## 372. Explanation
-
-### A) Publish the priority list so that residents can see how the ordering was arrived at.
-
-Transparency about the ordering is worth having, but publishing a list that may embed historical inequity makes it visible rather than fair, and residents are affected either way.
-
-### B) Ask Claude to state whether its own priority list contains any unfair bias in it.
-
-Claude cannot audit the representativeness of records it was given, and a reassuring self-assessment would give the team false confidence about exactly the risk they need to investigate.
-
-### C) Use the list for this year and then compare the outcomes against last year's decisions.
-
-Using the list and reviewing afterwards means a year of residents receive grants in an order that may be skewed, and the comparison arrives long after the decisions have been made.
-
-### D) Examine whether the historical records under-represent groups who applied less often. **(correct)**
-
-Correct. A priority list derived from past cases inherits whatever unevenness is in those cases, and residents who historically applied less often will be under-served by it. Because the output drives a decision about people, checking the data for that skew comes before the list is used at all.
-
-## 373. A content team wants Claude to draft a press release, have the draft checked against their style guide, and then produce a revised version based on that check, with each stage logged separately for review. How should this drafting workflow be set up?
+## 376. A content team wants Claude to draft a press release, have the draft checked against their style guide, and then produce a revised version based on that check, with each stage logged separately for review. How should this drafting workflow be set up?
 
 ### A) Ask Claude to draft the release ten different ways and pick the best one
 
@@ -6902,7 +6964,7 @@ Correct. This is the self-correction chaining pattern for drafting tasks: genera
 
 Incorrect. Skipping the style guide review removes the criteria check the team explicitly wants applied before finalizing the draft.
 
-## 374. A technical writer generates two drafts of an API integration guide, one for experienced developers and one for low-code platform users, and needs to check them for consistency before publishing. What should the writer confirm?
+## 377. A technical writer generates two drafts of an API integration guide, one for experienced developers and one for low-code platform users, and needs to check them for consistency before publishing. What should the writer confirm?
 
 ### A) Both drafts must describe the same steps and results, varying only in terminology and depth. **(correct)**
 
@@ -6920,7 +6982,7 @@ Incorrect. Low-code users still need authentication information to use the API s
 
 Incorrect. The developer draft should not be a condensed version of the low-code guide; each audience requires distinct structure and depth. Developers need in-depth technical details and code examples, while low-code users need simplified configuration steps.
 
-## 375. An analyst begins every chat in her weekly reporting project by typing the same six lines about house style, the sections required and how figures should be rounded. What is the most effective first change?
+## 378. An analyst begins every chat in her weekly reporting project by typing the same six lines about house style, the sections required and how figures should be rounded. What is the most effective first change?
 
 ### A) Ask Claude at the start of each chat to recall the style used in her previous conversations.
 
@@ -6938,7 +7000,7 @@ Uploaded documents are background knowledge; a standing rule about how to work b
 
 Correct. A requirement repeated in every chat of the same project belongs in the project instructions, where it applies automatically and stops depending on her remembering it.
 
-## 376. A manager tells his team to 'use common sense' with Claude rather than writing anything down. What is the most useful thing to recommend he add?
+## 379. A manager tells his team to 'use common sense' with Claude rather than writing anything down. What is the most useful thing to recommend he add?
 
 ### A) A requirement that every Claude conversation be saved and forwarded to him so he has a full record.
 
@@ -6956,7 +7018,25 @@ Restricting use to two people avoids the question rather than answering it, and 
 
 Correct. A short, concrete standard is what makes a policy usable day to day: what plan, what data, what must be disclosed, and who decides the ambiguous cases.
 
-## 377. A policy writer expects roughly nine rounds of ordinary wording and structure changes on a report, with one genuinely hard judgement in the middle about how to reconcile two conflicting evidence bases. How should she spread the work across tiers?
+## 380. A manager plans to use Claude to help produce the written justifications that accompany her team's annual performance ratings. What is the most appropriate way to do this?
+
+### A) Ask Claude to propose ratings from the evidence and change only the ones that look wrong to her.
+
+Reviewing proposed ratings anchors her to Claude's judgment on decisions she must own herself.
+
+### B) Decide each rating herself from the evidence, then use Claude to help word the reasoning behind it. **(correct)**
+
+Correct. The judgment about a person's performance is hers to make and defend; Claude can help express a conclusion she has already reached and can justify herself.
+
+### C) Let Claude set the ratings so that every member of the team is judged against one neutral standard.
+
+Consistency does not make the output fair, and it hands a decision about people to a tool.
+
+### D) Have Claude write the justifications, and tell each person afterwards that the wording was assisted.
+
+Disclosing afterwards is welcome, but it does not put a person behind the judgment being made.
+
+## 381. A policy writer expects roughly nine rounds of ordinary wording and structure changes on a report, with one genuinely hard judgement in the middle about how to reconcile two conflicting evidence bases. How should she spread the work across tiers?
 
 ### A) Run every round on the fastest and cheapest tier, and accept whatever it produces for the reconciliation to keep the process simple.
 
@@ -6974,47 +7054,7 @@ Running nine wording rounds on the most expensive tier spends heavily on work th
 
 Alternating by round bears no relation to what each round demands, so the hard judgement may land on a lighter tier by chance while routine wording changes consume the deeper one.
 
-## 378. Explanation
-
-### A) Rewriting a prompt after a weak result is the wrong response, because the first output should always be accepted as given
-
-Iterating after a weak result is exactly the right response; the problem is the size of the evidence, not the act of revising.
-
-### B) Prompt wording cannot be shared between colleagues, so the team will be unable to reuse whatever she found to work well
-
-Prompt wording is ordinary text and is easy to share; nothing prevents the team reusing it.
-
-### C) One good result on one brief is thin evidence, and the wording may suit that example rather than the task **(correct)**
-
-Correct. A single success is not evidence that a change generalises. The improvement may reflect that one brief's specifics, so it needs checking across a few different cases before it becomes the team standard.
-
-### D) A standard prompt will stop the team from supplying their own context, so every brief will come back equally generic
-
-A shared starting prompt does not prevent anyone adding their own context on top of it.
-
-## 379. Explanation
-
-### A) Open a fresh conversation and put the same question to Claude once again, this time much more firmly worded.
-
-Rewording or insisting changes nothing when the retrieved document itself contains the wrong number.
-
-### B) Add an instruction telling Claude to take particular care whenever any inspection interval is mentioned.
-
-An instruction to be careful cannot compensate for a source that is authoritative-looking and out of date.
-
-### C) Move the project onto a more capable model tier, which will state the inspection interval more accurately.
-
-A stronger model reads the same outdated file and repeats the same wrong interval just as confidently.
-
-### D) Replace the uploaded file with the current standard so the outdated interval cannot be retrieved again. **(correct)**
-
-Correct. The knowledge source is wrong, not the model, so nothing improves until the superseded document is replaced.
-
-### E) Re-check the inspection dates already issued on the strength of answers quoting the superseded figure. **(correct)**
-
-Correct for a separate reason: fixing the source does not undo the decisions already taken on bad information, which still need remediation.
-
-## 380. An operations manager compares two drafts of a policy announcement, one for headquarters staff and one adapted for a regional office, to confirm both convey the same policy without confusing readers. What should the manager check for?
+## 382. An operations manager compares two drafts of a policy announcement, one for headquarters staff and one adapted for a regional office, to confirm both convey the same policy without confusing readers. What should the manager check for?
 
 ### A) Only the headquarters draft should be used, since any rewrite risks altering policy's meaning.
 
@@ -7032,7 +7072,7 @@ Incorrect. The formality level should match the audience's expectations, not be 
 
 Correct. The drafts should convey identical rules and deadlines, but the wording can be tailored to each audience. The manager should verify that both versions communicate the same policy accurately while using appropriate language for each group.
 
-## 381. An analyst has condensed a twenty-page Claude-produced analysis into a one-page version for an executive committee that will act on it directly. Which check matters most before she circulates the shorter version?
+## 383. An analyst has condensed a twenty-page Claude-produced analysis into a one-page version for an executive committee that will act on it directly. Which check matters most before she circulates the shorter version?
 
 ### A) That the one-page version reads in the same house style as the committee papers her team has circulated in previous quarters.
 
@@ -7050,7 +7090,7 @@ Distinguishing the two documents is a filing convenience at best. Deliberately r
 
 Correct. Adapting for an audience must not change what the audience will do. A caveat or condition dropped in the interests of brevity turns a qualified recommendation into an unqualified one for the people acting on it.
 
-## 382. A charity is scoping a use case in which Claude would decide which grant applications are rejected at first screening, removing the review panel's initial pass entirely. What is the greatest concern with this use case?
+## 384. A charity is scoping a use case in which Claude would decide which grant applications are rejected at first screening, removing the review panel's initial pass entirely. What is the greatest concern with this use case?
 
 ### A) The screening criteria may be worded differently across the charity's several grant programmes.
 
@@ -7068,7 +7108,7 @@ Training panel members to read the reasoning would help, but it assumes the pane
 
 Correct. A first-pass rejection is effectively final for the applicant and no human sees it, so an error is neither visible nor recoverable and nobody is accountable for it. Work carrying that kind of consequence should keep a person in the decision, with Claude preparing the assessment instead.
 
-## 383. A consultant set account-wide instructions two years ago describing a role they no longer hold, and answers now carry the wrong framing. What is the most appropriate action?
+## 385. A consultant set account-wide instructions two years ago describing a role they no longer hold, and answers now carry the wrong framing. What is the most appropriate action?
 
 ### A) Mention the correct role at the start of each conversation and accept the extra step as normal.
 
@@ -7086,7 +7126,7 @@ Abandoning an account to escape a stale setting loses all the history and other 
 
 This is a workaround that leaves the outdated configuration in place for all work outside projects.
 
-## 384. A charity's operations analyst asks Claude to produce a requirements list for a new volunteer scheduling process, giving it only the notes from the two coordinators who happened to be available that week. The list reads as thorough and is circulated as the agreed requirements. What is the greatest risk?
+## 386. A charity's operations analyst asks Claude to produce a requirements list for a new volunteer scheduling process, giving it only the notes from the two coordinators who happened to be available that week. The list reads as thorough and is circulated as the agreed requirements. What is the greatest risk?
 
 ### A) Claude will refuse to produce a requirements list from notes covering part of the service
 
@@ -7104,7 +7144,25 @@ Correct. Claude will fill an incomplete picture with plausible, well-written mat
 
 Length is a presentation problem. A concise list built on the same partial input would carry exactly the same defect.
 
-## 385. A recruiting team answers similar candidate questions every week and re-pastes the same rubric and tone rules into every new chat. Which two moves fit the available features? Select two.
+## 387. A team reviews its Claude-assisted arrangement using only the straightforward cases, because the difficult ones take much longer to check. What is the greatest risk?
+
+### A) The straightforward cases will be over-checked and the team will lose time
+
+Redundant checking of easy cases costs time; it does not create a false picture of how the arrangement performs.
+
+### B) The difficult cases will take even longer to check at the following review
+
+Checking effort may grow, but that is a workload issue rather than the reason the conclusion is unsafe.
+
+### C) The reviewers will disagree about which cases counted as straightforward
+
+Disagreement about classification is a process wrinkle that would surface and be settled quickly.
+
+### D) The review will report success on exactly the cases least likely to fail **(correct)**
+
+Correct. Results gathered only from easy cases confirm what was never in doubt. The arrangement is then trusted across work it has never been shown to handle.
+
+## 388. A recruiting team answers similar candidate questions every week and re-pastes the same rubric and tone rules into every new chat. Which two moves fit the available features? Select two.
 
 ### A) Ask Claude at the end of each chat to remember the rubric for whichever chat opens next.
 
@@ -7126,7 +7184,7 @@ Correct. The reply template is self-contained content the team returns to and ed
 
 Incorrect. One ever-growing chat pushes against the context limit and still leaves the rubric buried instead of durably configured.
 
-## 386. Using the Calendar connector, a user asks Claude to set up a team sync that repeats every Monday. What can Claude do here?
+## 389. Using the Calendar connector, a user asks Claude to set up a team sync that repeats every Monday. What can Claude do here?
 
 ### A) Claude can draft the details, but an admin must go configure the recurrence separately.
 
@@ -7144,25 +7202,7 @@ Incorrect. The connector supports both viewing and creating events, including re
 
 Incorrect. Recurrence configuration is a documented capability, not a missing feature requiring a workaround.
 
-## 387. Explanation
-
-### A) Write down the steps that actually worked and run them on two recent real cases to confirm. **(correct)**
-
-Correct. What works in one person's hands is often partly undocumented habit; writing the steps down and re-running them on real cases is what turns it into something twelve people can repeat.
-
-### B) Ask Claude to write a guide from his description of the process and circulate that instead.
-
-A guide written from his description records what he thinks he does, not what actually worked.
-
-### C) Send colleagues the wording he uses, so each can adapt it to the way they prefer to work.
-
-Twelve personal adaptations produce twelve different results and no shared practice to improve.
-
-### D) Arrange training for the whole group so everyone starts using the process on the same day.
-
-Training people in a procedure that has not been written down or re-tested spreads the gaps as well.
-
-## 388. A financial analyst asks a Claude-powered assistant, "What was Acme Corp's closing stock price yesterday?" The assistant has no tools enabled and answers with a specific dollar figure stated confidently. What is the most likely validation concern with this response?
+## 390. A financial analyst asks a Claude-powered assistant, "What was Acme Corp's closing stock price yesterday?" The assistant has no tools enabled and answers with a specific dollar figure stated confidently. What is the most likely validation concern with this response?
 
 ### A) The figure is unreliable because stock prices are personal financial data that Claude is restricted from ever discussing
 
@@ -7180,7 +7220,7 @@ Correct. Claude's knowledge comes from training data with a cutoff and does not 
 
 Claude's training data has a fixed cutoff and is not updated in real time, which is precisely why an ungrounded answer about yesterday's price is risky.
 
-## 389. What is the most effective way to use Claude to analyze and categorize a list of requirements?
+## 391. What is the most effective way to use Claude to analyze and categorize a list of requirements?
 
 ### A) Ask Claude to design a new spreadsheet layout for organizing the requirements, including columns for type and priority.
 
@@ -7198,7 +7238,7 @@ Incorrect. Randomly removing requirements is not a valid analysis or categorizat
 
 Correct. This directly uses Claude's strength in analysis and classification by categorizing requirements into functional, non-functional, or constraint, along with explanations. It enhances clarity, traceability, and follows best practices for requirements analysis.
 
-## 390. A team judges its Claude-assisted research notes purely by whether colleagues say they enjoy reading them. What is the greatest risk in using this as the measure?
+## 392. A team judges its Claude-assisted research notes purely by whether colleagues say they enjoy reading them. What is the greatest risk in using this as the measure?
 
 ### A) Positive ratings may encourage the team to produce more notes than colleagues have time to read.
 
@@ -7216,7 +7256,7 @@ Variation between readers adds noise to the measure, but the deeper problem is w
 
 Drift makes comparison harder over time; it does not explain why accuracy goes unmeasured.
 
-## 391. A team wants Claude to brainstorm names for a new product from the perspective of a branding specialist, aiming for tone and instincts consistent with that professional background throughout the session. What is a simple, effective way to set this up?
+## 393. A team wants Claude to brainstorm names for a new product from the perspective of a branding specialist, aiming for tone and instincts consistent with that professional background throughout the session. What is a simple, effective way to set this up?
 
 ### A) Set a role in the system prompt describing Claude as a branding specialist **(correct)**
 
@@ -7234,7 +7274,7 @@ Incorrect. Repeating a vague adjective does not establish the professional frami
 
 Incorrect. Burying the role description at the end of a long message is a weaker way to establish framing than setting it clearly, such as in the system prompt.
 
-## 392. A teacher pastes a whole term of student feedback into a single chat and keeps asking Claude to summarise themes as the conversation grows very long. What is the greatest risk to the quality of her summaries?
+## 394. A teacher pastes a whole term of student feedback into a single chat and keeps asking Claude to summarise themes as the conversation grows very long. What is the greatest risk to the quality of her summaries?
 
 ### A) The chat will refuse to accept any further messages until she upgrades to a higher-priced plan tier.
 
@@ -7252,7 +7292,7 @@ Incorrect. Condensing earlier messages does not erase them. The full chat histor
 
 Correct. As a conversation approaches the context limit, earlier messages are condensed to make room. The summary still reads confidently, but it may no longer rest on every comment she pasted in.
 
-## 393. A product manager is using Claude to help define the minimum viable product (MVP) for a new feature. Which approach should they use?
+## 395. A product manager is using Claude to help define the minimum viable product (MVP) for a new feature. Which approach should they use?
 
 ### A) Ask Claude to prioritize features considering business value, feasibility, and strategic alignment. **(correct)**
 
@@ -7270,7 +7310,7 @@ Incorrect. Expanding the feature list for the MVP goes against the principle of 
 
 Incorrect. Relying solely on the most senior stakeholder's endorsement can overlook critical user needs, technical constraints, and broader business objectives. It introduces bias and reduces objectivity. Good prioritization should be evidence-based and cross-functional.
 
-## 394. A company uses Claude to process customer support tickets that contain personal data and generate draft responses referencing account details. Before these drafts are sent, what should the workflow include?
+## 396. A company uses Claude to process customer support tickets that contain personal data and generate draft responses referencing account details. Before these drafts are sent, what should the workflow include?
 
 ### A) The company adds a footer noting that personal data may appear in the message before sending it
 
@@ -7288,7 +7328,7 @@ Incorrect. A longer response does not address the accuracy or privacy handling o
 
 Incorrect. Data originating in the customer's ticket does not guarantee the model referenced or handled it correctly in the generated draft.
 
-## 395. A colleague reports that Claude gave them an incorrect answer inside a shared project. What should the project owner do first?
+## 397. A colleague reports that Claude gave them an incorrect answer inside a shared project. What should the project owner do first?
 
 ### A) Remove every document from the knowledge base and rebuild the project from current files.
 
@@ -7306,7 +7346,7 @@ The same project knowledge is read again, so a retry rarely changes a source-dri
 
 Correct. Tracing the answer back to a source separates a stale document from a prompting or model problem.
 
-## 396. A physician asks Claude to draft the same diagnosis explanation for a patient handout and for a note in the clinical record. The first draft uses identical clinical shorthand in both. What is the most appropriate refinement for the patient-facing version?
+## 398. A physician asks Claude to draft the same diagnosis explanation for a patient handout and for a note in the clinical record. The first draft uses identical clinical shorthand in both. What is the most appropriate refinement for the patient-facing version?
 
 ### A) Rewrite the handout in plain language for patients, while the clinical note keeps precise terms. **(correct)**
 
@@ -7324,7 +7364,7 @@ Incorrect. Matching the length of the two documents does not make the clinical s
 
 Incorrect. Adding a plain-language summary does not eliminate the confusing clinical shorthand from the handout. The entire document should be in accessible language for patients.
 
-## 397. An operations manager asks Claude a quick factual question during a meeting and receives a long document in a side panel that she has to open. What is the most useful adjustment?
+## 399. An operations manager asks Claude a quick factual question during a meeting and receives a long document in a side panel that she has to open. What is the most useful adjustment?
 
 ### A) Copy the document's contents back into the chat so that the answer appears in both places.
 
@@ -7342,7 +7382,7 @@ Incorrect. A shorter document is still a document she has to open, which is the 
 
 Incorrect. Delaying the answer does not change the format, and she needed the information during the meeting.
 
-## 398. A project manager's prompt is written with heavy markdown formatting, bullet points, and bold text, and asks Claude to "respond in plain text only." Claude keeps returning markdown-formatted output anyway. What is the most likely fix?
+## 400. A project manager's prompt is written with heavy markdown formatting, bullet points, and bold text, and asks Claude to "respond in plain text only." Claude keeps returning markdown-formatted output anyway. What is the most likely fix?
 
 ### A) Ask a follow-up question in a second turn, repeating the instruction using bullet points
 
@@ -7360,7 +7400,7 @@ Token limits control response length, not formatting style, so raising the limit
 
 Correct. The formatting style used in the prompt can influence Claude's response style, so matching the prompt's style to the desired output style, such as removing markdown from the prompt, helps reduce unwanted markdown in the response.
 
-## 399. A team repeatedly corrects Claude in chat because it keeps using the wrong report template. What is the most durable fix?
+## 401. A team repeatedly corrects Claude in chat because it keeps using the wrong report template. What is the most durable fix?
 
 ### A) Keep correcting Claude in chat, since each correction improves the answers for the whole team.
 
@@ -7378,47 +7418,29 @@ This keeps the manual step and simply moves it to the top of each chat.
 
 New workspaces without the rule will still default to the wrong template.
 
-## 400. Explanation
+## 402. A department head now has Claude draft her monthly operations bulletin, glances over it, and sends it to the division under her own name. Staff read it as her own assessment. Which two concerns are most significant? Select two.
 
-### A) Trace the claims back to that study and credit it, rather than presenting its work as the company's. **(correct)**
+### A) The writing will read noticeably differently from the bulletins that she used to circulate previously.
 
-Correct. Attribution is owed to whoever did the underlying work; readers are otherwise given someone else's research as though the company had produced it.
+A change of voice may be noticed, but style is a cosmetic issue next to misplaced trust and unchecked claims.
 
-### B) Reword the passages that resemble the study most closely, so that the similarity is less obvious.
+### B) Readers are weighing the bulletin as her own considered assessment when she has not actually made it. **(correct)**
 
-Disguising the resemblance addresses how it looks rather than the missing credit to the source.
+Correct. Staff rely on her judgment as the reason to trust the bulletin, and that reliance is now misplaced.
 
-### C) Leave the post as it stands, since Claude wrote the words and nothing was copied out verbatim.
+### C) Unverified claims can pass straight into business decisions because nobody has checked them at all. **(correct)**
 
-Reusing another party's findings and structure needs crediting even when no sentence is copied.
+Correct for a separate reason: beyond attribution, a skim is not verification, so errors reach decisions unchallenged.
 
-### D) Add a line stating the post was written with AI assistance, which covers where the material came from.
+### D) Drafting an operations bulletin is not a task that any language model is capable of doing at all usefully.
 
-Disclosing AI assistance says how the post was drafted, not whose research the claims rest on.
+Drafting a bulletin is a reasonable use; the problem is the absent review and the silent attribution, not the capability.
 
-## 401. Explanation
+### E) Producing the bulletin in this way consumes rather more of her weekly allowance than writing it herself.
 
-### A) Switch the digests into a table format, since open risks may then be easier to spot in a table.
+Allowance consumption is a cost consideration and has nothing to do with the ethical problem described.
 
-A format change may help presentation, but it cannot add a risk the digest never captured.
-
-### B) Rewrite the shared project instructions straight away to stress that open risks matter most of all.
-
-Changing shared instructions before the cause is known risks fixing the wrong thing for everyone at once.
-
-### C) Ask everyone to score every future digest out of ten so that a trend can be tracked over time.
-
-A score captures sentiment but still never says which risks went missing, or why they went missing.
-
-### D) Compare those digests against the shift logs to see exactly what was left out of them. **(correct)**
-
-Correct on separate grounds: only the source shows whether the risk was absent from the log, buried, or genuinely dropped.
-
-### E) Ask for two digests where an open risk was missed, with the missing risk actually named. **(correct)**
-
-Correct. Vague feedback cannot be acted on; specific failing examples turn an impression into something diagnosable.
-
-## 402. An e-commerce operator wants Claude to auto-generate customer support replies containing fabricated tracking numbers and fake refund confirmation emails to delay legitimate refund requests. Is this an appropriate use of Claude?
+## 403. An e-commerce operator wants Claude to auto-generate customer support replies containing fabricated tracking numbers and fake refund confirmation emails to delay legitimate refund requests. Is this an appropriate use of Claude?
 
 ### A) Yes, because automating customer support, including generating tracking and confirmation messages, is a common and encouraged use case.
 
@@ -7436,7 +7458,7 @@ Incorrect. The violation stems from the fabricated content intended to deceive c
 
 Correct. The Usage Policy explicitly bans generating fraudulent documents, including fake confirmations and deceptive communications intended to mislead customers. This scenario directly violates that prohibition.
 
-## 403. A team adds Claude to the middle of a workflow that already produces frequent rework, without changing anything else about it. What is the greatest risk?
+## 404. A team adds Claude to the middle of a workflow that already produces frequent rework, without changing anything else about it. What is the greatest risk?
 
 ### A) Claude will refuse to take part in a workflow that has not first been documented
 
@@ -7454,7 +7476,7 @@ The likely effect is faster delivery, not slower; the problem is what is being d
 
 Correct. Speeding up a broken process scales its defects. The rework was caused by the workflow's design, and inserting Claude without addressing that simply produces more of it, sooner.
 
-## 404. A procurement lead asks Claude to recommend one of three suppliers, giving it only the brochures and web copy that each supplier provided. What is the greatest risk?
+## 405. A procurement lead asks Claude to recommend one of three suppliers, giving it only the brochures and web copy that each supplier provided. What is the greatest risk?
 
 ### A) The comparison can only reflect what each supplier says about itself, with no independent evidence. **(correct)**
 
@@ -7472,7 +7494,7 @@ Tone is adjusted by asking for a different register. It affects how the recommen
 
 Inconsistent headings make the material messier to align and may need a little manual mapping. This is a presentation problem rather than a defect in the evidence base.
 
-## 405. A membership team must recommend one new member benefit to its board. Which sequence of task types should they work through?
+## 406. A membership team must recommend one new member benefit to its board. Which sequence of task types should they work through?
 
 ### A) Write the recommendation; generate candidate benefits; look up what comparable bodies offer; weigh the shortlist against their budget.
 
@@ -7490,7 +7512,7 @@ Correct. Each task type feeds the next: open generation widens the field, resear
 
 A shortlist cannot be weighed before any candidates have been generated, so this ordering starts from something that does not yet exist.
 
-## 406. An analyst wants to get more done inside her weekly allowance without the quality of her work dropping. Which sequence of working habits is correct?
+## 407. An analyst wants to get more done inside her weekly allowance without the quality of her work dropping. Which sequence of working habits is correct?
 
 ### A) Put the request and the relevant material in the opening message; work through follow-ups that refer back to it; open a new chat for the next unrelated task; decide what she needs before starting.
 
@@ -7508,7 +7530,7 @@ Correct. Planning before starting, front-loading the material in one well-specif
 
 Following up before the request has even been made, and deciding what is needed last, inverts the whole habit.
 
-## 407. A stakeholder has submitted the requirement "make monthly reporting easier." An analyst wants Claude to help prepare for the next stakeholder meeting. Which use of Claude is most appropriate here?
+## 408. A stakeholder has submitted the requirement "make monthly reporting easier." An analyst wants Claude to help prepare for the next stakeholder meeting. Which use of Claude is most appropriate here?
 
 ### A) Ask Claude to rewrite the requirement in formal language so it can be entered into the requirements log.
 
@@ -7526,7 +7548,25 @@ Letting Claude pick the most likely reading converts an open question into a hid
 
 Correct. Ambiguity is resolved by the stakeholder, not by the tool. Claude is best used here to widen the analyst's view of what the phrase could mean and to generate the specific questions that will close it, so the meeting produces a decision rather than another vague line.
 
-## 408. A project's instructions say "always write in plain language for non-specialists" and, further down, "use the full technical terminology our engineers expect". Team members report that outputs vary widely. What is the greatest concern with these instructions as written?
+## 409. A social media analytics vendor plans to use Claude to build detailed psychological and political profiles of individual private citizens by aggregating their public posts, in order to sell these profiles to third parties for targeted persuasion campaigns. Which concern from the Usage Policy applies most directly here?
+
+### A) No concern applies, since the underlying posts are already publicly available on the social platform
+
+Incorrect. Public availability of source posts does not exempt the aggregation and profiling activity from policy restrictions, especially when used for targeted persuasion.
+
+### B) This restriction applies only when every profiled individual happens to be a minor
+
+Incorrect. The restriction is not limited to minors; it applies broadly to profiling and tracking of individuals for manipulation purposes.
+
+### C) The concern is limited to biometric data and does not extend to behavioral profiling at all
+
+Incorrect. Profiling restrictions extend beyond biometric data to behavioral, psychological, and political profiling used for tracking or targeting.
+
+### D) It falls under the ban on profiling and tracking individuals to enable manipulation or targeting **(correct)**
+
+Correct. Building individualized profiles for targeting and manipulation purposes falls under the Usage Policy's restrictions on profiling and tracking, regardless of the source data being publicly posted.
+
+## 410. A project's instructions say "always write in plain language for non-specialists" and, further down, "use the full technical terminology our engineers expect". Team members report that outputs vary widely. What is the greatest concern with these instructions as written?
 
 ### A) Claude will merge the two rules into one style that always sits exactly halfway between the two audiences.
 
@@ -7544,7 +7584,7 @@ Correct. Contradictory house rules are the direct cause: neither rule can be sat
 
 Instruction wording does not trigger any reprocessing of uploaded documents.
 
-## 409. A designer asks Claude to create a company logo as a scalable vector graphic that they can drop directly into their design tool. Which output approach is appropriate?
+## 411. A designer asks Claude to create a company logo as a scalable vector graphic that they can drop directly into their design tool. Which output approach is appropriate?
 
 ### A) An inline text description of the logo's appearance, since design tools can convert plain descriptions into vector paths automatically
 
@@ -7562,7 +7602,7 @@ Incorrect. Strict tool use validates parameters passed to a defined tool; it is 
 
 Incorrect. JSON outputs are meant for structured data fields, not for producing renderable vector graphics that a design tool can import directly.
 
-## 410. In a single conversation, a user has asked Claude to create three separate artifacts: a Python script, an HTML landing page, and a Markdown report. The user now asks Claude to update "the landing page" to change its header color. What should Claude do?
+## 412. In a single conversation, a user has asked Claude to create three separate artifacts: a Python script, an HTML landing page, and a Markdown report. The user now asks Claude to update "the landing page" to change its header color. What should Claude do?
 
 ### A) Create a fourth, brand-new artifact containing just the updated header, since existing artifacts cannot be selected for further edits
 
@@ -7580,7 +7620,7 @@ Correct. Claude.ai supports multiple artifacts within one conversation, and Clau
 
 Incorrect. Edits target the specific artifact identified by the user's request, not every artifact in the conversation.
 
-## 411. A voice assistant application requires the lowest possible response latency among current Claude models so that spoken exchanges feel natural and immediate. Which model tier has the fastest comparative latency?
+## 413. A voice assistant application requires the lowest possible response latency among current Claude models so that spoken exchanges feel natural and immediate. Which model tier has the fastest comparative latency?
 
 ### A) Claude Haiku, since it is described as having the fastest comparative latency of the current model lineup **(correct)**
 
@@ -7598,7 +7638,7 @@ Sonnet is described as fast, but the comparison table ranks Haiku's comparative 
 
 The models differ noticeably in comparative latency, not just in output quality, which is precisely why latency is one of the criteria for choosing among them.
 
-## 412. A manager needs a comparison of six suppliers across five criteria. The information is currently spread across several separate Claude answers. What should she do first?
+## 414. A manager needs a comparison of six suppliers across five criteria. The information is currently spread across several separate Claude answers. What should she do first?
 
 ### A) Ask Claude to combine all of the earlier answers into one long document she can read through.
 
@@ -7616,7 +7656,7 @@ Incorrect. Format is a downstream decision; choosing it before the content is de
 
 Incorrect. A ranking produced before the criteria are agreed reflects unstated assumptions she cannot inspect or defend.
 
-## 413. A legal operations manager writes project instructions containing forty numbered rules intended to cover every request the team might ever make. What is the most likely consequence?
+## 415. A legal operations manager writes project instructions containing forty numbered rules intended to cover every request the team might ever make. What is the most likely consequence?
 
 ### A) Each numbered rule creates a separate chat history, so the project's conversations are split across rules.
 
@@ -7633,42 +7673,6 @@ Retrieval behaviour relates to the size of project knowledge, and it does not re
 ### D) Rules that rarely apply crowd out the few that always matter, so the key ones are followed less reliably. **(correct)**
 
 Correct. Long, undifferentiated rule lists dilute the direction that actually matters for most requests.
-
-## 414. Explanation
-
-### A) Move to a more capable model, which should reason more carefully about the approval rules.
-
-A stronger model reading an out-of-date document will still report the out-of-date figure.
-
-### B) Start a new conversation inside the project and ask the same question in a different way.
-
-A fresh conversation still draws on the same project knowledge, so the same figure comes back.
-
-### C) Add an instruction telling Claude to be accurate and to double-check any figure it reports.
-
-Instructions to be accurate cannot correct a number that the supplied source states incorrectly.
-
-### D) Check whether the policy document in the project knowledge is still the current version. **(correct)**
-
-Correct. A confidently wrong figure that survives rewording points at the source rather than the prompt, and a superseded document in project knowledge produces exactly this pattern.
-
-## 415. Explanation
-
-### A) Capture the review as a reusable skill, so the same procedure is available wherever she works. **(correct)**
-
-Correct. A repeatable multi-step procedure that should behave the same way everywhere is what a skill captures; skills provide specialised procedures that work across Claude rather than in one workspace.
-
-### B) Upload a document describing the twelve steps and point Claude to it at the start of each review.
-
-A document she must point to each time relies on her remembering, and describes the steps rather than performing them.
-
-### C) Keep one long month-end conversation and continue it each month so the steps stay in the history.
-
-One long-running conversation becomes unwieldy and ties the procedure to a single chat history.
-
-### D) Add the twelve steps to the instructions of the project where she keeps her month-end files.
-
-Project instructions apply only inside that project, so the procedure would not follow her elsewhere.
 
 ## 416. A finance team wants Claude to help streamline month-end close, but the process has never been written down and each of the four preparers does parts of it differently. What should the team do first?
 
@@ -7742,43 +7746,7 @@ Splitting by position balances the volume of unreviewed work but ignores which s
 
 A final review catches errors at the point where correcting them means redoing the stages that followed the mistake.
 
-## 420. Explanation
-
-### A) The improvement may take several days to become consistent across everyone working in the project.
-
-A delay in consistency is a minor operational point beside not knowing what caused the change.
-
-### B) Colleagues may find the new format harder to read than the one they had grown accustomed to.
-
-Readability of the format is a preference that can be adjusted once the cause is understood.
-
-### C) The revised instructions may be long enough that new joiners take a while to understand them.
-
-Longer instructions are a maintenance cost, not the reason the improvement cannot be explained.
-
-### D) They cannot tell which change helped, so they cannot keep the useful one or undo a harmful one. **(correct)**
-
-Correct. Five simultaneous changes and one outcome give no information about cause, so the team cannot simplify, cannot reverse a change that hurt, and cannot repeat the success elsewhere.
-
-## 421. Explanation
-
-### A) Ground responses in verified documentation and route uncertain answers to human agents **(correct)**
-
-Correct. Grounding responses in verified sources and escalating uncertain or high-stakes cases to humans directly addresses the risk of confident hallucinations while keeping the tool useful.
-
-### B) Instruct the model through the system prompt to always sound highly confident to build trust
-
-Incorrect. Instructing the model to sound more confident would worsen the ethical problem by making incorrect answers even more convincing.
-
-### C) Accept the current error rate as a normal and unavoidable cost of generative AI in support
-
-Incorrect. Treating hallucination risk as unavoidable ignores practical mitigations like retrieval grounding and human escalation that responsible deployments should use.
-
-### D) Disable the agent's ability to mention any product specifications so it cannot be factually wrong
-
-Incorrect. Disabling all specification discussion removes the tool's core value rather than addressing the accuracy problem responsibly.
-
-## 422. A programme manager is writing a single request asking Claude to turn a supplier's quarterly report into a short briefing note for her steering group. In what order should she assemble the request?
+## 420. A programme manager is writing a single request asking Claude to turn a supplier's quarterly report into a short briefing note for her steering group. In what order should she assemble the request?
 
 ### A) State the length and sections needed; name the task and who reads the note; say what to do where the report is silent; paste the supplier report and label it.
 
@@ -7796,7 +7764,7 @@ Correct. The task and audience frame everything that follows, the labelled sourc
 
 Leading with the pasted report and holding back the task until the end means the material arrives with no stated purpose, and gap handling is decided before anyone knows what the note is for.
 
-## 423. When a stakeholder provides an ambiguous requirement like 'secure login', what is the best approach when using Claude for requirements analysis?
+## 421. When a stakeholder provides an ambiguous requirement like 'secure login', what is the best approach when using Claude for requirements analysis?
 
 ### A) Ask Claude to build a login feature from the requirement, assuming it is sufficiently clear.
 
@@ -7814,7 +7782,7 @@ Correct. Asking Claude to generate specific clarifying questions helps stakehold
 
 Incorrect. Confirming that 'secure login' is clear without further elaboration overlooks its inherent ambiguity. The phrase is not specific enough to be complete; skipping a discovery step can lead to misunderstandings and a solution that does not meet real needs.
 
-## 424. A support lead finds a Claude-drafted troubleshooting article accurate but written at a reading level too advanced for the average customer. Which follow-up instruction best refines the draft without sacrificing accuracy?
+## 422. A support lead finds a Claude-drafted troubleshooting article accurate but written at a reading level too advanced for the average customer. Which follow-up instruction best refines the draft without sacrificing accuracy?
 
 ### A) Rewrite the article with shorter sentences and everyday words, keeping every step accurate **(correct)**
 
@@ -7832,7 +7800,7 @@ Incorrect. Adding more technical detail moves the article further from, not clos
 
 Incorrect. A formal specification format is written for engineers and would make the article harder for typical customers to follow.
 
-## 425. A strategy lead is planning a market-entry study and wants Claude to help with the research phase of it. Which two approaches are sound? Select two.
+## 423. A strategy lead is planning a market-entry study and wants Claude to help with the research phase of it. Which two approaches are sound? Select two.
 
 ### A) Ask for the finished conclusion in a single prompt and publish it with no intermediate step.
 
@@ -7854,7 +7822,7 @@ Incorrect. Stating the decision the study supports is what makes the research us
 
 Incorrect. Confident phrasing is not evidence, and market figures used for a real decision need checking against sources.
 
-## 426. Two departments have submitted requirements for the same intake queue that directly contradict each other about who approves exceptions. The analyst is preparing the requirements pack for a decision meeting. What should the analyst do first?
+## 424. Two departments have submitted requirements for the same intake queue that directly contradict each other about who approves exceptions. The analyst is preparing the requirements pack for a decision meeting. What should the analyst do first?
 
 ### A) Ask Claude to set out every point at which the two submissions conflict, so they can be tabled openly. **(correct)**
 
@@ -7872,7 +7840,7 @@ What comparable organisations do is not evidence about this organisation's accou
 
 Removing the contested requirement leaves the pack looking complete while the hardest question is unanswered. Deferring it to design guarantees the argument happens later, with a partly built process depending on the outcome.
 
-## 427. A team lead grants "Can edit" access on a shared project to everyone who might ever open it, rather than giving most people "Can view". What is the greatest risk?
+## 425. A team lead grants "Can edit" access on a shared project to everyone who might ever open it, rather than giving most people "Can view". What is the greatest risk?
 
 ### A) The project's chat history becomes visible to the whole organisation regardless of the access levels granted.
 
@@ -7890,7 +7858,25 @@ Access levels within a project are not billed individually.
 
 Correct. Broad edit rights let the agreed direction and sources be altered silently by any of the members.
 
-## 428. A procurement officer will ask Claude to summarise an uploaded framework agreement into about forty points, and a colleague will have to spot-check that summary against the agreement in fifteen minutes. What should she build into the request to make that check practical?
+## 426. A coding assistant prompt says "Can you suggest some changes to improve this function?" The team wants Claude to actually implement the changes in the file rather than describe them in prose, but Claude keeps responding with suggestions only. What is the most direct fix?
+
+### A) Rephrase the request as a direct instruction to make the edit, such as telling Claude to change the function to improve its performance. **(correct)**
+
+Correct. Anthropic's guidance notes that phrasing like "can you suggest changes" leads Claude to provide suggestions rather than implement them; being explicit with a direct instruction, such as telling Claude to make the change, is the documented fix for getting Claude to take action.
+
+### B) Move the question into the system prompt instead of the user message, while keeping the exact same original suggestive wording as before.
+
+Incorrect. Moving the same suggestive wording to the system prompt does not change its meaning; the ambiguity about suggesting versus acting remains.
+
+### C) Send a follow-up message that just says "good suggestions" so that Claude infers approval to proceed with implementing them.
+
+Incorrect. A vague follow-up acknowledgment doesn't constitute an explicit instruction to implement changes and is not the documented technique for triggering action.
+
+### D) Increase the effort or thinking configuration considerably so Claude reasons for longer before answering the exact same phrasing.
+
+Incorrect. More reasoning effort affects how thoroughly Claude thinks through a response, not whether ambiguous suggestive phrasing gets interpreted as a request for action.
+
+## 427. A procurement officer will ask Claude to summarise an uploaded framework agreement into about forty points, and a colleague will have to spot-check that summary against the agreement in fifteen minutes. What should she build into the request to make that check practical?
 
 ### A) Ask for each point to name the clause of the agreement it came from, so the colleague can go straight to that clause and compare. **(correct)**
 
@@ -7907,6 +7893,24 @@ Brevity makes the summary quicker to read but no quicker to verify. The colleagu
 ### D) Ask for a confidence rating beside each point, so the colleague can concentrate the checking effort on the points rated least certain.
 
 A self-declared confidence rating is not a reliable guide to which points are wrong, and it can misdirect the check by giving high confidence to a point that was misread from the agreement.
+
+## 428. A telehealth startup integrates Claude to help draft preliminary summaries of patient symptoms for physicians to review before diagnosis. During a product review, a compliance officer asks why this counts as a high-risk use case even though a licensed physician always makes the final diagnosis. What is the best answer?
+
+### A) It is high-risk only if the summaries are shared with insurers for reimbursement purposes
+
+Incorrect. Insurance sharing is a separate concern; the high-risk designation for healthcare applies regardless of downstream billing use.
+
+### B) It is high-risk solely because telehealth companies typically operate across state lines
+
+Incorrect. Cross-state operation is not the basis for the high-risk designation; the healthcare subject matter itself is.
+
+### C) Healthcare's public welfare implications mean the safeguards apply to the summary itself, too **(correct)**
+
+Correct. Healthcare is one of the categories explicitly designated high-risk under the Usage Policy due to public welfare implications, so review and disclosure safeguards apply to AI-assisted content that feeds into care decisions.
+
+### D) It does not count as high-risk, since only the physician's final diagnosis is subject to the policy
+
+Incorrect. The safeguards apply to AI-assisted content used in the healthcare workflow, not only to the final decision point.
 
 ## 429. Which of the following is the most effective method for using Claude to produce an executive summary of a lengthy market report?
 
@@ -7984,25 +7988,7 @@ Format preference is a matter of house style and can be resolved by converting t
 
 Length is visible and easy to correct before the paper is issued. It affects how comfortably the board reads the briefing, not whether the statements in it are true.
 
-## 433. Explanation
-
-### A) Have some of them run it on their own real work and then gather their views **(correct)**
-
-Correct. Feedback based on real use is the only kind that can be acted on, and it converts an argument about expectations into evidence about results.
-
-### B) Discount the objections, since only current users can comment on the results
-
-Dismissing non-users ignores concerns that may be well founded and hardens the opposition.
-
-### C) Drop the arrangement, because adoption will fail without their support first
-
-Abandoning the arrangement over untested objections discards a change that may be working well.
-
-### D) Send them the strongest outputs the team produced during its trial fortnight
-
-Showing a curated set of best outputs invites the reasonable suspicion that it is not representative.
-
-## 434. A company systematically queries Claude through the API to collect large volumes of model outputs, then uses that data to train a rival large language model that it plans to sell. This activity is:
+## 433. A company systematically queries Claude through the API to collect large volumes of model outputs, then uses that data to train a rival large language model that it plans to sell. This activity is:
 
 ### A) Prohibited under the Usage Policy's restrictions on using Claude's outputs to develop competing models. **(correct)**
 
@@ -8020,7 +8006,7 @@ Incorrect. Omitting attribution does not make the underlying prohibited activity
 
 Incorrect. Ownership of individual outputs does not exempt systematic scraping used to train a competing model from Usage Policy restrictions.
 
-## 435. A long strategy chat has drifted off track, and it keeps re-deriving background the team will still need next week. Which two actions are appropriate here? Select two.
+## 434. A long strategy chat has drifted off track, and it keeps re-deriving background the team will still need next week. Which two actions are appropriate here? Select two.
 
 ### A) Start a fresh chat that restates the current goal and carries only the material still needed. **(correct)**
 
@@ -8042,7 +8028,7 @@ Incorrect. Repeating the goal more forcefully in a drifting conversation rarely 
 
 Incorrect. Pruning messages is not how a drifting chat is repaired, and it does not make the background durable for next week.
 
-## 436. A staff member realises she has pasted regulated customer records into her personal Claude account rather than the company's managed workspace. Which sequence is correct?
+## 435. A staff member realises she has pasted regulated customer records into her personal Claude account rather than the company's managed workspace. Which sequence is correct?
 
 ### A) Redo the work in the managed workspace; delete the affected conversations as the response team directs; stop using the personal account for this work; report the incident through the escalation path the policy names.
 
@@ -8060,7 +8046,7 @@ Correct. Containment comes first, so no further regulated data is exposed; the i
 
 Reporting comes first here, but the exposure is left running: the work is redone and conversations deleted while the personal account is still in use for regulated material, and it is stopped only at the very end.
 
-## 437. A budget summary written in prose gives departmental figures and then states a total. The finance officer reads it and finds nothing that looks out of place. What is the greatest risk in accepting it?
+## 436. A budget summary written in prose gives departmental figures and then states a total. The finance officer reads it and finds nothing that looks out of place. What is the greatest risk in accepting it?
 
 ### A) The stated total may not be the sum of the figures given, and prose gives no visual cue that anything is wrong. **(correct)**
 
@@ -8078,7 +8064,7 @@ Ordering affects how quickly a reader finds a department and does not change any
 
 Transferring prose into a spreadsheet is inconvenient, but it is handling effort rather than a threat to the numbers themselves.
 
-## 438. Given a written description of an approvals workflow, Claude suggests removing a second review step that appears redundant. The team plans to remove it next week. What is the greatest concern?
+## 437. Given a written description of an approvals workflow, Claude suggests removing a second review step that appears redundant. The team plans to remove it next week. What is the greatest concern?
 
 ### A) Removing a step may require retraining the reviewers who currently perform the second review.
 
@@ -8096,7 +8082,7 @@ A disappointing saving means the change was not worth much, which is a mild outc
 
 Correct. Claude can only reason about what the description contains, and the reasons for control steps are usually the part nobody writes down. A step that looks redundant on paper may be the segregation of duties or fraud check an auditor relies on, and removing it is not easily undone.
 
-## 439. A project lead is finishing a client status pack that Claude helped draft. His firm's AI policy requires AI assistance to be disclosed on external documents, and the client contract says nothing about the subject. What should be his first step?
+## 438. A project lead is finishing a client status pack that Claude helped draft. His firm's AI policy requires AI assistance to be disclosed on external documents, and the client contract says nothing about the subject. What should be his first step?
 
 ### A) Leave the disclosure off, because the contract is silent and the client has not asked for it.
 
@@ -8114,7 +8100,7 @@ Correct. The policy applies to external documents and the contract's silence doe
 
 Editing the text in order to escape the disclosure defeats the purpose of the rule and is a deliberate attempt to reach a technicality rather than a good-faith reading of the policy.
 
-## 440. A bid writer keeps receiving long proposal drafts organised in a way her reviewers dislike, and each rewrite costs a full round. Which sequence should she follow instead?
+## 439. A bid writer keeps receiving long proposal drafts organised in a way her reviewers dislike, and each rewrite costs a full round. Which sequence should she follow instead?
 
 ### A) Have the draft written to the agreed outline; ask for a section outline; correct the outline with reviewers; check the draft against the outline.
 
@@ -8132,7 +8118,7 @@ Checking a draft that has not been produced is impossible, and the outline work 
 
 Correct. The disagreement is about structure, and an outline is the cheapest thing that exposes structure. Reviewers settle the shape in minutes, the full draft is written only once, and the final check confirms it followed the agreed outline.
 
-## 441. Six weeks in, a team must decide whether to keep a Claude-assisted intake summarising arrangement or return to the previous approach. Which comparison best supports that decision?
+## 440. Six weeks in, a team must decide whether to keep a Claude-assisted intake summarising arrangement or return to the previous approach. Which comparison best supports that decision?
 
 ### A) How much faster the summaries are produced now than the team managed before the trial.
 
@@ -8150,7 +8136,7 @@ A demand for zero errors sets a standard the previous human process never met ei
 
 Enjoyment affects adoption and is worth knowing, but people can prefer an arrangement that produces weaker summaries. Preference is a secondary signal, not the basis for keeping it.
 
-## 442. A communications officer receives a first draft that is accurate but far too shallow for the intended briefing. Which two follow-up actions are most likely to improve the second attempt? Select two.
+## 441. A communications officer receives a first draft that is accurate but far too shallow for the intended briefing. Which two follow-up actions are most likely to improve the second attempt? Select two.
 
 ### A) Send the identical prompt again in the hope that the next attempt comes out stronger.
 
@@ -8172,25 +8158,7 @@ Correct. Shallowness is usually an information problem. Claude cannot write to a
 
 Negative feedback without specifics tells Claude that something was wrong but not what, so the next draft varies at random rather than converging.
 
-## 443. Explanation
-
-### A) Shorten the word problem's wording considerably so there is simply much less text overall for Claude to process carefully before it answers.
-
-Incorrect. Shortening the wording doesn't address the missing step-by-step reasoning that catches arithmetic mistakes, and could remove necessary problem details.
-
-### B) Have Claude work through the problem step by step before the final answer, separating its reasoning from the answer using structured tags. **(correct)**
-
-Correct. Encouraging step-by-step reasoning (chain-of-thought), with structured tags to separate reasoning from the final answer, is Anthropic's documented technique for catching errors reliably, especially in coding and math tasks.
-
-### C) Repeat the exact same word problem twice within the prompt so Claude effectively gets two separate chances to parse it correctly.
-
-Incorrect. Duplicating the problem statement does not add a reasoning process and is not a documented technique for reducing calculation errors.
-
-### D) Ask Claude to skip any intermediate explanation entirely and output only the final numeric answer so there is less room for error.
-
-Incorrect. Removing the reasoning step is the opposite of the documented fix; skipping intermediate steps tends to increase arithmetic errors on multi-step problems.
-
-## 444. For six weeks a customer-service lead has typed the same three corrections about tone and terminology into every new chat in her team's project. What should she do about that?
+## 442. For six weeks a customer-service lead has typed the same three corrections about tone and terminology into every new chat in her team's project. What should she do about that?
 
 ### A) Keep the three corrections in a note she can copy, so retyping them into each new chat takes only a moment.
 
@@ -8208,7 +8176,7 @@ Moving corrections to the end of a chat applies them after the work has been pro
 
 A confirmation exchange at the start costs a turn and establishes nothing that survives into the next conversation.
 
-## 445. A grants officer has a draft that is right in structure and evidence, but its second section is too technical for her readers. What is the most efficient next step?
+## 443. A grants officer has a draft that is right in structure and evidence, but its second section is too technical for her readers. What is the most efficient next step?
 
 ### A) Rewrite her original request to mention the reader's level, and ask for the whole document to be produced again.
 
@@ -8226,7 +8194,7 @@ Producing three full alternatives multiplies the reading and comparison work to 
 
 Correct. Only one part is wrong, so only that part needs to change. A targeted revision keeps the structure and evidence she has already accepted, and it makes the improvement easy to check.
 
-## 446. A Project's knowledge base has grown until it approaches the limit of what fits in the context window. Which two statements are accurate? Select two.
+## 444. A Project's knowledge base has grown until it approaches the limit of what fits in the context window. Which two statements are accurate? Select two.
 
 ### A) The Project stays in retrieval mode permanently, even if its knowledge is reduced later.
 
@@ -8248,7 +8216,7 @@ Incorrect. Retrieval works alongside other Claude features, including web search
 
 Correct. In retrieval mode a Project can hold up to about ten times more content than standard processing allows.
 
-## 447. A grant writer wants every draft in a project written from the point of view of a programme officer assessing applications, so that weak arguments surface early. What is the best way to set this up?
+## 445. A grant writer wants every draft in a project written from the point of view of a programme officer assessing applications, so that weak arguments surface early. What is the best way to set this up?
 
 ### A) Upload sample funded applications to project knowledge and expect Claude to adopt a reviewer stance.
 
@@ -8266,7 +8234,7 @@ This makes an intended default optional and easy to forget on the drafts that ne
 
 Correct. A durable stance that should hold for all work in the workspace belongs in project instructions.
 
-## 448. A training officer wants a disciplined way to improve the wording she uses for weekly course summaries. Which sequence should she follow on each round?
+## 446. A training officer wants a disciplined way to improve the wording she uses for weekly course summaries. Which sequence should she follow on each round?
 
 ### A) Compare the new result against the previous one; name what was wrong with the result; keep the change or undo it; make one change.
 
@@ -8284,7 +8252,7 @@ Deciding whether to keep a change before making it inverts the round entirely, a
 
 Correct. Naming the defect gives the round a target, one change isolates the cause, the comparison shows whether it moved in the right direction, and the keep-or-undo decision makes the improvement deliberate rather than accidental.
 
-## 449. A support lead wants to paste a year of customer complaint emails, which contain names and postal addresses, into Claude so it can find common themes. Her company's AI policy sets rules for handling customer personal data. What should she do first?
+## 447. A support lead wants to paste a year of customer complaint emails, which contain names and postal addresses, into Claude so it can find common themes. Her company's AI policy sets rules for handling customer personal data. What should she do first?
 
 ### A) Use an incognito chat for the work, so the conversation cannot be used to improve Claude.
 
@@ -8302,7 +8270,7 @@ Correct. The data is customer personal data and the company has rules for it, so
 
 The managed workspace is very likely part of the answer, but a general approval for company data does not settle what is allowed for personal data specifically. That is what the policy has to be checked for.
 
-## 450. An HR software vendor uses Claude to automatically reject job applicants based solely on resume-screening scores. No recruiter reviews borderline or rejected candidates, and applicants are not told AI was used. Is this an appropriate use of Claude?
+## 448. An HR software vendor uses Claude to automatically reject job applicants based solely on resume-screening scores. No recruiter reviews borderline or rejected candidates, and applicants are not told AI was used. Is this an appropriate use of Claude?
 
 ### A) Yes, provided the vendor can show the model's screening accuracy exceeds that of human recruiters
 
@@ -8320,7 +8288,7 @@ Incorrect. Employment decisions such as hiring rejections are treated as a high-
 
 Correct. High-risk employment use cases require a qualified human to review the AI's decisions and require disclosure to affected individuals, and this scenario has neither safeguard in place.
 
-## 451. A UX writer is unhappy that a Claude-drafted in-app error message describes the internal exception name and stack trace to end users. What is the most appropriate refinement for this audience?
+## 449. A UX writer is unhappy that a Claude-drafted in-app error message describes the internal exception name and stack trace to end users. What is the most appropriate refinement for this audience?
 
 ### A) Add a short apology sentence before the existing exception details in the message
 
@@ -8338,7 +8306,7 @@ Incorrect. Reformatting the stack trace as a list still exposes internal impleme
 
 Incorrect. Hiding the stack trace behind a hover interaction still surfaces internal detail instead of replacing it with a plain-language message.
 
-## 452. A team applies the same single sign-off step to every Claude-assisted output, from internal meeting notes to a statement that will be filed with a regulator. What is the greatest risk?
+## 450. A team applies the same single sign-off step to every Claude-assisted output, from internal meeting notes to a statement that will be filed with a regulator. What is the greatest risk?
 
 ### A) Irreversible, externally visible work gets no more scrutiny than notes nobody will ever act on. **(correct)**
 
@@ -8356,7 +8324,7 @@ Incorrect. Review fatigue is real, but it is a consequence of the flat process r
 
 Incorrect. Slower routine work is an efficiency cost. The serious risk sits at the other end of the range, on the filings.
 
-## 453. A consultant sets project instructions telling Claude to always respond as a financial advisor, then separately uploads quarterly earnings reports to the same project's knowledge base. When the consultant opens a brand-new chat in that project, what should they expect?
+## 451. A consultant sets project instructions telling Claude to always respond as a financial advisor, then separately uploads quarterly earnings reports to the same project's knowledge base. When the consultant opens a brand-new chat in that project, what should they expect?
 
 ### A) Claude requires the consultant to manually re-enable the instructions and knowledge base for each chat
 
@@ -8374,7 +8342,7 @@ Incorrect. Project instructions apply to all chats in the project, not selective
 
 Correct. Both project instructions and knowledge base uploads are designed to persist and apply automatically across every chat within the same project, including new ones.
 
-## 454. A project coordinator has listed eight tasks for a product launch and wants to work through them with Claude in a sensible order. What should she do first?
+## 452. A project coordinator has listed eight tasks for a product launch and wants to work through them with Claude in a sensible order. What should she do first?
 
 ### A) Work out which tasks need another task's output before they can start, since that constrains the possible orders. **(correct)**
 
@@ -8392,25 +8360,7 @@ A plan's list order usually reflects how it was written rather than what depends
 
 Ownership is useful for assigning work, not for ordering it, and grouping this way routinely places a dependent task ahead of its input.
 
-## 455. Explanation
-
-### A) Ask Claude which of the three changes it thinks damaged the output the most
-
-Claude cannot know which edit degraded results for this team's work; the answer would be speculation.
-
-### B) Return to the last version that worked and reintroduce changes one at a time **(correct)**
-
-Correct. Rolling back to a known-good version restores quality immediately, and reintroducing changes singly is the only way to find out which one was responsible.
-
-### C) Add a fourth change intended to counteract whatever the other three caused
-
-A compensating fourth change adds another variable to a situation that is already impossible to attribute.
-
-### D) Keep the current version and ask the reviewers to correct the output by hand
-
-Manual correction absorbs the damage indefinitely and leaves the faulty instruction in place for everyone.
-
-## 456. A user in Claude.ai asks Claude to write a 200-line Python script that parses log files and generates a summary report. The user says they plan to save the script and run it repeatedly. How should Claude present the script?
+## 453. A user in Claude.ai asks Claude to write a 200-line Python script that parses log files and generates a summary report. The user says they plan to save the script and run it repeatedly. How should Claude present the script?
 
 ### A) Split across several separate chat messages, because breaking long scripts into chunks makes each message easier to read and manage.
 
@@ -8428,25 +8378,7 @@ Correct. An artifact is designed for substantial, self-contained content that th
 
 Incorrect. The user's primary need is the runnable Python script itself, not a formatted report; providing a downloadable PDF would prevent the script from being executed or modified, failing to meet the explicit request for a reusable code file.
 
-## 457. Explanation
-
-### A) The risk is purely a data storage concern about how long applicant records are retained
-
-Incorrect. Data retention is a separate privacy topic and does not capture the core risk of unreviewed, automated high-stakes decisions.
-
-### B) The only real risk is a minor increase in latency compared to a human-reviewed workflow
-
-Incorrect. The primary concern is harm from unreviewed erroneous decisions, not processing speed, which full automation would actually improve.
-
-### C) There is no meaningful risk, since housing loans are not a high-risk category under the policy
-
-Incorrect. Housing decisions are explicitly treated as high-risk given their public welfare and social equity implications.
-
-### D) Removing review from a high-impact decision like housing risks harming applicants unchecked **(correct)**
-
-Correct. Housing is a high-risk category with significant welfare implications, so removing human review entirely means errors or biased outcomes could directly harm applicants with no safeguard to catch them.
-
-## 458. A strategy lead is planning a market-entry study and wants Claude to help with the research phase of it. Which two approaches are sound? Select two.(Select 2)
+## 454. A strategy lead is planning a market-entry study and wants Claude to help with the research phase of it. Which two approaches are sound? Select two.(Select 2)
 
 ### A) Accept the market figures Claude gives as final, since the answer reads confident and full.
 
@@ -8468,29 +8400,7 @@ Incorrect. Stating the decision the study supports is what makes the research us
 
 Correct. Drafting the plan and the open questions is planning work Claude does well, and the team refining it keeps ownership where it belongs.
 
-## 459. Explanation
-
-### A) Put the house-style preamble into that project's instructions instead of retyping it. **(correct)**
-
-Correct for an independent reason: standing direction belongs in instructions, which is a different mechanism from knowledge.
-
-### B) Keep one very long conversation permanently open so that the manual stays within view.
-
-One endless conversation eventually loses the thread and mixes unrelated queries together.
-
-### C) Move the queries to a faster model tier so that each answer takes less time to arrive.
-
-A faster tier shortens the wait but leaves the repeated pasting and retyping completely untouched.
-
-### D) Have Claude condense the manual and then paste that shorter summary in each time instead.
-
-A condensed manual still gets pasted every time and quietly drops detail some queries will need.
-
-### E) Upload the manual once as the knowledge of a project used for all of these queries. **(correct)**
-
-Correct. Uploading the manual once as project knowledge removes the repeated paste entirely, for every chat in that project.
-
-## 460. A policy team keeps a handbook in a Drive folder that changes weekly, and also has one annual report that never changes. Which two set-ups fit best? Select two.(Select 2)
+## 455. A policy team keeps a handbook in a Drive folder that changes weekly, and also has one annual report that never changes. Which two set-ups fit best? Select two.(Select 2)
 
 ### A) Connect the Drive folder, so the weekly handbook changes are picked up from the source. **(correct)**
 
@@ -8512,7 +8422,7 @@ Incorrect. Re-pasting a whole handbook per chat is the manual work Project knowl
 
 Correct. A stable document is well suited to a one-time upload into Project knowledge, where it stays available to every chat.
 
-## 461. A hospital deploys a Claude-powered chatbot on its patient portal to answer questions about medication side effects. According to Anthropic's Usage Policy for high-risk, consumer-facing use cases, what must the hospital do before patients rely on the chatbot's answers?
+## 456. A hospital deploys a Claude-powered chatbot on its patient portal to answer questions about medication side effects. According to Anthropic's Usage Policy for high-risk, consumer-facing use cases, what must the hospital do before patients rely on the chatbot's answers?
 
 ### A) The hospital should configure the chatbot to always redirect patients to speak with their pharmacist by phone instead of answering any medication-related questions.
 
@@ -8530,7 +8440,7 @@ Incorrect. A liability waiver does not satisfy the Usage Policy's transparency r
 
 Correct. Consumer-facing chatbots in high-risk domains like healthcare must transparently disclose that the user is interacting with an AI system before providing guidance.
 
-## 462. A service manager wants to use Claude to improve a customer refund process that everyone agrees is too slow. Which sequence of steps is correct?
+## 457. A service manager wants to use Claude to improve a customer refund process that everyone agrees is too slow. Which sequence of steps is correct?
 
 ### A) Map how the process actually runs today; have Claude propose where time is being lost; test those proposals against real cycle-time records; agree the changes with the people who run the steps. **(correct)**
 
@@ -8548,25 +8458,7 @@ There are no proposals to test at the start, so the first step has nothing to ac
 
 Asking for proposals before the process is mapped means Claude reasons from an assumed refund process rather than this one, and the changes are agreed with the team before anyone has tested whether they hold.
 
-## 463. Explanation
-
-### A) Project sharing needs a Team or Enterprise plan, so on personal plans each recreates the setup. **(correct)**
-
-Correct. Sharing a project with named colleagues or an organisation is a Team and Enterprise capability; on personal plans a project is personal, so the instructions and material have to be recreated by each person.
-
-### B) Personal plans do allow project sharing, but only with colleagues who are also on a paid plan.
-
-There is no personal-plan sharing that depends on the recipient's plan; personal projects are not shareable.
-
-### C) Any Claude user can share a project with named colleagues, so she should grant each of them access.
-
-Sharing is not available on personal plans, so this describes a capability the team does not have.
-
-### D) She should give the colleagues her own account details so they can work in the project directly.
-
-Sharing account credentials breaches normal account rules and creates an untraceable mess of work.
-
-## 464. A policy team keeps a handbook in a Drive folder that changes weekly, and also has one annual report that never changes. Which two set-ups fit best? Select two.
+## 458. A policy team keeps a handbook in a Drive folder that changes weekly, and also has one annual report that never changes. Which two set-ups fit best? Select two.
 
 ### A) Connect the annual report and delete it from Drive, so that only one copy ever exists.
 
@@ -8588,7 +8480,7 @@ Correct. A connector reaches the live source, which is what a document that chan
 
 Incorrect. A one-time copy of a weekly-changing handbook goes stale fast and produces confidently outdated answers.
 
-## 465. A marketer asks Claude to add citations to a draft that Claude had already written from general knowledge. What is the main concern?
+## 459. A marketer asks Claude to add citations to a draft that Claude had already written from general knowledge. What is the main concern?
 
 ### A) Claude is unable to add citations to text it has already produced earlier in a conversation.
 
@@ -8606,7 +8498,7 @@ Incorrect. Length is a practical constraint and is unrelated to whether the cita
 
 Correct. When the text comes first, the sources are selected to match wording that was never derived from them, so the citation can look right while supporting nothing.
 
-## 466. A team is deciding between Claude Haiku and Claude Opus for a new internal tool and wants a simple rule of thumb for when accuracy should be prioritized over cost and speed. According to Anthropic's guidance, which situation should push the team toward starting with Opus instead of Haiku?
+## 460. A team is deciding between Claude Haiku and Claude Opus for a new internal tool and wants a simple rule of thumb for when accuracy should be prioritized over cost and speed. According to Anthropic's guidance, which situation should push the team toward starting with Opus instead of Haiku?
 
 ### A) When rapid iteration is needed for prototyping new features without real user testing, start with Opus to ensure high accuracy from the start.
 
@@ -8624,7 +8516,7 @@ According to Anthropic's official guidance, Opus models are the most capable and
 
 Anthropic recommends Haiku for low-latency applications like peak-traffic chatbots because Haiku provides the fastest response times and lowest cost per request. Opus is designed for depth rather than speed, so using it here would lead to higher latency and cost without proportional benefit.
 
-## 467. A nonprofit needs a grant report for both a technical evaluator and a general public donor newsletter, but the first draft uses terms like 'confidence interval' and 'effect size' throughout. What is the best way to adapt the newsletter version?
+## 461. A nonprofit needs a grant report for both a technical evaluator and a general public donor newsletter, but the first draft uses terms like 'confidence interval' and 'effect size' throughout. What is the best way to adapt the newsletter version?
 
 ### A) Remove all numbers from the newsletter so no explanation of findings is needed
 
@@ -8642,7 +8534,7 @@ Incorrect. Using the identical technical report for donors ignores that the inte
 
 Incorrect. Footnoted definitions still leave jargon embedded in the main text, requiring donors to cross-reference terms instead of reading naturally.
 
-## 468. After one complaint about a single report, a team changes the shared instruction, re-runs that same report, is satisfied with the result, and rolls the change out to everyone. What is the greatest risk?
+## 462. After one complaint about a single report, a team changes the shared instruction, re-runs that same report, is satisfied with the result, and rolls the change out to everyone. What is the greatest risk?
 
 ### A) The changed instruction cannot be reversed once other people begin using it
 
@@ -8660,7 +8552,7 @@ Correct. Testing a fix only on the case that failed shows that the case now pass
 
 The cost of re-running one report is trivial and unrelated to whether the change was sound.
 
-## 469. A small law firm uses Claude to draft first-pass responses to routine client contract questions. A licensed attorney reviews and finalizes every draft before it is sent, and clients are told that AI assisted in drafting. Is this consistent with Anthropic's guidance for high-risk use cases?
+## 463. A small law firm uses Claude to draft first-pass responses to routine client contract questions. A licensed attorney reviews and finalizes every draft before it is sent, and clients are told that AI assisted in drafting. Is this consistent with Anthropic's guidance for high-risk use cases?
 
 ### A) No, because attorney review does not remove all liability for AI-drafted content in legal contexts
 
@@ -8678,7 +8570,7 @@ Incorrect. The Usage Policy does not require a separate high-risk-use license; i
 
 Correct. High-risk domains like legal advice require both qualified professional review of the content and disclosure that AI was used, and this scenario satisfies both safeguards.
 
-## 470. An HR stakeholder proposes letting Claude autonomously make final hiring decisions from resumes with no human involvement, to speed up recruiting. What limitation should be raised, and what should be recommended instead?
+## 464. An HR stakeholder proposes letting Claude autonomously make final hiring decisions from resumes with no human involvement, to speed up recruiting. What limitation should be raised, and what should be recommended instead?
 
 ### A) Raise that Claude cannot read resume text at all, so the proposal is technically impossible to build.
 
@@ -8696,7 +8588,7 @@ Correct. Like any model trained on real-world data, Claude's outputs can reflect
 
 Incorrect. Removing human oversight does not eliminate bias risk; unsupervised automation can actually amplify it if left unchecked.
 
-## 471. A policy officer must produce a short evidence review for a decision meeting later in the week. Which sequence of steps is correct?
+## 465. A policy officer must produce a short evidence review for a decision meeting later in the week. Which sequence of steps is correct?
 
 ### A) Point Claude at the sources that count as evidence here; check the load-bearing claims before it is circulated; state the question and what a usable answer must cover; have Claude draft the review with references to passages.
 
@@ -8714,25 +8606,7 @@ Correct. The question defines what the review must cover, the agreed sources bou
 
 Drafting before the question is stated produces a review aimed at no particular decision, and the sources arrive after the draft that was supposed to rest on them.
 
-## 472. Explanation
-
-### A) Stop using the project and go back to writing each request from scratch in ordinary conversations.
-
-Abandoning the project discards the shared context instead of fixing an edit that can be reverted.
-
-### B) Ask Claude to review the project instructions and rewrite them so that the drafts improve again.
-
-Claude cannot know which wording produced last month's better drafts, so this is guesswork.
-
-### C) Look at what changed in the instructions and retry a recent task with the old wording restored. **(correct)**
-
-Correct. A change in results that follows a known change in configuration is best tested by reverting that change on a real task, which confirms or rules out the cause in one step.
-
-### D) Add her own extra instructions on top, so the parts she depends on are stated again more firmly.
-
-Layering instructions on top may mask the conflict while leaving the contradictory wording in place.
-
-## 473. A finance team wants Claude to take actions in a connected system, such as updating records, rather than only reading from it. Under a typical organisational AI policy, what matters most before this is enabled?
+## 466. A finance team wants Claude to take actions in a connected system, such as updating records, rather than only reading from it. Under a typical organisational AI policy, what matters most before this is enabled?
 
 ### A) Confirmation that the connected system's data is small enough to fit inside a single conversation.
 
@@ -8750,7 +8624,7 @@ Limiting who may use it reduces exposure slightly but still leaves unreviewed wr
 
 A description in the chat is a weak record and does not prevent an incorrect change from being made.
 
-## 474. A software team uses Claude to review pull requests, suggest bug fixes, and generate unit tests as part of its normal development workflow, with engineers reviewing all suggested code before merging. Is this an appropriate use of Claude?
+## 467. A software team uses Claude to review pull requests, suggest bug fixes, and generate unit tests as part of its normal development workflow, with engineers reviewing all suggested code before merging. Is this an appropriate use of Claude?
 
 ### A) Yes, because code review and test generation are common development tasks with engineer sign-off **(correct)**
 
@@ -8768,7 +8642,7 @@ Incorrect. Generating unit tests is a routine and supported coding use case, not
 
 Incorrect. There is no blanket requirement to disable Claude on credential-related files for this use case to be appropriate; the scenario as described is already acceptable.
 
-## 475. A knowledge-management lead has asked Claude three times for a "brief, on-brand" summary of the weekly internal newsletter, and each attempt comes back at a different length and in a different register. Which two revisions to her prompt are most likely to fix this? Select two.
+## 468. A knowledge-management lead has asked Claude three times for a "brief, on-brand" summary of the weekly internal newsletter, and each attempt comes back at a different length and in a different register. Which two revisions to her prompt are most likely to fix this? Select two.
 
 ### A) Replace "brief" with a checkable limit: no more than 150 words in three bullets. **(correct)**
 
@@ -8790,7 +8664,25 @@ Resending the same wording with a complaint attached communicates nothing new ab
 
 Expanding "brief" and "on-brand" into more words leaves both terms exactly as unmeasurable as before. Length of instruction is not the same thing as precision of instruction.
 
-## 476. An operations lead creates a project on an Enterprise plan and shares it with the whole organisation. To save time she uploads a complete team folder into the project knowledge, and that folder includes a spreadsheet of individual salary bands. What is the greatest risk?
+## 469. A researcher asks about a regulatory change announced last month. The answer is fluent and confident but wrong on the specifics, and the project contains no document about the change. What is the most likely cause and the right fix?
+
+### A) Claude has no dependable source for it, so she should supply the announcement or use Research on it. **(correct)**
+
+Correct. Nothing in the conversation or the project describes the change, so the gap is in the available information; supplying the source, or using Research so claims come with citations, is what closes it.
+
+### B) The conversation has grown too long, so she should begin again and put the question in a fresh chat.
+
+Conversation length would produce drift and contradiction, not confident detail about an unavailable topic.
+
+### C) The model tier is too small, so she should put the same question to a model with deeper reasoning.
+
+Reasoning depth does not create knowledge of an announcement that was never provided.
+
+### D) Her request was too vague, so she should ask the same question again with a stricter output format set.
+
+The question was specific enough; format instructions cannot supply facts that were never available.
+
+## 470. An operations lead creates a project on an Enterprise plan and shares it with the whole organisation. To save time she uploads a complete team folder into the project knowledge, and that folder includes a spreadsheet of individual salary bands. What is the greatest risk?
 
 ### A) Anyone who opens the shared project can draw the salary details out through ordinary questions. **(correct)**
 
@@ -8808,7 +8700,7 @@ Documents can be removed from project knowledge at any time; the exposure is the
 
 Claude does not refuse to work in a project because a sensitive file has been uploaded to it.
 
-## 477. A developer wants Claude to have awareness of a project's coding conventions when answering questions in a dedicated 'Backend Refactor' project. Which action correctly places that context so it applies across all chats in the project?
+## 471. A developer wants Claude to have awareness of a project's coding conventions when answering questions in a dedicated 'Backend Refactor' project. Which action correctly places that context so it applies across all chats in the project?
 
 ### A) Star the coding convention files in a personal favorites list to make them available across project chats.
 
@@ -8826,7 +8718,7 @@ Incorrect. Chat names are only labels and do not convey document content or give
 
 Correct. Uploading documents to the project's knowledge base with the '+' button injects them as context across all chats. This ensures Claude always has access to the coding conventions when answering in the 'Backend Refactor' project.
 
-## 478. A team lead has adopted a habit of splitting every request into stages. Today he needs a three-sentence note telling the team that a meeting has moved. How should he handle it?
+## 472. A team lead has adopted a habit of splitting every request into stages. Today he needs a three-sentence note telling the team that a meeting has moved. How should he handle it?
 
 ### A) Ask for the note in a single request, since the task is small enough that splitting it adds steps without adding value. **(correct)**
 
@@ -8844,7 +8736,7 @@ An outline of a three-sentence note is longer than the note. The checkpoint exis
 
 Applying the habit uniformly ignores what breaking work up is for. Three sentences can be read and judged at a glance, so the extra stages cost time and return nothing.
 
-## 479. A team wants its fact-checking of Claude outputs to be reviewable by someone else months later. Which practice best achieves that?
+## 473. A team wants its fact-checking of Claude outputs to be reviewable by someone else months later. Which practice best achieves that?
 
 ### A) Keep the full chat transcript, since it shows every single question the team put to Claude.
 
@@ -8862,7 +8754,7 @@ Incorrect. A readability pass does not establish that any statement was traced t
 
 Incorrect. An unsupported assurance is not reviewable, and it obscures which claims were actually examined.
 
-## 480. At an Enterprise organization, no one has enabled connectors yet, and an employee tries to connect Google Drive. What must happen before the employee can authenticate?
+## 474. At an Enterprise organization, no one has enabled connectors yet, and an employee tries to connect Google Drive. What must happen before the employee can authenticate?
 
 ### A) The employee must switch to a personal, non-organizational Claude account first.
 
@@ -8880,7 +8772,7 @@ Incorrect. No separate marketplace add-on installation is a prerequisite for the
 
 Incorrect. There is no support-ticket whitelisting process; the control point is an org-level toggle set by an Owner or Primary Owner.
 
-## 481. An operations manager on a Pro plan is working within a single Project whose uploaded reference files are approaching the context limit. The manager wants Claude to keep giving high-quality answers grounded in that large body of documents without manually trimming the file set. What underlying capability does the Project rely on to handle this?
+## 475. An operations manager on a Pro plan is working within a single Project whose uploaded reference files are approaching the context limit. The manager wants Claude to keep giving high-quality answers grounded in that large body of documents without manually trimming the file set. What underlying capability does the Project rely on to handle this?
 
 ### A) Research mode replaces the uploaded files with live web search results, automatically expanding project context without manual trimming.
 
@@ -8898,7 +8790,7 @@ Correct. Projects use Retrieval Augmented Generation to automatically retrieve r
 
 Incorrect. Downgrading to a smaller model changes generation cost and speed, not the way a project handles its uploaded knowledge base; it does not reduce per-document context usage to fit more files.
 
-## 482. An analyst breaks a market review into six stages and feeds each result straight into the next, reviewing nothing until the final report is written. What is the greatest risk?
+## 476. An analyst breaks a market review into six stages and feeds each result straight into the next, reviewing nothing until the final report is written. What is the greatest risk?
 
 ### A) A mistake in an early stage is carried into every later stage, and the final report is built on top of it. **(correct)**
 
@@ -8916,7 +8808,7 @@ Staged work does take more elapsed time, but that cost is the point of the appro
 
 Length is easily controlled by stating limits, and an overlong report is a presentation issue rather than a correctness one.
 
-## 483. A finance analyst has broken a budget review into stages. The next stage compares actual spend against forecast, but she has not yet received the final month's figures from two departments. What should she do first?
+## 477. A finance analyst has broken a budget review into stages. The next stage compares actual spend against forecast, but she has not yet received the final month's figures from two departments. What should she do first?
 
 ### A) Run the comparison on the figures she has now, and then repeat the whole stage once the outstanding numbers arrive.
 
@@ -8934,7 +8826,7 @@ Commentary written without the comparison has no basis, and deferring the number
 
 Estimated departmental spend inserted into a budget review looks exactly like reported spend, and a variance driven by an estimate is indistinguishable from a real one.
 
-## 484. After several rounds of instruction changes, a Claude-assisted complaints-response arrangement still gets the tone wrong on the cases that involve bereavement. What is the most appropriate change to the design?
+## 478. After several rounds of instruction changes, a Claude-assisted complaints-response arrangement still gets the tone wrong on the cases that involve bereavement. What is the most appropriate change to the design?
 
 ### A) Route bereavement cases to a person to write, and keep the arrangement for the routine ones. **(correct)**
 
@@ -8952,7 +8844,7 @@ Several rounds of instruction changes have already failed, which is evidence tha
 
 Relying on reviewers to repair tone in the most sensitive cases puts the heaviest correction burden exactly where mistakes are least forgivable. One missed review reaches a bereaved complainant.
 
-## 485. A marketing lead is writing the Project instructions for a Project her team will use every day. Which two choices make those instructions effective? Select two.
+## 479. A marketing lead is writing the Project instructions for a Project her team will use every day. Which two choices make those instructions effective? Select two.
 
 ### A) Listing an answer to each specific question the team happened to ask Claude during the last month.
 
@@ -8974,7 +8866,7 @@ Incorrect. Emphasis and repetition are not what makes an instruction effective; 
 
 Correct. Giving the reason behind a rule lets Claude generalise it to cases the instructions never anticipated.
 
-## 486. A project lead needs Claude to work across a very large set of meeting notes inside one conversation on her paid plan. Which choice best supports that?
+## 480. A project lead needs Claude to work across a very large set of meeting notes inside one conversation on her paid plan. Which choice best supports that?
 
 ### A) Choose the fastest and cheapest model available, because lighter models are given more room for long inputs.
 
@@ -8992,7 +8884,7 @@ Incorrect. The newest flagship models offer the largest windows; earlier models 
 
 Correct. The newest flagship models provide a one-million-token window when chatting on any paid plan, which is the most room available for a single conversation.
 
-## 487. An analyst has a Research-mode output on competitor pricing, with citations against most claims, that will inform a pricing decision. Which two validation steps are most useful? Select two.
+## 481. An analyst has a Research-mode output on competitor pricing, with citations against most claims, that will inform a pricing decision. Which two validation steps are most useful? Select two.
 
 ### A) Confirm the headline figure against the company's own records rather than one source. **(correct)**
 
@@ -9014,7 +8906,7 @@ Citation count measures volume, not quality. A heavily cited output can rest on 
 
 A citation is not a guarantee, and cited claims are precisely the ones that feel safe to skip, which is what lets a misread source pass through unchallenged.
 
-## 488. Two tasks draw almost identically on a team's allowance: notes from an internal brainstorm that nobody will act on directly, and a figure that will appear in a published statement. A colleague argues the two should therefore be treated the same way. How should the team decide?
+## 482. Two tasks draw almost identically on a team's allowance: notes from an internal brainstorm that nobody will act on directly, and a figure that will appear in a published statement. A colleague argues the two should therefore be treated the same way. How should the team decide?
 
 ### A) Treat them the same, since equal allowance draw means equal cost to the team and there is no clear financial reason to separate them.
 
@@ -9032,25 +8924,7 @@ A single rule is simpler to follow but forces one of two errors: over-spending o
 
 Leaving it to whoever runs the task makes an important external output depend on one person's remaining allowance and time pressure, which is exactly when the published figure would be short-changed.
 
-## 489. Explanation
-
-### A) Rewrite the whole request from scratch so all five steps are described in a consistent new style.
-
-A full rewrite puts four working steps at risk to fix one, and makes the cause harder to see.
-
-### B) Work on that step separately with clearer direction and an example, leaving the rest untouched. **(correct)**
-
-Correct. The evidence localises the fault to one step, so the change should be localised too; rewriting what already works risks losing it.
-
-### C) Ask Claude to carry out all five steps twice and take the better of the two attempts each time.
-
-Running everything twice doubles the effort without addressing why the fifth step fails.
-
-### D) Split the task across five separate conversations so that each step gets a dedicated attempt.
-
-Five conversations add coordination work and lose the context the steps share with each other.
-
-## 490. A strategy lead is drafting a board paper and Claude supplies a precise market-size figure for a sector she does not follow. The figure would strengthen her case considerably. What should she do first?
+## 483. A strategy lead is drafting a board paper and Claude supplies a precise market-size figure for a sector she does not follow. The figure would strengthen her case considerably. What should she do first?
 
 ### A) Compare it against the market sizes of neighbouring sectors to see whether its scale looks about right.
 
@@ -9068,7 +8942,7 @@ Calling a figure an estimate lowers its apparent precision but still places an u
 
 A repeated answer shows only that the same figure is produced twice, which is consistency rather than any external support.
 
-## 491. An analyst is presenting a Claude-assisted workflow to sceptical senior stakeholders next week. Which two things should the presentation include? Select two.(Select 2)
+## 484. An analyst is presenting a Claude-assisted workflow to sceptical senior stakeholders next week. Which two things should the presentation include? Select two.(Select 2)
 
 ### A) A comparison of technical benchmark scores across each of the underlying model tiers.
 
@@ -9090,7 +8964,7 @@ Correct. A measured pilot result is concrete evidence of value rather than an as
 
 Incorrect. Promising that checking is no longer needed oversells the tool and sets the expectation that will break first.
 
-## 492. A university course administrator must confirm that a Claude-drafted section of the student handbook matches the university's published regulations. In which order should these steps be taken?
+## 485. A university course administrator must confirm that a Claude-drafted section of the student handbook matches the university's published regulations. In which order should these steps be taken?
 
 ### A) Find each of those statements in the published regulations; identify the statements in the section that assert a regulation; correct any statement the regulations do not support; record which version of the regulations was used.
 
@@ -9108,7 +8982,7 @@ Editing comes first of all, before either the claims have been identified or the
 
 Corrections are made before the regulations have been consulted, which means they rest on what she assumes the rules say. The lookup that should have driven the edits arrives after them.
 
-## 493. A project lead pastes the same 40-page requirements document into every new chat instead of storing it anywhere. What is the greatest concern with this approach?
+## 486. A project lead pastes the same 40-page requirements document into every new chat instead of storing it anywhere. What is the greatest concern with this approach?
 
 ### A) Each re-paste spends both window space and usage allowance that storing the document once would save. **(correct)**
 
@@ -9126,7 +9000,43 @@ Incorrect. Claude does not restrict itself to the final pages; the real exposure
 
 Incorrect. A document of that size is readable; the cost is in the space and allowance it consumes, not a refusal.
 
-## 494. A programme sponsor asks who is accountable for the requirements catalogue now that most of it is drafted with Claude. Which answer best reflects sound practice?
+## 487. A team has drafted a revised instruction that seems to fix a recurring problem in a shared project. Which sequence best confirms and adopts it?
+
+### A) Try the revision on two recent real cases; compare the results with the old output on those cases; update the shared project instructions; tell the team what changed and why. **(correct)**
+
+Correct. The revision is tested on real cases and compared against what it replaces before it becomes the shared default, and colleagues are told once the change is actually in place.
+
+### B) Update the shared project instructions; tell the team what changed and why; try the revision on two recent real cases; compare the results with the old output on those cases.
+
+Rolling the change out to everyone before testing it makes the whole team the experiment.
+
+### C) Compare the results with the old output on those cases; try the revision on two recent real cases; update the shared project instructions; tell the team what changed and why.
+
+Comparing results before producing them is not possible, so the ordering cannot work.
+
+### D) Tell the team what changed and why; update the shared project instructions; compare the results with the old output on those cases; try the revision on two recent real cases.
+
+Announcing a change before it exists, and testing it last, leaves colleagues acting on something unverified.
+
+## 488. A journalist uses Claude to help draft a news article, and later a colleague asks whether this requires the same human-in-the-loop and disclosure safeguards as other high-risk categories like healthcare or finance. What is the correct answer?
+
+### A) Yes, journalism is a listed high-risk category requiring review and AI disclosure too **(correct)**
+
+Correct. Journalism is one of the categories the Usage Policy designates as high-risk, requiring a qualified professional to review AI-assisted content and disclosure of AI involvement before publication.
+
+### B) Yes, but only when the article specifically discusses Anthropic or its own products
+
+Incorrect. The requirement applies to journalism generally, not only to articles about Anthropic or its products.
+
+### C) No, because the review requirement applies only to direct financial transactions
+
+Incorrect. The human-in-the-loop requirement is not limited to financial transactions; it spans several public-welfare categories including journalism.
+
+### D) No, because journalism is a creative field fully exempt from the high-risk provisions
+
+Incorrect. Journalism is not exempt; it is specifically named alongside legal, healthcare, and financial use cases as requiring safeguards.
+
+## 489. A programme sponsor asks who is accountable for the requirements catalogue now that most of it is drafted with Claude. Which answer best reflects sound practice?
 
 ### A) The named business owner still signs it off; Claude speeds the drafting but cannot carry accountability. **(correct)**
 
@@ -9144,7 +9054,7 @@ A tool cannot be accountable for a commitment the organisation makes, and review
 
 Deferring sign-off pushes accountability into a phase where changing a requirement is far more expensive. Delivery review checks whether the build matches the catalogue, not whether the catalogue was ever right.
 
-## 495. A manager has fifteen minutes to check a six-page recommendation before a decision meeting. She cannot verify everything in it. What should she concentrate on?
+## 490. A manager has fifteen minutes to check a six-page recommendation before a decision meeting. She cannot verify everything in it. What should she concentrate on?
 
 ### A) The passages that are written most confidently, because strongly worded claims carry the most weight in a meeting.
 
@@ -9162,7 +9072,7 @@ Checking what will be read protects the meeting's impression of the document but
 
 Correct. With limited time, verification should follow consequence. Identifying the handful of facts that would reverse the recommendation concentrates the check where an error would actually change the outcome.
 
-## 496. A team's prompt says "Do not use markdown in your response," but Claude's output still includes headings and bullet lists inconsistently. What rewording is more effective at controlling the format?
+## 491. A team's prompt says "Do not use markdown in your response," but Claude's output still includes headings and bullet lists inconsistently. What rewording is more effective at controlling the format?
 
 ### A) Repeat the negative instruction "do not use markdown" several more times in the prompt
 
@@ -9180,7 +9090,25 @@ Correct. Telling Claude what to do instead of what not to do, such as specifying
 
 Temperature controls randomness in word choice, not adherence to formatting instructions, so it would not reliably fix markdown usage.
 
-## 497. A communications officer needs a one-page summary to hand out at an event, with the supporting detail available for anyone who asks afterwards. How should she organise the material?
+## 492. A small operations team wants to know whether a revised set of instructions genuinely improved results. What is the most reliable check?
+
+### A) Ask Claude to compare the two sets of instructions and state which one ought to perform better.
+
+Claude can comment on the wording but cannot know how either version performs on the team's real work.
+
+### B) Ask the team at the end of the month whether things have felt better since the change was made.
+
+A recollection a month later is influenced by everything else that happened in the meantime.
+
+### C) Try the new instructions on one fresh request and adopt them if that single result looks better.
+
+A single new request confounds the change with whatever was distinctive about that request.
+
+### D) Run the old and new instructions on the same recent cases and compare against agreed criteria. **(correct)**
+
+Correct. Holding the cases and the criteria constant is what makes the comparison mean something; only the instructions differ, so any difference in quality is attributable.
+
+## 493. A communications officer needs a one-page summary to hand out at an event, with the supporting detail available for anyone who asks afterwards. How should she organise the material?
 
 ### A) Produce one long document containing both the summary and every piece of supporting detail.
 
@@ -9198,7 +9126,7 @@ Correct. Two audiences with different needs are served by two artefacts, so neit
 
 Incorrect. An opening section written for a detailed document is not a handout, and event audiences will not read the rest.
 
-## 498. A financial services firm asks Claude to generate personalized investment recommendations for retail clients based on their stated goals. Before any recommendation is sent to a client, what should happen?
+## 494. A financial services firm asks Claude to generate personalized investment recommendations for retail clients based on their stated goals. Before any recommendation is sent to a client, what should happen?
 
 ### A) A licensed financial advisor reviews the recommendation for suitability and regulatory compliance **(correct)**
 
@@ -9216,7 +9144,7 @@ Incorrect. Self-checking arithmetic does not address whether a recommendation is
 
 Incorrect. Reviewing only tone and readability ignores the substantive suitability and compliance risks that matter most for financial advice.
 
-## 499. A stakeholder asks why a complex multi-step reasoning task takes longer and costs more than a simple lookup task run on the same model. What tradeoff should be explained?
+## 495. A stakeholder asks why a complex multi-step reasoning task takes longer and costs more than a simple lookup task run on the same model. What tradeoff should be explained?
 
 ### A) Explain that all tasks cost the same regardless of complexity, so the difference must come from a network outage.
 
@@ -9234,7 +9162,7 @@ Incorrect. Complex reasoning tasks typically use more output tokens, not fewer, 
 
 Incorrect. Latency is meaningfully related to reasoning depth and token volume, not simply random variation.
 
-## 500. A strategy analyst is told, "Research our competitors and come back with something useful." She has two days and intends to use Claude for most of the work. What should she do first?
+## 496. A strategy analyst is told, "Research our competitors and come back with something useful." She has two days and intends to use Claude for most of the work. What should she do first?
 
 ### A) Ask Claude to produce a broad overview of every competitor in the sector and narrow the list afterwards.
 
@@ -9252,7 +9180,7 @@ Correct. "Something useful" is not a research question, and no amount of good pr
 
 Common comparison factors describe what other studies did, not what this requester needs. Adopting them substitutes a generic frame for the specific business question and leaves the analyst no closer to knowing what useful means here.
 
-## 501. A user needs to generate a report and then make direct edits to its content. Which Claude feature is most appropriate?
+## 497. A user needs to generate a report and then make direct edits to its content. Which Claude feature is most appropriate?
 
 ### A) Enable Research mode to refine the report with external sources.
 
@@ -9270,25 +9198,7 @@ Incorrect. Chat can generate the report, but editing raw text inline in the chat
 
 Incorrect. Projects are intended for organizing conversations and files, not for direct editing of reports. Storing a report and then editing it in a separate file is a manual workaround that lacks the integrated editing experience needed here.
 
-## 502. Explanation
-
-### A) Split the survey into ten parts and send each one as a separate request
-
-Splitting an under-specified request into ten under-specified requests produces ten bland fragments.
-
-### B) Send the same request again with the word "detailed" added to the front
-
-Adding an emphasis word does not tell Claude what depth means here, so the answer stays shallow.
-
-### C) State the questions the analysis must answer and who will read the result **(correct)**
-
-Correct. "Analyse this" does not say what counts as an insight or for whom. Naming the questions and the audience gives the response something to be deep about.
-
-### D) Ask Claude to say how confident it is in the analysis that it has just given
-
-A statement of confidence describes the existing shallow answer rather than producing a better one.
-
-## 503. A user wants to know if they must upgrade from a free account just to try out the basic project feature with instructions and a small knowledge base. What is true about project availability on free accounts?
+## 498. A user wants to know if they must upgrade from a free account just to try out the basic project feature with instructions and a small knowledge base. What is true about project availability on free accounts?
 
 ### A) Projects are available to free accounts too, though free users are capped at a maximum of five projects **(correct)**
 
@@ -9306,7 +9216,7 @@ Incorrect. Projects are not restricted to Team and Enterprise; free and Pro indi
 
 Incorrect. The knowledge base is part of the core project experience available on free accounts, subject to the five-project cap rather than being disabled.
 
-## 504. A workforce planning lead uses Claude to condense several years of performance notes into short profiles, then ranks the profiles to build a promotion shortlist. Reviewing them, she sees that people from one team are consistently described in warmer language than people from another. What is the greatest risk?
+## 499. A workforce planning lead uses Claude to condense several years of performance notes into short profiles, then ranks the profiles to build a promotion shortlist. Reviewing them, she sees that people from one team are consistently described in warmer language than people from another. What is the greatest risk?
 
 ### A) The profiles will read inconsistently to the panel, which may find the varying tone across the shortlist distracting during the meeting.
 
@@ -9324,7 +9234,7 @@ Correct. Bias in a summary becomes bias in the outcome once the summaries are ra
 
 Stale source notes would undermine accuracy and are worth checking separately, but they do not explain a pattern that follows team membership, and they are not the greatest risk in a promotion decision.
 
-## 505. A European team wants to use Claude to analyse a customer database that includes personal data about EU residents. What is the most appropriate action?
+## 500. A European team wants to use Claude to analyse a customer database that includes personal data about EU residents. What is the most appropriate action?
 
 ### A) Involve the people responsible for data protection to confirm the lawful basis and required safeguards. **(correct)**
 
@@ -9342,7 +9252,7 @@ Using a personal account does not remove the obligation and removes the oversigh
 
 A summary of a regulation is not a compliance decision and carries no accountability.
 
-## 506. A team wants to decide whether a lighter tier is good enough for its weekly summary work. What is the most reliable way to make that call?
+## 501. A team wants to decide whether a lighter tier is good enough for its weekly summary work. What is the most reliable way to make that call?
 
 ### A) Run real examples of their own summaries on both tiers and judge them against an agreed standard. **(correct)**
 
@@ -9360,7 +9270,7 @@ Incorrect. Allowance consumption measures cost, not whether the summaries still 
 
 Incorrect. A self-assessment is not independent evidence, and it has not been told what this team's summary must achieve.
 
-## 507. A department wants Claude to take over a large slice of its quarterly reporting work. Which two steps belong before any full rollout? Select two.
+## 502. A department wants Claude to take over a large slice of its quarterly reporting work. Which two steps belong before any full rollout? Select two.
 
 ### A) Start with the reports carrying the highest legal exposure, since they save the most time.
 
@@ -9382,25 +9292,7 @@ Incorrect. Announcing the change as finished commits the department before there
 
 Incorrect. Stripping review out of a pilot removes the safeguard exactly when the risk of an unnoticed error is highest.
 
-## 508. Explanation
-
-### A) Put the request and the relevant material in the opening message; work through follow-ups that refer back to it; open a new chat for the next unrelated task; decide what she needs before starting.
-
-Everything here is done before she has decided what she needs, so the opening message is assembled blind.
-
-### B) Open a new chat for the next unrelated task; decide what she needs before starting; work through follow-ups that refer back to it; put the request and the relevant material in the opening message.
-
-Opening a chat for the next task before the current one has been started puts the last step first.
-
-### C) Decide what she needs before starting; put the request and the relevant material in the opening message; work through follow-ups that refer back to it; open a new chat for the next unrelated task. **(correct)**
-
-Correct. Planning before starting, front-loading the material in one well-specified message, then building on it, is what keeps the exchange short; unrelated work starts fresh rather than dragging old context along.
-
-### D) Work through follow-ups that refer back to it; open a new chat for the next unrelated task; decide what she needs before starting; put the request and the relevant material in the opening message.
-
-Following up before the request has even been made, and deciding what is needed last, inverts the whole habit.
-
-## 509. A team is about to change a shift handover process on Claude's suggestion, and wants to be able to tell in a month whether the change actually helped. What most makes that judgement possible?
+## 503. A team is about to change a shift handover process on Claude's suggestion, and wants to be able to tell in a month whether the change actually helped. What most makes that judgement possible?
 
 ### A) A baseline of the old process's timings and error rates, captured before the change is made. **(correct)**
 
@@ -9418,7 +9310,7 @@ A record of rejected suggestions is useful for the next round of improvement wor
 
 Keeping the prompts helps the team repeat or explain the analysis, which is good practice. It says nothing about whether the process is faster or more accurate than it used to be.
 
-## 510. A legal team wants Claude to draft a contract clause and needs the tone to closely match previously approved clauses in structure and phrasing. They have three approved clauses available. What is the best way to use these in the prompt?
+## 504. A legal team wants Claude to draft a contract clause and needs the tone to closely match previously approved clauses in structure and phrasing. They have three approved clauses available. What is the best way to use these in the prompt?
 
 ### A) Include only one of the three approved clauses and drop the other two
 
@@ -9436,7 +9328,7 @@ Incorrect. An abstract tone description without concrete examples is a weaker wa
 
 Correct. Providing the relevant approved clauses as examples wrapped in example tags mirrors the actual use case and lets Claude closely match their structure and phrasing, the recommended approach for steering tone and format.
 
-## 511. An employee's organisation has no written policy on AI tools, and they want to use Claude with supplier contracts. What should they do first?
+## 505. An employee's organisation has no written policy on AI tools, and they want to use Claude with supplier contracts. What should they do first?
 
 ### A) Write their own policy for the team and begin using the tool under the rules that they drafted.
 
@@ -9454,7 +9346,7 @@ Correct. Where no policy exists, the accountable route is to obtain a decision r
 
 Not saving output does not change whether the contracts could be entered in the first place.
 
-## 512. A consultant works in a free Claude account and keeps a separate project for each client. She already has five projects and has just signed a sixth client whose material she wants to keep separate too. What should she do first?
+## 506. A consultant works in a free Claude account and keeps a separate project for each client. She already has five projects and has just signed a sixth client whose material she wants to keep separate too. What should she do first?
 
 ### A) Ask an administrator to raise the project allowance on her account before she starts the work.
 
@@ -9472,7 +9364,7 @@ The five-project cap on free accounts is not limited to shared projects; it cove
 
 Projects are available to all users, including free accounts, so this misreads the constraint.
 
-## 513. A new joiner inherits a shared project whose outputs do not match what their manager describes as the team standard. What should the new joiner do first?
+## 507. A new joiner inherits a shared project whose outputs do not match what their manager describes as the team standard. What should the new joiner do first?
 
 ### A) Ask Claude in a chat to explain which instructions it received and treat that answer as the record.
 
@@ -9490,7 +9382,7 @@ Correct. You cannot tell what is missing or wrong until you know what direction 
 
 Discarding direction the team relies on, before understanding it, risks losing rules that were deliberate.
 
-## 514. A team lead is about to hand a multi-step campaign preparation task to Claude in Cowork, where it will work across her files and connected tools. Which sequence of steps is correct?
+## 508. A team lead is about to hand a multi-step campaign preparation task to Claude in Cowork, where it will work across her files and connected tools. Which sequence of steps is correct?
 
 ### A) Describe the outcome wanted and the constraints; decide which actions need approval before they happen; let Claude work through the task; review what was actually done before anything is final. **(correct)**
 
@@ -9508,25 +9400,7 @@ Starting the work before the outcome and the approval points are set means Claud
 
 This puts the review first and the description of the goal third, so the work runs with no stated outcome and the approval decision is made after everything has already happened.
 
-## 515. Explanation
-
-### A) Remove the connectors from her account permanently, so nothing can call on them by mistake.
-
-Removing them permanently costs her the reconnection work every time the other tasks come round.
-
-### B) Turn off the connectors and tools this task does not need, and switch them back on later. **(correct)**
-
-Correct. Turning off tools and connectors that a task does not need is a recognised way to keep routine work efficient, and they can be re-enabled when the next task needs them.
-
-### C) Ask Claude in each message to avoid using any connector while she works on the drafting.
-
-An instruction in every message is a per-message reminder rather than a change to the setup.
-
-### D) Do the drafting inside a separate project that has no documents in its knowledge at all.
-
-An empty project addresses knowledge documents, not the tools and connections that stay enabled.
-
-## 516. A team is adding a new Claude-assisted output into an existing process and has to work out how much checking it will get. In which order should these steps be taken?
+## 509. A team is adding a new Claude-assisted output into an existing process and has to work out how much checking it will get. In which order should these steps be taken?
 
 ### A) Set the level of review that degree of risk requires; judge how visible the output is and how easily a mistake in it could be undone; have the named reviewer carry out that review; release the output to its audience.
 
@@ -9544,7 +9418,7 @@ Correct. Visibility and reversibility determine how much scrutiny an output dese
 
 The review happens with no agreed standard behind it, and the level of review is only settled after the output has already gone out, which is the wrong way round.
 
-## 517. A team drafts a long monthly report in Claude and keeps exhausting its usage allowance before the month ends. Some sections are routine - recurring summaries and figures pulled from the same sources each time - while other sections carry the analysis the report is read for. The team already signs the report off against an agreed quality checklist, and it wants to cut usage by moving some of the drafting to a lighter Claude model tier without weakening the sections that matter. Which sequence of steps should the team follow?
+## 510. A team drafts a long monthly report in Claude and keeps exhausting its usage allowance before the month ends. Some sections are routine - recurring summaries and figures pulled from the same sources each time - while other sections carry the analysis the report is read for. The team already signs the report off against an agreed quality checklist, and it wants to cut usage by moving some of the drafting to a lighter Claude model tier without weakening the sections that matter. Which sequence of steps should the team follow?
 
 ### A) Run the routine sections on a lighter tier; decide which sections need human judgment; check the drafts against the agreed checklist; send back to the deeper tier the sections that fell short.
 
@@ -9562,7 +9436,7 @@ Incorrect. The drafts are checked and sections are sent back to the deeper tier 
 
 Incorrect. The checklist pass happens before anything has been moved, so it measures the drafts the team already produces and says nothing about how the lighter tier performs; the final step then sends back sections that were never re-checked after the change.
 
-## 518. A writer drafting a long-form article wants Claude to avoid starting the response with phrases like 'Here is the article you requested' and instead jump straight into the content. What is the recommended way to achieve this with current models?
+## 511. A writer drafting a long-form article wants Claude to avoid starting the response with phrases like 'Here is the article you requested' and instead jump straight into the content. What is the recommended way to achieve this with current models?
 
 ### A) Add an instruction telling Claude to respond without preamble or opening phrases **(correct)**
 
@@ -9580,7 +9454,7 @@ Incorrect. Prefilled assistant messages on the last turn are no longer supported
 
 Incorrect. Preamble phrasing can be steered directly through prompt instructions, so this is not the recommended path.
 
-## 519. A startup needs to brainstorm low-cost marketing tactics under a tight $500 budget. Which prompt will generate the most actionable ideas?
+## 512. A startup needs to brainstorm low-cost marketing tactics under a tight $500 budget. Which prompt will generate the most actionable ideas?
 
 ### A) Ask Claude to brainstorm a list of innovative and unusual marketing ideas, emphasizing wild creativity and viral potential, while deliberately ignoring budget limits or resource constraints to encourage unfiltered ideas.
 
@@ -9598,7 +9472,7 @@ Correct. By specifying a strict $500 budget and requesting practical, low-cost m
 
 Incorrect. Directing Claude to compile real-world examples focuses on summarization of past campaigns rather than generating new, actionable ideas. The startup needs tailored, low-cost tactics, not just case studies that may not fit their specific budget and context.
 
-## 520. A team summarises each of twenty customer interviews, then works only from those summaries to decide which product problems to fix. What is the greatest risk?
+## 513. A team summarises each of twenty customer interviews, then works only from those summaries to decide which product problems to fix. What is the greatest risk?
 
 ### A) The summaries will use the team's own vocabulary rather than the words the interviewed customers actually used.
 
@@ -9616,7 +9490,7 @@ Uneven summary lengths are worth normalising, but they signal how much was said 
 
 Correct. A summary keeps what seemed important without knowing which decision it will serve. The concrete detail that distinguishes a pricing objection from a trust objection is exactly what gets compressed away, and once the team works only from summaries the loss is invisible.
 
-## 521. A fundraising officer has asked twice for donor thank-you letters in her charity's own voice. Her request already gives the audience, the length and a description of the tone, and the donation details are pasted in, but both drafts read like generic marketing copy. She has a folder of letters her director approved last year. What should she do first?
+## 514. A fundraising officer has asked twice for donor thank-you letters in her charity's own voice. Her request already gives the audience, the length and a description of the tone, and the donation details are pasted in, but both drafts read like generic marketing copy. She has a folder of letters her director approved last year. What should she do first?
 
 ### A) Ask for a batch of further drafts in the hope that one of them lands on the right voice.
 
@@ -9634,7 +9508,7 @@ Correct. The spec and the context are already there, so the missing ingredient i
 
 Emphasis adds no new information, and repeating a prompt unchanged rarely improves the result.
 
-## 522. A finance team wants Claude's help making its slow month-end reporting process faster. Which two opening moves make sense? Select two.
+## 515. A finance team wants Claude's help making its slow month-end reporting process faster. Which two opening moves make sense? Select two.
 
 ### A) Describe the current process step by step so Claude can point at the slowest handoffs in it. **(correct)**
 
@@ -9656,7 +9530,7 @@ Incorrect. Adopting a wholesale rewrite untested at the next close bets the mont
 
 Correct. Options with trade-offs, piloted on one cycle, is how a process change is tested before it is trusted at scale.
 
-## 523. A manager asks to see the intermediate steps when working out which cost lines drove a budget overspend, but not when generating names for a new staff award. Why is that difference reasonable?
+## 516. A manager asks to see the intermediate steps when working out which cost lines drove a budget overspend, but not when generating names for a new staff award. Why is that difference reasonable?
 
 ### A) Because a numerical answer is more likely to be wrong than a creative answer produced for the same team.
 
@@ -9674,7 +9548,7 @@ Correct. Analysis produces a conclusion that depends on how it was reached, so t
 
 Length is incidental. Even if reconstructing the thinking behind a name were easy, doing so would not tell the manager whether the name is any good.
 
-## 524. A team lead wants a reusable onboarding checklist that colleagues will revise over time. Which sequence of steps is correct?
+## 517. A team lead wants a reusable onboarding checklist that colleagues will revise over time. Which sequence of steps is correct?
 
 ### A) Share it with the team; agree the steps it must cover; ask Claude for the checklist as a document; revise it in place.
 
@@ -9692,7 +9566,7 @@ Incorrect. The checklist is shared before it has been written, and the revision 
 
 Correct. Content is settled first, a self-contained editable document is the right home for something reused and revised, and it is shared once it is ready.
 
-## 525. A support operations lead must classify a large daily backlog of short inbound messages, and separately needs one deep analysis of a tangled contract dispute. Which two choices fit? Select two.(Select 2)
+## 518. A support operations lead must classify a large daily backlog of short inbound messages, and separately needs one deep analysis of a tangled contract dispute. Which two choices fit? Select two.(Select 2)
 
 ### A) Use whichever tier the team already has open, since the tier rarely changes what comes back.
 
@@ -9714,7 +9588,25 @@ Incorrect. The tiers differ in reasoning depth as well as speed, so the lightest
 
 Incorrect. Using the deepest tier for routine classification spends quota on work that does not need the extra reasoning depth.
 
-## 526. An HR team has a Claude-drafted consultation letter that will be sent to forty staff whose roles are at risk, and the wording is governed by employment law. Which sequence is correct?
+## 519. An operations specialist keeps a Claude project for vendor onboarding, with the onboarding policy uploaded as project knowledge. Claude now states the approval threshold confidently, but it is last year's figure, and rewording the question changes nothing. What should she do first?
+
+### A) Move to a more capable model, which should reason more carefully about the approval rules.
+
+A stronger model reading an out-of-date document will still report the out-of-date figure.
+
+### B) Start a new conversation inside the project and ask the same question in a different way.
+
+A fresh conversation still draws on the same project knowledge, so the same figure comes back.
+
+### C) Add an instruction telling Claude to be accurate and to double-check any figure it reports.
+
+Instructions to be accurate cannot correct a number that the supplied source states incorrectly.
+
+### D) Check whether the policy document in the project knowledge is still the current version. **(correct)**
+
+Correct. A confidently wrong figure that survives rewording points at the source rather than the prompt, and a superseded document in project knowledge produces exactly this pattern.
+
+## 520. An HR team has a Claude-drafted consultation letter that will be sent to forty staff whose roles are at risk, and the wording is governed by employment law. Which sequence is correct?
 
 ### A) Judge the stakes of the letter, then name the reviewer it requires, then have that reviewer check it against the consultation policy, then send it once approval is recorded. **(correct)**
 
@@ -9732,7 +9624,7 @@ Sending first makes every later step a post-mortem. A consultation letter cannot
 
 Checking against the policy first is sensible, but sending before any named person has reviewed the letter or the stakes have been weighed removes the human review gate exactly where irreversibility demands it.
 
-## 527. A manager has asked Claude for two different versions of a strategy update and must choose one for a board pack. What should she do first?
+## 521. A manager has asked Claude for two different versions of a strategy update and must choose one for a board pack. What should she do first?
 
 ### A) Ask Claude which of its two versions is the stronger and take that recommendation forward.
 
@@ -9750,7 +9642,7 @@ Incorrect. Merging before criteria exist produces a longer document that serves 
 
 Correct. Without stated criteria a comparison collapses into which draft reads more nicely. Setting the audience's needs down first makes the choice a judgment rather than a preference.
 
-## 528. An operations lead must give all staff a one-page summary of a new expense policy. The full twenty-page policy document is open on her screen. What should she do first?
+## 522. An operations lead must give all staff a one-page summary of a new expense policy. The full twenty-page policy document is open on her screen. What should she do first?
 
 ### A) Ask for a friendly one-page summary now, and attach the policy document only if the first result looks wrong.
 
@@ -9768,7 +9660,7 @@ Working from memory reintroduces exactly the errors a summary is meant to remove
 
 General practice at comparable organisations is not this organisation's policy. Staff will be held to the document, and a summary built from typical rules will differ from it in ways nobody catches.
 
-## 529. A team lead is writing a short local practice note to sit underneath the company-wide AI standard. Which two items genuinely belong in it? Select two.
+## 523. A team lead is writing a short local practice note to sit underneath the company-wide AI standard. Which two items genuinely belong in it? Select two.
 
 ### A) Who to contact when a situation arises that the company-wide AI standard does not clearly cover. **(correct)**
 
@@ -9790,7 +9682,7 @@ Model choice is a task-fit judgment made per piece of work, not a governance rul
 
 A savings target pressures people towards using Claude and belongs to performance management, not to a governance note.
 
-## 530. A legal analyst wants Claude to reference a set of contract templates in every chat within a 'Contracts Review' project without re-uploading them each time. What is the correct way to make these templates persistently available across all chats in that project?
+## 524. A legal analyst wants Claude to reference a set of contract templates in every chat within a 'Contracts Review' project without re-uploading them each time. What is the correct way to make these templates persistently available across all chats in that project?
 
 ### A) Upload the contract templates once to the project's knowledge base so all chats can reference them **(correct)**
 
@@ -9808,7 +9700,7 @@ Incorrect. There is no support workflow for linking documents to an account this
 
 Incorrect. Attachments made within an individual chat are not automatically shared with other chats; only knowledge base uploads persist project-wide.
 
-## 531. An engineer asks Claude to analyze why a distributed system intermittently drops requests, a problem that requires working through several interacting causes before reaching a conclusion. Which approach best fits this analytical task?
+## 525. An engineer asks Claude to analyze why a distributed system intermittently drops requests, a problem that requires working through several interacting causes before reaching a conclusion. Which approach best fits this analytical task?
 
 ### A) Let Claude reason through the multi-step causal analysis before its final answer **(correct)**
 
@@ -9826,7 +9718,7 @@ Incorrect. Guessing a single cause immediately bypasses the careful analysis of 
 
 Incorrect. A single-sentence answer skips the multi-step reasoning needed to work through interacting causes of an intermittent, hard-to-diagnose issue.
 
-## 532. A project lead is demonstrating a new Claude-assisted reporting workflow to executives who could fund its wider use. What should the demonstration make clear alongside the benefits?
+## 526. A project lead is demonstrating a new Claude-assisted reporting workflow to executives who could fund its wider use. What should the demonstration make clear alongside the benefits?
 
 ### A) The wording of the instructions used, so that executives can see how the workflow was actually built.
 
@@ -9844,7 +9736,7 @@ Design effort is a cost already incurred and tells executives nothing about whet
 
 A tool comparison explains how the team arrived here, which may be of passing interest. It does not tell executives what they will be relying on or where it can go wrong.
 
-## 533. A business analyst needs to use Claude to analyze a dataset containing customer satisfaction scores, demographic information, and purchase history. The analyst wants to identify key drivers of customer dissatisfaction. Which prompting approach would most effectively guide Claude to produce accurate, step-by-step analysis?
+## 527. A business analyst needs to use Claude to analyze a dataset containing customer satisfaction scores, demographic information, and purchase history. The analyst wants to identify key drivers of customer dissatisfaction. Which prompting approach would most effectively guide Claude to produce accurate, step-by-step analysis?
 
 ### A) Instruct Claude to generate a comprehensive statistical report: perform regression analysis, hypothesis testing, and create visualizations to determine causation, and then draft a formal business report with recommendations using the provided data.
 
@@ -9862,7 +9754,25 @@ Incorrect. This approach is suited for idea generation rather than rigorous data
 
 Correct. This prompt guides Claude through a logical, step-by-step process, including examining distributions, correlating dissatisfaction with both demographics and purchase history, and identifying top predictive factors. Requiring citation of specific data points and patterns ensures analytical rigor and accuracy.
 
-## 534. A city housing department lists tasks it might hand to Claude. Which two are appropriate to delegate with routine human review, rather than needing a person to own each outcome? Select two.
+## 528. A council service team plans to use a Claude-produced priority list to decide which residents receive home-adaptation grants first. The list was built from the council's historical case records. What should the team do first?
+
+### A) Publish the priority list so that residents can see how the ordering was arrived at.
+
+Transparency about the ordering is worth having, but publishing a list that may embed historical inequity makes it visible rather than fair, and residents are affected either way.
+
+### B) Ask Claude to state whether its own priority list contains any unfair bias in it.
+
+Claude cannot audit the representativeness of records it was given, and a reassuring self-assessment would give the team false confidence about exactly the risk they need to investigate.
+
+### C) Use the list for this year and then compare the outcomes against last year's decisions.
+
+Using the list and reviewing afterwards means a year of residents receive grants in an order that may be skewed, and the comparison arrives long after the decisions have been made.
+
+### D) Examine whether the historical records under-represent groups who applied less often. **(correct)**
+
+Correct. A priority list derived from past cases inherits whatever unevenness is in those cases, and residents who historically applied less often will be under-served by it. Because the output drives a decision about people, checking the data for that skew comes before the list is used at all.
+
+## 529. A city housing department lists tasks it might hand to Claude. Which two are appropriate to delegate with routine human review, rather than needing a person to own each outcome? Select two.
 
 ### A) Grouping a year of tenant survey comments into recurring themes for the quarterly service report. **(correct)**
 
@@ -9884,7 +9794,7 @@ A final refusal of an appeal is an authoritative outcome for a named person and 
 
 Removing a household from a waiting list affects a person's access to housing and needs a named person answerable for the decision.
 
-## 535. A city government wants to use Claude to build a system that cross-references live facial-recognition camera feeds with social media posts to covertly track individual protest attendees, without a warrant or their consent. Is this an appropriate use of Claude?
+## 530. A city government wants to use Claude to build a system that cross-references live facial-recognition camera feeds with social media posts to covertly track individual protest attendees, without a warrant or their consent. Is this an appropriate use of Claude?
 
 ### A) No, because the Usage Policy bans covert individual tracking through facial recognition without consent **(correct)**
 
@@ -9902,43 +9812,7 @@ Incorrect. Being in a public space does not authorize covert identification and 
 
 Incorrect. A missing retention policy is not the core problem; the covert, non-consensual tracking of individuals is itself the prohibited activity.
 
-## 536. A knowledge base tool asks Claude to answer users' questions using only information retrieved from company documents, and the team wants every claim traceable to the exact retrieved passage it came from. Which technique best supports this analysis and answering task?
-
-### A) Have Claude answer directly from memory instead of using the retrieved documents at all
-
-Incorrect. Answering from memory instead of the retrieved documents does not produce claims traceable to specific retrieved passages.
-
-### B) Have Claude answer first and only fetch supporting documents afterward instead
-
-Incorrect. Answering before retrieving documents reverses the order needed to ground the answer in the actual retrieved passages.
-
-### C) Have Claude paraphrase only the general topic of the documents, not any passage
-
-Incorrect. A general paraphrase without quoting specific passages does not give the traceability to exact source text that the team needs.
-
-### D) Have Claude quote the specific passages from the retrieved documents before answering **(correct)**
-
-Correct. Grounding responses in quotes, having Claude quote relevant passages before answering, helps produce traceable, source-grounded answers, which fits the requirement that every claim be traceable to a passage.
-
-## 537. Explanation
-
-### A) Accept the delay, because accuracy matters more than speed in every case
-
-Accepting the delay without understanding it forfeits most of the benefit the change was meant to deliver.
-
-### B) Ask Claude to reply faster by giving it much shorter written instructions
-
-Shorter instructions are likely to reduce quality, and instruction length was probably not where the time went.
-
-### C) Look at where the extra time goes; the fault may lie in the steps around it **(correct)**
-
-Correct. The result is telling the team that the drafting improved and something else got worse. Finding which step absorbed the time is what turns that feedback into a usable adjustment.
-
-### D) Remove the checking step, since accurate output no longer needs to be reviewed
-
-Dropping the check on the strength of early accuracy removes the safeguard just as volume grows.
-
-## 538. Explanation
+## 531. A team debugging a poorly performing prompt shows it, with no additional context, to a colleague unfamiliar with the project and asks them to follow it exactly. The colleague is confused about what output is expected. What does this diagnostic exercise indicate, per Anthropic's prompting guidance?
 
 ### A) The prompt lacks clarity and specificity, because a reader with minimal context could not follow it and Claude likely cannot either. **(correct)**
 
@@ -9956,7 +9830,25 @@ Incorrect. A confused human reader points at an under-specified prompt, and the 
 
 Incorrect. Anthropic's prompting guidance uses human comprehension as the signal precisely because it predicts model confusion, so the exercise is informative rather than inconclusive.
 
-## 539. Using the Gmail connector, a user asks Claude to summarize the contents of a PDF attached to an email. What limitation should the user expect?
+## 532. A knowledge base tool asks Claude to answer users' questions using only information retrieved from company documents, and the team wants every claim traceable to the exact retrieved passage it came from. Which technique best supports this analysis and answering task?
+
+### A) Have Claude answer directly from memory instead of using the retrieved documents at all
+
+Incorrect. Answering from memory instead of the retrieved documents does not produce claims traceable to specific retrieved passages.
+
+### B) Have Claude answer first and only fetch supporting documents afterward instead
+
+Incorrect. Answering before retrieving documents reverses the order needed to ground the answer in the actual retrieved passages.
+
+### C) Have Claude paraphrase only the general topic of the documents, not any passage
+
+Incorrect. A general paraphrase without quoting specific passages does not give the traceability to exact source text that the team needs.
+
+### D) Have Claude quote the specific passages from the retrieved documents before answering **(correct)**
+
+Correct. Grounding responses in quotes, having Claude quote relevant passages before answering, helps produce traceable, source-grounded answers, which fits the requirement that every claim be traceable to a passage.
+
+## 533. Using the Gmail connector, a user asks Claude to summarize the contents of a PDF attached to an email. What limitation should the user expect?
 
 ### A) Claude can read the email metadata and body but cannot open the attachment's content. **(correct)**
 
@@ -9974,7 +9866,7 @@ Incorrect. There is no documented size threshold that unlocks attachment reading
 
 Incorrect. Attachment content is inaccessible for any file type, not just non-PDF formats.
 
-## 540. A freelancer on a Pro plan has built a project with detailed instructions and reference documents, and now wants two collaborators to work inside the same project. What should they expect?
+## 534. A freelancer on a Pro plan has built a project with detailed instructions and reference documents, and now wants two collaborators to work inside the same project. What should they expect?
 
 ### A) Sharing becomes available once the project contains uploaded documents rather than instructions alone.
 
@@ -9992,7 +9884,7 @@ Archiving tidies a project away; it does not publish it to anyone.
 
 Correct. Sharing projects with named colleagues is available on Team and Enterprise plans only.
 
-## 541. A programme office is setting a policy for how much scrutiny Claude-generated work should receive. Which two factors raise the level of human review required? Select two.
+## 535. A programme office is setting a policy for how much scrutiny Claude-generated work should receive. Which two factors raise the level of human review required? Select two.
 
 ### A) The prompt that produced the output was long and included pasted background.
 
@@ -10014,7 +9906,7 @@ An unfamiliar file format is a practical inconvenience for the team, not a reaso
 
 Speed of production is not a risk factor. How long the work took has no bearing on what happens if the content is wrong.
 
-## 542. A Team account with fifteen members has just had the Gmail connector enabled by the Primary Owner. How does each member gain access through the connector?
+## 536. A Team account with fifteen members has just had the Gmail connector enabled by the Primary Owner. How does each member gain access through the connector?
 
 ### A) One member authenticates once, granting Gmail access to the whole team.
 
@@ -10032,7 +9924,29 @@ Incorrect. Shared or distributed tokens are not how the connector works; per-use
 
 Correct. Even after org-level enablement, each user authenticates through standard OAuth with their own credentials, keeping access per-person.
 
-## 543. A marketing lead asks Claude for a competitor briefing, and the draft states that the competitor won a named industry award last year. She can find no record of that award anywhere. What should she do first?
+## 537. Several engineers tell a site coordinator that Claude's shift-handover digests 'skip the open risks', but nobody says which risks or which shifts. Which two steps should the coordinator take first? Select two.
+
+### A) Switch the digests into a table format, since open risks may then be easier to spot in a table.
+
+A format change may help presentation, but it cannot add a risk the digest never captured.
+
+### B) Rewrite the shared project instructions straight away to stress that open risks matter most of all.
+
+Changing shared instructions before the cause is known risks fixing the wrong thing for everyone at once.
+
+### C) Ask everyone to score every future digest out of ten so that a trend can be tracked over time.
+
+A score captures sentiment but still never says which risks went missing, or why they went missing.
+
+### D) Compare those digests against the shift logs to see exactly what was left out of them. **(correct)**
+
+Correct on separate grounds: only the source shows whether the risk was absent from the log, buried, or genuinely dropped.
+
+### E) Ask for two digests where an open risk was missed, with the missing risk actually named. **(correct)**
+
+Correct. Vague feedback cannot be acted on; specific failing examples turn an impression into something diagnosable.
+
+## 538. A marketing lead asks Claude for a competitor briefing, and the draft states that the competitor won a named industry award last year. She can find no record of that award anywhere. What should she do first?
 
 ### A) Establish whether the award claim came from material she supplied or from Claude's general knowledge. **(correct)**
 
@@ -10050,7 +9964,7 @@ Incorrect. Asking for more detail around an unsupported claim usually produces m
 
 Incorrect. Removing one sentence treats the symptom. If the claim was invented, other statements in the same draft may be too, and she has not yet found out.
 
-## 544. A sponsor wants to skip evaluation and move straight to full production rollout of a new Claude-powered feature to save time. How should the solutions architect explain the risk of this plan?
+## 539. A sponsor wants to skip evaluation and move straight to full production rollout of a new Claude-powered feature to save time. How should the solutions architect explain the risk of this plan?
 
 ### A) Explain that skipping evaluation is safe as long as the feature is reviewed by the engineering team after launch instead of before.
 
@@ -10068,7 +9982,7 @@ Incorrect. Production issues involving inaccurate or inappropriate outputs are n
 
 Incorrect. Output quality varies by task and data, so there is no guarantee of uniform performance across different use cases without evaluation.
 
-## 545. A marketer's project knowledge has grown far past what a single conversation could hold, and she is unsure whether Claude can still draw on all of it. What should she do first?
+## 540. A marketer's project knowledge has grown far past what a single conversation could hold, and she is unsure whether Claude can still draw on all of it. What should she do first?
 
 ### A) Delete older documents until the knowledge base is small enough to fit inside a single conversation window.
 
@@ -10086,7 +10000,7 @@ Incorrect. Splitting fragments the knowledge base and creates maintenance work t
 
 Correct. When project knowledge approaches or exceeds the context limit, retrieval activates on its own with no setup, holding far more content. Testing it is the cheapest way to find out where she stands.
 
-## 546. A project manager asks Claude to map out a five-stage approval workflow with branching decision points so the team can reference it during a planning meeting. What is the best way for Claude to present this?
+## 541. A project manager asks Claude to map out a five-stage approval workflow with branching decision points so the team can reference it during a planning meeting. What is the best way for Claude to present this?
 
 ### A) A JSON object listing each stage as a key-value pair, since structured data is the standard way to represent any multi-step process
 
@@ -10104,7 +10018,7 @@ Correct. Diagrams and flowcharts are a supported artifact content type, and a br
 
 Incorrect. Strict tool use validates parameters sent to an application tool; it is not a presentation format for sharing a workflow with a team.
 
-## 547. A grants officer wants to use a Claude feature that her university's written AI standard does not mention at all, on funding applications containing unpublished research plans. Which two actions follow good governance? Select two.
+## 542. A grants officer wants to use a Claude feature that her university's written AI standard does not mention at all, on funding applications containing unpublished research plans. Which two actions follow good governance? Select two.
 
 ### A) Ask Claude to read the standard and confirm whether or not the university permits this particular feature.
 
@@ -10126,7 +10040,7 @@ Silence is not approval; policies cannot enumerate every capability, which is ex
 
 Recording the use afterwards does not undo the disclosure of applicant data under an unapproved feature.
 
-## 548. A newly designed way of working has Claude approve expense claims under a set threshold outright, with no person seeing the ones it approves. What is the greatest concern with this design?
+## 543. A newly designed way of working has Claude approve expense claims under a set threshold outright, with no person seeing the ones it approves. What is the greatest concern with this design?
 
 ### A) Approved payments leave the organisation with no one accountable for the decision to pay. **(correct)**
 
@@ -10144,7 +10058,7 @@ A rise in claim volume is a behavioural effect worth monitoring, and it can be m
 
 Unusual formats slow processing and may produce the occasional query. That is a throughput problem, not a governance one, and it is visible enough to be corrected.
 
-## 549. A marketing team wants Claude to draft product descriptions in a specific brand voice and needs the tone and structure to stay consistent across many descriptions. What is the most reliable way to steer this drafting task?
+## 544. A marketing team wants Claude to draft product descriptions in a specific brand voice and needs the tone and structure to stay consistent across many descriptions. What is the most reliable way to steer this drafting task?
 
 ### A) Describe the brand voice in one adjective and let Claude infer the rest
 
@@ -10162,7 +10076,25 @@ Correct. Using three to five relevant, diverse examples wrapped in example tags,
 
 Incorrect. A single example risks Claude picking up unintended, overly narrow patterns instead of generalizing the brand voice across varied product types.
 
-## 550. A marketer's long-running chat has begun producing copy that ignores the campaign brief agreed weeks earlier. Which sequence of steps is correct?
+## 545. A finance analyst follows the same twelve-step month-end review whenever the figures land, and wants Claude to carry it out the same way whichever conversation she happens to be working in. What fits this need best?
+
+### A) Capture the review as a reusable skill, so the same procedure is available wherever she works. **(correct)**
+
+Correct. A repeatable multi-step procedure that should behave the same way everywhere is what a skill captures; skills provide specialised procedures that work across Claude rather than in one workspace.
+
+### B) Upload a document describing the twelve steps and point Claude to it at the start of each review.
+
+A document she must point to each time relies on her remembering, and describes the steps rather than performing them.
+
+### C) Keep one long month-end conversation and continue it each month so the steps stay in the history.
+
+One long-running conversation becomes unwieldy and ties the procedure to a single chat history.
+
+### D) Add the twelve steps to the instructions of the project where she keeps her month-end files.
+
+Project instructions apply only inside that project, so the procedure would not follow her elsewhere.
+
+## 546. A marketer's long-running chat has begun producing copy that ignores the campaign brief agreed weeks earlier. Which sequence of steps is correct?
 
 ### A) Open a fresh chat; check whether the old chat had grown too long; paste the brief in; capture the decisions afterwards.
 
@@ -10180,7 +10112,7 @@ Correct. Diagnosing the cause comes before acting, capturing the durable materia
 
 Incorrect. Re-pasting into an already overloaded conversation adds pressure to the window before anything has been diagnosed.
 
-## 551. A communications officer pastes a ten-page partner agreement into the chat and types her instructions directly underneath it, with nothing marking where the pasted document ends and her request begins. What is the greatest risk?
+## 547. A communications officer pastes a ten-page partner agreement into the chat and types her instructions directly underneath it, with nothing marking where the pasted document ends and her request begins. What is the greatest risk?
 
 ### A) The conversation will become too long to continue, so she will have to start the whole exchange again shortly.
 
@@ -10198,7 +10130,7 @@ Claude works from the whole message rather than only its final paragraphs, so th
 
 Correct. Contracts contain imperative language such as 'the supplier shall notify' or 'provide a summary within ten days'. With no boundary between the pasted material and her instructions, that wording can be taken as part of the task, and the output drifts away from what she asked for.
 
-## 552. A team on a Team plan wants Claude to work with their shared Slack workspace. Which sequence of steps is correct?
+## 548. A team on a Team plan wants Claude to work with their shared Slack workspace. Which sequence of steps is correct?
 
 ### A) Confirm the policy allows it; have the owner enable the connector; members authenticate individually; agree what may be shared. **(correct)**
 
@@ -10216,7 +10148,7 @@ Authentication precedes enablement, and the policy check is left until the end.
 
 Members cannot authenticate to a connector the organisation's owner has not enabled.
 
-## 553. A grants officer reads a Claude-written explainer of a funding scheme and notices that it gives one closing date in the opening paragraph and a different closing date three paragraphs later. What should she do first?
+## 549. A grants officer reads a Claude-written explainer of a funding scheme and notices that it gives one closing date in the opening paragraph and a different closing date three paragraphs later. What should she do first?
 
 ### A) Ask Claude which of the two dates it meant, and use whichever one it settles on when it is asked to resolve the conflict.
 
@@ -10234,7 +10166,7 @@ Correct. An internal contradiction shows at least one statement is unreliable, a
 
 Position in a response carries no evidential weight; a later sentence is not better sourced than an earlier one. Picking a date by where it appeared leaves the officer publishing a deadline she has never verified.
 
-## 554. A political consulting firm asks Claude to generate thousands of localized social media posts, each written to appear as though it came from a different concerned local resident, to make opposition to a ballot measure look larger than it actually is. Is this an appropriate use of Claude?
+## 550. A political consulting firm asks Claude to generate thousands of localized social media posts, each written to appear as though it came from a different concerned local resident, to make opposition to a ballot measure look larger than it actually is. Is this an appropriate use of Claude?
 
 ### A) No, because the Usage Policy bans fake grassroots campaigns that misrepresent the scale of public support **(correct)**
 
@@ -10252,7 +10184,7 @@ Incorrect. Disclosing AI involvement to the platform does not fix the deception,
 
 Incorrect. The prohibition on astroturfing and fabricated grassroots support applies to both ballot measures and candidate campaigns.
 
-## 555. A clinical operations coordinator wants Claude to summarise patient case notes to speed up a backlog. What should the coordinator do first?
+## 551. A clinical operations coordinator wants Claude to summarise patient case notes to speed up a backlog. What should the coordinator do first?
 
 ### A) Use a personal account so that the summaries do not appear in the organisation's shared workspace.
 
@@ -10270,7 +10202,7 @@ Correct. Regulated health data requires an authorisation and safeguards decision
 
 Dates of birth and record numbers still identify people, so this is not meaningful de-identification.
 
-## 556. During a troubleshooting chat, a user asks Claude, "Is port 443 the default HTTPS port?" Claude's answer is a single confirming sentence. What is the appropriate output treatment for this response?
+## 552. During a troubleshooting chat, a user asks Claude, "Is port 443 the default HTTPS port?" Claude's answer is a single confirming sentence. What is the appropriate output treatment for this response?
 
 ### A) Ask a strict tool to validate the port number against a schema before responding, since numeric facts require schema validation
 
@@ -10288,7 +10220,7 @@ Incorrect. While structured data can be useful for programmatic interactions, a 
 
 Correct. Inline answers are appropriate for short, simple responses that do not constitute a substantial, reusable piece of content. Artifacts are reserved for content that is more complex and self-contained, such as code, documents, or long-form text. This aligns with Anthropic’s guidance on using artifacts for significant content.
 
-## 557. A department has an AI policy but keeps no record of which connectors individual staff have linked to Claude. What is the greatest risk when a security incident review takes place?
+## 553. A department has an AI policy but keeps no record of which connectors individual staff have linked to Claude. What is the greatest risk when a security incident review takes place?
 
 ### A) Staff may duplicate one another's connections, creating extra work whenever a shared document is updated.
 
@@ -10306,7 +10238,7 @@ Performance is not the governance concern, and it does not affect what a review 
 
 A capacity limit would be visible immediately and is unrelated to what an incident review needs to determine.
 
-## 558. A marketing team has always written its weekly client status note by hand. They now plan to switch to a new arrangement in which Claude drafts the note each week and an account manager edits it before sending. Before the first Claude-drafted note under the new arrangement reaches a client, what should the team do first?
+## 554. A marketing team has always written its weekly client status note by hand. They now plan to switch to a new arrangement in which Claude drafts the note each week and an account manager edits it before sending. Before the first Claude-drafted note under the new arrangement reaches a client, what should the team do first?
 
 ### A) Agree in advance exactly how many minutes of editing per note the account manager should expect to spend on this every week.
 
@@ -10324,25 +10256,7 @@ Correct. Feeding Claude the same weekly inputs the account manager already used,
 
 Self-review can catch obvious slips, but Claude judging its own draft uses the same understanding that produced the draft in the first place. That is no substitute for comparing drafts against notes the team already knows were accurate.
 
-## 559. Explanation
-
-### A) Claude has no dependable source for it, so she should supply the announcement or use Research on it. **(correct)**
-
-Correct. Nothing in the conversation or the project describes the change, so the gap is in the available information; supplying the source, or using Research so claims come with citations, is what closes it.
-
-### B) The conversation has grown too long, so she should begin again and put the question in a fresh chat.
-
-Conversation length would produce drift and contradiction, not confident detail about an unavailable topic.
-
-### C) The model tier is too small, so she should put the same question to a model with deeper reasoning.
-
-Reasoning depth does not create knowledge of an announcement that was never provided.
-
-### D) Her request was too vague, so she should ask the same question again with a stricter output format set.
-
-The question was specific enough; format instructions cannot supply facts that were never available.
-
-## 560. A charity plans to have Claude pre-screen grant applications and produce a shortlist that trustees then review. Which two safeguards matter most before the charity starts? Select two.
+## 555. A charity plans to have Claude pre-screen grant applications and produce a shortlist that trustees then review. Which two safeguards matter most before the charity starts? Select two.
 
 ### A) Applications are gathered into a single file so that the whole set fits inside one continuous conversation.
 
@@ -10364,7 +10278,7 @@ Measuring time saved is useful for the business case but does nothing to protect
 
 A stronger model does not make a rights-affecting screen safe, and model choice is not the governance safeguard here.
 
-## 561. An analyst has forty Claude-drafted product descriptions. About half will be posted on the public website and half will sit in an internal catalogue, and she has time to check roughly twenty of them properly before the deadline. What should she do first?
+## 556. An analyst has forty Claude-drafted product descriptions. About half will be posted on the public website and half will sit in an internal catalogue, and she has time to check roughly twenty of them properly before the deadline. What should she do first?
 
 ### A) Check the longest descriptions first, because a longer description contains more claims to get wrong.
 
@@ -10382,7 +10296,7 @@ Correct. With review capacity smaller than the batch, the first step is to triag
 
 A model's own stated uncertainty is a weak and unvalidated signal, and it says nothing about consequences. It can be a useful supplement, but it cannot decide which outputs need human eyes.
 
-## 562. A marketer is midway through a one-off brainstorm that will not be revisited, and the conversation is approaching its limit. What is the most appropriate action?
+## 557. A marketer is midway through a one-off brainstorm that will not be revisited, and the conversation is approaching its limit. What is the most appropriate action?
 
 ### A) Let the conversation continue and condense itself, since nothing in it needs to outlive this session. **(correct)**
 
@@ -10400,7 +10314,7 @@ Incorrect. Restarting discards the ideas generated so far and forces her to rege
 
 Incorrect. Fragmenting the session means no chat holds the full set of ideas, which undermines the brainstorm itself.
 
-## 563. A learning and development specialist has a Claude-drafted explanation of a new expenses process written for finance staff. She now needs a version for field engineers who never open the finance system. What should she do first?
+## 558. A learning and development specialist has a Claude-drafted explanation of a new expenses process written for finance staff. She now needs a version for field engineers who never open the finance system. What should she do first?
 
 ### A) Cut the draft down to roughly half its present length so that the field engineers will read it.
 
@@ -10418,7 +10332,7 @@ A glossary makes unfamiliar terminology survivable but leaves the engineers read
 
 Correct. Adapting for an audience starts from what that audience needs to do, not from the existing text. Once she knows which parts of the process the engineers actually touch, the register, the length and the level of detail all follow from it.
 
-## 564. A product team wants to brainstorm features for a new fitness app. They want a wide range of creative ideas without early criticism. Which prompting strategy fosters the most innovative brainstorming session with Claude?
+## 559. A product team wants to brainstorm features for a new fitness app. They want a wide range of creative ideas without early criticism. Which prompting strategy fosters the most innovative brainstorming session with Claude?
 
 ### A) Guide Claude to compile a list of the 10 most prevalent features in top-rated fitness apps by referencing common market knowledge, then use that list as a foundation to brainstorm derivative features, ensuring the team has a concrete starting point for ideation.
 
@@ -10436,7 +10350,7 @@ Incorrect. Competitive analysis is an analytical, research-oriented task that ca
 
 Correct. This prompt explicitly requests a large quantity of unconventional, far-fetched ideas and defers feasibility analysis, directly encouraging divergent thinking. By prioritizing creativity and volume over early criticism, it aligns perfectly with proven brainstorming principles that foster innovation.
 
-## 565. A marketing analyst wants Claude to summarise campaign results that live in the company's Google Drive, so she plans to link Drive to her Claude account. Her company's AI policy states that any new data source must be approved by the data owner before it is connected. What should she do first?
+## 560. A marketing analyst wants Claude to summarise campaign results that live in the company's Google Drive, so she plans to link Drive to her Claude account. Her company's AI policy states that any new data source must be approved by the data owner before it is connected. What should she do first?
 
 ### A) Request the data owner's approval through the process the AI policy defines, before connecting anything at all. **(correct)**
 
@@ -10454,25 +10368,7 @@ Inheriting her own permissions limits exposure but does not replace the organisa
 
 Asking Claude what it can see does not change the fact that the connection itself needed approval before it was made.
 
-## 566. Explanation
-
-### A) In the first message of each conversation, since requirements can change from one task to another.
-
-Repeating them in every conversation is the effort they are trying to remove, and it will be forgotten.
-
-### B) In a document uploaded to the project's knowledge, alongside the reference material already there.
-
-Knowledge documents supply background material; they are not read as directions about how to respond.
-
-### C) In the project's instructions, where they apply to every conversation started in that project. **(correct)**
-
-Correct. These are standing rules for how work in this project should be presented, which is exactly what project instructions are for.
-
-### D) In a reusable skill, so that the two requirements can be invoked from any conversation at all.
-
-A skill is heavier machinery than two presentation rules need, and these apply only to this project's work.
-
-## 567. A grants officer facing a deadline has used Claude to draft eligibility determinations for ninety applicants, and each determination will be sent directly to the applicant. Under Anthropic's Usage Policy, which two things must happen before the determinations are issued? Select two.
+## 561. A grants officer facing a deadline has used Claude to draft eligibility determinations for ninety applicants, and each determination will be sent directly to the applicant. Under Anthropic's Usage Policy, which two things must happen before the determinations are issued? Select two.
 
 ### A) Claude is asked to review its own determinations and flag any it is unsure about.
 
@@ -10494,7 +10390,7 @@ Borderline cases are identified by the same process being verified, so anything 
 
 Responsibility cannot be handed to the tool. The Usage Policy states that the user or their organization is responsible for the accuracy and appropriateness of the information, so recording Claude as the decision-maker leaves no accountable person and does nothing to make the determinations correct.
 
-## 568. A corporate trainer uses a personal Max plan for her own course-design work. Her manager asks her whether her Claude conversations are being used to improve Anthropic's models. What should be her first step?
+## 562. A corporate trainer uses a personal Max plan for her own course-design work. Her manager asks her whether her Claude conversations are being used to improve Anthropic's models. What should be her first step?
 
 ### A) Assume that they are, because conversations on personal plans always feed model improvement work.
 
@@ -10512,7 +10408,7 @@ Correct. On Free, Pro and Max the user chooses whether their conversations may b
 
 This states the commercial position, where inputs and outputs are not used for training by default, and applies it to a personal plan. The consumer and commercial rules are different and must not be conflated.
 
-## 569. A team is considering using Claude to triage inbound complaints, some of which allege safety issues. What should they do first?
+## 563. A team is considering using Claude to triage inbound complaints, some of which allege safety issues. What should they do first?
 
 ### A) Ask Claude to judge which complaints are serious enough to need a person, and follow that judgement.
 
@@ -10530,7 +10426,7 @@ Standardising the intake forms does not address which complaints need a human at
 
 A quarter of unreviewed safety complaints is exactly the harm this design needs to prevent.
 
-## 570. A sales operations lead asked Claude to summarise two quarters of win-loss notes. Early in the summary it states that deals are lost mainly on price, and two paragraphs later it attributes most losses to slow implementation timelines. What should she do first?
+## 564. A sales operations lead asked Claude to summarise two quarters of win-loss notes. Early in the summary it states that deals are lost mainly on price, and two paragraphs later it attributes most losses to slow implementation timelines. What should she do first?
 
 ### A) Go back to the win-loss notes themselves and see what they actually say about the losses. **(correct)**
 
@@ -10548,7 +10444,7 @@ Regenerating gives a fresh answer, not a checked one, and picking whichever vers
 
 Asking the same conversation to arbitrate between its own two claims produces another confident statement with nothing new behind it. The contradiction is evidence that the summary has drifted from the source, and only the source settles it.
 
-## 571. A department has used Claude to redraft a board paper over six rounds. Each round was reviewed by whoever was free that week, and each reviewer applied their own idea of what a good board paper looks like. What is the greatest risk?
+## 565. A department has used Claude to redraft a board paper over six rounds. Each round was reviewed by whoever was free that week, and each reviewer applied their own idea of what a good board paper looks like. What is the greatest risk?
 
 ### A) No shared standard of quality, so the team cannot tell whether the paper improved **(correct)**
 
@@ -10566,7 +10462,7 @@ Wording from an earlier round can resurface when every round shares the same con
 
 A draft drifting away from the length the board is used to is visible on the page and corrected with one more instruction. It is a symptom of an unmanaged review cycle rather than the thing that makes six rounds of work impossible to evaluate.
 
-## 572. A company is scaling a content-creation and data-analysis product used by thousands of business customers. They need strong general capability across code generation, analysis, and visual understanding, without committing to the most expensive tier. Which model tier matches this description in Anthropic's model selection matrix?
+## 566. A company is scaling a content-creation and data-analysis product used by thousands of business customers. They need strong general capability across code generation, analysis, and visual understanding, without committing to the most expensive tier. Which model tier matches this description in Anthropic's model selection matrix?
 
 ### A) Use a mix of unrelated third-party models because Claude tiers fail to include data analysis and visual understanding.
 
@@ -10584,7 +10480,7 @@ Incorrect. Defaulting to the cheapest tier ignores that this product requires ro
 
 Incorrect. Opus is designed for the most complex, high-autonomy, or accuracy-critical tasks; a scaling content and analysis product fits Sonnet's balanced profile better than the top, most expensive tier.
 
-## 573. A finance team wants to use Claude to calculate and report final loan interest figures directly to customers with no further checks. What risk should be communicated about this workflow?
+## 567. A finance team wants to use Claude to calculate and report final loan interest figures directly to customers with no further checks. What risk should be communicated about this workflow?
 
 ### A) Communicate that Claude's arithmetic has been certified as error-free for all financial and regulatory calculations, making separate validation unnecessary.
 
@@ -10602,25 +10498,7 @@ Incorrect. While Claude is not a dedicated financial engine, it can assist with 
 
 Correct. Precise financial calculations demand high accuracy, and language model outputs are not inherently deterministic or error-free. Therefore, any output involving such calculations should be validated against a deterministic calculation system before being used.
 
-## 574. Explanation
-
-### A) Read a few criticised summaries beside their transcripts to see what kind of item is missed. **(correct)**
-
-Correct. 'Misses the decisions' could mean several different faults, and the fix differs for each, so the first move is to see the failures against the source before changing anything.
-
-### B) Move the summaries to a more capable model, since missing content suggests shallow reasoning.
-
-Model choice is being changed before anyone knows whether the summaries were even asked for the decisions.
-
-### C) Rewrite the instructions to say that decisions must always be listed at the top of every summary.
-
-A specific rule written before the fault is understood may address something that was never the problem.
-
-### D) Ask colleagues to flag any summary that is wrong, and return to the question again in a month.
-
-Collecting more of the same vague feedback delays the diagnosis that a few examples would already allow.
-
-## 575. A customer support chatbot built on Claude detects that a customer's message expresses distress and references potential legal action. What should the system do with this conversation?
+## 568. A customer support chatbot built on Claude detects that a customer's message expresses distress and references potential legal action. What should the system do with this conversation?
 
 ### A) Let the automated conversation continue but have it apologize more frequently in each generated response
 
@@ -10638,7 +10516,7 @@ Correct. Messages signaling distress or potential legal action are high-risk sit
 
 Incorrect. A longer automated response does not provide the human judgment needed for a sensitive, potentially legal situation.
 
-## 576. A market research team on the company's Claude for Work plan wants Claude to analyse interview transcripts containing participants' names, employers and health conditions. Which two steps should they take before uploading? Select two.
+## 569. A market research team on the company's Claude for Work plan wants Claude to analyse interview transcripts containing participants' names, employers and health conditions. Which two steps should they take before uploading? Select two.
 
 ### A) Confirm the consent participants gave covers having their transcripts processed in an external tool. **(correct)**
 
@@ -10660,7 +10538,7 @@ Splitting the same sensitive content across chats does not reduce what was discl
 
 Commercial plans such as Claude for Work do not use inputs or outputs to train models by default, so this changes nothing about the real risk.
 
-## 577. A programme officer needs to answer the question 'what are our reporting obligations for this funding stream'. What should she settle first?
+## 570. A programme officer needs to answer the question 'what are our reporting obligations for this funding stream'. What should she settle first?
 
 ### A) How much reasoning to ask for, since obligations of this kind are usually explained across several steps.
 
@@ -10678,7 +10556,7 @@ Splitting the question is a useful technique for large tasks, but it does not de
 
 Length and audience shape how the answer is presented, and they can be decided once she knows where the answer is coming from.
 
-## 578. An HR team drafts a benefits explanation for employees across countries whose languages and cultural norms around directness differ from the home office. Beyond translation, what should the team check when adapting the content for each region?
+## 571. An HR team drafts a benefits explanation for employees across countries whose languages and cultural norms around directness differ from the home office. Beyond translation, what should the team check when adapting the content for each region?
 
 ### A) Whether every regional version ends up with the exact same word count once translated
 
@@ -10696,25 +10574,7 @@ Correct. Adapting for an audience across regions means adjusting tone, examples,
 
 Incorrect. Formatting template consistency does not address whether tone and content are appropriate for each region's norms.
 
-## 579. Explanation
-
-### A) Paste the requirement itself, so Claude has the thing it must check against **(correct)**
-
-Correct. The request asked for a comparison while supplying only one side of it. Supplying the missing material is the fix; nothing else can substitute for the requirement text.
-
-### B) Move to a more capable model and send exactly the same message once again
-
-A stronger model still cannot see a requirement that was never provided, so the answer will be confidently unhelpful again.
-
-### C) Ask Claude to recall the requirement from what it knows about bids like this
-
-Asking Claude to reconstruct the requirement invites a plausible invention that the writer would then check her answer against.
-
-### D) Repeat the same request and stress that the check must be thorough this time
-
-Repeating the request with added emphasis changes the tone, not the information, so the same gap remains.
-
-## 580. A team building an insurance claims triage tool on Claude wants to minimize the risk that the model's outputs unfairly disadvantage claimants from a particular demographic group, even though no single field in the input data directly names race or ethnicity. What is the most ethically sound step for the team to take?
+## 572. A team building an insurance claims triage tool on Claude wants to minimize the risk that the model's outputs unfairly disadvantage claimants from a particular demographic group, even though no single field in the input data directly names race or ethnicity. What is the most ethically sound step for the team to take?
 
 ### A) Add a single disclaimer stating outputs may be biased, in place of testing for disparate outcomes
 
@@ -10732,7 +10592,7 @@ Incorrect. Excluding explicit protected fields does not prevent bias, since corr
 
 Incorrect. Overall accuracy can mask unequal error rates across subgroups, so subgroup-level fairness evaluation is necessary in high-risk contexts.
 
-## 581. A project shared with a Team plan workspace has just had its escalation matrix replaced with a new version. What else should the project owner do?
+## 573. A project shared with a Team plan workspace has just had its escalation matrix replaced with a new version. What else should the project owner do?
 
 ### A) Tell the members who use the project what changed, so they know earlier answers may no longer hold. **(correct)**
 
@@ -10750,7 +10610,7 @@ Old conversations do not override project knowledge, and deleting them destroys 
 
 A title is not a change log, and members are not prompted to read it before chatting.
 
-## 582. A prompt engineering team wants a quick sanity check to decide whether a draft prompt is clear enough before sending it to Claude in production. What check reflects the recommended "golden rule" for prompt clarity?
+## 574. A prompt engineering team wants a quick sanity check to decide whether a draft prompt is clear enough before sending it to Claude in production. What check reflects the recommended "golden rule" for prompt clarity?
 
 ### A) Show it to a colleague with minimal context and see if they could follow it correctly **(correct)**
 
@@ -10768,7 +10628,7 @@ Averaging numerical reactions from multiple people is not the documented golden 
 
 Round-trip translation tests linguistic stability, not whether the instructions are explicit and unambiguous to someone unfamiliar with the task.
 
-## 583. A team is evaluating a customer support assistant and only measures whether responses are factually correct, ignoring tone, relevance, and consistency. Following recommended evaluation practice, what is the main risk of this approach?
+## 575. A team is evaluating a customer support assistant and only measures whether responses are factually correct, ignoring tone, relevance, and consistency. Following recommended evaluation practice, what is the main risk of this approach?
 
 ### A) Adding more evaluation dimensions reduces overall assessment reliability, so the team should keep the evaluation limited to factual correctness.
 
@@ -10786,25 +10646,7 @@ Incorrect. Multidimensional evaluation is recommended broadly for complex tasks,
 
 Incorrect. Factual correctness alone is insufficient for complex tasks like customer support; ignoring tone, relevance, and consistency can lead to poor user experiences. Recommended practice emphasizes multidimensional evaluation to fully assess quality.
 
-## 584. Explanation
-
-### A) The straightforward cases will be over-checked and the team will lose time
-
-Redundant checking of easy cases costs time; it does not create a false picture of how the arrangement performs.
-
-### B) The difficult cases will take even longer to check at the following review
-
-Checking effort may grow, but that is a workload issue rather than the reason the conclusion is unsafe.
-
-### C) The reviewers will disagree about which cases counted as straightforward
-
-Disagreement about classification is a process wrinkle that would surface and be settled quickly.
-
-### D) The review will report success on exactly the cases least likely to fail **(correct)**
-
-Correct. Results gathered only from easy cases confirm what was never in doubt. The arrangement is then trusted across work it has never been shown to handle.
-
-## 585. A pricing analyst notices Claude quoting a discount tier that was retired at the last price review. What should the analyst do first?
+## 576. A pricing analyst notices Claude quoting a discount tier that was retired at the last price review. What should the analyst do first?
 
 ### A) Check the project's uploaded documents to see whether the retired price list is still in the knowledge base. **(correct)**
 
@@ -10822,7 +10664,7 @@ Public search is not a reliable source for internal pricing and leaves the stale
 
 A fresh chat still reads the same project knowledge, so the retired figures come back.
 
-## 586. A small charity has no legal adviser. Its manager asks Claude what the new reporting rules require, receives a clear and specific answer, and files the return on that basis alone. What is the greatest risk?
+## 577. A small charity has no legal adviser. Its manager asks Claude what the new reporting rules require, receives a clear and specific answer, and files the return on that basis alone. What is the greatest risk?
 
 ### A) The explanation may be pitched at a level of detail that the charity's own trustees find difficult to follow later.
 
@@ -10840,43 +10682,7 @@ Adjacent obligations being missed is a genuine gap, but it is one instance of th
 
 Unfamiliar vocabulary slows the manager down and is easily resolved by asking for a plainer explanation.
 
-## 587. Explanation
-
-### A) Telling the colleague who reported the original problem that it is now fixed
-
-Closing the loop with one colleague is good practice but does nothing to preserve the change itself.
-
-### B) Reminding people in each chat to phrase their requests the improved way
-
-Relying on people to remember a phrasing in every chat re-solves the problem by hand each time.
-
-### C) Keeping a copy of the improved output to show anyone who asks about it
-
-A sample of good output demonstrates the result without capturing what produced it.
-
-### D) Recording the change and the reason for it where the whole team can see **(correct)**
-
-Correct. A fix that is written down, with its reason, survives staff changes and stops someone unpicking it later because they cannot see why it is there. That is what makes the adjustment durable.
-
-## 588. Explanation
-
-### A) Ask Claude at the start of each chat to recall the style used in her previous conversations.
-
-Asking Claude to recall earlier style is unreliable and does not make the requirement durable.
-
-### B) Upload a document holding the six lines and point Claude at it whenever she opens a new chat.
-
-Uploaded documents are background knowledge; a standing rule about how to work belongs in the instructions.
-
-### C) Keep the six lines in a note and paste them at the start of each chat so nothing gets forgotten.
-
-A note reduces typing but still relies on her pasting it correctly every single time.
-
-### D) Move those standing lines into the project's instructions so every chat there starts with them. **(correct)**
-
-Correct. A requirement repeated in every chat of the same project belongs in the project instructions, where it applies automatically and stops depending on her remembering it.
-
-## 589. A user pastes a Google Doc URL into a chat with the Drive connector enabled and asks about the document's contents. What does Claude do?
+## 578. A user pastes a Google Doc URL into a chat with the Drive connector enabled and asks about the document's contents. What does Claude do?
 
 ### A) Claude downloads the document as a PDF and stores a copy in project knowledge.
 
@@ -10894,7 +10700,7 @@ Incorrect. Public sharing is not required, since the connector authenticates to 
 
 Correct. With the Drive connector, a pasted URL is accessed and processed when the message is sent, informing the response.
 
-## 590. A compliance lead is writing an internal FAQ explaining how staff may use Claude. Which statement about model training is accurate to include?
+## 579. A compliance lead is writing an internal FAQ explaining how staff may use Claude. Which statement about model training is accurate to include?
 
 ### A) Inputs and outputs from commercial products are used for training unless an organisation owner opts the account out.
 
@@ -10912,7 +10718,25 @@ Correct. Commercial products do not use customer inputs and outputs for model tr
 
 On consumer plans the user chooses, and content can be used for model improvement if that setting is enabled, so 'never' is wrong.
 
-## 591. An events manager is preparing an attendee FAQ. She has last year's FAQ, the signed contract for this year's venue, and an email thread with the caterer. What should she do first?
+## 580. An adjustment to a shared project's instructions has clearly improved results across several weeks. What most reliably keeps that improvement in place for the whole team?
+
+### A) Telling the colleague who reported the original problem that it is now fixed
+
+Closing the loop with one colleague is good practice but does nothing to preserve the change itself.
+
+### B) Reminding people in each chat to phrase their requests the improved way
+
+Relying on people to remember a phrasing in every chat re-solves the problem by hand each time.
+
+### C) Keeping a copy of the improved output to show anyone who asks about it
+
+A sample of good output demonstrates the result without capturing what produced it.
+
+### D) Recording the change and the reason for it where the whole team can see **(correct)**
+
+Correct. A fix that is written down, with its reason, survives staff changes and stops someone unpicking it later because they cannot see why it is there. That is what makes the adjustment durable.
+
+## 581. An events manager is preparing an attendee FAQ. She has last year's FAQ, the signed contract for this year's venue, and an email thread with the caterer. What should she do first?
 
 ### A) Ask Claude to draft the FAQ from last year's version, then check it against the contract and the caterer emails.
 
@@ -10930,7 +10754,7 @@ Her own summaries drop the specifics attendees ask about, such as exact times an
 
 Correct. The three sources disagree by design: the contract supersedes last year's FAQ, and the email thread may supersede both on catering. Establishing precedence and labelling each source is what stops last year's details being presented as this year's.
 
-## 592. A team wants Claude to research an open-ended market question, tracking multiple competing explanations and its confidence in each as it gathers evidence over many searches. What approach best supports this research task?
+## 582. A team wants Claude to research an open-ended market question, tracking multiple competing explanations and its confidence in each as it gathers evidence over many searches. What approach best supports this research task?
 
 ### A) Run one broad search and answer directly from that result with no further checks
 
@@ -10948,7 +10772,7 @@ Correct. For complex, open-ended research, Claude should develop competing hypot
 
 Incorrect. Committing to one explanation immediately biases the research toward confirming a single theory instead of weighing competing hypotheses against gathered evidence.
 
-## 593. A finance director asks why the team is proposing a smaller, faster Claude model for a high-volume invoice classification workflow instead of the most capable model available. What is the best way to justify this choice?
+## 583. A finance director asks why the team is proposing a smaller, faster Claude model for a high-volume invoice classification workflow instead of the most capable model available. What is the best way to justify this choice?
 
 ### A) Explain that the most capable model cannot process invoices at all, so a smaller model is the only technically possible option.
 
@@ -10966,7 +10790,7 @@ Incorrect. Model choice directly affects per-token cost and response speed, so i
 
 Incorrect. Smaller models are not universally more accurate; capability, task complexity, and cost must be weighed case by case.
 
-## 594. A hospital foundation's fundraising officer wants to upload a donor list containing home addresses and giving histories so Claude can segment it for a campaign. The foundation is on a Claude for Work plan. What should she do first?
+## 584. A hospital foundation's fundraising officer wants to upload a donor list containing home addresses and giving histories so Claude can segment it for a campaign. The foundation is on a Claude for Work plan. What should she do first?
 
 ### A) Confirm that the Claude for Work plan does not use the foundation's data to train models.
 
@@ -10984,7 +10808,7 @@ Stripping one field is a reasonable minimisation step, but choosing which fields
 
 Correct. The plan already settles the training question; what is unresolved is whether the foundation's own rules and the privacy commitments made to donors permit this data to be put into the tool at all. That governs everything else she does with the list.
 
-## 595. A facilities manager wants Claude to turn her site-visit notes into short summaries that engineers read on their phones between jobs, so each summary must stay under 150 words. She will make this same request many times with different notes. How should she express the length limit?
+## 585. A facilities manager wants Claude to turn her site-visit notes into short summaries that engineers read on their phones between jobs, so each summary must stay under 150 words. She will make this same request many times with different notes. How should she express the length limit?
 
 ### A) Ask for the shortest summary she can get, and then cut anything back that still runs over the word limit.
 
@@ -11002,29 +10826,7 @@ The limit alone works, but without the reason Claude cannot judge what to keep w
 
 Emphasis and repetition do not add information; the constraint was already clear the first time.
 
-## 596. Explanation
-
-### A) The writing will read noticeably differently from the bulletins that she used to circulate previously.
-
-A change of voice may be noticed, but style is a cosmetic issue next to misplaced trust and unchecked claims.
-
-### B) Readers are weighing the bulletin as her own considered assessment when she has not actually made it. **(correct)**
-
-Correct. Staff rely on her judgment as the reason to trust the bulletin, and that reliance is now misplaced.
-
-### C) Unverified claims can pass straight into business decisions because nobody has checked them at all. **(correct)**
-
-Correct for a separate reason: beyond attribution, a skim is not verification, so errors reach decisions unchallenged.
-
-### D) Drafting an operations bulletin is not a task that any language model is capable of doing at all usefully.
-
-Drafting a bulletin is a reasonable use; the problem is the absent review and the silent attribution, not the capability.
-
-### E) Producing the bulletin in this way consumes rather more of her weekly allowance than writing it herself.
-
-Allowance consumption is a cost consideration and has nothing to do with the ethical problem described.
-
-## 597. An operations lead has two hundred short, standard customer replies to prepare today and is worried about her weekly allowance. What should she do first?
+## 586. An operations lead has two hundred short, standard customer replies to prepare today and is worried about her weekly allowance. What should she do first?
 
 ### A) Ask Claude to estimate how much of her allowance the batch is likely to consume in total.
 
@@ -11042,7 +10844,7 @@ Correct. Once the small number of awkward cases is identified, the routine bulk 
 
 Incorrect. Spreading the work delays the replies without reducing the total allowance the batch consumes.
 
-## 598. A trainer keeps asking Claude to make a technical explanation simpler, and after four rounds it reads very easily. What is the greatest risk?
+## 587. A trainer keeps asking Claude to make a technical explanation simpler, and after four rounds it reads very easily. What is the greatest risk?
 
 ### A) The explanation will become too short for the length the training materials require overall.
 
@@ -11060,7 +10862,7 @@ Incorrect. Drifting tone is noticeable on a read-through and does not by itself 
 
 Incorrect. Inconsistent vocabulary is a presentation issue and is easily reconciled across materials.
 
-## 599. An Enterprise organisation wants its members to use the Google Drive connector, but with read access only. Which sequence of steps is correct?
+## 588. An Enterprise organisation wants its members to use the Google Drive connector, but with read access only. Which sequence of steps is correct?
 
 ### A) Members authenticate individually; the owner enables the connector; the team confirms the limits; the owner restricts it to read actions.
 
@@ -11078,7 +10880,7 @@ Restrictions are configured for a connector that has not been enabled yet.
 
 The limits are confirmed first and the connector is enabled last, which reverses the setup.
 
-## 600. After rewriting an instruction to say "write in flowing prose, avoid bullet points," a team still finds Claude's responses returning to bulleted lists in some outputs. They notice their own prompt itself is written using bullet points and headers throughout. Which additional iteration is most likely to help?
+## 589. After rewriting an instruction to say "write in flowing prose, avoid bullet points," a team still finds Claude's responses returning to bulleted lists in some outputs. They notice their own prompt itself is written using bullet points and headers throughout. Which additional iteration is most likely to help?
 
 ### A) Increase the temperature parameter so Claude's output becomes more random, discouraging the rigid structure that leads to bullet points.
 
@@ -11096,7 +10898,7 @@ Incorrect. The core issue is not instruction recency but the prompt's own style.
 
 Correct. Anthropic notes that the formatting style used in the prompt influences Claude's response style, so removing bullet points and headers from the prompt can help the model adopt the desired flowing-prose style.
 
-## 601. A chatbot answers a user's question about a niche historical event with a detailed, confident, but entirely fabricated account, since no similar event exists in its training data. The team wants to reduce this kind of failure through prompt design alone, without adding any tools. Which instruction is most effective for reducing this type of fabrication?
+## 590. A chatbot answers a user's question about a niche historical event with a detailed, confident, but entirely fabricated account, since no similar event exists in its training data. The team wants to reduce this kind of failure through prompt design alone, without adding any tools. Which instruction is most effective for reducing this type of fabrication?
 
 ### A) Instruct Claude to always answer within a strict two-sentence limit regardless of how complex the topic is
 
@@ -11114,7 +10916,7 @@ Correct. Explicitly permitting Claude to express uncertainty or decline to answe
 
 Encouraging a confident tone works against fact-checking goals, since it makes fabricated answers sound more credible rather than flagging uncertainty.
 
-## 602. A user asks Claude to build an interactive to-do list where items can be checked off and reordered directly in the browser. Which artifact type fits this request?
+## 591. A user asks Claude to build an interactive to-do list where items can be checked off and reordered directly in the browser. Which artifact type fits this request?
 
 ### A) A CSV file listing each to-do item as a row, since CSV is the appropriate format whenever the user needs to track list items
 
@@ -11132,7 +10934,25 @@ Incorrect. A static Markdown document can show checkbox syntax but cannot suppor
 
 Correct. React components are a supported artifact type built for interactive, stateful UI such as checking off and reordering items in the browser.
 
-## 603. An executive asks a planner to use Claude to help answer whether the company should enter a new market over the next five years. Which use of Claude is most appropriate?
+## 592. A hiring manager asks Claude to summarise 200 cover letters and rank the candidates for a shortlist. What is the most ethically sound way to use that output?
+
+### A) Treat the ranking as one input, review the applications herself, and record that she made the decision. **(correct)**
+
+Correct. A ranking drawn from writing style can disadvantage groups in ways no field names directly, so it may inform a decision about people but must not make it, and a person must own the outcome.
+
+### B) Accept the ranking but produce it a second time, and shortlist the candidates that appear on both lists.
+
+Agreement between two runs shows consistency, not fairness, and can simply repeat the same bias twice.
+
+### C) Use the ranking as the shortlist, then ask Claude to explain each position so the reasoning is on record.
+
+An explanation produced after the fact describes the ordering; it does not verify that the ordering was fair.
+
+### D) Remove the names from the letters first, then use the ranking directly without further human review.
+
+Removing names leaves plenty of signals that correlate with background, and it removes the human review as well.
+
+## 593. An executive asks a planner to use Claude to help answer whether the company should enter a new market over the next five years. Which use of Claude is most appropriate?
 
 ### A) Ask Claude for a single clear recommendation so the executive receives an unambiguous answer to act on.
 
@@ -11150,7 +10970,7 @@ A five-year market size figure is a projection presented as a fact. Resting the 
 
 Correct. Claude is strongest here as an analyst that widens and structures the option space, surfacing trade-offs and the evidence behind each path. The executive keeps the strategic choice, which is where the accountability sits.
 
-## 604. A consultant is briefing colleagues on the guidance that Claude should not be relied on as a singular source of truth. What does that principle mean in day-to-day practice for a claim she intends to act on?
+## 594. A consultant is briefing colleagues on the guidance that Claude should not be relied on as a singular source of truth. What does that principle mean in day-to-day practice for a claim she intends to act on?
 
 ### A) That she should avoid Claude for factual work altogether and confine her use of it to drafting, wording and brainstorming.
 
@@ -11168,7 +10988,7 @@ Narrower questions can improve focus, but scope is not a guarantee of accuracy a
 
 Correct. The principle is about where confirmation comes from: anything consequential should be corroborated outside the conversation, so Claude informs the decision rather than being the only thing standing behind it.
 
-## 605. A teacher wants Claude to answer student questions from a large and steadily growing set of course materials, across many separate chats. Which sequence of steps is correct?
+## 595. A teacher wants Claude to answer student questions from a large and steadily growing set of course materials, across many separate chats. Which sequence of steps is correct?
 
 ### A) Add the course materials to each chat; create a Project; ask questions in that project; keep the instructions brief.
 
@@ -11186,7 +11006,7 @@ Incorrect. Asking before the materials are uploaded means the early answers have
 
 Correct. The project has to exist before materials can be attached, brief instructions leave more room for the materials themselves, and only chats started inside the project can draw on them.
 
-## 606. While researching a niche technical topic, an analyst receives a confident, well-written answer from Claude that includes a specific statistic with no source cited and no search tool used. What should the analyst do before citing this statistic in a report?
+## 596. While researching a niche technical topic, an analyst receives a confident, well-written answer from Claude that includes a specific statistic with no source cited and no search tool used. What should the analyst do before citing this statistic in a report?
 
 ### A) Reword the statistic slightly so it reads as an approximation rather than an exact figure
 
@@ -11204,7 +11024,7 @@ Incorrect. Detailed, confident writing is not evidence that a specific unsourced
 
 Correct. An uncited, ungrounded statistic may be a hallucination, so the analyst should confirm it against an independent authoritative source before citing it.
 
-## 607. A finance approvals process has changed: purchases above a threshold now need two signatures instead of one. A project's instructions still describe the old single-signature rule. What should the project owner do first?
+## 597. A finance approvals process has changed: purchases above a threshold now need two signatures instead of one. A project's instructions still describe the old single-signature rule. What should the project owner do first?
 
 ### A) Upload the email announcing the change so that Claude can work out the new rule from that announcement itself.
 
@@ -11222,7 +11042,7 @@ Correct. Durable direction that contradicts the current process must be correcte
 
 This relies on every person remembering, while the wrong rule stays configured for everyone else.
 
-## 608. A facilitator wants Claude to produce short prompts and summaries live during workshops, with participants waiting in the room. She standardises on the deepest-reasoning tier so that the material is always as good as it can be. What is the greatest risk?
+## 598. A facilitator wants Claude to produce short prompts and summaries live during workshops, with participants waiting in the room. She standardises on the deepest-reasoning tier so that the material is always as good as it can be. What is the greatest risk?
 
 ### A) The facilitator becomes reliant on having Claude available, so a session held somewhere without connectivity is harder to run.
 
@@ -11240,7 +11060,7 @@ Some variation between sessions is expected with any tier and matters little for
 
 Correct. Depth is bought with time, and in a live setting responsiveness is the binding constraint. Choosing the deepest tier here sacrifices the very quality, immediacy, that made Claude useful in the room.
 
-## 609. A developer asks Claude to build a small interactive React component that visualizes sales data with adjustable filters, and expects to iterate on the code across several follow-up messages. Which feature will display this output in a way that supports iterative editing and version history?
+## 599. A developer asks Claude to build a small interactive React component that visualizes sales data with adjustable filters, and expects to iterate on the code across several follow-up messages. Which feature will display this output in a way that supports iterative editing and version history?
 
 ### A) A Project's knowledge base, which stores the component as reference material for future chats
 
@@ -11258,7 +11078,7 @@ Printing code inline in the main transcript does not provide the dedicated side-
 
 Correct. Artifacts open substantial, self-contained content like a React component in a dedicated side panel and provide a version selector, letting the developer iterate and switch between revisions.
 
-## 610. A legal assistant needs to summarize a 50-page contract, highlighting obligations, risks, and key dates. Which prompting strategy yields the most precise and actionable summary?
+## 600. A legal assistant needs to summarize a 50-page contract, highlighting obligations, risks, and key dates. Which prompting strategy yields the most precise and actionable summary?
 
 ### A) Instruct Claude to review the contract and draft a summary focusing on what it determines to be the central points, including obligations and dates it selects based on its own analysis, organizing the output with headings it deems appropriate.
 
@@ -11276,7 +11096,7 @@ Correct. This prompt provides a structured, methodical approach that ensures all
 
 Incorrect. This approach explicitly avoids the detailed extractions required, making it unsuitable for a precise and actionable summary. It will not provide the specific obligations, risks, or dates needed for legal analysis.
 
-## 611. A communications lead inherits a Claude-written fact sheet from a colleague who has left, with no record of what it was based on. What should she do first?
+## 601. A communications lead inherits a Claude-written fact sheet from a colleague who has left, with no record of what it was based on. What should she do first?
 
 ### A) Publish the fact sheet with a note explaining that its original sources could not be traced by the team.
 
@@ -11294,7 +11114,7 @@ Incorrect. Claude cannot inspect how an earlier response was produced, and it ha
 
 Correct. Verification is a comparison, and without an agreed set of authoritative sources there is nothing to compare the statements with.
 
-## 612. A developer wants to grade thousands of Claude outputs for quality and plans to have the same model that generated the outputs also score them. A colleague flags this as a risky design. What is the main concern with using the same model to both generate and grade its own outputs?
+## 602. A developer wants to grade thousands of Claude outputs for quality and plans to have the same model that generated the outputs also score them. A colleague flags this as a risky design. What is the main concern with using the same model to both generate and grade its own outputs?
 
 ### A) The model cannot process its own prior outputs as input, so grading requests will fail
 
@@ -11312,7 +11132,7 @@ Incorrect. Pricing is based on token usage per request, not on whether the same 
 
 Correct. A recommended best practice is to use a separate model or human reviewers for grading, since a model grading its own generations can be biased toward judging them favorably.
 
-## 613. A legal operations stakeholder plans to send Claude-generated contract redlines directly to clients without any attorney review, to reduce turnaround time. What should the solutions architect recommend?
+## 603. A legal operations stakeholder plans to send Claude-generated contract redlines directly to clients without any attorney review, to reduce turnaround time. What should the solutions architect recommend?
 
 ### A) Recommend keeping attorney review before delivery, since Claude can miss jurisdiction-specific or contextual nuances. **(correct)**
 
@@ -11330,7 +11150,25 @@ Incorrect. Claude can meaningfully assist with drafting and redlining; the conce
 
 Incorrect. Shifting verification onto clients does not address the firm's own responsibility for quality and risk in what it sends out.
 
-## 614. A newsletter editor needs a Claude-drafted piece to quote the organisation's own published figures accurately. Which sequence of steps is correct?
+## 604. A programme officer notices that Claude's answers in a long-running chat now ignore constraints she stated near the start. Which action best addresses the cause?
+
+### A) Start a fresh chat and restate the constraints that must hold throughout **(correct)**
+
+Correct. The conversation itself has become the problem: it is long enough that early material no longer carries. A fresh chat carrying the constraints forward restores them as live instructions.
+
+### B) Repeat the constraints once more at the end of the current conversation
+
+Adding the constraints again extends the same overloaded conversation, so the next few answers may improve before the drift returns.
+
+### C) Ask Claude to confirm that it still remembers everything said earlier on
+
+A reassurance that it remembers is not evidence, and it does nothing about the length that caused the drift.
+
+### D) Ask for shorter answers so that the conversation grows more slowly now
+
+Shorter answers slow the growth of the conversation but leave the material already lost from view exactly where it is.
+
+## 605. A newsletter editor needs a Claude-drafted piece to quote the organisation's own published figures accurately. Which sequence of steps is correct?
 
 ### A) Ask Claude to draft the piece; gather the published figures; check the draft's numbers against them; send the piece out to readers.
 
@@ -11348,7 +11186,7 @@ Correct. Supplying the authoritative figures first keeps the draft grounded, and
 
 Incorrect. The piece goes to readers before the figures have been gathered or any check has taken place.
 
-## 615. A finance team's project instructions state: "never give a figure without naming the report it came from". Which addition would most improve this instruction?
+## 606. A finance team's project instructions state: "never give a figure without naming the report it came from". Which addition would most improve this instruction?
 
 ### A) Adding the rule a second time at the end of the instructions, so it is less likely to be overlooked.
 
@@ -11366,7 +11204,7 @@ Restating the rule in the output adds noise without improving whether it is actu
 
 Approval provenance changes nothing about how the rule is applied to an answer.
 
-## 616. A marketer runs a new campaign chat each week and re-pastes the same brand guidelines and tone-of-voice document into every one. She wants to stop repeating herself. Which sequence of steps is correct?
+## 607. A marketer runs a new campaign chat each week and re-pastes the same brand guidelines and tone-of-voice document into every one. She wants to stop repeating herself. Which sequence of steps is correct?
 
 ### A) Add project instructions; run each campaign chat inside it; create a Project; upload the guidelines as project knowledge.
 
@@ -11384,7 +11222,7 @@ Correct. The workspace has to exist before knowledge and instructions can be att
 
 Incorrect. The campaign chats would run before the guidelines and instructions are in place, so the early work gets none of the benefit, and instructions cannot be added before the project exists.
 
-## 617. An HR team is using Claude to rework the onboarding checklist for four departments at once. Which two practices will make the staged approach hold together? Select two.
+## 608. An HR team is using Claude to rework the onboarding checklist for four departments at once. Which two practices will make the staged approach hold together? Select two.
 
 ### A) Begin from the final recommendation and ask Claude to justify it across the four teams.
 
@@ -11406,7 +11244,7 @@ Correct. Naming the artefact each stage produces gives the next stage something 
 
 Hidden stages remove the team's ability to catch a wrong plan early, and produce a long output whose reasoning cannot be inspected or corrected.
 
-## 618. A marketing operations lead is deciding which steps of the campaign brief intake process to hand to Claude. Which characteristic most reliably marks a step as a good candidate for delegation?
+## 609. A marketing operations lead is deciding which steps of the campaign brief intake process to hand to Claude. Which characteristic most reliably marks a step as a good candidate for delegation?
 
 ### A) The step is repetitive and text-heavy, and the team can describe clearly what a good result looks like. **(correct)**
 
@@ -11424,7 +11262,7 @@ A step that spends money externally the moment it finishes is irreversible, so a
 
 How much a step is disliked says nothing about whether it can be delegated well. Unpopular steps are often unpopular precisely because they demand awkward judgment calls, which is the profile of a poor candidate rather than a good one.
 
-## 619. An operations manager has two things to add to a project: the team's two-page approved abbreviation list, and the rule that answers must never use abbreviations outside that list. What is the best placement?
+## 610. An operations manager has two things to add to a project: the team's two-page approved abbreviation list, and the rule that answers must never use abbreviations outside that list. What is the best placement?
 
 ### A) Put both the reference list and the rule into the project instructions so that the two are always read together.
 
@@ -11442,7 +11280,25 @@ This puts the reference out of reach and turns a standing rule back into manual 
 
 Correct. Reference material belongs in knowledge; the standing behaviour rule belongs in the instructions.
 
-## 620. After a cost review, a team switches every Claude task to the fastest and cheapest tier. What is the greatest risk?
+## 611. After poor feedback, a team changes the wording, the examples, the required format, the model and the source documents all at once. The next outputs are better. What is the greatest risk?
+
+### A) The improvement may take several days to become consistent across everyone working in the project.
+
+A delay in consistency is a minor operational point beside not knowing what caused the change.
+
+### B) Colleagues may find the new format harder to read than the one they had grown accustomed to.
+
+Readability of the format is a preference that can be adjusted once the cause is understood.
+
+### C) The revised instructions may be long enough that new joiners take a while to understand them.
+
+Longer instructions are a maintenance cost, not the reason the improvement cannot be explained.
+
+### D) They cannot tell which change helped, so they cannot keep the useful one or undo a harmful one. **(correct)**
+
+Correct. Five simultaneous changes and one outcome give no information about cause, so the team cannot simplify, cannot reverse a change that hurt, and cannot repeat the success elsewhere.
+
+## 612. After a cost review, a team switches every Claude task to the fastest and cheapest tier. What is the greatest risk?
 
 ### A) Every task will now be completed rather faster than the team is able to review the output properly.
 
@@ -11460,7 +11316,7 @@ Correct. A blanket switch removes reasoning depth from the work that needed it, 
 
 Incorrect. Nothing prevents moving back; the tier can be changed whenever the team decides to.
 
-## 621. An HR team uses Claude to generate a shortlist recommendation from a stack of job applications. Before any candidate is rejected based on this shortlist, what should the team do?
+## 613. An HR team uses Claude to generate a shortlist recommendation from a stack of job applications. Before any candidate is rejected based on this shortlist, what should the team do?
 
 ### A) Have a recruiter review the underlying applications to check for bias or overlooked qualified candidates **(correct)**
 
@@ -11478,7 +11334,7 @@ Incorrect. Rejecting candidates purely based on an unreviewed AI shortlist risks
 
 Incorrect. Merging two outputs from the same model does not introduce the independent human judgment needed to catch bias in a hiring decision.
 
-## 622. A Claude-assisted tender-response arrangement runs well, but it depends on adjustments that the one person who built it makes by hand each time and has never written down. What is the greatest risk?
+## 614. A Claude-assisted tender-response arrangement runs well, but it depends on adjustments that the one person who built it makes by hand each time and has never written down. What is the greatest risk?
 
 ### A) The manual adjustments may take that person longer as tender volumes continue to increase.
 
@@ -11496,7 +11352,7 @@ Difficulty explaining the benefits could cost future funding, which matters. It 
 
 Correct. The working design lives in one person's head, so leave, illness or a change of role removes the capability entirely and leaves no way to reconstruct it. An arrangement that cannot be handed over has not really been designed, only performed.
 
-## 623. A project lead notices that three colleagues each re-explain the same programme background to Claude every week in their own chats. What should she do first?
+## 615. A project lead notices that three colleagues each re-explain the same programme background to Claude every week in their own chats. What should she do first?
 
 ### A) Ask each colleague to summarise their chats weekly and circulate those summaries by email.
 
@@ -11514,7 +11370,7 @@ Incorrect. A chat does not carry context to colleagues' conversations; shared ba
 
 Correct. Before choosing where to put shared context, the team needs to agree what that context actually is. A single reference set is what any later Project or hand-off will be built from.
 
-## 624. A school communications officer needs a short newsletter item about a new pick-up procedure. Which request is most likely to produce copy she can publish after light editing?
+## 616. A school communications officer needs a short newsletter item about a new pick-up procedure. Which request is most likely to produce copy she can publish after light editing?
 
 ### A) Write a short, engaging newsletter item announcing the change to the new school pick-up procedure that starts next term.
 
@@ -11532,7 +11388,7 @@ Asking for a summary of a procedure that has not been provided leaves the substa
 
 Clear and friendly describe a feeling rather than a specification, and with no procedure supplied the details of the change have to be invented.
 
-## 625. A new team member asks how the Claude model tiers actually differ from one another in everyday use. Which two statements are accurate? Select two.(Select 2)
+## 617. A new team member asks how the Claude model tiers actually differ from one another in everyday use. Which two statements are accurate? Select two.(Select 2)
 
 ### A) The deepest tier suits genuinely hard problems, and it consumes meaningfully more allowance. **(correct)**
 
@@ -11554,7 +11410,7 @@ Correct. The middle tier is positioned as the fast, capable default that handles
 
 Incorrect. A vague answer usually signals an under-specified prompt, and a deeper tier cannot supply context that was never given.
 
-## 626. An internal FAQ drafted with help from a project is about to be published to all staff. Which maintenance step matters most before it goes out?
+## 618. An internal FAQ drafted with help from a project is about to be published to all staff. Which maintenance step matters most before it goes out?
 
 ### A) Confirm the FAQ is long enough to cover every question the team has ever received from staff.
 
@@ -11572,7 +11428,7 @@ A self-review cannot detect that the underlying uploaded source was out of date.
 
 Scheduled republication does not stop the first version going out with wrong answers.
 
-## 627. A support engineer asks Claude to summarize a technical paper and include supporting references. The response includes a citation to a journal article whose title and authors do not appear in the source document or in any database the engineer can find. What does this response demonstrate?
+## 619. A support engineer asks Claude to summarize a technical paper and include supporting references. The response includes a citation to a journal article whose title and authors do not appear in the source document or in any database the engineer can find. What does this response demonstrate?
 
 ### A) A hallucination, since Claude fabricated a citation with no basis in any verifiable source **(correct)**
 
@@ -11590,7 +11446,7 @@ Incorrect. Bias involves skewed treatment of topics, groups, or viewpoints, not 
 
 Incorrect. Inconsistency refers to conflicting statements within or across responses, not a fabricated fact that never existed.
 
-## 628. In an earlier stage a bid team agreed three criteria for evaluating partner organisations. They now start the scoring stage in a fresh conversation. What should they include in the scoring request?
+## 620. In an earlier stage a bid team agreed three criteria for evaluating partner organisations. They now start the scoring stage in a fresh conversation. What should they include in the scoring request?
 
 ### A) A note that criteria were agreed earlier, and a request that Claude apply the same ones it used in that stage.
 
@@ -11608,7 +11464,7 @@ Regenerating criteria reopens a decision the team already made, and comparing tw
 
 Correct. A new conversation starts with nothing from the previous stage, so anything the next step depends on has to be carried across explicitly. Restating the criteria and supplying the partner information makes the scoring reproducible and traceable.
 
-## 629. A prompt asks Claude to solve multi-step word problems, but final answers are frequently arithmetically wrong even though the described approach sounds reasonable. Which change is most likely to reduce these errors?
+## 621. A prompt asks Claude to solve multi-step word problems, but final answers are frequently arithmetically wrong even though the described approach sounds reasonable. Which change is most likely to reduce these errors?
 
 ### A) Shorten the word problem's wording considerably so there is simply much less text overall for Claude to process carefully before it answers.
 
@@ -11626,7 +11482,7 @@ Correct. Encouraging step-by-step reasoning (chain-of-thought), with structured 
 
 Incorrect. Removing the reasoning step is the opposite of the documented fix; skipping intermediate steps tends to increase arithmetic errors on multi-step problems.
 
-## 630. A researcher wants to use Claude to synthesize findings from multiple academic papers. Which workflow is most effective for leveraging Claude's capabilities?
+## 622. A researcher wants to use Claude to synthesize findings from multiple academic papers. Which workflow is most effective for leveraging Claude's capabilities?
 
 ### A) Ask Claude to rank all papers by citation count, then perform a thorough analysis and synthesis of only the top three, ignoring the rest.
 
@@ -11644,7 +11500,7 @@ Incorrect. Asking for a bullet list of interesting quotes without thematic group
 
 Correct. Extracting key findings from each paper individually ensures reliable source-level capture before synthesis. Comparing and contrasting those findings, then requesting a gap analysis, yields a structured, comprehensive synthesis that leverages Claude's analytical strengths.
 
-## 631. A coordinator needs a list of thirty training bookings from Claude in a form she can sort and filter in her spreadsheet. Which output should she ask for?
+## 623. A coordinator needs a list of thirty training bookings from Claude in a form she can sort and filter in her spreadsheet. Which output should she ask for?
 
 ### A) A set of paragraphs, one for each booking, describing its details in full and readable prose.
 
@@ -11662,7 +11518,25 @@ Incorrect. A narrative cannot be sorted or filtered, and it compresses away the 
 
 Correct. Structured, tabular output maps directly onto a spreadsheet, so each booking stays a separate record with fields she can sort and filter.
 
-## 632. A team has revised its Claude-assisted reporting arrangement four times in two months. The latest version is worse for certain reports, and nobody can work out which change caused it. What practice would have helped most?
+## 624. Objections to a Claude-assisted arrangement come mostly from colleagues who have not tried it themselves. What is the most appropriate response?
+
+### A) Have some of them run it on their own real work and then gather their views **(correct)**
+
+Correct. Feedback based on real use is the only kind that can be acted on, and it converts an argument about expectations into evidence about results.
+
+### B) Discount the objections, since only current users can comment on the results
+
+Dismissing non-users ignores concerns that may be well founded and hardens the opposition.
+
+### C) Drop the arrangement, because adoption will fail without their support first
+
+Abandoning the arrangement over untested objections discards a change that may be working well.
+
+### D) Send them the strongest outputs the team produced during its trial fortnight
+
+Showing a curated set of best outputs invites the reasonable suspicion that it is not representative.
+
+## 625. A team has revised its Claude-assisted reporting arrangement four times in two months. The latest version is worse for certain reports, and nobody can work out which change caused it. What practice would have helped most?
 
 ### A) Testing each revision on a larger sample of reports before it replaced the earlier version.
 
@@ -11680,7 +11554,7 @@ Slowing the pace of change reduces how often revisions collide, but four undocum
 
 Correct. Iteration only compounds if each change is traceable. A short record of what was altered and why lets the team match the regression to the revision that caused it and roll back precisely instead of guessing.
 
-## 633. A benefits team proposes letting Claude decide which employee insurance claims are denied, with staff spot-checking only a sample each month. What is the greatest concern?
+## 626. A benefits team proposes letting Claude decide which employee insurance claims are denied, with staff spot-checking only a sample each month. What is the greatest concern?
 
 ### A) Claims processing is too repetitive a task for Claude, so the team would see no real time saving.
 
@@ -11698,7 +11572,7 @@ Correct. Decisions about entitlements need a person answerable for every case, n
 
 Sampling is cheaper than full review; the concern is accountability, not cost.
 
-## 634. A communications assistant receives an answer containing a clearly incorrect statement about her organisation. She corrects her own draft in a follow-up message, and also wants the problem itself recorded rather than just worked around. What should she do?
+## 627. A communications assistant receives an answer containing a clearly incorrect statement about her organisation. She corrects her own draft in a follow-up message, and also wants the problem itself recorded rather than just worked around. What should she do?
 
 ### A) Add a line to the conversation noting that the earlier statement was wrong, so the correction sits in the chat history.
 
@@ -11716,7 +11590,7 @@ Emphatic rewording is a weak remedy and addresses only her future prompts. It ne
 
 Correct. The thumbs-down feedback control on the response is the mechanism provided for flagging an incorrect or misleading answer, and it complements, rather than replaces, correcting the draft she is working on.
 
-## 635. A client asks a project lead to confirm in writing that material shared during the engagement will not be used to train Anthropic's models. What is the appropriate first step before he answers?
+## 628. A client asks a project lead to confirm in writing that material shared during the engagement will not be used to train Anthropic's models. What is the appropriate first step before he answers?
 
 ### A) Confirm which Claude plan the engagement's work is actually being carried out on. **(correct)**
 
@@ -11734,43 +11608,7 @@ This is too broad to be true. It ignores the difference between commercial and c
 
 Those instructions cover personal accounts only. Sending them implies the engagement runs on consumer plans, which he has not established and which may misrepresent the arrangement.
 
-## 636. Explanation
-
-### A) The mark given to one script may vary slightly if the same script is submitted a second time.
-
-Small variation between runs is worth knowing about, but consistent unfairness is the greater harm.
-
-### B) Setting the marking up may take the assessors longer than they expected when they agreed to it.
-
-A slower start is an ordinary project cost, not a harm to the candidates being assessed.
-
-### C) Assessors may gradually lose their familiarity with the assessment once the marking is done for them.
-
-Some loss of familiarity is a real cost, but it does not change who passes and who does not.
-
-### D) Candidates may be marked down for how they happen to write, with no way for them to challenge it. **(correct)**
-
-Correct. This is a decision about people's qualifications; patterns in how the marking treats certain writing styles produce unfair outcomes, and nobody is positioned to notice or contest them.
-
-## 637. Explanation
-
-### A) It is acceptable because agentic use is encouraged without oversight requirements in the policy
-
-Incorrect. Agentic use must still comply with the full Usage Policy, and unsupervised high-stakes actions are not exempted from oversight expectations.
-
-### B) None, as long as the agent uses the Claude API rather than the consumer chat product
-
-Incorrect. The oversight concern applies regardless of whether the integration uses the API or consumer product; both are subject to the same responsible-use principles.
-
-### C) None, unless the agent is built using a third-party framework instead of Anthropic's own official tools
-
-Incorrect. The choice of framework does not change the underlying risk of removing human oversight from consequential actions.
-
-### D) It removes human oversight from hard-to-reverse actions, risking harm before anyone can intervene **(correct)**
-
-Correct. Granting an agent unsupervised authority over irreversible, high-impact actions removes the human oversight needed to catch and correct model errors before they cause real harm.
-
-## 638. A school office wants to bring Claude into its existing parental-enquiry workflow. Which sequence of steps is correct?
+## 629. A school office wants to bring Claude into its existing parental-enquiry workflow. Which sequence of steps is correct?
 
 ### A) Map the workflow as it runs now; run it alongside the old way; choose one step to hand over; compare the two and then decide
 
@@ -11788,7 +11626,7 @@ Running and comparing before the workflow is understood produces a result nobody
 
 Correct. Map what exists, choose one step, run the new way in parallel so nothing is lost, then compare before committing. Parallel running is what makes the comparison safe.
 
-## 639. An operations team must summarise several thousand short product blurbs every night, and the summaries get only a light human check. Which two factors should drive the tier choice? Select two.
+## 630. An operations team must summarise several thousand short product blurbs every night, and the summaries get only a light human check. Which two factors should drive the tier choice? Select two.
 
 ### A) How long each finished summary turns out to be, because length is what separates the tiers.
 
@@ -11810,7 +11648,7 @@ Incorrect. Availability is not the question; suitability for the task on cost, s
 
 Correct. Thousands of items a night makes speed per item a genuine constraint, which is a core input to tier choice.
 
-## 640. An analyst must deliver a carefully reasoned briefing by the end of the day and has limited allowance left. Which sequence of steps is correct?
+## 631. An analyst must deliver a carefully reasoned briefing by the end of the day and has limited allowance left. Which sequence of steps is correct?
 
 ### A) Check it against the brief; cut the scope to what the briefing needs; run that scope on the deepest tier; expand it if time allows.
 
@@ -11828,7 +11666,7 @@ Incorrect. Running the full scope on the most expensive tier first spends the co
 
 Incorrect. Expanding the scope before it has been produced undoes the trimming that made the deeper tier affordable.
 
-## 641. A brand team is running a brainstorming session for a new ad campaign and wants Claude to keep generating fresh concepts rather than settling on the first workable idea. Which instruction best supports this goal?
+## 632. A brand team is running a brainstorming session for a new ad campaign and wants Claude to keep generating fresh concepts rather than settling on the first workable idea. Which instruction best supports this goal?
 
 ### A) Ask Claude to keep generating distinct concepts after producing a workable one **(correct)**
 
@@ -11846,7 +11684,7 @@ Incorrect. Stopping at the first workable concept defeats the purpose of a brain
 
 Incorrect. Elaborating only on the first concept narrows the session into refining one idea instead of generating a variety of new ones.
 
-## 642. Which task is most aligned with analyzing requirements and use cases for a time management application?
+## 633. Which task is most aligned with analyzing requirements and use cases for a time management application?
 
 ### A) Ask Claude to start developing the software code for the time management application.
 
@@ -11864,7 +11702,7 @@ Incorrect. Providing a formal definition and explanation of key concepts offers 
 
 Incorrect. Creating a marketing plan with user personas is a marketing and go-to-market activity, not a step in analyzing requirements and use cases. While it may later inform promotion, it does not help define the core functionality or technical requirements of the application.
 
-## 643. A hospital operations lead proposes letting Claude autonomously approve treatment plans without any clinician sign-off, citing faster patient throughput. What is the most appropriate response to this proposal?
+## 634. A hospital operations lead proposes letting Claude autonomously approve treatment plans without any clinician sign-off, citing faster patient throughput. What is the most appropriate response to this proposal?
 
 ### A) Approve the proposal as written, since faster throughput cuts wait times and Claude's output is reliable enough for sign-off, based on internal testing.
 
@@ -11882,25 +11720,7 @@ Correct. High-stakes medical decisions require a human expert in the loop; Claud
 
 Incorrect. Reviewing treatment plans only once per quarter leaves the vast majority of decisions unsupervised for extended periods, failing to address the fundamental safety requirement of consistent clinician oversight.
 
-## 644. Explanation
-
-### A) It is high-risk only if the summaries are shared with insurers for reimbursement purposes
-
-Incorrect. Insurance sharing is a separate concern; the high-risk designation for healthcare applies regardless of downstream billing use.
-
-### B) It is high-risk solely because telehealth companies typically operate across state lines
-
-Incorrect. Cross-state operation is not the basis for the high-risk designation; the healthcare subject matter itself is.
-
-### C) Healthcare's public welfare implications mean the safeguards apply to the summary itself, too **(correct)**
-
-Correct. Healthcare is one of the categories explicitly designated high-risk under the Usage Policy due to public welfare implications, so review and disclosure safeguards apply to AI-assisted content that feeds into care decisions.
-
-### D) It does not count as high-risk, since only the physician's final diagnosis is subject to the policy
-
-Incorrect. The safeguards apply to AI-assisted content used in the healthcare workflow, not only to the final decision point.
-
-## 645. A manager asks Claude to pull figures from several uploaded reports into one table and plans to paste it straight into a board deck. What is the greatest risk?
+## 635. A manager asks Claude to pull figures from several uploaded reports into one table and plans to paste it straight into a board deck. What is the greatest risk?
 
 ### A) A tidy table hides which report each number came from and which ones were inferred rather than read. **(correct)**
 
@@ -11918,7 +11738,7 @@ Incorrect. Too much detail is an editing problem, and it is easily fixed once so
 
 Incorrect. The cost of producing the table is minor compared with a board decision resting on untraceable figures.
 
-## 646. A user has iterated on a code artifact through four rounds of edits and now decides the second version was actually the best one. How can the user return to that earlier version?
+## 636. A user has iterated on a code artifact through four rounds of edits and now decides the second version was actually the best one. How can the user return to that earlier version?
 
 ### A) Start an entirely new conversation, since artifact versions cannot be recovered once a newer version has been created
 
@@ -11936,7 +11756,7 @@ Incorrect. Prior versions are stored and browsable through the version selector,
 
 Incorrect. Artifacts retain their edit history, so manually retyping an earlier version is unnecessary.
 
-## 647. A customer-success manager writes one request asking Claude to summarise thirty support tickets, rank the underlying problems, draft an apology to the largest affected account, and outline a slide for the leadership review. Every part comes back thin. How should she restructure the request?
+## 637. A customer-success manager writes one request asking Claude to summarise thirty support tickets, rank the underlying problems, draft an apology to the largest affected account, and outline a slide for the leadership review. Every part comes back thin. How should she restructure the request?
 
 ### A) Keep the single request as it stands and attach the tickets as a file so that there is more to work from.
 
@@ -11954,7 +11774,25 @@ This multiplies the overloaded request rather than separating the work it is try
 
 Correct. The four parts are one analysis feeding three different deliverables; settling the analysis first gives each later step something solid and specific to work from.
 
-## 648. A team lead is setting up a new project that will be used for recurring quarterly business reviews. Which sequence of steps is correct?
+## 638. Half a team says a Claude-assisted drafting pilot saves hours; the other half says the drafts need so much editing they are not worth it. What should the pilot lead do first?
+
+### A) Extend the pilot by a month so that more people have the chance to form a settled view of it.
+
+More time produces more opinion without a shared standard to interpret any of it against.
+
+### B) Agree what an acceptable draft looks like, then gather specific examples from both groups. **(correct)**
+
+Correct. The two groups may be applying different standards to different work, so a shared definition of an acceptable draft, plus real examples, turns opinion into something that can be acted on.
+
+### C) Rewrite the shared instructions using the suggestions from the colleagues who were most critical.
+
+Rewriting to satisfy the critics assumes their cases are representative, which nobody has checked.
+
+### D) Adopt the workflow for the group that likes it and withdraw it from the group that does not.
+
+Splitting the group accepts the disagreement without ever discovering what caused it.
+
+## 639. A team lead is setting up a new project that will be used for recurring quarterly business reviews. Which sequence of steps is correct?
 
 ### A) Write the instructions; run a typical request; upload the reference documents; create the project and name its purpose.
 
@@ -11972,7 +11810,7 @@ Documents cannot be uploaded into a project that has not been created yet.
 
 The setup is tested before any part of it exists.
 
-## 649. A department is picking which parts of its work to hand to Claude first. Which two tasks are the stronger candidates for that first handover? Select two.
+## 640. A department is picking which parts of its work to hand to Claude first. Which two tasks are the stronger candidates for that first handover? Select two.
 
 ### A) Approving contract terms for the company without any lawyer reviewing what was agreed.
 
@@ -11994,43 +11832,7 @@ Incorrect. Promotion decisions affect people's livelihoods and need human accoun
 
 Correct. High-volume, well-specified reformatting is delegable precisely because the standard is clear and the output is checkable.
 
-## 650. Explanation
-
-### A) Ask Claude to check its own report for errors before it hands anything over
-
-Self-checking against an unstated period cannot detect that the wrong period was used.
-
-### B) Say which reporting period the draft must cover, in the request itself **(correct)**
-
-Correct. The fault is an unstated requirement, so the adjustment belongs in the request. Stating the period is what stops the same error recurring on every future report.
-
-### C) Ask for a more formal register so the report reads as more authoritative
-
-Register was never the problem; the report already reads well and would simply be wrong more formally.
-
-### D) Ask for a shorter report so that errors are easier for a reviewer to spot
-
-A shorter report makes the error easier to catch but does nothing to stop it being made.
-
-## 651. Explanation
-
-### A) Route every ticket to a larger model on the assumption that added model capacity will infer the missing category definitions.
-
-Incorrect. Swapping models does not resolve ambiguity in the instructions themselves; an underspecified prompt will still under perform on a larger model.
-
-### B) Lower the temperature parameter to zero so sampling becomes deterministic and the same ticket always returns the same category.
-
-Incorrect. Temperature affects sampling randomness, not whether the model understands what categories exist or how to choose between them; it does not address an underspecified prompt.
-
-### C) Have a reviewer manually relabel any ticket that looks miscategorized before the ticket reaches a customer-facing queue.
-
-Incorrect. Manual relabeling is a workaround applied after generation, not a fix to the prompt causing the inconsistency.
-
-### D) Rewrite the prompt to list the exact categories, the desired output format, and the criteria for choosing between them. **(correct)**
-
-Correct. Claude responds well to clear, explicit instructions; a vague one-line prompt lacking the category list, output format, and selection criteria is the classic underperformance pattern, and the documented fix is to be specific about desired output and constraints.
-
-## 652. An operations coordinator notices a teammate pasting spreadsheets of customer names and order histories into a personal Claude account, even though the company provides a managed Claude for Work workspace. What should the coordinator do first?
+## 641. An operations coordinator notices a teammate pasting spreadsheets of customer names and order histories into a personal Claude account, even though the company provides a managed Claude for Work workspace. What should the coordinator do first?
 
 ### A) Ask the teammate to delete those conversations, and treat the matter as closed once deletion is confirmed.
 
@@ -12048,7 +11850,7 @@ Waiting leaves an active exposure unreported and makes the eventual review harde
 
 Correct. Customer data has already left the approved environment, and the policy's escalation path exists precisely so this is assessed by the people accountable for it.
 
-## 653. A team manager wants to change how his team uses Claude, in a way the team's current written standard does not allow. In which order should these steps be taken?
+## 642. A team manager wants to change how his team uses Claude, in a way the team's current written standard does not allow. In which order should these steps be taken?
 
 ### A) Write down the proposed change and the data it would involve; update the written standard to match the decision; brief the team on the updated standard; get the policy owner's decision on it.
 
@@ -12066,7 +11868,7 @@ Correct. A written proposal naming the change and the data involved is what the 
 
 The team is briefed on the current standard before anything has changed, so the briefing is out of date as soon as the standard is rewritten, and the update only lands after they have already been informed.
 
-## 654. A colleague proposes running every request on two different tiers and comparing the two answers each time. What is the most reasonable assessment?
+## 643. A colleague proposes running every request on two different tiers and comparing the two answers each time. What is the most reasonable assessment?
 
 ### A) It is wasteful, because the two tiers will always return answers that are effectively identical.
 
@@ -12084,7 +11886,7 @@ Correct. Comparing tiers is worth doing on a representative sample to settle the
 
 Incorrect. Two answers that agree can both be wrong, so this buys far less assurance than it costs.
 
-## 655. A marketing associate's project instructions say "keep it short", yet the drafts Claude produces are still far longer than the team wants. What should the associate do first?
+## 644. A marketing associate's project instructions say "keep it short", yet the drafts Claude produces are still far longer than the team wants. What should the associate do first?
 
 ### A) Replace the vague rule with a specific limit, such as a stated word count and a section structure. **(correct)**
 
@@ -12102,7 +11904,7 @@ Emphasis does not add the missing information about how short is short enough.
 
 Moving a behaviour rule into reference material makes it less likely to shape every answer, not more.
 
-## 656. Reviewing a backlog of intake forms, an analyst notices that most entries name a solution rather than a need, for example "we need a dashboard." How can Claude best help with this backlog?
+## 645. Reviewing a backlog of intake forms, an analyst notices that most entries name a solution rather than a need, for example "we need a dashboard." How can Claude best help with this backlog?
 
 ### A) Ask Claude to design the dashboard described in each entry so submitters can confirm what they wanted.
 
@@ -12120,7 +11922,7 @@ Counting entries by department produces a useful management view but leaves ever
 
 Correct. The analytical move is to convert stated solutions back into the outcomes behind them, which is language work Claude does well at volume. Flagging the entries where no outcome can be recovered tells the analyst exactly which submitters to go back to.
 
-## 657. A newsletter team produces about thirty short social posts each week and a person edits every one before it goes out. Which tier fits this work best?
+## 646. A newsletter team produces about thirty short social posts each week and a person edits every one before it goes out. Which tier fits this work best?
 
 ### A) A different tier for each post, chosen according to which social platform it is destined for.
 
@@ -12138,7 +11940,7 @@ Incorrect. The posts are short and human-edited, so the extra depth changes litt
 
 Incorrect. It would work, but it spends more allowance than thirty short, edited posts a week justify.
 
-## 658. A consultant has an hour to review a long research brief before sending it to a client. Which sequence should she follow?
+## 647. A consultant has an hour to review a long research brief before sending it to a client. Which sequence should she follow?
 
 ### A) Read the conclusion; identify the claims the conclusion rests on; check those claims; verify the supporting detail. **(correct)**
 
@@ -12156,7 +11958,7 @@ The claims a conclusion rests on cannot be identified before the conclusion has 
 
 Starting on supporting detail spends the scarce hour on material that may not matter, and the conclusion is read only after that time is gone.
 
-## 659. A stakeholder asks the solutions architect to define, in plain terms for a non-technical audience, what it means when Claude "hallucinates" during a research summarization task. Which explanation is most accurate?
+## 648. A stakeholder asks the solutions architect to define, in plain terms for a non-technical audience, what it means when Claude "hallucinates" during a research summarization task. Which explanation is most accurate?
 
 ### A) It means the input document was corrupted, containing garbled or missing sections, which is the only possible reason that factual errors could appear in a summary.
 
@@ -12174,7 +11976,25 @@ Incorrect. Claude does not detect hallucinations as technical errors and halt re
 
 Incorrect. Claude does not intentionally insert false information as a test; hallucinations are unintended and arise from the model's generation process. The model has no awareness or intent behind its errors.
 
-## 660. A product manager is deciding whether onboarding guides, style docs, and roadmap notes for three unrelated products should live in one shared project or in three separate projects. Which approach best matches how Claude Projects are intended to be used?
+## 649. An operations lead pastes the same thirty-page service handbook into a new conversation every time a query about it comes in. What is the most effective first change?
+
+### A) Paste only the two or three sections that appear most likely to be relevant to each query.
+
+Choosing sections by hand each time re-introduces the effort and risks omitting the relevant part.
+
+### B) Put the handbook into a project's knowledge so every chat in that project can draw on it. **(correct)**
+
+Correct. Background material that every conversation needs belongs in project knowledge, where it is available to each chat without being supplied again.
+
+### C) Have Claude summarise the handbook once, then paste that summary at the start of each chat.
+
+A summary loses the detail that specific queries turn on, so answers become less reliable.
+
+### D) Keep one very long conversation open and ask every handbook query inside that conversation.
+
+One ever-growing conversation eventually loses the thread and consumes more of the allowance.
+
+## 650. A product manager is deciding whether onboarding guides, style docs, and roadmap notes for three unrelated products should live in one shared project or in three separate projects. Which approach best matches how Claude Projects are intended to be used?
 
 ### A) Store the documents outside any project and paste the relevant ones into each new chat manually
 
@@ -12192,7 +12012,7 @@ Incorrect. Merging unrelated products into one project would mix contexts, worki
 
 Correct. Projects are designed as self-contained workspaces with their own chat histories and knowledge bases, so organizing by unrelated product keeps context focused and avoids cross-contamination.
 
-## 661. A finance manager is running a Cowork task that will reorganise files and send messages on her behalf. Which approach best matches sound practice for work that has real consequences?
+## 651. A finance manager is running a Cowork task that will reorganise files and send messages on her behalf. Which approach best matches sound practice for work that has real consequences?
 
 ### A) Stay close and approve the actions that send or change things, reviewing what Claude does. **(correct)**
 
@@ -12210,7 +12030,7 @@ Blanket approval at the start grants permission for actions nobody has seen yet,
 
 Running unattended overnight maximises the time between a mistake and its discovery. Recipients will have read the messages long before anyone looks at what happened.
 
-## 662. A user edits a Google Doc directly in Drive after Claude referenced it earlier in a conversation, then asks a follow-up question about the same document. What should the user expect?
+## 652. A user edits a Google Doc directly in Drive after Claude referenced it earlier in a conversation, then asks a follow-up question about the same document. What should the user expect?
 
 ### A) The user must re-upload the document as a new file for changes to appear.
 
@@ -12228,7 +12048,7 @@ Correct. Documents accessed through the Drive connector sync automatically with 
 
 Incorrect. Generating a new share link is not required, since syncing happens automatically for the existing reference.
 
-## 663. A department is preparing to pilot Claude on a workflow that touches customer records. Which sequence of steps is correct?
+## 653. A department is preparing to pilot Claude on a workflow that touches customer records. Which sequence of steps is correct?
 
 ### A) Classify the data involved; check what policy allows for that class; choose the plan and settings; run a limited pilot. **(correct)**
 
@@ -12246,7 +12066,7 @@ The policy is checked for a data class that has not yet been determined.
 
 Configuration is chosen with no idea what the data requires, and the policy check comes last.
 
-## 664. A company's customer service chatbot tells a customer, 'Our support team works only from our London office.' Later in the same conversation, it tells the same customer, 'Our support team works only from our New York office.' Someone reviewing this transcript cannot check where the company's offices really are. Which issue does the transcript itself clearly show?
+## 654. A company's customer service chatbot tells a customer, 'Our support team works only from our London office.' Later in the same conversation, it tells the same customer, 'Our support team works only from our New York office.' Someone reviewing this transcript cannot check where the company's offices really are. Which issue does the transcript itself clearly show?
 
 ### A) The chatbot gave two answers that contradict each other. **(correct)**
 
@@ -12264,7 +12084,25 @@ Incorrect. Without the company's real office details the reviewer cannot confirm
 
 Incorrect. Neither reply cites or quotes any source, so there is no invented citation anywhere in the transcript. What is visible is that the two replies disagree with each other, not that supporting evidence was fabricated.
 
-## 665. A research team has delegated literature gathering and first-pass summarising to Claude. Which part of the work should most clearly stay with the researchers themselves?
+## 655. A coordinator has been running a Claude-assisted intake process successfully on his own and now wants twelve colleagues to use it. What should he do first?
+
+### A) Write down the steps that actually worked and run them on two recent real cases to confirm. **(correct)**
+
+Correct. What works in one person's hands is often partly undocumented habit; writing the steps down and re-running them on real cases is what turns it into something twelve people can repeat.
+
+### B) Ask Claude to write a guide from his description of the process and circulate that instead.
+
+A guide written from his description records what he thinks he does, not what actually worked.
+
+### C) Send colleagues the wording he uses, so each can adapt it to the way they prefer to work.
+
+Twelve personal adaptations produce twelve different results and no shared practice to improve.
+
+### D) Arrange training for the whole group so everyone starts using the process on the same day.
+
+Training people in a procedure that has not been written down or re-tested spreads the gaps as well.
+
+## 656. A research team has delegated literature gathering and first-pass summarising to Claude. Which part of the work should most clearly stay with the researchers themselves?
 
 ### A) Deciding the order in which the summarised sources appear in the final written research output.
 
@@ -12282,7 +12120,7 @@ How many sources to gather is a scoping rule that can be agreed once and applied
 
 File format is an administrative convention with no bearing on the quality of the conclusions. It is exactly the kind of low-stakes, easily specified choice that does not need senior attention.
 
-## 666. A market researcher needs Claude to incorporate current, real-world information published this week into a competitive-landscape summary, since this data postdates the model's training. Which capability should the researcher enable?
+## 657. A market researcher needs Claude to incorporate current, real-world information published this week into a competitive-landscape summary, since this data postdates the model's training. Which capability should the researcher enable?
 
 ### A) Structured outputs, which guarantees the response conforms to a defined JSON schema
 
@@ -12300,7 +12138,7 @@ Prompt caching lowers cost and latency for repeated context; it does not fetch n
 
 The memory tool persists information across sessions but does not retrieve fresh external web content.
 
-## 667. While checking a twelve-page report, an analyst finds that one section has used last year's headcount figures. Which sequence should she follow next?
+## 658. While checking a twelve-page report, an analyst finds that one section has used last year's headcount figures. Which sequence should she follow next?
 
 ### A) Correct that section; re-read the conclusions in light of the correction; look for the same error elsewhere; approve the report.
 
@@ -12318,7 +12156,7 @@ Re-reading conclusions before the figures are corrected judges them against numb
 
 Approval comes before any of the corrective work, so the report is signed off in the state that was already known to be wrong.
 
-## 668. A research analyst uses Claude to summarize long industry reports and extract key data points into a spreadsheet for internal use, then verifies the figures against the source documents before including them in a client deliverable. Is this an appropriate use of Claude?
+## 659. A research analyst uses Claude to summarize long industry reports and extract key data points into a spreadsheet for internal use, then verifies the figures against the source documents before including them in a client deliverable. Is this an appropriate use of Claude?
 
 ### A) No, because summarizing third-party reports without direct publisher permission always violates policy
 
@@ -12336,47 +12174,7 @@ Incorrect. Extracting structured data points from text, including into spreadshe
 
 Incorrect. Nothing in the Usage Policy bars verified, accurate extracted data from being used in a client deliverable; the analyst's verification step supports appropriate use.
 
-## 669. Explanation
-
-### A) Try the revision on two recent real cases; compare the results with the old output on those cases; update the shared project instructions; tell the team what changed and why. **(correct)**
-
-Correct. The revision is tested on real cases and compared against what it replaces before it becomes the shared default, and colleagues are told once the change is actually in place.
-
-### B) Update the shared project instructions; tell the team what changed and why; try the revision on two recent real cases; compare the results with the old output on those cases.
-
-Rolling the change out to everyone before testing it makes the whole team the experiment.
-
-### C) Compare the results with the old output on those cases; try the revision on two recent real cases; update the shared project instructions; tell the team what changed and why.
-
-Comparing results before producing them is not possible, so the ordering cannot work.
-
-### D) Tell the team what changed and why; update the shared project instructions; compare the results with the old output on those cases; try the revision on two recent real cases.
-
-Announcing a change before it exists, and testing it last, leaves colleagues acting on something unverified.
-
-## 670. Explanation
-
-### A) Paste in the actual agenda and speaker biographies rather than describing them loosely from memory. **(correct)**
-
-Correct. The output is generic because nothing event-specific was supplied; the source material has to go into the prompt.
-
-### B) Ask for ten different versions of the invitation and then simply pick whichever one happens to read best.
-
-Ten generic drafts are still generic, and the extra generations consume allowance for no real gain.
-
-### C) Send exactly the same request over again, but this time using the most capable model that is available.
-
-Reaching for a larger model does not supply the missing event detail, so the answer stays generic.
-
-### D) Add more emphasis to the request, telling Claude the invitation really has to be genuinely excellent.
-
-Emphasis adds no information; insisting on quality tells Claude nothing it did not already have.
-
-### E) State who the invitation is for, roughly how long it should be, and what the reader has to do. **(correct)**
-
-Correct on a separate axis: even with the details, audience, length and purpose have to be specified or the shape of the invitation is left to chance.
-
-## 671. A project lead has a single sentence from a director: "We need faster case handling." She wants to use Claude to turn this into a requirement set that goes to stakeholders for sign-off with no open questions left once it is drafted. Which sequence of steps is correct?
+## 660. A project lead has a single sentence from a director: "We need faster case handling." She wants to use Claude to turn this into a requirement set that goes to stakeholders for sign-off with no open questions left once it is drafted. Which sequence of steps is correct?
 
 ### A) List the open gaps; draft the requirement set; state the outcome and who is affected; take the gaps to stakeholders.
 
@@ -12394,7 +12192,7 @@ Incorrect. This option takes gaps to stakeholders in step one, before any gap ha
 
 Incorrect. The project lead wants a requirement set with no open questions left once it is drafted, so drafting cannot be the first step: nothing is known yet about the outcome, who is affected, or what is missing when this option's draft is written, and that draft is never revisited after the outcome is stated or the gaps are surfaced.
 
-## 672. A nonprofit organization wants to use AI-generated content to create emotional appeals for fundraising. Is this appropriate?
+## 661. A nonprofit organization wants to use AI-generated content to create emotional appeals for fundraising. Is this appropriate?
 
 ### A) No, AI‑generated fundraising content is inherently deceptive because it fabricates beneficiary stories.
 
@@ -12412,7 +12210,7 @@ Incorrect. Emotional appeals are not inherently manipulative; they are a common 
 
 Correct. AI-generated fundraising content can be appropriate if the beneficiary stories are truthful and accurately represent real events. Ethical use demands that the content not mislead donors or fabricate details, ensuring authenticity and transparency.
 
-## 673. A procurement lead has four supplier proposals and must recommend one to her director. Which sequence of stages should she work through with Claude?
+## 662. A procurement lead has four supplier proposals and must recommend one to her director. Which sequence of stages should she work through with Claude?
 
 ### A) Summarise each proposal against them; compare the summaries side by side; write the recommendation; agree the criteria that matter.
 
@@ -12430,7 +12228,7 @@ Writing the recommendation first turns every later stage into a search for suppo
 
 Correct. Criteria fix what counts as a good proposal, the per-proposal summaries then say the same things about each one, the comparison becomes like-for-like, and the recommendation follows from it.
 
-## 674. Within a single Claude Project, what is the functional difference between project instructions and the project knowledge base?
+## 663. Within a single Claude Project, what is the functional difference between project instructions and the project knowledge base?
 
 ### A) Project instructions define behavioral guidance like tone or role, while the knowledge base supplies reference files **(correct)**
 
@@ -12448,7 +12246,7 @@ Incorrect. Project instructions apply to every chat within the project, not just
 
 Incorrect. This reverses the roles; file uploads belong to the knowledge base, not the instructions field.
 
-## 675. A Team-plan owner shares a project organisation-wide so that more colleagues can benefit from the documents it contains. What is the greatest concern?
+## 664. A Team-plan owner shares a project organisation-wide so that more colleagues can benefit from the documents it contains. What is the greatest concern?
 
 ### A) Everyone in the organisation gains access to knowledge that may include restricted or confidential material. **(correct)**
 
@@ -12466,7 +12264,7 @@ The owner keeps their access when a project is shared more widely.
 
 Sharing does not strip a project's instructions.
 
-## 676. A finance shared-service team already has a working month-end checklist and wants to bring Claude into it without disrupting the close. What should they do first?
+## 665. A finance shared-service team already has a working month-end checklist and wants to bring Claude into it without disrupting the close. What should they do first?
 
 ### A) Pick one checklist step that is text-heavy and repetitive and try Claude there **(correct)**
 
@@ -12484,7 +12282,7 @@ Redesigning around the tool is the wrong move when the existing process works; i
 
 Uncoordinated individual use during a deadline-driven close produces inconsistent output and no learning the team can reuse.
 
-## 677. A team keeps arguing about whether Claude's drafts of their monthly service report are good enough, and each reviewer reaches a different verdict. What would most improve how they evaluate the drafts?
+## 666. A team keeps arguing about whether Claude's drafts of their monthly service report are good enough, and each reviewer reaches a different verdict. What would most improve how they evaluate the drafts?
 
 ### A) Asking for two drafts each month and adopting whichever of the two the reviewers prefer once they compare them.
 
@@ -12502,7 +12300,7 @@ Voting aggregates opinions formed on different criteria, so it produces a decisi
 
 Deferring to seniority settles arguments without making the standard explicit, so the same disagreement returns every month.
 
-## 678. A manufacturing engineer has a detailed transcript of a production process and wants to convert it into a Standard Operating Procedure (SOP) using Claude. Which approach best leverages Claude's capabilities to create an accurate, complete, and company-standard SOP?
+## 667. A manufacturing engineer has a detailed transcript of a production process and wants to convert it into a Standard Operating Procedure (SOP) using Claude. Which approach best leverages Claude's capabilities to create an accurate, complete, and company-standard SOP?
 
 ### A) Ask Claude to generate a generic manufacturing SOP, then insert specific details from the transcript into the template, relying on manual review to align steps with the process.
 
@@ -12520,7 +12318,7 @@ Correct. This method leverages Claude's capabilities by breaking the task into l
 
 Incorrect. Limiting Claude to only grammar and style checks underutilizes its ability to analyze the transcript, suggest organizational improvements, and ensure procedural completeness. Manual rewriting and structuring risk introducing errors or missing details that Claude could otherwise catch and enhance.
 
-## 679. An analyst asks Claude, without web search enabled, to describe the outcome of an event that occurred last week. Claude responds with a confident, detailed description. What should the analyst do with this response?
+## 668. An analyst asks Claude, without web search enabled, to describe the outcome of an event that occurred last week. Claude responds with a confident, detailed description. What should the analyst do with this response?
 
 ### A) Accept the description as accurate because Claude answered in a confident and detailed tone
 
@@ -12538,7 +12336,7 @@ Incorrect. Publishing unverified claims about a recent event risks spreading ina
 
 Incorrect. Repeating a question to the same model without new grounding data can simply reproduce the same unverified fabrication.
 
-## 680. A procurement officer needs a supplier comparison that must fit on one page and must not name any supplier outside the approved shortlist. Where do these two limits belong?
+## 669. A procurement officer needs a supplier comparison that must fit on one page and must not name any supplier outside the approved shortlist. Where do these two limits belong?
 
 ### A) After the first draft arrives, so the comparison is not narrowed before she has seen the full range of options.
 
@@ -12556,7 +12354,7 @@ Trimming to one page after the fact means deciding what to cut without the origi
 
 Splitting the limits leaves the harder one to manual editing, and removing an off-shortlist supplier from a comparison changes the surrounding analysis rather than a single line.
 
-## 681. A communications officer must publish a Claude-drafted market briefing on the company blog within the hour. Claude used web search to produce it, and every figure in the draft carries a citation. What is the appropriate first step before she publishes?
+## 670. A communications officer must publish a Claude-drafted market briefing on the company blog within the hour. Claude used web search to produce it, and every figure in the draft carries a citation. What is the appropriate first step before she publishes?
 
 ### A) Add a line at the foot of the briefing noting that it was prepared with the help of an AI assistant.
 
@@ -12574,7 +12372,7 @@ A self-reported confidence rating is not evidence. It can sound reassuring about
 
 Two runs can repeat the same error, so agreement between them is not confirmation. The sources are already cited and can be checked directly.
 
-## 682. One stage of a service review is described as 'look into how customers feel about our support'. It keeps returning broad material the team cannot act on. How should the stage be redefined?
+## 671. One stage of a service review is described as 'look into how customers feel about our support'. It keeps returning broad material the team cannot act on. How should the stage be redefined?
 
 ### A) As a stage answering one question, such as which support issues drive customers to contact the team twice. **(correct)**
 
@@ -12592,7 +12390,7 @@ Collecting more of the same material moves the filtering work onto the team with
 
 Widening the scope makes the output broader still, and the team already cannot act on what the narrower version returns.
 
-## 683. A manager has two Claude outputs in front of her: notes from an internal brainstorm, and a statement that will be sent to a regulator. What should determine how much verification each one receives?
+## 672. A manager has two Claude outputs in front of her: notes from an internal brainstorm, and a statement that will be sent to a regulator. What should determine how much verification each one receives?
 
 ### A) How long each took to produce, since a quickly generated output has had less care put into it.
 
@@ -12610,79 +12408,7 @@ Correct. Consequence and reversibility set the bar. Brainstorm notes are cheap t
 
 Incorrect. Tone is not a reliable indicator of accuracy, and the regulator's statement would need checking however confidently it reads.
 
-## 684. Explanation
-
-### A) Rephrase the request as a direct instruction to make the edit, such as telling Claude to change the function to improve its performance. **(correct)**
-
-Correct. Anthropic's guidance notes that phrasing like "can you suggest changes" leads Claude to provide suggestions rather than implement them; being explicit with a direct instruction, such as telling Claude to make the change, is the documented fix for getting Claude to take action.
-
-### B) Move the question into the system prompt instead of the user message, while keeping the exact same original suggestive wording as before.
-
-Incorrect. Moving the same suggestive wording to the system prompt does not change its meaning; the ambiguity about suggesting versus acting remains.
-
-### C) Send a follow-up message that just says "good suggestions" so that Claude infers approval to proceed with implementing them.
-
-Incorrect. A vague follow-up acknowledgment doesn't constitute an explicit instruction to implement changes and is not the documented technique for triggering action.
-
-### D) Increase the effort or thinking configuration considerably so Claude reasons for longer before answering the exact same phrasing.
-
-Incorrect. More reasoning effort affects how thoroughly Claude thinks through a response, not whether ambiguous suggestive phrasing gets interpreted as a request for action.
-
-## 685. A team lead on a Team plan wants a shared project whose instructions the whole team relies on. Which sequence of steps is correct?
-
-### A) Save them as project instructions; share the project; agree the rules with the team; collect colleague feedback.
-
-Writing the rules before the team has agreed them means the shared setup encodes one person's view.
-
-### B) Agree the rules with the team; save them as project instructions; share the project; collect colleague feedback. **(correct)**
-
-Correct. Agree, encode, distribute, then learn from real use by the people who now depend on it.
-
-### C) Collect colleague feedback; agree the rules with the team; share the project; save them as project instructions.
-
-Feedback is gathered before anything exists, and the instructions are saved only after sharing.
-
-### D) Share the project; collect colleague feedback; agree the rules with the team; save them as project instructions.
-
-Colleagues are asked to review a project that has no agreed direction in it yet.
-
-## 686. What is the best approach for using Claude to create a detailed timeline from a marketing campaign brief?
-
-### A) Provide the brief, specify the exact launch date, ask for a backward-scheduled timeline with dependencies and responsible teams, and request that Claude flag any unrealistic constraints. **(correct)**
-
-Correct. This approach anchors the timeline to the exact launch date, uses backward scheduling, and includes dependencies and responsible teams. Flagging unrealistic constraints allows for proactive adjustments, and grounding the plan in the provided brief ensures it is comprehensive and actionable. It fully leverages Claude for structured planning.
-
-### B) Tell Claude to create a timeline based on typical marketing best practices, specify a generic campaign structure, ask for a forward-scheduled plan with standard phases, and ignore any specific dates from the brief.
-
-Incorrect. Ignoring specific dates from the brief prevents the timeline from reflecting actual project constraints. A generic forward-scheduled plan based only on best practices lacks the necessary context to be actionable. Claude should incorporate the brief’s details to create a relevant and accurate timeline.
-
-### C) Use Claude to rewrite the brief as a press release, specify the dateline and boilerplate, ask for a narrative flow, and then extract a timeline from the generated release for the campaign's key phases.
-
-Incorrect. Rewriting the brief as a press release is an unnecessary transformation that doesn’t directly support timeline creation. Extracting a timeline from narrative prose risks losing key details and is less accurate than having Claude produce a structured schedule from the outset.
-
-### D) Instruct Claude to list all possible marketing activities, categorize them by phase, and output a sequential plan without specific dates, relying on the team to schedule execution using their own project management tools.
-
-Incorrect. Listing activities by phase without specific dates does not produce a workable timeline. Relying on the team to schedule execution later shifts critical planning decisions away from Claude, missing the opportunity to integrate temporal dependencies directly into the output.
-
-## 687. A hiring-assistant application uses Claude to write short candidate summaries. During review, evaluators notice that summaries for candidates from one demographic group consistently include more hedging language and fewer positive descriptors than summaries for equally qualified candidates from another group. What issue does this pattern represent?
-
-### A) An inconsistency, since the summaries use noticeably different sentence structures overall
-
-Incorrect. Varying sentence structure alone is not an inconsistency; the issue here is the systematic skew tied to group membership.
-
-### B) A bias, since responses are systematically skewed by a group attribute, not qualifications **(correct)**
-
-Correct. A systematic difference in tone or content correlated with a demographic group, rather than with actual qualifications, is the definition of bias in model output.
-
-### C) A hallucination, since Claude invented qualifications that the candidates do not actually have
-
-Incorrect. The scenario describes a skew in tone and word choice, not fabricated facts or invented credentials.
-
-### D) A context failure, since Claude appears to have ignored the resumes provided in the prompt
-
-Incorrect. The scenario does not indicate that resume content was ignored, only that similarly qualified candidates were described differently based on group.
-
-## 688. Explanation
+## 673. A fintech startup wants to use Claude to help loan officers draft explanations for credit decisions before those explanations are sent to applicants. Under Anthropic's Usage Policy, what must the company do to use Claude responsibly in this high-risk context?
 
 ### A) Add a disclaimer to the system prompt and skip further review, since the disclaimer satisfies the policy obligations
 
@@ -12700,7 +12426,79 @@ Correct. Financial services is a high-risk use case under the Usage Policy, requ
 
 Incorrect. Retroactive periodic audits are not a substitute for prior review of each decision by a qualified professional before it is disseminated.
 
-## 689. A team in a regulated industry is setting up a Claude Project to draft client onboarding letters. Which sequence best follows a typical organisational AI policy?
+## 674. A team lead on a Team plan wants a shared project whose instructions the whole team relies on. Which sequence of steps is correct?
+
+### A) Save them as project instructions; share the project; agree the rules with the team; collect colleague feedback.
+
+Writing the rules before the team has agreed them means the shared setup encodes one person's view.
+
+### B) Agree the rules with the team; save them as project instructions; share the project; collect colleague feedback. **(correct)**
+
+Correct. Agree, encode, distribute, then learn from real use by the people who now depend on it.
+
+### C) Collect colleague feedback; agree the rules with the team; share the project; save them as project instructions.
+
+Feedback is gathered before anything exists, and the instructions are saved only after sharing.
+
+### D) Share the project; collect colleague feedback; agree the rules with the team; save them as project instructions.
+
+Colleagues are asked to review a project that has no agreed direction in it yet.
+
+## 675. What is the best approach for using Claude to create a detailed timeline from a marketing campaign brief?
+
+### A) Provide the brief, specify the exact launch date, ask for a backward-scheduled timeline with dependencies and responsible teams, and request that Claude flag any unrealistic constraints. **(correct)**
+
+Correct. This approach anchors the timeline to the exact launch date, uses backward scheduling, and includes dependencies and responsible teams. Flagging unrealistic constraints allows for proactive adjustments, and grounding the plan in the provided brief ensures it is comprehensive and actionable. It fully leverages Claude for structured planning.
+
+### B) Tell Claude to create a timeline based on typical marketing best practices, specify a generic campaign structure, ask for a forward-scheduled plan with standard phases, and ignore any specific dates from the brief.
+
+Incorrect. Ignoring specific dates from the brief prevents the timeline from reflecting actual project constraints. A generic forward-scheduled plan based only on best practices lacks the necessary context to be actionable. Claude should incorporate the brief’s details to create a relevant and accurate timeline.
+
+### C) Use Claude to rewrite the brief as a press release, specify the dateline and boilerplate, ask for a narrative flow, and then extract a timeline from the generated release for the campaign's key phases.
+
+Incorrect. Rewriting the brief as a press release is an unnecessary transformation that doesn’t directly support timeline creation. Extracting a timeline from narrative prose risks losing key details and is less accurate than having Claude produce a structured schedule from the outset.
+
+### D) Instruct Claude to list all possible marketing activities, categorize them by phase, and output a sequential plan without specific dates, relying on the team to schedule execution using their own project management tools.
+
+Incorrect. Listing activities by phase without specific dates does not produce a workable timeline. Relying on the team to schedule execution later shifts critical planning decisions away from Claude, missing the opportunity to integrate temporal dependencies directly into the output.
+
+## 676. A prompt intended to elicit a plain, matter-of-fact answer instead produces a math-heavy explanation formatted with LaTeX-style notation, which breaks downstream rendering in the team's plain-text chat interface. What is the most direct fix?
+
+### A) Ask Claude to respond twice and then manually pick whichever version happens to avoid LaTeX notation on that particular occasion.
+
+Incorrect. Relying on chance across repeated generations is not a reliable or documented technique for controlling output formatting.
+
+### B) Add an explicit instruction to format the response in plain text only, avoiding LaTeX or markup, using standard characters for math. **(correct)**
+
+Correct. Anthropic notes that current models default to LaTeX for mathematical expressions, and documents an explicit instruction — requesting plain text only and specifying standard characters for math — as the fix for teams that prefer plain-text output.
+
+### C) Rephrase the question to avoid using any numbers, since numeric content is what actually triggers LaTeX formatting in responses.
+
+Incorrect. Avoiding numbers entirely isn't practical for many tasks and doesn't address the underlying formatting default; the fix is to specify the desired format, not avoid the topic.
+
+### D) Switch to a noticeably smaller model on the assumption that smaller models never default to LaTeX-style formatting for math at all whatsoever.
+
+Incorrect. LaTeX defaulting is not documented as being tied to model size, so switching models is not a reliable or targeted fix for this formatting issue.
+
+## 677. A hiring-assistant application uses Claude to write short candidate summaries. During review, evaluators notice that summaries for candidates from one demographic group consistently include more hedging language and fewer positive descriptors than summaries for equally qualified candidates from another group. What issue does this pattern represent?
+
+### A) An inconsistency, since the summaries use noticeably different sentence structures overall
+
+Incorrect. Varying sentence structure alone is not an inconsistency; the issue here is the systematic skew tied to group membership.
+
+### B) A bias, since responses are systematically skewed by a group attribute, not qualifications **(correct)**
+
+Correct. A systematic difference in tone or content correlated with a demographic group, rather than with actual qualifications, is the definition of bias in model output.
+
+### C) A hallucination, since Claude invented qualifications that the candidates do not actually have
+
+Incorrect. The scenario describes a skew in tone and word choice, not fabricated facts or invented credentials.
+
+### D) A context failure, since Claude appears to have ignored the resumes provided in the prompt
+
+Incorrect. The scenario does not indicate that resume content was ignored, only that similarly qualified candidates were described differently based on group.
+
+## 678. A team in a regulated industry is setting up a Claude Project to draft client onboarding letters. Which sequence best follows a typical organisational AI policy?
 
 ### A) Confirm the use case and data types are permitted; get the data owner's approval; upload the material and set project instructions; pilot with a named human reviewer. **(correct)**
 
@@ -12718,7 +12516,7 @@ Uploading first means the data is already in the workspace while the permission 
 
 Approval cannot be sought sensibly before the use case itself has been confirmed as permitted, and configuration still precedes that confirmation here.
 
-## 690. A colleague realises they pasted a confidential merger document into a chat on their personal Free-plan account. What should they do first?
+## 679. A colleague realises they pasted a confidential merger document into a chat on their personal Free-plan account. What should they do first?
 
 ### A) Delete the conversation and treat the matter as resolved without mentioning it to anyone else.
 
@@ -12736,43 +12534,7 @@ An assurance from within the conversation is not a record of containment.
 
 Correct. A confidentiality incident has to reach the people who can assess and contain it, and quickly.
 
-## 691. Explanation
-
-### A) Yes, journalism is a listed high-risk category requiring review and AI disclosure too **(correct)**
-
-Correct. Journalism is one of the categories the Usage Policy designates as high-risk, requiring a qualified professional to review AI-assisted content and disclosure of AI involvement before publication.
-
-### B) Yes, but only when the article specifically discusses Anthropic or its own products
-
-Incorrect. The requirement applies to journalism generally, not only to articles about Anthropic or its products.
-
-### C) No, because the review requirement applies only to direct financial transactions
-
-Incorrect. The human-in-the-loop requirement is not limited to financial transactions; it spans several public-welfare categories including journalism.
-
-### D) No, because journalism is a creative field fully exempt from the high-risk provisions
-
-Incorrect. Journalism is not exempt; it is specifically named alongside legal, healthcare, and financial use cases as requiring safeguards.
-
-## 692. Explanation
-
-### A) Treat the ranking as one input, review the applications herself, and record that she made the decision. **(correct)**
-
-Correct. A ranking drawn from writing style can disadvantage groups in ways no field names directly, so it may inform a decision about people but must not make it, and a person must own the outcome.
-
-### B) Accept the ranking but produce it a second time, and shortlist the candidates that appear on both lists.
-
-Agreement between two runs shows consistency, not fairness, and can simply repeat the same bias twice.
-
-### C) Use the ranking as the shortlist, then ask Claude to explain each position so the reasoning is on record.
-
-An explanation produced after the fact describes the ordering; it does not verify that the ordering was fair.
-
-### D) Remove the names from the letters first, then use the ranking directly without further human review.
-
-Removing names leaves plenty of signals that correlate with background, and it removes the human review as well.
-
-## 693. An operations analyst asked six specific questions about a supplier's performance and received one flowing summary in reply. She is about to forward it to her manager. What should she do first?
+## 680. An operations analyst asked six specific questions about a supplier's performance and received one flowing summary in reply. She is about to forward it to her manager. What should she do first?
 
 ### A) Forward it with a note asking her manager to flag anything that looks incomplete or unclear to him.
 
@@ -12790,7 +12552,7 @@ Shortening compresses a summary whose coverage has not yet been established, and
 
 Correct. Completeness is judged against what was asked, not against how the answer reads. A fluent summary can cover four of six questions and still feel finished, so checking question by question is what exposes the gap.
 
-## 694. A team moves its live pricing sheet into a project's knowledge so every chat in the project can use it, and then changes its prices two months later. What is the greatest risk?
+## 681. A team moves its live pricing sheet into a project's knowledge so every chat in the project can use it, and then changes its prices two months later. What is the greatest risk?
 
 ### A) The pricing sheet will be counted twice, once as knowledge and once in each conversation.
 
@@ -12808,7 +12570,7 @@ Incorrect. That is the expected scope of a project rather than a risk created by
 
 Incorrect. There is no such block, and framing this as an upload problem misses where the damage actually occurs.
 
-## 695. An operations manager has finished a long planning chat and expects the team to revisit the same topic every month. What is the best way to keep that context available?
+## 682. An operations manager has finished a long planning chat and expects the team to revisit the same topic every month. What is the best way to keep that context available?
 
 ### A) Rely on Claude recalling the earlier planning chat automatically whenever she opens a new conversation.
 
@@ -12826,7 +12588,7 @@ Incorrect. The transcript is mostly working discussion rather than durable fact,
 
 Correct. Persisting the durable output into project knowledge keeps the context available to every future chat without carrying months of transcript inside one conversation.
 
-## 696. An operations manager writes a prompt for a weekly incident summary that the executive team reads every Monday, and a partner firm receives the same summary. Which two elements should the prompt include to make the output usable without rework? Select two.
+## 683. An operations manager writes a prompt for a weekly incident summary that the executive team reads every Monday, and a partner firm receives the same summary. Which two elements should the prompt include to make the output usable without rework? Select two.
 
 ### A) A request that the summary be written so that it sounds authoritative and well informed.
 
@@ -12848,7 +12610,7 @@ Delegating the specification back to Claude is the opposite of describing intent
 
 Correct. Giving the reason behind a constraint lets Claude generalise it: knowing an external partner reads the summary, it will also handle account numbers and site names sensibly.
 
-## 697. A marketing manager needs to draft a persuasive email campaign to launch a new product. The email should capture attention, highlight benefits, and include a call to action. Which prompting approach is best?
+## 684. A marketing manager needs to draft a persuasive email campaign to launch a new product. The email should capture attention, highlight benefits, and include a call to action. Which prompting approach is best?
 
 ### A) Prompt Claude to draft an email announcing the new product, leaving the structure and content entirely to the model's discretion without providing any specific guidelines on audience, tone, or key product benefits to highlight.
 
@@ -12866,7 +12628,7 @@ Correct. This prompt gives step-by-step guidance tailored to marketing email cre
 
 Incorrect. While producing multiple drafts can be useful for exploration, it is less efficient for a single drafting task. Option C provides a more direct and structured method to get a well-crafted email in one go.
 
-## 698. A department switches all fifty of its staff to a redesigned, Claude-assisted case-handling process on the same Monday morning, with no trial group kept back. What is the greatest risk?
+## 685. A department switches all fifty of its staff to a redesigned, Claude-assisted case-handling process on the same Monday morning, with no trial group kept back. What is the greatest risk?
 
 ### A) The department's usage may rise sharply in the first week as fifty people start using Claude.
 
@@ -12884,7 +12646,7 @@ Correct. A full switch removes both safeguards at once: every case is exposed to
 
 Straining the two designers is a real resourcing problem during the first week. It is a delivery pressure rather than the reason a simultaneous switch is dangerous.
 
-## 699. A council's improvement team has four candidate use cases and can take only one forward this quarter. Which is the soundest first candidate for Claude?
+## 686. A council's improvement team has four candidate use cases and can take only one forward this quarter. Which is the soundest first candidate for Claude?
 
 ### A) Setting the annual budget allocation across all six of the council's neighbourhood teams
 
@@ -12902,7 +12664,25 @@ Correct. It is repetitive, text-heavy and well specified, the output is reviewab
 
 Sending a refusal to an applicant is an outward-facing, effectively irreversible act, which is precisely what should not be handed over unreviewed.
 
-## 700. An operations manager is preparing to let her team use Claude-drafted replies across a busy customer queue. She has not yet decided who checks what. What should she do first?
+## 687. A support team's Claude Project answers policy questions from a handbook uploaded eleven months ago. The handbook was revised twice since, but nobody updated the project. Answers still read as confident and well written. What is the greatest risk here?
+
+### A) The team acts on withdrawn policy because the answers read as authoritative and nothing flags the source as stale **(correct)**
+
+Correct. A stale knowledge source is the hardest failure to spot: the output is fluent and confident, so nothing prompts anyone to check, and no amount of rewording the prompt will fix an answer grounded in a withdrawn document.
+
+### B) The project will refuse to answer any policy question at all until somebody replaces the handbook with its current revision
+
+The project answers from whatever it holds; it does not detect a revision elsewhere and withhold responses.
+
+### C) Claude will notice the handbook is outdated and will say so before answering, which slows the team down on every request
+
+Claude has no way to know a newer revision exists outside the project, so it cannot warn the team about it.
+
+### D) The uploaded handbook will be removed automatically once it passes a year, leaving the project with no source to draw on
+
+Uploaded project knowledge does not expire on a timer; it stays until someone changes it.
+
+## 688. An operations manager is preparing to let her team use Claude-drafted replies across a busy customer queue. She has not yet decided who checks what. What should she do first?
 
 ### A) Send the replies out and collect complaints, so the team learns which cases were handled badly.
 
@@ -12920,7 +12700,7 @@ Incorrect. Double-reading everything is expensive and unfocused, and it is a dec
 
 Correct. Review only works against a standard. Naming what a correct reply contains and which failures would hurt is what tells the team where scrutiny is needed and where it is not.
 
-## 701. A teacher reaches the length limit in a chat while working through a stack of graded feedback. What is the appropriate response?
+## 689. A teacher reaches the length limit in a chat while working through a stack of graded feedback. What is the appropriate response?
 
 ### A) Start a new chat and carry forward only the material and decisions the remaining work actually needs. **(correct)**
 
@@ -12938,7 +12718,7 @@ Incorrect. Length limits do not reset on a timer; that is how usage limits behav
 
 Incorrect. Shorter future replies slow the fill rate slightly but cannot recover space already occupied by earlier messages.
 
-## 702. An analyst's first draft from Claude is vague, and she wonders whether she should move up to a deeper-reasoning tier to fix it. Which two responses are sound? Select two.
+## 690. An analyst's first draft from Claude is vague, and she wonders whether she should move up to a deeper-reasoning tier to fix it. Which two responses are sound? Select two.
 
 ### A) Escalate to the deepest tier right away, since depth is the usual cause of a weak first draft.
 
@@ -12960,7 +12740,7 @@ Correct. Escalating is the right move when reasoning depth is genuinely the bind
 
 Incorrect. Running the same weak prompt three times multiplies the cost and still leaves the original specification problem in place.
 
-## 703. A Claude-assisted case-summary way of working produces good results for the analyst who designed it, but two colleagues get noticeably worse results from the same written instructions. What should the designer do first?
+## 691. A Claude-assisted case-summary way of working produces good results for the analyst who designed it, but two colleagues get noticeably worse results from the same written instructions. What should the designer do first?
 
 ### A) Add examples of good summaries to the instructions so the expected standard is unmistakable.
 
@@ -12978,7 +12758,7 @@ Copying the designer's wording exactly hides the difference rather than explaini
 
 Correct. The same instructions producing different results means the difference is in what people actually do with them. Watching one run each is the quickest way to find the unstated step the designer performs without noticing, and it is what makes any later rewrite land in the right place.
 
-## 704. A compliance officer must update an internal policy to reflect a new regulation. Which sequence of stages should she work through?
+## 692. A compliance officer must update an internal policy to reflect a new regulation. Which sequence of stages should she work through?
 
 ### A) Pull the obligations out of the current policy; list what the regulation now requires; mark the clauses affected; draft the replacement wording. **(correct)**
 
@@ -12996,7 +12776,7 @@ Drafting immediately after reading the regulation ignores what the policy alread
 
 Replacement wording written before either the current position or the new requirement is known has nothing to replace and nothing to satisfy.
 
-## 705. A marketing writer is about to publish a company blog post drafted with Claude. Its structure and its main claims follow a published industry study closely, and the post names no source at all. What is the most appropriate thing to do?
+## 693. A marketing writer is about to publish a company blog post drafted with Claude. Its structure and its main claims follow a published industry study closely, and the post names no source at all. What is the most appropriate thing to do?
 
 ### A) Leave the post as it stands, since Claude wrote the words and nothing was copied out verbatim.
 
@@ -13014,25 +12794,7 @@ Correct. Attribution is owed to whoever did the underlying work; readers are oth
 
 Disclosing AI assistance says how the post was drafted, not whose research the claims rest on.
 
-## 706. Explanation
-
-### A) Stop using the arrangement until the client confirms the problem has been fixed
-
-Suspending a working arrangement over an unexamined comment is a disproportionate response to feedback nobody has confirmed.
-
-### B) Ask Claude to guess what a client in this sector would object to in a summary
-
-Asking Claude to speculate about the objection produces a plausible guess that is no closer to what the client actually said.
-
-### C) Get one specific summary the client objected to and what was wrong with it **(correct)**
-
-Correct. Secondhand, unspecific feedback cannot be acted on. Getting one concrete example turns a rumour into something diagnosable, and it may turn out to be a single unusual case.
-
-### D) Rewrite the shared instructions to make the summaries shorter and more formal
-
-Changing shared instructions on a paraphrase risks fixing something the client never raised and breaking what already worked.
-
-## 707. A project lead notices that Claude keeps giving the same wrong answer about the travel policy, always matching last year's rules. Both last year's and this year's policy documents sit in the project's knowledge. What best explains this?
+## 694. A project lead notices that Claude keeps giving the same wrong answer about the travel policy, always matching last year's rules. Both last year's and this year's policy documents sit in the project's knowledge. What best explains this?
 
 ### A) Claude is drawing on the superseded document, so the fault sits in the knowledge, not the model. **(correct)**
 
@@ -13050,7 +12812,7 @@ Incorrect. There is no such preference for age. The problem is that two conflict
 
 Incorrect. Nothing here describes two conflicting statements inside one response; the answers are consistent and consistently wrong.
 
-## 708. A contractor drafts a client's unreleased pricing strategy in his own personal Claude account, with the setting that helps improve Claude's models switched on. What is the biggest concern?
+## 695. A contractor drafts a client's unreleased pricing strategy in his own personal Claude account, with the setting that helps improve Claude's models switched on. What is the biggest concern?
 
 ### A) Usage limits on a personal plan may interrupt him partway through before the pricing work is finished.
 
@@ -13068,7 +12830,7 @@ Producing records later is a genuine secondary problem, but it is smaller than c
 
 Length is a working constraint within one chat and has nothing to do with the confidentiality of the client's material.
 
-## 709. A project lead has twelve loosely related Claude answers gathered over a month and wants one reference document for her team. What is the most effective approach?
+## 696. A project lead has twelve loosely related Claude answers gathered over a month and wants one reference document for her team. What is the most effective approach?
 
 ### A) Decide the structure the reference needs, then have Claude assemble the answers and resolve conflicts. **(correct)**
 
@@ -13086,7 +12848,7 @@ Incorrect. Chronological order reflects how the questions arose, not how a reade
 
 Incorrect. Shortening reduces reading time but leaves twelve disconnected pieces and can remove the detail that resolves a conflict.
 
-## 710. A team is choosing which slice of work to use for a two-week trial of a new Claude-assisted contract summarising arrangement. Which slice is the best choice for the trial?
+## 697. A team is choosing which slice of work to use for a two-week trial of a new Claude-assisted contract summarising arrangement. Which slice is the best choice for the trial?
 
 ### A) The contracts causing the most delay right now, so the trial also clears the urgent backlog.
 
@@ -13104,7 +12866,7 @@ Correct. A pilot is only useful if it is a fair rehearsal of the real work, whic
 
 An easy slice produces a flattering result that does not predict live performance. The arrangement would then meet its first difficult contract after the team has already committed to it.
 
-## 711. An events team wants to put a Claude-drafted safety briefing for a public open day on the venue website tomorrow. Nobody has yet been named to check it. What should the team lead do first?
+## 698. An events team wants to put a Claude-drafted safety briefing for a public open day on the venue website tomorrow. Nobody has yet been named to check it. What should the team lead do first?
 
 ### A) Ask Claude to review its own briefing and confirm that the safety guidance in it is accurate.
 
@@ -13122,7 +12884,7 @@ Correcting a published safety briefing after members of the public have read it 
 
 General circulation invites comment without assigning responsibility. Everyone may assume someone else has checked the safety guidance, which is how an unreviewed briefing reaches the public.
 
-## 712. An analyst appends a reference list that Claude produced to her report without opening any of the items on it. What is the greatest risk?
+## 699. An analyst appends a reference list that Claude produced to her report without opening any of the items on it. What is the greatest risk?
 
 ### A) The list will be longer than the report itself requires, which readers are likely to find distracting.
 
@@ -13140,7 +12902,7 @@ Correct. An unopened reference list gives the report the appearance of grounding
 
 Incorrect. Readers consulting sources is a good outcome; the danger is that the sources will not hold up.
 
-## 713. A user asks Claude.ai to build a working single-page HTML landing page with embedded CSS that they can preview, tweak, and eventually export. Which output format best serves this request?
+## 700. A user asks Claude.ai to build a working single-page HTML landing page with embedded CSS that they can preview, tweak, and eventually export. Which output format best serves this request?
 
 ### A) Choose an inline HTML code block because code blocks render identically to artifacts and provide the same live preview and export options.
 
@@ -13158,7 +12920,7 @@ Incorrect. A plain-text description of the page layout fails to deliver the func
 
 Correct. Artifacts are designed for self-contained, substantial content like a single-page HTML site, allowing the user to preview and refine the work in a dedicated panel and later export it for use outside the chat.
 
-## 714. A user wants Claude to find a spreadsheet they opened yesterday in Google Drive but does not remember its exact URL. What can the Drive connector do?
+## 701. A user wants Claude to find a spreadsheet they opened yesterday in Google Drive but does not remember its exact URL. What can the Drive connector do?
 
 ### A) Only retrieve a file when the exact URL is provided by the user first.
 
@@ -13176,7 +12938,7 @@ Incorrect. There is no separate service account requirement; the connector uses 
 
 Correct. The Drive connector lets users search recently accessed documents, or paste a URL, so the file can be found without the exact link.
 
-## 715. A marketing manager's answers keep coming back shallow, and a colleague suggests moving straight to the deepest-reasoning model. Which sequence of steps is correct?
+## 702. A marketing manager's answers keep coming back shallow, and a colleague suggests moving straight to the deepest-reasoning model. Which sequence of steps is correct?
 
 ### A) Check whether the prompt states the depth needed; improve the prompt and retry; move to the deepest-reasoning model; keep the lighter model for routine parts. **(correct)**
 
@@ -13194,7 +12956,7 @@ Incorrect. The prompt is revised before anyone has looked at what it actually sa
 
 Incorrect. Every diagnostic step happens after both model changes, so the tier decisions are taken with no evidence behind them.
 
-## 716. An operations analyst is comparing eight vendors and must decide whether to ask Claude for prose or for a structured table with fixed columns. Which two are sound reasons to choose the structured form? Select two.
+## 703. An operations analyst is comparing eight vendors and must decide whether to ask Claude for prose or for a structured table with fixed columns. Which two are sound reasons to choose the structured form? Select two.
 
 ### A) The results will be moved into a tracker where every field has to line up exactly. **(correct)**
 
@@ -13216,7 +12978,7 @@ Correct. Visible gaps are a curation benefit distinct from downstream use: prose
 
 Relative effort is not a reason a knowledge worker should choose a format. The decision should follow from how the information will be used.
 
-## 717. A programme manager has a Claude-drafted quarterly performance report and one hour to review it before it goes to her director. In which order should these steps be taken?
+## 704. A programme manager has a Claude-drafted quarterly performance report and one hour to review it before it goes to her director. In which order should these steps be taken?
 
 ### A) List what the original request asked the report to cover; check the draft against that list for anything missing; verify the claims and figures that carry the most weight; note what was checked and pass the draft to the director. **(correct)**
 
@@ -13234,7 +12996,7 @@ Verification begins before anyone has established what the report was meant to c
 
 The draft is compared against a list that has not been written yet, so the comparison has no standard behind it and reduces to reading the report and hoping something looks absent.
 
-## 718. A communications team has decided that Claude will draft its recurring stakeholder update, but the team cannot yet say how they will judge whether the arrangement is working. Which action best prepares them to delegate the task?
+## 705. A communications team has decided that Claude will draft its recurring stakeholder update, but the team cannot yet say how they will judge whether the arrangement is working. Which action best prepares them to delegate the task?
 
 ### A) Write down what an acceptable draft must contain and avoid, and agree it before any drafting is handed over. **(correct)**
 
@@ -13252,7 +13014,7 @@ Planning a fallback before defining success means the team cannot tell whether t
 
 A time target measures effort saved but says nothing about whether the drafts are fit to send. A fast draft that misses required content is worse than the slower manual version it replaced.
 
-## 719. A consultancy holds a Claude for Work plan, but several consultants prefer to use their own personal accounts for client deliverables because it feels quicker. What is the greatest governance risk?
+## 706. A consultancy holds a Claude for Work plan, but several consultants prefer to use their own personal accounts for client deliverables because it feels quicker. What is the greatest governance risk?
 
 ### A) Output quality may vary between accounts because personal plans offer a narrower selection of models.
 
@@ -13270,7 +13032,7 @@ Correct. The firm's commitments to clients rest on the managed environment and i
 
 Project count limits are a workspace constraint and do not describe the risk to client confidentiality.
 
-## 720. A programme team asks Claude to condense forty stakeholder interview transcripts into a single requirements list, then plans to send that list to a supplier as the final agreed scope without further review. What is the greatest risk?
+## 707. A programme team asks Claude to condense forty stakeholder interview transcripts into a single requirements list, then plans to send that list to a supplier as the final agreed scope without further review. What is the greatest risk?
 
 ### A) The supplier may raise follow-up questions that the programme team cannot answer without rereading material.
 
@@ -13288,7 +13050,7 @@ Correct. Summarising forty transcripts naturally favours what was said repeatedl
 
 Formatting is a presentation issue that is trivially fixed by asking for a different layout. It has no bearing on whether the scope the supplier is being asked to build is actually the scope the stakeholders described.
 
-## 721. A coordinator uses Claude to draft an internal wiki page describing how to book a meeting room. Any colleague can edit the page, and a mistake would cost someone a few minutes. What is the most appropriate level of checking?
+## 708. A coordinator uses Claude to draft an internal wiki page describing how to book a meeting room. Any colleague can edit the page, and a mistake would cost someone a few minutes. What is the most appropriate level of checking?
 
 ### A) A read-through by someone who knows the booking process, then publish it to the wiki. **(correct)**
 
@@ -13306,7 +13068,25 @@ Incorrect. Physically re-performing each step and documenting it spends far more
 
 Incorrect. Some check is still warranted; being internal reduces the stakes but does not remove the value of a quick look.
 
-## 722. A manager is about to tell her team that Claude will now produce the first draft of every incident report. What should the announcement make clear above all?
+## 709. A prompt for generating short marketing taglines includes ten examples, all of which happen to be puns. The team is puzzled that every generated tagline is now also a pun, even for products where a pun-based tagline is a poor fit. What is the most likely diagnosis?
+
+### A) The examples are causing Claude to ignore the instructions entirely and rely solely on memorized training data instead.
+
+Incorrect. There's no basis for claiming the examples cause instructions to be ignored in favor of training data; the documented issue with narrow examples is pattern overfitting to the examples themselves.
+
+### B) Ten examples is too many; Anthropic caps effective examples at two, and anything beyond that causes overfitting.
+
+Incorrect. Anthropic recommends 3-5 examples for best results as a general guideline, not a hard cap of two, and the core problem here is lack of diversity, not raw example count.
+
+### C) The examples are not diverse enough, so Claude picked up the unintended pattern that taglines must always be puns. **(correct)**
+
+Correct. Anthropic's guidance on using examples effectively specifies they should be diverse, varying enough that Claude doesn't pick up unintended patterns; a set of examples that are uniformly puns teaches the model that puns are required, not just one possible style.
+
+### D) The issue is unrelated to the examples; it stems from an implicit temperature default that favors humorous phrasing.
+
+Incorrect. This misattributes a documented examples-diversity issue to an unrelated sampling parameter with no such documented default behavior.
+
+## 710. A manager is about to tell her team that Claude will now produce the first draft of every incident report. What should the announcement make clear above all?
 
 ### A) How much time the change is expected to save the team over the course of a full year.
 
@@ -13324,7 +13104,7 @@ Naming other departments builds confidence in the decision but says nothing abou
 
 Describing the testing is good practice and supports trust in the change. It still leaves the team without a clear statement of their own remaining responsibilities.
 
-## 723. A benefits administrator asks Claude to answer staff questions using the benefits handbook she pastes in. Some of the questions concern situations the handbook simply does not cover. What should her request say about those?
+## 711. A benefits administrator asks Claude to answer staff questions using the benefits handbook she pastes in. Some of the questions concern situations the handbook simply does not cover. What should her request say about those?
 
 ### A) That any question the handbook does not settle should be skipped, returning only the ones it covers clearly.
 
@@ -13342,7 +13122,7 @@ A caveat attached to an invented answer still puts a specific figure or rule in 
 
 Correct. Naming the boundary of the source turns a gap into visible information she can act on, and it prevents plausible general knowledge being presented as her employer's policy.
 
-## 724. An operations manager finds she hits her usage limit before lunch nearly every working day and is frustrated by the interruption. What should she do first?
+## 712. An operations manager finds she hits her usage limit before lunch nearly every working day and is frustrated by the interruption. What should she do first?
 
 ### A) Upgrade immediately to the highest plan tier available so the daily interruptions simply stop happening.
 
@@ -13360,7 +13140,7 @@ Incorrect. The deepest-reasoning tier consumes meaningfully more allowance per m
 
 Incorrect. A fresh window addresses a length limit, not a usage limit, which follows her across all conversations.
 
-## 725. A prompt asks Claude to solve multi-step math word problems, but a review of outputs shows occasional arithmetic slips that go uncaught. The team wants to iterate on the prompt to catch these errors before the final answer is returned, without switching to a different evaluation pipeline. Which addition to the prompt best addresses this?
+## 713. A prompt asks Claude to solve multi-step math word problems, but a review of outputs shows occasional arithmetic slips that go uncaught. The team wants to iterate on the prompt to catch these errors before the final answer is returned, without switching to a different evaluation pipeline. Which addition to the prompt best addresses this?
 
 ### A) Ask Claude to supply only the final numeric answer without any intermediate steps, so no arithmetic is shown to check.
 
@@ -13378,7 +13158,43 @@ Correct. Adding an explicit self-verification step prompts Claude to check its s
 
 Incorrect. Repeating the same approach twice does not introduce a genuine check, because identical reasoning is likely to reproduce the same mistake. Since only the first result is used, the second computation provides no error-catching benefit.
 
-## 726. Explanation
+## 714. An operations manager has collected about sixty requirement statements from five departments for a new supplier onboarding process. Many overlap, several contradict each other, and some are one-line wishes. She wants Claude to help her make sense of the list. What should she do first?
+
+### A) Ask Claude to rank all sixty statements by business value so the team can start on the top ten items.
+
+Ranking is premature while duplicates and contradictions are still in the list. A value ranking built over sixty unclean statements will rank the same need twice and score wishes that nobody can define, so the ordering would have to be redone once the list is tidied.
+
+### B) Paste the full list into Claude and ask it to group related items and flag statements too vague to act on. **(correct)**
+
+Correct. Analysis has to start with understanding what is actually in the list. Grouping related statements and surfacing the ones that are too vague to act on gives the manager a clean picture of overlaps, conflicts and gaps, which is exactly the work Claude accelerates well and which every later step depends on.
+
+### C) Ask Claude to estimate how long each of the sixty requirements would take to deliver before reviewing.
+
+Effort estimates depend on requirements being unambiguous. Estimating vague one-line wishes produces numbers with no basis, and the manager would be attaching delivery figures to items that may turn out to be duplicates of one another.
+
+### D) Ask Claude to draft the finished onboarding process document so the departments can react to something real.
+
+Drafting the finished process before the requirements are understood invites departments to react to Claude's assumptions rather than to their own stated needs, and it makes the analysis harder because disagreements now attach to a document instead of to the underlying requirement.
+
+## 715. A finance team runs an overnight batch of several thousand transaction narratives that must be finished before the six o'clock reporting cut-off. They move the batch to the deepest-reasoning tier because they want the best possible quality. What is the greatest risk?
+
+### A) The team grows used to a higher standard of narrative and finds the earlier output unacceptable if they ever have to revert.
+
+Raised expectations are a soft consequence and only matter if the team later reverts. They have no bearing on whether tonight's batch clears the six o'clock deadline.
+
+### B) The narratives come back written in a more elaborate style than the reporting template was originally designed to accommodate.
+
+An elaborate style is a formatting mismatch that can be corrected by asking for a tighter format. It does not threaten the report itself in the way a missed cut-off does.
+
+### C) The batch does not finish inside the overnight window, so the morning report goes out incomplete or does not go out at all. **(correct)**
+
+Correct. At this volume the binding constraint is throughput against a fixed deadline. Depth that cannot complete in the window fails the task outright, which is worse than slightly plainer narratives delivered on time.
+
+### D) The batch produces more detail per transaction than the finance team has time to read through before the reporting cut-off.
+
+Excess detail costs reading time, but the narratives are generated per transaction and are not all read individually. The scheduling failure is the far more serious outcome here.
+
+## 716. An HR team uses Claude to summarise performance notes and rank internal candidates for promotion, with a panel making the final calls. Which two steps address the ethical risks most directly? Select two.
 
 ### A) Drop any performance note written before the current review year, using only recent evidence.
 
@@ -13400,43 +13216,29 @@ A self-reported confidence score is not a reliable measure of correctness and do
 
 Opting out of a promotion process is not a real choice for candidates and would itself create unequal treatment.
 
-## 727. An operations manager has collected about sixty requirement statements from five departments for a new supplier onboarding process. Many overlap, several contradict each other, and some are one-line wishes. She wants Claude to help her make sense of the list. What should she do first?
+## 717. A payroll supervisor has given Claude the same correction in a shared project every week for a month and wants to stop repeating it. Which two steps make the fix stick? Select two.
 
-### A) Ask Claude to rank all sixty statements by business value so the team can start on the top ten items.
+### A) Tell the rest of the team about it, so nobody keeps solving the same problem in their own chats. **(correct)**
 
-Ranking is premature while duplicates and contradictions are still in the list. A value ranking built over sixty unclean statements will rank the same need twice and score wishes that nobody can define, so the ordering would have to be redone once the list is tidied.
+Correct for a different reason: the fix is only really closed when the practice is shared, otherwise colleagues rediscover it.
 
-### B) Paste the full list into Claude and ask it to group related items and flag statements too vague to act on. **(correct)**
+### B) Keep a personal note of the correction and paste it in whenever the problem happens to come back.
 
-Correct. Analysis has to start with understanding what is actually in the list. Grouping related statements and surfacing the ones that are too vague to act on gives the manager a clean picture of overlaps, conflicts and gaps, which is exactly the work Claude accelerates well and which every later step depends on.
+A personal note keeps the fix manual and private, so it is re-applied by hand and helps nobody else.
 
-### C) Ask Claude to estimate how long each of the sixty requirements would take to deliver before reviewing.
+### C) Get faster at spotting it, and paste the correction at the start of each new chat in the project.
 
-Effort estimates depend on requirements being unambiguous. Estimating vague one-line wishes produces numbers with no basis, and the manager would be attaching delivery figures to items that may turn out to be duplicates of one another.
+Pasting the correction faster is still re-solving the same problem in every single conversation.
 
-### D) Ask Claude to draft the finished onboarding process document so the departments can react to something real.
+### D) Write the correction into the project's instructions so that it applies by default from now on. **(correct)**
 
-Drafting the finished process before the requirements are understood invites departments to react to Claude's assumptions rather than to their own stated needs, and it makes the analysis harder because disagreements now attach to a document instead of to the underlying requirement.
+Correct. Project instructions are the durable home for a fix, so it stops depending on somebody remembering it.
 
-## 728. A finance team runs an overnight batch of several thousand transaction narratives that must be finished before the six o'clock reporting cut-off. They move the batch to the deepest-reasoning tier because they want the best possible quality. What is the greatest risk?
+### E) Ask the team to flag it in feedback each time, so the pattern can be tracked more precisely.
 
-### A) The team grows used to a higher standard of narrative and finds the earlier output unacceptable if they ever have to revert.
+Tracking the pattern documents the problem more precisely but does not actually change any output.
 
-Raised expectations are a soft consequence and only matter if the team later reverts. They have no bearing on whether tonight's batch clears the six o'clock deadline.
-
-### B) The narratives come back written in a more elaborate style than the reporting template was originally designed to accommodate.
-
-An elaborate style is a formatting mismatch that can be corrected by asking for a tighter format. It does not threaten the report itself in the way a missed cut-off does.
-
-### C) The batch does not finish inside the overnight window, so the morning report goes out incomplete or does not go out at all. **(correct)**
-
-Correct. At this volume the binding constraint is throughput against a fixed deadline. Depth that cannot complete in the window fails the task outright, which is worse than slightly plainer narratives delivered on time.
-
-### D) The batch produces more detail per transaction than the finance team has time to read through before the reporting cut-off.
-
-Excess detail costs reading time, but the narratives are generated per transaction and are not all read individually. The scheduling failure is the far more serious outcome here.
-
-## 729. A communications team wants every press-release draft produced in a shared project to come out in the company's house voice, without anyone having to explain the voice again in each chat. What should the team do first?
+## 718. A communications team wants every press-release draft produced in a shared project to come out in the company's house voice, without anyone having to explain the voice again in each chat. What should the team do first?
 
 ### A) Ask Claude in each new chat to match the house voice, and then correct the tone in the follow-up messages each time.
 
@@ -13454,7 +13256,7 @@ Samples are useful background, but they do not state the rules, and inference fr
 
 This guarantees inconsistency, which is the opposite of the shared house voice the team asked for.
 
-## 730. An education lead is choosing a model tier to help draft feedback that will contribute to students' marks. What should she do first?
+## 719. An education lead is choosing a model tier to help draft feedback that will contribute to students' marks. What should she do first?
 
 ### A) Choose the deepest tier, since anything involving students should use the strongest option.
 
@@ -13472,25 +13274,7 @@ Incorrect. Length is not the standard, and choosing on it rewards verbosity rath
 
 Incorrect. Volume is only half the picture, and choosing on throughput ignores what an error here would cost.
 
-## 731. Explanation
-
-### A) Paste only the two or three sections that appear most likely to be relevant to each query.
-
-Choosing sections by hand each time re-introduces the effort and risks omitting the relevant part.
-
-### B) Put the handbook into a project's knowledge so every chat in that project can draw on it. **(correct)**
-
-Correct. Background material that every conversation needs belongs in project knowledge, where it is available to each chat without being supplied again.
-
-### C) Have Claude summarise the handbook once, then paste that summary at the start of each chat.
-
-A summary loses the detail that specific queries turn on, so answers become less reliable.
-
-### D) Keep one very long conversation open and ask every handbook query inside that conversation.
-
-One ever-growing conversation eventually loses the thread and consumes more of the allowance.
-
-## 732. A researcher is doing straightforward drafting work while several connectors and tools she does not need for it remain switched on. What is a reasonable step to make routine work leaner?
+## 720. A researcher is doing straightforward drafting work while several connectors and tools she does not need for it remain switched on. What is a reasonable step to make routine work leaner?
 
 ### A) Ask Claude in each message to avoid using any connector while she works on the drafting.
 
@@ -13508,25 +13292,43 @@ Correct. Turning off tools and connectors that a task does not need is a recogni
 
 Removing them permanently costs her the reconnection work every time the other tasks come round.
 
-## 733. Explanation
+## 721. A programme manager has worked inside a single conversation for three days. Claude now blends details from an earlier workstream into its answers and contradicts decisions taken yesterday. What is the most effective response?
 
-### A) Upgrade the whole team to a higher plan so the weekly ceiling stops interrupting work.
+### A) Ask Claude to disregard everything discussed before yesterday and carry on in the same conversation.
 
-Upgrading may be the right answer eventually, but paying to avoid a diagnosis usually hides the real cause.
+An instruction to ignore earlier content leaves that content in the conversation, still available to be drawn on.
 
-### B) Look at which tasks are actually consuming the allowance before changing plans or habits. **(correct)**
+### B) Move to a model with deeper reasoning, so the length of the conversation is handled more reliably.
 
-Correct. Until the team knows where the allowance is actually going, every remedy is a guess; checking which work is consuming it points at the habit or task to change.
+A different model inherits the same crowded conversation and the same contradictions inside it.
 
-### C) Move all routine work to the fastest model, as it is the cheapest option for daily tasks.
+### C) Start a fresh chat with a short recap and the current documents, keeping key material in a project. **(correct)**
 
-Forcing the fastest model on everything trades quality away without knowing what actually consumed the allowance.
+Correct. The conversation itself is the problem, so the fix is a clean start carrying only what still matters, with the durable material kept somewhere it does not have to be re-established each time.
 
-### D) Ask everyone to keep messages short and avoid pasting long documents into conversations.
+### D) Repeat the most recent decisions in every message so the earlier workstream stops shaping the answers.
 
-Short messages can cost more overall if they cause long back-and-forth exchanges to reach the same result.
+Restating decisions in every message is laborious and still competes with three days of superseded discussion.
 
-## 734. A startup has a new application idea and wants to minimize development cost and iteration time before deciding whether a more capable model is truly needed. Following Anthropic's recommended approach for this situation, which model should they implement first?
+## 722. A training provider asks Claude to mark written assessments and intends to use the marks as they come to decide which candidates pass the course. What is the greatest risk?
+
+### A) The mark given to one script may vary slightly if the same script is submitted a second time.
+
+Small variation between runs is worth knowing about, but consistent unfairness is the greater harm.
+
+### B) Setting the marking up may take the assessors longer than they expected when they agreed to it.
+
+A slower start is an ordinary project cost, not a harm to the candidates being assessed.
+
+### C) Assessors may gradually lose their familiarity with the assessment once the marking is done for them.
+
+Some loss of familiarity is a real cost, but it does not change who passes and who does not.
+
+### D) Candidates may be marked down for how they happen to write, with no way for them to challenge it. **(correct)**
+
+Correct. This is a decision about people's qualifications; patterns in how the marking treats certain writing styles produce unfair outcomes, and nobody is positioned to notice or contest them.
+
+## 723. A startup has a new application idea and wants to minimize development cost and iteration time before deciding whether a more capable model is truly needed. Following Anthropic's recommended approach for this situation, which model should they implement first?
 
 ### A) Claude Sonnet, since it should always be the first model tried regardless of budget concerns
 
@@ -13544,7 +13346,7 @@ Starting with Opus and optimizing down over time is the recommended path for com
 
 Correct. Anthropic recommends starting with a fast, cost-effective model like Haiku, testing thoroughly, and upgrading only if performance reveals a specific capability gap, which fits a startup minimizing cost and iteration time.
 
-## 735. A member services officer must explain a change to membership fees. The explanation goes to members of fifteen years and to people who joined last month. Which request is most likely to produce copy she can use?
+## 724. A member services officer must explain a change to membership fees. The explanation goes to members of fifteen years and to people who joined last month. Which request is most likely to produce copy she can use?
 
 ### A) Ask for two versions of the notice, stating what each group already knows about fees and what each has to do. **(correct)**
 
@@ -13562,7 +13364,7 @@ A notice that serves neither group well is the usual result: long-standing membe
 
 A glossary bolts definitions onto the end without changing the body of the notice, so the parts that assume familiarity still assume it.
 
-## 736. A department head asks for a one-page summary of what Claude will and will not do in a redesigned review workflow. What is the most important thing for that summary to include?
+## 725. A department head asks for a one-page summary of what Claude will and will not do in a redesigned review workflow. What is the most important thing for that summary to include?
 
 ### A) A technical comparison of the model options so the department can judge the quality of the choice.
 
@@ -13580,7 +13382,7 @@ Promising that review disappears oversells the tool and removes the accountabili
 
 Correct. Stakeholders need the boundary between assisted work and human accountability stated plainly.
 
-## 737. A new team member asks how the Claude model tiers actually differ from one another in everyday use. Which two statements are accurate? Select two.
+## 726. A new team member asks how the Claude model tiers actually differ from one another in everyday use. Which two statements are accurate? Select two.
 
 ### A) The tiers differ only in writing style, so any of them may be used for any task at any time.
 
@@ -13602,7 +13404,7 @@ Correct. The middle tier is positioned as the fast, capable default that handles
 
 Incorrect. The lightest tier is the fastest of the three, and it trades some reasoning depth for that speed and low cost.
 
-## 738. Three colleagues divide a customer research report between them. Each works on their own section in their own separate chat, and the sections are combined the day before the deadline. What is the greatest risk?
+## 727. Three colleagues divide a customer research report between them. Each works on their own section in their own separate chat, and the sections are combined the day before the deadline. What is the greatest risk?
 
 ### A) Each section will be about the same length, giving the combined report an unhelpfully even balance across topics.
 
@@ -13620,7 +13422,7 @@ Correct. Nothing is shared between the three chats, so each section quietly sett
 
 Inconsistent voice is real and worth an editing pass, but it is visible on the surface and does not undermine the report's conclusions.
 
-## 739. A bid coordinator has a Claude-assembled tender response built from the company's own past submissions, and has time to review it properly before the deadline. Which sequence is correct?
+## 728. A bid coordinator has a Claude-assembled tender response built from the company's own past submissions, and has time to review it properly before the deadline. Which sequence is correct?
 
 ### A) Verify the figures against the source submissions, then polish the wording, then check coverage against the tender questions, then check the response for internal contradictions.
 
@@ -13638,7 +13440,7 @@ Correct. Coverage comes first because a missing answer is the costliest defect a
 
 Internal consistency is a useful check but cannot be conclusive while sections are still missing, and coverage, the step that determines whether the bid is even compliant, is left to the very end.
 
-## 740. A communications lead is drafting an announcement in a chat that is close to its length limit, and the announcement is due in an hour. What should she do first?
+## 729. A communications lead is drafting an announcement in a chat that is close to its length limit, and the announcement is due in an hour. What should she do first?
 
 ### A) Upgrade to a higher plan tier straight away so that the conversation gains a larger context window.
 
@@ -13656,7 +13458,7 @@ Incorrect. Lighter models generally come with smaller context windows, so this s
 
 Correct. With a deadline close, the priority is making the work durable. Once the draft and open points are safely out of the conversation, restarting or continuing becomes a low-risk choice.
 
-## 741. A researcher has checked most of a twenty-claim brief but two claims could not be confirmed against any source before her deadline. What should she do with those two?
+## 730. A researcher has checked most of a twenty-claim brief but two claims could not be confirmed against any source before her deadline. What should she do with those two?
 
 ### A) Delete them quietly, on the basis that a brief containing only verified claims is the safest thing to circulate.
 
@@ -13674,7 +13476,7 @@ Presented alongside verified claims and in the same voice, unconfirmed claims in
 
 Hedged wording signals mild uncertainty rather than absent verification, and it deliberately avoids making the gap visible.
 
-## 742. A new joiner asks how the Claude model tiers differ from the point of view of someone using the Claude app. Which description is accurate?
+## 731. A new joiner asks how the Claude model tiers differ from the point of view of someone using the Claude app. Which description is accurate?
 
 ### A) Sonnet reasons most deeply, Opus is the everyday default option, and Haiku handles only images.
 
@@ -13692,43 +13494,7 @@ Correct. As an end user experiences them, the tiers trade reasoning depth agains
 
 Incorrect. Speed is one axis, but reasoning depth genuinely differs, which is why the choice matters on hard work.
 
-## 743. Explanation
-
-### A) Ask Claude to respond twice and then manually pick whichever version happens to avoid LaTeX notation on that particular occasion.
-
-Incorrect. Relying on chance across repeated generations is not a reliable or documented technique for controlling output formatting.
-
-### B) Add an explicit instruction to format the response in plain text only, avoiding LaTeX or markup, using standard characters for math. **(correct)**
-
-Correct. Anthropic notes that current models default to LaTeX for mathematical expressions, and documents an explicit instruction — requesting plain text only and specifying standard characters for math — as the fix for teams that prefer plain-text output.
-
-### C) Rephrase the question to avoid using any numbers, since numeric content is what actually triggers LaTeX formatting in responses.
-
-Incorrect. Avoiding numbers entirely isn't practical for many tasks and doesn't address the underlying formatting default; the fix is to specify the desired format, not avoid the topic.
-
-### D) Switch to a noticeably smaller model on the assumption that smaller models never default to LaTeX-style formatting for math at all whatsoever.
-
-Incorrect. LaTeX defaulting is not documented as being tied to model size, so switching models is not a reliable or targeted fix for this formatting issue.
-
-## 744. Explanation
-
-### A) The rule that every reply should end with the support team's standard closing sentence.
-
-A standard closing sentence is a rule about how replies are written, so it is an instruction.
-
-### B) The direction to write in short paragraphs and to avoid technical language with customers.
-
-Paragraph length and vocabulary are directions about style, which belong in the instructions.
-
-### C) The requirement that any refund offered must be checked by a supervisor before sending.
-
-A supervisor check is a working rule for the team's replies rather than reference material.
-
-### D) The current product manual, which changes rarely and is needed by every chat there. **(correct)**
-
-Correct. Project knowledge holds reference material Claude should be able to draw on; the other three are directions about how to respond, which belong in the instructions.
-
-## 745. A user is hesitant to connect Gmail to Claude over privacy concerns. Which statement accurately describes how Anthropic handles connector data?
+## 732. A user is hesitant to connect Gmail to Claude over privacy concerns. Which statement accurately describes how Anthropic handles connector data?
 
 ### A) Anthropic does not train models on connector data, and stores it securely. **(correct)**
 
@@ -13746,7 +13512,7 @@ Incorrect. Retrieved connector data is stored on Anthropic's servers rather than
 
 Incorrect. There is no described mechanism routing a user's connector data to their Workspace admin.
 
-## 746. A researcher uploaded a single industry report and asked for a summary of it. Web search was switched off throughout. Which observation is the strongest sign that a detail in the summary was fabricated rather than drawn from the report?
+## 733. A researcher uploaded a single industry report and asked for a summary of it. Web search was switched off throughout. Which observation is the strongest sign that a detail in the summary was fabricated rather than drawn from the report?
 
 ### A) The summary opens with general background about the industry before it turns to the specific findings the report contains.
 
@@ -13764,7 +13530,7 @@ Correct. With no web search and a single uploaded document, everything factual s
 
 Paraphrasing is normal and often desirable in a summary; different wording says nothing about whether the underlying content came from the report. This would flag almost every competent summary as suspect.
 
-## 747. A project owner is adding a newly issued reference document to a project's knowledge base. Which sequence of steps is correct?
+## 734. A project owner is adding a newly issued reference document to a project's knowledge base. Which sequence of steps is correct?
 
 ### A) Confirm it is the approved current version; upload it to project knowledge; record a review date; ask a test question. **(correct)**
 
@@ -13782,7 +13548,7 @@ The test happens before the document exists in the project, and currency is chec
 
 A review date is set for a document that has not been added, and the upload comes last.
 
-## 748. A consultant wants Claude to use British spelling and metric units in every conversation, no matter which piece of work it belongs to. Where does that direction best belong?
+## 735. A consultant wants Claude to use British spelling and metric units in every conversation, no matter which piece of work it belongs to. Where does that direction best belong?
 
 ### A) In the account-wide instructions, since the preference applies to all conversations rather than one workspace. **(correct)**
 
@@ -13800,7 +13566,7 @@ Repeating it forever is exactly the manual overhead durable configuration is mea
 
 Knowledge is reference material for a project, not a standing behaviour rule, and it misses plain chats.
 
-## 749. A department head tells an analyst, "I want Claude to handle our client onboarding." The analyst has been given no other detail. What should the analyst do first?
+## 736. A department head tells an analyst, "I want Claude to handle our client onboarding." The analyst has been given no other detail. What should the analyst do first?
 
 ### A) Draw up a list of onboarding steps that Claude could not perform, and send that list to the department head.
 
@@ -13818,7 +13584,7 @@ Correct. The request names a tool, not a problem. Establishing which onboarding 
 
 Trial prompts show what Claude can produce, not what the department needs. Demonstrating a capability before the problem is defined tends to anchor everyone on whichever step happens to demo well rather than on the step that is actually hurting.
 
-## 750. An operations manager wants Claude to help with the files in one shared folder and is about to connect the company's Google Drive. Which two actions best limit unnecessary exposure? Select two.
+## 737. An operations manager wants Claude to help with the files in one shared folder and is about to connect the company's Google Drive. Which two actions best limit unnecessary exposure? Select two.
 
 ### A) Switch on incognito mode for any conversation that reads files from the connected company Drive.
 
@@ -13840,7 +13606,7 @@ Deleting the originals destroys the team's copy of the files and does nothing to
 
 An instruction in the prompt is not an access control; it does not change what the connector is technically able to reach.
 
-## 751. A research lab needs help with a scientific analysis task involving nuanced multi-step reasoning, where correctness matters far more than response time or token cost. Which model tier does Anthropic's guidance point to?
+## 738. A research lab needs help with a scientific analysis task involving nuanced multi-step reasoning, where correctness matters far more than response time or token cost. Which model tier does Anthropic's guidance point to?
 
 ### A) Select Claude Opus, because scientific and mathematical tasks where accuracy outweighs cost are core use cases. **(correct)**
 
@@ -13858,7 +13624,7 @@ Incorrect. Haiku is optimized for cost and latency sensitivity; Anthropic's guid
 
 Incorrect. Lowering the effort parameter limits reasoning depth to reduce latency and cost; it does not improve accuracy and would undermine performance on a task requiring nuanced reasoning.
 
-## 752. A finance officer pasted eighty rows of expense data into a chat and asked Claude to total them by cost centre. Which two verifications should she perform on the returned figures? Select two.
+## 739. A finance officer pasted eighty rows of expense data into a chat and asked Claude to total them by cost centre. Which two verifications should she perform on the returned figures? Select two.
 
 ### A) Look over the totals to see whether they seem about right for a month of this kind.
 
@@ -13880,7 +13646,7 @@ Correct. An independent recalculation is direct evidence about accuracy, and it 
 
 Consistent formatting says nothing about whether the numbers are right. Tidy presentation is often what makes an incorrect total feel trustworthy.
 
-## 753. A city communications team drafts a public road-construction notice, but the first draft uses formal legal phrasing like 'aforementioned thoroughfare' that is likely to confuse residents. What is the best refinement for this audience?
+## 740. A city communications team drafts a public road-construction notice, but the first draft uses formal legal phrasing like 'aforementioned thoroughfare' that is likely to confuse residents. What is the best refinement for this audience?
 
 ### A) Keep the legal phrasing exactly as written but enlarge the font of the notice.
 
@@ -13898,7 +13664,7 @@ Correct. Plain language makes the notice understandable to all residents, not ju
 
 Incorrect. A formal cover letter would introduce even more official language, failing to simplify the confusing terms in the notice itself. Residents would still encounter the same unclear phrasing.
 
-## 754. A project manager's prompt says only "never use the word delay in the status report". Claude complies literally but the reports still alarm the sponsor. Which two revisions would make the instruction work as intended? Select two.
+## 741. A project manager's prompt says only "never use the word delay in the status report". Claude complies literally but the reports still alarm the sponsor. Which two revisions would make the instruction work as intended? Select two.
 
 ### A) Say how slipped dates should be reported, such as a revised date and the cause. **(correct)**
 
@@ -13920,7 +13686,7 @@ Emphasis phrases do not clarify intent. The word was already avoided, so raising
 
 Repetition adds emphasis, not information. The instruction was already followed; the problem is that following it literally does not achieve the underlying goal.
 
-## 755. A Claude draft attributes a sentence to a named industry report as a direct quotation. What is the appropriate validation step?
+## 742. A Claude draft attributes a sentence to a named industry report as a direct quotation. What is the appropriate validation step?
 
 ### A) Open the report and find that exact sentence, since a close paraphrase may not appear in it. **(correct)**
 
@@ -13938,7 +13704,25 @@ Incorrect. Similar wording elsewhere does not establish that this report contain
 
 Incorrect. The report existing says nothing about whether the quoted sentence is in it.
 
-## 756. A software team wants a coding assistant for daily feature development: reviewing pull requests, generating unit tests, and answering questions about the codebase. They want strong code quality and agentic tool use without paying premium enterprise pricing. Which model tier fits best?
+## 743. A specialist has given Claude the same correction three weeks running in the same project. Which sequence best makes that fix stick?
+
+### A) Confirm it is a standing requirement rather than a one-off; add it to the project instructions; check the next output honours it unprompted; tell colleagues working in the project. **(correct)**
+
+Correct. Establish that the correction is genuinely standing, make it durable in the instructions, verify it now works without the reminder, and only then tell the people who share the project.
+
+### B) Tell colleagues working in the project; check the next output honours it unprompted; confirm it is a standing requirement rather than a one-off; add it to the project instructions.
+
+Announcing the change before it has been made or verified leaves colleagues relying on something that is not there.
+
+### C) Check the next output honours it unprompted; tell colleagues working in the project; add it to the project instructions; confirm it is a standing requirement rather than a one-off.
+
+Checking that the output honours a rule that has not yet been written cannot tell anyone anything.
+
+### D) Add it to the project instructions; confirm it is a standing requirement rather than a one-off; tell colleagues working in the project; check the next output honours it unprompted.
+
+Writing it into shared instructions before checking it is a standing rule can impose a one-off preference on everyone.
+
+## 744. A software team wants a coding assistant for daily feature development: reviewing pull requests, generating unit tests, and answering questions about the codebase. They want strong code quality and agentic tool use without paying premium enterprise pricing. Which model tier fits best?
 
 ### A) Claude Opus delivers the highest accuracy for pull request reviews and test generation, essential for daily feature development.
 
@@ -13956,7 +13740,7 @@ Correct. Claude Sonnet provides frontier-level coding performance and agentic to
 
 Incorrect. Fast mode on Claude Opus improves output speed but does not reduce pricing to Sonnet's level. Opus fast mode still operates at a premium price point, so it does not meet the team's requirement to avoid premium enterprise pricing.
 
-## 757. A communications officer asks Claude for balanced talking points on a contested planning decision. The draft states one side's arguments plainly and introduces the other side's with repeated hedging. How should this be classified?
+## 745. A communications officer asks Claude for balanced talking points on a contested planning decision. The draft states one side's arguments plainly and introduces the other side's with repeated hedging. How should this be classified?
 
 ### A) A hallucination, because the arguments on one side must therefore have been invented.
 
@@ -13974,7 +13758,7 @@ Incorrect. Hedging changes how strongly a claim is asserted, which is a matter o
 
 Incorrect. An inconsistency is a conflict between statements about the same fact, not a difference in phrasing between sections.
 
-## 758. A research team keeps adding reports to a project's knowledge base and wants to know what happens as that knowledge grows past what fits in a single conversation. What should they expect?
+## 746. A research team keeps adding reports to a project's knowledge base and wants to know what happens as that knowledge grows past what fits in a single conversation. What should they expect?
 
 ### A) Claude moves automatically to a retrieval mode that can draw on up to ten times more project content. **(correct)**
 
@@ -13992,7 +13776,7 @@ Older documents are not silently dropped; retrieval is what lets the larger know
 
 Splitting by hand is unnecessary, because the switch to retrieval happens without any action.
 
-## 759. A charity's donation-thank-you process works well overall but is slow only at the drafting step. Which integration approach is most appropriate?
+## 747. A charity's donation-thank-you process works well overall but is slow only at the drafting step. Which integration approach is most appropriate?
 
 ### A) Augment the process by having Claude draft, with the same person signing off **(correct)**
 
@@ -14010,7 +13794,7 @@ Optional, unstructured use leaves the bottleneck exactly where it was and produc
 
 Removing the sign-off removes the check that makes the process safe, in exchange for time that was not being lost there.
 
-## 760. What is the primary purpose of the knowledge base within a Claude Project?
+## 748. What is the primary purpose of the knowledge base within a Claude Project?
 
 ### A) It gives Claude uploaded documents, text, and code as shared context for every chat inside the project **(correct)**
 
@@ -14028,7 +13812,25 @@ Incorrect. The knowledge base supplies context to Claude within the project; it 
 
 Incorrect. The knowledge base is not a prompt history log; it is a repository of uploaded reference material scoped to one project.
 
-## 761. A game designer asks Claude to build a playable HTML5 prototype of a simple puzzle game with score tracking, and wants to keep tweaking the mechanics over the next hour based on playtesting. Which feature keeps the running prototype visible and editable throughout that session?
+## 749. A team's Claude project produces good analysis, but they have to ask for British spelling and a summary table in every single conversation. Where do those two requirements belong?
+
+### A) In the first message of each conversation, since requirements can change from one task to another.
+
+Repeating them in every conversation is the effort they are trying to remove, and it will be forgotten.
+
+### B) In a document uploaded to the project's knowledge, alongside the reference material already there.
+
+Knowledge documents supply background material; they are not read as directions about how to respond.
+
+### C) In the project's instructions, where they apply to every conversation started in that project. **(correct)**
+
+Correct. These are standing rules for how work in this project should be presented, which is exactly what project instructions are for.
+
+### D) In a reusable skill, so that the two requirements can be invoked from any conversation at all.
+
+A skill is heavier machinery than two presentation rules need, and these apply only to this project's work.
+
+## 750. A game designer asks Claude to build a playable HTML5 prototype of a simple puzzle game with score tracking, and wants to keep tweaking the mechanics over the next hour based on playtesting. Which feature keeps the running prototype visible and editable throughout that session?
 
 ### A) A shared team workspace is necessary because individual accounts cannot render and tweak HTML5 prototypes.
 
@@ -14046,7 +13848,7 @@ Incorrect. Project knowledge bases store reference documents and do not render l
 
 Correct. The artifact panel is designed to render self-contained content like an HTML5 game prototype separately from the chat, allowing the designer to see a live view while requesting iterative edits to the mechanics. It explicitly supports this interactive, visible feedback loop.
 
-## 762. A school district's operations team wants Claude to work through the admissions criteria and produce the letters telling families whether their child has a place at an oversubscribed school. What should the team do first?
+## 751. A school district's operations team wants Claude to work through the admissions criteria and produce the letters telling families whether their child has a place at an oversubscribed school. What should the team do first?
 
 ### A) Ask Claude to restate the district's admissions criteria so the team can confirm it has them right.
 
@@ -14064,7 +13866,7 @@ Correct. A school place materially affects a child's life and the decision is ha
 
 A firmer instruction addresses how faithfully the criteria are applied, not whether an allocation affecting children's schooling should be made this way at all.
 
-## 763. A Max-plan user turns off the setting that allows their chats to be used to improve Claude's models. What is the effect?
+## 752. A Max-plan user turns off the setting that allows their chats to be used to improve Claude's models. What is the effect?
 
 ### A) Chats are still used for training, but the account is excluded from the de-identification process.
 
@@ -14082,7 +13884,25 @@ This is a consumer-plan setting; business plans work differently.
 
 Correct. Switching it off applies to new conversations and stops previously stored ones feeding future training runs.
 
-## 764. A prompt for a tone-sensitive customer email generator gives Claude no persona or role, just the raw task instructions. Emails come back with an inconsistent, generic tone that doesn't match the brand voice. What is a lightweight change likely to help?
+## 753. After a month in use, the only feedback on a Claude-assisted rota digest is "it's fine". The lead wants to know whether it is genuinely working. What should she do first?
+
+### A) Ask the team to score the digest out of ten at the end of each week ahead
+
+A weekly score records a mood without saying what to change, and the answer is a month away.
+
+### B) Ask the users what they still change by hand before they use the digest **(correct)**
+
+Correct. What people quietly fix is the most honest signal available. "It's fine" often means "I edit it every week and stopped mentioning it", and the edits show exactly where the gap is.
+
+### C) Ask Claude to produce a longer digest and see whether anyone objects to it
+
+Deliberately degrading the digest to provoke a reaction wastes a month and annoys the users.
+
+### D) Take the absence of complaints as confirmation and extend it to two teams
+
+Silence is not evidence of success, and extending on that basis spreads an unverified arrangement.
+
+## 754. A prompt for a tone-sensitive customer email generator gives Claude no persona or role, just the raw task instructions. Emails come back with an inconsistent, generic tone that doesn't match the brand voice. What is a lightweight change likely to help?
 
 ### A) Increase the max_tokens limit so Claude has more space to naturally settle into a consistent tone over a longer response.
 
@@ -14100,7 +13920,7 @@ Incorrect. Removing the task instructions would leave Claude without clear direc
 
 Incorrect. Round-tripping through translation is not a documented technique for tone control and introduces unnecessary risk of meaning drift.
 
-## 765. A researcher writing an executive summary wants Claude's analysis of a quarterly report to note both the strongest supporting evidence and the weakest counterpoints, rather than a one-sided take. Which instruction best supports this balanced analysis?
+## 755. A researcher writing an executive summary wants Claude's analysis of a quarterly report to note both the strongest supporting evidence and the weakest counterpoints, rather than a one-sided take. Which instruction best supports this balanced analysis?
 
 ### A) Ask Claude to list every sentence without judging its significance
 
@@ -14118,25 +13938,7 @@ Correct. Being clear and direct about wanting both the strongest evidence and th
 
 Incorrect. A plain summary without evaluating evidence does not perform the comparative analysis of strengths and weaknesses that was requested.
 
-## 766. Explanation
-
-### A) No disclosure at all, since chatbots are exempt from AI disclosure requirements under the policy
-
-Incorrect. Consumer chatbots are explicitly called out as needing AI disclosure at the start of the session, not exempted from it.
-
-### B) A one-time disclosure buried in the site's general terms of service that customers rarely read
-
-Incorrect. A buried terms-of-service mention does not meet the requirement for clear, session-level disclosure that a customer would actually see.
-
-### C) A clear notice at the start of the session disclosing that the customer is talking to an AI system **(correct)**
-
-Correct. Anthropic's guidance for consumer-facing chatbot applications requires disclosing AI involvement at the start of the session so users know they are talking to an AI.
-
-### D) A hidden instruction telling Claude to claim it is a human agent whenever a customer asks directly
-
-Incorrect. Instructing the model to impersonate a human and deny being AI directly violates the Usage Policy's prohibition on deceptive impersonation.
-
-## 767. A pilot has worked well, and the team wants the new way of working to survive the departure of the person who created it. Which sequence of steps is correct?
+## 756. A pilot has worked well, and the team wants the new way of working to survive the departure of the person who created it. Which sequence of steps is correct?
 
 ### A) Correct the instructions wherever they got stuck; have a second person run the work from those instructions alone; capture the working instructions in one shared place; write down what a good result looks like.
 
@@ -14154,7 +13956,7 @@ Correcting the instructions before anyone has tried to follow them means correct
 
 The second person cannot run the work from instructions that have not yet been captured, and writing down what good looks like after the test leaves them no way to judge their own output.
 
-## 768. A product team compares two Claude-drafted release notes for the same feature, one for a public changelog and one for an internal engineering wiki. What is a key factor to check for each draft's fit?
+## 757. A product team compares two Claude-drafted release notes for the same feature, one for a public changelog and one for an internal engineering wiki. What is a key factor to check for each draft's fit?
 
 ### A) Whether the public draft includes internal ticket numbers so support staff can reference them
 
@@ -14172,7 +13974,7 @@ Incorrect. Publishing both drafts to the same location defeats the purpose of ta
 
 Correct. A public changelog should be free of internal codenames and implementation detail, while the internal wiki draft can appropriately retain that detail for engineers.
 
-## 769. A team plans to bring Claude into a workflow that three other departments feed into. Which step is most important before the change goes live?
+## 758. A team plans to bring Claude into a workflow that three other departments feed into. Which step is most important before the change goes live?
 
 ### A) Wait until the other departments adopt the same arrangement themselves
 
@@ -14189,25 +13991,3 @@ Separate instruction versions per department guarantee that the workflow behaves
 ### D) Ask the departments to stop sending work until the change is settled
 
 Halting incoming work to make an internal change imposes the cost on other departments unnecessarily.
-
-## 770. Explanation
-
-### A) Move the background that stays true across tasks into a project, so it need not be repeated. **(correct)**
-
-Correct for an independent reason: it stops the problem returning, by giving durable context a home outside any single conversation.
-
-### B) Begin a fresh conversation containing only the material that the current piece of work needs. **(correct)**
-
-Correct. A conversation this long has accumulated superseded material, and a clean start removes what is confusing the answers.
-
-### C) Repeat the correction every single time details from the earlier tender reappear in the answers.
-
-Fixing each recurrence by hand treats the symptom and leaves the overloaded conversation exactly as it was.
-
-### D) Ask Claude to read the whole conversation again from the very top before it answers each question.
-
-Re-reading the conversation reinforces the mixed-up history rather than clearing it, and consumes more allowance.
-
-### E) Paste the previous answer back in each morning to remind Claude of what it said before.
-
-Adding the earlier output back in makes the conversation longer still, which is the condition causing the drift.
