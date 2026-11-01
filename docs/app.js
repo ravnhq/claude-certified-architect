@@ -127,7 +127,19 @@
       active = id;
       const link = links.get(id);
       link?.classList.add('active');
-      if (link && toc.open) link.scrollIntoView({ block: 'nearest' });
+      if (link && toc.open) {
+        // Keep the active row visible inside the outline without moving the
+        // document. scrollIntoView() also scrolls ancestor containers, which
+        // pulled phone layouts back to the inline outline immediately after a
+        // fragment link had jumped to its heading.
+        const nav = link.closest('nav');
+        if (nav) {
+          const row = link.getBoundingClientRect();
+          const pane = nav.getBoundingClientRect();
+          if (row.top < pane.top) nav.scrollTop -= pane.top - row.top;
+          else if (row.bottom > pane.bottom) nav.scrollTop += row.bottom - pane.bottom;
+        }
+      }
     };
     // Measuring 267 headings on every scroll tick forced a full synchronous
     // layout each time. The heading offsets only move when the page reflows, so
@@ -167,6 +179,12 @@
       measure();
       update();
       addEventListener('scroll', onScroll, { passive: true });
+      // Opening the inline outline on a phone moves the entire guide body even
+      // though the body's own dimensions do not change, so ResizeObserver does
+      // not report it. Refresh the cached document offsets after that shift.
+      toc.addEventListener('toggle', () => {
+        requestAnimationFrame(() => { measure(); update(); });
+      });
       // Anything that reflows the prose moves the offsets: a resize, the web
       // fonts swapping in, a <details> in the guide opening. The observer fires
       // after layout, so re-measuring there costs nothing extra.
