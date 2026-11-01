@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -78,6 +79,7 @@ const GUIDE_UI = {
 
 let headingSlug = createSlugger();
 let anchorLabel = GUIDE_UI.en.anchor;
+let appHref = 'app.js';
 // The pages carry a <base href>, so a bare "#id" would resolve against the
 // site root (the home page). Fragment links must be page-qualified.
 let pageHref = '';
@@ -145,7 +147,7 @@ ${extraHead}<script type="application/json" id="bank-map">${JSON.stringify(bankH
 ${body}
 ${siteFooter()}
 <script src="vendor/minisearch.js" defer></script>
-<script src="app.js" defer></script>
+<script src="${appHref}" defer></script>
 ${extraScripts}
 </body>
 </html>`;
@@ -1561,6 +1563,9 @@ async function writeIndex() {
 
 async function main() {
   await ensureDir(DOCS);
+  const appSource = await fs.readFile(path.join(DOCS, 'app.js'));
+  const appVersion = createHash('sha256').update(appSource).digest('hex').slice(0, 12);
+  appHref = `app.js?v=${appVersion}`;
   await collectBankHrefs();
   await copyBrowserDependencies();
   await writeIndex();
